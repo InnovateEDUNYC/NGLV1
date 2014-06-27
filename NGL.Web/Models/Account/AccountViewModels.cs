@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NGL.Web.Models
+namespace NGL.Web.Models.Account
 {
     public class ExternalLoginConfirmationViewModel
     {

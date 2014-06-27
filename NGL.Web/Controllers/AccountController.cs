@@ -8,7 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using NGL.Web.Context;
+using NGL.Web.Context.Entities;
 using NGL.Web.Models;
+using NGL.Web.Models.Account;
 
 namespace NGL.Web.Controllers
 {
@@ -16,7 +19,7 @@ namespace NGL.Web.Controllers
     public class AccountController : Controller
     {
         public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new NglDbContext())))
         {
         }
 
