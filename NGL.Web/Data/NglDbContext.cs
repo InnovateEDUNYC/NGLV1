@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using NGL.Web.Context.Entities;
+using NGL.Web.Data.Entities;
 
-namespace NGL.Web.Context
+namespace NGL.Web.Data
 {
     public class NglDbContext : IdentityDbContext<ApplicationUser>, INglDbContext
     {

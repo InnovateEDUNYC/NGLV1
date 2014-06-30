@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace NGL.Web.Context.Infrastructure
+namespace NGL.Web.Data.Infrastructure
 {
     public interface IGenericRepository
     {

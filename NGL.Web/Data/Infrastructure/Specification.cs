@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace NGL.Web.Context.Infrastructure
+namespace NGL.Web.Data.Infrastructure
 {
     public abstract class Specification<T>
     {

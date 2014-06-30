@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using NGL.Web.Context.Infrastructure;
+using NGL.Web.Data.Infrastructure;
 
-namespace NGL.Web.Context
+namespace NGL.Web.Data
 {
     public interface INglDbContext: IUnitOfWork, IDisposable
     {

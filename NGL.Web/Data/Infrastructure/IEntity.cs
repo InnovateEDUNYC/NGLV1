@@ -1,4 +1,4 @@
-﻿namespace NGL.Web.Context.Infrastructure
+﻿namespace NGL.Web.Data.Infrastructure
 {
     public interface IEntity
     {

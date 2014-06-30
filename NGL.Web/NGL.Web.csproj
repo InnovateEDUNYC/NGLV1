@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="DbUp">
+      <HintPath>..\packages\dbup.3.0.6\lib\NET35\DbUp.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -173,21 +176,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Context\Entities\ApplicationUser.cs" />
-    <Compile Include="Context\Infrastructure\GenericRepository.cs" />
-    <Compile Include="Context\Infrastructure\IEntity.cs" />
-    <Compile Include="Context\Infrastructure\IGenericRepository.cs" />
-    <Compile Include="Context\INglDbContext.cs" />
-    <Compile Include="Context\Infrastructure\IQuery.cs" />
-    <Compile Include="Context\Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Context\Infrastructure\Specification.cs" />
+    <Compile Include="Data\Entities\ApplicationUser.cs" />
+    <Compile Include="Data\Infrastructure\GenericRepository.cs" />
+    <Compile Include="Data\Infrastructure\IEntity.cs" />
+    <Compile Include="Data\Infrastructure\IGenericRepository.cs" />
+    <Compile Include="Data\INglDbContext.cs" />
+    <Compile Include="Data\Infrastructure\IQuery.cs" />
+    <Compile Include="Data\Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Data\Infrastructure\Specification.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccountViewModels.cs" />
-    <Compile Include="Context\NglDbContext.cs" />
+    <Compile Include="Data\NglDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -196,6 +199,8 @@
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.css" />
     <Content Include="Assets\Content\bootstrap.min.css" />
+    <EmbeddedResource Include="Data\Scripts\001 - Create ODS.sql" />
+    <EmbeddedResource Include="Data\Scripts\002 - Setup ASP.Net Identity.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -223,7 +228,9 @@
     <Content Include="Assets\Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Assets\Scripts\respond.min.js" />
     <Content Include="Assets\Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

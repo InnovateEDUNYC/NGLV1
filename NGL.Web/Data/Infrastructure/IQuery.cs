@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace NGL.Web.Context.Infrastructure
+namespace NGL.Web.Data.Infrastructure
 {
     public interface IQuery<T>
     {
