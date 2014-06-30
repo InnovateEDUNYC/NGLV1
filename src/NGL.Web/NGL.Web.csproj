@@ -211,7 +211,7 @@
     <Content Include="Assets\Content\bootstrap-theme.css.map" />
     <Content Include="Assets\Content\bootstrap.css.map" />
     <Compile Include="App_Start\Startup.Database.cs" />
-    <None Include="Properties\PublishProfiles\NGLSIS.pubxml" />
+    <None Include="Properties\PublishProfiles\NGL.pubxml" />
     <None Include="Assets\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Assets\Scripts\bootstrap.js" />
     <Content Include="Assets\Scripts\bootstrap.min.js" />

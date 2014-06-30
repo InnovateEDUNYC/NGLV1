@@ -1,15 +1,15 @@
 {
     "environmentSettings": {
         "webSite": {
-            "name": "NGLSIS",
+            "name": "NGL",
             "location": "East US"
         },
         "databases": [
             {
                 "connectionStringName": "DefaultConnection",
-                "databaseName": "NGLSIS_db",
+                "databaseName": "NGL_db",
                 "serverName": "",
-                "user": "nglsis",
+                "user": "ngl",
                 "password": "",
                 "edition": "",
                 "size": "",
