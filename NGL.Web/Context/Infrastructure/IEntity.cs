@@ -2,6 +2,10 @@
 {
     public interface IEntity
     {
+    }
+
+    public interface IEntityWithId
+    {
         int Id { get; }         
     }
 }

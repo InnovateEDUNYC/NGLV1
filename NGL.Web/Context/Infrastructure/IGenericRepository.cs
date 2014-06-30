@@ -15,8 +15,8 @@ namespace NGL.Web.Context.Infrastructure
             where TEntity : class, IEntity
             where TOutput : class, IEntity;
 
-        TEntity Get<TEntity>(int id, params Expression<Func<TEntity, object>>[] associations) where TEntity : class, IEntity;
-        IEnumerable<TEntity> Get<TEntity>(IEnumerable<int> ids) where TEntity : class, IEntity;
+        TEntity Get<TEntity>(int id, params Expression<Func<TEntity, object>>[] associations) where TEntity : class, IEntityWithId;
+        IEnumerable<TEntity> Get<TEntity>(IEnumerable<int> ids) where TEntity : class, IEntityWithId;
 
         IQueryable<TEntity> Query<TEntity>() where TEntity : class, IEntity;
         IQueryable<TEntity> Query<TEntity>(IQuery<TEntity> query, params Expression<Func<TEntity, object>>[] associations)
@@ -29,6 +29,6 @@ namespace NGL.Web.Context.Infrastructure
             where TOutputEntity : class, IEntity;
 
         void Add<TEntity>(TEntity entity) where TEntity : class, IEntity;
-        void Delete<TEntity>(int id) where TEntity : class, IEntity;
+        void Delete<TEntity>(int id) where TEntity : class, IEntityWithId;
     } 
 }
