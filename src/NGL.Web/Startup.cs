@@ -8,6 +8,7 @@ namespace NGL.Web
     {
         public void Configuration(IAppBuilder app)
         {
+            ConfigureDatabase();
             ConfigureAuth(app);
         }
     }
