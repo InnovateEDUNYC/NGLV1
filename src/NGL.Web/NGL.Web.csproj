@@ -110,6 +110,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -176,11 +178,1310 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AcademicSubjectDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AcademicSubjectType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AcademicWeek.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccommodationDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccommodationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Account.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccountabilityRating.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccountCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccountCodeDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AchievementCategoryDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AchievementCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Actual.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdditionalCreditType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AddressType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdministrationEnvironmentType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdministrativeFundingControlDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdministrativeFundingControlType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\ApplicationUser.cs" />
+    <Compile Include="Data\Entities\AspNetRole.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUser.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUserClaim.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUserLogin.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Assessment.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentContentStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentContentStandardAuthor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamily.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyAssessmentPeriod.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyContentStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyContentStandardAuthor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyLanguage.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentIdentificationSystemType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItem.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItemCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItemLearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItemResultType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentLanguage.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentPerformanceLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentPeriodDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentProgram.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentReportingMethodType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentScore.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentSection.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AttendanceEventCategoryDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AttendanceEventCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BehaviorDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BehaviorType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BellSchedule.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BellScheduleMeetingTime.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Budget.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarDate.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarDateCalendarEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarEventDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarEventType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CareerPathwayType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CharterStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CitizenshipStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ClassPeriod.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ClassroomPositionDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ClassroomPositionType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Cohort.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortProgram.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortScopeType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortYearType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CompetencyLevelDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CompetencyObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContentClassType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContinuationOfServicesReasonDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContinuationOfServicesReasonType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContractedStaff.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CostRateType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CountryCodeType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CountryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Course.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseAttemptResultType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseCodeSystemType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseCompetencyLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseDefinedByType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseGPAApplicabilityType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLearningObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLevelCharacteristic.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLevelCharacteristicType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseOffering.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseOfferingCurriculumUsed.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseRepeatCodeType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseTranscript.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseTranscriptAdditionalCredit.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseTranscriptExternalCourse.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CredentialFieldDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CredentialType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CreditType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CurriculumUsedType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DeliveryMethodType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Descriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiagnosisDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiagnosisType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiplomaLevelType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiplomaType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisabilityCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisabilityDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisabilityType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineAction.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionDiscipline.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionDisciplineIncident.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionLengthDifferenceReasonType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionStaff.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineIncident.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineIncidentBehavior.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineIncidentWeapon.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EdFiException.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationalEnvironmentType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentAppropriateGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentAppropriateSex.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentAuthor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentDerivativeSourceEducationContent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentDerivativeSourceLearningResourceMetadataURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentDerivativeSourceURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentLanguage.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganization.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationCategory.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationIdentificationSystemType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationInstitutionTelephone.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationInternationalAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationInterventionPrescriptionAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationNetwork.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationNetworkAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationPeerAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationPlanType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationServiceCenter.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ElectronicMailType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EmploymentStatusDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EmploymentStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EntryGradeLevelReasonType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EntryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EntryTypeDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EventCircumstanceType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ExitWithdrawType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ExitWithdrawTypeDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\FeederSchoolAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Grade.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntry.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntryLearningObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntryLearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradeLevelDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradeLevelType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradeType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradingPeriod.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradingPeriodDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradingPeriodType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlan.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanCreditsByCourse.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanCreditsByCourseCourse.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanCreditsBySubject.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanTypeDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GunFreeSchoolsActReportingStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\IdentificationDocumentUseType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\IncidentLocationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InstitutionTelephoneNumberType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\IntegratedTechnologyStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InteractivityStyleType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InternetAccessType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Intervention.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionAppropriateGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionAppropriateSex.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionClassType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionDiagnosi.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionEducationContent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionEffectivenessRatingType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionInterventionPrescription.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionLearningResourceMetadataURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionMeetingTime.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPopulationServed.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescription.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionAppropriateGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionAppropriateSex.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionDiagnosi.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionEducationContent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionLearningResourceMetadataURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionPopulationServed.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStaff.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudy.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyAppropriateGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyAppropriateSex.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyEducationContent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyInterventionEffectiveness.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyLearningResourceMetadataURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyPopulationServed.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyStateAbbreviation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionURI.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageUseType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjectiveContentStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjectiveContentStandardAuthor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjectiveLearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardContentStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardContentStandardAuthor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardPrerequisiteLearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LeaveEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LeaveEventCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelDescriptorGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelOfEducationDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelOfEducationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LimitedEnglishProficiencyDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LimitedEnglishProficiencyType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgency.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgencyAccountability.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgencyCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgencyFederalFund.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Location.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MagnetSpecialProgramEmphasisSchoolType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MediumOfInstructionType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MeetingDayType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MethodCreditEarnedType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NetworkPurposeType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NGLContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NGLContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NGLContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NGLContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NGLContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessment.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentAssessmentItem.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentLearningObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentLearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentPerformanceLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OldEthnicityType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OpenStaffPosition.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OpenStaffPositionAcademicSubject.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OpenStaffPositionInstructionalGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OperationalStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OtherNameType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Parent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentElectronicMail.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentIdentificationDocument.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentInternationalAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentOtherName.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentTelephone.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Payroll.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PerformanceBaseConversionType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PerformanceLevelDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PersonalInformationVerificationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PopulationServedType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostingResultType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventPostSecondaryInstitution.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventPostSecondaryInstitutionIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventPostSecondaryInstitutionMediumOfInstruction.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryInstitutionLevelType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Program.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramAssignmentDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramAssignmentType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramCharacteristic.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramCharacteristicDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramCharacteristicType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramLearningObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramLearningStandard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramService.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramSponsorType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PublicationStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RaceType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReasonExitedDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReasonExitedType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReasonNotTestedType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RecognitionType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RelationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RepeatIdentifierType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCardGrade.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCardStudentCompetencyObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCardStudentLearningObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReporterDescriptionDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReporterDescriptionType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResidencyStatusDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResidencyStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResponseIndicatorType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResponsibilityDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResponsibilityType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEventProgram.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEventReason.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEventReasonType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResultDatatypeType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RetestIndicatorType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchemaVersion.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\School.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolCategory.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolCategoryType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolChoiceImplementStatusType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolFoodServicesEligibilityDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolFoodServicesEligibilityType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolYearType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Section.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionAttendanceTakenEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionCharacteristic.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionCharacteristicDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionCharacteristicType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionProgram.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SeparationReasonDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SeparationReasonType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SeparationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ServiceDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Session.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SessionAcademicWeek.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SessionGradingPeriod.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SexType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SpecialEducationSettingDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SpecialEducationSettingType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Staff.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffClassificationDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffClassificationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffCohortAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffCredential.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffEducationOrganizationAssignmentAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffEducationOrganizationEmploymentAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffElectronicMail.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffIdentificationDocument.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffIdentificationSystemType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffInternationalAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffLanguage.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffLanguageUse.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffOtherName.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffProgramAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffRace.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSchoolAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSchoolAssociationAcademicSubject.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSchoolAssociationGradeLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSectionAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffTelephone.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffVisa.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateAbbreviationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateEducationAgency.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateEducationAgencyAccountability.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateEducationAgencyFederalFund.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Student.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecord.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordAcademicHonor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordClassRanking.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordDiploma.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordRecognition.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordReportCard.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessment.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentAccommodation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentItem.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentPerformanceLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentScoreResult.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentStudentObjectiveAssessment.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentStudentObjectiveAssessmentScoreResult.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCharacteristic.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCharacteristicDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCharacteristicType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCohortAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCohortAssociationSection.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCohortYear.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCompetencyObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCTEProgramAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCTEProgramAssociationCTEProgram.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentDisability.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentDisciplineIncidentAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentDisciplineIncidentAssociationBehavior.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentEducationOrganizationAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentElectronicMail.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentGradebookEntry.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIdentificationCode.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIdentificationDocument.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIdentificationSystemType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIndicator.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInternationalAddress.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInterventionAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInterventionAssociationInterventionEffectiveness.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInterventionAttendanceEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLanguage.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLanguageUse.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLearningObjective.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLearningStyle.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentMigrantEducationProgramAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentOtherName.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentParentAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentParticipationCodeType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramAssociationService.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramAttendanceEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramParticipation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramParticipationProgramCharacteristic.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentRace.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSchoolAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSchoolAssociationEducationPlan.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSchoolAttendanceEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSectionAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSectionAttendanceEvent.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSpecialEducationProgramAssociation.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSpecialEducationProgramAssociationServiceProvider.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentTelephone.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentVisa.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TeachingCredentialBasisType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TeachingCredentialDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TeachingCredentialType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TelephoneNumberType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TermType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TitleIPartAParticipantType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TitleIPartASchoolDesignationType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\VersionLevel.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\VisaType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\WeaponDescriptor.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\WeaponType.cs">
+      <DependentUpon>NGLContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Infrastructure\GenericRepository.cs" />
     <Compile Include="Data\Infrastructure\IEntity.cs" />
     <Compile Include="Data\Infrastructure\IGenericRepository.cs" />
-    <Compile Include="Data\INglDbContext.cs" />
+    <Compile Include="Data\Entities\INglDbContext.cs" />
     <Compile Include="Data\Infrastructure\IQuery.cs" />
     <Compile Include="Data\Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Data\Infrastructure\Specification.cs" />
@@ -190,7 +1491,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccountViewModels.cs" />
-    <Compile Include="Data\NglDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -211,6 +1511,23 @@
     <Content Include="Assets\Content\bootstrap-theme.css.map" />
     <Content Include="Assets\Content\bootstrap.css.map" />
     <Compile Include="App_Start\Startup.Database.cs" />
+    <EntityDeploy Include="Data\Entities\NGLContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NGLContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Entities\NGLContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NGLContext.edmx</DependentUpon>
+      <LastGenOutput>NGLContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Entities\NGLContext.edmx.diagram">
+      <DependentUpon>NGLContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Data\Entities\NGLContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NGLContext.edmx</DependentUpon>
+      <LastGenOutput>NGLContext.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\NGL.pubxml" />
     <None Include="Assets\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Assets\Scripts\bootstrap.js" />
@@ -261,6 +1578,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

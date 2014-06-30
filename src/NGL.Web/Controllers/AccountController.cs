@@ -19,7 +19,7 @@ namespace NGL.Web.Controllers
     public class AccountController : Controller
     {
         public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new NglDbContext())))
+            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new NGLEntities())))
         {
         }
 

@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Reflection;
 using DbUp;
-using NGL.Web.Data;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web
 {
@@ -10,7 +10,7 @@ namespace NGL.Web
     {
         public void ConfigureDatabase()
         {
-            Database.SetInitializer<NglDbContext>(null);
+            Database.SetInitializer<NGLEntities>(null);
 
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
