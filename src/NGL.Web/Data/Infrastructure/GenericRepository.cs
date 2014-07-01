@@ -16,14 +16,14 @@ namespace NGL.Web.Data.Infrastructure
         }
 
         public virtual TEntity Get<TEntity>(IQuery<TEntity> query, params Expression<Func<TEntity, object>>[] associations)
-            where TEntity : class, IEntity
+            where TEntity : class
         {
             return Query(query, associations).SingleOrDefault();
         }
 
         public TOutput Get<TEntity, TOutput>(IQuery<TEntity, TOutput> query)
-            where TEntity : class, IEntity
-            where TOutput : class, IEntity
+            where TEntity : class
+            where TOutput : class
         {
             return Query(query).SingleOrDefault();
         }
@@ -45,53 +45,53 @@ namespace NGL.Web.Data.Infrastructure
             return _context.Set<TEntity>().Where(e => ids.Contains(e.Id));
         }
 
-        public IQueryable<TEntity> Query<TEntity>(IQuery<TEntity> query, params Expression<Func<TEntity, object>>[] associations) where TEntity : class, IEntity
+        public IQueryable<TEntity> Query<TEntity>(IQuery<TEntity> query, params Expression<Func<TEntity, object>>[] associations) where TEntity : class
         {
             var queryWithAssociations = associations.Aggregate(_context.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
             return query.ApplyPredicate(queryWithAssociations);
         }
 
-        public IQueryable<TEntity> Query<TEntity>() where TEntity : class, IEntity
+        public IQueryable<TEntity> Query<TEntity>() where TEntity : class
         {
             return _context.Set<TEntity>();
         }
 
-        public IQueryable<TOutput> Query<TEntity, TOutput>(IQuery<TEntity, TOutput> query) where TEntity : class, IEntity
+        public IQueryable<TOutput> Query<TEntity, TOutput>(IQuery<TEntity, TOutput> query) where TEntity : class
         {
             return query.ApplyPredicate(_context.Set<TEntity>());
         }
 
-        public bool Any<TEntity>(IQuery<TEntity> query) where TEntity : class, IEntity
+        public bool Any<TEntity>(IQuery<TEntity> query) where TEntity : class
         {
             return query.ApplyPredicate(_context.Set<TEntity>()).Any();
         }
 
         public bool Any<TEntity, TOutputEntity>(IQuery<TEntity, TOutputEntity> query)
-            where TEntity : class, IEntity
-            where TOutputEntity : class, IEntity
+            where TEntity : class
+            where TOutputEntity : class
         {
             return query.ApplyPredicate(_context.Set<TEntity>()).Any();
         }
 
-        public virtual void Add<TEntity>(TEntity entity) where TEntity : class, IEntity
+        public virtual void Add<TEntity>(TEntity entity) where TEntity : class
         {
             _context.Set<TEntity>().Add(entity);
         }
 
-        public void Attach<TEntity>(TEntity entity) where TEntity : class, IEntity
+        public void Attach<TEntity>(TEntity entity) where TEntity : class
         {
             _context.Entry(entity).State = EntityState.Detached;
             _context.Set<TEntity>().Attach(entity);
         }
 
-        public virtual IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class, IEntity
+        public virtual IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class
         {
             // I do not want the result of GetAll to be IQueriable<TEntity> otherwise dev may just start using GetAll from everywhere instead of implementing queries properly
             return _context.Set<TEntity>().ToList();
         }
 
         public virtual TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] associations)
-            where TEntity : class, IEntity
+            where TEntity : class
         {
             var query = associations.Aggregate(_context.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
             return query.SingleOrDefault(predicate);
