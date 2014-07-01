@@ -4,6 +4,7 @@ using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Data.Entities
 {
+    [Table("EducationOrganization", Schema = "edfi")]
     public class EducationOrganization : IEntityWithId
     {
         [Key]

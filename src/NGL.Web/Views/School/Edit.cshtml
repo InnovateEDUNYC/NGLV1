@@ -4,19 +4,16 @@
     ViewBag.Title = "School Info";
 }
 
-<h2>School Info</h2>
-
 @using (var f = Html.BeginChameleonForm())
 {
-    using (var s = f.BeginSection("Signup for an account"))
+    using (var s = f.BeginSection("School Info"))
     {
-        @s.FieldFor(m => m.FirstName)
-        @s.FieldFor(m => m.LastName)
-        @s.FieldFor(m => m.Mobile).Placeholder("04XX XXX XXX")
-        @s.FieldFor(m => m.LicenseAgreement).InlineLabel("I agree to the terms and conditions")
+        @s.FieldFor(m => m.StateOrganizationId)
+        @s.FieldFor(m => m.NameOfInstitution)
+        @s.FieldFor(m => m.WebSite)
     }
     using (var n = f.BeginNavigation())
     {
-        @n.Submit("Create")
+        @n.Submit("Save")
     }
 }
