@@ -42,6 +42,7 @@ namespace NGL.Web.Controllers
         public ActionResult Create(SessionModel sessionModel)
         {
             RedirectToAction("Index");
+            return null;
         }
 	}
 }

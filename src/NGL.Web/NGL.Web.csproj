@@ -1546,7 +1546,6 @@
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CourseModel.cs" />
     <Compile Include="Models\Location\LocationModel.cs" />
-    <Compile Include="Models\School\SchoolModel.cs" />
     <Compile Include="Models\Section\SectionModel.cs" />
     <Compile Include="Models\Session\SessionModel.cs" />
     <Compile Include="Models\Staff\StaffModel.cs" />
@@ -1663,7 +1662,6 @@
     <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Content Include="Views\School\Index.cshtml" />
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Session\Create.cshtml" />
