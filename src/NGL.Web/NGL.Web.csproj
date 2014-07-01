@@ -225,6 +225,7 @@
     <EmbeddedResource Include="Data\Scripts\002 - Setup ASP.Net Identity.sql" />
     <Content Include="Content\chameleonforms-twitterbootstrap.css" />
     <Content Include="Data\Scripts\004 - Create School Placeholder.sql" />
+    <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
