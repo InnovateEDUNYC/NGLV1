@@ -213,6 +213,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\IMapper.cs" />
+    <Compile Include="Models\School\SchoolModelToEducationOrganizationMapper.cs" />
+    <Compile Include="Models\School\SchoolModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -282,11 +285,10 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\School\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\School\" />
-    <Folder Include="Views\School\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,0 +1,22 @@
+﻿@model NGL.Web.Models.School.SchoolModel
+
+@{
+    ViewBag.Title = "School Info";
+}
+
+<h2>School Info</h2>
+
+@using (var f = Html.BeginChameleonForm())
+{
+    using (var s = f.BeginSection("Signup for an account"))
+    {
+        @s.FieldFor(m => m.FirstName)
+        @s.FieldFor(m => m.LastName)
+        @s.FieldFor(m => m.Mobile).Placeholder("04XX XXX XXX")
+        @s.FieldFor(m => m.LicenseAgreement).InlineLabel("I agree to the terms and conditions")
+    }
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Create")
+    }
+}
