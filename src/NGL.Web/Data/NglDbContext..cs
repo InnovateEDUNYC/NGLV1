@@ -23,6 +23,7 @@ namespace NGL.Web.Data
         }
     
         public virtual DbSet<EducationOrganization> EducationOrganizations { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<School> Schools { get; set; }
     }
 }
