@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+*.orig
 
 # Build results
 [Dd]ebug/
@@ -58,6 +59,7 @@ dlldata.c
 *.pidb
 *.svclog
 *.scc
+*.orig
 
 # Chutzpah Test files
 _Chutzpah*
