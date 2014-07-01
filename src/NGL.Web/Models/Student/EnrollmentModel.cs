@@ -23,7 +23,7 @@ namespace NGL.Web.Models.Student
         public String StreetNumberName { get; set; }
 
         [StringLength(20)]
-        public String AppartmentRoomSuiteNumber { get; set; }
+        public String ApartmentRoomSuiteNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter city")]
         [StringLength(30)]
@@ -54,5 +54,6 @@ namespace NGL.Web.Models.Student
         public int RaceTypeId { get; set; }
         public int LanguageDescriptorId { get; set; }
         public int LanguageUseTypeId { get; set; }
+
     }
 }

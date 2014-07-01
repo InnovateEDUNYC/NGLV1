@@ -5,145 +5,34 @@
 }
 
 <h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+@Html.AntiForgeryToken()
+@using (var f = Html.BeginChameleonForm())
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Student</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StudentUSI, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StudentUSI)
-                @Html.ValidationMessageFor(model => model.StudentUSI)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName)
-                @Html.ValidationMessageFor(model => model.FirstName)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastSurname, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastSurname)
-                @Html.ValidationMessageFor(model => model.LastSurname)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SexTypeId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.RadioButton("gender", "Female", 0) Female
-                @Html.RadioButton("gender", "Male", 1) Male
-                @Html.ValidationMessageFor(model => model.SexTypeId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDate)
-                @Html.ValidationMessageFor(model => model.BirthDate)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.HispanicLatinoEthnicity, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HispanicLatinoEthnicity)
-                @Html.ValidationMessageFor(model => model.HispanicLatinoEthnicity)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OldEthnicityTypeId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OldEthnicityTypeId)
-                @Html.ValidationMessageFor(model => model.OldEthnicityTypeId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id)
-                @Html.ValidationMessageFor(model => model.Id)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.StreetNumberName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StreetNumberName)
-                @Html.ValidationMessageFor(model => model.StreetNumberName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.AppartmentRoomSuiteNumber, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AppartmentRoomSuiteNumber)
-                @Html.ValidationMessageFor(model => model.AppartmentRoomSuiteNumber)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.City)
-                @Html.ValidationMessageFor(model => model.City)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.StateAbbreviationTypeId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StateAbbreviationTypeId)
-                @Html.ValidationMessageFor(model => model.StateAbbreviationTypeId)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.PostalCode, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostalCode)
-                @Html.ValidationMessageFor(model => model.PostalCode)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.RaceTypeId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RaceTypeId)
-                @Html.ValidationMessageFor(model => model.RaceTypeId)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguageDescriptorId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LanguageDescriptorId)
-                @Html.ValidationMessageFor(model => model.LanguageDescriptorId)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguageUseTypeId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LanguageUseTypeId)
-                @Html.ValidationMessageFor(model => model.LanguageUseTypeId)
-            </div>
-        </div>
-
-        <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
+    using (var s = f.BeginSection("Signup for an account"))
+    {
+        @s.FieldFor(m => m.StudentUSI)
+        @s.FieldFor(m => m.FirstName)
+        @s.FieldFor(m => m.LastSurname)
+        @s.FieldFor(m => m.SexTypeId)
+        @s.FieldFor(m => m.BirthDate)
+        @s.FieldFor(m => m.HispanicLatinoEthnicity)
+        @s.FieldFor(m => m.OldEthnicityTypeId)
+        @s.FieldFor(m => m.Id)
+        @s.FieldFor(m => m.StreetNumberName)
+        @s.FieldFor(m => m.ApartmentRoomSuiteNumber)
+        @s.FieldFor(m => m.City)
+        @s.FieldFor(m => m.StateAbbreviationTypeId)
+        @s.FieldFor(m => m.PostalCode)
+        @s.FieldFor(m => m.RaceTypeId)
+        @s.FieldFor(m => m.LanguageDescriptorId)
+        @s.FieldFor(m => m.LanguageUseTypeId)
+    }
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Create")
+    }
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
