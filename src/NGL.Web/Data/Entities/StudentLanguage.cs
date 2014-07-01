@@ -14,11 +14,6 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentLanguage
     {
-        public StudentLanguage()
-        {
-            this.StudentLanguageUses = new HashSet<StudentLanguageUse>();
-        }
-    
         public int StudentUSI { get; set; }
         public int LanguageDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }

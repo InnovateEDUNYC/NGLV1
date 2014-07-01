@@ -14,28 +14,8 @@ namespace NGL.Web.Data.Entities
     
     public partial class LanguageDescriptor
     {
-        public LanguageDescriptor()
-        {
-            this.AssessmentFamilyLanguages = new HashSet<AssessmentFamilyLanguage>();
-            this.AssessmentLanguages = new HashSet<AssessmentLanguage>();
-            this.EducationContentLanguages = new HashSet<EducationContentLanguage>();
-            this.Sections = new HashSet<Section>();
-            this.StaffLanguages = new HashSet<StaffLanguage>();
-            this.StudentAssessments = new HashSet<StudentAssessment>();
-            this.StudentLanguages = new HashSet<StudentLanguage>();
-        }
-    
         public int LanguageDescriptorId { get; set; }
         public Nullable<int> LanguageTypeId { get; set; }
-    
-        public virtual ICollection<AssessmentFamilyLanguage> AssessmentFamilyLanguages { get; set; }
-        public virtual ICollection<AssessmentLanguage> AssessmentLanguages { get; set; }
-        public virtual Descriptor Descriptor { get; set; }
-        public virtual ICollection<EducationContentLanguage> EducationContentLanguages { get; set; }
-        public virtual LanguageType LanguageType { get; set; }
-        public virtual ICollection<Section> Sections { get; set; }
-        public virtual ICollection<StaffLanguage> StaffLanguages { get; set; }
-        public virtual ICollection<StudentAssessment> StudentAssessments { get; set; }
-        public virtual ICollection<StudentLanguage> StudentLanguages { get; set; }
+    	public virtual LanguageType LanguageType { get; set; }
     }
 }

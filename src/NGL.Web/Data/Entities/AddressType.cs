@@ -14,18 +14,6 @@ namespace NGL.Web.Data.Entities
     
     public partial class AddressType
     {
-        public AddressType()
-        {
-            this.EducationOrganizationAddresses = new HashSet<EducationOrganizationAddress>();
-            this.EducationOrganizationInternationalAddresses = new HashSet<EducationOrganizationInternationalAddress>();
-            this.ParentAddresses = new HashSet<ParentAddress>();
-            this.ParentInternationalAddresses = new HashSet<ParentInternationalAddress>();
-            this.StaffAddresses = new HashSet<StaffAddress>();
-            this.StaffInternationalAddresses = new HashSet<StaffInternationalAddress>();
-            this.StudentAddresses = new HashSet<StudentAddress>();
-            this.StudentInternationalAddresses = new HashSet<StudentInternationalAddress>();
-        }
-    
         public int AddressTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -34,13 +22,5 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual ICollection<EducationOrganizationAddress> EducationOrganizationAddresses { get; set; }
-        public virtual ICollection<EducationOrganizationInternationalAddress> EducationOrganizationInternationalAddresses { get; set; }
-        public virtual ICollection<ParentAddress> ParentAddresses { get; set; }
-        public virtual ICollection<ParentInternationalAddress> ParentInternationalAddresses { get; set; }
-        public virtual ICollection<StaffAddress> StaffAddresses { get; set; }
-        public virtual ICollection<StaffInternationalAddress> StaffInternationalAddresses { get; set; }
-        public virtual ICollection<StudentAddress> StudentAddresses { get; set; }
-        public virtual ICollection<StudentInternationalAddress> StudentInternationalAddresses { get; set; }
     }
 }

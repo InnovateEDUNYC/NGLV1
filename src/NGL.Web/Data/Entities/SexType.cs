@@ -14,17 +14,6 @@ namespace NGL.Web.Data.Entities
     
     public partial class SexType
     {
-        public SexType()
-        {
-            this.EducationContentAppropriateSexes = new HashSet<EducationContentAppropriateSex>();
-            this.InterventionAppropriateSexes = new HashSet<InterventionAppropriateSex>();
-            this.InterventionPrescriptionAppropriateSexes = new HashSet<InterventionPrescriptionAppropriateSex>();
-            this.InterventionStudyAppropriateSexes = new HashSet<InterventionStudyAppropriateSex>();
-            this.Parents = new HashSet<Parent>();
-            this.Staffs = new HashSet<Staff>();
-            this.Students = new HashSet<Student>();
-        }
-    
         public int SexTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -33,12 +22,5 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual ICollection<EducationContentAppropriateSex> EducationContentAppropriateSexes { get; set; }
-        public virtual ICollection<InterventionAppropriateSex> InterventionAppropriateSexes { get; set; }
-        public virtual ICollection<InterventionPrescriptionAppropriateSex> InterventionPrescriptionAppropriateSexes { get; set; }
-        public virtual ICollection<InterventionStudyAppropriateSex> InterventionStudyAppropriateSexes { get; set; }
-        public virtual ICollection<Parent> Parents { get; set; }
-        public virtual ICollection<Staff> Staffs { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
     }
 }
