@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.School;
