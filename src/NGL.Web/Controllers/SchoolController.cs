@@ -5,7 +5,7 @@ using NGL.Web.Models.School;
 
 namespace NGL.Web.Controllers
 {
-    public class SchoolController : Controller
+    public partial class SchoolController : Controller
     {
         private readonly IGenericRepository _genericRepository;
 
@@ -16,7 +16,7 @@ namespace NGL.Web.Controllers
 
         //
         // GET: /School/
-        public ActionResult Edit()
+        public virtual ActionResult Edit()
         {
             var school = _genericRepository.Get<EducationOrganization>(1);
             var schoolModel = new SchoolModel();
@@ -27,7 +27,7 @@ namespace NGL.Web.Controllers
         //
         // POST: /School/
         [HttpPost]
-        public ActionResult Edit(SchoolModel schoolModel)
+        public virtual ActionResult Edit(SchoolModel schoolModel)
         {
             if (!ModelState.IsValid)
                 return View(schoolModel);
@@ -36,7 +36,7 @@ namespace NGL.Web.Controllers
             new SchoolModelToEducationOrganizationMapper().Map(schoolModel, school);
             _genericRepository.Save();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Home.Index());
         }
 	}
 }

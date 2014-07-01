@@ -9,7 +9,7 @@ namespace NGL.Web.Models.School
         {
             target.NameOfInstitution = source.NameOfInstitution;
             target.StateOrganizationId = source.StateOrganizationId;
-            target.WebSite = source.StateOrganizationId;
+            target.WebSite = source.WebSite;
         }
     }
 }
