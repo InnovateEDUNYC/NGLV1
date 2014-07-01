@@ -9,14 +9,10 @@ namespace NGL.Web.Controllers
     public class SchoolController : Controller
     {
         private readonly IGenericRepository _genericRepository;
-        private readonly NglDbContext _nglDbContext;
 
-        public SchoolController()
+        public SchoolController(IGenericRepository genericRepository)
         {
-            // ToDo: This is just to get the code working
-            // I am going to change it to be injected by IoC container
-            _nglDbContext = new NglDbContext();
-            _genericRepository = new GenericRepository(_nglDbContext);
+            _genericRepository = genericRepository;
         }
 
         //
@@ -39,7 +35,7 @@ namespace NGL.Web.Controllers
 
             var school = _genericRepository.Get<EducationOrganization>(1);
             new SchoolModelToEducationOrganizationMapper().Map(schoolModel, school);
-            _nglDbContext.Save();
+            _genericRepository.Save();
 
             return RedirectToAction("Index", "Home");
         }

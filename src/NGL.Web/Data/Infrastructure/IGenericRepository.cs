@@ -30,5 +30,6 @@ namespace NGL.Web.Data.Infrastructure
 
         void Add<TEntity>(TEntity entity) where TEntity : class, IEntity;
         void Delete<TEntity>(int id) where TEntity : class, IEntityWithId;
+        void Save();
     } 
 }
