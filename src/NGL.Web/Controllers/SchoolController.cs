@@ -1,18 +1,43 @@
 ﻿using System.Web.Mvc;
+using NGL.Web.Data;
+using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models.School;
 
 namespace NGL.Web.Controllers
 {
     public class SchoolController : Controller
     {
-        public SchoolController()
+        private readonly IGenericRepository _genericRepository;
+
+        public SchoolController(IGenericRepository genericRepository)
         {
+            _genericRepository = genericRepository;
         }
 
         //
         // GET: /School/
-        public ActionResult Index()
+        public ActionResult Edit()
         {
-            return View();
+            var school = _genericRepository.Get<EducationOrganization>(1);
+            var schoolModel = new SchoolModel();
+            new EducationOrganizationToSchoolModelMapper().Map(school, schoolModel);
+            return View(schoolModel);
+        }
+
+        //
+        // POST: /School/
+        [HttpPost]
+        public ActionResult Edit(SchoolModel schoolModel)
+        {
+            if (!ModelState.IsValid)
+                return View(schoolModel);
+
+            var school = _genericRepository.Get<EducationOrganization>(1);
+            new SchoolModelToEducationOrganizationMapper().Map(schoolModel, school);
+            _genericRepository.Save();
+
+            return RedirectToAction("Index", "Home");
         }
 	}
 }

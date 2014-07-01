@@ -1,0 +1,19 @@
+﻿@model NGL.Web.Models.School.SchoolModel
+
+@{
+    ViewBag.Title = "School Info";
+}
+
+@using (var f = Html.BeginChameleonForm())
+{
+    using (var s = f.BeginSection("School Info"))
+    {
+        @s.FieldFor(m => m.StateOrganizationId)
+        @s.FieldFor(m => m.NameOfInstitution)
+        @s.FieldFor(m => m.WebSite)
+    }
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Save")
+    }
+}

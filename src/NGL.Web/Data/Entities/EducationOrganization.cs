@@ -1,19 +1,21 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Data.Entities
 {
-    public class EducationOrganization
+    [Table("EducationOrganization", Schema = "edfi")]
+    public class EducationOrganization : IEntityWithId
     {
         [Key]
-        public int EducationOrganizationId { get; set; }
+        [Column("EducationOrganizationId")]
+        public int Id { get; set; }
+        [StringLength(60)]
         public string StateOrganizationId { get; set; }
+        [StringLength(75)]
         public string NameOfInstitution { get; set; }
-        public string ShortNameOfInstitution { get; set; }
+        [StringLength(255)]
         public string WebSite { get; set; }
-        public System.Guid Id { get; set; }
-        public System.DateTime LastModifiedDate { get; set; }
-        public System.DateTime CreateDate { get; set; }
-    
         public virtual School School { get; set; }
     }
 }
