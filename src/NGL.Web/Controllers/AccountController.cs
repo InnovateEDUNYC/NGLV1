@@ -80,7 +80,7 @@ namespace NGL.Web.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(MVC.Home.Index());
                 }
                 else
                 {
@@ -108,7 +108,7 @@ namespace NGL.Web.Controllers
             {
                 message = ManageMessageId.Error;
             }
-            return RedirectToAction("Manage", new { Message = message });
+            return RedirectToAction(Actions.Manage(message));
         }
 
         //

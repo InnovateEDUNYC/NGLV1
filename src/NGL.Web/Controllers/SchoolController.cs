@@ -36,7 +36,7 @@ namespace NGL.Web.Controllers
             new SchoolModelToEducationOrganizationMapper().Map(schoolModel, school);
             _genericRepository.Save();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Home.Index());
         }
 	}
 }
