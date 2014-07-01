@@ -1638,6 +1638,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Content Include="Views\School\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\School\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
