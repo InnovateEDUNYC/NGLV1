@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="ChameleonForms">
+      <HintPath>..\packages\ChameleonForms.1.0.4.4\lib\NET40\ChameleonForms.dll</HintPath>
+    </Reference>
     <Reference Include="DbUp">
       <HintPath>..\packages\dbup.3.0.6\lib\NET35\DbUp.dll</HintPath>
     </Reference>
@@ -53,6 +56,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.0.29\lib\portable-win+net40+sl50+wp8\Humanizer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -163,6 +169,9 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -175,9 +184,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ConfigureChameleonTwitterBootstrap.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RegisterChameleonFormsComponents.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Data\Entities\ApplicationUser.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -211,6 +223,8 @@
     <Content Include="Assets\Content\bootstrap.min.css" />
     <EmbeddedResource Include="Data\Scripts\001 - Create ODS.sql" />
     <EmbeddedResource Include="Data\Scripts\002 - Setup ASP.Net Identity.sql" />
+    <Content Include="Content\chameleonforms-twitterbootstrap.css" />
+    <Content Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -239,6 +253,8 @@
     <Content Include="Assets\Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Assets\Scripts\respond.min.js" />
     <Content Include="Assets\Scripts\_references.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.chameleon.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.twitterbootstrap.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -268,6 +284,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\School\" />
+    <Folder Include="Views\School\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
