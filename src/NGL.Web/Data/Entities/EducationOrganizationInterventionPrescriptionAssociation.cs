@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class EducationOrganizationInterventionPrescriptionAssociation
     {
+        public EducationOrganizationInterventionPrescriptionAssociation()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public string InterventionPrescriptionIdentificationCode { get; set; }
         public int InterventionPrescriptionEducationOrganizationId { get; set; }

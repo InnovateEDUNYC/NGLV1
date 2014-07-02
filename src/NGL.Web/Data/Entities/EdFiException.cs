@@ -14,6 +14,10 @@ namespace NGL.Web.Data.Entities
     
     public partial class EdFiException
     {
+        public EdFiException()
+        {
+        }
+    
         public int EdFiExceptionId { get; set; }
         public string TableName { get; set; }
         public string ColumnNameList { get; set; }

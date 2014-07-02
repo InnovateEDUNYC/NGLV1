@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public DisabilityType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.DisabilityDescriptors = new HashSet<DisabilityDescriptor>();
         }
     

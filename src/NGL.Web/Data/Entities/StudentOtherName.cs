@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentOtherName
     {
+        public StudentOtherName()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int OtherNameTypeId { get; set; }
         public string PersonalTitlePrefix { get; set; }

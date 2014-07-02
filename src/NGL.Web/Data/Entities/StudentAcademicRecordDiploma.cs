@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentAcademicRecordDiploma
     {
+        public StudentAcademicRecordDiploma()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int DiplomaTypeId { get; set; }
         public short SchoolYear { get; set; }

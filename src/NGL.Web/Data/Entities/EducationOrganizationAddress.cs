@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class EducationOrganizationAddress
     {
+        public EducationOrganizationAddress()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public int AddressTypeId { get; set; }
         public string StreetNumberName { get; set; }

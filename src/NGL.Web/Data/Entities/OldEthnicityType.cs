@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public OldEthnicityType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Staffs = new HashSet<Staff>();
             this.Students = new HashSet<Student>();
         }

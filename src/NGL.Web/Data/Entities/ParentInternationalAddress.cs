@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ParentInternationalAddress
     {
+        public ParentInternationalAddress()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int ParentUSI { get; set; }
         public int AddressTypeId { get; set; }
         public string AddressLine1 { get; set; }

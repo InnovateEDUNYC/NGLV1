@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public PopulationServedType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.InterventionPopulationServeds = new HashSet<InterventionPopulationServed>();
             this.InterventionPrescriptionPopulationServeds = new HashSet<InterventionPrescriptionPopulationServed>();
             this.InterventionStudyInterventionEffectivenesses = new HashSet<InterventionStudyInterventionEffectiveness>();

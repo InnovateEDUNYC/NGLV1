@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class AssessmentFamilyLanguage
     {
+        public AssessmentFamilyLanguage()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string AssessmentFamilyTitle { get; set; }
         public int LanguageDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }

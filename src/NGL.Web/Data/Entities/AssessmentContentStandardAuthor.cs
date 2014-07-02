@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class AssessmentContentStandardAuthor
     {
+        public AssessmentContentStandardAuthor()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int AssessmentVersion { get; set; }
         public string AssessmentTitle { get; set; }
         public int AcademicSubjectDescriptorId { get; set; }

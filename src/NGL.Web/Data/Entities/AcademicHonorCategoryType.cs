@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AcademicHonorCategoryType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.StudentAcademicRecordAcademicHonors = new HashSet<StudentAcademicRecordAcademicHonor>();
         }
     

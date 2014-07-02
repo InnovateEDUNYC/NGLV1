@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public ClassPeriod()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.BellScheduleMeetingTimes = new HashSet<BellScheduleMeetingTime>();
             this.InterventionMeetingTimes = new HashSet<InterventionMeetingTime>();
             this.Sections = new HashSet<Section>();

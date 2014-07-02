@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public LanguageType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.LanguageDescriptors = new HashSet<LanguageDescriptor>();
         }
     

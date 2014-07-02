@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffIdentificationCode
     {
+        public StaffIdentificationCode()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int StaffIdentificationSystemTypeId { get; set; }
         public string AssigningOrganizationIdentificationCode { get; set; }

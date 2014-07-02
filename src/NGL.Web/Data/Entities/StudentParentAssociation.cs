@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentParentAssociation
     {
+        public StudentParentAssociation()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int ParentUSI { get; set; }
         public int RelationTypeId { get; set; }

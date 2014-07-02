@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class BellScheduleMeetingTime
     {
+        public BellScheduleMeetingTime()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int SchoolId { get; set; }
         public int GradeLevelDescriptorId { get; set; }
         public System.DateTime Date { get; set; }

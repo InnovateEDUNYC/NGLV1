@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffRace
     {
+        public StaffRace()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int RaceTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }

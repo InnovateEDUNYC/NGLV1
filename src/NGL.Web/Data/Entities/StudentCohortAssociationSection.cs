@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentCohortAssociationSection
     {
+        public StudentCohortAssociationSection()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int EducationOrganizationId { get; set; }
         public string CohortIdentifier { get; set; }

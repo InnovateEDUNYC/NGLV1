@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class CalendarDateCalendarEvent
     {
+        public CalendarDateCalendarEvent()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public System.DateTime Date { get; set; }
         public int CalendarEventDescriptorId { get; set; }

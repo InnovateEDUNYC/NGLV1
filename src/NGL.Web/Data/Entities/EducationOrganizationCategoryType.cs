@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public EducationOrganizationCategoryType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EducationOrganizationCategories = new HashSet<EducationOrganizationCategory>();
         }
     

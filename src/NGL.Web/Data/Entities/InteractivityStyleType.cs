@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public InteractivityStyleType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EducationContents = new HashSet<EducationContent>();
         }
     

@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Parent()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.ParentAddresses = new HashSet<ParentAddress>();
             this.ParentElectronicMails = new HashSet<ParentElectronicMail>();
             this.ParentIdentificationDocuments = new HashSet<ParentIdentificationDocument>();

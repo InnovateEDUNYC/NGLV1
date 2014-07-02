@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class StateEducationAgencyFederalFund
     {
+        public StateEducationAgencyFederalFund()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StateEducationAgencyId { get; set; }
         public int FiscalYear { get; set; }
         public Nullable<decimal> FederalProgramsFundingAllocation { get; set; }

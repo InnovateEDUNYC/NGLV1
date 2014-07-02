@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentCompetencyObjective
     {
+        public StudentCompetencyObjective()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int GradingPeriodEducationOrganizationId { get; set; }
         public int GradingPeriodDescriptorId { get; set; }

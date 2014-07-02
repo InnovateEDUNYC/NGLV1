@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public LanguageUseType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.StaffLanguageUses = new HashSet<StaffLanguageUse>();
             this.StudentLanguageUses = new HashSet<StudentLanguageUse>();
         }

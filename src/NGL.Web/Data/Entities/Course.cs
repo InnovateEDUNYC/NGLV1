@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Course()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.CourseCompetencyLevels = new HashSet<CourseCompetencyLevel>();
             this.CourseGradeLevels = new HashSet<CourseGradeLevel>();
             this.CourseIdentificationCodes = new HashSet<CourseIdentificationCode>();

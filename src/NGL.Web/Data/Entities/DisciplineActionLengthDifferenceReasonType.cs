@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public DisciplineActionLengthDifferenceReasonType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.DisciplineActions = new HashSet<DisciplineAction>();
         }
     

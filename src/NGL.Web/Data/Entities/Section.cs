@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Section()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AssessmentSections = new HashSet<AssessmentSection>();
             this.GradebookEntries = new HashSet<GradebookEntry>();
             this.SectionAttendanceTakenEvents = new HashSet<SectionAttendanceTakenEvent>();

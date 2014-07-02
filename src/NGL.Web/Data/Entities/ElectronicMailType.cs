@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public ElectronicMailType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.ParentElectronicMails = new HashSet<ParentElectronicMail>();
             this.StaffElectronicMails = new HashSet<StaffElectronicMail>();
             this.StudentElectronicMails = new HashSet<StudentElectronicMail>();

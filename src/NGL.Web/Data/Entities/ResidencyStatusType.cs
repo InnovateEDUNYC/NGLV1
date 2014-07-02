@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public ResidencyStatusType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.ResidencyStatusDescriptors = new HashSet<ResidencyStatusDescriptor>();
         }
     

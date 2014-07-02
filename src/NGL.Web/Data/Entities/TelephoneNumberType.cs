@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public TelephoneNumberType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.ParentTelephones = new HashSet<ParentTelephone>();
             this.StaffTelephones = new HashSet<StaffTelephone>();
             this.StudentTelephones = new HashSet<StudentTelephone>();

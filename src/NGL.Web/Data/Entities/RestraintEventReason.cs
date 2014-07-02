@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class RestraintEventReason
     {
+        public RestraintEventReason()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int SchoolId { get; set; }
         public string RestraintEventIdentifier { get; set; }

@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public InterventionClassType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Interventions = new HashSet<Intervention>();
             this.InterventionPrescriptions = new HashSet<InterventionPrescription>();
             this.InterventionStudies = new HashSet<InterventionStudy>();

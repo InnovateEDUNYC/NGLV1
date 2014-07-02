@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public StaffSchoolAssociation()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.StaffSchoolAssociationAcademicSubjects = new HashSet<StaffSchoolAssociationAcademicSubject>();
             this.StaffSchoolAssociationGradeLevels = new HashSet<StaffSchoolAssociationGradeLevel>();
         }

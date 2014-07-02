@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffCohortAssociation
     {
+        public StaffCohortAssociation()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int EducationOrganizationId { get; set; }
         public string CohortIdentifier { get; set; }

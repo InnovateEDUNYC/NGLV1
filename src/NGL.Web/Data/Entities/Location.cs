@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Location()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Sections = new HashSet<Section>();
         }
     

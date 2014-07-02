@@ -16,6 +16,7 @@ namespace NGL.Web.Data.Entities
     {
         public AssessmentFamilyContentStandard()
         {
+    		this.CreateDate = System.DateTime.Now;
             this.AssessmentFamilyContentStandardAuthors = new HashSet<AssessmentFamilyContentStandardAuthor>();
         }
     

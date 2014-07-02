@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public OpenStaffPosition()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.OpenStaffPositionAcademicSubjects = new HashSet<OpenStaffPositionAcademicSubject>();
             this.OpenStaffPositionInstructionalGradeLevels = new HashSet<OpenStaffPositionInstructionalGradeLevel>();
         }

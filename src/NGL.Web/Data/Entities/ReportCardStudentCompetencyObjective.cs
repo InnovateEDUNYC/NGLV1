@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ReportCardStudentCompetencyObjective
     {
+        public ReportCardStudentCompetencyObjective()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int GradingPeriodEducationOrganizationId { get; set; }
         public int GradingPeriodDescriptorId { get; set; }

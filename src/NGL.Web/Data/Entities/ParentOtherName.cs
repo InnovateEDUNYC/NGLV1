@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ParentOtherName
     {
+        public ParentOtherName()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int ParentUSI { get; set; }
         public int OtherNameTypeId { get; set; }
         public string PersonalTitlePrefix { get; set; }

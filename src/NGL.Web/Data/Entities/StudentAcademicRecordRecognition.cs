@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentAcademicRecordRecognition
     {
+        public StudentAcademicRecordRecognition()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int RecognitionTypeId { get; set; }
         public int StudentUSI { get; set; }
         public int EducationOrganizationId { get; set; }

@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class Descriptor
     {
+        public Descriptor()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int DescriptorId { get; set; }
         public string Namespace { get; set; }
         public string CodeValue { get; set; }

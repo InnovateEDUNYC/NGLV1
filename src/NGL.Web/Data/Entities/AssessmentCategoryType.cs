@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AssessmentCategoryType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Assessments = new HashSet<Assessment>();
             this.AssessmentFamilies = new HashSet<AssessmentFamily>();
         }

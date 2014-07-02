@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public RestraintEvent()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.RestraintEventPrograms = new HashSet<RestraintEventProgram>();
             this.RestraintEventReasons = new HashSet<RestraintEventReason>();
         }

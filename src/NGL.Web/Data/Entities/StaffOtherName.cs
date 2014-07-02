@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffOtherName
     {
+        public StaffOtherName()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int OtherNameTypeId { get; set; }
         public string PersonalTitlePrefix { get; set; }

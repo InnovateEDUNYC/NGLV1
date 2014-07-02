@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public InterventionEffectivenessRatingType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.InterventionStudyInterventionEffectivenesses = new HashSet<InterventionStudyInterventionEffectiveness>();
             this.StudentInterventionAssociationInterventionEffectivenesses = new HashSet<StudentInterventionAssociationInterventionEffectiveness>();
         }

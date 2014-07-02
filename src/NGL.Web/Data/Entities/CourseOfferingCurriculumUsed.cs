@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class CourseOfferingCurriculumUsed
     {
+        public CourseOfferingCurriculumUsed()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int SchoolId { get; set; }
         public int TermTypeId { get; set; }
         public short SchoolYear { get; set; }

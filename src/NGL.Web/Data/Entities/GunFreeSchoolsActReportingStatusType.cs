@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public GunFreeSchoolsActReportingStatusType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.LocalEducationAgencyAccountabilities = new HashSet<LocalEducationAgencyAccountability>();
         }
     

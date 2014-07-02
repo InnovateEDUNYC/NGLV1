@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class EducationContentDerivativeSourceURI
     {
+        public EducationContentDerivativeSourceURI()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string ContentIdentifier { get; set; }
         public string URI { get; set; }
         public System.DateTime CreateDate { get; set; }

@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class CourseGradeLevel
     {
+        public CourseGradeLevel()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public string CourseCode { get; set; }
         public int GradeLevelDescriptorId { get; set; }

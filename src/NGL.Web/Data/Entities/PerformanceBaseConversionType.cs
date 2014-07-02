@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public PerformanceBaseConversionType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.CompetencyLevelDescriptors = new HashSet<CompetencyLevelDescriptor>();
             this.Grades = new HashSet<Grade>();
             this.PerformanceLevelDescriptors = new HashSet<PerformanceLevelDescriptor>();

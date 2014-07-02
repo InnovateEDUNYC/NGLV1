@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class AssessmentFamilyIdentificationCode
     {
+        public AssessmentFamilyIdentificationCode()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string AssessmentFamilyTitle { get; set; }
         public int AssessmentIdentificationSystemTypeId { get; set; }
         public string AssigningOrganizationIdentificationCode { get; set; }

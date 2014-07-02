@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public EntryType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EntryTypeDescriptors = new HashSet<EntryTypeDescriptor>();
         }
     

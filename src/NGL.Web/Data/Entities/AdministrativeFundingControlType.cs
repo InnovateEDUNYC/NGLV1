@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AdministrativeFundingControlType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AdministrativeFundingControlDescriptors = new HashSet<AdministrativeFundingControlDescriptor>();
         }
     

@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffAddress
     {
+        public StaffAddress()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int AddressTypeId { get; set; }
         public string StreetNumberName { get; set; }

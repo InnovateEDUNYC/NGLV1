@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffTelephone
     {
+        public StaffTelephone()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int TelephoneNumberTypeId { get; set; }
         public Nullable<int> OrderOfPriority { get; set; }

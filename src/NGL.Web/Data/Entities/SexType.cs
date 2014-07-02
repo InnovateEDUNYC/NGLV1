@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public SexType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EducationContentAppropriateSexes = new HashSet<EducationContentAppropriateSex>();
             this.InterventionAppropriateSexes = new HashSet<InterventionAppropriateSex>();
             this.InterventionPrescriptionAppropriateSexes = new HashSet<InterventionPrescriptionAppropriateSex>();

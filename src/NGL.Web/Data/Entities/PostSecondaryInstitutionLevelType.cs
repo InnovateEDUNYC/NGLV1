@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public PostSecondaryInstitutionLevelType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.PostSecondaryEventPostSecondaryInstitutions = new HashSet<PostSecondaryEventPostSecondaryInstitution>();
         }
     

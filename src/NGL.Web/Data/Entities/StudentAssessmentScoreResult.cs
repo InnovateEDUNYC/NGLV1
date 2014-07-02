@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentAssessmentScoreResult
     {
+        public StudentAssessmentScoreResult()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public string AssessmentTitle { get; set; }
         public int AcademicSubjectDescriptorId { get; set; }

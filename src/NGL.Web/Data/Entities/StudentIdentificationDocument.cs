@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentIdentificationDocument
     {
+        public StudentIdentificationDocument()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int PersonalInformationVerificationTypeId { get; set; }
         public int IdentificationDocumentUseTypeId { get; set; }
         public int StudentUSI { get; set; }

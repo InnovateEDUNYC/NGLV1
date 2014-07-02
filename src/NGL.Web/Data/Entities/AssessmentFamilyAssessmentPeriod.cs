@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class AssessmentFamilyAssessmentPeriod
     {
+        public AssessmentFamilyAssessmentPeriod()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string AssessmentFamilyTitle { get; set; }
         public int AssessmentPeriodDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }

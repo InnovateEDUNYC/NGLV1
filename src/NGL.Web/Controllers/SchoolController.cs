@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.School;
@@ -18,7 +19,8 @@ namespace NGL.Web.Controllers
         // GET: /School/
         public virtual ActionResult Edit()
         {
-            var school = _genericRepository.Get<EducationOrganization>(1);
+            // ToDoMK
+            var school = _genericRepository.GetAll<EducationOrganization>().FirstOrDefault();
             var schoolModel = new SchoolModel();
             new EducationOrganizationToSchoolModelMapper().Map(school, schoolModel);
             return View(schoolModel);
@@ -32,7 +34,8 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(schoolModel);
 
-            var school = _genericRepository.Get<EducationOrganization>(1);
+            // ToDoMK
+            var school = _genericRepository.GetAll<EducationOrganization>().FirstOrDefault();
             new SchoolModelToEducationOrganizationMapper().Map(schoolModel, school);
             _genericRepository.Save();
 

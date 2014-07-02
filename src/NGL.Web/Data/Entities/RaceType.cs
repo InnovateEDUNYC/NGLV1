@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public RaceType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.StaffRaces = new HashSet<StaffRace>();
             this.StudentRaces = new HashSet<StudentRace>();
         }

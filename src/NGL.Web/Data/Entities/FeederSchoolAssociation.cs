@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class FeederSchoolAssociation
     {
+        public FeederSchoolAssociation()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int ReceivingSchoolId { get; set; }
         public int FeederSchoolId { get; set; }
         public System.DateTime BeginDate { get; set; }

@@ -16,6 +16,7 @@ namespace NGL.Web.Data.Entities
     {
         public StudentLanguage()
         {
+    		this.CreateDate = System.DateTime.Now;
             this.StudentLanguageUses = new HashSet<StudentLanguageUse>();
         }
     

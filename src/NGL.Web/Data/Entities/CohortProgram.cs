@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class CohortProgram
     {
+        public CohortProgram()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public string CohortIdentifier { get; set; }
         public int ProgramEducationOrganizationId { get; set; }

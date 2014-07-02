@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Account()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AccountCodes = new HashSet<AccountCode>();
             this.Actuals = new HashSet<Actual>();
             this.Budgets = new HashSet<Budget>();

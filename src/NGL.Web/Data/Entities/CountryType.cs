@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public CountryType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EducationOrganizationInternationalAddresses = new HashSet<EducationOrganizationInternationalAddress>();
             this.ParentIdentificationDocuments = new HashSet<ParentIdentificationDocument>();
             this.ParentInternationalAddresses = new HashSet<ParentInternationalAddress>();

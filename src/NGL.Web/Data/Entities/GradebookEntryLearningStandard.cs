@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class GradebookEntryLearningStandard
     {
+        public GradebookEntryLearningStandard()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int SchoolId { get; set; }
         public string ClassPeriodName { get; set; }
         public string ClassroomIdentificationCode { get; set; }

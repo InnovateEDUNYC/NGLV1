@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ParentAddress
     {
+        public ParentAddress()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int ParentUSI { get; set; }
         public int AddressTypeId { get; set; }
         public string StreetNumberName { get; set; }

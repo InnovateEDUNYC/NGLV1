@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class LearningObjectiveLearningStandard
     {
+        public LearningObjectiveLearningStandard()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string Objective { get; set; }
         public int AcademicSubjectDescriptorId { get; set; }
         public int ObjectiveGradeLevelDescriptorId { get; set; }

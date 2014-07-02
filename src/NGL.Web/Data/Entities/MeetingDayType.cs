@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class MeetingDayType
     {
+        public MeetingDayType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int MeetingDayTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }

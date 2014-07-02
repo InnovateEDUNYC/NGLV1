@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class EducationContentDerivativeSourceEducationContent
     {
+        public EducationContentDerivativeSourceEducationContent()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string ContentIdentifier { get; set; }
         public string DerivativeSourceContentIdentifier { get; set; }
         public System.DateTime CreateDate { get; set; }

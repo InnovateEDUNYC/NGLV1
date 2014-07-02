@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AddressType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EducationOrganizationAddresses = new HashSet<EducationOrganizationAddress>();
             this.EducationOrganizationInternationalAddresses = new HashSet<EducationOrganizationInternationalAddress>();
             this.ParentAddresses = new HashSet<ParentAddress>();

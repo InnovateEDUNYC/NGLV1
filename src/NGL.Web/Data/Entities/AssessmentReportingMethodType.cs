@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AssessmentReportingMethodType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AssessmentPerformanceLevels = new HashSet<AssessmentPerformanceLevel>();
             this.AssessmentScores = new HashSet<AssessmentScore>();
             this.ObjectiveAssessmentPerformanceLevels = new HashSet<ObjectiveAssessmentPerformanceLevel>();

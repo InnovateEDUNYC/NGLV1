@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class GraduationPlanCreditsByCourseCourse
     {
+        public GraduationPlanCreditsByCourseCourse()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public int GraduationPlanTypeDescriptorId { get; set; }
         public short GraduationSchoolYear { get; set; }

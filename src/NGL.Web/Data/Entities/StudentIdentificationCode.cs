@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentIdentificationCode
     {
+        public StudentIdentificationCode()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int StudentIdentificationSystemTypeId { get; set; }
         public string AssigningOrganizationIdentificationCode { get; set; }

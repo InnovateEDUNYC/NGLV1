@@ -16,6 +16,7 @@ namespace NGL.Web.Data.Entities
     {
         public LearningStandardContentStandard()
         {
+    		this.CreateDate = System.DateTime.Now;
             this.LearningStandardContentStandardAuthors = new HashSet<LearningStandardContentStandardAuthor>();
         }
     

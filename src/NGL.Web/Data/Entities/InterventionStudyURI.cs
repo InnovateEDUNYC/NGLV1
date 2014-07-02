@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class InterventionStudyURI
     {
+        public InterventionStudyURI()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string InterventionStudyIdentificationCode { get; set; }
         public int EducationOrganizationId { get; set; }
         public string URI { get; set; }
