@@ -1,6 +1,7 @@
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Repositories;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NGL.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NGL.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -14,6 +15,7 @@ namespace NGL.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Extensions.Conventions;
 
     public static class NinjectWebCommon 
     {
@@ -68,6 +70,7 @@ namespace NGL.Web.App_Start
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
             kernel.Bind<INglDbContext>().To<NglDbContext>().InRequestScope();
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
+            kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
         }        
     }
 }

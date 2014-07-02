@@ -6,13 +6,10 @@ using System.Linq.Expressions;
 
 namespace NGL.Web.Data.Infrastructure
 {
-    public class GenericRepository : IGenericRepository
+    public class GenericRepository : RepositoryBase, IGenericRepository
     {
-        private readonly INglDbContext _context;
-
-        public GenericRepository(INglDbContext context)
+        public GenericRepository(INglDbContext dbContext) : base(dbContext)
         {
-            _context = context;
         }
 
         public virtual TEntity Get<TEntity>(IQuery<TEntity> query, params Expression<Func<TEntity, object>>[] associations)
@@ -31,81 +28,77 @@ namespace NGL.Web.Data.Infrastructure
         public virtual TEntity Get<TEntity>(int id, params Expression<Func<TEntity, object>>[] associations) where TEntity : class, IEntityWithId
         {
             if (associations.Any() == false)
-                return _context.Set<TEntity>().Find(id);
+                return DbContext.Set<TEntity>().Find(id);
 
             //http://blogs.msdn.com/b/adonet/archive/2011/01/31/using-dbcontext-in-ef-feature-ctp5-part-6-loading-related-entities.aspx
 
-            var query = associations.Aggregate(_context.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
+            var query = associations.Aggregate(DbContext.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
             return query.SingleOrDefault(i => i.Id == id);
         }
 
         public IEnumerable<TEntity> Get<TEntity>(IEnumerable<int> ids) where TEntity : class, IEntityWithId
         {
             // Note: At some stage this may need to be made a bit smarter so it could deal with large list of ids
-            return _context.Set<TEntity>().Where(e => ids.Contains(e.Id));
+            return DbContext.Set<TEntity>().Where(e => ids.Contains(e.Id));
         }
 
         public IQueryable<TEntity> Query<TEntity>(IQuery<TEntity> query, params Expression<Func<TEntity, object>>[] associations) where TEntity : class
         {
-            var queryWithAssociations = associations.Aggregate(_context.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
+            var queryWithAssociations = associations.Aggregate(DbContext.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
             return query.ApplyPredicate(queryWithAssociations);
         }
 
         public IQueryable<TEntity> Query<TEntity>() where TEntity : class
         {
-            return _context.Set<TEntity>();
+            return DbContext.Set<TEntity>();
         }
 
         public IQueryable<TOutput> Query<TEntity, TOutput>(IQuery<TEntity, TOutput> query) where TEntity : class
         {
-            return query.ApplyPredicate(_context.Set<TEntity>());
+            return query.ApplyPredicate(DbContext.Set<TEntity>());
         }
 
         public bool Any<TEntity>(IQuery<TEntity> query) where TEntity : class
         {
-            return query.ApplyPredicate(_context.Set<TEntity>()).Any();
+            return query.ApplyPredicate(DbContext.Set<TEntity>()).Any();
         }
 
         public bool Any<TEntity, TOutputEntity>(IQuery<TEntity, TOutputEntity> query)
             where TEntity : class
             where TOutputEntity : class
         {
-            return query.ApplyPredicate(_context.Set<TEntity>()).Any();
+            return query.ApplyPredicate(DbContext.Set<TEntity>()).Any();
         }
 
         public virtual void Add<TEntity>(TEntity entity) where TEntity : class
         {
-            _context.Set<TEntity>().Add(entity);
+            DbContext.Set<TEntity>().Add(entity);
         }
 
         public void Attach<TEntity>(TEntity entity) where TEntity : class
         {
-            _context.Entry(entity).State = EntityState.Detached;
-            _context.Set<TEntity>().Attach(entity);
+            DbContext.Entry(entity).State = EntityState.Detached;
+            DbContext.Set<TEntity>().Attach(entity);
         }
 
         public virtual IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class
         {
             // I do not want the result of GetAll to be IQueriable<TEntity> otherwise dev may just start using GetAll from everywhere instead of implementing queries properly
-            return _context.Set<TEntity>().ToList();
+            return DbContext.Set<TEntity>().ToList();
         }
 
         public virtual TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] associations)
             where TEntity : class
         {
-            var query = associations.Aggregate(_context.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
+            var query = associations.Aggregate(DbContext.Set<TEntity>().AsQueryable(), (current, path) => current.Include(path));
             return query.SingleOrDefault(predicate);
         }
 
         public virtual void Delete<TEntity>(int id) where TEntity : class, IEntityWithId
         {
-            var existing = _context.Set<TEntity>().Find(id);
-            _context.Set<TEntity>().Remove(existing);
+            var existing = DbContext.Set<TEntity>().Find(id);
+            DbContext.Set<TEntity>().Remove(existing);
         }
 
-        public void Save()
-        {
-            _context.Save();
-        }
     }
 }
