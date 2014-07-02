@@ -201,6 +201,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1419,6 +1420,8 @@
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
     <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
+    <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
+    <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1561,7 +1564,7 @@
     <Content Include="Content\chameleonforms-twitterbootstrap.css" />
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
-    <Content Include="Data\Scripts\004.1 - Linking School To Education Organization.sql" />
+    <Content Include="Data\Scripts\005 - Linking School To Education Organization.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
