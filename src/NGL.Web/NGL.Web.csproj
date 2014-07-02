@@ -1526,6 +1526,15 @@
     <Compile Include="Models\School\SchoolModel.cs" />
     <Compile Include="Models\Student\EnrollmentModel.cs" />
     <Compile Include="Models\Student\EnrollmentModelToStudentMapper.cs" />
+    <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
+    <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
+    <Compile Include="Models\Course\CourseModel.cs" />
+    <Compile Include="Models\Location\LocationModel.cs" />
+    <Compile Include="Models\Section\SectionModel.cs" />
+    <Compile Include="Models\Session\SessionModel.cs" />
+    <Compile Include="Models\Staff\StaffModel.cs" />
+    <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
+    <Compile Include="Models\Student\StudentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC\SchoolController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -1635,6 +1644,11 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\School\Index.cshtml" />
+    <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Session\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

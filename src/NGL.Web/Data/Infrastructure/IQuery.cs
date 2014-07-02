@@ -8,7 +8,7 @@ namespace NGL.Web.Data.Infrastructure
     }
 
     public interface IQuery<in TInput, out TOutput>
-        where TInput : class 
+        where TInput : class
     {
         IQueryable<TOutput> ApplyPredicate(IQueryable<TInput> inputSet);
     }
