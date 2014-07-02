@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentDisability
     {
+        public StudentDisability()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public string DisabilityDiagnosis { get; set; }
         public Nullable<int> OrderOfDisability { get; set; }

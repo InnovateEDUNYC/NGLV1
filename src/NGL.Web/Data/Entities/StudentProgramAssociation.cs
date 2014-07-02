@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public StudentProgramAssociation()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.StudentCompetencyObjectives = new HashSet<StudentCompetencyObjective>();
             this.StudentLearningObjectives = new HashSet<StudentLearningObjective>();
             this.StudentProgramAssociationServices = new HashSet<StudentProgramAssociationService>();

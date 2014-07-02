@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class EducationOrganizationNetworkAssociation
     {
+        public EducationOrganizationNetworkAssociation()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int MemberEducationOrganizationId { get; set; }
         public int EducationOrganizationNetworkId { get; set; }
         public Nullable<System.DateTime> BeginDate { get; set; }

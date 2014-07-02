@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ParentElectronicMail
     {
+        public ParentElectronicMail()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int ParentUSI { get; set; }
         public int ElectronicMailTypeId { get; set; }
         public string ElectronicMailAddress { get; set; }

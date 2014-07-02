@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StateEducationAgencyAccountability
     {
+        public StateEducationAgencyAccountability()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StateEducationAgencyId { get; set; }
         public short SchoolYear { get; set; }
         public Nullable<bool> CTEGraduationRateInclusion { get; set; }

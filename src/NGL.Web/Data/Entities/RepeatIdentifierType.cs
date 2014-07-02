@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public RepeatIdentifierType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.StudentSectionAssociations = new HashSet<StudentSectionAssociation>();
         }
     

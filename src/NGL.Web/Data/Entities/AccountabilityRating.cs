@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class AccountabilityRating
     {
+        public AccountabilityRating()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public string RatingTitle { get; set; }
         public short SchoolYear { get; set; }

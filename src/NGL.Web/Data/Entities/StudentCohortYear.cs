@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentCohortYear
     {
+        public StudentCohortYear()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int CohortYearTypeId { get; set; }
         public short SchoolYear { get; set; }

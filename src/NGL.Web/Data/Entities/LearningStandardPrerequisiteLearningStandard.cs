@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class LearningStandardPrerequisiteLearningStandard
     {
+        public LearningStandardPrerequisiteLearningStandard()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string LearningStandardId { get; set; }
         public string PrerequisiteLearningStandardId { get; set; }
         public System.DateTime CreateDate { get; set; }

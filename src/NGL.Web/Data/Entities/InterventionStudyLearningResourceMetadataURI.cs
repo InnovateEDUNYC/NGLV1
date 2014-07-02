@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class InterventionStudyLearningResourceMetadataURI
     {
+        public InterventionStudyLearningResourceMetadataURI()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string InterventionStudyIdentificationCode { get; set; }
         public int EducationOrganizationId { get; set; }
         public string LearningResourceMetadataURI { get; set; }

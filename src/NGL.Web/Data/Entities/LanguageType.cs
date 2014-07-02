@@ -14,6 +14,14 @@ namespace NGL.Web.Data.Entities
     
     public partial class LanguageType
     {
+        public LanguageType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.LanguageDescriptors = new HashSet<LanguageDescriptor>();
+        }
+    
         public int LanguageTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -22,5 +30,6 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual ICollection<LanguageDescriptor> LanguageDescriptors { get; set; }
     }
 }

@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AchievementCategoryType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AchievementCategoryDescriptors = new HashSet<AchievementCategoryDescriptor>();
         }
     

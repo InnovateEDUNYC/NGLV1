@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public MediumOfInstructionType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.PostSecondaryEventPostSecondaryInstitutionMediumOfInstructions = new HashSet<PostSecondaryEventPostSecondaryInstitutionMediumOfInstruction>();
             this.Sections = new HashSet<Section>();
         }

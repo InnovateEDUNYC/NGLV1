@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffSectionAssociation
     {
+        public StaffSectionAssociation()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int SchoolId { get; set; }
         public string ClassPeriodName { get; set; }

@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class SessionGradingPeriod
     {
+        public SessionGradingPeriod()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public int TermTypeId { get; set; }
         public short SchoolYear { get; set; }

@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public EducationContent()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EducationContentAppropriateGradeLevels = new HashSet<EducationContentAppropriateGradeLevel>();
             this.EducationContentAppropriateSexes = new HashSet<EducationContentAppropriateSex>();
             this.EducationContentAuthors = new HashSet<EducationContentAuthor>();

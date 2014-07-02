@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public InterventionStudy()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.InterventionStudyAppropriateGradeLevels = new HashSet<InterventionStudyAppropriateGradeLevel>();
             this.InterventionStudyAppropriateSexes = new HashSet<InterventionStudyAppropriateSex>();
             this.InterventionStudyEducationContents = new HashSet<InterventionStudyEducationContent>();

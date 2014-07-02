@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class OpenStaffPositionAcademicSubject
     {
+        public OpenStaffPositionAcademicSubject()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public int StaffClassificationDescriptorId { get; set; }
         public string RequisitionNumber { get; set; }

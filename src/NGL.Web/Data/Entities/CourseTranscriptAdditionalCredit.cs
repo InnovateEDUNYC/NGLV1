@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class CourseTranscriptAdditionalCredit
     {
+        public CourseTranscriptAdditionalCredit()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public short SchoolYear { get; set; }
         public int TermTypeId { get; set; }

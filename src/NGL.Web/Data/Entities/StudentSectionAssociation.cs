@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public StudentSectionAssociation()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Grades = new HashSet<Grade>();
             this.StudentCompetencyObjectives = new HashSet<StudentCompetencyObjective>();
             this.StudentGradebookEntries = new HashSet<StudentGradebookEntry>();

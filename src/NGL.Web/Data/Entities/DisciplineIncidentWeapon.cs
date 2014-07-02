@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class DisciplineIncidentWeapon
     {
+        public DisciplineIncidentWeapon()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int SchoolId { get; set; }
         public string IncidentIdentifier { get; set; }
         public int WeaponDescriptorId { get; set; }

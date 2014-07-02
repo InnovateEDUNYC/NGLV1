@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public CalendarDate()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AcademicWeeks = new HashSet<AcademicWeek>();
             this.AcademicWeeks1 = new HashSet<AcademicWeek>();
             this.BellSchedules = new HashSet<BellSchedule>();

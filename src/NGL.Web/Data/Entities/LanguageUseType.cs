@@ -14,6 +14,15 @@ namespace NGL.Web.Data.Entities
     
     public partial class LanguageUseType
     {
+        public LanguageUseType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.StaffLanguageUses = new HashSet<StaffLanguageUse>();
+            this.StudentLanguageUses = new HashSet<StudentLanguageUse>();
+        }
+    
         public int LanguageUseTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -22,5 +31,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual ICollection<StaffLanguageUse> StaffLanguageUses { get; set; }
+        public virtual ICollection<StudentLanguageUse> StudentLanguageUses { get; set; }
     }
 }

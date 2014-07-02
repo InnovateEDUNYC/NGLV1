@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffVisa
     {
+        public StaffVisa()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int VisaTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }

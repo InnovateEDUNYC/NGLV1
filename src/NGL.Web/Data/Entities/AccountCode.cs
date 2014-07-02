@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class AccountCode
     {
+        public AccountCode()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public string AccountNumber { get; set; }
         public int FiscalYear { get; set; }

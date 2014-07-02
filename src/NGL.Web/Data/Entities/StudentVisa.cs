@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentVisa
     {
+        public StudentVisa()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int VisaTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }

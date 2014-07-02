@@ -14,6 +14,15 @@ namespace NGL.Web.Data.Entities
     
     public partial class RaceType
     {
+        public RaceType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.StaffRaces = new HashSet<StaffRace>();
+            this.StudentRaces = new HashSet<StudentRace>();
+        }
+    
         public int RaceTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -22,5 +31,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual ICollection<StaffRace> StaffRaces { get; set; }
+        public virtual ICollection<StudentRace> StudentRaces { get; set; }
     }
 }

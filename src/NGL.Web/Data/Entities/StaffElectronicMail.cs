@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffElectronicMail
     {
+        public StaffElectronicMail()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int ElectronicMailTypeId { get; set; }
         public string ElectronicMailAddress { get; set; }

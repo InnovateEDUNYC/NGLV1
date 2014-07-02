@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public PublicationStatusType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AssessmentContentStandards = new HashSet<AssessmentContentStandard>();
             this.AssessmentFamilyContentStandards = new HashSet<AssessmentFamilyContentStandard>();
             this.LearningObjectiveContentStandards = new HashSet<LearningObjectiveContentStandard>();

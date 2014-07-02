@@ -16,6 +16,7 @@ namespace NGL.Web.Data.Entities
     {
         public GraduationPlanCreditsByCourse()
         {
+    		this.CreateDate = System.DateTime.Now;
             this.GraduationPlanCreditsByCourseCourses = new HashSet<GraduationPlanCreditsByCourseCourse>();
         }
     

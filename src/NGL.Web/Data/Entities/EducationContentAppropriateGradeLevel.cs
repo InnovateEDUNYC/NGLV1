@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class EducationContentAppropriateGradeLevel
     {
+        public EducationContentAppropriateGradeLevel()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string ContentIdentifier { get; set; }
         public int GradeLevelDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }

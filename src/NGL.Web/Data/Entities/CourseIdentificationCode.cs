@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class CourseIdentificationCode
     {
+        public CourseIdentificationCode()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public string CourseCode { get; set; }
         public int CourseCodeSystemTypeId { get; set; }

@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public LearningStandard()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AssessmentItemLearningStandards = new HashSet<AssessmentItemLearningStandard>();
             this.CourseLearningStandards = new HashSet<CourseLearningStandard>();
             this.EducationContents = new HashSet<EducationContent>();

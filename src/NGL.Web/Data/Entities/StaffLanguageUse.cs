@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffLanguageUse
     {
+        public StaffLanguageUse()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int LanguageDescriptorId { get; set; }
         public int LanguageUseTypeId { get; set; }

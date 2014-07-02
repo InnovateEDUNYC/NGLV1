@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public ReportCard()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.ReportCardGrades = new HashSet<ReportCardGrade>();
             this.ReportCardStudentCompetencyObjectives = new HashSet<ReportCardStudentCompetencyObjective>();
             this.ReportCardStudentLearningObjectives = new HashSet<ReportCardStudentLearningObjective>();

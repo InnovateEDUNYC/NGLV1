@@ -16,6 +16,7 @@ namespace NGL.Web.Data.Entities
     {
         public StaffLanguage()
         {
+    		this.CreateDate = System.DateTime.Now;
             this.StaffLanguageUses = new HashSet<StaffLanguageUse>();
         }
     

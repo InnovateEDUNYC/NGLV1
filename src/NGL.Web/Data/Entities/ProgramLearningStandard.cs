@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ProgramLearningStandard
     {
+        public ProgramLearningStandard()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public int ProgramTypeId { get; set; }
         public string LearningStandardId { get; set; }

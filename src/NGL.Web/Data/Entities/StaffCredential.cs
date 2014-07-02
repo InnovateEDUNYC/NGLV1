@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffCredential
     {
+        public StaffCredential()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int CredentialFieldDescriptorId { get; set; }
         public int CredentialTypeId { get; set; }

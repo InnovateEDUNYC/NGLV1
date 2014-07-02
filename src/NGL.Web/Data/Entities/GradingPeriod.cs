@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public GradingPeriod()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Grades = new HashSet<Grade>();
             this.GradebookEntries = new HashSet<GradebookEntry>();
             this.ReportCards = new HashSet<ReportCard>();

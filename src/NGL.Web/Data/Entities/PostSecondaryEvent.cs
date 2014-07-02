@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class PostSecondaryEvent
     {
+        public PostSecondaryEvent()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int PostSecondaryEventCategoryTypeId { get; set; }
         public System.DateTime EventDate { get; set; }

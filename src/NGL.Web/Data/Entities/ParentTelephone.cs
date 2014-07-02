@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ParentTelephone
     {
+        public ParentTelephone()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int ParentUSI { get; set; }
         public int TelephoneNumberTypeId { get; set; }
         public Nullable<int> OrderOfPriority { get; set; }

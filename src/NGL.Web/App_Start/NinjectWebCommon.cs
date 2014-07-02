@@ -1,4 +1,5 @@
 using NGL.Web.Data;
+using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NGL.Web.App_Start.NinjectWebCommon), "Start")]

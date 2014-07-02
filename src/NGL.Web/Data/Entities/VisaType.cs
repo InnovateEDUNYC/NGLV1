@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public VisaType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.StaffVisas = new HashSet<StaffVisa>();
             this.StudentVisas = new HashSet<StudentVisa>();
         }

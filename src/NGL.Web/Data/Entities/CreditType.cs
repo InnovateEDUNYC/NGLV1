@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public CreditType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Courses = new HashSet<Course>();
             this.Courses1 = new HashSet<Course>();
             this.CourseTranscripts = new HashSet<CourseTranscript>();

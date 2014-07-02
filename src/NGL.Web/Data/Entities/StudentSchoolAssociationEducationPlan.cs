@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentSchoolAssociationEducationPlan
     {
+        public StudentSchoolAssociationEducationPlan()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int SchoolId { get; set; }
         public System.DateTime EntryDate { get; set; }

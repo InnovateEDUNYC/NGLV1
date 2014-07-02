@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Cohort()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.CohortPrograms = new HashSet<CohortProgram>();
             this.StaffCohortAssociations = new HashSet<StaffCohortAssociation>();
             this.StudentCohortAssociations = new HashSet<StudentCohortAssociation>();

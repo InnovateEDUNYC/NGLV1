@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public ObjectiveAssessment()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.ObjectiveAssessment1 = new HashSet<ObjectiveAssessment>();
             this.ObjectiveAssessmentAssessmentItems = new HashSet<ObjectiveAssessmentAssessmentItem>();
             this.ObjectiveAssessmentLearningObjectives = new HashSet<ObjectiveAssessmentLearningObjective>();

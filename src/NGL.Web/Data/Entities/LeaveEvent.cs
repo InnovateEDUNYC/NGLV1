@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class LeaveEvent
     {
+        public LeaveEvent()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public System.DateTime EventDate { get; set; }
         public int LeaveEventCategoryTypeId { get; set; }

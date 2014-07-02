@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Staff()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.ContractedStaffs = new HashSet<ContractedStaff>();
             this.DisciplineActionStaffs = new HashSet<DisciplineActionStaff>();
             this.DisciplineIncidents = new HashSet<DisciplineIncident>();

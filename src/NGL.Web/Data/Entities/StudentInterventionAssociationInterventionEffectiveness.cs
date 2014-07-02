@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentInterventionAssociationInterventionEffectiveness
     {
+        public StudentInterventionAssociationInterventionEffectiveness()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public string InterventionIdentificationCode { get; set; }
         public int InterventionEducationOrganizationId { get; set; }

@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentCharacteristic
     {
+        public StudentCharacteristic()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int StudentCharacteristicDescriptorId { get; set; }
         public Nullable<System.DateTime> BeginDate { get; set; }

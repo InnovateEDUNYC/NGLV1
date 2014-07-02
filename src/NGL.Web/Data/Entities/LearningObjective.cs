@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public LearningObjective()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.CourseLearningObjectives = new HashSet<CourseLearningObjective>();
             this.GradebookEntryLearningObjectives = new HashSet<GradebookEntryLearningObjective>();
             this.LearningObjective1 = new HashSet<LearningObjective>();

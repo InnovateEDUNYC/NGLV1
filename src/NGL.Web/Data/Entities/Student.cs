@@ -7,40 +7,121 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using NGL.Web.Data.Infrastructure;
-
 namespace NGL.Web.Data.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public class Student : IEntity
+    public partial class Student
     {
         public Student()
         {
-            StudentAddresses = new HashSet<StudentAddress>();
-            StudentLanguages = new HashSet<StudentLanguage>();
-            StudentParentAssociations = new HashSet<StudentParentAssociation>();
-            StudentRaces = new HashSet<StudentRace>();
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.DisciplineActions = new HashSet<DisciplineAction>();
+            this.PostSecondaryEvents = new HashSet<PostSecondaryEvent>();
+            this.ReportCards = new HashSet<ReportCard>();
+            this.RestraintEvents = new HashSet<RestraintEvent>();
+            this.StudentAcademicRecords = new HashSet<StudentAcademicRecord>();
+            this.StudentAddresses = new HashSet<StudentAddress>();
+            this.StudentAssessments = new HashSet<StudentAssessment>();
+            this.StudentCharacteristics = new HashSet<StudentCharacteristic>();
+            this.StudentCohortAssociations = new HashSet<StudentCohortAssociation>();
+            this.StudentCohortYears = new HashSet<StudentCohortYear>();
+            this.StudentDisabilities = new HashSet<StudentDisability>();
+            this.StudentDisciplineIncidentAssociations = new HashSet<StudentDisciplineIncidentAssociation>();
+            this.StudentEducationOrganizationAssociations = new HashSet<StudentEducationOrganizationAssociation>();
+            this.StudentElectronicMails = new HashSet<StudentElectronicMail>();
+            this.StudentIdentificationCodes = new HashSet<StudentIdentificationCode>();
+            this.StudentIdentificationDocuments = new HashSet<StudentIdentificationDocument>();
+            this.StudentIndicators = new HashSet<StudentIndicator>();
+            this.StudentInternationalAddresses = new HashSet<StudentInternationalAddress>();
+            this.StudentInterventionAssociations = new HashSet<StudentInterventionAssociation>();
+            this.StudentInterventionAttendanceEvents = new HashSet<StudentInterventionAttendanceEvent>();
+            this.StudentLanguages = new HashSet<StudentLanguage>();
+            this.StudentOtherNames = new HashSet<StudentOtherName>();
+            this.StudentParentAssociations = new HashSet<StudentParentAssociation>();
+            this.StudentProgramAssociations = new HashSet<StudentProgramAssociation>();
+            this.StudentProgramAttendanceEvents = new HashSet<StudentProgramAttendanceEvent>();
+            this.StudentProgramParticipations = new HashSet<StudentProgramParticipation>();
+            this.StudentRaces = new HashSet<StudentRace>();
+            this.StudentSchoolAssociations = new HashSet<StudentSchoolAssociation>();
+            this.StudentSchoolAttendanceEvents = new HashSet<StudentSchoolAttendanceEvent>();
+            this.StudentSectionAssociations = new HashSet<StudentSectionAssociation>();
+            this.StudentSectionAttendanceEvents = new HashSet<StudentSectionAttendanceEvent>();
+            this.StudentTelephones = new HashSet<StudentTelephone>();
+            this.StudentVisas = new HashSet<StudentVisa>();
         }
-
+    
         public int StudentUSI { get; set; }
+        public string PersonalTitlePrefix { get; set; }
         public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         public string LastSurname { get; set; }
+        public string GenerationCodeSuffix { get; set; }
+        public string MaidenName { get; set; }
         public int SexTypeId { get; set; }
         public System.DateTime BirthDate { get; set; }
+        public string CityOfBirth { get; set; }
+        public Nullable<int> BirthStateAbbreviationTypeId { get; set; }
+        public Nullable<int> BirthCountryCodeTypeId { get; set; }
+        public Nullable<System.DateTime> DateEnteredUS { get; set; }
+        public Nullable<bool> MultipleBirthStatus { get; set; }
+        public string ProfileThumbnail { get; set; }
         public bool HispanicLatinoEthnicity { get; set; }
         public Nullable<int> OldEthnicityTypeId { get; set; }
+        public Nullable<bool> EconomicDisadvantaged { get; set; }
+        public Nullable<int> SchoolFoodServicesEligibilityDescriptorId { get; set; }
+        public Nullable<int> LimitedEnglishProficiencyDescriptorId { get; set; }
+        public string DisplacementStatus { get; set; }
+        public string LoginId { get; set; }
+        public string InternationalProvinceOfBirth { get; set; }
+        public Nullable<int> CitizenshipStatusTypeId { get; set; }
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual CitizenshipStatusType CitizenshipStatusType { get; set; }
+        public virtual CountryCodeType CountryCodeType { get; set; }
+        public virtual ICollection<DisciplineAction> DisciplineActions { get; set; }
+        public virtual LimitedEnglishProficiencyDescriptor LimitedEnglishProficiencyDescriptor { get; set; }
         public virtual OldEthnicityType OldEthnicityType { get; set; }
+        public virtual ICollection<PostSecondaryEvent> PostSecondaryEvents { get; set; }
+        public virtual ICollection<ReportCard> ReportCards { get; set; }
+        public virtual ICollection<RestraintEvent> RestraintEvents { get; set; }
+        public virtual SchoolFoodServicesEligibilityDescriptor SchoolFoodServicesEligibilityDescriptor { get; set; }
         public virtual SexType SexType { get; set; }
         public virtual StateAbbreviationType StateAbbreviationType { get; set; }
+        public virtual ICollection<StudentAcademicRecord> StudentAcademicRecords { get; set; }
         public virtual ICollection<StudentAddress> StudentAddresses { get; set; }
+        public virtual ICollection<StudentAssessment> StudentAssessments { get; set; }
+        public virtual ICollection<StudentCharacteristic> StudentCharacteristics { get; set; }
+        public virtual ICollection<StudentCohortAssociation> StudentCohortAssociations { get; set; }
+        public virtual ICollection<StudentCohortYear> StudentCohortYears { get; set; }
+        public virtual ICollection<StudentDisability> StudentDisabilities { get; set; }
+        public virtual ICollection<StudentDisciplineIncidentAssociation> StudentDisciplineIncidentAssociations { get; set; }
+        public virtual ICollection<StudentEducationOrganizationAssociation> StudentEducationOrganizationAssociations { get; set; }
+        public virtual ICollection<StudentElectronicMail> StudentElectronicMails { get; set; }
+        public virtual ICollection<StudentIdentificationCode> StudentIdentificationCodes { get; set; }
+        public virtual ICollection<StudentIdentificationDocument> StudentIdentificationDocuments { get; set; }
+        public virtual ICollection<StudentIndicator> StudentIndicators { get; set; }
+        public virtual ICollection<StudentInternationalAddress> StudentInternationalAddresses { get; set; }
+        public virtual ICollection<StudentInterventionAssociation> StudentInterventionAssociations { get; set; }
+        public virtual ICollection<StudentInterventionAttendanceEvent> StudentInterventionAttendanceEvents { get; set; }
         public virtual ICollection<StudentLanguage> StudentLanguages { get; set; }
+        public virtual StudentLearningStyle StudentLearningStyle { get; set; }
+        public virtual ICollection<StudentOtherName> StudentOtherNames { get; set; }
         public virtual ICollection<StudentParentAssociation> StudentParentAssociations { get; set; }
+        public virtual ICollection<StudentProgramAssociation> StudentProgramAssociations { get; set; }
+        public virtual ICollection<StudentProgramAttendanceEvent> StudentProgramAttendanceEvents { get; set; }
+        public virtual ICollection<StudentProgramParticipation> StudentProgramParticipations { get; set; }
         public virtual ICollection<StudentRace> StudentRaces { get; set; }
+        public virtual ICollection<StudentSchoolAssociation> StudentSchoolAssociations { get; set; }
+        public virtual ICollection<StudentSchoolAttendanceEvent> StudentSchoolAttendanceEvents { get; set; }
+        public virtual ICollection<StudentSectionAssociation> StudentSectionAssociations { get; set; }
+        public virtual ICollection<StudentSectionAttendanceEvent> StudentSectionAttendanceEvents { get; set; }
+        public virtual ICollection<StudentTelephone> StudentTelephones { get; set; }
+        public virtual ICollection<StudentVisa> StudentVisas { get; set; }
     }
 }

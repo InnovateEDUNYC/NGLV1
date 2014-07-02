@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class LevelDescriptorGradeLevel
     {
+        public LevelDescriptorGradeLevel()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int LevelDescriptorId { get; set; }
         public int GradeLevelDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }

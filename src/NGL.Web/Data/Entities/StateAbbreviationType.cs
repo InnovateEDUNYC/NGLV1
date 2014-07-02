@@ -14,6 +14,20 @@ namespace NGL.Web.Data.Entities
     
     public partial class StateAbbreviationType
     {
+        public StateAbbreviationType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.EducationOrganizationAddresses = new HashSet<EducationOrganizationAddress>();
+            this.InterventionStudyStateAbbreviations = new HashSet<InterventionStudyStateAbbreviation>();
+            this.ParentAddresses = new HashSet<ParentAddress>();
+            this.StaffAddresses = new HashSet<StaffAddress>();
+            this.StaffCredentials = new HashSet<StaffCredential>();
+            this.Students = new HashSet<Student>();
+            this.StudentAddresses = new HashSet<StudentAddress>();
+        }
+    
         public int StateAbbreviationTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -22,5 +36,12 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual ICollection<EducationOrganizationAddress> EducationOrganizationAddresses { get; set; }
+        public virtual ICollection<InterventionStudyStateAbbreviation> InterventionStudyStateAbbreviations { get; set; }
+        public virtual ICollection<ParentAddress> ParentAddresses { get; set; }
+        public virtual ICollection<StaffAddress> StaffAddresses { get; set; }
+        public virtual ICollection<StaffCredential> StaffCredentials { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<StudentAddress> StudentAddresses { get; set; }
     }
 }

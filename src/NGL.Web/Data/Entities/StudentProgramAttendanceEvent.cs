@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentProgramAttendanceEvent
     {
+        public StudentProgramAttendanceEvent()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int EducationOrganizationId { get; set; }
         public int ProgramTypeId { get; set; }

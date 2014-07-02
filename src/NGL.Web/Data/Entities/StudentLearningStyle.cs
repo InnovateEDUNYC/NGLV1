@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentLearningStyle
     {
+        public StudentLearningStyle()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public decimal VisualLearning { get; set; }
         public decimal AuditoryLearning { get; set; }

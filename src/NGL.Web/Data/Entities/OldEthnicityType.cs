@@ -14,6 +14,15 @@ namespace NGL.Web.Data.Entities
     
     public partial class OldEthnicityType
     {
+        public OldEthnicityType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.Staffs = new HashSet<Staff>();
+            this.Students = new HashSet<Student>();
+        }
+    
         public int OldEthnicityTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -22,5 +31,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual ICollection<Staff> Staffs { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

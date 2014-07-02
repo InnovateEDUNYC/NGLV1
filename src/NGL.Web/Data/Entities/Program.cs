@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public Program()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AssessmentPrograms = new HashSet<AssessmentProgram>();
             this.CohortPrograms = new HashSet<CohortProgram>();
             this.ProgramCharacteristics = new HashSet<ProgramCharacteristic>();

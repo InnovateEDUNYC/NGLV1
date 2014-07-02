@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public EducationalEnvironmentType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.RestraintEvents = new HashSet<RestraintEvent>();
             this.Sections = new HashSet<Section>();
             this.StudentInterventionAttendanceEvents = new HashSet<StudentInterventionAttendanceEvent>();

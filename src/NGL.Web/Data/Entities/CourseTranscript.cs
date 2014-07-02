@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public CourseTranscript()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.CourseTranscriptAdditionalCredits = new HashSet<CourseTranscriptAdditionalCredit>();
             this.CourseTranscriptExternalCourses = new HashSet<CourseTranscriptExternalCourse>();
         }

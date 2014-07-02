@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AcademicSubjectType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AcademicSubjectDescriptors = new HashSet<AcademicSubjectDescriptor>();
         }
     

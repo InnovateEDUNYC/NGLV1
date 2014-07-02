@@ -16,6 +16,7 @@ namespace NGL.Web.Data.Entities
     {
         public StudentProgramParticipation()
         {
+    		this.CreateDate = System.DateTime.Now;
             this.StudentProgramParticipationProgramCharacteristics = new HashSet<StudentProgramParticipationProgramCharacteristic>();
         }
     

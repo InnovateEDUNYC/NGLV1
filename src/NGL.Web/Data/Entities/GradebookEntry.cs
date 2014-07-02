@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public GradebookEntry()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.GradebookEntryLearningObjectives = new HashSet<GradebookEntryLearningObjective>();
             this.GradebookEntryLearningStandards = new HashSet<GradebookEntryLearningStandard>();
             this.StudentGradebookEntries = new HashSet<StudentGradebookEntry>();

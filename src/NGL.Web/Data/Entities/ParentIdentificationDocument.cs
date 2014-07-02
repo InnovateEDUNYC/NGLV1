@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ParentIdentificationDocument
     {
+        public ParentIdentificationDocument()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string DocumentTitle { get; set; }
         public int PersonalInformationVerificationTypeId { get; set; }
         public Nullable<System.DateTime> DocumentExpirationDate { get; set; }

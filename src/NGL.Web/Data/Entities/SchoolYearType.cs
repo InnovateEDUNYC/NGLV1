@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public SchoolYearType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.AccountabilityRatings = new HashSet<AccountabilityRating>();
             this.GraduationPlans = new HashSet<GraduationPlan>();
             this.LocalEducationAgencyAccountabilities = new HashSet<LocalEducationAgencyAccountability>();

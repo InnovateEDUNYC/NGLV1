@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public CourseDefinedByType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Courses = new HashSet<Course>();
         }
     

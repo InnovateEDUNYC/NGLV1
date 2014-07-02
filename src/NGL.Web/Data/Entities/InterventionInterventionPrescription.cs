@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class InterventionInterventionPrescription
     {
+        public InterventionInterventionPrescription()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string InterventionIdentificationCode { get; set; }
         public int EducationOrganizationId { get; set; }
         public string InterventionPrescriptionIdentificationCode { get; set; }

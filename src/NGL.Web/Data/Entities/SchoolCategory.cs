@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class SchoolCategory
     {
+        public SchoolCategory()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int SchoolId { get; set; }
         public int SchoolCategoryTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }

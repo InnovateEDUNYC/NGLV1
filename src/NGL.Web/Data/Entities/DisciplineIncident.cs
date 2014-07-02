@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public DisciplineIncident()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.DisciplineActionDisciplineIncidents = new HashSet<DisciplineActionDisciplineIncident>();
             this.DisciplineIncidentBehaviors = new HashSet<DisciplineIncidentBehavior>();
             this.DisciplineIncidentWeapons = new HashSet<DisciplineIncidentWeapon>();

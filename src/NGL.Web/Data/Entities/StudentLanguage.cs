@@ -12,12 +12,14 @@ namespace NGL.Web.Data.Entities
     using System;
     using System.Collections.Generic;
     
-    public class StudentLanguage
+    public partial class StudentLanguage
     {
         public StudentLanguage()
         {
-            StudentLanguageUses = new HashSet<StudentLanguageUse>();
+    		this.CreateDate = System.DateTime.Now;
+            this.StudentLanguageUses = new HashSet<StudentLanguageUse>();
         }
+    
         public int StudentUSI { get; set; }
         public int LanguageDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }

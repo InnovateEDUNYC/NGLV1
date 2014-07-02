@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class ProgramCharacteristic
     {
+        public ProgramCharacteristic()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int EducationOrganizationId { get; set; }
         public int ProgramTypeId { get; set; }
         public int ProgramCharacteristicDescriptorId { get; set; }

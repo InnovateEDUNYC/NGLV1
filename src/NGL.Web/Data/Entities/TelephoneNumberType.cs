@@ -14,6 +14,16 @@ namespace NGL.Web.Data.Entities
     
     public partial class TelephoneNumberType
     {
+        public TelephoneNumberType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.ParentTelephones = new HashSet<ParentTelephone>();
+            this.StaffTelephones = new HashSet<StaffTelephone>();
+            this.StudentTelephones = new HashSet<StudentTelephone>();
+        }
+    
         public int TelephoneNumberTypeId { get; set; }
         public string CodeValue { get; set; }
         public string Description { get; set; }
@@ -22,5 +32,8 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual ICollection<ParentTelephone> ParentTelephones { get; set; }
+        public virtual ICollection<StaffTelephone> StaffTelephones { get; set; }
+        public virtual ICollection<StudentTelephone> StudentTelephones { get; set; }
     }
 }

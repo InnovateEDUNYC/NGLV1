@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class EducationContentAuthor
     {
+        public EducationContentAuthor()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string ContentIdentifier { get; set; }
         public string Author { get; set; }
         public System.DateTime CreateDate { get; set; }

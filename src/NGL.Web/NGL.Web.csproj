@@ -122,9 +122,6 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Shouldly">
-      <HintPath>..\packages\Shouldly.2.1.1\lib\net40\Shouldly.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -201,6 +198,1218 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AcademicSubjectDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AcademicSubjectType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AcademicWeek.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccommodationDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccommodationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Account.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccountabilityRating.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccountCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AccountCodeDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AchievementCategoryDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AchievementCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Actual.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdditionalCreditType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdministrationEnvironmentType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdministrativeFundingControlDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AdministrativeFundingControlType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Assessment.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentContentStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentContentStandardAuthor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamily.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyAssessmentPeriod.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyContentStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyContentStandardAuthor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentFamilyLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentIdentificationSystemType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItem.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItemCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItemLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentItemResultType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentPerformanceLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentPeriodDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentProgram.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentReportingMethodType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentScore.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentSection.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AttendanceEventCategoryDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AttendanceEventCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BehaviorDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BehaviorType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BellSchedule.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\BellScheduleMeetingTime.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Budget.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarDate.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarDateCalendarEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarEventDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CalendarEventType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CareerPathwayType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CharterStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CitizenshipStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ClassPeriod.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ClassroomPositionDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ClassroomPositionType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Cohort.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortProgram.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortScopeType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CohortYearType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CompetencyLevelDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CompetencyObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContentClassType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContinuationOfServicesReasonDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContinuationOfServicesReasonType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ContractedStaff.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CostRateType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CountryCodeType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CountryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Course.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseAttemptResultType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseCodeSystemType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseCompetencyLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseDefinedByType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseGPAApplicabilityType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLearningObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLevelCharacteristic.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseLevelCharacteristicType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseOffering.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseOfferingCurriculumUsed.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseRepeatCodeType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseTranscript.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseTranscriptAdditionalCredit.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CourseTranscriptExternalCourse.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CredentialFieldDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CredentialType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CreditType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\CurriculumUsedType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DeliveryMethodType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Descriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiagnosisDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiagnosisType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiplomaLevelType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DiplomaType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisabilityCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisabilityDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisabilityType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineAction.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionDiscipline.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionDisciplineIncident.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionLengthDifferenceReasonType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineActionStaff.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineIncident.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineIncidentBehavior.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineIncidentWeapon.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DisciplineType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EdFiException.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationalEnvironmentType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentAppropriateGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentAppropriateSex.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentAuthor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentDerivativeSourceEducationContent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentDerivativeSourceLearningResourceMetadataURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentDerivativeSourceURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationContentLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationCategory.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationIdentificationSystemType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationInstitutionTelephone.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationInternationalAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationInterventionPrescriptionAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationNetwork.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationNetworkAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganizationPeerAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationPlanType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationServiceCenter.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EmploymentStatusDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EmploymentStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EntryGradeLevelReasonType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EntryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EntryTypeDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EventCircumstanceType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ExitWithdrawType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ExitWithdrawTypeDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\FeederSchoolAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Grade.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntry.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntryLearningObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntryLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradebookEntryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradeLevelDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradeLevelType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradeType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradingPeriod.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradingPeriodDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GradingPeriodType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlan.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanCreditsByCourse.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanCreditsByCourseCourse.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanCreditsBySubject.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GraduationPlanTypeDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\GunFreeSchoolsActReportingStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\IdentificationDocumentUseType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\IncidentLocationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InstitutionTelephoneNumberType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\IntegratedTechnologyStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InteractivityStyleType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InternetAccessType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Intervention.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionAppropriateGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionAppropriateSex.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionClassType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionDiagnosi.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionEducationContent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionEffectivenessRatingType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionInterventionPrescription.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionLearningResourceMetadataURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionMeetingTime.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPopulationServed.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescription.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionAppropriateGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionAppropriateSex.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionDiagnosi.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionEducationContent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionLearningResourceMetadataURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionPopulationServed.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionPrescriptionURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStaff.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudy.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyAppropriateGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyAppropriateSex.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyEducationContent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyInterventionEffectiveness.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyLearningResourceMetadataURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyPopulationServed.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyStateAbbreviation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionStudyURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\InterventionURI.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjectiveContentStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjectiveContentStandardAuthor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningObjectiveLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardContentStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardContentStandardAuthor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LearningStandardPrerequisiteLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LeaveEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LeaveEventCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelDescriptorGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelOfEducationDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LevelOfEducationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LimitedEnglishProficiencyDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LimitedEnglishProficiencyType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgency.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgencyAccountability.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgencyCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LocalEducationAgencyFederalFund.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Location.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MagnetSpecialProgramEmphasisSchoolType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MediumOfInstructionType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MeetingDayType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\MethodCreditEarnedType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NetworkPurposeType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NglDbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NglDbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NglDbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NglDbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessment.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentAssessmentItem.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentLearningObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ObjectiveAssessmentPerformanceLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OpenStaffPosition.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OpenStaffPositionAcademicSubject.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OpenStaffPositionInstructionalGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OperationalStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OtherNameType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentIdentificationDocument.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentInternationalAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentOtherName.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Payroll.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PerformanceBaseConversionType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PerformanceLevelDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PersonalInformationVerificationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PopulationServedType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostingResultType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventPostSecondaryInstitution.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventPostSecondaryInstitutionIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryEventPostSecondaryInstitutionMediumOfInstruction.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PostSecondaryInstitutionLevelType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Program.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramAssignmentDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramAssignmentType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramCharacteristic.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramCharacteristicDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramCharacteristicType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramLearningObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramService.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramSponsorType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ProgramType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\PublicationStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReasonExitedDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReasonExitedType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReasonNotTestedType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RecognitionType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RepeatIdentifierType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCardGrade.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCardStudentCompetencyObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReportCardStudentLearningObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReporterDescriptionDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ReporterDescriptionType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResidencyStatusDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResidencyStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResponseIndicatorType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResponsibilityDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResponsibilityType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEventProgram.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEventReason.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RestraintEventReasonType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ResultDatatypeType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RetestIndicatorType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolCategory.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolCategoryType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolChoiceImplementStatusType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolFoodServicesEligibilityDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolFoodServicesEligibilityType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchoolYearType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Section.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionAttendanceTakenEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionCharacteristic.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionCharacteristicDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionCharacteristicType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SectionProgram.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SeparationReasonDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SeparationReasonType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SeparationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ServiceDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Session.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SessionAcademicWeek.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SessionGradingPeriod.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SpecialEducationSettingDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SpecialEducationSettingType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Staff.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffClassificationDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffClassificationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffCohortAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffCredential.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffEducationOrganizationAssignmentAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffEducationOrganizationEmploymentAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffElectronicMail.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffIdentificationDocument.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffIdentificationSystemType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffInternationalAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffLanguageUse.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffOtherName.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffProgramAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffRace.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSchoolAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSchoolAssociationAcademicSubject.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSchoolAssociationGradeLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffSectionAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffTelephone.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffVisa.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateEducationAgency.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateEducationAgencyAccountability.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateEducationAgencyFederalFund.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecord.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordAcademicHonor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordClassRanking.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordDiploma.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordRecognition.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAcademicRecordReportCard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessment.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentAccommodation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentItem.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentPerformanceLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentScoreResult.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentStudentObjectiveAssessment.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAssessmentStudentObjectiveAssessmentScoreResult.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCharacteristic.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCharacteristicDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCharacteristicType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCohortAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCohortAssociationSection.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCohortYear.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCompetencyObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCTEProgramAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentCTEProgramAssociationCTEProgram.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentDisability.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentDisciplineIncidentAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentDisciplineIncidentAssociationBehavior.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentEducationOrganizationAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentElectronicMail.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentGradebookEntry.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIdentificationCode.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIdentificationDocument.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIdentificationSystemType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentIndicator.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInternationalAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInterventionAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInterventionAssociationInterventionEffectiveness.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentInterventionAttendanceEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLearningObjective.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLearningStyle.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentMigrantEducationProgramAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentOtherName.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentParticipationCodeType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramAssociationService.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramAttendanceEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramParticipation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramParticipationProgramCharacteristic.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSchoolAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSchoolAssociationEducationPlan.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSchoolAttendanceEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSectionAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSectionAttendanceEvent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSpecialEducationProgramAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentSpecialEducationProgramAssociationServiceProvider.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentTelephone.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentVisa.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TeachingCredentialBasisType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TeachingCredentialDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TeachingCredentialType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TermType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TitleIPartAParticipantType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TitleIPartASchoolDesignationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\VisaType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\WeaponDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\WeaponType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -212,42 +1421,81 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Data\Entities\AddressType.cs" />
+    <Compile Include="Data\Entities\AddressType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\SchoolController.cs" />
-    <Compile Include="Data\Entities\AddressType.cs" />
     <Compile Include="Data\Entities\ApplicationUser.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\Entities\AspNetRole.cs" />
-    <Compile Include="Data\Entities\AspNetUser.cs" />
-    <Compile Include="Data\Entities\AspNetUserClaim.cs" />
-    <Compile Include="Data\Entities\AspNetUserLogin.cs" />
     <Compile Include="Data\Entities\EducationOrganization.cs">
       <SubType>Code</SubType>
+      <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\ElectronicMailType.cs" />
-    <Compile Include="Data\Entities\LanguageDescriptor.cs" />
-    <Compile Include="Data\Entities\LanguageType.cs" />
-    <Compile Include="Data\Entities\LanguageUseType.cs" />
-    <Compile Include="Data\Entities\OldEthnicityType.cs" />
-    <Compile Include="Data\Entities\Parent.cs" />
-    <Compile Include="Data\Entities\ParentAddress.cs" />
-    <Compile Include="Data\Entities\ParentElectronicMail.cs" />
-    <Compile Include="Data\Entities\ParentTelephone.cs" />
-    <Compile Include="Data\Entities\RaceType.cs" />
-    <Compile Include="Data\Entities\RelationType.cs" />
+    <Compile Include="Data\Entities\ElectronicMailType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageUseType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\OldEthnicityType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Parent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentElectronicMail.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentTelephone.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RaceType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\RelationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\School.cs">
       <SubType>Code</SubType>
+      <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\SexType.cs" />
-    <Compile Include="Data\Entities\StateAbbreviationType.cs" />
-    <Compile Include="Data\Entities\Student.cs" />
-    <Compile Include="Data\Entities\StudentAddress.cs" />
-    <Compile Include="Data\Entities\StudentLanguage.cs" />
-    <Compile Include="Data\Entities\StudentLanguageUse.cs" />
-    <Compile Include="Data\Entities\StudentParentAssociation.cs" />
-    <Compile Include="Data\Entities\StudentRace.cs" />
-    <Compile Include="Data\Entities\TelephoneNumberType.cs" />
+    <Compile Include="Data\Entities\SexType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StateAbbreviationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Student.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLanguageUse.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentParentAssociation.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentRace.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\TelephoneNumberType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\EntityConfigurations\ParentAddressConfiguration.cs" />
     <Compile Include="Data\EntityConfigurations\ParentElectronicMailConfiguration.cs" />
     <Compile Include="Data\EntityConfigurations\ParentTelephoneConfiguration.cs" />
@@ -258,13 +1506,13 @@
     <Compile Include="Data\Infrastructure\GenericRepository.cs" />
     <Compile Include="Data\Infrastructure\IEntity.cs" />
     <Compile Include="Data\Infrastructure\IGenericRepository.cs" />
-    <Compile Include="Data\INglDbContext.cs" />
+    <Compile Include="Data\Entities\INglDbContext.cs" />
     <Compile Include="Data\Infrastructure\IQuery.cs" />
     <Compile Include="Data\Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Data\Infrastructure\Specification.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Data\NglDbContext..cs" />
+    <Compile Include="Data\Entities\NglDbContext..cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -312,6 +1560,23 @@
     <Content Include="Assets\Content\bootstrap-theme.css.map" />
     <Content Include="Assets\Content\bootstrap.css.map" />
     <Compile Include="App_Start\Startup.Database.cs" />
+    <EntityDeploy Include="Data\Entities\NglDbContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NglDbContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Entities\NglDbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
+      <LastGenOutput>NglDbContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Entities\NglDbContext.edmx.diagram">
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Data\Entities\NglDbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
+      <LastGenOutput>NglDbContext.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\NGL.pubxml" />
     <None Include="Assets\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Assets\Scripts\bootstrap.js" />

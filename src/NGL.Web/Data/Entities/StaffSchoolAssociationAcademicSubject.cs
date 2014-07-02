@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StaffSchoolAssociationAcademicSubject
     {
+        public StaffSchoolAssociationAcademicSubject()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StaffUSI { get; set; }
         public int ProgramAssignmentDescriptorId { get; set; }
         public int SchoolId { get; set; }

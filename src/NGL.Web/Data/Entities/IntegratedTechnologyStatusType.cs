@@ -14,6 +14,13 @@ namespace NGL.Web.Data.Entities
     
     public partial class IntegratedTechnologyStatusType
     {
+        public IntegratedTechnologyStatusType()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int IntegratedTechnologyStatusTypeId { get; set; }
         public string CodeValue { get; set; }
         public string ShortDescription { get; set; }

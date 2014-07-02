@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public CharterStatusType()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.LocalEducationAgencies = new HashSet<LocalEducationAgency>();
             this.Schools = new HashSet<School>();
         }

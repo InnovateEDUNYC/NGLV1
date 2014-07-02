@@ -14,12 +14,29 @@ namespace NGL.Web.Data.Entities
     
     public partial class Parent
     {
+        public Parent()
+        {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
+            this.ParentAddresses = new HashSet<ParentAddress>();
+            this.ParentElectronicMails = new HashSet<ParentElectronicMail>();
+            this.ParentIdentificationDocuments = new HashSet<ParentIdentificationDocument>();
+            this.ParentInternationalAddresses = new HashSet<ParentInternationalAddress>();
+            this.ParentOtherNames = new HashSet<ParentOtherName>();
+            this.ParentTelephones = new HashSet<ParentTelephone>();
+            this.StudentParentAssociations = new HashSet<StudentParentAssociation>();
+        }
+    
         public int ParentUSI { get; set; }
         public string PersonalTitlePrefix { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastSurname { get; set; }
+        public string GenerationCodeSuffix { get; set; }
+        public string MaidenName { get; set; }
         public Nullable<int> SexTypeId { get; set; }
+        public string LoginId { get; set; }
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
@@ -27,6 +44,9 @@ namespace NGL.Web.Data.Entities
         public virtual SexType SexType { get; set; }
         public virtual ICollection<ParentAddress> ParentAddresses { get; set; }
         public virtual ICollection<ParentElectronicMail> ParentElectronicMails { get; set; }
+        public virtual ICollection<ParentIdentificationDocument> ParentIdentificationDocuments { get; set; }
+        public virtual ICollection<ParentInternationalAddress> ParentInternationalAddresses { get; set; }
+        public virtual ICollection<ParentOtherName> ParentOtherNames { get; set; }
         public virtual ICollection<ParentTelephone> ParentTelephones { get; set; }
         public virtual ICollection<StudentParentAssociation> StudentParentAssociations { get; set; }
     }

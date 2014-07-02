@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class StudentProgramAssociationService
     {
+        public StudentProgramAssociationService()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public int ProgramTypeId { get; set; }
         public int ProgramEducationOrganizationId { get; set; }

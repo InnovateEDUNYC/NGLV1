@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public InterventionPrescription()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.EducationOrganizationInterventionPrescriptionAssociations = new HashSet<EducationOrganizationInterventionPrescriptionAssociation>();
             this.InterventionInterventionPrescriptions = new HashSet<InterventionInterventionPrescription>();
             this.InterventionPrescriptionAppropriateGradeLevels = new HashSet<InterventionPrescriptionAppropriateGradeLevel>();

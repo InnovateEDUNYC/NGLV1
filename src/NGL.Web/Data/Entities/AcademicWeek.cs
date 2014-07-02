@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AcademicWeek()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.SessionAcademicWeeks = new HashSet<SessionAcademicWeek>();
         }
     

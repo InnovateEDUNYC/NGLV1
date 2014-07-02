@@ -16,6 +16,9 @@ namespace NGL.Web.Data.Entities
     {
         public AssessmentFamily()
         {
+    		this.Id = System.Guid.NewGuid();
+    		this.LastModifiedDate = System.DateTime.Now;
+    		this.CreateDate = System.DateTime.Now;
             this.Assessments = new HashSet<Assessment>();
             this.AssessmentFamilyLanguages = new HashSet<AssessmentFamilyLanguage>();
             this.AssessmentFamily1 = new HashSet<AssessmentFamily>();

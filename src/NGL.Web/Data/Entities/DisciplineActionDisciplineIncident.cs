@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class DisciplineActionDisciplineIncident
     {
+        public DisciplineActionDisciplineIncident()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public int StudentUSI { get; set; }
         public string DisciplineActionIdentifier { get; set; }
         public System.DateTime DisciplineDate { get; set; }

@@ -14,6 +14,11 @@ namespace NGL.Web.Data.Entities
     
     public partial class InterventionStudyAppropriateSex
     {
+        public InterventionStudyAppropriateSex()
+        {
+    		this.CreateDate = System.DateTime.Now;
+        }
+    
         public string InterventionStudyIdentificationCode { get; set; }
         public int EducationOrganizationId { get; set; }
         public int SexTypeId { get; set; }
