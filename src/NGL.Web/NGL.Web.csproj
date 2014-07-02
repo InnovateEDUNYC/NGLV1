@@ -1496,13 +1496,6 @@
     <Compile Include="Data\Entities\TelephoneNumberType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\EntityConfigurations\ParentAddressConfiguration.cs" />
-    <Compile Include="Data\EntityConfigurations\ParentElectronicMailConfiguration.cs" />
-    <Compile Include="Data\EntityConfigurations\ParentTelephoneConfiguration.cs" />
-    <Compile Include="Data\EntityConfigurations\StudentAddressConfiguration.cs" />
-    <Compile Include="Data\EntityConfigurations\StudentLanguageConfiguration.cs" />
-    <Compile Include="Data\EntityConfigurations\StudentLanguageUseConfiguration.cs" />
-    <Compile Include="Data\EntityConfigurations\StudentRaceConfiguration.cs" />
     <Compile Include="Data\Infrastructure\GenericRepository.cs" />
     <Compile Include="Data\Infrastructure\IEntity.cs" />
     <Compile Include="Data\Infrastructure\IGenericRepository.cs" />
