@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using NGL.Web.Data.Entities;
-using Ninject.Planning.Targets;
+﻿using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
@@ -8,7 +6,7 @@ namespace NGL.Web.Models.Student
     {
         public void Map(EnrollmentModel source, Data.Entities.Student target)
         {
-            var homeAddressTypeId = 1;
+            const int homeAddressTypeId = 1;
             target.StudentUSI = source.StudentUSI; 
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastSurname;

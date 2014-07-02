@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
 using Shouldly;
@@ -12,28 +9,28 @@ namespace NGL.Tests.Enrollment
 {
     public class EnrollmentModelToStudentMapperTest
     {
-        EnrollmentModelToStudentMapper mapper = new EnrollmentModelToStudentMapper();
-        Student student = new Student();
-        EnrollmentModel enrollmentModel = new EnrollmentModel();
+        readonly EnrollmentModelToStudentMapper _mapper = new EnrollmentModelToStudentMapper();
+        readonly Student _student = new Student();
+        readonly EnrollmentModel _enrollmentModel = new EnrollmentModel();
 
         [Fact]
         public void ShouldMapEnrollmentModelToStudent()
         {
-            setUp();
-            mapper.Map(enrollmentModel, student);
+            SetUp();
+            _mapper.Map(_enrollmentModel, _student);
 
-            student.FirstName.ShouldBe("John");
-            student.LastSurname.ShouldBe("Doe");
-            student.SexTypeId.ShouldBe(2);
-            student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
-            student.HispanicLatinoEthnicity.ShouldBe(false);
-            student.OldEthnicityTypeId.ShouldBe(100);
-            int LanguageDescriptorId = 98;
-            student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(LanguageDescriptorId);
-            student.StudentLanguages.First().StudentLanguageUses.First().LanguageUseTypeId.ShouldBe(99);
-            student.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId.ShouldBe(LanguageDescriptorId);
+            _student.FirstName.ShouldBe("John");
+            _student.LastSurname.ShouldBe("Doe");
+            _student.SexTypeId.ShouldBe(2);
+            _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
+            _student.HispanicLatinoEthnicity.ShouldBe(false);
+            _student.OldEthnicityTypeId.ShouldBe(100);
+            const int languageDescriptorId = 98;
+            _student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
+            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageUseTypeId.ShouldBe(99);
+            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
 
-            var studentAddress = student.StudentAddresses.First();
+            var studentAddress = _student.StudentAddresses.First();
             
             studentAddress.StreetNumberName.ShouldBe("1060 W Addison St");
             studentAddress.ApartmentRoomSuiteNumber.ShouldBe("33");
@@ -43,24 +40,24 @@ namespace NGL.Tests.Enrollment
             studentAddress.AddressTypeId.ShouldBe(1);
         }
 
-        private void setUp()
+        private void SetUp()
         {
-            enrollmentModel.StudentUSI = 10001;
-            enrollmentModel.FirstName = "John";
-            enrollmentModel.LastSurname = "Doe";
-            enrollmentModel.SexTypeId = 2;
-            enrollmentModel.BirthDate = new DateTime(2001, 1, 1);
-            enrollmentModel.HispanicLatinoEthnicity = false;
-            enrollmentModel.OldEthnicityTypeId = 100;
+            _enrollmentModel.StudentUSI = 10001;
+            _enrollmentModel.FirstName = "John";
+            _enrollmentModel.LastSurname = "Doe";
+            _enrollmentModel.SexTypeId = 2;
+            _enrollmentModel.BirthDate = new DateTime(2001, 1, 1);
+            _enrollmentModel.HispanicLatinoEthnicity = false;
+            _enrollmentModel.OldEthnicityTypeId = 100;
 
-            enrollmentModel.StreetNumberName = "1060 W Addison St";
+            _enrollmentModel.StreetNumberName = "1060 W Addison St";
 
-            enrollmentModel.ApartmentRoomSuiteNumber = "33";
-            enrollmentModel.City = "London";
-            enrollmentModel.LanguageDescriptorId = 98;
-            enrollmentModel.LanguageUseTypeId = 99;
-            enrollmentModel.PostalCode = "60657";
-            enrollmentModel.StateAbbreviationTypeId = 23;
+            _enrollmentModel.ApartmentRoomSuiteNumber = "33";
+            _enrollmentModel.City = "London";
+            _enrollmentModel.LanguageDescriptorId = 98;
+            _enrollmentModel.LanguageUseTypeId = 99;
+            _enrollmentModel.PostalCode = "60657";
+            _enrollmentModel.StateAbbreviationTypeId = 23;
         }
     }
 }
