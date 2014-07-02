@@ -5,7 +5,6 @@
     {
         public void Map(Data.Entities.Session source, SessionModel target)
         {
-            target.SchoolId = source.SchoolId;
             target.TermTypeId = source.TermTypeId;
             target.SchoolYear = source.SchoolYear;
             target.SessionName = source.SessionName;

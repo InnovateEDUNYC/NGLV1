@@ -1,0 +1,24 @@
+﻿@model NGL.Web.Models.Session.SessionModel
+
+@{
+    ViewBag.Title = "Create a Session";
+}
+
+<h2>Session</h2>
+
+@using (var f = Html.BeginChameleonForm())
+{
+    using (var s = f.BeginSection("Info"))
+    {
+        @s.FieldFor(m => m.TermTypeId)
+        @s.FieldFor(m => m.SchoolYear)
+        @s.FieldFor(m => m.SessionName)
+        @s.FieldFor(m => m.BeginDate)
+        @s.FieldFor(m => m.EndDate)
+        @s.FieldFor(m => m.TotalInstructionalDays)
+    }
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Create")
+    }
+}
