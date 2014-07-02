@@ -24,13 +24,15 @@ namespace NGL.Tests.Enrollment
 
             student.FirstName.ShouldBe("John");
             student.LastSurname.ShouldBe("Doe");
-            student.SexTypeId.ShouldBe(1);
+            student.SexTypeId.ShouldBe(2);
             student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             student.HispanicLatinoEthnicity.ShouldBe(false);
             student.OldEthnicityTypeId.ShouldBe(100);
-            student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(98);
+            int LanguageDescriptorId = 98;
+            student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(LanguageDescriptorId);
             student.StudentLanguages.First().StudentLanguageUses.First().LanguageUseTypeId.ShouldBe(99);
-            
+            student.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId.ShouldBe(LanguageDescriptorId);
+
             var studentAddress = student.StudentAddresses.First();
             
             studentAddress.StreetNumberName.ShouldBe("1060 W Addison St");
@@ -38,6 +40,7 @@ namespace NGL.Tests.Enrollment
             studentAddress.PostalCode.ShouldBe("60657");
             studentAddress.StateAbbreviationTypeId.ShouldBe(23);
             studentAddress.City.ShouldBe("London");
+            studentAddress.AddressTypeId.ShouldBe(1);
         }
 
         private void setUp()
@@ -45,7 +48,7 @@ namespace NGL.Tests.Enrollment
             enrollmentModel.StudentUSI = 10001;
             enrollmentModel.FirstName = "John";
             enrollmentModel.LastSurname = "Doe";
-            enrollmentModel.SexTypeId = 1;
+            enrollmentModel.SexTypeId = 2;
             enrollmentModel.BirthDate = new DateTime(2001, 1, 1);
             enrollmentModel.HispanicLatinoEthnicity = false;
             enrollmentModel.OldEthnicityTypeId = 100;
