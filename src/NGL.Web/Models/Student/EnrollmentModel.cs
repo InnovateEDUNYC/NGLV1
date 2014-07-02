@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace NGL.Web.Models.Student
 {
@@ -16,13 +13,16 @@ namespace NGL.Web.Models.Student
 
         [Required(ErrorMessage = "Please enter last name")]
         [StringLength(75)]
+        [Display(Name = "Last Name")]
         public String LastSurname { get; set; }
 
         [Required(ErrorMessage = "Please enter street address")]
         [StringLength(150)]
+        [Display(Name = "Home Address")]
         public String StreetNumberName { get; set; }
 
         [StringLength(20)]
+        [Display(Name = "Address 2")]
         public String ApartmentRoomSuiteNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter city")]
@@ -33,7 +33,7 @@ namespace NGL.Web.Models.Student
 
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
-
+        [Display(Name = "Hispanic/Latino Ethnicity")]
         public bool HispanicLatinoEthnicity { get; set; }
 
         [Required(ErrorMessage = "Please enter old ethnicity type")]
@@ -50,7 +50,7 @@ namespace NGL.Web.Models.Student
         [Required(ErrorMessage = "Please enter postal code")]
         [StringLength(17)]
         public String PostalCode { get; set; }
-
+        [Display(Name = "Race")]
         public int RaceTypeId { get; set; }
         public int LanguageDescriptorId { get; set; }
         public int LanguageUseTypeId { get; set; }

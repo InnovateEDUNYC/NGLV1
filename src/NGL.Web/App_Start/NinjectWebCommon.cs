@@ -17,7 +17,6 @@ namespace NGL.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Extensions.Conventions;
 
     public static class NinjectWebCommon 
     {
