@@ -7,6 +7,7 @@ using NGL.Web.Data.Entities;
 using NGL.Web.Models.Course;
 using NGL.Web.Models.School;
 using NGL.Web.Models.Section;
+using NGL.Web.Models.Session;
 
 namespace NGL.Web.Models.CourseOffering
 {

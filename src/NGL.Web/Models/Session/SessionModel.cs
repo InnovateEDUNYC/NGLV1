@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Data.Entity.ModelConfiguration.Configuration;
 
-namespace NGL.Web.Models
+namespace NGL.Web.Models.Session
 {
     public class SessionModel
     {

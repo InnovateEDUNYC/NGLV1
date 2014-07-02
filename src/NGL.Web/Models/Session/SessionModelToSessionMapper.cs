@@ -1,9 +1,10 @@
-﻿namespace NGL.Web.Models.Session
+﻿using NGL.Web.Data.Entities;
+
+namespace NGL.Web.Models.Session
 {
-    public class SessionToSessionModelMapper :
-        IMapper<Data.Entities.Session, SessionModel>
+    public class SessionModelToSessionMapper : IMapper<SessionModel, Data.Entities.Session>
     {
-        public void Map(Data.Entities.Session source, SessionModel target)
+        public void Map(SessionModel source, Data.Entities.Session target)
         {
             target.SchoolId = source.SchoolId;
             target.TermTypeId = source.TermTypeId;

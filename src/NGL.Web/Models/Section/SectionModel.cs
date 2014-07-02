@@ -7,6 +7,7 @@ using NGL.Web.Models.ClassPeriod;
 using NGL.Web.Models.CourseOffering;
 using NGL.Web.Models.Location;
 using NGL.Web.Models.School;
+using NGL.Web.Models.Session;
 using NGL.Web.Models.StudentSectionAttendanceEvent;
 
 namespace NGL.Web.Models.Section
