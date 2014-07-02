@@ -34,18 +34,18 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(EnrollmentModel enrollmentModel)
         {
-//            if (ModelState.IsValid)
-//            {
+            if (ModelState.IsValid)
+            {
                 Student student = new Student();
                 _enrollmentModelToStudentMapper.Map(enrollmentModel, student);
                 _repository.Add<Student>(student);
                 _repository.Save();
                 return RedirectToAction("Create");
-//            }
+            }
 
-//            return View(enrollmentModel);
+            return View(enrollmentModel);
         }
 
-      }
+    }
 
 }
