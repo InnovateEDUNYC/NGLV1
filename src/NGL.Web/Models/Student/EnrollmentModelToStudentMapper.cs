@@ -8,6 +8,8 @@ namespace NGL.Web.Models.Student
     {
         public void Map(EnrollmentModel source, Data.Entities.Student target)
         {
+            var homeAddressTypeId = 1;
+            target.StudentUSI = source.StudentUSI; 
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastSurname;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
@@ -16,7 +18,8 @@ namespace NGL.Web.Models.Student
             target.OldEthnicityTypeId = source.OldEthnicityTypeId;
 
             target.StudentAddresses.Add(new StudentAddress
-            {
+            { 
+                AddressTypeId = homeAddressTypeId, 
                 StreetNumberName = source.StreetNumberName,
                 ApartmentRoomSuiteNumber = source.ApartmentRoomSuiteNumber,
                 City = source.City,
@@ -25,15 +28,17 @@ namespace NGL.Web.Models.Student
             });
 
             var studentLanguage = new StudentLanguage
-            {
+            {   
                 LanguageDescriptorId = source.LanguageDescriptorId
             };
 
-            target.StudentLanguages.Add(studentLanguage);
             studentLanguage.StudentLanguageUses.Add( new StudentLanguageUse
-            {
+            {   
+                LanguageDescriptorId = source.LanguageDescriptorId,
                 LanguageUseTypeId = source.LanguageUseTypeId
             });
+
+            target.StudentLanguages.Add(studentLanguage);
         }   
     }
 }
