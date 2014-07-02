@@ -1,22 +1,20 @@
 ﻿using System;
-using Moq;
-using Moq.Language.Flow;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Session;
+using NSubstitute;
 using Shouldly;
 using Xunit;
 
-namespace NGL.Tests.Mappers
+namespace NGL.Tests.Session
 {
-    public class SessionTest
+    public class SessionMapperTests
     {
-
         [Fact]
         public void ShouldMapSessionEntityToSessionViewModel()
         {
             var sessionModel = new SessionModel();
-            var sessionEntity = new Session
+            var sessionEntity = new Web.Data.Entities.Session
             {
                 SchoolId = 1,
                 TermTypeId = 1,
@@ -38,16 +36,13 @@ namespace NGL.Tests.Mappers
             sessionModel.TotalInstructionalDays.ShouldBe(92);
         }
 
-
         [Fact]
         public void ShouldMapSessionViewModelToSessionEntity()
         {
-            var mockSchoolRepository = new Mock<ISchoolRepository>();
-            mockSchoolRepository.Setup(repo => repo.GetSchool()).Returns(new School{SchoolId = 1});
+            var schoolRepository = Substitute.For<ISchoolRepository>();
+            schoolRepository.GetSchool().Returns(new School{SchoolId = 1});
 
-            ISchoolRepository schoolRepository = mockSchoolRepository.Object;
-
-            var sessionEntity = new Session();
+            var sessionEntity = new Web.Data.Entities.Session();
             var sessionModel = new SessionModel
             {
                 TermTypeId = 1,
