@@ -1,28 +1,25 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
+﻿using System.Web.Mvc;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Models.School;
 
 namespace NGL.Web.Controllers
 {
     public partial class SchoolController : Controller
     {
-        private readonly IGenericRepository _genericRepository;
+        private readonly ISchoolRepository _schoolRepository;
 
-        public SchoolController(IGenericRepository genericRepository)
+        public SchoolController(ISchoolRepository schoolRepository)
         {
-            _genericRepository = genericRepository;
+            _schoolRepository = schoolRepository;
         }
 
         //
         // GET: /School/
         public virtual ActionResult Edit()
         {
-            // ToDoMK
-            var school = _genericRepository.GetAll<EducationOrganization>().FirstOrDefault();
+            var educationOrg = _schoolRepository.GetSchool().EducationOrganization;
             var schoolModel = new SchoolModel();
-            new EducationOrganizationToSchoolModelMapper().Map(school, schoolModel);
+            new EducationOrganizationToSchoolModelMapper().Map(educationOrg, schoolModel);
             return View(schoolModel);
         }
 
@@ -34,10 +31,9 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(schoolModel);
 
-            // ToDoMK
-            var school = _genericRepository.GetAll<EducationOrganization>().FirstOrDefault();
+            var school = _schoolRepository.GetSchool().EducationOrganization;
             new SchoolModelToEducationOrganizationMapper().Map(schoolModel, school);
-            _genericRepository.Save();
+            _schoolRepository.Save();
 
             return RedirectToAction(MVC.Home.Index());
         }

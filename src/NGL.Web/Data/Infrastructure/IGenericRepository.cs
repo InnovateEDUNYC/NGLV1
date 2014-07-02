@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Data.Infrastructure
 {
-    public interface IGenericRepository
+    public interface IGenericRepository : IRepositoryBase
     {
         void Attach<TEntity>(TEntity entity) where TEntity : class;
         IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class;
@@ -30,6 +31,5 @@ namespace NGL.Web.Data.Infrastructure
 
         void Add<TEntity>(TEntity entity) where TEntity : class;
         void Delete<TEntity>(int id) where TEntity : class, IEntityWithId;
-        void Save();
     } 
 }
