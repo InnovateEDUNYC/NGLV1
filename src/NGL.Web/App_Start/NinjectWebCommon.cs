@@ -1,3 +1,4 @@
+using Microsoft.Ajax.Utilities;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -71,6 +72,7 @@ namespace NGL.Web.App_Start
             kernel.Bind<INglDbContext>().To<NglDbContext>().InRequestScope();
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
+            kernel.Bind<ILookupRepository>().To<LookupRepository>();
         }        
     }
 }
