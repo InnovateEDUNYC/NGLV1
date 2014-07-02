@@ -1425,15 +1425,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SchoolController.cs" />
-    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\ApplicationUser.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\Entities\AttendanceEventCategoryDescriptor.cs" />
-    <Compile Include="Data\Entities\AttendanceEventCategoryType.cs" />
-    <Compile Include="Data\Entities\ClassPeriod.cs" />
-    <Compile Include="Data\Entities\Course.cs" />
-    <Compile Include="Data\Entities\CourseOffering.cs" />
     <Compile Include="Data\Entities\EducationOrganization.cs">
       <SubType>Code</SubType>
       <DependentUpon>NglDbContext.tt</DependentUpon>
@@ -1471,7 +1465,6 @@
     <Compile Include="Data\Entities\RelationType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\Location.cs" />
     <Compile Include="Data\Entities\School.cs">
       <SubType>Code</SubType>
       <DependentUpon>NglDbContext.tt</DependentUpon>
@@ -1510,15 +1503,6 @@
     <Compile Include="Data\EntityConfigurations\StudentLanguageConfiguration.cs" />
     <Compile Include="Data\EntityConfigurations\StudentLanguageUseConfiguration.cs" />
     <Compile Include="Data\EntityConfigurations\StudentRaceConfiguration.cs" />
-    <Compile Include="Data\Entities\Section.cs" />
-    <Compile Include="Data\Entities\SectionAttendanceTakenEvent.cs" />
-    <Compile Include="Data\Entities\Session.cs" />
-    <Compile Include="Data\Entities\Staff.cs" />
-    <Compile Include="Data\Entities\StaffSectionAssociation.cs" />
-    <Compile Include="Data\Entities\Student.cs" />
-    <Compile Include="Data\Entities\StudentSchoolAttendanceEvent.cs" />
-    <Compile Include="Data\Entities\StudentSectionAssociation.cs" />
-    <Compile Include="Data\Entities\StudentSectionAttendanceEvent.cs" />
     <Compile Include="Data\Infrastructure\GenericRepository.cs" />
     <Compile Include="Data\Infrastructure\IEntity.cs" />
     <Compile Include="Data\Infrastructure\IGenericRepository.cs" />
