@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NGL.Web.Data.Entities
 {
-    [Table("School", Schema = "edfi")]
     public class School
     {
         [Key, ForeignKey("EducationOrganization")]

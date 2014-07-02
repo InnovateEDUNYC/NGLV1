@@ -44,7 +44,7 @@ namespace NGL.Web.Models.Student
         public String Id { get; set; }
 
         [Required(ErrorMessage = "Please enter state")]
-        [MaxLength(10)]
+        
         public int StateAbbreviationTypeId { get; set; }
 
         [Required(ErrorMessage = "Please enter postal code")]

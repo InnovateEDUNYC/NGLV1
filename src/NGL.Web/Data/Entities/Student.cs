@@ -7,15 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using NGL.Web.Data.Infrastructure;
+
 namespace NGL.Web.Data.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public class Student : IEntity
     {
-        
-    
+        public Student()
+        {
+            StudentAddresses = new HashSet<StudentAddress>();
+            StudentLanguages = new HashSet<StudentLanguage>();
+            StudentParentAssociations = new HashSet<StudentParentAssociation>();
+            StudentRaces = new HashSet<StudentRace>();
+        }
+
         public int StudentUSI { get; set; }
         public string FirstName { get; set; }
         public string LastSurname { get; set; }

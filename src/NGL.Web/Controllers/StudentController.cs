@@ -5,13 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
     public class StudentController : Controller
     {
-        NglDbContext db = new NglDbContext();
+        private EnrollmentModelToStudentMapper _enrollmentModelToStudentMapper;
+        private IGenericRepository _repository;
+
+        public StudentController(IGenericRepository repository)
+        {
+            _enrollmentModelToStudentMapper = new EnrollmentModelToStudentMapper();
+            _repository = repository;
+        }
 
         //
         // GET: /Student/Create
@@ -24,19 +32,20 @@ namespace NGL.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(EnrollmentModel enrollmentModel)
         {
-            if (ModelState.IsValid)
-            {
+//            if (ModelState.IsValid)
+//            {
                 Student student = new Student();
-                db.Students.Add(student);
-                db.SaveChanges();
+                _enrollmentModelToStudentMapper.Map(enrollmentModel, student);
+                _repository.Add<Student>(student);
+                _repository.Save();
                 return RedirectToAction("Create");
-            }
+//            }
 
-            return View(enrollmentModel);
+//            return View(enrollmentModel);
         }
 
       }
+
 }

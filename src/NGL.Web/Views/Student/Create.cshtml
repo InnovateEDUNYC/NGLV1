@@ -1,14 +1,13 @@
 ﻿@model NGL.Web.Models.Student.EnrollmentModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Enrollment";
 }
 
 <h2>Create</h2>
-@Html.AntiForgeryToken()
 @using (var f = Html.BeginChameleonForm())
 {
-    using (var s = f.BeginSection("Signup for an account"))
+    using (var s = f.BeginSection("Enroll a student"))
     {
         @s.FieldFor(m => m.StudentUSI)
         @s.FieldFor(m => m.FirstName)
