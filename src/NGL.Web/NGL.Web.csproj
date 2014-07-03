@@ -1652,7 +1652,6 @@
     <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\School\Index.cshtml" />
     <Content Include="Views\Session\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>

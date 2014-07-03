@@ -7,8 +7,7 @@ namespace NGL.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            // ToDoMK
-            //filters.Add(new AuthorizeAttribute());
+            filters.Add(new AuthorizeAttribute());
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
 
@@ -13,7 +12,7 @@ namespace NGL.Web.Controllers
     public partial class AccountController : Controller
     {
         public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new NglDbContext())))
+            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
         }
 
