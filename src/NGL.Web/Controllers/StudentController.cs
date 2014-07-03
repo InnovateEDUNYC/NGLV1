@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
 using NGL.Web.Models.Student;
 using Ninject.Extensions.Conventions.BindingGenerators;
 
@@ -13,13 +14,13 @@ namespace NGL.Web.Controllers
 {
     public partial class StudentController : Controller
     {
-        private EnrollmentModelToStudentMapper _enrollmentModelToStudentMapper;
         private IGenericRepository _repository;
+        private readonly IMapper<EnrollmentModel, Student> _enrollmentMapper;
 
-        public StudentController(IGenericRepository repository)
+        public StudentController(IGenericRepository repository, IMapper<EnrollmentModel, Student> enrollmentMapper)
         {
-            _enrollmentModelToStudentMapper = new EnrollmentModelToStudentMapper();
             _repository = repository;
+            _enrollmentMapper = enrollmentMapper;
         }
 
         //
@@ -39,7 +40,8 @@ namespace NGL.Web.Controllers
             if (ModelState.IsValid)
             {
                 Student student = new Student();
-                _enrollmentModelToStudentMapper.Map(enrollmentModel, student);
+
+                _enrollmentMapper.Map(enrollmentModel, student);
                 _repository.Add<Student>(student);
                 _repository.Save();
                 return RedirectToAction("Create");

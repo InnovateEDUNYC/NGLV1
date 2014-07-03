@@ -61,7 +61,7 @@ namespace NGL.Web.Data.Entities
         public string LastSurname { get; set; }
         public string GenerationCodeSuffix { get; set; }
         public string MaidenName { get; set; }
-        public int SexTypeId { get; set; }
+        public int? SexTypeId { get; set; }
         public System.DateTime BirthDate { get; set; }
         public string CityOfBirth { get; set; }
         public Nullable<int> BirthStateAbbreviationTypeId { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -14,8 +15,10 @@ namespace NGL.Web.Models.Student
 {
     public class EnrollmentModel
     {
-        private ILookupRepository _lookupRepository = DependencyResolver.Current.GetService<ILookupRepository>();
-        public int StudentUsi { get; set; }
+        private readonly ILookupRepository _lookupRepository = DependencyResolver.Current.GetService<ILookupRepository>();
+        [Required(ErrorMessage = "Please enter Student USI")]
+        [Display(Name = "Student USI")]
+        public int? StudentUsi { get; set; }
 
         [Required(ErrorMessage = "Please enter first name")]
         [StringLength(75)]
@@ -39,23 +42,38 @@ namespace NGL.Web.Models.Student
         [StringLength(30)]
         public String City { get; set; }
 
-        public List<SexType> SexTypes
-        {
-            get
-            {
-                return _lookupRepository.GetAll<SexType>().ToList();
-            }
-        }
-
         [ExistsIn("SexTypes", "SexTypeId", "ShortDescription")]
-        public int SexTypeId { get; set; }
+        [Display(Name = "Sex")]
+        [Required(ErrorMessage = "Please enter sex")]
+        public int? SexTypeId { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        [Required(ErrorMessage = "Please enter birth date")]
+        [Display(Name = "Birth Date")]
+        public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Hispanic/Latino Ethnicity")]
         public bool HispanicLatinoEthnicity { get; set; }
 
+        [Display(Name = "Race")]
+        [ExistsIn("OldEthnicityTypes", "OldEthnicityTypeId", "ShortDescription")]
+        [Required(ErrorMessage = "Please enter old ethnicity type")]
+        public int? OldEthnicityTypeId { get; set; }
+
+        [Required(ErrorMessage = "Please enter state")]
+        [Display(Name = "State")]
+        [ExistsIn("StateAbbreviationTypes", "StateAbbreviationTypeId", "ShortDescription")]
+        public int? StateAbbreviationTypeId { get; set; }
+
+        [Required(ErrorMessage = "Please enter postal code")]
+        [StringLength(17)]
+
+        public String PostalCode { get; set; }
+
+        [Display(Name = "Home Language")]
+        [ExistsIn("LanguageTypes", "LanguageTypeId", "ShortDescription")]
+        [Required(ErrorMessage = "Please enter home language")]
+        public int? LanguageTypeId { get; set; }
         public List<OldEthnicityType> OldEthnicityTypes
         {
             get
@@ -63,18 +81,6 @@ namespace NGL.Web.Models.Student
                 return _lookupRepository.GetAll<OldEthnicityType>().ToList();
             }
         }
-
-        [Display(Name = "Old Ethnicity")]
-        [ExistsIn("OldEthnicityTypes", "OldEthnicityTypeId", "ShortDescription")]
-        [Required(ErrorMessage = "Please enter old ethnicity type")]
-        public int OldEthnicityTypeId { get; set; }
-
-        [Required(ErrorMessage = "Please enter Student ID number")]
-        [StringLength(16)]
-        public String Id { get; set; }
-
-        [Required(ErrorMessage = "Please enter state")]
-
         public List<StateAbbreviationType> StateAbbreviationTypes
         {
             get
@@ -82,28 +88,6 @@ namespace NGL.Web.Models.Student
                 return _lookupRepository.GetAll<StateAbbreviationType>().ToList();
             }
         }
-
-        [Display(Name = "State")]
-        [ExistsIn("StateAbbreviationTypes", "StateAbbreviationTypeId", "ShortDescription")]
-        public int StateAbbreviationTypeId { get; set; }
-
-        [Required(ErrorMessage = "Please enter postal code")]
-        [StringLength(17)]
-
-        public String PostalCode { get; set; }
-
-        public List<RaceType> RaceTypes
-        {
-            get
-            {
-                return _lookupRepository.GetAll<RaceType>().ToList();
-            }
-        }
-
-        [Display(Name = "Race")]
-        [ExistsIn("RaceTypes", "RaceTypeId", "ShortDescription")]
-        public int RaceTypeId { get; set; }
-
         public List<LanguageType> LanguageTypes
         {
             get
@@ -112,12 +96,13 @@ namespace NGL.Web.Models.Student
             }
         }
 
-
-        [Display(Name = "Home Language")]
-        [ExistsIn("LanguageTypes", "LanguageTypeId", "ShortDescription")]
-        public int LanguageTypeId { get; set; }
-
-        public int LanguageUseTypeId { get; set; }
+        public List<SexType> SexTypes
+        {
+            get
+            {
+                return _lookupRepository.GetAll<SexType>().ToList();
+            }
+        }
 
     }
 }

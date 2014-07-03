@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Student;
+using NSubstitute;
 using Shouldly;
 using Xunit;
 
@@ -10,7 +11,9 @@ namespace NGL.Tests.Enrollment
 {
     public class EnrollmentModelToStudentMapperTest
     {
-        readonly EnrollmentModelToStudentMapper _mapper = new EnrollmentModelToStudentMapper();
+        private EnrollmentModelToStudentMapper _mapper;
+        const int LanguageDescriptorId = 1;
+        private readonly LanguageDescriptor _languageDescriptor = new LanguageDescriptor() {LanguageDescriptorId = LanguageDescriptorId};
         readonly Student _student = new Student();
         readonly EnrollmentModel _enrollmentModel = new EnrollmentModel();
 
@@ -26,10 +29,9 @@ namespace NGL.Tests.Enrollment
             _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             _student.HispanicLatinoEthnicity.ShouldBe(false);
             _student.OldEthnicityTypeId.ShouldBe(100);
-            const int languageDescriptorId = 98;
-            _student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
-            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageUseTypeId.ShouldBe(99);
-            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
+            _student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(LanguageDescriptorId);
+            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageUseTypeId.ShouldBe(1);
+            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId.ShouldBe(LanguageDescriptorId);
 
             var studentAddress = _student.StudentAddresses.First();
             
@@ -43,6 +45,11 @@ namespace NGL.Tests.Enrollment
 
         private void SetUp()
         {
+            const int languageTypeId = 98;
+            var languageDescriptorRepository = Substitute.For<ILanguageDescriptorRepository>();
+            languageDescriptorRepository.GetLanguageDescriptor(languageTypeId).Returns(_languageDescriptor);
+            _mapper = new EnrollmentModelToStudentMapper(languageDescriptorRepository);
+
             _enrollmentModel.StudentUsi = 10001;
             _enrollmentModel.FirstName = "John";
             _enrollmentModel.LastSurname = "Doe";
@@ -55,8 +62,8 @@ namespace NGL.Tests.Enrollment
 
             _enrollmentModel.ApartmentRoomSuiteNumber = "33";
             _enrollmentModel.City = "London";
-            _enrollmentModel.LanguageTypeId = 98;
-            _enrollmentModel.LanguageUseTypeId = 99;
+            
+            _enrollmentModel.LanguageTypeId = languageTypeId;
             _enrollmentModel.PostalCode = "60657";
             _enrollmentModel.StateAbbreviationTypeId = 23;
         }

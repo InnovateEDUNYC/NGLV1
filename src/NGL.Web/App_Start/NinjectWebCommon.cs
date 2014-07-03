@@ -17,6 +17,7 @@ namespace NGL.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Extensions.Conventions;
 
     public static class NinjectWebCommon 
     {
@@ -72,6 +73,7 @@ namespace NGL.Web.App_Start
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
+            kernel.Bind<ILanguageDescriptorRepository>().To<LanguageDescriptorRepository>();
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
             kernel.Bind(
                 x => x.FromThisAssembly()

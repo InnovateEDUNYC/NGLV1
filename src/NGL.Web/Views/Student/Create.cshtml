@@ -4,7 +4,7 @@
     ViewBag.Title = "Enrollment";
 }
 
-<h2>Create</h2>
+<h2>Enrollment</h2>
 @using (var f = Html.BeginChameleonForm())
 {
     using (var s = f.BeginSection("Enroll a student"))
@@ -12,17 +12,15 @@
         @s.FieldFor(m => m.StudentUsi)
         @s.FieldFor(m => m.FirstName)
         @s.FieldFor(m => m.LastSurname)
-        @s.FieldFor(m => m.SexTypeId).AsRadioList()
-        @Html.EditorFor(m => m.BirthDate)
+        @s.FieldFor(m => m.SexTypeId)
+        @s.FieldFor(m => m.BirthDate)
         @s.FieldFor(m => m.HispanicLatinoEthnicity)
         @s.FieldFor(m => m.OldEthnicityTypeId)
-        @s.FieldFor(m => m.Id)
         @s.FieldFor(m => m.StreetNumberName)
         @s.FieldFor(m => m.ApartmentRoomSuiteNumber)
         @s.FieldFor(m => m.City)
         @s.FieldFor(m => m.StateAbbreviationTypeId)
         @s.FieldFor(m => m.PostalCode)
-        @s.FieldFor(m => m.RaceTypeId)
         @s.FieldFor(m => m.LanguageTypeId)
     }
     using (var n = f.BeginNavigation())
