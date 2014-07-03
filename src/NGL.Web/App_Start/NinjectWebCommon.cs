@@ -3,6 +3,7 @@ using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Models;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NGL.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NGL.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -68,11 +69,16 @@ namespace NGL.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IGenericRepository>().To<GenericRepository>();
             kernel.Bind<INglDbContext>().To<NglDbContext>().InRequestScope();
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
-            kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
+            kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
+            kernel.Bind<IGenericRepository>().To<GenericRepository>();
+            kernel.Bind(
+                x => x.FromThisAssembly()
+                    .SelectAllTypes()
+                    .InheritedFrom(typeof (IMapper<,>))
+                    .BindDefaultInterfaces());
         }        
     }
 }

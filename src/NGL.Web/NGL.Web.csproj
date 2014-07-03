@@ -1564,7 +1564,7 @@
     <Content Include="Content\chameleonforms-twitterbootstrap.css" />
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
-    <Content Include="Data\Scripts\005 - Linking School To Education Organization.sql" />
+    <EmbeddedResource Include="Data\Scripts\005 - Linking School To Education Organization.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
