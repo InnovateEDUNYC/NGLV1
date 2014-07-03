@@ -78,6 +78,7 @@ namespace NGL.Tests.Course
                 MaximumAvailableCredit = new decimal(3.0),
                 CareerPathwayTypeId = 1,
                 TimeRequiredForCompletion = 10,
+                CourseIdentity = 1
             };
 
             var courseToCourseModelMapper = new CourseToCourseModelMapper();

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicHonorCategoryType">
           <Key>
             <PropertyRef Name="AcademicHonorCategoryTypeId" />
@@ -960,6 +960,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CourseIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseAttemptResultType">
           <Key>
@@ -19978,6 +19979,7 @@
           <NavigationProperty Name="CourseLevelCharacteristics" Relationship="Self.FK_CourseLevelCharacteristics_Course_EducationOrganizationId" FromRole="Course" ToRole="CourseLevelCharacteristic" />
           <NavigationProperty Name="CourseOfferings" Relationship="Self.FK_CourseOffering_Course_SchoolId" FromRole="Course" ToRole="CourseOffering" />
           <NavigationProperty Name="GraduationPlanCreditsByCourseCourses" Relationship="Self.FK_GraduationPlanCreditsByCourseCourse_Course" FromRole="Course" ToRole="GraduationPlanCreditsByCourseCourse" />
+          <Property Name="CourseIdentity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="CourseAttemptResultType">
           <Key>
@@ -39869,6 +39871,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="Entities.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="CourseIdentity" ColumnName="CourseIdentity" />
                 <ScalarProperty Name="EducationOrganizationId" ColumnName="EducationOrganizationId" />
                 <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
                 <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
