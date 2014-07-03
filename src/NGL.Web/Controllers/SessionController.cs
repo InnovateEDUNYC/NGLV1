@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Session;
 
@@ -56,7 +54,7 @@ namespace NGL.Web.Controllers
             _genericRepository.Add(session);
             _genericRepository.Save();
 
-            return RedirectToAction(Actions.Index());
+            return RedirectToAction("Index");
         }
     }
 }
