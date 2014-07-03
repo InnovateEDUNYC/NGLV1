@@ -27,6 +27,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGL.UiTests", "NGL.UiTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGL.Tests", "NGL.Tests\NGL.Tests.csproj", "{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevScripts", "DevScripts", "{8CFEC09E-47BE-4213-9EBD-BF55D63AD7C6}"
+	ProjectSection(SolutionItems) = preProject
+		DevScripts\dbreset.bat = DevScripts\dbreset.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
