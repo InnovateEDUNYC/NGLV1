@@ -5,7 +5,7 @@ Next Generation Learning Platform
 ##Our Vision
 GATHER INSTRUCTION AND OPERATIONAL STUDENT DATA AND SHARE IT FOR ONE SCHOOL
 
-##Our Value Proposition: 
+##Our Value Proposition
 For Next Generation schools 
 Who want to provide timely and relevant data reports, 
 The NGL Platform is an integrated data store 
