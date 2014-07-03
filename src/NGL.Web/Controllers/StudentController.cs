@@ -10,7 +10,7 @@ using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
-    public class StudentController : Controller
+    public partial class StudentController : Controller
     {
         private EnrollmentModelToStudentMapper _enrollmentModelToStudentMapper;
         private IGenericRepository _repository;
@@ -23,7 +23,7 @@ namespace NGL.Web.Controllers
 
         //
         // GET: /Student/Create
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View();
         }
@@ -32,7 +32,7 @@ namespace NGL.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(EnrollmentModel enrollmentModel)
+        public virtual ActionResult Create(EnrollmentModel enrollmentModel)
         {
 //            if (ModelState.IsValid)
 //            {

@@ -4,8 +4,6 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments
-
-using NGL.Web.Data;
 #pragma warning disable 1591
 #region T4MVC
 
@@ -30,6 +28,8 @@ public static partial class MVC
     public static NGL.Web.Controllers.AccountController Account = new NGL.Web.Controllers.T4MVC_AccountController();
     public static NGL.Web.Controllers.HomeController Home = new NGL.Web.Controllers.T4MVC_HomeController();
     public static NGL.Web.Controllers.SchoolController School = new NGL.Web.Controllers.T4MVC_SchoolController();
+    public static NGL.Web.Controllers.SessionController Session = new NGL.Web.Controllers.T4MVC_SessionController();
+    public static NGL.Web.Controllers.StudentController Student = new NGL.Web.Controllers.T4MVC_StudentController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
