@@ -1,18 +1,38 @@
 ﻿@model IEnumerable<NGL.Web.Models.Course.CourseModel>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Sessions";
 }
 
-<!DOCTYPE html>
+<h2>Sessions</h2>
+<p>
+    @Html.ActionLink("Create New Session", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseDescription)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseDescription)
+            </td>
 
-<html>
-    <head>
-        <title>title</title>
-    </head>
-    <body>
-        <div>
-              
-        </div>
-    </body>
-</html>
+        </tr>
+    }
+</table>

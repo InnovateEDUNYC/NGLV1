@@ -1421,6 +1421,7 @@
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
     <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
+    <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
     <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
     <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
@@ -1573,6 +1574,7 @@
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\005 - Linking School To Education Organization.sql" />
+    <EmbeddedResource Include="Data\Scripts\006 - Schema - Adding Identity To Course.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1660,6 +1662,7 @@
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
