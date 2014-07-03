@@ -1,9 +1,9 @@
-﻿using NGL.Web.Data.Infrastructure;
+﻿using System.Collections.Generic;
 
 namespace NGL.Web.Data.Repositories
 {
-    public interface ILookupRepository : IGenericRepository
+    public interface ILookupRepository
     {
-
+        IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class;
     }
 }

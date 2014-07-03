@@ -1,12 +1,21 @@
-﻿using NGL.Web.Data.Infrastructure;
+﻿using System.Collections.Generic;
+using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Data.Repositories
 {
-    public class LookupRepository : GenericRepository, ILookupRepository
+    public class LookupRepository : ILookupRepository
     {
-        public LookupRepository(INglDbContext dbContext) : base(dbContext)
-        {
+        private readonly IGenericRepository _genericRepository;
 
+        public LookupRepository(IGenericRepository genericRepository)
+        {
+            _genericRepository = genericRepository;
+        }
+
+        public IEnumerable<TEntity> GetAll<TEntity>() 
+            where TEntity : class
+        {
+            return _genericRepository.GetAll<TEntity>();
         }
     }
 }
