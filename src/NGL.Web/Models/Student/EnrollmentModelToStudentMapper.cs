@@ -7,7 +7,7 @@ namespace NGL.Web.Models.Student
         public void Map(EnrollmentModel source, Data.Entities.Student target)
         {
             const int homeAddressTypeId = 1;
-            target.StudentUSI = source.StudentUSI; 
+            target.StudentUSI = source.StudentUsi; 
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastSurname;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
@@ -27,12 +27,13 @@ namespace NGL.Web.Models.Student
 
             var studentLanguage = new StudentLanguage
             {   
-                LanguageDescriptorId = source.LanguageDescriptorId
+
+                LanguageDescriptorId = source.LanguageTypeId
             };
 
             studentLanguage.StudentLanguageUses.Add( new StudentLanguageUse
             {   
-                LanguageDescriptorId = source.LanguageDescriptorId,
+                LanguageDescriptorId = source.LanguageTypeId,
                 LanguageUseTypeId = source.LanguageUseTypeId
             });
 

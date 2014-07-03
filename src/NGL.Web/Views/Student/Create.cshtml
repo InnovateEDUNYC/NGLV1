@@ -9,11 +9,11 @@
 {
     using (var s = f.BeginSection("Enroll a student"))
     {
-        @s.FieldFor(m => m.StudentUSI)
+        @s.FieldFor(m => m.StudentUsi)
         @s.FieldFor(m => m.FirstName)
         @s.FieldFor(m => m.LastSurname)
-        @s.FieldFor(m => m.SexTypeId)
-        @s.FieldFor(m => m.BirthDate)
+        @s.FieldFor(m => m.SexTypeId).AsRadioList()
+        @Html.EditorFor(m => m.BirthDate)
         @s.FieldFor(m => m.HispanicLatinoEthnicity)
         @s.FieldFor(m => m.OldEthnicityTypeId)
         @s.FieldFor(m => m.Id)
@@ -23,8 +23,7 @@
         @s.FieldFor(m => m.StateAbbreviationTypeId)
         @s.FieldFor(m => m.PostalCode)
         @s.FieldFor(m => m.RaceTypeId)
-        @s.FieldFor(m => m.LanguageDescriptorId)
-        @s.FieldFor(m => m.LanguageUseTypeId)
+        @s.FieldFor(m => m.LanguageTypeId)
     }
     using (var n = f.BeginNavigation())
     {

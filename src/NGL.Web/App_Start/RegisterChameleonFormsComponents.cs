@@ -1,7 +1,3 @@
-using ChameleonForms.ModelBinders;
-using System;
-using System.Web.Mvc;
-
 [assembly: WebActivator.PreApplicationStartMethod(typeof(NGL.Web.App_Start.RegisterChameleonFormsComponents), "Start")]
  
 namespace NGL.Web.App_Start

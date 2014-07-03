@@ -7,6 +7,7 @@ using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Student;
+using Ninject.Extensions.Conventions.BindingGenerators;
 
 namespace NGL.Web.Controllers
 {
@@ -25,7 +26,8 @@ namespace NGL.Web.Controllers
         // GET: /Student/Create
         public virtual ActionResult Create()
         {
-            return View();
+            var enrollmentModel = new EnrollmentModel();
+            return View(enrollmentModel);
         }
 
         // POST: /Student/Create

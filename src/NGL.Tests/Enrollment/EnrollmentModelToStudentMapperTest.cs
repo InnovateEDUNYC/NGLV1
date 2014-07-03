@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
@@ -42,7 +43,7 @@ namespace NGL.Tests.Enrollment
 
         private void SetUp()
         {
-            _enrollmentModel.StudentUSI = 10001;
+            _enrollmentModel.StudentUsi = 10001;
             _enrollmentModel.FirstName = "John";
             _enrollmentModel.LastSurname = "Doe";
             _enrollmentModel.SexTypeId = 2;
@@ -54,7 +55,7 @@ namespace NGL.Tests.Enrollment
 
             _enrollmentModel.ApartmentRoomSuiteNumber = "33";
             _enrollmentModel.City = "London";
-            _enrollmentModel.LanguageDescriptorId = 98;
+            _enrollmentModel.LanguageTypeId = 98;
             _enrollmentModel.LanguageUseTypeId = 99;
             _enrollmentModel.PostalCode = "60657";
             _enrollmentModel.StateAbbreviationTypeId = 23;

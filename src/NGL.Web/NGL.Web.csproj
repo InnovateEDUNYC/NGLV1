@@ -1438,6 +1438,7 @@
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
     <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
     <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1694,7 +1695,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Session\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
