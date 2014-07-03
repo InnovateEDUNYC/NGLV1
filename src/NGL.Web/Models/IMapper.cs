@@ -1,6 +1,6 @@
 ﻿namespace NGL.Web.Models
 {
-    interface IMapper<in TSource, in TTarget>
+    public interface IMapper<in TSource, in TTarget>
         where TSource: class
         where TTarget: class
     {
