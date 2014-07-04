@@ -1,0 +1,1 @@
+@%WINDIR%\Microsoft.Net\Framework\v4.0.30319\msbuild build.proj /property:Configuration=Release /m /clp:Verbosity=minimal
