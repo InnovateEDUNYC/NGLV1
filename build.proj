@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="12.0">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Test" ToolsVersion="12.0">
   <!--Project configuration-->
   <Import Project="Build.config" />
   
@@ -20,7 +20,7 @@
   </Target>
 
   <!--Test. Note that the GetTestAssemblies Task MUST BE defined in the Build.config file. -->
-  <Target Name="Test" DependsOnTargets="GetTestAssemblies">
+  <Target Name="Test" DependsOnTargets="GetTestAssemblies;Build">
     <xunit Assemblies="@(TestAssemblies)" />
   </Target>
 
