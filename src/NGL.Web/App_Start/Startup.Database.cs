@@ -1,8 +1,8 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data.Entity;
 using System.Reflection;
 using DbUp;
-using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Web
@@ -22,7 +22,9 @@ namespace NGL.Web
                     .LogToConsole()
                     .Build();
 
-            upgrader.PerformUpgrade();
+            var result = upgrader.PerformUpgrade();
+            if(!result.Successful)
+                throw new Exception(result.Error.Message);
         }
     }
 }
