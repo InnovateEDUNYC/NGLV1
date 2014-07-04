@@ -1575,6 +1575,7 @@
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\005 - Linking School To Education Organization.sql" />
     <EmbeddedResource Include="Data\Scripts\006 - Schema - Adding Identity To Course.sql" />
+    <EmbeddedResource Include="Data\Scripts\004.1.sample - Users and Roles.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
