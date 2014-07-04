@@ -1,1 +1,0 @@
-﻿INSERT INTO [edfi].[School]([SchoolId]) VALUES (1)
