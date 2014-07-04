@@ -38,8 +38,8 @@ namespace NGL.Web.Models.Student
 
         private void SetStudentLanguage(EnrollmentModel source, Data.Entities.Student target)
         {
-            // ReSharper disable once PossibleInvalidOperationException
-            var languageDescriptor = _repository.GetLanguageDescriptor((int) source.LanguageTypeId);
+
+            var languageDescriptor = _repository.GetLanguageDescriptor(source.LanguageTypeId.Value);
 
             var studentLanguage = new StudentLanguage
             {
@@ -65,8 +65,7 @@ namespace NGL.Web.Models.Student
                 ApartmentRoomSuiteNumber = source.ApartmentRoomSuiteNumber,
                 City = source.City,
                 PostalCode = source.PostalCode,
-                // ReSharper disable once PossibleInvalidOperationException
-                StateAbbreviationTypeId = (int) source.StateAbbreviationTypeId
+                StateAbbreviationTypeId = source.StateAbbreviationTypeId.Value
             });
         }
     }
