@@ -73,7 +73,6 @@ namespace NGL.Web.App_Start
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
-            kernel.Bind<ILanguageDescriptorRepository>().To<LanguageDescriptorRepository>();
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
             kernel.Bind(
                 x => x.FromThisAssembly()

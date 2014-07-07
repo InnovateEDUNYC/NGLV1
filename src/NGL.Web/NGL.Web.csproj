@@ -1430,10 +1430,8 @@
     </Compile>
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\IRepositoryBase.cs" />
-    <Compile Include="Data\Repositories\ILanguageDescriptorRepository.cs" />
     <Compile Include="Data\Repositories\ILookupRepository.cs" />
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
-    <Compile Include="Data\Repositories\LanguageDescriptorRepository.cs" />
     <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />

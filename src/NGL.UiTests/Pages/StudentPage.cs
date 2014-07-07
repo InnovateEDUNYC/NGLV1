@@ -21,5 +21,9 @@ namespace NGL.UiTests.Pages
         {
             return Find.Elements(By.CssSelector("tr:last-child td:last-child")).First().Text;
         }
+        public TopMenu TopMenu
+        {
+            get { return GetComponent<TopMenu>(); }
+        }
     }
 }

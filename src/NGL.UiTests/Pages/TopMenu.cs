@@ -19,5 +19,10 @@ namespace NGL.UiTests.Pages
         {
             return Navigate.To<StudentPage>(By.LinkText("Students"));
         }
+
+        public Page LogOff()
+        {
+            return Navigate.To<Page>(By.LinkText("Log off"));
+        }
     }
 }

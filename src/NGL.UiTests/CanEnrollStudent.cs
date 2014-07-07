@@ -35,7 +35,7 @@ namespace NGL.UiTests
             
             _enrollmentModel = new EnrollmentModel()
             {
-                StudentUsi = 1232196,
+                StudentUsi = 12432234, //change every test run
                 FirstName = "Joe",
                 LastSurname = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
@@ -58,8 +58,7 @@ namespace NGL.UiTests
             var usiStringOfStudent = studentPage.GetUsiStringOfLastStudentOnTable();
             
             usiStringOfStudent.ShouldBe(_enrollmentModel.StudentUsi.ToString());
-
-
+            studentPage.TopMenu.LogOff();
         }
     }
 }
