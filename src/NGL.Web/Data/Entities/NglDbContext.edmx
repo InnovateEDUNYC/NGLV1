@@ -4324,7 +4324,7 @@
           <Property Name="SchoolId" Type="int" Nullable="false" />
           <Property Name="TermTypeId" Type="int" Nullable="false" />
           <Property Name="SchoolYear" Type="smallint" Nullable="false" />
-          <Property Name="SessionName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="SessionName" Type="nvarchar" MaxLength="60" />
           <Property Name="BeginDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="TotalInstructionalDays" Type="int" Nullable="false" />
@@ -24382,7 +24382,7 @@
           <Property Name="SchoolId" Type="Int32" Nullable="false" />
           <Property Name="TermTypeId" Type="Int32" Nullable="false" />
           <Property Name="SchoolYear" Type="Int16" Nullable="false" />
-          <Property Name="SessionName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SessionName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="true" />
           <Property Name="BeginDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TotalInstructionalDays" Type="Int32" Nullable="false" />

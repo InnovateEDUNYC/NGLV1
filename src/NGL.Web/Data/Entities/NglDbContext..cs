@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Diagnostics;
 
 namespace NGL.Web.Data.Entities
 {
@@ -6,7 +8,15 @@ namespace NGL.Web.Data.Entities
     {
         public void Save()
         {
-            SaveChanges();
+            try
+            {
+                SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex.Message);
+                throw;
+            }
         }
     
         IDbSet<TEntity> INglDbContext.Set<TEntity>()
