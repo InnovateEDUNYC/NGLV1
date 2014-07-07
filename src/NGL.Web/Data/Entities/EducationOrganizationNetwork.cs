@@ -21,6 +21,7 @@ namespace NGL.Web.Data.Entities
     
         public int EducationOrganizationNetworkId { get; set; }
         public int NetworkPurposeTypeId { get; set; }
+        public int EducationOrganizationNetworkIdentity { get; set; }
     
         public virtual EducationOrganization EducationOrganization { get; set; }
         public virtual NetworkPurposeType NetworkPurposeType { get; set; }

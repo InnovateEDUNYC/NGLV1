@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public string LearningStandardId { get; set; }
         public string Author { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int LearningStandardContentStandardAuthorIdentity { get; set; }
     
         public virtual LearningStandardContentStandard LearningStandardContentStandard { get; set; }
     }

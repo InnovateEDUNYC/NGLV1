@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public string CourseCode { get; set; }
         public string LearningStandardId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CourseLearningStandardIdentity { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual LearningStandard LearningStandard { get; set; }

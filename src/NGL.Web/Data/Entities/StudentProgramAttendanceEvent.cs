@@ -32,6 +32,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentProgramAttendanceEventIdentity { get; set; }
     
         public virtual AttendanceEventCategoryDescriptor AttendanceEventCategoryDescriptor { get; set; }
         public virtual EducationalEnvironmentType EducationalEnvironmentType { get; set; }

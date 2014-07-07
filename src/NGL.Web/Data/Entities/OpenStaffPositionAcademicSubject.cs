@@ -26,6 +26,7 @@ namespace NGL.Web.Data.Entities
         public int AcademicSubjectDescriptorId { get; set; }
         public int EmploymentStatusDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int OpenStaffPositionAcademicSubjectIdentity { get; set; }
     
         public virtual AcademicSubjectDescriptor AcademicSubjectDescriptor { get; set; }
         public virtual OpenStaffPosition OpenStaffPosition { get; set; }

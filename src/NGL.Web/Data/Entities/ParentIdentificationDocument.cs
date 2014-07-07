@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
         public int ParentUSI { get; set; }
         public Nullable<int> IssuerCountryTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ParentIdentificationDocumentIdentity { get; set; }
     
         public virtual CountryType CountryType { get; set; }
         public virtual IdentificationDocumentUseType IdentificationDocumentUseType { get; set; }

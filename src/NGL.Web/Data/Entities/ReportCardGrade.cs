@@ -32,6 +32,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime BeginDate { get; set; }
         public int GradeTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ReportCardGradeIdentity { get; set; }
     
         public virtual Grade Grade { get; set; }
         public virtual ReportCard ReportCard { get; set; }

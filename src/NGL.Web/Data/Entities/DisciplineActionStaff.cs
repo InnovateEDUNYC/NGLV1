@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime DisciplineDate { get; set; }
         public int StaffUSI { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int DisciplineActionStaffIdentity { get; set; }
     
         public virtual DisciplineAction DisciplineAction { get; set; }
         public virtual Staff Staff { get; set; }

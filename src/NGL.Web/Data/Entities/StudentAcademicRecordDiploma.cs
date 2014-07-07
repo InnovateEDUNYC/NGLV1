@@ -39,6 +39,7 @@ namespace NGL.Web.Data.Entities
         public string EvidenceStatement { get; set; }
         public string ImageURL { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAcademicRecordDiplomaIdentity { get; set; }
     
         public virtual AchievementCategoryDescriptor AchievementCategoryDescriptor { get; set; }
         public virtual DiplomaLevelType DiplomaLevelType { get; set; }

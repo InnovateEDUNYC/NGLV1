@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public string AssigningOrganizationIdentificationCode { get; set; }
         public string IdentificationCode { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CourseIdentificationCodeIdentity { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual CourseCodeSystemType CourseCodeSystemType { get; set; }

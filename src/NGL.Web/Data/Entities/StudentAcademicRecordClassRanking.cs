@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<int> PercentageRanking { get; set; }
         public Nullable<System.DateTime> ClassRankingDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAcademicRecordClassRankingIdentity { get; set; }
     
         public virtual StudentAcademicRecord StudentAcademicRecord { get; set; }
     }

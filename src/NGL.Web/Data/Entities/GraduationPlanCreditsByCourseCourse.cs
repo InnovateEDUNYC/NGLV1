@@ -26,6 +26,7 @@ namespace NGL.Web.Data.Entities
         public int CourseEducationOrganizationId { get; set; }
         public string CourseCode { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int GraduationPlanCreditsByCourseCourseIdentity { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual GraduationPlanCreditsByCourse GraduationPlanCreditsByCourse { get; set; }

@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<System.DateTime> USMostRecentEntry { get; set; }
         public Nullable<System.DateTime> USInitialSchoolEntry { get; set; }
         public string ProgramName { get; set; }
+        public int StudentMigrantEducationProgramAssociationIdentity { get; set; }
     
         public virtual ContinuationOfServicesReasonDescriptor ContinuationOfServicesReasonDescriptor { get; set; }
         public virtual StudentProgramAssociation StudentProgramAssociation { get; set; }

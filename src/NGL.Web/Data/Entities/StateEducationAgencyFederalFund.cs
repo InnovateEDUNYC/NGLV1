@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StateEducationAgencyFederalFundsIdentity { get; set; }
     
         public virtual StateEducationAgency StateEducationAgency { get; set; }
     }

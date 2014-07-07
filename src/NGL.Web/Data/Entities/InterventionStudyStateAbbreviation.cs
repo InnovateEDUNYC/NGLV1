@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationId { get; set; }
         public int StateAbbreviationTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int InterventionStudyStateAbbreviationIdentity { get; set; }
     
         public virtual InterventionStudy InterventionStudy { get; set; }
         public virtual StateAbbreviationType StateAbbreviationType { get; set; }

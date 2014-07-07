@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public string AlternateDayName { get; set; }
         public Nullable<bool> OfficialAttendancePeriod { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int BellScheduleMeetingTimeIdentity { get; set; }
     
         public virtual BellSchedule BellSchedule { get; set; }
         public virtual ClassPeriod ClassPeriod { get; set; }

@@ -31,6 +31,7 @@ namespace NGL.Web.Data.Entities
         public int AcademicSubjectDescriptorId { get; set; }
         public int ObjectiveGradeLevelDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int GradebookEntryLearningObjectiveIdentity { get; set; }
     
         public virtual GradebookEntry GradebookEntry { get; set; }
         public virtual LearningObjective LearningObjective { get; set; }

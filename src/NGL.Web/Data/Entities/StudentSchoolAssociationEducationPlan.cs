@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime EntryDate { get; set; }
         public int EducationPlanTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentSchoolAssociationEducationPlanIdentity { get; set; }
     
         public virtual EducationPlanType EducationPlanType { get; set; }
         public virtual StudentSchoolAssociation StudentSchoolAssociation { get; set; }

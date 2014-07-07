@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationId { get; set; }
         public string WeekIdentifier { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int SessionAcademicWeekIdentity { get; set; }
     
         public virtual AcademicWeek AcademicWeek { get; set; }
         public virtual Session Session { get; set; }

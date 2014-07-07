@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public string ProgramName { get; set; }
         public int EducationOrganizationId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int SectionProgramIdentity { get; set; }
     
         public virtual Program Program { get; set; }
         public virtual Section Section { get; set; }

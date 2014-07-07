@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public int SchoolId { get; set; }
         public int SchoolCategoryTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int SchoolCategoryIdentity { get; set; }
     
         public virtual School School { get; set; }
         public virtual SchoolCategoryType SchoolCategoryType { get; set; }

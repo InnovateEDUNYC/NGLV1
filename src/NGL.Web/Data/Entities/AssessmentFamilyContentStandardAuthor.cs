@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public string AssessmentFamilyTitle { get; set; }
         public string Author { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentFamilyContentStandardAuthorIdentity { get; set; }
     
         public virtual AssessmentFamilyContentStandard AssessmentFamilyContentStandard { get; set; }
     }

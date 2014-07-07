@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public short SchoolYear { get; set; }
         public Nullable<bool> CTEGraduationRateInclusion { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StateEducationAgencyAccountabilityIdentity { get; set; }
     
         public virtual SchoolYearType SchoolYearType { get; set; }
         public virtual StateEducationAgency StateEducationAgency { get; set; }

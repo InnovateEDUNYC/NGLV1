@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationId { get; set; }
         public int EducationOrganizationCategoryTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int EducationOrganizationCategoryIdentity { get; set; }
     
         public virtual EducationOrganization EducationOrganization { get; set; }
         public virtual EducationOrganizationCategoryType EducationOrganizationCategoryType { get; set; }

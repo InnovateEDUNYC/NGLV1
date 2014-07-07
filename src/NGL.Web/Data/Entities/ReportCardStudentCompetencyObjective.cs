@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public int ObjectiveGradeLevelDescriptorId { get; set; }
         public int EducationOrganizationId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ReportCardStudentCompetencyObjectiveIdentity { get; set; }
     
         public virtual ReportCard ReportCard { get; set; }
         public virtual StudentCompetencyObjective StudentCompetencyObjective { get; set; }

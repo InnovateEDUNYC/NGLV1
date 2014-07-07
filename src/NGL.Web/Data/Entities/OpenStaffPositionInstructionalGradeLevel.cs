@@ -26,6 +26,7 @@ namespace NGL.Web.Data.Entities
         public int GradeLevelDescriptorId { get; set; }
         public int EmploymentStatusDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int OpenStaffPositionInstructionalGradeLevelIdentity { get; set; }
     
         public virtual GradeLevelDescriptor GradeLevelDescriptor { get; set; }
         public virtual OpenStaffPosition OpenStaffPosition { get; set; }

@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public string IdentificationCode { get; set; }
         public System.DateTime AdministrationDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAssessmentStudentObjectiveAssessmentIdentity { get; set; }
     
         public virtual ObjectiveAssessment ObjectiveAssessment { get; set; }
         public virtual StudentAssessment StudentAssessment { get; set; }

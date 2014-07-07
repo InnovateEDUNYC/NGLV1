@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<int> PostSecondaryInstitutionLevelTypeId { get; set; }
         public Nullable<int> AdministrativeFundingControlDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int PostSecondaryEventPostSecondaryInstitutionIdentity { get; set; }
     
         public virtual AdministrativeFundingControlDescriptor AdministrativeFundingControlDescriptor { get; set; }
         public virtual PostSecondaryEvent PostSecondaryEvent { get; set; }

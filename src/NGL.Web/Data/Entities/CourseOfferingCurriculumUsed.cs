@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public string LocalCourseCode { get; set; }
         public int CurriculumUsedTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CourseOfferingCurriculumUsedIdentity { get; set; }
     
         public virtual CourseOffering CourseOffering { get; set; }
         public virtual CurriculumUsedType CurriculumUsedType { get; set; }

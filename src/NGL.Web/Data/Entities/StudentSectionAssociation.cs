@@ -40,6 +40,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentSectionAssociationIdentity { get; set; }
     
         public virtual ICollection<Grade> Grades { get; set; }
         public virtual RepeatIdentifierType RepeatIdentifierType { get; set; }

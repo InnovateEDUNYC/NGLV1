@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int PostSecondaryEventIdentity { get; set; }
     
         public virtual PostSecondaryEventCategoryType PostSecondaryEventCategoryType { get; set; }
         public virtual Student Student { get; set; }

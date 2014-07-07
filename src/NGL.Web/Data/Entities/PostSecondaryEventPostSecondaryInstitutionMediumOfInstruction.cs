@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime EventDate { get; set; }
         public int MediumOfInstructionTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int PostSecondaryEventPostSecondaryInstitutionMediumOfInstructionIdentity { get; set; }
     
         public virtual MediumOfInstructionType MediumOfInstructionType { get; set; }
         public virtual PostSecondaryEventPostSecondaryInstitution PostSecondaryEventPostSecondaryInstitution { get; set; }

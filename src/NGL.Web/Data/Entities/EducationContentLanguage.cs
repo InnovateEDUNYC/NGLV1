@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public string ContentIdentifier { get; set; }
         public int LanguageDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int EducationContentLanguageIdentity { get; set; }
     
         public virtual EducationContent EducationContent { get; set; }
         public virtual LanguageDescriptor LanguageDescriptor { get; set; }

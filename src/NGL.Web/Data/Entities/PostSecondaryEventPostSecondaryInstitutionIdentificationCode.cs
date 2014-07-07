@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationIdentificationSystemTypeId { get; set; }
         public string IdentificationCode { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int PostSecondaryEventPostSecondaryInstitutionIdentificationCodeIdentity { get; set; }
     
         public virtual EducationOrganizationIdentificationSystemType EducationOrganizationIdentificationSystemType { get; set; }
         public virtual PostSecondaryEventPostSecondaryInstitution PostSecondaryEventPostSecondaryInstitution { get; set; }

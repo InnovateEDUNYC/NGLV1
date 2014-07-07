@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int InstitutionTelephoneNumberTypeId { get; set; }
         public string TelephoneNumber { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int EducationOrganizationInstitutionTelephoneIdentity { get; set; }
     
         public virtual EducationOrganization EducationOrganization { get; set; }
         public virtual InstitutionTelephoneNumberType InstitutionTelephoneNumberType { get; set; }

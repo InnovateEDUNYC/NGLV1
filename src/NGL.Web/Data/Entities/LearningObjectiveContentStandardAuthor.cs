@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int ObjectiveGradeLevelDescriptorId { get; set; }
         public string Author { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int LearningObjectiveContentStandardAuthorIdentity { get; set; }
     
         public virtual LearningObjectiveContentStandard LearningObjectiveContentStandard { get; set; }
     }

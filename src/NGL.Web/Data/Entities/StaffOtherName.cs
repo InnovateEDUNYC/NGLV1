@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public string LastSurname { get; set; }
         public string GenerationCodeSuffix { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StaffOtherNameIdentity { get; set; }
     
         public virtual OtherNameType OtherNameType { get; set; }
         public virtual Staff Staff { get; set; }

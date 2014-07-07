@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int ProgramCharacteristicDescriptorId { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ProgramCharacteristicIdentity { get; set; }
     
         public virtual Program Program { get; set; }
         public virtual ProgramCharacteristicDescriptor ProgramCharacteristicDescriptor { get; set; }

@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public string ContentIdentifier { get; set; }
         public string DerivativeSourceContentIdentifier { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int EducationContentDerivativeSourceEducationContentIdentity { get; set; }
     
         public virtual EducationContent EducationContent { get; set; }
         public virtual EducationContent EducationContent1 { get; set; }

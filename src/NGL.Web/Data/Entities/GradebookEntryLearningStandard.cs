@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime DateAssigned { get; set; }
         public string LearningStandardId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int GradebookEntryLearningStandardIdentity { get; set; }
     
         public virtual GradebookEntry GradebookEntry { get; set; }
         public virtual LearningStandard LearningStandard { get; set; }

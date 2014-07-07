@@ -26,6 +26,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<System.DateTime> EndDate { get; set; }
         public string DesignatedBy { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentProgramParticipationIdentity { get; set; }
     
         public virtual ProgramType ProgramType { get; set; }
         public virtual Student Student { get; set; }

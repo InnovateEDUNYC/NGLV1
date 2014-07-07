@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int CohortYearTypeId { get; set; }
         public short SchoolYear { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentCohortYearIdentity { get; set; }
     
         public virtual CohortYearType CohortYearType { get; set; }
         public virtual SchoolYearType SchoolYearType { get; set; }

@@ -33,6 +33,7 @@ namespace NGL.Web.Data.Entities
         public string TimeAssessed { get; set; }
         public string DescriptiveFeedback { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAssessmentItemIdentity { get; set; }
     
         public virtual AssessmentItem AssessmentItem { get; set; }
         public virtual AssessmentItemResultType AssessmentItemResultType { get; set; }

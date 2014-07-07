@@ -34,6 +34,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CohortIdentity { get; set; }
     
         public virtual AcademicSubjectDescriptor AcademicSubjectDescriptor { get; set; }
         public virtual CohortScopeType CohortScopeType { get; set; }

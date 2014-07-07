@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime AdministrationDate { get; set; }
         public int AccommodationDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAssessmentAccommodationIdentity { get; set; }
     
         public virtual AccommodationDescriptor AccommodationDescriptor { get; set; }
         public virtual StudentAssessment StudentAssessment { get; set; }

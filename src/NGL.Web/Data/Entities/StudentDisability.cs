@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<int> OrderOfDisability { get; set; }
         public int DisabilityDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentDisabilityIdentity { get; set; }
     
         public virtual DisabilityDescriptor DisabilityDescriptor { get; set; }
         public virtual Student Student { get; set; }

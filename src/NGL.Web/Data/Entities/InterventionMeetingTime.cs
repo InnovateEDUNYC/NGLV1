@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
         public System.TimeSpan EndTime { get; set; }
         public Nullable<bool> OfficialAttendancePeriod { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int InterventionMeetingTimeIdentity { get; set; }
     
         public virtual ClassPeriod ClassPeriod { get; set; }
         public virtual Intervention Intervention { get; set; }

@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public string ProgramName { get; set; }
         public int ProgramEducationOrganizationId { get; set; }
         public System.DateTime BeginDate { get; set; }
+        public int StudentCTEProgramAssociationIdentity { get; set; }
     
         public virtual StudentProgramAssociation StudentProgramAssociation { get; set; }
         public virtual ICollection<StudentCTEProgramAssociationCTEProgram> StudentCTEProgramAssociationCTEPrograms { get; set; }

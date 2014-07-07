@@ -21,6 +21,7 @@ namespace NGL.Web.Data.Entities
     
         public int EducationServiceCenterId { get; set; }
         public Nullable<int> StateEducationAgencyId { get; set; }
+        public int EducationServiceCenterIdentity { get; set; }
     
         public virtual EducationOrganization EducationOrganization { get; set; }
         public virtual StateEducationAgency StateEducationAgency { get; set; }

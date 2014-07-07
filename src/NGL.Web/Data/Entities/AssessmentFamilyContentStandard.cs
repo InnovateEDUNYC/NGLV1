@@ -31,6 +31,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<System.DateTime> BeginDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentFamilyContentStandardIdentity { get; set; }
     
         public virtual AssessmentFamily AssessmentFamily { get; set; }
         public virtual EducationOrganization EducationOrganization { get; set; }

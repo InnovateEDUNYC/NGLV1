@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationId { get; set; }
         public string URI { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int InterventionURIIdentity { get; set; }
     
         public virtual Intervention Intervention { get; set; }
     }

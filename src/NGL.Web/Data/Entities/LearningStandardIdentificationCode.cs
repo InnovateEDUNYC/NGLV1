@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public string IdentificationCode { get; set; }
         public string ContentStandardName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int LearningStandardIdentificationCodeIdentity { get; set; }
     
         public virtual LearningStandard LearningStandard { get; set; }
     }

@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public string AssessmentFamilyTitle { get; set; }
         public int LanguageDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentFamilyLanguageIdentity { get; set; }
     
         public virtual AssessmentFamily AssessmentFamily { get; set; }
         public virtual LanguageDescriptor LanguageDescriptor { get; set; }
