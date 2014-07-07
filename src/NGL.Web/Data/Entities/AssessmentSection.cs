@@ -30,6 +30,7 @@ namespace NGL.Web.Data.Entities
         public int TermTypeId { get; set; }
         public short SchoolYear { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentSectionIdentity { get; set; }
     
         public virtual Assessment Assessment { get; set; }
         public virtual Section Section { get; set; }

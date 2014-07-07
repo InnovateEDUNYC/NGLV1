@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int CalendarEventDescriptorId { get; set; }
         public decimal EventDuration { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CalendarDateCalendarEventIdentity { get; set; }
     
         public virtual CalendarDate CalendarDate { get; set; }
         public virtual CalendarEventDescriptor CalendarEventDescriptor { get; set; }

@@ -43,6 +43,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentLearningObjectiveIdentity { get; set; }
     
         public virtual CompetencyLevelDescriptor CompetencyLevelDescriptor { get; set; }
         public virtual GradingPeriod GradingPeriod { get; set; }

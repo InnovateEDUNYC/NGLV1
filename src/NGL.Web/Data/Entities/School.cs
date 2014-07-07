@@ -42,6 +42,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<int> MagnetSpecialProgramEmphasisSchoolTypeId { get; set; }
         public Nullable<int> AdministrativeFundingControlDescriptorId { get; set; }
         public Nullable<int> InternetAccessTypeId { get; set; }
+        public int SchoolIdentity { get; set; }
     
         public virtual AdministrativeFundingControlDescriptor AdministrativeFundingControlDescriptor { get; set; }
         public virtual ICollection<BellSchedule> BellSchedules { get; set; }

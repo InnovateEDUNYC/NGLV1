@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public int GraduationPlanTypeDescriptorId { get; set; }
         public short GraduationSchoolYear { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int GraduationPlanCreditsBySubjectIdentity { get; set; }
     
         public virtual AcademicSubjectDescriptor AcademicSubjectDescriptor { get; set; }
         public virtual CreditType CreditType { get; set; }

@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public string AssigningOrganizationIdentificationCode { get; set; }
         public string IdentificationCode { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StaffIdentificationCodeIdentity { get; set; }
     
         public virtual Staff Staff { get; set; }
         public virtual StaffIdentificationSystemType StaffIdentificationSystemType { get; set; }

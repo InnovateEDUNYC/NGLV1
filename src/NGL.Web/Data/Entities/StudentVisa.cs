@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public int StudentUSI { get; set; }
         public int VisaTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentVisaIdentity { get; set; }
     
         public virtual Student Student { get; set; }
         public virtual VisaType VisaType { get; set; }

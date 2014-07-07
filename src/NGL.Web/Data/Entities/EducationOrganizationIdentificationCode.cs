@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationIdentificationSystemTypeId { get; set; }
         public string IdentificationCode { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int EducationOrganizationIdentificationCodeIdentity { get; set; }
     
         public virtual EducationOrganization EducationOrganization { get; set; }
         public virtual EducationOrganizationIdentificationSystemType EducationOrganizationIdentificationSystemType { get; set; }

@@ -51,6 +51,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int EducationContentIdentity { get; set; }
     
         public virtual ContentClassType ContentClassType { get; set; }
         public virtual CostRateType CostRateType { get; set; }

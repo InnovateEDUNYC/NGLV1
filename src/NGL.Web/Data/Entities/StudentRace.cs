@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public int StudentUSI { get; set; }
         public int RaceTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentRaceIdentity { get; set; }
     
         public virtual RaceType RaceType { get; set; }
         public virtual Student Student { get; set; }

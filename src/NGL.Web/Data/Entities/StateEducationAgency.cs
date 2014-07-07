@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         }
     
         public int StateEducationAgencyId { get; set; }
+        public int StateEducationAgencyIdentity { get; set; }
     
         public virtual EducationOrganization EducationOrganization { get; set; }
         public virtual ICollection<EducationServiceCenter> EducationServiceCenters { get; set; }

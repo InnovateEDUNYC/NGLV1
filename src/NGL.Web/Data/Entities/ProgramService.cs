@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int ServiceDescriptorId { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ProgramServiceIdentity { get; set; }
     
         public virtual Program Program { get; set; }
         public virtual ServiceDescriptor ServiceDescriptor { get; set; }

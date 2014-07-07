@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public int AssessedGradeLevelDescriptorId { get; set; }
         public string Author { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentContentStandardAuthorIdentity { get; set; }
     
         public virtual AssessmentContentStandard AssessmentContentStandard { get; set; }
     }

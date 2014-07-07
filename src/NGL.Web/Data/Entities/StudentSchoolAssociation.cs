@@ -43,6 +43,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentSchoolAssociationIdentity { get; set; }
     
         public virtual EntryGradeLevelReasonType EntryGradeLevelReasonType { get; set; }
         public virtual EntryTypeDescriptor EntryTypeDescriptor { get; set; }

@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public string Result { get; set; }
         public int ResultDatatypeTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAssessmentScoreResultIdentity { get; set; }
     
         public virtual AssessmentReportingMethodType AssessmentReportingMethodType { get; set; }
         public virtual ResultDatatypeType ResultDatatypeType { get; set; }

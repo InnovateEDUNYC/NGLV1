@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public string CourseCode { get; set; }
         public int CompetencyLevelDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CourseCompetencyLevelIdentity { get; set; }
     
         public virtual CompetencyLevelDescriptor CompetencyLevelDescriptor { get; set; }
         public virtual Course Course { get; set; }

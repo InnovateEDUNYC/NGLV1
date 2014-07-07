@@ -26,6 +26,7 @@ namespace NGL.Web.Data.Entities
         public string IdentificationCode { get; set; }
         public string LearningStandardId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentItemLearningStandardIdentity { get; set; }
     
         public virtual AssessmentItem AssessmentItem { get; set; }
         public virtual LearningStandard LearningStandard { get; set; }

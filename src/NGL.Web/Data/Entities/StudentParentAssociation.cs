@@ -32,6 +32,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentParentAssociationIdentity { get; set; }
     
         public virtual Parent Parent { get; set; }
         public virtual RelationType RelationType { get; set; }

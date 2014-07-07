@@ -26,6 +26,7 @@ namespace NGL.Web.Data.Entities
         public int ObjectiveGradeLevelDescriptorId { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ProgramLearningObjectiveIdentity { get; set; }
     
         public virtual LearningObjective LearningObjective { get; set; }
         public virtual Program Program { get; set; }

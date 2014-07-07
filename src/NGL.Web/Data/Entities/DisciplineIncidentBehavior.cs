@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int BehaviorDescriptorId { get; set; }
         public string BehaviorDetailedDescription { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int DisciplineIncidentBehaviorIdentity { get; set; }
     
         public virtual BehaviorDescriptor BehaviorDescriptor { get; set; }
         public virtual DisciplineIncident DisciplineIncident { get; set; }

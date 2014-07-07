@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public int ProgramTypeId { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CohortProgramIdentity { get; set; }
     
         public virtual Cohort Cohort { get; set; }
         public virtual Program Program { get; set; }

@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public decimal AuditoryLearning { get; set; }
         public decimal TactileLearning { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentLearningStyleIdentity { get; set; }
     
         public virtual Student Student { get; set; }
     }

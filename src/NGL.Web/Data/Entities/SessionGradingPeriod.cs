@@ -26,6 +26,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime BeginDate { get; set; }
         public int SchoolId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int SessionGradingPeriodIdentity { get; set; }
     
         public virtual GradingPeriod GradingPeriod { get; set; }
         public virtual Session Session { get; set; }

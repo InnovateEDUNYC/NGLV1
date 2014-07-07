@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int SchoolId { get; set; }
         public int AcademicSubjectDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StaffSchoolAssociationAcademicSubjectIdentity { get; set; }
     
         public virtual AcademicSubjectDescriptor AcademicSubjectDescriptor { get; set; }
         public virtual StaffSchoolAssociation StaffSchoolAssociation { get; set; }

@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationId { get; set; }
         public int StaffUSI { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int InterventionStaffIdentity { get; set; }
     
         public virtual Intervention Intervention { get; set; }
         public virtual Staff Staff { get; set; }

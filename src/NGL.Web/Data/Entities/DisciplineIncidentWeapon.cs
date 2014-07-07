@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public string IncidentIdentifier { get; set; }
         public int WeaponDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int DisciplineIncidentWeaponIdentity { get; set; }
     
         public virtual DisciplineIncident DisciplineIncident { get; set; }
         public virtual WeaponDescriptor WeaponDescriptor { get; set; }

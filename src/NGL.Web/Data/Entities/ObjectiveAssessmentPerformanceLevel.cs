@@ -30,6 +30,7 @@ namespace NGL.Web.Data.Entities
         public string MaximumScore { get; set; }
         public Nullable<int> ResultDatatypeTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ObjectiveAssessmentPerformanceLevelIdentity { get; set; }
     
         public virtual AssessmentReportingMethodType AssessmentReportingMethodType { get; set; }
         public virtual ObjectiveAssessment ObjectiveAssessment { get; set; }

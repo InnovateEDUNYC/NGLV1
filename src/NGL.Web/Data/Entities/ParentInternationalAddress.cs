@@ -31,6 +31,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<System.DateTime> EndDate { get; set; }
         public int CountryTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ParentInternationalAddressIdentity { get; set; }
     
         public virtual AddressType AddressType { get; set; }
         public virtual CountryType CountryType { get; set; }

@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
         public int PerformanceLevelDescriptorId { get; set; }
         public bool PerformanceLevelMet { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAssessmentPerformanceLevelIdentity { get; set; }
     
         public virtual PerformanceLevelDescriptor PerformanceLevelDescriptor { get; set; }
         public virtual StudentAssessment StudentAssessment { get; set; }

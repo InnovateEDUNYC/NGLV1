@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public string ContentIdentifier { get; set; }
         public string Author { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int EducationContentAuthorIdentity { get; set; }
     
         public virtual EducationContent EducationContent { get; set; }
     }

@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public decimal Credit { get; set; }
         public int EducationOrganizationId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CourseTranscriptAdditionalCreditIdentity { get; set; }
     
         public virtual AdditionalCreditType AdditionalCreditType { get; set; }
         public virtual CourseTranscript CourseTranscript { get; set; }

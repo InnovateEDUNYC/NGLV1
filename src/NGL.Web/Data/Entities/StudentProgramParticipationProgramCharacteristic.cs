@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int ProgramTypeId { get; set; }
         public int ProgramCharacteristicDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentProgramParticipationProgramCharacteristicIdentity { get; set; }
     
         public virtual ProgramCharacteristicDescriptor ProgramCharacteristicDescriptor { get; set; }
         public virtual StudentProgramParticipation StudentProgramParticipation { get; set; }

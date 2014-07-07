@@ -30,6 +30,7 @@ namespace NGL.Web.Data.Entities
         public string ExternalCourseCode { get; set; }
         public string ExternalCourseTitle { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CourseTranscriptExternalCourseIdentity { get; set; }
     
         public virtual CourseTranscript CourseTranscript { get; set; }
     }

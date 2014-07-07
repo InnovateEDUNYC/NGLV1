@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public string InterventionPrescriptionIdentificationCode { get; set; }
         public int InterventionPrescriptionEducationOrganizationId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int InterventionInterventionPrescriptionIdentity { get; set; }
     
         public virtual Intervention Intervention { get; set; }
         public virtual InterventionPrescription InterventionPrescription { get; set; }

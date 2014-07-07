@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public short SchoolYear { get; set; }
         public int SectionCharacteristicDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int SectionCharacteristicIdentity { get; set; }
     
         public virtual Section Section { get; set; }
         public virtual SectionCharacteristicDescriptor SectionCharacteristicDescriptor { get; set; }

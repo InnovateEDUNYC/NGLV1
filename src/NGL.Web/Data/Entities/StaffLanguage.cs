@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int StaffUSI { get; set; }
         public int LanguageDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StaffLanguageIdentity { get; set; }
     
         public virtual LanguageDescriptor LanguageDescriptor { get; set; }
         public virtual Staff Staff { get; set; }

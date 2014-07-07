@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public string CourseCode { get; set; }
         public int CourseLevelCharacteristicTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int CourseLevelCharacteristicIdentity { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual CourseLevelCharacteristicType CourseLevelCharacteristicType { get; set; }

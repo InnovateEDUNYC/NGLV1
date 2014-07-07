@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<bool> PrimaryProvider { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentSpecialEducationProgramAssociationServiceProviderIdentity { get; set; }
     
         public virtual Staff Staff { get; set; }
         public virtual StudentSpecialEducationProgramAssociation StudentSpecialEducationProgramAssociation { get; set; }

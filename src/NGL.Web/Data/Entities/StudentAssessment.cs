@@ -44,6 +44,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAssessmentIdentity { get; set; }
     
         public virtual AdministrationEnvironmentType AdministrationEnvironmentType { get; set; }
         public virtual Assessment Assessment { get; set; }

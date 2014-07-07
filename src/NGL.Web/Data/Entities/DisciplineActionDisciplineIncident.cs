@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public int SchoolId { get; set; }
         public string IncidentIdentifier { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int DisciplineActionDisciplineIncidentIdentity { get; set; }
     
         public virtual DisciplineAction DisciplineAction { get; set; }
         public virtual DisciplineIncident DisciplineIncident { get; set; }

@@ -40,6 +40,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ProgramIdentity { get; set; }
     
         public virtual ICollection<AssessmentProgram> AssessmentPrograms { get; set; }
         public virtual ICollection<CohortProgram> CohortPrograms { get; set; }

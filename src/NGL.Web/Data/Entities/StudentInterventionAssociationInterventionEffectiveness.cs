@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<int> ImprovementIndex { get; set; }
         public int InterventionEffectivenessRatingTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentInterventionAssociationInterventionEffectivenessIdentity { get; set; }
     
         public virtual DiagnosisDescriptor DiagnosisDescriptor { get; set; }
         public virtual GradeLevelDescriptor GradeLevelDescriptor { get; set; }

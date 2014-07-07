@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<bool> CTEProgramCompletionIndicator { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentCTEProgramAssociationCTEProgramIdentity { get; set; }
     
         public virtual CareerPathwayType CareerPathwayType { get; set; }
         public virtual StudentCTEProgramAssociation StudentCTEProgramAssociation { get; set; }

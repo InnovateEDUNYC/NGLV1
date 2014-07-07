@@ -30,6 +30,7 @@ namespace NGL.Web.Data.Entities
         public int TermTypeId { get; set; }
         public short SchoolYear { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentCohortAssociationSectionIdentity { get; set; }
     
         public virtual Section Section { get; set; }
         public virtual StudentCohortAssociation StudentCohortAssociation { get; set; }

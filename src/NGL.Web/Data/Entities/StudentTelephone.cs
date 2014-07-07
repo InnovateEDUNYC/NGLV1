@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<bool> TextMessageCapabilityIndicator { get; set; }
         public string TelephoneNumber { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentTelephoneIdentity { get; set; }
     
         public virtual Student Student { get; set; }
         public virtual TelephoneNumberType TelephoneNumberType { get; set; }

@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public int GradingPeriodDescriptorId { get; set; }
         public System.DateTime GradingPeriodBeginDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StudentAcademicRecordReportCardIdentity { get; set; }
     
         public virtual ReportCard ReportCard { get; set; }
         public virtual StudentAcademicRecord StudentAcademicRecord { get; set; }

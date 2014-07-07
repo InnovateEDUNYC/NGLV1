@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public string ElectronicMailAddress { get; set; }
         public Nullable<bool> PrimaryEmailAddressIndicator { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ParentElectronicMailIdentity { get; set; }
     
         public virtual ElectronicMailType ElectronicMailType { get; set; }
         public virtual Parent Parent { get; set; }

@@ -29,6 +29,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<int> TeachingCredentialBasisTypeId { get; set; }
         public Nullable<int> StateOfIssueStateAbbreviationTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StaffCredentialIdentity { get; set; }
     
         public virtual CredentialFieldDescriptor CredentialFieldDescriptor { get; set; }
         public virtual CredentialType CredentialType { get; set; }

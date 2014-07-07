@@ -25,6 +25,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime EventDate { get; set; }
         public int RestraintEventReasonTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int RestraintEventReasonIdentity { get; set; }
     
         public virtual RestraintEvent RestraintEvent { get; set; }
         public virtual RestraintEventReasonType RestraintEventReasonType { get; set; }

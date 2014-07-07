@@ -34,6 +34,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<System.DateTime> IEPBeginDate { get; set; }
         public Nullable<System.DateTime> IEPEndDate { get; set; }
         public string ProgramName { get; set; }
+        public int StudentSpecialEducationProgramAssociationIdentity { get; set; }
     
         public virtual SpecialEducationSettingDescriptor SpecialEducationSettingDescriptor { get; set; }
         public virtual StudentProgramAssociation StudentProgramAssociation { get; set; }

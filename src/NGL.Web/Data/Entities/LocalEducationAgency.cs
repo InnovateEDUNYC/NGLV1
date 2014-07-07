@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
         public Nullable<int> CharterStatusTypeId { get; set; }
         public Nullable<int> EducationServiceCenterId { get; set; }
         public Nullable<int> StateEducationAgencyId { get; set; }
+        public int LocalEducationAgencyIdentity { get; set; }
     
         public virtual CharterStatusType CharterStatusType { get; set; }
         public virtual EducationOrganization EducationOrganization { get; set; }

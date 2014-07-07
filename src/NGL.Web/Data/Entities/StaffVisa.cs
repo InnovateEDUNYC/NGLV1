@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public int StaffUSI { get; set; }
         public int VisaTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int StaffVisaIdentity { get; set; }
     
         public virtual Staff Staff { get; set; }
         public virtual VisaType VisaType { get; set; }

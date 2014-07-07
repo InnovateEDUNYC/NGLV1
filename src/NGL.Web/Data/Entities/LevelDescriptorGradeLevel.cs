@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public int LevelDescriptorId { get; set; }
         public int GradeLevelDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int LevelDescriptorGradeLevelIdentity { get; set; }
     
         public virtual GradeLevelDescriptor GradeLevelDescriptor { get; set; }
         public virtual LevelDescriptor LevelDescriptor { get; set; }

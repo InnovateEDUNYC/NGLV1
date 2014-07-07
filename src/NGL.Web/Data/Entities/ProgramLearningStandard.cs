@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public string LearningStandardId { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ProgramLearningStandardIdentity { get; set; }
     
         public virtual LearningStandard LearningStandard { get; set; }
         public virtual Program Program { get; set; }

@@ -22,6 +22,7 @@ namespace NGL.Web.Data.Entities
         public string AssessmentFamilyTitle { get; set; }
         public int AssessmentPeriodDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentFamilyAssessmentPeriodIdentity { get; set; }
     
         public virtual AssessmentFamily AssessmentFamily { get; set; }
         public virtual AssessmentPeriodDescriptor AssessmentPeriodDescriptor { get; set; }

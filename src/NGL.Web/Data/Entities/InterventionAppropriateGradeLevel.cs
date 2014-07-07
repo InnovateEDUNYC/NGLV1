@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationId { get; set; }
         public int GradeLevelDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int InterventionAppropriateGradeLevelIdentity { get; set; }
     
         public virtual GradeLevelDescriptor GradeLevelDescriptor { get; set; }
         public virtual Intervention Intervention { get; set; }

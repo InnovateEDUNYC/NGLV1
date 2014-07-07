@@ -27,6 +27,7 @@ namespace NGL.Web.Data.Entities
         public int ProgramTypeId { get; set; }
         public string ProgramName { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AssessmentProgramIdentity { get; set; }
     
         public virtual Assessment Assessment { get; set; }
         public virtual Program Program { get; set; }

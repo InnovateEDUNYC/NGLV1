@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int GunFreeSchoolsActReportingStatusTypeId { get; set; }
         public Nullable<int> SchoolChoiceImplementStatusTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int LocalEducationAgencyAccountabilityIdentity { get; set; }
     
         public virtual GunFreeSchoolsActReportingStatusType GunFreeSchoolsActReportingStatusType { get; set; }
         public virtual LocalEducationAgency LocalEducationAgency { get; set; }

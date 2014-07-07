@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
         public int FiscalYear { get; set; }
         public int AccountCodeDescriptorId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int AccountCodeIdentity { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual AccountCodeDescriptor AccountCodeDescriptor { get; set; }

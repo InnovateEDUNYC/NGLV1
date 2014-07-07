@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Entities
         public int EducationOrganizationId { get; set; }
         public int SexTypeId { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int InterventionPrescriptionAppropriateSexIdentity { get; set; }
     
         public virtual InterventionPrescription InterventionPrescription { get; set; }
         public virtual SexType SexType { get; set; }
