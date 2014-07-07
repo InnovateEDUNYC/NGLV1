@@ -3,19 +3,19 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class EnrollmentModelToStudentMapper : IMapper<EnrollmentModel, Data.Entities.Student>
+    public class CreateStudentModelToStudentMapper : IMapper<CreateStudentModel, Data.Entities.Student>
     {
         private const int HomeAddressTypeId = (int)AddressTypeEnum.Home;
         private const int HomeLanguageTypeId = (int)LanguageUseTypeEnum.Homelanguage;
 
-        public void Map(EnrollmentModel source, Data.Entities.Student target)
+        public void Map(CreateStudentModel source, Data.Entities.Student target)
         {
             SetStudentNativeProperties(source, target);
             SetStudentAddress(source, target);
             SetStudentLanguage(source, target);
         }
 
-        private static void SetStudentNativeProperties(EnrollmentModel source, Data.Entities.Student target)
+        private static void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)
         {
             if (source.StudentUsi != null) target.StudentUSI = (int)source.StudentUsi;
             target.FirstName = source.FirstName;
@@ -26,7 +26,7 @@ namespace NGL.Web.Models.Student
             target.OldEthnicityTypeId = (int?) source.OldEthnicityTypeEnum.GetValueOrDefault();
         }
 
-        private void SetStudentLanguage(EnrollmentModel source, Data.Entities.Student target)
+        private void SetStudentLanguage(CreateStudentModel source, Data.Entities.Student target)
         {
 
             var languageDescriptor = source.LanguageDescriptorEnum.GetValueOrDefault();
@@ -45,7 +45,7 @@ namespace NGL.Web.Models.Student
             target.StudentLanguages.Add(studentLanguage);
         }
 
-        private static void SetStudentAddress(EnrollmentModel source, Data.Entities.Student target)
+        private static void SetStudentAddress(CreateStudentModel source, Data.Entities.Student target)
         {
             
             target.StudentAddresses.Add(new StudentAddress

@@ -4,7 +4,7 @@ using By = OpenQA.Selenium.By;
 
 namespace NGL.UiTests.Pages
 {
-    class EnrollmentPage : Page<EnrollmentModel>
+    class EnrollmentPage : Page<CreateStudentModel>
     {
         public StudentPage Enroll()
         {

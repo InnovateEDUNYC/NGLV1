@@ -4,7 +4,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class EnrollmentModel
+    public class CreateStudentModel
     {
         [Required]
         [Display(Name = "Student USI")]

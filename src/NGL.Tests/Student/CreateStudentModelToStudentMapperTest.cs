@@ -5,19 +5,19 @@ using NGL.Web.Models.Student;
 using Shouldly;
 using Xunit;
 
-namespace NGL.Tests.Enrollment
+namespace NGL.Tests.Student
 {
-    public class EnrollmentModelToStudentMapperTest
+    public class StudentCreateModelToStudentMapperTest
     {
-        private EnrollmentModelToStudentMapper _mapper;
-        readonly Student _student = new Student();
-        readonly EnrollmentModel _enrollmentModel = new EnrollmentModel();
+        private CreateStudentModelToStudentMapper _mapper;
+        private readonly NGL.Web.Data.Entities.Student _student = new NGL.Web.Data.Entities.Student();
+        readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
 
         [Fact]
-        public void ShouldMapEnrollmentModelToStudent()
+        public void ShouldMapCreateStudentModelToStudent()
         {
             SetUp();
-            _mapper.Map(_enrollmentModel, _student);
+            _mapper.Map(_createStudentModel, _student);
 
             const int languageDescriptorId = (int)LanguageDescriptorEnum.English;
 
@@ -43,24 +43,24 @@ namespace NGL.Tests.Enrollment
 
         private void SetUp()
         {
-            _mapper = new EnrollmentModelToStudentMapper();
+            _mapper = new CreateStudentModelToStudentMapper();
 
-            _enrollmentModel.StudentUsi = 10001;
-            _enrollmentModel.FirstName = "John";
-            _enrollmentModel.LastName = "Doe";
-            _enrollmentModel.SexTypeEnum = SexTypeEnum.Male;
-            _enrollmentModel.BirthDate = new DateTime(2001, 1, 1);
-            _enrollmentModel.HispanicLatinoEthnicity = false;
-            _enrollmentModel.OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative;
+            _createStudentModel.StudentUsi = 10001;
+            _createStudentModel.FirstName = "John";
+            _createStudentModel.LastName = "Doe";
+            _createStudentModel.SexTypeEnum = SexTypeEnum.Male;
+            _createStudentModel.BirthDate = new DateTime(2001, 1, 1);
+            _createStudentModel.HispanicLatinoEthnicity = false;
+            _createStudentModel.OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative;
 
-            _enrollmentModel.StreetNumberName = "1060 W Addison St";
+            _createStudentModel.StreetNumberName = "1060 W Addison St";
 
-            _enrollmentModel.ApartmentRoomSuiteNumber = "33";
-            _enrollmentModel.City = "London";
+            _createStudentModel.ApartmentRoomSuiteNumber = "33";
+            _createStudentModel.City = "London";
             
-            _enrollmentModel.LanguageDescriptorEnum = LanguageDescriptorEnum.English;
-            _enrollmentModel.PostalCode = "60657";
-            _enrollmentModel.StateAbbreviationTypeEnum = StateAbbreviationTypeEnum.CA;
+            _createStudentModel.LanguageDescriptorEnum = LanguageDescriptorEnum.English;
+            _createStudentModel.PostalCode = "60657";
+            _createStudentModel.StateAbbreviationTypeEnum = StateAbbreviationTypeEnum.CA;
         }
     }
 }

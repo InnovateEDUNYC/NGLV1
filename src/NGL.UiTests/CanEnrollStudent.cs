@@ -10,7 +10,7 @@ namespace NGL.UiTests
 {
     public class CanEnrollStudent
     {
-        private EnrollmentModel _enrollmentModel;
+        private CreateStudentModel _createStudentModel;
 
         [Fact]
         public void Verify()
@@ -28,9 +28,9 @@ namespace NGL.UiTests
             homePage = loginPage.Login();
             var studentPage = homePage.TopMenu.GoToStudentPage();
             
-            _enrollmentModel = new EnrollmentModel()
+            _createStudentModel = new CreateStudentModel()
             {
-                StudentUsi = 12432236, //change every test run
+                StudentUsi = 282366534, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
@@ -46,10 +46,15 @@ namespace NGL.UiTests
             };
 
             var enrollmentPage = studentPage.GoToEnroll();
-            enrollmentPage.Input.Model(_enrollmentModel);
+            enrollmentPage.Input.Model(_createStudentModel);
             studentPage = enrollmentPage.Enroll();
 
             studentPage.LastUsiInTheList.ShouldBe(_enrollmentModel.StudentUsi.ToString());
+
+            var usiStringOfStudent = studentPage.GetUsiStringOfLastStudentOnTable();
+            
+            usiStringOfStudent.ShouldBe(_createStudentModel.StudentUsi.ToString());
+            studentPage.TopMenu.LogOff();
         }
     }
 }

@@ -86,7 +86,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string enrollmentModel = "enrollmentModel";
+            public readonly string enrollmentModel = "CreateStudentModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -129,14 +129,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Student.EnrollmentModel enrollmentModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Student.CreateStudentModel createStudentModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Student.EnrollmentModel enrollmentModel)
+        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Student.CreateStudentModel createStudentModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enrollmentModel", enrollmentModel);
-            CreateOverride(callInfo, enrollmentModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "CreateStudentModel", createStudentModel);
+            CreateOverride(callInfo, createStudentModel);
             return callInfo;
         }
 

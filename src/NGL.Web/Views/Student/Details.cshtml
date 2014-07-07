@@ -1,4 +1,4 @@
-﻿@model NGL.Web.Data.Entities.Student
+﻿@model NGL.Web.Models.Student.StudentDetailsModel
 
 @{
     ViewBag.Title = "Details";
@@ -25,11 +25,11 @@
             @Html.DisplayFor(model => model.LastSurname)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SexTypeId)
+            Sex
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SexTypeId)
+            @Html.DisplayFor(model => model.Sex)
         </dd>
 
         <dt>
@@ -44,15 +44,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HispanicLatinoEthnicity)
+            @Html.DisplayTextFor(model => model.HispanicLatinoEthnicity)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OldEthnicityTypeId)
+            Race
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OldEthnicityTypeId)
+            @Html.DisplayFor(model => model.Race)
         </dd>
     </dl>
 </div>

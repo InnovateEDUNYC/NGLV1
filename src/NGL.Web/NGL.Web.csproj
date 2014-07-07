@@ -1430,16 +1430,19 @@
     </Compile>
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\IRepositoryBase.cs" />
+    <Compile Include="Data\Queries\StudentByUsiQuery.cs" />
     <Compile Include="Data\Repositories\ILookupRepository.cs" />
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
     <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
-    <Compile Include="Models\Student\IndexModel.cs" />
+    <Compile Include="Models\Student\StudentDetailsModel.cs" />
+    <Compile Include="Models\Student\StudentIndexModel.cs" />
     <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
     <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
-    <Compile Include="Models\Student\StudentToEnrollmentModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToStudentDetailsModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToStudentIndexModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1546,8 +1549,8 @@
     <Compile Include="Models\School\SchoolModelToEducationOrganizationMapper.cs" />
     <Compile Include="Models\School\EducationOrganizationToSchoolModelMapper.cs" />
     <Compile Include="Models\School\SchoolModel.cs" />
-    <Compile Include="Models\Student\EnrollmentModel.cs" />
-    <Compile Include="Models\Student\EnrollmentModelToStudentMapper.cs" />
+    <Compile Include="Models\Student\CreateStudentModel.cs" />
+    <Compile Include="Models\Student\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CourseModel.cs" />
@@ -1556,7 +1559,7 @@
     <Compile Include="Models\Session\SessionModel.cs" />
     <Compile Include="Models\Staff\StaffModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
-    <Compile Include="Models\Student\StudentModel.cs" />
+    <Compile Include="Models\Student\StudentModelForStudentSectionAttendanceEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC\SchoolController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
