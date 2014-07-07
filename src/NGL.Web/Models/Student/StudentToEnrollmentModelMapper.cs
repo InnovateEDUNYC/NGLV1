@@ -11,6 +11,7 @@ namespace NGL.Web.Models.Student
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastSurname;
+            target.StudentUsi = source.StudentUSI;
         }
     }
 }

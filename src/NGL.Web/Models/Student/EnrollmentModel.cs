@@ -14,7 +14,6 @@ namespace NGL.Web.Models.Student
 {
     public class EnrollmentModel
     {
-        private readonly ILookupRepository _lookupRepository = DependencyResolver.Current.GetService<ILookupRepository>();
         [Required(ErrorMessage = "Please enter Student USI")]
         [Display(Name = "Student USI")]
         public int? StudentUsi { get; set; }
@@ -41,10 +40,9 @@ namespace NGL.Web.Models.Student
         [StringLength(30)]
         public String City { get; set; }
 
-        [ExistsIn("SexTypes", "SexTypeId", "ShortDescription")]
         [Display(Name = "Sex")]
         [Required(ErrorMessage = "Please enter sex")]
-        public int? SexTypeId { get; set; }
+        public SexTypeEnum? SexTypeEnum { get; set; }
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Please enter birth date")]
@@ -55,14 +53,12 @@ namespace NGL.Web.Models.Student
         public bool HispanicLatinoEthnicity { get; set; }
 
         [Display(Name = "Race")]
-        [ExistsIn("OldEthnicityTypes", "OldEthnicityTypeId", "ShortDescription")]
         [Required(ErrorMessage = "Please enter old ethnicity type")]
-        public int? OldEthnicityTypeId { get; set; }
+        public OldEthnicityTypeEnum? OldEthnicityTypeEnum { get; set; }
 
         [Required(ErrorMessage = "Please enter state")]
         [Display(Name = "State")]
-        [ExistsIn("StateAbbreviationTypes", "StateAbbreviationTypeId", "ShortDescription")]
-        public int? StateAbbreviationTypeId { get; set; }
+        public StateAbbreviationTypeEnum? StateAbbreviationTypeEnum { get; set; }
 
         [Required(ErrorMessage = "Please enter postal code")]
         [StringLength(17)]
@@ -70,38 +66,7 @@ namespace NGL.Web.Models.Student
         public String PostalCode { get; set; }
 
         [Display(Name = "Home Language")]
-        [ExistsIn("LanguageTypes", "LanguageTypeId", "ShortDescription")]
         [Required(ErrorMessage = "Please enter home language")]
-        public int? LanguageTypeId { get; set; }
-        public List<OldEthnicityType> OldEthnicityTypes
-        {
-            get
-            {
-                return _lookupRepository.GetAll<OldEthnicityType>().ToList();
-            }
-        }
-        public List<StateAbbreviationType> StateAbbreviationTypes
-        {
-            get
-            {
-                return _lookupRepository.GetAll<StateAbbreviationType>().ToList();
-            }
-        }
-        public List<LanguageType> LanguageTypes
-        {
-            get
-            {
-                return _lookupRepository.GetAll<LanguageType>().ToList();
-            }
-        }
-
-        public List<SexType> SexTypes
-        {
-            get
-            {
-                return _lookupRepository.GetAll<SexType>().ToList();
-            }
-        }
-
+        public LanguageDescriptorEnum? LanguageDescriptorEnum { get; set; }
     }
 }

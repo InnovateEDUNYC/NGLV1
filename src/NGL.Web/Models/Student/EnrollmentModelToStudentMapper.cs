@@ -7,14 +7,8 @@ namespace NGL.Web.Models.Student
 {
     public class EnrollmentModelToStudentMapper : IMapper<EnrollmentModel, Data.Entities.Student>
     {
-        private readonly ILanguageDescriptorRepository _repository;
         private const int HomeAddressTypeId = 1;
         private const int HomeLanguageTypeId = 1;
-
-        public EnrollmentModelToStudentMapper(ILanguageDescriptorRepository repository)
-        {
-            _repository = repository;
-        }
 
         public void Map(EnrollmentModel source, Data.Entities.Student target)
         {
@@ -31,24 +25,24 @@ namespace NGL.Web.Models.Student
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastSurname;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.SexTypeId = source.SexTypeId;
+            target.SexTypeId = (int?) source.SexTypeEnum.GetValueOrDefault();
             if (source.BirthDate != null) target.BirthDate = (DateTime) source.BirthDate;
-            target.OldEthnicityTypeId = source.OldEthnicityTypeId;
+            target.OldEthnicityTypeId = (int?) source.OldEthnicityTypeEnum.GetValueOrDefault();
         }
 
         private void SetStudentLanguage(EnrollmentModel source, Data.Entities.Student target)
         {
 
-            var languageDescriptor = _repository.GetLanguageDescriptor(source.LanguageTypeId.Value);
+            var languageDescriptor = source.LanguageDescriptorEnum.GetValueOrDefault();
 
             var studentLanguage = new StudentLanguage
             {
-                LanguageDescriptorId = languageDescriptor.LanguageDescriptorId
+                LanguageDescriptorId = (int) languageDescriptor
             };
 
             studentLanguage.StudentLanguageUses.Add(new StudentLanguageUse
             {
-                LanguageDescriptorId = languageDescriptor.LanguageDescriptorId,
+                LanguageDescriptorId = (int) languageDescriptor,
                 LanguageUseTypeId = HomeLanguageTypeId
             });
 
@@ -65,7 +59,7 @@ namespace NGL.Web.Models.Student
                 ApartmentRoomSuiteNumber = source.ApartmentRoomSuiteNumber,
                 City = source.City,
                 PostalCode = source.PostalCode,
-                StateAbbreviationTypeId = source.StateAbbreviationTypeId.Value
+                StateAbbreviationTypeId = (int) source.StateAbbreviationTypeEnum.GetValueOrDefault()
             });
         }
     }

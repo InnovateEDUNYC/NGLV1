@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NGL.UiTests.Pages;
+using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
 using NGL.Web.Models.Student;
+using OpenQA.Selenium;
+using Shouldly;
 using Xunit;
 
 namespace NGL.UiTests
@@ -32,24 +35,30 @@ namespace NGL.UiTests
             
             _enrollmentModel = new EnrollmentModel()
             {
-                StudentUsi = 00001,
+                StudentUsi = 1232196,
                 FirstName = "Joe",
-                LastSurname = "Public",
-                SexTypeId = 1,
-                OldEthnicityTypeId = 2,
+                LastSurname = "ZZ",
+                SexTypeEnum = SexTypeEnum.Male,
+                OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative,
                 StreetNumberName = "123 Oak St",
                 ApartmentRoomSuiteNumber = "1A",
                 City = "Springfield",
-                StateAbbreviationTypeId = 4,
+                StateAbbreviationTypeEnum = StateAbbreviationTypeEnum.CA,
                 PostalCode = "6000",
                 BirthDate = new DateTime(2000,1,11),
                 HispanicLatinoEthnicity = true,
-                LanguageTypeId = 2
+                LanguageDescriptorEnum = LanguageDescriptorEnum.English
             };
 
             var enrollmentPage = studentPage.GoToEnroll();
             enrollmentPage.Input.Model(_enrollmentModel);
-//            enrollmentPage.Enroll();
+            studentPage = enrollmentPage.Enroll();
+
+
+            var usiStringOfStudent = studentPage.GetUsiStringOfLastStudentOnTable();
+            
+            usiStringOfStudent.ShouldBe(_enrollmentModel.StudentUsi.ToString());
+
 
         }
     }
