@@ -1019,6 +1019,11 @@
     <Compile Include="Data\Entities\RecognitionType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\Types.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Types.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\RepeatIdentifierType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1605,6 +1610,14 @@
       <DependentUpon>NglDbContext.edmx</DependentUpon>
       <LastGenOutput>NglDbContext.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\Entities\Types.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Types.cs</LastGenOutput>
+    </Content>
+    <None Include="Data\Entities\ConfigurationAccessor.ttinclude">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConfigurationAccessor1.cs</LastGenOutput>
+    </None>
     <None Include="Properties\PublishProfiles\NGL.pubxml" />
     <None Include="Assets\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Assets\Scripts\bootstrap.js" />

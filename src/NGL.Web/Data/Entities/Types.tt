@@ -1,0 +1,91 @@
+﻿<#@ template  debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ include file=".\ConfigurationAccessor.ttinclude" #>
+using System.ComponentModel;
+
+namespace NGL.Web.Data.Entities.Types
+{
+<# 
+var config = new ConfigurationAccessor((IServiceProvider)this.Host);
+string connectionString = config.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+using (var connection = new SqlConnection(connectionString))
+{
+	var typeTables = new List<string>();
+
+	connection.Open();
+	var tableQuery = new SqlCommand("select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME like '%TYPE'", connection);
+	using (var tableReader = tableQuery.ExecuteReader())
+	{
+		if (tableReader.HasRows)
+		{
+			while (tableReader.Read())
+			{
+				var tableName = tableReader["table_name"].ToString();
+				typeTables.Add(tableName);
+			}
+		}
+	}
+
+	foreach (var typeTable in typeTables)
+	{
+		var typesQuery = new SqlCommand("select * from edfi." + typeTable, connection);
+		using (var typeReader = typesQuery.ExecuteReader())
+		{
+			if (typeReader.HasRows)
+			{
+#>
+
+	public enum <#= typeTable #>Enum
+	{
+<#
+				while (typeReader.Read())
+				{
+					var id = typeReader[0].ToString().Trim();
+					var memberName = string.Empty;
+					var description = string.Empty;
+					if(typeTable == "SchoolYearType")
+					{
+						description = typeReader["SchoolYearDescription"].ToString();
+						memberName = "Year" + id;
+                    }
+					else
+					{
+						description = typeReader["ShortDescription"].ToString();
+						memberName = description 
+							.Replace(" ", "")
+							.Replace("/", "")
+							.Replace(",", "")
+							.Replace("(", "_")
+							.Replace(")", "")
+							.Replace("'", "")
+							.Replace(".", "")
+							.Replace("%", "Percentage")
+							.Replace("-", "_");
+                    }
+										
+					if (char.IsDigit(memberName[0]))
+						memberName = "_" + memberName;
+
+#>
+		[Description("<#= description #>")]
+		<#= memberName #> = <#= id #>,                               
+<#
+				}
+#>	}
+<#
+			}
+		}
+	}
+}
+
+#>
+}
