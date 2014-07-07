@@ -16,11 +16,29 @@ namespace NGL.Web.Controllers
     {
         private IGenericRepository _repository;
         private readonly IMapper<EnrollmentModel, Student> _enrollmentMapper;
+        private readonly IMapper<Student, EnrollmentModel> _studentToEnrollmentModelMapper;
 
-        public StudentController(IGenericRepository repository, IMapper<EnrollmentModel, Student> enrollmentMapper)
+        public StudentController(IGenericRepository repository, IMapper<EnrollmentModel, Student> enrollmentMapper, IMapper<Student, EnrollmentModel> studentToEnrollmentModelMapper )
         {
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
+            _studentToEnrollmentModelMapper = studentToEnrollmentModelMapper;
+        }
+
+        // GET: /Student
+        public virtual ActionResult Index()
+        {
+            IEnumerable<Student> students = _repository.GetAll<Student>();
+            var models = new List<EnrollmentModel>();
+
+            foreach (var student in students)
+            {
+                var enrollmentModel = new EnrollmentModel();
+                _studentToEnrollmentModelMapper.Map(student, enrollmentModel);
+                models.Add(enrollmentModel);
+            }
+
+            return View(models);
         }
 
         //

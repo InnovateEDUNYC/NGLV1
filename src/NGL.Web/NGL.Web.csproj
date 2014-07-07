@@ -1438,8 +1438,10 @@
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
+    <Compile Include="Models\Student\IndexModel.cs" />
     <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
     <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToEnrollmentModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
