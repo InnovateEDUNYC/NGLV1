@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NGL.UiTests.Pages;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
 using NGL.Web.Models.Student;
-using OpenQA.Selenium;
 using Shouldly;
 using Xunit;
 
@@ -37,7 +32,7 @@ namespace NGL.UiTests
             {
                 StudentUsi = 12432236, //change every test run
                 FirstName = "Joe",
-                LastSurname = "ZZ",
+                LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
                 OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative,
                 StreetNumberName = "123 Oak St",
@@ -54,11 +49,7 @@ namespace NGL.UiTests
             enrollmentPage.Input.Model(_enrollmentModel);
             studentPage = enrollmentPage.Enroll();
 
-
-            var usiStringOfStudent = studentPage.GetUsiStringOfLastStudentOnTable();
-            
-            usiStringOfStudent.ShouldBe(_enrollmentModel.StudentUsi.ToString());
-            studentPage.TopMenu.LogOff();
+            studentPage.LastUsiInTheList.ShouldBe(_enrollmentModel.StudentUsi.ToString());
         }
     }
 }

@@ -1,21 +1,17 @@
 ﻿using System;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.Student
 {
     public class EnrollmentModelToStudentMapper : IMapper<EnrollmentModel, Data.Entities.Student>
     {
-        private const int HomeAddressTypeId = 1;
-        private const int HomeLanguageTypeId = 1;
+        private const int HomeAddressTypeId = (int)AddressTypeEnum.Home;
+        private const int HomeLanguageTypeId = (int)LanguageUseTypeEnum.Homelanguage;
 
         public void Map(EnrollmentModel source, Data.Entities.Student target)
         {
             SetStudentNativeProperties(source, target);
-
             SetStudentAddress(source, target);
-
             SetStudentLanguage(source, target);
         }
 
@@ -23,9 +19,9 @@ namespace NGL.Web.Models.Student
         {
             if (source.StudentUsi != null) target.StudentUSI = (int)source.StudentUsi;
             target.FirstName = source.FirstName;
-            target.LastSurname = source.LastSurname;
+            target.LastSurname = source.LastName;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.SexTypeId = (int?) source.SexTypeEnum.GetValueOrDefault();
+            target.SexTypeId = (int) source.SexTypeEnum.GetValueOrDefault();
             if (source.BirthDate != null) target.BirthDate = (DateTime) source.BirthDate;
             target.OldEthnicityTypeId = (int?) source.OldEthnicityTypeEnum.GetValueOrDefault();
         }

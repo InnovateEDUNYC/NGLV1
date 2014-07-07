@@ -10,7 +10,5 @@ namespace NGL.UiTests.Pages
         {
             return Navigate.To<HomePage>(By.ClassName("btn"));
         }
-
-
     }
 }

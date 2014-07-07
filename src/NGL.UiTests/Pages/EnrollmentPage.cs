@@ -8,10 +8,8 @@ namespace NGL.UiTests.Pages
     {
         public StudentPage Enroll()
         {
-
             return Navigate.To<StudentPage>(By.ClassName("btn"));
         }
-
     }
 
 }

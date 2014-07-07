@@ -1,33 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Linq;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using ChameleonForms.Attributes;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.Student
 {
     public class EnrollmentModel
     {
-        [Required(ErrorMessage = "Please enter Student USI")]
+        [Required]
         [Display(Name = "Student USI")]
         public int? StudentUsi { get; set; }
 
-        [Required(ErrorMessage = "Please enter first name")]
+        [Required]
         [StringLength(75)]
         public String FirstName { get; set; }
 
-        [Required(ErrorMessage = "Please enter last name")]
+        [Required]
         [StringLength(75)]
-        [Display(Name = "Last Name")]
-        public String LastSurname { get; set; }
+        public String LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter street address")]
+        [Required]
         [StringLength(150)]
         [Display(Name = "Home Address")]
         public String StreetNumberName { get; set; }
@@ -36,16 +27,16 @@ namespace NGL.Web.Models.Student
         [Display(Name = "Address 2")]
         public String ApartmentRoomSuiteNumber { get; set; }
 
-        [Required(ErrorMessage = "Please enter city")]
+        [Required]
         [StringLength(30)]
         public String City { get; set; }
 
         [Display(Name = "Sex")]
-        [Required(ErrorMessage = "Please enter sex")]
+        [Required]
         public SexTypeEnum? SexTypeEnum { get; set; }
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Please enter birth date")]
+        [Required]
         [Display(Name = "Birth Date")]
         public DateTime? BirthDate { get; set; }
 
@@ -53,20 +44,19 @@ namespace NGL.Web.Models.Student
         public bool HispanicLatinoEthnicity { get; set; }
 
         [Display(Name = "Race")]
-        [Required(ErrorMessage = "Please enter old ethnicity type")]
+        [Required]
         public OldEthnicityTypeEnum? OldEthnicityTypeEnum { get; set; }
 
-        [Required(ErrorMessage = "Please enter state")]
+        [Required]
         [Display(Name = "State")]
         public StateAbbreviationTypeEnum? StateAbbreviationTypeEnum { get; set; }
 
-        [Required(ErrorMessage = "Please enter postal code")]
+        [Required]
         [StringLength(17)]
-
         public String PostalCode { get; set; }
 
         [Display(Name = "Home Language")]
-        [Required(ErrorMessage = "Please enter home language")]
+        [Required]
         public LanguageDescriptorEnum? LanguageDescriptorEnum { get; set; }
     }
 }
