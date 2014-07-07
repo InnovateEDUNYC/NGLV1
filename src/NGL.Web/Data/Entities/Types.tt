@@ -78,7 +78,7 @@ using (var connection = new SqlConnection(connectionString))
 							.Replace("'", "")
 							.Replace(".", "")
 							.Replace("%", "Percentage")
-							.Replace("-", "_");
+							.Replace("-", "");
                     }
 										
 					if (char.IsDigit(memberName[0]))

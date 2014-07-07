@@ -11,8 +11,6 @@
 
 using System.ComponentModel;
 
-// ReSharper disable UnusedMember.Global
-// ReSharper disable InconsistentNaming
 namespace NGL.Web.Data.Entities
 {
 
@@ -37,9 +35,9 @@ namespace NGL.Web.Data.Entities
 		[Description("Regular Education")]
 		RegularEducation = 1,                               
 		[Description("Title I-Academic")]
-		TitleI_Academic = 2,                               
+		TitleIAcademic = 2,                               
 		[Description("Title I-Non-Academic")]
-		TitleI_Non_Academic = 3,                               
+		TitleINonAcademic = 3,                               
 		[Description("Special Education")]
 		SpecialEducation = 4,                               
 		[Description("Bilingual/English as a Second Language")]
@@ -79,15 +77,15 @@ namespace NGL.Web.Data.Entities
 	public enum EventCircumstanceTypeEnum
 	{
 		[Description("Long-term suspension - non-special education")]
-		Long_termsuspension_non_specialeducation = 1,                               
+		Longtermsuspensionnonspecialeducation = 1,                               
 		[Description("Short-term suspension - non-special education")]
-		Short_termsuspension_non_specialeducation = 2,                               
+		Shorttermsuspensionnonspecialeducation = 2,                               
 		[Description("Suspension - special education")]
-		Suspension_specialeducation = 3,                               
+		Suspensionspecialeducation = 3,                               
 		[Description("Truancy - paperwork filed")]
-		Truancy_paperworkfiled = 4,                               
+		Truancypaperworkfiled = 4,                               
 		[Description("Truancy - no paperwork filed")]
-		Truancy_nopaperworkfiled = 5,                               
+		Truancynopaperworkfiled = 5,                               
 		[Description("Earlier truancy")]
 		Earliertruancy = 6,                               
 		[Description("Chronic absences")]
@@ -121,9 +119,9 @@ namespace NGL.Web.Data.Entities
 		[Description("Reading passage read to student (IEP)")]
 		Readingpassagereadtostudent_IEP = 21,                               
 		[Description("Non-special education student used calculator on non-calculator items")]
-		Non_specialeducationstudentusedcalculatoronnon_calculatoritems = 22,                               
+		Nonspecialeducationstudentusedcalculatoronnoncalculatoritems = 22,                               
 		[Description("Student used math journal (non-IEP)")]
-		Studentusedmathjournal_non_IEP = 23,                               
+		Studentusedmathjournal_nonIEP = 23,                               
 		[Description("Other reason for ineligibility")]
 		Otherreasonforineligibility = 24,                               
 		[Description("Other reason for nonparticipation")]
@@ -131,13 +129,13 @@ namespace NGL.Web.Data.Entities
 		[Description("Left testing")]
 		Lefttesting = 26,                               
 		[Description("Cross-enrolled")]
-		Cross_enrolled = 27,                               
+		Crossenrolled = 27,                               
 		[Description("Only for writing")]
 		Onlyforwriting = 28,                               
 		[Description("Administration or system failure")]
 		Administrationorsystemfailure = 29,                               
 		[Description("Teacher cheating or mis-admin")]
-		Teachercheatingormis_admin = 30,                               
+		Teachercheatingormisadmin = 30,                               
 		[Description("Fire alarm")]
 		Firealarm = 31,                               
 		[Description("Other")]
@@ -435,7 +433,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Counselor List")]
 		CounselorList = 8,                               
 		[Description("In-school Suspension")]
-		In_schoolSuspension = 9,                               
+		InschoolSuspension = 9,                               
 		[Description("Study Hall")]
 		StudyHall = 10,                               
 		[Description("Other")]
@@ -573,9 +571,9 @@ namespace NGL.Web.Data.Entities
 	public enum TeachingCredentialBasisTypeEnum
 	{
 		[Description("4-year bachelor's degree")]
-		_4_yearbachelorsdegree = 1,                               
+		_4yearbachelorsdegree = 1,                               
 		[Description("5-year bachelor's degree")]
-		_5_yearbachelorsdegree = 2,                               
+		_5yearbachelorsdegree = 2,                               
 		[Description("Master's degree")]
 		Mastersdegree = 3,                               
 		[Description("Doctoral degree")]
@@ -1061,7 +1059,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Long session hour credit")]
 		Longsessionhourcredit = 8,                               
 		[Description("Mini-term hour credit")]
-		Mini_termhourcredit = 9,                               
+		Minitermhourcredit = 9,                               
 		[Description("Nine month year hour credit")]
 		Ninemonthyearhourcredit = 10,                               
 		[Description("Quarter hour credit")]
@@ -1117,7 +1115,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Grading Period")]
 		GradingPeriod = 4,                               
 		[Description("Mid-Term Grade")]
-		Mid_TermGrade = 5,                               
+		MidTermGrade = 5,                               
 		[Description("Progress Report")]
 		ProgressReport = 6,                               
 		[Description("Semester")]
@@ -1131,7 +1129,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Essay")]
 		Essay = 2,                               
 		[Description("Fill-in-the-blank")]
-		Fill_in_the_blank = 3,                               
+		Fillintheblank = 3,                               
 		[Description("Innovative")]
 		Innovative = 4,                               
 		[Description("Labeling")]
@@ -1143,7 +1141,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Matching")]
 		Matching = 8,                               
 		[Description("Multiple-choice")]
-		Multiple_choice = 9,                               
+		Multiplechoice = 9,                               
 		[Description("Other")]
 		Other = 10,                               
 		[Description("Other constructed response")]
@@ -1165,7 +1163,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Substitution")]
 		Substitution = 19,                               
 		[Description("True-False")]
-		True_False = 20,                               
+		TrueFalse = 20,                               
 		[Description("Visual representation")]
 		Visualrepresentation = 21,                               
 	}
@@ -1207,7 +1205,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Other")]
 		Other = 8,                               
 		[Description("Other non-official document")]
-		Othernon_officialdocument = 9,                               
+		Othernonofficialdocument = 9,                               
 		[Description("Other official document")]
 		Otherofficialdocument = 10,                               
 		[Description("Parents affidavit")]
@@ -1219,7 +1217,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Previously verified school records")]
 		Previouslyverifiedschoolrecords = 14,                               
 		[Description("State-issued ID")]
-		State_issuedID = 15,                               
+		StateissuedID = 15,                               
 	}
 
 	public enum ResponseIndicatorTypeEnum
@@ -1409,17 +1407,17 @@ namespace NGL.Web.Data.Entities
 		[Description("Videotaped/prerecorded video")]
 		Videotapedprerecordedvideo = 3,                               
 		[Description("Other technology-based instruction")]
-		Othertechnology_basedinstruction = 4,                               
+		Othertechnologybasedinstruction = 4,                               
 		[Description("Technology-based instruction in classroom")]
-		Technology_basedinstructioninclassroom = 5,                               
+		Technologybasedinstructioninclassroom = 5,                               
 		[Description("Correspondence instruction")]
 		Correspondenceinstruction = 6,                               
 		[Description("Face-to-face instruction")]
-		Face_to_faceinstruction = 7,                               
+		Facetofaceinstruction = 7,                               
 		[Description("Virtual/On-line Distance learning")]
-		VirtualOn_lineDistancelearning = 8,                               
+		VirtualOnlineDistancelearning = 8,                               
 		[Description("Center-based instruction")]
-		Center_basedinstruction = 9,                               
+		Centerbasedinstruction = 9,                               
 		[Description("Independent study")]
 		Independentstudy = 10,                               
 		[Description("Internship")]
@@ -1697,23 +1695,23 @@ namespace NGL.Web.Data.Entities
 		[Description("Hospital class")]
 		Hospitalclass = 3,                               
 		[Description("In-school suspension")]
-		In_schoolsuspension = 4,                               
+		Inschoolsuspension = 4,                               
 		[Description("Laboratory")]
 		Laboratory = 5,                               
 		[Description("Mainstream (Special Education)")]
 		Mainstream_SpecialEducation = 6,                               
 		[Description("Off-school center")]
-		Off_schoolcenter = 7,                               
+		Offschoolcenter = 7,                               
 		[Description("Pull-out class")]
-		Pull_outclass = 8,                               
+		Pulloutclass = 8,                               
 		[Description("Resource room")]
 		Resourceroom = 9,                               
 		[Description("Single Sex Classroom")]
 		SingleSexClassroom = 10,                               
 		[Description("Self-contained (Special Education)")]
-		Self_contained_SpecialEducation = 11,                               
+		Selfcontained_SpecialEducation = 11,                               
 		[Description("Self-study")]
-		Self_study = 12,                               
+		Selfstudy = 12,                               
 		[Description("Shop")]
 		Shop = 13,                               
 	}
@@ -1777,7 +1775,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Occupational License")]
 		OccupationalLicense = 15,                               
 		[Description("Industry-recognized Certification")]
-		Industry_recognizedCertification = 16,                               
+		IndustryrecognizedCertification = 16,                               
 		[Description("Apprenticeship Certificate")]
 		ApprenticeshipCertificate = 17,                               
 	}
@@ -1801,9 +1799,9 @@ namespace NGL.Web.Data.Entities
 		[Description("Student Interest")]
 		StudentInterest = 8,                               
 		[Description("Remedial Enrollment - ELA")]
-		RemedialEnrollment_ELA = 9,                               
+		RemedialEnrollmentELA = 9,                               
 		[Description("Remedial Enrollment - Math")]
-		RemedialEnrollment_Math = 10,                               
+		RemedialEnrollmentMath = 10,                               
 		[Description("College Exit Date")]
 		CollegeExitDate = 11,                               
 	}
@@ -2031,7 +2029,7 @@ namespace NGL.Web.Data.Entities
 		[Description("GUAM")]
 		GUAM = 92,                               
 		[Description("GUINEA-BISSAU")]
-		GUINEA_BISSAU = 93,                               
+		GUINEABISSAU = 93,                               
 		[Description("GUYANA")]
 		GUYANA = 94,                               
 		[Description("HONG KONG")]
@@ -2287,7 +2285,7 @@ namespace NGL.Web.Data.Entities
 		[Description("TOKELAU")]
 		TOKELAU = 220,                               
 		[Description("TIMOR-LESTE")]
-		TIMOR_LESTE = 221,                               
+		TIMORLESTE = 221,                               
 		[Description("TURKMENISTAN")]
 		TURKMENISTAN = 222,                               
 		[Description("TUNISIA")]
@@ -2397,7 +2395,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Age score")]
 		Agescore = 4,                               
 		[Description("C-scaled scores")]
-		C_scaledscores = 5,                               
+		Cscaledscores = 5,                               
 		[Description("College Board examination scores")]
 		CollegeBoardexaminationscores = 6,                               
 		[Description("Composite Score")]
@@ -2407,11 +2405,11 @@ namespace NGL.Web.Data.Entities
 		[Description("Composition Score")]
 		CompositionScore = 9,                               
 		[Description("Grade equivalent or grade-level indicator")]
-		Gradeequivalentorgrade_levelindicator = 11,                               
+		Gradeequivalentorgradelevelindicator = 11,                               
 		[Description("Graduation score")]
 		Graduationscore = 12,                               
 		[Description("Growth/value-added/indexing")]
-		Growthvalue_addedindexing = 13,                               
+		Growthvalueaddedindexing = 13,                               
 		[Description("International Baccalaureate score")]
 		InternationalBaccalaureatescore = 14,                               
 		[Description("Letter grade/mark")]
@@ -2425,7 +2423,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Number score")]
 		Numberscore = 19,                               
 		[Description("Pass-fail")]
-		Pass_fail = 20,                               
+		Passfail = 20,                               
 		[Description("Percentile")]
 		Percentile = 21,                               
 		[Description("Percentile rank")]
@@ -2453,13 +2451,13 @@ namespace NGL.Web.Data.Entities
 		[Description("Theta")]
 		Theta = 33,                               
 		[Description("T-score")]
-		T_score = 34,                               
+		Tscore = 34,                               
 		[Description("Vertical score")]
 		Verticalscore = 35,                               
 		[Description("Workplace readiness score")]
 		Workplacereadinessscore = 36,                               
 		[Description("Z-score")]
-		Z_score = 37,                               
+		Zscore = 37,                               
 		[Description("Other")]
 		Other = 38,                               
 		[Description("Not applicable")]
@@ -2471,9 +2469,9 @@ namespace NGL.Web.Data.Entities
 		[Description("Vertical Scale Score")]
 		VerticalScaleScore = 42,                               
 		[Description("National College-Bound Percentile")]
-		NationalCollege_BoundPercentile = 43,                               
+		NationalCollegeBoundPercentile = 43,                               
 		[Description("State College-Bound Percentile")]
-		StateCollege_BoundPercentile = 44,                               
+		StateCollegeBoundPercentile = 44,                               
 		[Description("RIT scale score")]
 		RITscalescore = 45,                               
 	}
@@ -2483,7 +2481,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Autism Spectrum Disorders")]
 		AutismSpectrumDisorders = 1,                               
 		[Description("Deaf-Blindness")]
-		Deaf_Blindness = 2,                               
+		DeafBlindness = 2,                               
 		[Description("Hearing Impairment, including Deafness")]
 		HearingImpairmentincludingDeafness = 3,                               
 		[Description("Intellectual Disability")]
@@ -2555,7 +2553,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Family and medical leave")]
 		Familyandmedicalleave = 10,                               
 		[Description("Government-requested")]
-		Government_requested = 11,                               
+		Governmentrequested = 11,                               
 		[Description("Military leave")]
 		Militaryleave = 12,                               
 		[Description("Personal")]
@@ -2575,17 +2573,17 @@ namespace NGL.Web.Data.Entities
 	public enum VisaTypeEnum
 	{
 		[Description("F1 - Foreign Student Visa")]
-		F1_ForeignStudentVisa = 1,                               
+		F1ForeignStudentVisa = 1,                               
 		[Description("M1 - Foreign Student pursuing vocational or non-academic studies Visa")]
-		M1_ForeignStudentpursuingvocationalornon_academicstudiesVisa = 2,                               
+		M1ForeignStudentpursuingvocationalornonacademicstudiesVisa = 2,                               
 		[Description("H1 - Employment Visa")]
-		H1_EmploymentVisa = 3,                               
+		H1EmploymentVisa = 3,                               
 		[Description("B1 - Business Visa")]
-		B1_BusinessVisa = 4,                               
+		B1BusinessVisa = 4,                               
 		[Description("B2 - Tourist Visa")]
-		B2_TouristVisa = 5,                               
+		B2TouristVisa = 5,                               
 		[Description("J1 - Exchange Scholar Visa")]
-		J1_ExchangeScholarVisa = 6,                               
+		J1ExchangeScholarVisa = 6,                               
 		[Description("Other Visa")]
 		OtherVisa = 7,                               
 	}
@@ -2645,7 +2643,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Private organization")]
 		Privateorganization = 7,                               
 		[Description("Non-profit organization")]
-		Non_profitorganization = 8,                               
+		Nonprofitorganization = 8,                               
 		[Description("Postsecondary institution")]
 		Postsecondaryinstitution = 9,                               
 		[Description("Religious organization")]
@@ -2789,7 +2787,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Vocational Education")]
 		VocationalEducation = 40,                               
 		[Description("District-Funded GED")]
-		District_FundedGED = 41,                               
+		DistrictFundedGED = 41,                               
 		[Description("Expelled Education")]
 		ExpelledEducation = 42,                               
 		[Description("Independent Study")]
@@ -2809,17 +2807,17 @@ namespace NGL.Web.Data.Entities
 		[Description("Public Preschool")]
 		PublicPreschool = 50,                               
 		[Description("Kindergarten - Full Day")]
-		Kindergarten_FullDay = 51,                               
+		KindergartenFullDay = 51,                               
 		[Description("Kindergarten - Half Day")]
-		Kindergarten_HalfDay = 52,                               
+		KindergartenHalfDay = 52,                               
 		[Description("Kindergarten - Extended Day")]
-		Kindergarten_ExtendedDay = 53,                               
+		KindergartenExtendedDay = 53,                               
 		[Description("Prekindergarten - Full Day")]
-		Prekindergarten_FullDay = 54,                               
+		PrekindergartenFullDay = 54,                               
 		[Description("Prekindergarten - Half Day")]
-		Prekindergarten_HalfDay = 55,                               
+		PrekindergartenHalfDay = 55,                               
 		[Description("Prekindergarten - Extended Day")]
-		Prekindergarten_ExtendedDay = 56,                               
+		PrekindergartenExtendedDay = 56,                               
 		[Description("Title I Part D Subpart 1")]
 		TitleIPartDSubpart1 = 57,                               
 		[Description("Title I Part D Subpart 2")]
@@ -2853,7 +2851,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Shelters, Transitional housing, Awaiting Foster Care")]
 		SheltersTransitionalhousingAwaitingFosterCare = 12,                               
 		[Description("Doubled - up (i.e., living with another family)")]
-		Doubled_up_ielivingwithanotherfamily = 13,                               
+		Doubledup_ielivingwithanotherfamily = 13,                               
 		[Description("Unsheltered (e.g. cars, parks, campgrounds, temporary trailers including FEMA trailers, or abandoned buildings)")]
 		Unsheltered_egcarsparkscampgroundstemporarytrailersincludingFEMAtrailersorabandonedbuildings = 14,                               
 		[Description("Hotels/Motels")]
@@ -2871,7 +2869,7 @@ namespace NGL.Web.Data.Entities
 	public enum ProgramCharacteristicTypeEnum
 	{
 		[Description("A McKinney-Vento Program for Homlessness")]
-		AMcKinney_VentoProgramforHomlessness = 1,                               
+		AMcKinneyVentoProgramforHomlessness = 1,                               
 	}
 
 	public enum SchoolChoiceImplementStatusTypeEnum
@@ -2985,7 +2983,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Student")]
 		Student = 3,                               
 		[Description("Non-school personnel")]
-		Non_schoolpersonnel = 4,                               
+		Nonschoolpersonnel = 4,                               
 		[Description("Law enforcement officer")]
 		Lawenforcementofficer = 5,                               
 		[Description("Other")]
@@ -3077,7 +3075,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Holiday")]
 		Holiday = 3,                               
 		[Description("Make-up day")]
-		Make_upday = 4,                               
+		Makeupday = 4,                               
 		[Description("Weather day")]
 		Weatherday = 5,                               
 		[Description("Student late arrival/early dismissal")]
@@ -3117,11 +3115,11 @@ namespace NGL.Web.Data.Entities
 		[Description("Employed or affiliated with outside organization")]
 		Employedoraffiliatedwithoutsideorganization = 6,                               
 		[Description("Non-contractual")]
-		Non_contractual = 7,                               
+		Noncontractual = 7,                               
 		[Description("Employed part-time")]
-		Employedpart_time = 8,                               
+		Employedparttime = 8,                               
 		[Description("Employed or affiliated with outside agency part-time")]
-		Employedoraffiliatedwithoutsideagencypart_time = 9,                               
+		Employedoraffiliatedwithoutsideagencyparttime = 9,                               
 		[Description("Other")]
 		Other = 10,                               
 	}
@@ -3149,7 +3147,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Auditorium")]
 		Auditorium = 10,                               
 		[Description("On-campus other inside area")]
-		On_campusotherinsidearea = 11,                               
+		Oncampusotherinsidearea = 11,                               
 		[Description("Athletic field or playground")]
 		Athleticfieldorplayground = 12,                               
 		[Description("Stadium")]
@@ -3157,7 +3155,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Parking lot")]
 		Parkinglot = 14,                               
 		[Description("On-campus other outside area")]
-		On_campusotheroutsidearea = 15,                               
+		Oncampusotheroutsidearea = 15,                               
 		[Description("Off campus")]
 		Offcampus = 16,                               
 		[Description("Bus stop")]
@@ -3167,13 +3165,13 @@ namespace NGL.Web.Data.Entities
 		[Description("Walking to or from school")]
 		Walkingtoorfromschool = 19,                               
 		[Description("Off-campus at other school")]
-		Off_campusatotherschool = 20,                               
+		Offcampusatotherschool = 20,                               
 		[Description("Off-campus at other school district facility")]
-		Off_campusatotherschooldistrictfacility = 21,                               
+		Offcampusatotherschooldistrictfacility = 21,                               
 		[Description("Off-campus at a school sponsored activity")]
-		Off_campusataschoolsponsoredactivity = 22,                               
+		Offcampusataschoolsponsoredactivity = 22,                               
 		[Description("Off-campus at another location unrelated to school")]
-		Off_campusatanotherlocationunrelatedtoschool = 23,                               
+		Offcampusatanotherlocationunrelatedtoschool = 23,                               
 		[Description("Online")]
 		Online = 24,                               
 		[Description("Unknown")]
@@ -3191,7 +3189,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Basic")]
 		Basic = 4,                               
 		[Description("College-level")]
-		College_level = 5,                               
+		Collegelevel = 5,                               
 		[Description("Core Subject")]
 		CoreSubject = 6,                               
 		[Description("Correspondence")]
@@ -3217,9 +3215,9 @@ namespace NGL.Web.Data.Entities
 		[Description("Magnet")]
 		Magnet = 17,                               
 		[Description("Pre-AP")]
-		Pre_AP = 18,                               
+		PreAP = 18,                               
 		[Description("Pre-IB")]
-		Pre_IB = 19,                               
+		PreIB = 19,                               
 		[Description("Remedial")]
 		Remedial = 20,                               
 		[Description("Students with disabilities")]
@@ -3233,13 +3231,13 @@ namespace NGL.Web.Data.Entities
 	public enum RaceTypeEnum
 	{
 		[Description("American Indian - Alaskan Native")]
-		AmericanIndian_AlaskanNative = 1,                               
+		AmericanIndianAlaskanNative = 1,                               
 		[Description("Asian")]
 		Asian = 2,                               
 		[Description("Black - African American")]
-		Black_AfricanAmerican = 3,                               
+		BlackAfricanAmerican = 3,                               
 		[Description("Native Hawaiian - Pacific Islander")]
-		NativeHawaiian_PacificIslander = 4,                               
+		NativeHawaiianPacificIslander = 4,                               
 		[Description("White")]
 		White = 5,                               
 	}
@@ -3281,7 +3279,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Alternate assessment/ELL")]
 		AlternateassessmentELL = 3,                               
 		[Description("Alternate assessment/grade-level standards")]
-		Alternateassessmentgrade_levelstandards = 4,                               
+		Alternateassessmentgradelevelstandards = 4,                               
 		[Description("Alternative assessment/modified standards")]
 		Alternativeassessmentmodifiedstandards = 5,                               
 		[Description("Aptitude test")]
@@ -3335,13 +3333,13 @@ namespace NGL.Web.Data.Entities
 		[Description("Reading readiness test")]
 		Readingreadinesstest = 30,                               
 		[Description("State summative assessment 3-8 general")]
-		Statesummativeassessment3_8general = 31,                               
+		Statesummativeassessment38general = 31,                               
 		[Description("State high school subject assessment")]
 		Statehighschoolsubjectassessment = 32,                               
 		[Description("State high school course assessment")]
 		Statehighschoolcourseassessment = 33,                               
 		[Description("State alternative assessment/grade-level standards")]
-		Statealternativeassessmentgrade_levelstandards = 34,                               
+		Statealternativeassessmentgradelevelstandards = 34,                               
 		[Description("State alternative assessment/modified standards")]
 		Statealternativeassessmentmodifiedstandards = 35,                               
 		[Description("State alternate assessment/ELL")]
@@ -3351,15 +3349,15 @@ namespace NGL.Web.Data.Entities
 		[Description("Other")]
 		Other = 38,                               
 		[Description("EL - Approaches toward learning")]
-		EL_Approachestowardlearning = 39,                               
+		ELApproachestowardlearning = 39,                               
 		[Description("EL - Cognition and general knowledge")]
-		EL_Cognitionandgeneralknowledge = 40,                               
+		ELCognitionandgeneralknowledge = 40,                               
 		[Description("EL - Language and literacy development")]
-		EL_Languageandliteracydevelopment = 41,                               
+		ELLanguageandliteracydevelopment = 41,                               
 		[Description("EL - Physical well-being and motor development")]
-		EL_Physicalwell_beingandmotordevelopment = 42,                               
+		ELPhysicalwellbeingandmotordevelopment = 42,                               
 		[Description("EL - Social and emotional development")]
-		EL_Socialandemotionaldevelopment = 43,                               
+		ELSocialandemotionaldevelopment = 43,                               
 	}
 
 	public enum ReasonExitedTypeEnum
@@ -3391,31 +3389,31 @@ namespace NGL.Web.Data.Entities
 	public enum EntryGradeLevelReasonTypeEnum
 	{
 		[Description("Promotion - Accelerated promotion")]
-		Promotion_Acceleratedpromotion = 1,                               
+		PromotionAcceleratedpromotion = 1,                               
 		[Description("Promotion - Continuous promotion")]
-		Promotion_Continuouspromotion = 2,                               
+		PromotionContinuouspromotion = 2,                               
 		[Description("Promotion - Probationary promotion")]
-		Promotion_Probationarypromotion = 3,                               
+		PromotionProbationarypromotion = 3,                               
 		[Description("Promotion - Regular promotion")]
-		Promotion_Regularpromotion = 4,                               
+		PromotionRegularpromotion = 4,                               
 		[Description("Promotion - Variable progress")]
-		Promotion_Variableprogress = 5,                               
+		PromotionVariableprogress = 5,                               
 		[Description("Promotion - Other")]
-		Promotion_Other = 6,                               
+		PromotionOther = 6,                               
 		[Description("Nonpromotion - Failed to meet testing requirements")]
-		Nonpromotion_Failedtomeettestingrequirements = 7,                               
+		NonpromotionFailedtomeettestingrequirements = 7,                               
 		[Description("Nonpromotion - Illness")]
-		Nonpromotion_Illness = 8,                               
+		NonpromotionIllness = 8,                               
 		[Description("Nonpromotion - Immaturity")]
-		Nonpromotion_Immaturity = 9,                               
+		NonpromotionImmaturity = 9,                               
 		[Description("Nonpromotion - Inadequate performance")]
-		Nonpromotion_Inadequateperformance = 10,                               
+		NonpromotionInadequateperformance = 10,                               
 		[Description("Nonpromotion - Insufficient credits")]
-		Nonpromotion_Insufficientcredits = 11,                               
+		NonpromotionInsufficientcredits = 11,                               
 		[Description("Nonpromotion - Prolonged absence")]
-		Nonpromotion_Prolongedabsence = 12,                               
+		NonpromotionProlongedabsence = 12,                               
 		[Description("Nonpromotion - Other")]
-		Nonpromotion_Other = 13,                               
+		NonpromotionOther = 13,                               
 	}
 
 	public enum CurriculumUsedTypeEnum
@@ -3449,7 +3447,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Resident alien")]
 		Residentalien = 3,                               
 		[Description("Non-resident alien")]
-		Non_residentalien = 4,                               
+		Nonresidentalien = 4,                               
 		[Description("Refugee")]
 		Refugee = 5,                               
 	}
@@ -3463,13 +3461,13 @@ namespace NGL.Web.Data.Entities
 		[Description("Title I Part A Targeted Assistance School")]
 		TitleIPartATargetedAssistanceSchool = 3,                               
 		[Description("Title I targeted eligible school - no program")]
-		TitleItargetedeligibleschool_noprogram = 4,                               
+		TitleItargetedeligibleschoolnoprogram = 4,                               
 		[Description("Title I targeted school")]
 		TitleItargetedschool = 5,                               
 		[Description("Title I school wide eligible - Title I targeted program")]
-		TitleIschoolwideeligible_TitleItargetedprogram = 6,                               
+		TitleIschoolwideeligibleTitleItargetedprogram = 6,                               
 		[Description("Title I school wide eligible school - no program")]
-		TitleIschoolwideeligibleschool_noprogram = 7,                               
+		TitleIschoolwideeligibleschoolnoprogram = 7,                               
 	}
 
 	public enum SpecialEducationSettingTypeEnum
@@ -3489,7 +3487,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Correctional Facilities")]
 		CorrectionalFacilities = 7,                               
 		[Description("Parentally-placed in Private Schools")]
-		Parentally_placedinPrivateSchools = 8,                               
+		ParentallyplacedinPrivateSchools = 8,                               
 	}
 
 	public enum EntryTypeEnum
@@ -3497,7 +3495,7 @@ namespace NGL.Web.Data.Entities
 		[Description("Transfer")]
 		Transfer = 1,                               
 		[Description("Re-entry")]
-		Re_entry = 2,                               
+		Reentry = 2,                               
 		[Description("Next year school")]
 		Nextyearschool = 3,                               
 		[Description("New to education system")]
@@ -3562,5 +3560,3 @@ namespace NGL.Web.Data.Entities
 		CareerandTechnicalEducation = 4,                               
 	}
 }
-// ReSharper restore InconsistentNaming
-// ReSharper restore UnusedMember.Global

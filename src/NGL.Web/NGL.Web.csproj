@@ -491,6 +491,11 @@
     <Compile Include="Data\Entities\Descriptor.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\Descriptors.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Descriptors.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\DiagnosisDescriptor.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1618,6 +1623,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ConfigurationAccessor1.cs</LastGenOutput>
     </None>
+    <Content Include="Data\Entities\Descriptors.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Descriptors.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\NGL.pubxml" />
     <None Include="Assets\Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Assets\Scripts\bootstrap.js" />
