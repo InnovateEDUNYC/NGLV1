@@ -12,12 +12,17 @@
     {
         @s.FieldFor(m => m.TermTypeId)
         @s.FieldFor(m => m.SchoolYear)
-        @s.FieldFor(m => m.BeginDate)
-        @s.FieldFor(m => m.EndDate)
+        @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
+        @s.FieldFor(m => m.EndDate).AddClass("datepicker")
         @s.FieldFor(m => m.TotalInstructionalDays)
     }
     using (var n = f.BeginNavigation())
     {
         @n.Submit("Create")
     }
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/forms")
 }
