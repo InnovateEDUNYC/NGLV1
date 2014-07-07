@@ -1,59 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
     public class EnrollmentModel
     {
-        public int StudentUSI { get; set; }
+        [Required]
+        [Display(Name = "Student USI")]
+        public int? StudentUsi { get; set; }
 
-        [Required(ErrorMessage = "Please enter first name")]
+        [Required]
         [StringLength(75)]
         public String FirstName { get; set; }
 
-        [Required(ErrorMessage = "Please enter last name")]
+        [Required]
         [StringLength(75)]
-        public String LastSurname { get; set; }
+        public String LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter street address")]
+        [Required]
         [StringLength(150)]
+        [Display(Name = "Home Address")]
         public String StreetNumberName { get; set; }
 
         [StringLength(20)]
+        [Display(Name = "Address 2")]
         public String ApartmentRoomSuiteNumber { get; set; }
 
-        [Required(ErrorMessage = "Please enter city")]
+        [Required]
         [StringLength(30)]
         public String City { get; set; }
 
-        public int SexTypeId { get; set; }
+        [Display(Name = "Sex")]
+        [Required]
+        public SexTypeEnum? SexTypeEnum { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        [Required]
+        [Display(Name = "Birth Date")]
+        public DateTime? BirthDate { get; set; }
 
+        [Display(Name = "Hispanic/Latino Ethnicity")]
         public bool HispanicLatinoEthnicity { get; set; }
 
-        [Required(ErrorMessage = "Please enter old ethnicity type")]
-        public int OldEthnicityTypeId { get; set; }
+        [Display(Name = "Race")]
+        [Required]
+        public OldEthnicityTypeEnum? OldEthnicityTypeEnum { get; set; }
 
-        [Required(ErrorMessage = "Please enter Student ID number")]
-        [StringLength(16)]
-        public String Id { get; set; }
+        [Required]
+        [Display(Name = "State")]
+        public StateAbbreviationTypeEnum? StateAbbreviationTypeEnum { get; set; }
 
-        [Required(ErrorMessage = "Please enter state")]
-        
-        public int StateAbbreviationTypeId { get; set; }
-
-        [Required(ErrorMessage = "Please enter postal code")]
+        [Required]
         [StringLength(17)]
         public String PostalCode { get; set; }
 
-        public int RaceTypeId { get; set; }
-        public int LanguageDescriptorId { get; set; }
-        public int LanguageUseTypeId { get; set; }
-
+        [Display(Name = "Home Language")]
+        [Required]
+        public LanguageDescriptorEnum? LanguageDescriptorEnum { get; set; }
     }
 }

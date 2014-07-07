@@ -80,20 +80,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CanEnrollStudent.cs" />
     <Compile Include="CanUpdateSchoolInfo.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="ObjectMother.cs" />
+    <Compile Include="Pages\EnrollmentPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\SchoolPage.cs" />
+    <Compile Include="Pages\StudentPage.cs" />
     <Compile Include="Pages\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NGL.Web\NGL.Web.csproj">
       <Project>{F035A15E-9F41-4907-A370-B8F2EB8C4010}</Project>

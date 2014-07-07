@@ -5,7 +5,16 @@ namespace NGL.UiTests
 {
     public static class Host
     {
-        public static readonly SelenoHost Instance = new SelenoHost();
+        static readonly SelenoHost _instance = new SelenoHost();
+
+        public static SelenoHost Instance
+        {
+            get
+            {
+                _instance.Application.Browser.Manage().Cookies.DeleteAllCookies();
+                return _instance;
+            }
+        }
 
         static Host()
         {

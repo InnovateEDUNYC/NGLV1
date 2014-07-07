@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NGL.Web.Data.Entities.Student>
+﻿@model IEnumerable<NGL.Web.Models.Student.EnrollmentModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,170 +7,31 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Enroll a Student", "Create")
 </p>
-<table class="table">
+<table class="table" id="student-table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonalTitlePrefix)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MiddleName)
-        </th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th> 
         <th>
-            @Html.DisplayNameFor(model => model.LastSurname)
+            @Html.DisplayNameFor(model => model.StudentUsi)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GenerationCodeSuffix)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaidenName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SexTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CityOfBirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthStateAbbreviationTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthCountryCodeTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateEnteredUS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MultipleBirthStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProfileThumbnail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OldEthnicityTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EconomicDisadvantaged)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SchoolFoodServicesEligibilityDescriptorId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LimitedEnglishProficiencyDescriptorId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DisplacementStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoginId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InternationalProvinceOfBirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CitizenshipStatusTypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastModifiedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PersonalTitlePrefix)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MiddleName)
+            @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastSurname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GenerationCodeSuffix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaidenName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SexTypeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CityOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthStateAbbreviationTypeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthCountryCodeTypeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateEnteredUS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MultipleBirthStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProfileThumbnail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HispanicLatinoEthnicity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OldEthnicityTypeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EconomicDisadvantaged)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SchoolFoodServicesEligibilityDescriptorId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LimitedEnglishProficiencyDescriptorId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DisplacementStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoginId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InternationalProvinceOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CitizenshipStatusTypeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastModifiedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
+            @Html.DisplayFor(modelItem => item.StudentUsi)
         </td>
     </tr>
 }

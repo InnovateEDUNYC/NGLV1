@@ -1,42 +1,62 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
     public class EnrollmentModelToStudentMapper : IMapper<EnrollmentModel, Data.Entities.Student>
     {
+        private const int HomeAddressTypeId = (int)AddressTypeEnum.Home;
+        private const int HomeLanguageTypeId = (int)LanguageUseTypeEnum.Homelanguage;
+
         public void Map(EnrollmentModel source, Data.Entities.Student target)
         {
-            const int homeAddressTypeId = 1;
-            target.StudentUSI = source.StudentUSI; 
-            target.FirstName = source.FirstName;
-            target.LastSurname = source.LastSurname;
-            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.SexTypeId = source.SexTypeId;
-            target.BirthDate = source.BirthDate;
-            target.OldEthnicityTypeId = source.OldEthnicityTypeId;
+            SetStudentNativeProperties(source, target);
+            SetStudentAddress(source, target);
+            SetStudentLanguage(source, target);
+        }
 
+        private static void SetStudentNativeProperties(EnrollmentModel source, Data.Entities.Student target)
+        {
+            if (source.StudentUsi != null) target.StudentUSI = (int)source.StudentUsi;
+            target.FirstName = source.FirstName;
+            target.LastSurname = source.LastName;
+            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+            target.SexTypeId = (int) source.SexTypeEnum.GetValueOrDefault();
+            if (source.BirthDate != null) target.BirthDate = (DateTime) source.BirthDate;
+            target.OldEthnicityTypeId = (int?) source.OldEthnicityTypeEnum.GetValueOrDefault();
+        }
+
+        private void SetStudentLanguage(EnrollmentModel source, Data.Entities.Student target)
+        {
+
+            var languageDescriptor = source.LanguageDescriptorEnum.GetValueOrDefault();
+
+            var studentLanguage = new StudentLanguage
+            {
+                LanguageDescriptorId = (int) languageDescriptor
+            };
+
+            studentLanguage.StudentLanguageUses.Add(new StudentLanguageUse
+            {
+                LanguageDescriptorId = (int) languageDescriptor,
+                LanguageUseTypeId = HomeLanguageTypeId
+            });
+
+            target.StudentLanguages.Add(studentLanguage);
+        }
+
+        private static void SetStudentAddress(EnrollmentModel source, Data.Entities.Student target)
+        {
+            
             target.StudentAddresses.Add(new StudentAddress
-            { 
-                AddressTypeId = homeAddressTypeId, 
+            {
+                AddressTypeId = HomeAddressTypeId,
                 StreetNumberName = source.StreetNumberName,
                 ApartmentRoomSuiteNumber = source.ApartmentRoomSuiteNumber,
                 City = source.City,
                 PostalCode = source.PostalCode,
-                StateAbbreviationTypeId = source.StateAbbreviationTypeId
+                StateAbbreviationTypeId = (int) source.StateAbbreviationTypeEnum.GetValueOrDefault()
             });
-
-            var studentLanguage = new StudentLanguage
-            {   
-                LanguageDescriptorId = source.LanguageDescriptorId
-            };
-
-            studentLanguage.StudentLanguageUses.Add( new StudentLanguageUse
-            {   
-                LanguageDescriptorId = source.LanguageDescriptorId,
-                LanguageUseTypeId = source.LanguageUseTypeId
-            });
-
-            target.StudentLanguages.Add(studentLanguage);
-        }   
+        }
     }
 }

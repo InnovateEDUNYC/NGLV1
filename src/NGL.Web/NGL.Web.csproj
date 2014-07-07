@@ -1436,8 +1436,10 @@
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
+    <Compile Include="Models\Student\IndexModel.cs" />
     <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
     <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToEnrollmentModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1445,7 +1447,6 @@
     <Compile Include="App_Start\ConfigureChameleonTwitterBootstrap.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="App_Start\RegisterChameleonFormsComponents.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\StudentController.cs" />
