@@ -6036,7 +6036,6 @@
           <Property Name="BeginDate" Type="date" Nullable="false" />
           <Property Name="TitleIPartAParticipantTypeId" Type="int" Nullable="false" />
           <Property Name="ProgramName" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="StudentTitleIPartAProgramAssociationIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentVisa">
           <Key>

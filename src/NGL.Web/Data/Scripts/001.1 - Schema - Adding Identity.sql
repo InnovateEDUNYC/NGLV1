@@ -202,9 +202,6 @@ CREATE UNIQUE INDEX IX_AccountCodeIdentity on [edfi].[AccountCode] (AccountCodeI
 ALTER TABLE [edfi].[LearningStandardContentStandard] ADD LearningStandardContentStandardIdentity int IDENTITY(1,1) NOT NULL
 CREATE UNIQUE INDEX IX_LearningStandardContentStandardIdentity on [edfi].[LearningStandardContentStandard] (LearningStandardContentStandardIdentity)
 
-ALTER TABLE [edfi].[StudentTitleIPartAProgramAssociation] ADD StudentTitleIPartAProgramAssociationIdentity int IDENTITY(1,1) NOT NULL
-CREATE UNIQUE INDEX IX_StudentTitleIPartAProgramAssociationIdentity on [edfi].[StudentTitleIPartAProgramAssociation] (StudentTitleIPartAProgramAssociationIdentity)
-
 ALTER TABLE [edfi].[StaffTelephone] ADD StaffTelephoneIdentity int IDENTITY(1,1) NOT NULL
 CREATE UNIQUE INDEX IX_StaffTelephoneIdentity on [edfi].[StaffTelephone] (StaffTelephoneIdentity)
 
