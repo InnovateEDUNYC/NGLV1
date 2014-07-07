@@ -35,7 +35,7 @@ namespace NGL.UiTests
             
             _enrollmentModel = new EnrollmentModel()
             {
-                StudentUsi = 12432234, //change every test run
+                StudentUsi = 12432236, //change every test run
                 FirstName = "Joe",
                 LastSurname = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
