@@ -1451,7 +1451,6 @@
     <Compile Include="Models\Session\SessionToIndexModelMapper.cs" />
     <Compile Include="Models\Student\IndexModel.cs" />
     <Compile Include="Models\Session\CreateModelToSessionMapper.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
