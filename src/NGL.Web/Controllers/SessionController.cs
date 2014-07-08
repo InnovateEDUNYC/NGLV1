@@ -10,30 +10,30 @@ namespace NGL.Web.Controllers
     public partial class SessionController : Controller
     {
         private readonly IGenericRepository _genericRepository;
-        private readonly IMapper<SessionModel, Session> _sessionModelToSessionMapper;
-        private readonly IMapper<Session, SessionModel> _sessionToSessionModelMapper;
+        private readonly IMapper<CreateModel, Session> _createModelToEntityMapper;
+        private readonly IMapper<Session, IndexModel> _entityToIndexModelMapper;
 
         public SessionController(IGenericRepository genericRepository, 
-            IMapper<SessionModel, Session> sessionModelToSessionMapper, 
-            IMapper<Session, SessionModel> sessionToSessionModelMapper)
+            IMapper<CreateModel, Session> createModelToEntityMapper, 
+            IMapper<Session, IndexModel> entityToIndexModelMapper)
         {
             _genericRepository = genericRepository;
-            _sessionModelToSessionMapper = sessionModelToSessionMapper;
-            _sessionToSessionModelMapper = sessionToSessionModelMapper;
+            _createModelToEntityMapper = createModelToEntityMapper;
+            _entityToIndexModelMapper = entityToIndexModelMapper;
         }
 
         public virtual ActionResult Index()
         {
             IEnumerable<Session> sessions = _genericRepository.GetAll<Session>();
-            var sessionModels = new List<SessionModel>();
+            var indexModels = new List<IndexModel>();
 
             foreach (var session in sessions)
             {
-                var sessionModel = new SessionModel();
-                _sessionToSessionModelMapper.Map(session, sessionModel);
-                sessionModels.Add(sessionModel);
+                var indexModel = new IndexModel();
+                _entityToIndexModelMapper.Map(session, indexModel);
+                indexModels.Add(indexModel);
             }
-            return View(sessionModels);
+            return View(indexModels);
         }
 
         // GET: Session
@@ -43,18 +43,18 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Create(SessionModel sessionModel)
+        public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
-                return View(sessionModel);
+                return View(createModel);
 
             var session = new Session();
-            _sessionModelToSessionMapper.Map(sessionModel, session);
+            _createModelToEntityMapper.Map(createModel, session);
             
             _genericRepository.Add(session);
             _genericRepository.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction(Actions.Index());
         }
     }
 }
