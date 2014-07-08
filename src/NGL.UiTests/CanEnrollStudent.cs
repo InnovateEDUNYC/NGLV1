@@ -30,7 +30,7 @@ namespace NGL.UiTests
             
             _createStudentModel = new CreateStudentModel()
             {
-                StudentUsi = 282366536, //change every test run
+                StudentUsi = 3, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
