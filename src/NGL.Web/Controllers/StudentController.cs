@@ -17,28 +17,28 @@ namespace NGL.Web.Controllers
     {
         private IGenericRepository _repository;
         private readonly IMapper<CreateStudentModel, Student> _enrollmentMapper;
-        private readonly IMapper<Student, CreateStudentModel> _studentToCreateStudentModelMapper;
         private readonly IMapper<Student, StudentDetailsModel> _studentToDetailsModdelMapper;
+        private readonly IMapper<Student, StudentIndexModel> _studentToStudentIndexModelMapper;
 
-        public StudentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper, IMapper<Student, CreateStudentModel> studentToCreateStudentModelMapper, IMapper<Student, StudentDetailsModel> studentToDetailsModdelMapper  )
+        public StudentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper, IMapper<Student, StudentDetailsModel> studentToDetailsModelMapper, IMapper<Student, StudentIndexModel> studentToStudentIndexModelMapper)
         {
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
-            _studentToCreateStudentModelMapper = studentToCreateStudentModelMapper;
-            _studentToDetailsModdelMapper = studentToDetailsModdelMapper;
+            _studentToDetailsModdelMapper = studentToDetailsModelMapper;
+            _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
         }
 
         // GET: /Student
         public virtual ActionResult Index()
         {
             IEnumerable<Student> students = _repository.GetAll<Student>();
-            var models = new List<CreateStudentModel>();
+            var models = new List<StudentIndexModel>();
 
             foreach (var student in students)
             {
-                var enrollmentModel = new CreateStudentModel();
-                _studentToCreateStudentModelMapper.Map(student, enrollmentModel);
-                models.Add(enrollmentModel);
+                var indexModel = new StudentIndexModel();
+                _studentToStudentIndexModelMapper.Map(student, indexModel);
+                models.Add(indexModel);
             }
 
             return View(models);

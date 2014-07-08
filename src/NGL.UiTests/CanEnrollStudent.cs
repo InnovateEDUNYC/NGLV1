@@ -30,7 +30,7 @@ namespace NGL.UiTests
             
             _createStudentModel = new CreateStudentModel()
             {
-                StudentUsi = 282366534, //change every test run
+                StudentUsi = 282366536, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
@@ -49,12 +49,11 @@ namespace NGL.UiTests
             enrollmentPage.Input.Model(_createStudentModel);
             studentPage = enrollmentPage.Enroll();
 
-            studentPage.LastUsiInTheList.ShouldBe(_enrollmentModel.StudentUsi.ToString());
+            studentPage.LastUsiInTheList.ShouldBe(_createStudentModel.StudentUsi.ToString());
 
-            var usiStringOfStudent = studentPage.GetUsiStringOfLastStudentOnTable();
+            var usiStringOfStudent = studentPage.LastUsiInTheList;
             
             usiStringOfStudent.ShouldBe(_createStudentModel.StudentUsi.ToString());
-            studentPage.TopMenu.LogOff();
         }
     }
 }
