@@ -26,8 +26,8 @@ namespace NGL.Web.Controllers
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
         }
 
-        // GET: /Student
-        public virtual ActionResult Index()
+        // GET: /Student/All
+        public virtual ActionResult All()
         {
             IEnumerable<Student> students = _repository.GetAll<Student>();
             var models = new List<IndexModel>();
@@ -43,16 +43,16 @@ namespace NGL.Web.Controllers
         }
 
         //
-        // GET: /Student/Profile/5
-        public virtual ActionResult Profile(int id = 0)
+        // GET: /Student/5
+        public virtual ActionResult Index(int usi)
         {
-            var student = _repository.Get(new StudentByUsiQuery(id));
-            var profileModel = new ProfileModel();
-            _studentToDetailsModdelMapper.Map(student, profileModel);
+            var student = _repository.Get(new StudentByUsiQuery(usi));
             if (student == null)
             {
                 return HttpNotFound();
             }
+            var profileModel = new ProfileModel();
+            _studentToDetailsModdelMapper.Map(student, profileModel);
             return View(profileModel);
         }
 

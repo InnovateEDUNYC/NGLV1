@@ -70,15 +70,15 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
-            public readonly string Details = "Profile";
+            public readonly string Index = "All";
+            public readonly string Details = "Index";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "Index";
-            public const string Details = "Profile";
+            public const string Index = "All";
+            public const string Details = "Index";
         }
 
 
@@ -101,14 +101,14 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Delete = "Delete";
-                public readonly string Details = "Profile";
+                public readonly string Details = "Index";
                 public readonly string Edit = "Edit";
-                public readonly string Index = "Index";
+                public readonly string Index = "All";
             }
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
-            public readonly string Details = "~/Views/Student/Profile.cshtml";
+            public readonly string Details = "~/Views/Student/Index.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
-            public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string Index = "~/Views/Student/All.cshtml";
         }
     }
 
@@ -121,7 +121,7 @@ namespace NGL.Web.Controllers
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult All()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
@@ -132,7 +132,7 @@ namespace NGL.Web.Controllers
         partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Profile(int id)
+        public override System.Web.Mvc.ActionResult Index(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);

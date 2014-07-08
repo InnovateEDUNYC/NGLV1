@@ -1701,9 +1701,9 @@
     </None>
     <Content Include="Views\Enrollment\CreateStudent.cshtml" />
     <Content Include="Views\Student\Delete.cshtml" />
-    <Content Include="Views\Student\Profile.cshtml" />
-    <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\All.cshtml" />
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />

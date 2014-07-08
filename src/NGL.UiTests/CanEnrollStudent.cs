@@ -5,6 +5,7 @@ using NGL.Web.Models.Account;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using Shouldly;
+using TestStack.Seleno.Configuration;
 using Xunit;
 
 namespace NGL.UiTests
@@ -31,7 +32,7 @@ namespace NGL.UiTests
             
             _createStudentModel = new CreateStudentModel()
             {
-                StudentUsi = 3, //change every test run
+                StudentUsi = 17, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
@@ -41,13 +42,13 @@ namespace NGL.UiTests
                 City = "Springfield",
                 StateAbbreviationTypeEnum = StateAbbreviationTypeEnum.CA,
                 PostalCode = "6000",
-                BirthDate = new DateTime(2000,1,11),
                 HispanicLatinoEthnicity = true,
                 LanguageDescriptorEnum = LanguageDescriptorEnum.English
             };
 
             var enrollmentPage = studentPage.GoToEnroll();
             enrollmentPage.Input.Model(_createStudentModel);
+            enrollmentPage.Input.ReplaceInputValueWith("BirthDate", "12/12/12");
             studentPage = enrollmentPage.Enroll();
 
             studentPage.LastUsiInTheList.ShouldBe(_createStudentModel.StudentUsi.ToString());
@@ -55,6 +56,7 @@ namespace NGL.UiTests
             var usiStringOfStudent = studentPage.LastUsiInTheList;
             
             usiStringOfStudent.ShouldBe(_createStudentModel.StudentUsi.ToString());
+
         }
     }
 }

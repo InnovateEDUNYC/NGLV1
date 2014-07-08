@@ -43,7 +43,7 @@ namespace NGL.Web.Controllers
                 _enrollmentMapper.Map(createStudentModel, student);
                 _repository.Add<Student>(student);
                 _repository.Save();
-                return RedirectToAction("Index", "Student");
+                return RedirectToAction("All", "Student");
             }
 
             return View(createStudentModel);
