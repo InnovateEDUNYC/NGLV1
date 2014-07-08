@@ -1,4 +1,5 @@
 ﻿using System;
+using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Session;
@@ -8,54 +9,54 @@ using Xunit;
 
 namespace NGL.Tests.Session
 {
-    public class SessionMapperTests
+    public class MapperTests
     {
         [Fact]
-        public void ShouldMapSessionFormViewModelToSessionEntity()
+        public void ShouldMapCreateModelToEntity()
         {
             var schoolRepository = Substitute.For<ISchoolRepository>();
             schoolRepository.GetSchool().Returns(new School{SchoolId = 1});
 
             var sessionEntity = new Web.Data.Entities.Session();
-            var sessionModel = new SessionCreateModel
+            var sessionCreateModel = new CreateModel
             {
-                TermType = TermTypeEnum.FallSemester,
-                SchoolYearType = SchoolYearTypeEnum.Year2014,
+                Term = TermTypeEnum.FallSemester,
+                SchoolYear = SchoolYearTypeEnum.Year2014,
                 BeginDate = new DateTime(2014, 6, 26),
                 EndDate = new DateTime(2014, 9, 26),
                 TotalInstructionalDays = 92
             };
 
-            var sessionModelToSessionMapper = new SessionCreateModelToSessionMapper(schoolRepository);
-            sessionModelToSessionMapper.Map(sessionModel, sessionEntity);
+            var createModelToEntityMapper = new CreateModelToEntityMapper(schoolRepository);
+            createModelToEntityMapper.Map(sessionCreateModel, sessionEntity);
 
             sessionEntity.SchoolId.ShouldBe(1);
-            sessionEntity.TermTypeId.ShouldBe(1);
-            sessionEntity.SchoolYear.ShouldBe((short)2014);
+            sessionEntity.TermTypeId.ShouldBe((int) TermTypeEnum.FallSemester);
+            sessionEntity.SchoolYear.ShouldBe((short) SchoolYearTypeEnum.Year2014);
             sessionEntity.BeginDate.ShouldBe(new DateTime(2014, 6, 26));
             sessionEntity.EndDate.ShouldBe(new DateTime(2014, 9, 26));
             sessionEntity.TotalInstructionalDays.ShouldBe(92);
         }
 
         [Fact]
-        public void ShouldMapSessionEntityToSessionIndexViewModel()
+        public void ShouldMapEntityToIndexModel()
         {
-            var sessionIndexModel = new SessionIndexModel();
+            var sessionIndexModel = new IndexModel();
             var sessionEntity = new Web.Data.Entities.Session
             {
                 SchoolId = 1,
-                TermTypeId = 1,
-                SchoolYear = 2014,
+                TermTypeId = (int) TermTypeEnum.FallSemester,
+                SchoolYear = (int) SchoolYearTypeEnum.Year2014,
                 BeginDate = new DateTime(2014, 6, 26),
                 EndDate = new DateTime(2014, 9, 26),
                 TotalInstructionalDays = 92
             };
 
-            var sessionToSessionIndexModelMapper = new SessionToSessionIndexModelMapper();
-            sessionToSessionIndexModelMapper.Map(sessionEntity, sessionIndexModel);
+            var entityToIndexModelMapper = new EntityToIndexModelMapper();
+            entityToIndexModelMapper.Map(sessionEntity, sessionIndexModel);
 
-            sessionIndexModel.TermType.ShouldBe("Fall Semester");
-            sessionIndexModel.SchoolYearType.ShouldBe("2013-2014");
+            sessionIndexModel.Term.ShouldBe(TermTypeEnum.FallSemester.Humanize());
+            sessionIndexModel.SchoolYear.ShouldBe(SchoolYearTypeEnum.Year2014.Humanize());
             sessionIndexModel.BeginDate.ShouldBe(new DateTime(2014, 6, 26));
             sessionIndexModel.EndDate.ShouldBe(new DateTime(2014, 9, 26));
             sessionIndexModel.TotalInstructionalDays.ShouldBe(92);

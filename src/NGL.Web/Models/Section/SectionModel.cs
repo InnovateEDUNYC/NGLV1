@@ -26,7 +26,7 @@ namespace NGL.Web.Models.Section
         public virtual CourseOfferingModel CourseOffering { get; set; }
         public virtual LocationModel Location { get; set; }
         public virtual SchoolModel School { get; set; }
-        public virtual SessionCreateModel Session { get; set; }
+        public virtual CreateModel Session { get; set; }
         public virtual ICollection<StudentSectionAttendanceEventModel> StudentSectionAttendanceEvents { get; set; }
     }
 }

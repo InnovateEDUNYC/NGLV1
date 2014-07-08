@@ -1445,6 +1445,7 @@
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
     <Compile Include="Models\Session\SessionIndexModel.cs" />
+    <Compile Include="Models\Session\IndexModel.cs" />
     <Compile Include="Models\Session\SessionToSessionIndexModelMapper.cs" />
     <Compile Include="Models\Student\IndexModel.cs" />
     <Compile Include="Models\Session\SessionCreateModelToSessionMapper.cs" />
@@ -1568,7 +1569,7 @@
     <Compile Include="Models\Course\CourseModel.cs" />
     <Compile Include="Models\Location\LocationModel.cs" />
     <Compile Include="Models\Section\SectionModel.cs" />
-    <Compile Include="Models\Session\SessionCreateModel.cs" />
+    <Compile Include="Models\Session\CreateModel.cs" />
     <Compile Include="Models\Staff\StaffModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentModelForStudentSectionAttendanceEvent.cs" />
@@ -1707,7 +1708,6 @@
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

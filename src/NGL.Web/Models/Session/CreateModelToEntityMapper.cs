@@ -2,20 +2,20 @@
 
 namespace NGL.Web.Models.Session
 {
-    public class SessionCreateModelToSessionMapper : IMapper<SessionCreateModel, Data.Entities.Session>
+    public class CreateModelToEntityMapper : IMapper<CreateModel, Data.Entities.Session>
     {
         private readonly ISchoolRepository _schoolRepository;
 
-        public SessionCreateModelToSessionMapper(ISchoolRepository schoolRepository)
+        public CreateModelToEntityMapper(ISchoolRepository schoolRepository)
         {
             _schoolRepository = schoolRepository;
         }
 
-        public void Map(SessionCreateModel source, Data.Entities.Session target)
+        public void Map(CreateModel source, Data.Entities.Session target)
         {
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
-            target.TermTypeId = (int) source.TermType.GetValueOrDefault();
-            target.SchoolYear = (short) source.SchoolYearType;
+            target.TermTypeId = (int) source.Term.GetValueOrDefault();
+            target.SchoolYear = (short) source.SchoolYear;
             target.BeginDate = source.BeginDate;
             target.EndDate = source.EndDate;
             target.SessionName = string.Empty;

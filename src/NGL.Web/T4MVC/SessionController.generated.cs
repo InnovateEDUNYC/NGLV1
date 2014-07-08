@@ -136,14 +136,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Session.SessionCreateModel sessionCreateModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Session.CreateModel createModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Session.SessionCreateModel sessionCreateModel)
+        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Session.CreateModel createModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SessionCreateModel", sessionCreateModel);
-            CreateOverride(callInfo, sessionCreateModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SessionCreateModel", createModel);
+            CreateOverride(callInfo, createModel);
             return callInfo;
         }
 

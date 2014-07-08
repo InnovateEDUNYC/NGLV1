@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NGL.Web.Models.Session.SessionIndexModel>
+﻿@model IEnumerable<NGL.Web.Models.Session.IndexModel>
 
 @{
     ViewBag.Title = "Sessions";
@@ -11,10 +11,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TermType)
+            @Html.DisplayNameFor(model => model.Term)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SchoolYearType)
+            @Html.DisplayNameFor(model => model.SchoolYear)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BeginDate)
@@ -30,10 +30,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TermType)
+                @Html.DisplayFor(modelItem => item.Term)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SchoolYearType)
+                @Html.DisplayFor(modelItem => item.SchoolYear)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BeginDate)
