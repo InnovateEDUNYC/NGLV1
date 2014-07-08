@@ -88,7 +88,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string sessionModel = "sessionModel";
+            public readonly string sessionModel = "SessionCreateModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -136,14 +136,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Session.SessionModel sessionModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Session.SessionCreateModel sessionCreateModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Session.SessionModel sessionModel)
+        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Session.SessionCreateModel sessionCreateModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionModel", sessionModel);
-            CreateOverride(callInfo, sessionModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "SessionCreateModel", sessionCreateModel);
+            CreateOverride(callInfo, sessionCreateModel);
             return callInfo;
         }
 

@@ -21,7 +21,7 @@ namespace NGL.Web.Models.CourseOffering
 
         public CourseModel Course { get; set; }
         public SchoolModel School { get; set; }
-        public SessionModel Session { get; set; }
+        public SessionCreateModel Session { get; set; }
         public ICollection<SectionModel> Sections { get; set; }
     }
 }

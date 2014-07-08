@@ -3,11 +3,14 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Session
 {
-    public class SessionModel
+    public class SessionCreateModel
     {
-        [Display(Name = "Term Type")]
-        public TermTypeEnum? TermTypeEnum { get; set; }
-        public short SchoolYear { get; set; }
+        [Required]
+        public TermTypeEnum? TermType { get; set; }
+
+        [Required]
+        [Display(Name = "School Year")]
+        public SchoolYearTypeEnum? SchoolYearType { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public System.DateTime BeginDate { get; set; }
