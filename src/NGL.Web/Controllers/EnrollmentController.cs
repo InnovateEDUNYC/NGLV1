@@ -23,8 +23,7 @@ namespace NGL.Web.Controllers
         {
             var enrollmentModel = new CreateStudentModel
             {
-                ParentEnrollmentInfoModel = new ParentEnrollmentInfoModel(),
-                OtherParentEnrollmentInfoModel = new ParentEnrollmentInfoModel()
+                ParentEnrollmentInfoModel = new ParentEnrollmentInfoModel()
             };
             return View(enrollmentModel);
         }

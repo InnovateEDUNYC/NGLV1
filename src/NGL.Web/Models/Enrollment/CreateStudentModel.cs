@@ -60,9 +60,5 @@ namespace NGL.Web.Models.Enrollment
         public LanguageDescriptorEnum? LanguageDescriptorEnum { get; set; }
 
         public ParentEnrollmentInfoModel ParentEnrollmentInfoModel { get; set; }
-        public ParentEnrollmentInfoModel OtherParentEnrollmentInfoModel { get; set; }
-
-
-        
     }
 }
