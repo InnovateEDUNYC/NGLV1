@@ -14,7 +14,7 @@ namespace NGL.Web.Models.Session
         public void Map(SessionModel source, Data.Entities.Session target)
         {
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
-            target.TermTypeId = source.TermTypeId;
+            target.TermTypeId = (int) source.TermTypeEnum.GetValueOrDefault();
             target.SchoolYear = source.SchoolYear;
             target.BeginDate = source.BeginDate;
             target.EndDate = source.EndDate;

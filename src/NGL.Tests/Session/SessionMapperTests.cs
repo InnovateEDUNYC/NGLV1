@@ -27,7 +27,7 @@ namespace NGL.Tests.Session
             var sessionToSessionModelMapper = new SessionToSessionModelMapper();
             sessionToSessionModelMapper.Map(sessionEntity, sessionModel);
 
-            sessionModel.TermTypeId.ShouldBe(1);
+            sessionModel.TermTypeEnum.ShouldBe(TermTypeEnum.FallSemester);
             sessionModel.SchoolYear.ShouldBe((short)2014);
             sessionModel.BeginDate.ShouldBe(new DateTime(2014, 6, 26));
             sessionModel.EndDate.ShouldBe(new DateTime(2014, 9, 26));
@@ -43,7 +43,7 @@ namespace NGL.Tests.Session
             var sessionEntity = new Web.Data.Entities.Session();
             var sessionModel = new SessionModel
             {
-                TermTypeId = 1,
+                TermTypeEnum = TermTypeEnum.FallSemester,
                 SchoolYear = 2014,
                 BeginDate = new DateTime(2014, 6, 26),
                 EndDate = new DateTime(2014, 9, 26),

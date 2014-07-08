@@ -10,7 +10,7 @@
 {
     using (var s = f.BeginSection("Info"))
     {
-        @s.FieldFor(m => m.TermTypeId)
+        @s.FieldFor(m => m.TermTypeEnum)
         @s.FieldFor(m => m.SchoolYear)
         @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
         @s.FieldFor(m => m.EndDate).AddClass("datepicker")
