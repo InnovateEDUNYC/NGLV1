@@ -1588,9 +1588,9 @@
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
-    <EmbeddedResource Include="Data\Scripts\004.1.sample - Users and Roles.sql" />
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Scripts\forms.js" />
+    <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -14,11 +14,17 @@ namespace NGL.Web
             Database.SetInitializer<NglDbContext>(null);
 
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            Func<string, bool> scriptsOnly = s => s.EndsWith(".sql");
+            Func<string, bool> filter = scriptsOnly;
 
+            string includeSampleScripts = ConfigurationManager.AppSettings["dbup:IncludeSampleScripts"];
+            if (includeSampleScripts == null || !bool.Parse(includeSampleScripts))
+                filter = s => scriptsOnly(s) && !s.EndsWith(".sample.sql");
+            
             var upgrader =
                 DeployChanges.To
                     .SqlDatabase(connectionString)
-                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), filter)
                     .LogToConsole()
                     .Build();
 
