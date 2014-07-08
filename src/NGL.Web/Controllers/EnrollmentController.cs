@@ -21,7 +21,11 @@ namespace NGL.Web.Controllers
         // GET: /Enrollment/CreateStudent
         public virtual ActionResult CreateStudent()
         {
-            var enrollmentModel = new CreateStudentModel();
+            var enrollmentModel = new CreateStudentModel
+            {
+                ParentEnrollmentInfoModel = new ParentEnrollmentInfoModel(),
+                OtherParentEnrollmentInfoModel = new ParentEnrollmentInfoModel()
+            };
             return View(enrollmentModel);
         }
 

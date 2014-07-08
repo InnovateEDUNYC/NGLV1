@@ -20,7 +20,7 @@ namespace NGL.Web.Models.Enrollment
 
         [Required]
         [StringLength(150)]
-        [Display(Name = "Home Address")]
+        [Display(Name = "Address")]
         public String StreetNumberName { get; set; }
 
         [StringLength(20)]
@@ -58,5 +58,11 @@ namespace NGL.Web.Models.Enrollment
         [Display(Name = "Home Language")]
         [Required]
         public LanguageDescriptorEnum? LanguageDescriptorEnum { get; set; }
+
+        public ParentEnrollmentInfoModel ParentEnrollmentInfoModel { get; set; }
+        public ParentEnrollmentInfoModel OtherParentEnrollmentInfoModel { get; set; }
+
+
+        
     }
 }

@@ -1443,6 +1443,7 @@
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
+    <Compile Include="Models\Enrollment\ParentEnrollmentInfoModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
@@ -1707,6 +1708,7 @@
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Enrollment\_ParentEnrollentInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

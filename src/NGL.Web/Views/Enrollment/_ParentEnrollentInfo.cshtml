@@ -1,0 +1,16 @@
+﻿@model NGL.Web.Models.Enrollment.ParentEnrollmentInfoModel
+
+
+<h2>Enrollment</h2>
+@using (var f = Html.BeginChameleonForm())
+{
+    using (var s = f.BeginSection("Personal Information"))
+    {
+        @s.FieldFor(m => m.ParentUsi)
+        @s.FieldFor(m => m.ParentFirstName)
+        @s.FieldFor(m => m.ParentLastName)
+        @s.FieldFor(m => m.RelationshipToStudent)
+        @s.FieldFor(m => m.ParentPhoneNumber)
+        @s.FieldFor(m => m.ParentEmailAddress)
+    }
+}
