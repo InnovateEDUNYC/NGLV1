@@ -27,7 +27,7 @@ namespace NGL.Tests.Session
                 TotalInstructionalDays = 92
             };
 
-            var createModelToEntityMapper = new CreateModelToEntityMapper(schoolRepository);
+            var createModelToEntityMapper = new CreateModelToSessionMapper(schoolRepository);
             createModelToEntityMapper.Map(sessionCreateModel, sessionEntity);
 
             sessionEntity.SchoolId.ShouldBe(1);
@@ -52,7 +52,7 @@ namespace NGL.Tests.Session
                 TotalInstructionalDays = 92
             };
 
-            var entityToIndexModelMapper = new EntityToIndexModelMapper();
+            var entityToIndexModelMapper = new SessionToIndexModelMapper();
             entityToIndexModelMapper.Map(sessionEntity, sessionIndexModel);
 
             sessionIndexModel.Term.ShouldBe(TermTypeEnum.FallSemester.Humanize());

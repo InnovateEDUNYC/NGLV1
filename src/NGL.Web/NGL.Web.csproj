@@ -60,8 +60,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Humanizer">
-      <HintPath>..\packages\Humanizer.1.0.29\lib\portable-win+net40+sl50+wp8\Humanizer.dll</HintPath>
+    <Reference Include="Humanizer, Version=1.28.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Humanizer.1.28.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1439,17 +1440,12 @@
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
-    <Compile Include="Models\Student\IndexModel.cs" />
-    <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
-    <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
-    <Compile Include="Models\Session\SessionIndexModel.cs" />
     <Compile Include="Models\Session\IndexModel.cs" />
-    <Compile Include="Models\Session\EntityToIndexModelMapper.cs" />
+    <Compile Include="Models\Session\SessionToIndexModelMapper.cs" />
     <Compile Include="Models\Student\IndexModel.cs" />
-    <Compile Include="Models\Session\CreateModelToEntityMapper.cs" />
-    <Compile Include="Models\Student\StudentToEnrollmentModelMapper.cs" />
+    <Compile Include="Models\Session\CreateModelToSessionMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

@@ -3,7 +3,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Session
 {
-    public class EntityToIndexModelMapper :
+    public class SessionToIndexModelMapper :
          IMapper<Data.Entities.Session, IndexModel>
     {
         public void Map(Data.Entities.Session source, IndexModel target)

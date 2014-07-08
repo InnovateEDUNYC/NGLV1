@@ -2,11 +2,11 @@
 
 namespace NGL.Web.Models.Session
 {
-    public class CreateModelToEntityMapper : IMapper<CreateModel, Data.Entities.Session>
+    public class CreateModelToSessionMapper : IMapper<CreateModel, Data.Entities.Session>
     {
         private readonly ISchoolRepository _schoolRepository;
 
-        public CreateModelToEntityMapper(ISchoolRepository schoolRepository)
+        public CreateModelToSessionMapper(ISchoolRepository schoolRepository)
         {
             _schoolRepository = schoolRepository;
         }
