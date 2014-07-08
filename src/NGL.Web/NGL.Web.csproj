@@ -1589,7 +1589,6 @@
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
     <EmbeddedResource Include="Data\Scripts\004.1.sample - Users and Roles.sql" />
-    <EmbeddedResource Include="Data\Scripts\005 - Schema - Make Column Nullable.sql" />
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Scripts\forms.js" />
     <Content Include="favicon.ico" />

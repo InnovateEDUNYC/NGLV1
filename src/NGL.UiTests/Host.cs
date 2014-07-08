@@ -5,7 +5,7 @@ namespace NGL.UiTests
 {
     public static class Host
     {
-        static readonly SelenoHost _instance = new SelenoHost();
+        static readonly SelenoHost _instance;
 
         public static SelenoHost Instance
         {
@@ -18,7 +18,8 @@ namespace NGL.UiTests
 
         static Host()
         {
-            Instance.Run("NGL.Web", 12345, c => c.WithRouteConfig(RouteConfig.RegisterRoutes));
+            _instance = new SelenoHost();
+            _instance.Run("NGL.Web", 12345, c => c.WithRouteConfig(RouteConfig.RegisterRoutes));
         }
     }
 }

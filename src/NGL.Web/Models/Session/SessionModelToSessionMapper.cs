@@ -1,5 +1,4 @@
-﻿using NGL.Web.Data.Entities;
-using NGL.Web.Data.Repositories;
+﻿using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.Session
 {
@@ -19,6 +18,7 @@ namespace NGL.Web.Models.Session
             target.SchoolYear = source.SchoolYear;
             target.BeginDate = source.BeginDate;
             target.EndDate = source.EndDate;
+            target.SessionName = string.Empty;
             target.TotalInstructionalDays = source.TotalInstructionalDays;
         }
     }

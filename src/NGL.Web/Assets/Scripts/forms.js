@@ -1,6 +1,6 @@
 ﻿jQuery(function() {
-    if ($(".datepicker").length) {
-        $(".datepicker").datepicker({
+    if ($("form .datepicker").length) {
+        $("form .datepicker").datepicker({
             autoclose: true
         });
     }
