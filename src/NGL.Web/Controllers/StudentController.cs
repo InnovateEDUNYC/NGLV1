@@ -16,14 +16,12 @@ namespace NGL.Web.Controllers
     public partial class StudentController : Controller
     {
         private IGenericRepository _repository;
-        private readonly IMapper<CreateStudentModel, Student> _enrollmentMapper;
-        private readonly IMapper<Student, StudentDetailsModel> _studentToDetailsModdelMapper;
-        private readonly IMapper<Student, StudentIndexModel> _studentToStudentIndexModelMapper;
+        private readonly IMapper<Student, ProfileModel> _studentToDetailsModdelMapper;
+        private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
 
-        public StudentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper, IMapper<Student, StudentDetailsModel> studentToDetailsModelMapper, IMapper<Student, StudentIndexModel> studentToStudentIndexModelMapper)
+        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper)
         {
             _repository = repository;
-            _enrollmentMapper = enrollmentMapper;
             _studentToDetailsModdelMapper = studentToDetailsModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
         }
@@ -32,11 +30,11 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Index()
         {
             IEnumerable<Student> students = _repository.GetAll<Student>();
-            var models = new List<StudentIndexModel>();
+            var models = new List<IndexModel>();
 
             foreach (var student in students)
             {
-                var indexModel = new StudentIndexModel();
+                var indexModel = new IndexModel();
                 _studentToStudentIndexModelMapper.Map(student, indexModel);
                 models.Add(indexModel);
             }
@@ -45,44 +43,17 @@ namespace NGL.Web.Controllers
         }
 
         //
-        // GET: /Student/Create
-        public virtual ActionResult Create()
-        {
-            var enrollmentModel = new CreateStudentModel();
-            return View(enrollmentModel);
-        }
-
-        // POST: /Student/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        public virtual ActionResult Create(CreateStudentModel createStudentModel)
-        {
-            if (ModelState.IsValid)
-            {
-                Student student = new Student();
-
-                _enrollmentMapper.Map(createStudentModel, student);
-                _repository.Add<Student>(student);
-                _repository.Save();
-                return RedirectToAction("Index");
-            }
-
-            return View(createStudentModel);
-        }
-
-        //
-        // GET: /Student/Details/5
-        public ActionResult Details(int id = 0)
+        // GET: /Student/Profile/5
+        public virtual ActionResult Profile(int id = 0)
         {
             var student = _repository.Get(new StudentByUsiQuery(id));
-            var detailsModel = new StudentDetailsModel();
-            _studentToDetailsModdelMapper.Map(student, detailsModel);
+            var profileModel = new ProfileModel();
+            _studentToDetailsModdelMapper.Map(student, profileModel);
             if (student == null)
             {
                 return HttpNotFound();
             }
-            return View(detailsModel);
+            return View(profileModel);
         }
 
     }

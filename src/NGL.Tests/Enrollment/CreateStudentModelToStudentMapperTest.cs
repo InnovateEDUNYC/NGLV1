@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using NGL.Web.Data.Entities;
+using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using Shouldly;
 using Xunit;
 
 namespace NGL.Tests.Student
 {
-    public class StudentCreateModelToStudentMapperTest
+    public class CreateStudentModelToStudentMapperTest
     {
         private CreateStudentModelToStudentMapper _mapper;
         private readonly NGL.Web.Data.Entities.Student _student = new NGL.Web.Data.Entities.Student();

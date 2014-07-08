@@ -2,6 +2,7 @@
 using NGL.UiTests.Pages;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
+using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using Shouldly;
 using Xunit;

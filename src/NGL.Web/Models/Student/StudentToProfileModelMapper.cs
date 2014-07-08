@@ -9,9 +9,9 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentToStudentDetailsModelMapper : IMapper<NGL.Web.Data.Entities.Student, StudentDetailsModel>
+    public class StudentToProfileModelMapper : IMapper<NGL.Web.Data.Entities.Student, ProfileModel>
     {
-        public void Map(Data.Entities.Student source, StudentDetailsModel target)
+        public void Map(Data.Entities.Student source, ProfileModel target)
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastSurname;

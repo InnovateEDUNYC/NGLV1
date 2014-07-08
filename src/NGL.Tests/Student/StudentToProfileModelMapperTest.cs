@@ -10,7 +10,7 @@ using Xunit;
 
 namespace NGL.Tests.Student
 {
-    public class StudentToStudentDetailsModelMapperTest
+    public class StudentToProfileModelMapperTest
     {
         [Fact]
         public void shouldMap()
@@ -25,9 +25,9 @@ namespace NGL.Tests.Student
                 HispanicLatinoEthnicity = true,
                 SexTypeId = 2
             };
-            StudentDetailsModel studentDetailsModel = new StudentDetailsModel();
+            ProfileModel studentDetailsModel = new ProfileModel();
 
-            StudentToStudentDetailsModelMapper mapper = new StudentToStudentDetailsModelMapper();
+            StudentToProfileModelMapper mapper = new StudentToProfileModelMapper();
             mapper.Map(student, studentDetailsModel);
 
             studentDetailsModel.FirstName.ShouldBe("Bob");

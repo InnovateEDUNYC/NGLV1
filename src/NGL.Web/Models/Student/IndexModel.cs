@@ -2,7 +2,7 @@
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentIndexModel
+    public class IndexModel
     {
         public String FirstName { get; set; }
         public String LastName { get; set; }

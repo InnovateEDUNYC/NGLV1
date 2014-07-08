@@ -7,7 +7,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentDetailsModel
+    public class ProfileModel
     {
         public string FirstName { get; set; }
         public string LastSurname { get; set; }

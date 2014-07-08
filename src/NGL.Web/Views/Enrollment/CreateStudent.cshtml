@@ -1,4 +1,4 @@
-﻿@model NGL.Web.Models.Student.CreateStudentModel
+﻿@model NGL.Web.Models.Enrollment.CreateStudentModel
 
 @{
     ViewBag.Title = "Enrollment";
@@ -25,7 +25,7 @@
     }
     using (var n = f.BeginNavigation())
     {
-        @n.Submit("Create")
+        @n.Submit("CreateStudent")
     }
 }
 

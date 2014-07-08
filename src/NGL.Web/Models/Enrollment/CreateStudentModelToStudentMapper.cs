@@ -1,5 +1,6 @@
 ﻿using System;
 using NGL.Web.Data.Entities;
+using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NGL.Web.Models.Student.StudentIndexModel>
+﻿@model IEnumerable<NGL.Web.Models.Student.IndexModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Enroll a Student", "Create")
+    @Html.ActionLink("Enroll a Student", "CreateStudent", "Enrollment")
 </p>
 <table class="table" id="student-table">
     <tr>
