@@ -7,7 +7,6 @@
         {
             target.TermTypeId = source.TermTypeId;
             target.SchoolYear = source.SchoolYear;
-            target.SessionName = source.SessionName;
             target.BeginDate = source.BeginDate;
             target.EndDate = source.EndDate;
             target.TotalInstructionalDays = source.TotalInstructionalDays;

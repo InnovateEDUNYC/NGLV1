@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+using Links;
 
 namespace NGL.Web
 {
@@ -8,23 +9,29 @@ namespace NGL.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Assets/Scripts/jquery-{version}.js"));
+                        "~/Assets/Scripts/lib/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Assets/Scripts/jquery.validate*"));
+                        "~/Assets/Scripts/lib/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Assets/Scripts/modernizr-*"));
+                        "~/Assets/Scripts/lib/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Assets/Scripts/bootstrap.js",
-                      "~/Assets/Scripts/respond.js"));
+                      "~/Assets/Scripts/lib/bootstrap.js",
+                      "~/Assets/Scripts/lib/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Assets/Content/bootstrap.css",
-                      "~/Assets/Content/site.css"));
+                      "~/Assets/Content/site.css",
+                      "~/Assets/Content/datepicker.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/forms").Include(
+                "~/Assets/Scripts/lib/bootstrap-datepicker.js",
+                 "~/Assets/Scripts/forms.js"
+                ));
         }
     }
 }
