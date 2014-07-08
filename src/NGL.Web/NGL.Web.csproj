@@ -1446,9 +1446,9 @@
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
     <Compile Include="Models\Session\SessionIndexModel.cs" />
     <Compile Include="Models\Session\IndexModel.cs" />
-    <Compile Include="Models\Session\SessionToSessionIndexModelMapper.cs" />
+    <Compile Include="Models\Session\EntityToIndexModelMapper.cs" />
     <Compile Include="Models\Student\IndexModel.cs" />
-    <Compile Include="Models\Session\SessionCreateModelToSessionMapper.cs" />
+    <Compile Include="Models\Session\CreateModelToEntityMapper.cs" />
     <Compile Include="Models\Student\StudentToEnrollmentModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
