@@ -16,13 +16,13 @@ namespace NGL.Web.Controllers
     public partial class StudentController : Controller
     {
         private IGenericRepository _repository;
-        private readonly IMapper<Student, ProfileModel> _studentToDetailsModdelMapper;
+        private readonly IMapper<Student, ProfileModel> _studentToDetailsModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper)
         {
             _repository = repository;
-            _studentToDetailsModdelMapper = studentToDetailsModelMapper;
+            _studentToDetailsModelMapper = studentToDetailsModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
         }
 
@@ -52,7 +52,7 @@ namespace NGL.Web.Controllers
                 return HttpNotFound();
             }
             var profileModel = new ProfileModel();
-            _studentToDetailsModdelMapper.Map(student, profileModel);
+            _studentToDetailsModelMapper.Map(student, profileModel);
             return View(profileModel);
         }
 

@@ -10,7 +10,7 @@ namespace NGL.Web.Models.Student
     public class ProfileModel
     {
         public string FirstName { get; set; }
-        public string LastSurname { get; set; }
+        public string LastName { get; set; }
         public string Sex { get; set; }
 
         [DataType(DataType.Date)]

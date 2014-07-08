@@ -14,7 +14,7 @@ namespace NGL.Web.Models.Student
         public void Map(Data.Entities.Student source, ProfileModel target)
         {
             target.FirstName = source.FirstName;
-            target.LastSurname = source.LastSurname;
+            target.LastName = source.LastSurname;
             target.BirthDate = source.BirthDate;
             target.Race = ((OldEthnicityTypeEnum) source.OldEthnicityTypeId).Humanize();
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;

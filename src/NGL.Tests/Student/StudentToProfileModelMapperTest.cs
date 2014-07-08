@@ -31,7 +31,7 @@ namespace NGL.Tests.Student
             mapper.Map(student, studentDetailsModel);
 
             studentDetailsModel.FirstName.ShouldBe("Bob");
-            studentDetailsModel.LastSurname.ShouldBe("Jenkins");
+            studentDetailsModel.LastName.ShouldBe("Jenkins");
             studentDetailsModel.BirthDate.ShouldBe(new DateTime(2000, 2, 2));
             studentDetailsModel.Race.ShouldBe("Black, Not Of Hispanic Origin");
             studentDetailsModel.HispanicLatinoEthnicity.ShouldBe(true);
