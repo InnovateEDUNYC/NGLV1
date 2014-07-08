@@ -7,7 +7,7 @@ using NGL.Web.Models.StudentSectionAttendanceEvent;
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentModel
+    public class StudentModelForStudentSectionAttendanceEvent
     {
         public int StudentUSI { get; set; }
         public string PersonalTitlePrefix { get; set; }

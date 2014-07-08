@@ -1,14 +1,15 @@
-﻿using NGL.Web.Models.Student;
+﻿using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Student;
 using TestStack.Seleno.PageObjects;
 using By = OpenQA.Selenium.By;
 
 namespace NGL.UiTests.Pages
 {
-    class EnrollmentPage : Page<EnrollmentModel>
+    class EnrollmentPage : Page<CreateStudentModel>
     {
-        public StudentPage Enroll()
+        public StudentIndexPage Enroll()
         {
-            return Navigate.To<StudentPage>(By.ClassName("btn"));
+            return Navigate.To<StudentIndexPage>(By.ClassName("btn"));
         }
     }
 

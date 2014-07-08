@@ -70,23 +70,25 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Create = "Create";
+            public readonly string Index = "All";
+            public readonly string Details = "Index";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Create = "Create";
+            public const string Index = "All";
+            public const string Details = "Index";
         }
 
 
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Create
+        public class ActionParamsClass_Details
         {
-            public readonly string enrollmentModel = "enrollmentModel";
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -98,17 +100,15 @@ namespace NGL.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Create = "Create";
                 public readonly string Delete = "Delete";
-                public readonly string Details = "Details";
+                public readonly string Details = "Index";
                 public readonly string Edit = "Edit";
-                public readonly string Index = "Index";
+                public readonly string Index = "All";
             }
-            public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
-            public readonly string Details = "~/Views/Student/Details.cshtml";
+            public readonly string Details = "~/Views/Student/Index.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
-            public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string Index = "~/Views/Student/All.cshtml";
         }
     }
 
@@ -118,25 +118,25 @@ namespace NGL.Web.Controllers
         public T4MVC_StudentController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult All()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Student.EnrollmentModel enrollmentModel);
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Student.EnrollmentModel enrollmentModel)
+        public override System.Web.Mvc.ActionResult Index(int id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enrollmentModel", enrollmentModel);
-            CreateOverride(callInfo, enrollmentModel);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DetailsOverride(callInfo, id);
             return callInfo;
         }
 

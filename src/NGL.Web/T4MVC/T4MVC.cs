@@ -26,6 +26,8 @@ using T4MVC;
 public static partial class MVC
 {
     public static NGL.Web.Controllers.AccountController Account = new NGL.Web.Controllers.T4MVC_AccountController();
+    public static NGL.Web.Controllers.CourseController Course = new NGL.Web.Controllers.T4MVC_CourseController();
+    public static NGL.Web.Controllers.EnrollmentController Enrollment = new NGL.Web.Controllers.T4MVC_EnrollmentController();
     public static NGL.Web.Controllers.HomeController Home = new NGL.Web.Controllers.T4MVC_HomeController();
     public static NGL.Web.Controllers.SchoolController School = new NGL.Web.Controllers.T4MVC_SchoolController();
     public static NGL.Web.Controllers.SessionController Session = new NGL.Web.Controllers.T4MVC_SessionController();
@@ -67,24 +69,6 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
 
 namespace Links
 {
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public static class Scripts {
-        private const string URLPATH = "~/Scripts";
-        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        public static readonly string jquery_validate_unobtrusive_chameleon_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.chameleon.min.js") ? Url("jquery.validate.unobtrusive.chameleon.min.js") : Url("jquery.validate.unobtrusive.chameleon.js");
-        public static readonly string jquery_validate_unobtrusive_twitterbootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.twitterbootstrap.min.js") ? Url("jquery.validate.unobtrusive.twitterbootstrap.min.js") : Url("jquery.validate.unobtrusive.twitterbootstrap.js");
-    }
-
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public static class Content {
-        private const string URLPATH = "~/Content";
-        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
-        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        public static readonly string chameleonforms_twitterbootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/chameleonforms-twitterbootstrap.min.css") ? Url("chameleonforms-twitterbootstrap.min.css") : Url("chameleonforms-twitterbootstrap.css");
-             
-    }
-
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
     {

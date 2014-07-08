@@ -15,9 +15,9 @@ namespace NGL.UiTests.Pages
             return Navigate.To<LoginPage>(By.LinkText("Log in"));
         }
 
-        public StudentPage GoToStudentPage()
+        public StudentIndexPage GoToStudentPage()
         {
-            return Navigate.To<StudentPage>(By.LinkText("Students"));
+            return Navigate.To<StudentIndexPage>(By.LinkText("Students"));
         }
 
         public Page LogOff()

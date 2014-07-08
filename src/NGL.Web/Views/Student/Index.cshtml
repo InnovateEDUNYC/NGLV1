@@ -1,39 +1,58 @@
-﻿@model IEnumerable<NGL.Web.Models.Student.EnrollmentModel>
+﻿@model NGL.Web.Models.Student.ProfileModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Profile";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Enroll a Student", "Create")
-</p>
-<table class="table" id="student-table">
-    <tr>
-        <th>
+<div>
+    <h4>Student</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.LastName)
-        </th> 
-        <th>
-            @Html.DisplayNameFor(model => model.StudentUsi)
-        </th>
-    </tr>
+        </dt>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentUsi)
-        </td>
-    </tr>
-}
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            Sex
+        </dt>
 
-</table>
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.HispanicLatinoEthnicity)
+        </dd>
+
+        <dt>
+            Race
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Race)
+        </dd>
+    </dl>
+</div>

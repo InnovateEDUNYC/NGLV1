@@ -205,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
@@ -1430,16 +1431,19 @@
     </Compile>
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\IRepositoryBase.cs" />
+    <Compile Include="Data\Queries\StudentByUsiQuery.cs" />
     <Compile Include="Data\Repositories\ILookupRepository.cs" />
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
     <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
+    <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\IndexModel.cs" />
     <Compile Include="Models\Session\SessionModelToSessionMapper.cs" />
     <Compile Include="Models\Session\SessionToSessionModelMapper.cs" />
-    <Compile Include="Models\Student\StudentToEnrollmentModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1538,6 +1542,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC\CourseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC\EnrollmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1546,8 +1556,8 @@
     <Compile Include="Models\School\SchoolModelToEducationOrganizationMapper.cs" />
     <Compile Include="Models\School\EducationOrganizationToSchoolModelMapper.cs" />
     <Compile Include="Models\School\SchoolModel.cs" />
-    <Compile Include="Models\Student\EnrollmentModel.cs" />
-    <Compile Include="Models\Student\EnrollmentModelToStudentMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CourseModel.cs" />
@@ -1556,7 +1566,7 @@
     <Compile Include="Models\Session\SessionModel.cs" />
     <Compile Include="Models\Staff\StaffModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
-    <Compile Include="Models\Student\StudentModel.cs" />
+    <Compile Include="Models\StudentSectionAttendanceEvent\StudentModelForStudentSectionAttendanceEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC\SchoolController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -1684,11 +1694,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Enrollment\CreateStudent.cshtml" />
     <Content Include="Views\Student\Delete.cshtml" />
-    <Content Include="Views\Student\Details.cshtml" />
-    <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\All.cshtml" />
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />

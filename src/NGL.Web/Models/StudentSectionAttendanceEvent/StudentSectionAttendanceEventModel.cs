@@ -21,7 +21,7 @@ namespace NGL.Web.Models.StudentSectionAttendanceEvent
 
         public virtual AttendanceEventCategoryDescriptor AttendanceEventCategoryDescriptor { get; set; }
         public SectionModel Section { get; set; }
-        public StudentModel Student { get; set; }
+        public StudentModelForStudentSectionAttendanceEvent Student { get; set; }
 
     }
 }

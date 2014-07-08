@@ -23,10 +23,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace NGL.Web.Controllers
 {
-    public partial class SessionController
+    public partial class CourseController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected SessionController(Dummy d) { }
+        protected CourseController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -56,13 +56,13 @@ namespace NGL.Web.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public SessionController Actions { get { return MVC.Session; } }
+        public CourseController Actions { get { return MVC.Course; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Session";
+        public readonly string Name = "Course";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Session";
+        public const string NameConst = "Course";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,7 +88,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string sessionModel = "sessionModel";
+            public readonly string courseModel = "courseModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,15 +103,15 @@ namespace NGL.Web.Controllers
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Views/Session/Create.cshtml";
-            public readonly string Index = "~/Views/Session/Index.cshtml";
+            public readonly string Create = "~/Views/Course/Create.cshtml";
+            public readonly string Index = "~/Views/Course/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_SessionController : NGL.Web.Controllers.SessionController
+    public partial class T4MVC_CourseController : NGL.Web.Controllers.CourseController
     {
-        public T4MVC_SessionController() : base(Dummy.Instance) { }
+        public T4MVC_CourseController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -136,14 +136,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Session.SessionModel sessionModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Course.CourseModel courseModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Session.SessionModel sessionModel)
+        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Course.CourseModel courseModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionModel", sessionModel);
-            CreateOverride(callInfo, sessionModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "courseModel", courseModel);
+            CreateOverride(callInfo, courseModel);
             return callInfo;
         }
 

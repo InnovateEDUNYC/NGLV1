@@ -1,0 +1,39 @@
+﻿@model IEnumerable<NGL.Web.Models.Student.IndexModel>
+
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All</h2>
+
+<p>
+    @Html.ActionLink("Enroll a Student", "CreateStudent", "Enrollment")
+</p>
+<table class="table" id="student-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.StudentUsi)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentUsi)
+        </td>
+    </tr>
+}
+
+</table>

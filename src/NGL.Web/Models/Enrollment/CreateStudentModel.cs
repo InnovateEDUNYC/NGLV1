@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using NGL.Web.Data.Entities;
 
-namespace NGL.Web.Models.Student
+namespace NGL.Web.Models.Enrollment
 {
-    public class EnrollmentModel
+    public class CreateStudentModel
     {
         [Required]
         [Display(Name = "Student USI")]
