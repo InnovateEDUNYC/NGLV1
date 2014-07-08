@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
 using Shouldly;
@@ -13,29 +10,29 @@ namespace NGL.Tests.Student
     public class StudentToProfileModelMapperTest
     {
         [Fact]
-        public void shouldMap()
+        public void ShouldMap()
         {
-            NGL.Web.Data.Entities.Student student = new NGL.Web.Data.Entities.Student()
+            var student = new Web.Data.Entities.Student
             {
                 StudentUSI = 1789,
                 FirstName = "Bob",
                 LastSurname = "Jenkins",
                 BirthDate = new DateTime(2000, 2, 2),
-                OldEthnicityTypeId = 3,
+                OldEthnicityTypeId = (int?) OldEthnicityTypeEnum.BlackNotOfHispanicOrigin,
                 HispanicLatinoEthnicity = true,
-                SexTypeId = 2
+                SexTypeId = (int) SexTypeEnum.Male
             };
-            ProfileModel studentDetailsModel = new ProfileModel();
+            var studentDetailsModel = new ProfileModel();
 
-            StudentToProfileModelMapper mapper = new StudentToProfileModelMapper();
+            var mapper = new StudentToProfileModelMapper();
             mapper.Map(student, studentDetailsModel);
 
             studentDetailsModel.FirstName.ShouldBe("Bob");
             studentDetailsModel.LastName.ShouldBe("Jenkins");
             studentDetailsModel.BirthDate.ShouldBe(new DateTime(2000, 2, 2));
-            studentDetailsModel.Race.ShouldBe("Black, Not Of Hispanic Origin");
+            studentDetailsModel.Race.ShouldBe(OldEthnicityTypeEnum.BlackNotOfHispanicOrigin.Humanize());
             studentDetailsModel.HispanicLatinoEthnicity.ShouldBe(true);
-            studentDetailsModel.Sex.ShouldBe("Male");
+            studentDetailsModel.Sex.ShouldBe(SexTypeEnum.Male.Humanize());
         }
     }
 }

@@ -6,12 +6,12 @@ using NGL.Web.Models.Student;
 using Shouldly;
 using Xunit;
 
-namespace NGL.Tests.Student
+namespace NGL.Tests.Enrollment
 {
     public class CreateStudentModelToStudentMapperTest
     {
         private CreateStudentModelToStudentMapper _mapper;
-        private readonly NGL.Web.Data.Entities.Student _student = new NGL.Web.Data.Entities.Student();
+        private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
         readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
 
         [Fact]

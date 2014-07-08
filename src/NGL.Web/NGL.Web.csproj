@@ -399,11 +399,6 @@
     <Compile Include="Data\Entities\CompetencyObjective.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\ConfigurationAccessor1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfigurationAccessor.ttinclude</DependentUpon>
-    </Compile>
     <Compile Include="Data\Entities\ContentClassType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>

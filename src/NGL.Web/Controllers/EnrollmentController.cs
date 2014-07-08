@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -31,17 +26,15 @@ namespace NGL.Web.Controllers
         }
 
         // POST: /Enrollment/CreateStudent
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public virtual ActionResult CreateStudent(CreateStudentModel createStudentModel)
         {
             if (ModelState.IsValid)
             {
-                Student student = new Student();
+                var student = new Student();
 
                 _enrollmentMapper.Map(createStudentModel, student);
-                _repository.Add<Student>(student);
+                _repository.Add(student);
                 _repository.Save();
                 return RedirectToAction("All", "Student");
             }
