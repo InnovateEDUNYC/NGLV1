@@ -1598,7 +1598,6 @@
     <Content Include="Assets\Content\bootstrap-theme.css" />
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.css" />
-    <Content Include="Assets\Content\bootstrap.min.css" />
     <EmbeddedResource Include="Data\Scripts\001 - Schema - Create ODS.sql" />
     <EmbeddedResource Include="Data\Scripts\002 - Setup ASP.Net Identity.sql" />
     <Content Include="Assets\Content\chameleonforms-twitterbootstrap.css" />
@@ -1616,7 +1615,6 @@
     <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\Content\bootstrap-theme.css.map" />
-    <Content Include="Assets\Content\bootstrap.css.map" />
     <Compile Include="App_Start\Startup.Database.cs" />
     <EntityDeploy Include="Data\Entities\NglDbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
