@@ -1436,6 +1436,7 @@
     </Compile>
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\IRepositoryBase.cs" />
+    <Compile Include="Data\Queries\SessionByTermTypeAndSchoolYearQuery.cs" />
     <Compile Include="Data\Queries\StudentByUsiQuery.cs" />
     <Compile Include="Data\Repositories\ILookupRepository.cs" />
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
