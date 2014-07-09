@@ -1638,7 +1638,6 @@
       <LastGenOutput>Types.cs</LastGenOutput>
     </Content>
     <None Include="Data\Entities\ConfigurationAccessor.ttinclude">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ConfigurationAccessor1.cs</LastGenOutput>
     </None>
     <Content Include="Data\Entities\Descriptors.tt">

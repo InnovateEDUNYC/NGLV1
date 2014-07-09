@@ -1,5 +1,6 @@
 ﻿using System;
 using NGL.Web.Data.Entities;
+using NGL.Web.Models.Account;
 
 namespace NGL.UiTests
 {
@@ -9,6 +10,20 @@ namespace NGL.UiTests
         {
             public static string Username = "JohnSmith";
             public static string Password = "123123";
+
+            public static LoginViewModel ViewModel
+            {
+                get
+                {
+                    return
+
+                        new LoginViewModel
+                        {
+                            UserName = Username,
+                            Password = Password
+                        };
+                }
+            }
         }
 
         public static class Fall2014Semester

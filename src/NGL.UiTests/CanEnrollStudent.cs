@@ -1,6 +1,5 @@
 ﻿using NGL.UiTests.Pages;
 using NGL.Web.Data.Entities;
-using NGL.Web.Models.Account;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
 using Xunit;
@@ -9,52 +8,27 @@ namespace NGL.UiTests
 {
     public class CanEnrollStudent
     {
-        private CreateStudentModel _createStudentModel;
-
         [Fact]
         public void Verify()
         {
-            var homePage = Host.Instance.NavigateToInitialPage<HomePage>();
-            var loginPage = homePage.TopMenu.GoToLoginPage();
-
-            Login(loginPage);
-
-            homePage = loginPage.Login();
+            var homePage = Host.Instance.NavigateToInitialPage<HomePage>().Login(ObjectMother.JohnSmith.ViewModel);
             var studentPage = homePage.TopMenu.GoToStudentPage();
+            var createStudentModel = GetCreateStudentModel();
 
-            var parentEnrollmentInfoModel = InitializeParentEnrollmentModel();
+            studentPage = studentPage.GoToEnroll().Enroll(createStudentModel);
 
-            InitializeCreateStudentModel();
-
-            var enrollmentPage = studentPage.GoToEnroll();
-            enrollmentPage.Input.Model(_createStudentModel);
-            enrollmentPage.InputParentInfoModel(parentEnrollmentInfoModel);
-
-            studentPage = enrollmentPage.Enroll();
-
-            studentPage.LastUsiInTheList.ShouldBe(_createStudentModel.StudentUsi.ToString());
+            studentPage.LastUsiInTheList.ShouldBe(createStudentModel.StudentUsi.ToString());
 
             var usiStringOfStudent = studentPage.LastUsiInTheList;
-            
-            usiStringOfStudent.ShouldBe(_createStudentModel.StudentUsi.ToString());
+            usiStringOfStudent.ShouldBe(createStudentModel.StudentUsi.ToString());
 
         }
 
-        private void Login(LoginPage loginPage)
+        private CreateStudentModel GetCreateStudentModel()
         {
-            loginPage.Input.Model(
-                new LoginViewModel
-                {
-                    UserName = ObjectMother.JohnSmith.Username,
-                    Password = ObjectMother.JohnSmith.Password
-                });
-        }
-
-        private void InitializeCreateStudentModel()
-        {
-            _createStudentModel = new CreateStudentModel
+            return new CreateStudentModel
             {
-                StudentUsi = 20, //change every test run
+                StudentUsi = 21, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
@@ -66,10 +40,11 @@ namespace NGL.UiTests
                 PostalCode = "6000",
                 HispanicLatinoEthnicity = true,
                 LanguageDescriptorEnum = LanguageDescriptorEnum.English,
+                ParentEnrollmentInfoModel = GetParentEnrollmentModel()
             };
         }
 
-        private ParentEnrollmentInfoModel InitializeParentEnrollmentModel()
+        private ParentEnrollmentInfoModel GetParentEnrollmentModel()
         {
             var parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
             {

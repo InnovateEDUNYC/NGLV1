@@ -1,5 +1,8 @@
-﻿using NGL.Web;
+﻿using System;
+using System.IO;
+using NGL.Web;
 using TestStack.Seleno.Configuration;
+using TestStack.Seleno.Configuration.ControlIdGenerators;
 
 namespace NGL.UiTests
 {
@@ -18,8 +21,13 @@ namespace NGL.UiTests
 
         static Host()
         {
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SelenoScreenShots");
+
             _instance = new SelenoHost();
-            _instance.Run("NGL.Web", 12345, c => c.WithRouteConfig(RouteConfig.RegisterRoutes));
+            _instance.Run("NGL.Web", 12345, c => 
+                c.WithRouteConfig(RouteConfig.RegisterRoutes)
+                 .UsingControlIdGenerator(new MvcControlIdGenerator())
+                 .UsingCamera(filePath));
         }
     }
 }
