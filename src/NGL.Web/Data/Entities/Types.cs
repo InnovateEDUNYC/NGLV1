@@ -222,23 +222,23 @@ namespace NGL.Web.Data.Entities
 		Aunt = 1,                               
 		[Description("Brother")]
 		Brother = 2,                               
-		[Description("BrotherInLaw")]
+		[Description("Brother In Law")]
 		BrotherInLaw = 3,                               
-		[Description("CourtAppointedGuardian")]
+		[Description("Court Appointed Guardian")]
 		CourtAppointedGuardian = 4,                               
 		[Description("Daughter")]
 		Daughter = 5,                               
-		[Description("DaughterInLaw")]
+		[Description("Daughter In Law")]
 		DaughterInLaw = 6,                               
 		[Description("Employer")]
 		Employer = 7,                               
 		[Description("Father")]
 		Father = 8,                               
-		[Description("FathersSignificantOther")]
+		[Description("Fathers Significant Other")]
 		FathersSignificantOther = 9,                               
-		[Description("FathersCivilPartner")]
+		[Description("Fathers Civil Partner")]
 		FathersCivilPartner = 10,                               
-		[Description("FatherInLaw")]
+		[Description("Father In Law")]
 		FatherInLaw = 11,                               
 		[Description("Fiance")]
 		Fiance = 12,                               
@@ -252,11 +252,11 @@ namespace NGL.Web.Data.Entities
 		Grandmother = 16,                               
 		[Description("Husband")]
 		Husband = 17,                               
-		[Description("MothersSignificantOther")]
+		[Description("Mothers Significant Other")]
 		MothersSignificantOther = 18,                               
 		[Description("Mother")]
 		Mother = 19,                               
-		[Description("MothersCivilPartner")]
+		[Description("Mothers Civil Partner")]
 		MothersCivilPartner = 20,                               
 		[Description("Nephew")]
 		Nephew = 21,                               
@@ -264,7 +264,7 @@ namespace NGL.Web.Data.Entities
 		Niece = 22,                               
 		[Description("Other")]
 		Other = 23,                               
-		[Description("SignificantOther")]
+		[Description("Significant Other")]
 		SignificantOther = 24,                               
 		[Description("Sister")]
 		Sister = 25,                               
