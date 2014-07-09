@@ -35,6 +35,13 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer, Version=1.28.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Humanizer.1.28.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\packages\AutoFixture.3.19.1\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
     <Reference Include="Shouldly">
       <HintPath>..\packages\Shouldly.2.1.1\lib\net40\Shouldly.dll</HintPath>
     </Reference>
@@ -65,6 +72,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="TestStack.BDDfy">
+      <HintPath>..\packages\TestStack.BDDfy.4.0.0-beta1\lib\NET40\TestStack.BDDfy.dll</HintPath>
+    </Reference>
     <Reference Include="TestStack.Seleno, Version=0.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TestStack.Seleno.0.8.1.0\lib\NET40\TestStack.Seleno.dll</HintPath>
@@ -80,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CanCreateSession.cs" />
     <Compile Include="CanEnrollStudent.cs" />
     <Compile Include="CanUpdateSchoolInfo.cs" />
     <Compile Include="Host.cs" />
@@ -88,6 +99,8 @@
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\SchoolPage.cs" />
+    <Compile Include="Pages\SessionCreatePage.cs" />
+    <Compile Include="Pages\SessionIndexPage.cs" />
     <Compile Include="Pages\StudentIndexPage.cs" />
     <Compile Include="Pages\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

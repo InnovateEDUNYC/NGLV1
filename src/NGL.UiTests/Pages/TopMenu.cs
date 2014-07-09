@@ -20,6 +20,11 @@ namespace NGL.UiTests.Pages
             return Navigate.To<StudentIndexPage>(By.LinkText("Students"));
         }
 
+        public SessionIndexPage GoToSessionPage()
+        {
+            return Navigate.To<SessionIndexPage>(By.LinkText("Sessions"));
+        }
+
         public Page LogOff()
         {
             return Navigate.To<Page>(By.LinkText("Log off"));
