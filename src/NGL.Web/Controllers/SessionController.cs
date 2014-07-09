@@ -40,7 +40,8 @@ namespace NGL.Web.Controllers
         // GET: Session
         public virtual ActionResult Create()
         {
-            return View();
+
+            return View(new CreateModel());
         }
 
         [HttpPost]
@@ -61,13 +62,16 @@ namespace NGL.Web.Controllers
 
         private void CheckIfExists(CreateModel createModel)
         {
-            var existingSession = _genericRepository.Get(new SessionByTermTypeAndSchoolYearQuery(
-                (int) createModel.Term,
-                (short) createModel.SchoolYear));
-
-            if (existingSession != null)
+            if (createModel.Term != null && createModel.SchoolYear != null)
             {
-                PutModelErrors();
+                var existingSession = _genericRepository.Get(new SessionByTermTypeAndSchoolYearQuery(
+                    (int) createModel.Term,
+                    (short) createModel.SchoolYear));
+
+                if (existingSession != null)
+                {
+                    PutModelErrors();
+                }
             }
         }
 
