@@ -5,14 +5,32 @@ namespace NGL.Web.Models.Enrollment
 {
     public class CreateStudentModelToStudentMapper : IMapper<CreateStudentModel, Data.Entities.Student>
     {
+        private readonly IMapper<ParentEnrollmentInfoModel, Parent> _parentMapper;
         private const int HomeAddressTypeId = (int)AddressTypeEnum.Home;
         private const int HomeLanguageTypeId = (int)LanguageUseTypeEnum.Homelanguage;
+
+        public CreateStudentModelToStudentMapper(IMapper<ParentEnrollmentInfoModel, Parent> parentMapper)
+        {
+            _parentMapper = parentMapper;
+        }
 
         public void Map(CreateStudentModel source, Data.Entities.Student target)
         {
             SetStudentNativeProperties(source, target);
             SetStudentAddress(source, target);
             SetStudentLanguage(source, target);
+
+            var parent = new Parent();
+            var studentParentAssociation = new StudentParentAssociation
+            {
+                Parent = parent,
+                RelationTypeId = 2
+            };
+
+            _parentMapper.Map(source.ParentEnrollmentInfoModel, parent);
+
+            target.StudentParentAssociations.Add(studentParentAssociation);
+
         }
 
         private static void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)

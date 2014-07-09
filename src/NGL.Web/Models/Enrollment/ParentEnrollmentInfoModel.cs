@@ -9,12 +9,12 @@ namespace NGL.Web.Models.Enrollment
         [Display(Name = "Guardian First Name")]
         [Required]
         [StringLength(75)]
-        public String ParentFirstName { get; set; }
+        public String FirstName { get; set; }
 
         [Display(Name = "Guardian Last Name")]
         [Required]
         [StringLength(75)]
-        public String ParentLastName { get; set; }
+        public String LastName { get; set; }
 
 //        [Display(Name = "Relationship To Student")]
 //        [Required]

@@ -28,7 +28,7 @@ namespace NGL.UiTests
         {
             return new CreateStudentModel
             {
-                StudentUsi = 21, //change every test run
+                StudentUsi = 22, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
@@ -48,8 +48,8 @@ namespace NGL.UiTests
         {
             var parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
             {
-                ParentFirstName = "Michael",
-                ParentLastName = "Smith",
+                FirstName = "Michael",
+                LastName = "Smith",
                 SexTypeEnum = SexTypeEnum.Male
             };
             return parentEnrollmentInfoModel;
