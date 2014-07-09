@@ -62,7 +62,7 @@ namespace NGL.Web.Controllers
 
         private void CheckIfExists(CreateModel createModel)
         {
-            if (createModel.Term != null && createModel.SchoolYear != null)
+            if (createModel.Term != null)
             {
                 var existingSession = _genericRepository.Get(new SessionByTermTypeAndSchoolYearQuery(
                     (int) createModel.Term,
