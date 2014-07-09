@@ -1,20 +1,12 @@
-﻿using NGL.Web.Data.Repositories;
+﻿using NGL.Web.Models;
 
 namespace NGL.Web.Models.Course
 {
-    public class CourseModelToCourseMapper : MapperBase<CourseModel, Data.Entities.Course>
+    public class CourseToCreateModelMapper : MapperBase<Data.Entities.Course, CreateModel>
     {
-        private readonly ISchoolRepository _schoolRepository;
 
-        public CourseModelToCourseMapper(ISchoolRepository schoolRepository)
+        public override void Map(Data.Entities.Course source, CreateModel target)
         {
-            _schoolRepository = schoolRepository;
-        }
-
-        public override void Map(CourseModel source, Data.Entities.Course target)
-        {
-            target.EducationOrganizationId = _schoolRepository.GetSchool()
-                .EducationOrganization.EducationOrganizationId;
             target.CourseCode = source.CourseCode;
             target.CourseTitle = source.CourseTitle;
             target.NumberOfParts = source.NumberOfParts;

@@ -4,7 +4,7 @@ using NGL.Web.Models.CourseOffering;
 
 namespace NGL.Web.Models.Course
 {
-    public class CourseModel
+    public class CreateModel
     {
         public string CourseCode { get; set; }
         public string CourseTitle { get; set; }

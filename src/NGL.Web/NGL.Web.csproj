@@ -1450,6 +1450,8 @@
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
+    <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
+    <Compile Include="Models\Course\CourseToCreateModelMapper.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModel.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToParentMapper.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToStudentParentAssociationMapper.cs" />
@@ -1580,7 +1582,7 @@
     <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
-    <Compile Include="Models\Course\CourseModel.cs" />
+    <Compile Include="Models\Course\CreateModel.cs" />
     <Compile Include="Models\Location\LocationModel.cs" />
     <Compile Include="Models\Section\SectionModel.cs" />
     <Compile Include="Models\Session\CreateModel.cs" />

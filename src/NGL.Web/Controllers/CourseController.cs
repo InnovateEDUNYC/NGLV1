@@ -11,16 +11,16 @@ namespace NGL.Web.Controllers
     public partial class CourseController : Controller
     {
         private readonly IGenericRepository _genericRepository;
-        private readonly IMapper<Course, CourseModel> _courseToCourseModelMapper;
-        private readonly IMapper<CourseModel, Course> _courseModelToCourseMapper;
+        private readonly IMapper<Course, CreateModel> _courseToCreateModelMapper;
+        private readonly IMapper<CreateModel, Course> _createModelToCourseMapper;
 
         public CourseController(IGenericRepository genericRepository, 
-            IMapper<Course, CourseModel> courseToCourseModelMapper, 
-            IMapper<CourseModel, Course> courseModelToCourseMapper)
+            IMapper<Course, CreateModel> courseToCreateModelMapper, 
+            IMapper<CreateModel, Course> createModelToCourseMapper)
         {
             _genericRepository = genericRepository;
-            _courseToCourseModelMapper = courseToCourseModelMapper;
-            _courseModelToCourseMapper = courseModelToCourseMapper;
+            _courseToCreateModelMapper = courseToCreateModelMapper;
+            _createModelToCourseMapper = createModelToCourseMapper;
         }
 
 
@@ -29,12 +29,12 @@ namespace NGL.Web.Controllers
         {
 
             IEnumerable<Course> courses = _genericRepository.GetAll<Course>();
-            var courseModels = new List<CourseModel>();
+            var courseModels = new List<CreateModel>();
 
             foreach (var course in courses)
             {
-                var courseModel = new CourseModel();
-                _courseToCourseModelMapper.Map(course, courseModel);
+                var courseModel = new CreateModel();
+                _courseToCreateModelMapper.Map(course, courseModel);
                 courseModels.Add(courseModel);
             }
 
@@ -49,18 +49,18 @@ namespace NGL.Web.Controllers
 
         //POST: /Course/Create
         [HttpPost]
-        public virtual ActionResult Create(CourseModel courseModel)
+        public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
-                return View(courseModel);
+                return View(createModel);
 
             var course = new Course();
-            _courseModelToCourseMapper.Map(courseModel, course);
+            _createModelToCourseMapper.Map(createModel, course);
 
             _genericRepository.Add(course);
             _genericRepository.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction(Actions.Index());
         }
     }
 }
