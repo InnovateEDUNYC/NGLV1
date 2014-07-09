@@ -50,7 +50,6 @@ namespace NGL.UiTests
             {
                 ParentFirstName = "Michael",
                 ParentLastName = "Smith",
-                ParentUsi = 3,//change every test run
                 SexTypeEnum = SexTypeEnum.Male
             };
             return parentEnrollmentInfoModel;

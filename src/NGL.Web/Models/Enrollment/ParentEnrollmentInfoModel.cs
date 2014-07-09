@@ -6,10 +6,6 @@ namespace NGL.Web.Models.Enrollment
 {
     public class ParentEnrollmentInfoModel
     {
-        [Display(Name = "Parent USI")]
-        [Required]
-        public int? ParentUsi { get; set; }
-
         [Display(Name = "Guardian First Name")]
         [Required]
         [StringLength(75)]
