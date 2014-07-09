@@ -517,9 +517,6 @@ CREATE UNIQUE INDEX IX_DisciplineActionStaffIdentity on [edfi].[DisciplineAction
 ALTER TABLE [edfi].[StudentDisciplineIncidentAssociation] ADD StudentDisciplineIncidentAssociationIdentity int IDENTITY(1,1) NOT NULL
 CREATE UNIQUE INDEX IX_StudentDisciplineIncidentAssociationIdentity on [edfi].[StudentDisciplineIncidentAssociation] (StudentDisciplineIncidentAssociationIdentity)
 
-ALTER TABLE [edfi].[Parent] ADD ParentIdentity int IDENTITY(1,1) NOT NULL
-CREATE UNIQUE INDEX IX_ParentIdentity on [edfi].[Parent] (ParentIdentity)
-
 ALTER TABLE [edfi].[InterventionDiagnosis] ADD InterventionDiagnosisIdentity int IDENTITY(1,1) NOT NULL
 CREATE UNIQUE INDEX IX_InterventionDiagnosisIdentity on [edfi].[InterventionDiagnosis] (InterventionDiagnosisIdentity)
 

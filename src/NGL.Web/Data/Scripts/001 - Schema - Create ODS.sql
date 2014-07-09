@@ -8321,7 +8321,7 @@ SET QUOTED_IDENTIFIER ON
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[edfi].[Parent]') AND type in (N'U'))
 BEGIN
 CREATE TABLE [edfi].[Parent](
-	[ParentUSI] [int] NOT NULL,
+	[ParentUSI] [int] NOT NULL IDENTITY(1, 1),
 	[PersonalTitlePrefix] [nvarchar](75) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 	[FirstName] [nvarchar](75) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	[MiddleName] [nvarchar](75) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,

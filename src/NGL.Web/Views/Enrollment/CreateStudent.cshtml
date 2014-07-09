@@ -22,13 +22,27 @@
         @s.FieldFor(m => m.StateAbbreviationTypeEnum)
         @s.FieldFor(m => m.PostalCode)
         @s.FieldFor(m => m.LanguageDescriptorEnum)
+    
+        <h3>Parent Information</h3>
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.ParentUsi)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.ParentFirstName)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.ParentLastName)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.SexTypeEnum)
+@*        @s.FieldFor(m => m.ParentEnrollmentInfoModel.RelationshipToStudent)*@
+@*        @s.FieldFor(m => m.ParentEnrollmentInfoModel.ParentPhoneNumber)*@
+@*        @s.FieldFor(m => m.ParentEnrollmentInfoModel.ParentEmailAddress) *@
+@*        @s.FieldFor(m => m.ParentEnrollmentInfoModel.IsPrimaryContact) *@
+        
     }
+    
+@*    <h3>Other} Contact</h3>*@
+@*    @Html.Partial("_ParentEnrollentInfo")*@
+    
     using (var n = f.BeginNavigation())
     {
         @n.Submit("CreateStudent")
     }
 }
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

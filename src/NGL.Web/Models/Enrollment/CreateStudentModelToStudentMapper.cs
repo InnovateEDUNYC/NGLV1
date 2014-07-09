@@ -1,8 +1,7 @@
 ﻿using System;
 using NGL.Web.Data.Entities;
-using NGL.Web.Models.Enrollment;
 
-namespace NGL.Web.Models.Student
+namespace NGL.Web.Models.Enrollment
 {
     public class CreateStudentModelToStudentMapper : IMapper<CreateStudentModel, Data.Entities.Student>
     {
