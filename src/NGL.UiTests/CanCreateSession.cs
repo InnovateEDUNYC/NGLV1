@@ -22,17 +22,9 @@ namespace NGL.UiTests
 
         public void GivenIHaveLoggedIn()
         {
-            _homePage = Host.Instance.NavigateToInitialPage<HomePage>();
-            var loginPage = _homePage.TopMenu.GoToLoginPage();
-
-            loginPage.Input.Model(
-                new LoginViewModel
-                {
-                    UserName = ObjectMother.JohnSmith.Username,
-                    Password = ObjectMother.JohnSmith.Password
-                });
-
-            _homePage = loginPage.Login();
+            _homePage = Host.Instance
+                .NavigateToInitialPage<HomePage>()
+                .Login(ObjectMother.JohnSmith.ViewModel);
         }
 
         public void AndGivenIAmOnTheCreateSessionPage()

@@ -14,17 +14,10 @@ namespace NGL.UiTests
         [Fact]
         public void Verify()
         {
-            var homePage = Host.Instance.NavigateToInitialPage<HomePage>();
-            var loginPage = homePage.TopMenu.GoToLoginPage();
-
-            loginPage.Input.Model(
-                    new LoginViewModel
-                    {
-                        UserName = ObjectMother.JohnSmith.Username,
-                        Password = ObjectMother.JohnSmith.Password
-                    });
-
-            homePage = loginPage.Login();
+            var homePage = Host.Instance
+                .NavigateToInitialPage<HomePage>()
+                .Login(ObjectMother.JohnSmith.ViewModel);
+        
             var schoolPage = homePage.TopMenu.GoToSchoolPage();
 
             var salt = Guid.NewGuid();
