@@ -3314,7 +3314,7 @@
           <Key>
             <PropertyRef Name="ParentUSI" />
           </Key>
-          <Property Name="ParentUSI" Type="int" Nullable="false" />
+          <Property Name="ParentUSI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonalTitlePrefix" Type="nvarchar" MaxLength="75" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="75" Nullable="false" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="75" />
@@ -3326,7 +3326,6 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="ParentIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="ParentAddress">
           <Key>
@@ -23141,7 +23140,7 @@
           <Key>
             <PropertyRef Name="ParentUSI" />
           </Key>
-          <Property Name="ParentUSI" Type="Int32" Nullable="false" />
+          <Property Name="ParentUSI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonalTitlePrefix" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MiddleName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
@@ -23161,7 +23160,6 @@
           <NavigationProperty Name="ParentOtherNames" Relationship="Self.FK_ParentOtherName_Parent_ParentUSI" FromRole="Parent" ToRole="ParentOtherName" />
           <NavigationProperty Name="ParentTelephones" Relationship="Self.FK_ParentTelephone_Parent_ParentUSI" FromRole="Parent" ToRole="ParentTelephone" />
           <NavigationProperty Name="StudentParentAssociations" Relationship="Self.FK_StudentParentAssociation_Parent_ParentUSI" FromRole="Parent" ToRole="StudentParentAssociation" />
-          <Property Name="ParentIdentity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="ParentAddress">
           <Key>
@@ -42660,7 +42658,6 @@
           <EntitySetMapping Name="Parents">
             <EntityTypeMapping TypeName="Entities.Parent">
               <MappingFragment StoreEntitySet="Parent">
-                <ScalarProperty Name="ParentIdentity" ColumnName="ParentIdentity" />
                 <ScalarProperty Name="ParentUSI" ColumnName="ParentUSI" />
                 <ScalarProperty Name="PersonalTitlePrefix" ColumnName="PersonalTitlePrefix" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
