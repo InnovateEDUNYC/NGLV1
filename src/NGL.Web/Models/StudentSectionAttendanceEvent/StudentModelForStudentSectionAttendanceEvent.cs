@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using NGL.Web.Data.Entities;
-using NGL.Web.Models.StudentSectionAttendanceEvent;
 
-namespace NGL.Web.Models.Student
+namespace NGL.Web.Models.StudentSectionAttendanceEvent
 {
     public class StudentModelForStudentSectionAttendanceEvent
     {

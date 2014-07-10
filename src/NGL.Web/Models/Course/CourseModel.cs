@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NGL.Web.Data.Entities;
 using NGL.Web.Models.CourseOffering;
 
 namespace NGL.Web.Models.Course

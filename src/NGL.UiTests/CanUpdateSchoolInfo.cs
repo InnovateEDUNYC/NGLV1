@@ -1,6 +1,5 @@
 ﻿using System;
 using NGL.UiTests.Pages;
-using NGL.Web.Models.Account;
 using NGL.Web.Models.School;
 using Shouldly;
 using Xunit;

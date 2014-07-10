@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
+using NGL.Web.Models.Enrollment;
 using Shouldly;
 using Xunit;
 
-namespace NGL.Web.Models.Enrollment
+namespace NGL.Tests.Enrollment
 {
     public class ParentEnrollmentInfoModelToParentMapperTest
     {
         [Fact]
-        public void shouldMap()
+        public void ShouldMap()
         {
             var mapper = new ParentEnrollmentInfoModelToParentMapper();
             var parentEnrollmentInfoModel = new ParentEnrollmentInfoModel

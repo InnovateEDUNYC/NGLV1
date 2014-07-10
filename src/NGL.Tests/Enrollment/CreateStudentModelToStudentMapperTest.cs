@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Student;
-using NSubstitute;
 using Shouldly;
 using Xunit;
 

@@ -13,7 +13,7 @@ namespace NGL.UiTests.Pages
             return Navigate.To<SessionCreatePage>(By.LinkText("Create New Session"));
         }
 
-        public bool sessionExists(CreateModel createModel)
+        public bool SessionExists(CreateModel createModel)
         {
             var termExists = Find.Element(By.CssSelector("tr:nth-child(2) td.term")).Text.Equals(createModel.Term.Humanize());
             var yearExists =
