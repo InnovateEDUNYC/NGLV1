@@ -80,11 +80,6 @@ namespace NGL.Web.App_Start
                     .SelectAllTypes()
                     .InheritedFrom(typeof (IMapper<,>))
                     .BindDefaultInterfaces());
-            kernel.Bind(
-                x => x.FromThisAssembly()
-                    .SelectAllTypes()
-                    .InheritedFrom(typeof(IBuilder<,>))
-                    .BindDefaultInterfaces());
         }
     }
 }

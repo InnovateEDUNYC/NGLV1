@@ -64,7 +64,10 @@ namespace NGL.Tests.Enrollment
 
         private void SetUp()
         {
-            _mapper = new CreateStudentModelToStudentMapper(new StudentHomeAddressBuilder(), new StudentHomeLanguageBuilder(), new StudentParentAssociationBuilder(new ParentEnrollmentInfoModelToStudentParentAssociationMapper(), new ParentEnrollmentInfoModelToParentMapper()));
+            _mapper = new CreateStudentModelToStudentMapper(
+                new StudentHomeAddressMapper(), 
+                new StudentHomeLanguageMapper(),
+                new ParentEnrollmentInfoModelToStudentParentAssociationMapper(new ParentEnrollmentInfoModelToParentMapper()));
 
             _createStudentModel.StudentUsi = 10001;
             _createStudentModel.FirstName = "John";

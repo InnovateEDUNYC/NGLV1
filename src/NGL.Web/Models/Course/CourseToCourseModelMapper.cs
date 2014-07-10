@@ -1,9 +1,9 @@
 ﻿namespace NGL.Web.Models.Course
 {
-    public class CourseToCourseModelMapper : IMapper<Data.Entities.Course, CourseModel>
+    public class CourseToCourseModelMapper : MapperBase<Data.Entities.Course, CourseModel>
     {
 
-        public void Map(Data.Entities.Course source, CourseModel target)
+        public override void Map(Data.Entities.Course source, CourseModel target)
         {
             target.CourseCode = source.CourseCode;
             target.CourseTitle = source.CourseTitle;
@@ -22,7 +22,6 @@
             target.MaximumAvailableCredit = source.MaximumAvailableCredit;
             target.CareerPathwayTypeId = source.CareerPathwayTypeId;
             target.TimeRequiredForCompletion = source.TimeRequiredForCompletion;
-
         }
     }
 }

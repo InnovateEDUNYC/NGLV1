@@ -3,9 +3,9 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentToProfileModelMapper : IMapper<Data.Entities.Student, ProfileModel>
+    public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
-        public void Map(Data.Entities.Student source, ProfileModel target)
+        public override void Map(Data.Entities.Student source, ProfileModel target)
         {
             target.FirstName = source.FirstName;
             target.LastName = source.LastSurname;

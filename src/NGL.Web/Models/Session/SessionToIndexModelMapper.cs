@@ -3,10 +3,9 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Session
 {
-    public class SessionToIndexModelMapper :
-         IMapper<Data.Entities.Session, IndexModel>
+    public class SessionToIndexModelMapper : MapperBase<Data.Entities.Session, IndexModel>
     {
-        public void Map(Data.Entities.Session source, IndexModel target)
+        public override void Map(Data.Entities.Session source, IndexModel target)
         {
             target.Term = ((TermTypeEnum)source.TermTypeId).Humanize();
             target.SchoolYear = ((SchoolYearTypeEnum)source.SchoolYear).Humanize();

@@ -3,30 +3,33 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class CreateStudentModelToStudentMapper : IMapper<CreateStudentModel, Data.Entities.Student>
+    public class CreateStudentModelToStudentMapper : MapperBase<CreateStudentModel, Data.Entities.Student>
     {
-        private readonly IBuilder<CreateStudentModel, StudentAddress> _studentAddressBuilder;
-        private readonly IBuilder<CreateStudentModel, StudentLanguage> _studentLanguageBuilder;
-        private readonly IBuilder<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationBuilder;
+        private readonly IMapper<CreateStudentModel, StudentAddress> _studentAddressMapper;
+        private readonly IMapper<CreateStudentModel, StudentLanguage> _studentLanguageMapper;
+        private readonly IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationMapper;
 
-        public CreateStudentModelToStudentMapper(IBuilder<CreateStudentModel, StudentAddress> studentAddressBuilder, IBuilder<CreateStudentModel, StudentLanguage> studentLanguageBuilder, IBuilder<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationBuilder)
+        public CreateStudentModelToStudentMapper(
+            IMapper<CreateStudentModel, StudentAddress> studentAddressMapper, 
+            IMapper<CreateStudentModel, StudentLanguage> studentLanguageMapper, 
+            IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationMapper)
         {
-            _studentAddressBuilder = studentAddressBuilder;
-            _studentLanguageBuilder = studentLanguageBuilder;
-            _studentParentAssociationBuilder = studentParentAssociationBuilder;
+            _studentAddressMapper = studentAddressMapper;
+            _studentLanguageMapper = studentLanguageMapper;
+            _studentParentAssociationMapper = studentParentAssociationMapper;
         }
 
-        public void Map(CreateStudentModel source, Data.Entities.Student target)
+        public override void Map(CreateStudentModel source, Data.Entities.Student target)
         {
             SetStudentNativeProperties(source, target);
 
-            var studentAddress = _studentAddressBuilder.Build(source);
+            var studentAddress = _studentAddressMapper.Build(source);
             target.StudentAddresses.Add(studentAddress);
 
-            var studentLanguage = _studentLanguageBuilder.Build(source);
+            var studentLanguage = _studentLanguageMapper.Build(source);
             target.StudentLanguages.Add(studentLanguage);
 
-            var studentParentAssociation = _studentParentAssociationBuilder.Build(source.ParentEnrollmentInfoModel);
+            var studentParentAssociation = _studentParentAssociationMapper.Build(source.ParentEnrollmentInfoModel);
             target.StudentParentAssociations.Add(studentParentAssociation);
         }
 
@@ -40,8 +43,5 @@ namespace NGL.Web.Models.Enrollment
             if (source.BirthDate != null) target.BirthDate = (DateTime) source.BirthDate;
             target.OldEthnicityTypeId = (int?) source.OldEthnicityTypeEnum.GetValueOrDefault();
         }
-
-
-
     }
 }
