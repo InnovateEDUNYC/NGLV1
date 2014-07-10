@@ -1447,6 +1447,7 @@
     <Compile Include="Models\Enrollment\StudentHomeAddressBuilder.cs" />
     <Compile Include="Models\Enrollment\StudentLanguageBuilder.cs" />
     <Compile Include="Models\Enrollment\StudentParentAssociationBuilder.cs" />
+    <Compile Include="Models\IBuilder.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />

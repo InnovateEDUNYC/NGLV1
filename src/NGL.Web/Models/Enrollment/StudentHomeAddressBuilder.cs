@@ -6,7 +6,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class StudentHomeAddressBuilder
+    public class StudentHomeAddressBuilder : IBuilder<CreateStudentModel, StudentAddress>
     {
         private const int HomeAddressTypeId = (int) AddressTypeEnum.Home;
 

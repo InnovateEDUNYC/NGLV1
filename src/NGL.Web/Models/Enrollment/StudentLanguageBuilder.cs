@@ -6,7 +6,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class StudentHomeLanguageBuilder
+    public class StudentHomeLanguageBuilder : IBuilder<CreateStudentModel, StudentLanguage>
     {
         private const int HomeLanguageTypeId = (int)LanguageUseTypeEnum.Homelanguage;
         public StudentLanguage Build(CreateStudentModel source)

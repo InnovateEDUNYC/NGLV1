@@ -2,12 +2,12 @@
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class StudentParentAssociationBuilder
+    public class StudentParentAssociationBuilder : IBuilder<ParentEnrollmentInfoModel, StudentParentAssociation>
     {
         private readonly IMapper<ParentEnrollmentInfoModel, Parent> _parentMapper;
         private readonly IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationMapper;
 
-        public StudentParentAssociationBuilder(IMapper<ParentEnrollmentInfoModel,StudentParentAssociation> studentParentAssociationMapper, IMapper<ParentEnrollmentInfoModel, Parent> parentMapper)
+        public StudentParentAssociationBuilder(IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationMapper, IMapper<ParentEnrollmentInfoModel, Parent> parentMapper) 
         {
             _studentParentAssociationMapper = studentParentAssociationMapper;
             _parentMapper = parentMapper;

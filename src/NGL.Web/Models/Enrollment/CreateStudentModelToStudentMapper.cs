@@ -5,28 +5,28 @@ namespace NGL.Web.Models.Enrollment
 {
     public class CreateStudentModelToStudentMapper : IMapper<CreateStudentModel, Data.Entities.Student>
     {
-        private readonly IMapper<ParentEnrollmentInfoModel, Parent> _parentMapper;
-        private readonly IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationMapper;
+        private readonly IBuilder<CreateStudentModel, StudentAddress> _studentAddressBuilder;
+        private readonly IBuilder<CreateStudentModel, StudentLanguage> _studentLanguageBuilder;
+        private readonly IBuilder<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationBuilder;
 
-        public CreateStudentModelToStudentMapper(IMapper<ParentEnrollmentInfoModel, Parent> parentMapper, IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationMapper)
+        public CreateStudentModelToStudentMapper(IBuilder<CreateStudentModel, StudentAddress> studentAddressBuilder, IBuilder<CreateStudentModel, StudentLanguage> studentLanguageBuilder, IBuilder<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationBuilder)
         {
-            _parentMapper = parentMapper;
-            _studentParentAssociationMapper = studentParentAssociationMapper;
+            _studentAddressBuilder = studentAddressBuilder;
+            _studentLanguageBuilder = studentLanguageBuilder;
+            _studentParentAssociationBuilder = studentParentAssociationBuilder;
         }
 
         public void Map(CreateStudentModel source, Data.Entities.Student target)
         {
             SetStudentNativeProperties(source, target);
 
-            var studentAddress = new StudentHomeAddressBuilder().Build(source);
+            var studentAddress = _studentAddressBuilder.Build(source);
             target.StudentAddresses.Add(studentAddress);
 
-            var studentLanguage = new StudentHomeLanguageBuilder().Build(source);
+            var studentLanguage = _studentLanguageBuilder.Build(source);
             target.StudentLanguages.Add(studentLanguage);
 
-            var studentParentAssociationBuilder = new StudentParentAssociationBuilder(_studentParentAssociationMapper, _parentMapper);
-            var studentParentAssociation = studentParentAssociationBuilder.Build(source.ParentEnrollmentInfoModel);
-
+            var studentParentAssociation = _studentParentAssociationBuilder.Build(source.ParentEnrollmentInfoModel);
             target.StudentParentAssociations.Add(studentParentAssociation);
         }
 
