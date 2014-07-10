@@ -30,6 +30,10 @@ namespace NGL.Web.Models.Enrollment
 
             _parentMapper.Map(source.ParentEnrollmentInfoModel, parent);
 
+            
+
+
+
             target.StudentParentAssociations.Add(studentParentAssociation);
 
         }

@@ -28,8 +28,7 @@ namespace NGL.UiTests
         {
             return new CreateStudentModel
             {
-
-                StudentUsi = 1232436, //change every test run
+                StudentUsi = 1232437, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
                 SexTypeEnum = SexTypeEnum.Male,
@@ -53,7 +52,8 @@ namespace NGL.UiTests
                 LastName = "Smith",
                 SexTypeEnum = SexTypeEnum.Male,
                 RelationshipToStudent = RelationTypeEnum.MothersCivilPartner,
-                IsPrimaryContact = true
+                IsPrimaryContact = true,
+                TelephoneNumber = "123-4567"
             };
             return parentEnrollmentInfoModel;
         }
