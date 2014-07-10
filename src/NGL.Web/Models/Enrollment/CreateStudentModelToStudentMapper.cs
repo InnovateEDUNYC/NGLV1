@@ -6,36 +6,28 @@ namespace NGL.Web.Models.Enrollment
     public class CreateStudentModelToStudentMapper : IMapper<CreateStudentModel, Data.Entities.Student>
     {
         private readonly IMapper<ParentEnrollmentInfoModel, Parent> _parentMapper;
-        private const int HomeAddressTypeId = (int)AddressTypeEnum.Home;
-        private const int HomeLanguageTypeId = (int)LanguageUseTypeEnum.Homelanguage;
+        private readonly IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationMapper;
 
-        public CreateStudentModelToStudentMapper(IMapper<ParentEnrollmentInfoModel, Parent> parentMapper)
+        public CreateStudentModelToStudentMapper(IMapper<ParentEnrollmentInfoModel, Parent> parentMapper, IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationMapper)
         {
             _parentMapper = parentMapper;
+            _studentParentAssociationMapper = studentParentAssociationMapper;
         }
 
         public void Map(CreateStudentModel source, Data.Entities.Student target)
         {
             SetStudentNativeProperties(source, target);
-            SetStudentAddress(source, target);
-            SetStudentLanguage(source, target);
 
-            var parent = new Parent();
-            var studentParentAssociation = new StudentParentAssociation
-            {
-                Parent = parent,
-                RelationTypeId = (int) source.ParentEnrollmentInfoModel.RelationshipToStudent.GetValueOrDefault(),
-                PrimaryContactStatus = source.ParentEnrollmentInfoModel.IsPrimaryContact
-            };
+            var studentAddress = new StudentHomeAddressBuilder().Build(source);
+            target.StudentAddresses.Add(studentAddress);
 
-            _parentMapper.Map(source.ParentEnrollmentInfoModel, parent);
+            var studentLanguage = new StudentHomeLanguageBuilder().Build(source);
+            target.StudentLanguages.Add(studentLanguage);
 
-            
-
-
+            var studentParentAssociationBuilder = new StudentParentAssociationBuilder(_studentParentAssociationMapper, _parentMapper);
+            var studentParentAssociation = studentParentAssociationBuilder.Build(source.ParentEnrollmentInfoModel);
 
             target.StudentParentAssociations.Add(studentParentAssociation);
-
         }
 
         private static void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)
@@ -49,37 +41,7 @@ namespace NGL.Web.Models.Enrollment
             target.OldEthnicityTypeId = (int?) source.OldEthnicityTypeEnum.GetValueOrDefault();
         }
 
-        private void SetStudentLanguage(CreateStudentModel source, Data.Entities.Student target)
-        {
 
-            var languageDescriptor = source.LanguageDescriptorEnum.GetValueOrDefault();
 
-            var studentLanguage = new StudentLanguage
-            {
-                LanguageDescriptorId = (int) languageDescriptor
-            };
-
-            studentLanguage.StudentLanguageUses.Add(new StudentLanguageUse
-            {
-                LanguageDescriptorId = (int) languageDescriptor,
-                LanguageUseTypeId = HomeLanguageTypeId
-            });
-
-            target.StudentLanguages.Add(studentLanguage);
-        }
-
-        private static void SetStudentAddress(CreateStudentModel source, Data.Entities.Student target)
-        {
-            
-            target.StudentAddresses.Add(new StudentAddress
-            {
-                AddressTypeId = HomeAddressTypeId,
-                StreetNumberName = source.StreetNumberName,
-                ApartmentRoomSuiteNumber = source.ApartmentRoomSuiteNumber,
-                City = source.City,
-                PostalCode = source.PostalCode,
-                StateAbbreviationTypeId = (int) source.StateAbbreviationTypeEnum.GetValueOrDefault()
-            });
-        }
     }
 }

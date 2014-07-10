@@ -4,6 +4,7 @@ using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
 using Xunit;
+using Xunit.Sdk;
 
 namespace NGL.Tests.Enrollment
 {
@@ -44,6 +45,7 @@ namespace NGL.Tests.Enrollment
             var studentParentAssociation = _student.StudentParentAssociations.First();
             studentParentAssociation.RelationTypeId.ShouldBe((int)RelationTypeEnum.Grandmother);
             studentParentAssociation.PrimaryContactStatus.ShouldBe(true);
+            studentParentAssociation.LivesWith.ShouldBe(false);
 
             var parent = studentParentAssociation.Parent;
 
@@ -62,7 +64,7 @@ namespace NGL.Tests.Enrollment
 
         private void SetUp()
         {
-            _mapper = new CreateStudentModelToStudentMapper(new ParentEnrollmentInfoModelToParentMapper());
+            _mapper = new CreateStudentModelToStudentMapper(new ParentEnrollmentInfoModelToParentMapper(), new ParentEnrollmentInfoModelToStudentParentAssociationMapper());
 
             _createStudentModel.StudentUsi = 10001;
             _createStudentModel.FirstName = "John";
@@ -86,7 +88,8 @@ namespace NGL.Tests.Enrollment
                 SexTypeEnum = SexTypeEnum.Female,
                 IsPrimaryContact = true,
                 TelephoneNumber = "555-0221",
-                EmailAddress = "Jenny@grandma.com" 
+                EmailAddress = "Jenny@grandma.com",
+                SameAddressAsStudent = false
             };
 
             _createStudentModel.ParentEnrollmentInfoModel = _parentEnrollmentInfoModel;
