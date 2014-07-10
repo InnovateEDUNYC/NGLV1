@@ -5,19 +5,9 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGL.Web", "NGL.Web\NGL.Web.csproj", "{F035A15E-9F41-4907-A370-B8F2EB8C4010}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{859E2C34-FE10-4E94-863A-FC8E8245D14C}"
-	ProjectSection(SolutionItems) = preProject
-		PublishScripts\AzureWebAppPublishModule.psm1 = PublishScripts\AzureWebAppPublishModule.psm1
-		PublishScripts\Publish-WebApplication.ps1 = PublishScripts\Publish-WebApplication.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{A58760CF-D004-42D6-BF58-74C7ED63DF86}"
-	ProjectSection(SolutionItems) = preProject
-		PublishScripts\Configurations\NGLWeb-WAWS-dev.json = PublishScripts\Configurations\NGLWeb-WAWS-dev.json
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB894596-6EB4-4066-B0CB-AEFDDB3CCCF2}"
 	ProjectSection(SolutionItems) = preProject
+		.deployment = .deployment
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		..\build.cmd = ..\build.cmd
@@ -30,11 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGL.UiTests", "NGL.UiTests\NGL.UiTests.csproj", "{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGL.Tests", "NGL.Tests\NGL.Tests.csproj", "{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevScripts", "DevScripts", "{8CFEC09E-47BE-4213-9EBD-BF55D63AD7C6}"
-	ProjectSection(SolutionItems) = preProject
-		DevScripts\dbreset.bat = DevScripts\dbreset.bat
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,8 +49,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{A58760CF-D004-42D6-BF58-74C7ED63DF86} = {859E2C34-FE10-4E94-863A-FC8E8245D14C}
 	EndGlobalSection
 EndGlobal
