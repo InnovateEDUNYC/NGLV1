@@ -25,10 +25,10 @@ namespace NGL.Web.Models.Course
             target.HighSchoolCourseRequirement = source.HighSchoolCourseRequirement;
             target.CourseGPAApplicabilityTypeId = (int)source.CourseGPAApplicability.GetValueOrDefault();
             target.CourseDefinedByTypeId = (int) source.CourseDefinedBy.GetValueOrDefault();
-            target.MinimumAvailableCreditTypeId = source.MinimumAvailableCreditTypeId;
+            target.MinimumAvailableCreditTypeId = (int) source.MinimumAvailableCreditType.GetValueOrDefault();
             target.MinimumAvailableCreditConversion = source.MinimumAvailableCreditConversion;
             target.MinimumAvailableCredit = source.MinimumAvailableCredit;
-            target.MaximumAvailableCreditTypeId = source.MaximumAvailableCreditTypeId;
+            target.MaximumAvailableCreditTypeId = (int) source.MaximumAvailableCreditType.GetValueOrDefault();
             target.MaximumAvailableCreditConversion = source.MaximumAvailableCreditConversion;
             target.MaximumAvailableCredit = source.MaximumAvailableCredit;
             target.CareerPathwayTypeId = (int) source.CareerPathway.GetValueOrDefault();

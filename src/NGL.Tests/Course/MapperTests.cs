@@ -26,10 +26,10 @@ namespace NGL.Tests.Course
                 HighSchoolCourseRequirement = false,
                 CourseGPAApplicabilityTypeId = (int)CourseGPAApplicabilityTypeEnum.Applicable,
                 CourseDefinedByTypeId = (int)CourseDefinedByTypeEnum.LEA,
-                MinimumAvailableCreditTypeId = 1,
+                MinimumAvailableCreditTypeId = (int)CreditTypeEnum.Adulteducationcredit,
                 MinimumAvailableCreditConversion = new decimal(3.0),
                 MinimumAvailableCredit = new decimal(3.0),
-                MaximumAvailableCreditTypeId = 1,
+                MaximumAvailableCreditTypeId = (int)CreditTypeEnum.CareerandTechnicalEducationcredit,
                 MaximumAvailableCreditConversion = new decimal(3.0),
                 MaximumAvailableCredit = new decimal(3.0),
                 CareerPathwayTypeId = (int)CareerPathwayTypeEnum.AgricultureFoodandNaturalResources,
@@ -48,10 +48,10 @@ namespace NGL.Tests.Course
             courseCreateModel.HighSchoolCourseRequirement.ShouldBe(false);
             courseCreateModel.CourseGPAApplicability.ShouldBe(CourseGPAApplicabilityTypeEnum.Applicable);
             courseCreateModel.CourseDefinedBy.ShouldBe(CourseDefinedByTypeEnum.LEA);
-            courseCreateModel.MinimumAvailableCreditTypeId.ShouldBe(1);
+            courseCreateModel.MinimumAvailableCreditType.ShouldBe(CreditTypeEnum.Adulteducationcredit);
             courseCreateModel.MinimumAvailableCreditConversion.ShouldBe(new decimal(3.0));
             courseCreateModel.MinimumAvailableCredit.ShouldBe(new decimal(3.0));
-            courseCreateModel.MaximumAvailableCreditTypeId.ShouldBe(1);
+            courseCreateModel.MaximumAvailableCreditType.ShouldBe(CreditTypeEnum.CareerandTechnicalEducationcredit);
             courseCreateModel.MaximumAvailableCreditConversion.ShouldBe(new decimal(3.0));
             courseCreateModel.MaximumAvailableCredit.ShouldBe(new decimal(3.0));
             courseCreateModel.CareerPathway.ShouldBe(CareerPathwayTypeEnum.AgricultureFoodandNaturalResources);
@@ -80,10 +80,10 @@ namespace NGL.Tests.Course
                 HighSchoolCourseRequirement = false,
                 CourseGPAApplicability = CourseGPAApplicabilityTypeEnum.Applicable,
                 CourseDefinedBy = CourseDefinedByTypeEnum.LEA,
-                MinimumAvailableCreditTypeId = 1,
+                MinimumAvailableCreditType = CreditTypeEnum.Adulteducationcredit,
                 MinimumAvailableCreditConversion = new decimal(3.0),
                 MinimumAvailableCredit = new decimal(3.0),
-                MaximumAvailableCreditTypeId = 1,
+                MaximumAvailableCreditType = CreditTypeEnum.CareerandTechnicalEducationcredit,
                 MaximumAvailableCreditConversion = new decimal(3.0),
                 MaximumAvailableCredit = new decimal(3.0),
                 CareerPathway = CareerPathwayTypeEnum.AgricultureFoodandNaturalResources,
@@ -102,10 +102,10 @@ namespace NGL.Tests.Course
             courseEntity.HighSchoolCourseRequirement.ShouldBe(false);
             courseEntity.CourseGPAApplicabilityTypeId.ShouldBe((int)CourseGPAApplicabilityTypeEnum.Applicable);
             courseEntity.CourseDefinedByTypeId.ShouldBe((int)CourseDefinedByTypeEnum.LEA);
-            courseEntity.MinimumAvailableCreditTypeId.ShouldBe(1);
+            courseEntity.MinimumAvailableCreditTypeId.ShouldBe((int)CreditTypeEnum.Adulteducationcredit);
             courseEntity.MinimumAvailableCreditConversion.ShouldBe(new decimal(3.0));
             courseEntity.MinimumAvailableCredit.ShouldBe(new decimal(3.0));
-            courseEntity.MaximumAvailableCreditTypeId.ShouldBe(1);
+            courseEntity.MaximumAvailableCreditTypeId.ShouldBe((int)CreditTypeEnum.CareerandTechnicalEducationcredit);
             courseEntity.MaximumAvailableCreditConversion.ShouldBe(new decimal(3.0));
             courseEntity.MaximumAvailableCredit.ShouldBe(new decimal(3.0));
             courseEntity.CareerPathwayTypeId.ShouldBe((int)CareerPathwayTypeEnum.AgricultureFoodandNaturalResources);
