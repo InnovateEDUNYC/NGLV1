@@ -13,7 +13,6 @@ namespace NGL.Web
         {
             Database.SetInitializer<NglDbContext>(null);
 
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             Func<string, bool> scriptsOnly = s => s.EndsWith(".sql");
             Func<string, bool> filter = scriptsOnly;
 
@@ -23,7 +22,7 @@ namespace NGL.Web
             
             var upgrader =
                 DeployChanges.To
-                    .SqlDatabase(connectionString)
+                    .SqlDatabase(DatabaseManager.ConnectionString)
                     .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), filter)
                     .LogToConsole()
                     .Build();

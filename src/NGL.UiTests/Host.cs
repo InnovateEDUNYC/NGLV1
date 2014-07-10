@@ -21,12 +21,15 @@ namespace NGL.UiTests
 
         static Host()
         {
+            DatabaseManager.RefreshDatabase();
+
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SelenoScreenShots");
 
             _instance = new SelenoHost();
             _instance.Run("NGL.Web", 12345, c => 
                 c.WithRouteConfig(RouteConfig.RegisterRoutes)
                  .UsingControlIdGenerator(new MvcControlIdGenerator())
+                 .WithEnvironmentVariable("ConnectionString", DatabaseManager.ConnectionString)
                  .UsingCamera(filePath));
         }
     }

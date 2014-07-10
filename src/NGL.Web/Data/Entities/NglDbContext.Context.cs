@@ -14,10 +14,9 @@ namespace NGL.Web.Data.Entities
     using System.Data.Entity.Infrastructure;
     using Microsoft.AspNet.Identity.EntityFramework;
     
-    public partial class NglDbContext :  IdentityDbContext<ApplicationUser>
+    public partial class NglDbContext :  DbContext
     {
-        public NglDbContext()
-            : base("name=NglDbContext")
+        public NglDbContext(string connectionString) : base(connectionString)
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
