@@ -54,7 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Course\CourseMapperTests.cs" />
     <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentMapperTest.cs" />
     <Compile Include="Course\MapperTests.cs" />
     <Compile Include="Session\MapperTests.cs" />

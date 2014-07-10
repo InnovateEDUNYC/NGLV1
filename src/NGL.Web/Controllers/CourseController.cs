@@ -69,10 +69,10 @@ namespace NGL.Web.Controllers
         {
             if (createModel.CourseCode != null)
             {
-                var existingSession = _genericRepository.Get(new CourseByCourseCodeQuery(
+                var existingCourse = _genericRepository.Get(new CourseByCourseCodeQuery(
                     createModel.CourseCode));
 
-                if (existingSession != null)
+                if (existingCourse != null)
                 {
                     PutModelErrors();
                 }
