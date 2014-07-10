@@ -2,14 +2,14 @@
 
 namespace NGL.UiTests
 {
-    class DatabaseManager
+    static class DatabaseManager
     {
         private const string ConnectionStringTemplate = "Data Source=.;Initial Catalog={0};Integrated Security=True;MultipleActiveResultSets=True;App=EntityFramework";
-        private const string NGLDb = "NGL_FunctionalTests";
+        private const string NglDb = "NGL_FunctionalTests";
 
         public static string ConnectionString
         {
-            get { return GetConnectionStringFor(NGLDb); }
+            get { return GetConnectionStringFor(NglDb); }
         }
 
         static string GetConnectionStringFor(string databaseName)
@@ -26,7 +26,7 @@ BEGIN
     DROP DATABASE {0};
 END 
 CREATE DATABASE {0};",
-                NGLDb);
+                NglDb);
 
             using (var connection = new SqlConnection(GetConnectionStringFor("master")))
             {
