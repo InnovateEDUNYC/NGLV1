@@ -19,19 +19,19 @@ namespace NGL.Web.Models.Course
             target.CourseCode = source.CourseCode;
             target.CourseTitle = source.CourseTitle;
             target.NumberOfParts = source.NumberOfParts;
-            target.AcademicSubjectDescriptorId = (int)source.AcademicSubject.GetValueOrDefault();
+            target.AcademicSubjectDescriptorId = (int?)source.AcademicSubject;
             target.CourseDescription = source.CourseDescription;
             target.DateCourseAdopted = source.DateCourseAdopted;
             target.HighSchoolCourseRequirement = source.HighSchoolCourseRequirement;
-            target.CourseGPAApplicabilityTypeId = (int)source.CourseGPAApplicability.GetValueOrDefault();
-            target.CourseDefinedByTypeId = (int) source.CourseDefinedBy.GetValueOrDefault();
-            target.MinimumAvailableCreditTypeId = (int) source.MinimumAvailableCreditType.GetValueOrDefault();
+            target.CourseGPAApplicabilityTypeId = (int?) source.CourseGPAApplicability;
+            target.CourseDefinedByTypeId = (int?) source.CourseDefinedBy;
+            target.MinimumAvailableCreditTypeId = (int?) source.MinimumAvailableCreditType;
             target.MinimumAvailableCreditConversion = source.MinimumAvailableCreditConversion;
             target.MinimumAvailableCredit = source.MinimumAvailableCredit;
-            target.MaximumAvailableCreditTypeId = (int) source.MaximumAvailableCreditType.GetValueOrDefault();
+            target.MaximumAvailableCreditTypeId = (int?) source.MaximumAvailableCreditType;
             target.MaximumAvailableCreditConversion = source.MaximumAvailableCreditConversion;
             target.MaximumAvailableCredit = source.MaximumAvailableCredit;
-            target.CareerPathwayTypeId = (int) source.CareerPathway.GetValueOrDefault();
+            target.CareerPathwayTypeId = (int?) source.CareerPathway;
             target.TimeRequiredForCompletion = source.TimeRequiredForCompletion;
         }
     }

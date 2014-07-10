@@ -16,10 +16,10 @@ namespace NGL.Web.Models.Course
             target.HighSchoolCourseRequirement = source.HighSchoolCourseRequirement;
             target.CourseGPAApplicability = (CourseGPAApplicabilityTypeEnum?) source.CourseGPAApplicabilityTypeId;
             target.CourseDefinedBy = (CourseDefinedByTypeEnum?) source.CourseDefinedByTypeId;
-            target.MinimumAvailableCreditType = (CreditTypeEnum)source.MinimumAvailableCreditTypeId;
+            target.MinimumAvailableCreditType = (CreditTypeEnum?)source.MinimumAvailableCreditTypeId;
             target.MinimumAvailableCreditConversion = source.MinimumAvailableCreditConversion;
             target.MinimumAvailableCredit = source.MinimumAvailableCredit;
-            target.MaximumAvailableCreditType = (CreditTypeEnum)source.MaximumAvailableCreditTypeId;
+            target.MaximumAvailableCreditType = (CreditTypeEnum?)source.MaximumAvailableCreditTypeId;
             target.MaximumAvailableCreditConversion = source.MaximumAvailableCreditConversion;
             target.MaximumAvailableCredit = source.MaximumAvailableCredit;
             target.CareerPathway = (CareerPathwayTypeEnum?) source.CareerPathwayTypeId;
