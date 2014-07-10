@@ -2,10 +2,9 @@
 
 namespace NGL.Web.Models.School
 {
-    public class SchoolModelToEducationOrganizationMapper :
-        IMapper<SchoolModel, EducationOrganization>
+    public class SchoolModelToEducationOrganizationMapper : MapperBase<SchoolModel, EducationOrganization>
     {
-        public void Map(SchoolModel source, EducationOrganization target)
+        public override void Map(SchoolModel source, EducationOrganization target)
         {
             target.NameOfInstitution = source.NameOfInstitution;
             target.StateOrganizationId = source.StateOrganizationId;

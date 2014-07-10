@@ -2,7 +2,7 @@
 
 namespace NGL.Web.Models.Course
 {
-    public class CourseModelToCourseMapper : IMapper<CourseModel, Data.Entities.Course>
+    public class CourseModelToCourseMapper : MapperBase<CourseModel, Data.Entities.Course>
     {
         private readonly ISchoolRepository _schoolRepository;
 
@@ -11,7 +11,7 @@ namespace NGL.Web.Models.Course
             _schoolRepository = schoolRepository;
         }
 
-        public void Map(CourseModel source, Data.Entities.Course target)
+        public override void Map(CourseModel source, Data.Entities.Course target)
         {
             target.EducationOrganizationId = _schoolRepository.GetSchool()
                 .EducationOrganization.EducationOrganizationId;
@@ -32,7 +32,6 @@ namespace NGL.Web.Models.Course
             target.MaximumAvailableCredit = source.MaximumAvailableCredit;
             target.CareerPathwayTypeId = source.CareerPathwayTypeId;
             target.TimeRequiredForCompletion = source.TimeRequiredForCompletion;
-
         }
     }
 }

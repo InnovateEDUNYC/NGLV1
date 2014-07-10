@@ -35,5 +35,6 @@ namespace NGL.Web.Models.Enrollment
         [Required]
         public SexTypeEnum? SexTypeEnum { get; set; }
 
+        public bool SameAddressAsStudent { get; set; }
     }
 }

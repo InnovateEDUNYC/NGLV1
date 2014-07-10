@@ -3,7 +3,7 @@ using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.Session
 {
-    public class CreateModelToSessionMapper : IMapper<CreateModel, Data.Entities.Session>
+    public class CreateModelToSessionMapper : MapperBase<CreateModel, Data.Entities.Session>
     {
         private readonly ISchoolRepository _schoolRepository;
 
@@ -12,7 +12,7 @@ namespace NGL.Web.Models.Session
             _schoolRepository = schoolRepository;
         }
 
-        public void Map(CreateModel source, Data.Entities.Session target)
+        public override void Map(CreateModel source, Data.Entities.Session target)
         {
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
             target.TermTypeId = (int) source.Term.GetValueOrDefault();
