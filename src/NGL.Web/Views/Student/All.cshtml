@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<NGL.Web.Models.Student.IndexModel>
 
 @{
-    ViewBag.Title = "All";
+    ViewBag.Title = "Students";
 }
 
-<h2>All</h2>
+<h2>Students</h2>
 
 <p>
     @Html.ActionLink("Enroll a Student", "CreateStudent", "Enrollment")
@@ -25,13 +25,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.ActionLink(item.FirstName, "Index", "Student", new { usi = item.StudentUsi }, null)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.ActionLink(item.LastName, "Index", "Student", new { usi = item.StudentUsi }, null)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StudentUsi)
+            @Html.ActionLink(item.StudentUsi.ToString(), "Index", "Student", new { usi = item.StudentUsi }, null)
         </td>
     </tr>
 }
