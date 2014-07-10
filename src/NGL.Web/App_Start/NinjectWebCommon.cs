@@ -1,4 +1,5 @@
-using Microsoft.Ajax.Utilities;
+using System.Configuration;
+using System.Data.Entity.Core.EntityClient;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -69,7 +70,7 @@ namespace NGL.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<INglDbContext>().To<NglDbContext>().InRequestScope();
+            kernel.Bind<INglDbContext>().To<NglDbContext>().WithConstructorArgument(DatabaseManager.EdmxConnectionString);
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
@@ -79,6 +80,6 @@ namespace NGL.Web.App_Start
                     .SelectAllTypes()
                     .InheritedFrom(typeof (IMapper<,>))
                     .BindDefaultInterfaces());
-        }        
+        }
     }
 }

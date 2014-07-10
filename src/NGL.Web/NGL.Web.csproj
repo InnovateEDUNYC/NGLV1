@@ -556,6 +556,7 @@
     <Compile Include="Data\Entities\EdFiException.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\DatabaseManager.cs" />
     <Compile Include="Data\Entities\EducationalEnvironmentType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
