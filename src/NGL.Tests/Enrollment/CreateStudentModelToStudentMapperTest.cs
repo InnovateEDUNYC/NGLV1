@@ -9,11 +9,6 @@ namespace NGL.Tests.Enrollment
 {
     public class CreateStudentModelToStudentMapperTest
     {
-        private CreateStudentModelToStudentMapper _mapper;
-        private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
-        readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
-        private ParentEnrollmentInfoModel _parentEnrollmentInfoModel;
-
         [Fact]
         public void ShouldMapCreateStudentModelToStudent()
         {
@@ -43,13 +38,22 @@ namespace NGL.Tests.Enrollment
 
             var studentParentAssociation = _student.StudentParentAssociations.First();
             studentParentAssociation.RelationTypeId.ShouldBe((int)RelationTypeEnum.Grandmother);
+            studentParentAssociation.PrimaryContactStatus.ShouldBe(true);
 
             var parent = studentParentAssociation.Parent;
-            
+
             parent.FirstName.ShouldBe("Jenny");
             parent.LastSurname.ShouldBe("Doe");
             parent.SexTypeId.ShouldBe((int) SexTypeEnum.Female);
         }
+
+        private CreateStudentModelToStudentMapper _mapper;
+
+        private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
+
+        readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
+
+        private ParentEnrollmentInfoModel _parentEnrollmentInfoModel;
 
         private void SetUp()
         {
@@ -74,7 +78,8 @@ namespace NGL.Tests.Enrollment
                 FirstName = "Jenny",
                 LastName = "Doe",
                 RelationshipToStudent = RelationTypeEnum.Grandmother,
-                SexTypeEnum = SexTypeEnum.Female
+                SexTypeEnum = SexTypeEnum.Female,
+                IsPrimaryContact = true
             };
 
             _createStudentModel.ParentEnrollmentInfoModel = _parentEnrollmentInfoModel;
