@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Antlr.Runtime.Misc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Models;
 using NGL.Web.Models.Course;
 
@@ -51,6 +52,7 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
+            CheckIfExists(createModel);
             if (!ModelState.IsValid)
                 return View(createModel);
 
@@ -61,6 +63,25 @@ namespace NGL.Web.Controllers
             _genericRepository.Save();
 
             return RedirectToAction(Actions.Index());
+        }
+
+        private void CheckIfExists(CreateModel createModel)
+        {
+            if (createModel.CourseCode != null)
+            {
+                var existingSession = _genericRepository.Get(new CourseByCourseCodeQuery(
+                    createModel.CourseCode));
+
+                if (existingSession != null)
+                {
+                    PutModelErrors();
+                }
+            }
+        }
+
+        private void PutModelErrors()
+        {
+            ModelState.AddModelError("coursecode", "This course already exists!");
         }
     }
 }
