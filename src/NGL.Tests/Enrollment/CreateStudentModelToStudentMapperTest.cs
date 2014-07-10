@@ -43,12 +43,21 @@ namespace NGL.Tests.Enrollment
 
             var studentParentAssociation = _student.StudentParentAssociations.First();
             studentParentAssociation.RelationTypeId.ShouldBe((int)RelationTypeEnum.Grandmother);
+            studentParentAssociation.PrimaryContactStatus.ShouldBe(true);
 
             var parent = studentParentAssociation.Parent;
-            
+
             parent.FirstName.ShouldBe("Jenny");
             parent.LastSurname.ShouldBe("Doe");
             parent.SexTypeId.ShouldBe((int) SexTypeEnum.Female);
+
+            var parentTelephone = parent.ParentTelephones.First();
+            parentTelephone.TelephoneNumberTypeId.ShouldBe((int) TelephoneNumberTypeEnum.Emergency1);
+            parentTelephone.TelephoneNumber.ShouldBe("555-0221");
+
+            var parentEmail = parent.ParentElectronicMails.First();
+            parentEmail.ElectronicMailAddress.ShouldBe("Jenny@grandma.com");
+            parentEmail.ElectronicMailTypeId.ShouldBe((int) ElectronicMailTypeEnum.HomePersonal);
         }
 
         private void SetUp()
@@ -74,7 +83,10 @@ namespace NGL.Tests.Enrollment
                 FirstName = "Jenny",
                 LastName = "Doe",
                 RelationshipToStudent = RelationTypeEnum.Grandmother,
-                SexTypeEnum = SexTypeEnum.Female
+                SexTypeEnum = SexTypeEnum.Female,
+                IsPrimaryContact = true,
+                TelephoneNumber = "555-0221",
+                EmailAddress = "Jenny@grandma.com" 
             };
 
             _createStudentModel.ParentEnrollmentInfoModel = _parentEnrollmentInfoModel;

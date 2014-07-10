@@ -10,7 +10,8 @@ namespace NGL.Web.Models.Student
             target.FirstName = source.FirstName;
             target.LastName = source.LastSurname;
             target.BirthDate = source.BirthDate;
-            target.Race = ((OldEthnicityTypeEnum) source.OldEthnicityTypeId).Humanize();
+            if (source.OldEthnicityTypeId != null)
+                target.Race = ((OldEthnicityTypeEnum) source.OldEthnicityTypeId).Humanize();
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.Sex = ((SexTypeEnum)source.SexTypeId).Humanize();
         }

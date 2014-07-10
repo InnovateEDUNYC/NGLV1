@@ -19,14 +19,14 @@ namespace NGL.Web.Models.Enrollment
         [Display(Name = "Relationship To Student")]
         [Required]
         public RelationTypeEnum? RelationshipToStudent { get; set; }
-//
-//        [Display(Name = "Phone number")]
-//        [StringLength(24)]
-//        public String ParentPhoneNumber { get; set; }
-//
-//        [Display(Name = "Email Address")]
-//        [StringLength(128)]
-//        public String ParentEmailAddress { get; set; }
+
+        [Display(Name = "Phone number")]
+        [StringLength(24)]
+        public String TelephoneNumber { get; set; }
+
+        [Display(Name = "Email Address")]
+        [StringLength(128)]
+        public String EmailAddress { get; set; }
 
         [Display(Name = "Make this primary contact")]
         public bool IsPrimaryContact { get; set; }

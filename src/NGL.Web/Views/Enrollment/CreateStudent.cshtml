@@ -28,14 +28,11 @@
         @s.FieldFor(m => m.ParentEnrollmentInfoModel.LastName)
         @s.FieldFor(m => m.ParentEnrollmentInfoModel.SexTypeEnum)
         @s.FieldFor(m => m.ParentEnrollmentInfoModel.RelationshipToStudent)
-@*        @s.FieldFor(m => m.ParentEnrollmentInfoModel.ParentPhoneNumber)*@
-@*        @s.FieldFor(m => m.ParentEnrollmentInfoModel.ParentEmailAddress) *@
-@*        @s.FieldFor(m => m.ParentEnrollmentInfoModel.IsPrimaryContact) *@
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.TelephoneNumber)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.EmailAddress) 
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.IsPrimaryContact) 
         
     }
-    
-@*    <h3>Other} Contact</h3>*@
-@*    @Html.Partial("_ParentEnrollentInfo")*@
     
     using (var n = f.BeginNavigation())
     {

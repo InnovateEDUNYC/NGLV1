@@ -8,7 +8,22 @@ namespace NGL.Web.Models.Enrollment
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
-            target.SexTypeId = (int) source.SexTypeEnum;
+            target.SexTypeId = (int) source.SexTypeEnum.GetValueOrDefault();
+            var parentTelephone = new ParentTelephone
+            {
+                TelephoneNumber = source.TelephoneNumber,
+                TelephoneNumberTypeId = (int)TelephoneNumberTypeEnum.Emergency1
+            };
+
+            target.ParentTelephones.Add(parentTelephone);
+
+            var parentEmail = new ParentElectronicMail
+            {
+                ElectronicMailAddress = source.EmailAddress,
+                ElectronicMailTypeId = (int) ElectronicMailTypeEnum.HomePersonal
+            };
+
+            target.ParentElectronicMails.Add(parentEmail);
         }
     }
 }

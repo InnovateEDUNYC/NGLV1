@@ -17,8 +17,8 @@ namespace NGL.Web.Models.Session
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
             target.TermTypeId = (int) source.Term.GetValueOrDefault();
             target.SchoolYear = (short) source.SchoolYear;
-            target.BeginDate = (DateTime) source.BeginDate;
-            target.EndDate = (DateTime) source.EndDate;
+            target.BeginDate = (DateTime) source.BeginDate.GetValueOrDefault();
+            target.EndDate = (DateTime) source.EndDate.GetValueOrDefault();
             target.SessionName = string.Empty;
             target.TotalInstructionalDays = (int) source.TotalInstructionalDays;
         }
