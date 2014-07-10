@@ -9,6 +9,11 @@ namespace NGL.Tests.Enrollment
 {
     public class CreateStudentModelToStudentMapperTest
     {
+        private CreateStudentModelToStudentMapper _mapper;
+        private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
+        readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
+        private ParentEnrollmentInfoModel _parentEnrollmentInfoModel;
+
         [Fact]
         public void ShouldMapCreateStudentModelToStudent()
         {
@@ -54,14 +59,6 @@ namespace NGL.Tests.Enrollment
             parentEmail.ElectronicMailAddress.ShouldBe("Jenny@grandma.com");
             parentEmail.ElectronicMailTypeId.ShouldBe((int) ElectronicMailTypeEnum.HomePersonal);
         }
-
-        private CreateStudentModelToStudentMapper _mapper;
-
-        private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
-
-        readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
-
-        private ParentEnrollmentInfoModel _parentEnrollmentInfoModel;
 
         private void SetUp()
         {
