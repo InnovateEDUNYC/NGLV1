@@ -16,6 +16,14 @@ namespace NGL.Web.Models.Enrollment
             };
 
             target.ParentTelephones.Add(parentTelephone);
+
+            var parentEmail = new ParentElectronicMail
+            {
+                ElectronicMailAddress = source.EmailAddress,
+                ElectronicMailTypeId = (int) ElectronicMailTypeEnum.HomePersonal
+            };
+
+            target.ParentElectronicMails.Add(parentEmail);
         }
     }
 }

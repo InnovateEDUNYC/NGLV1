@@ -17,7 +17,8 @@ namespace NGL.Tests.Enrollment
                 FirstName = "Cameron",
                 LastName = "James",
                 SexTypeEnum = SexTypeEnum.Male,
-                TelephoneNumber = "933-2378"
+                TelephoneNumber = "933-2378",
+                EmailAddress = "some@body.org",
             };
 
             var parent = new Parent();
@@ -30,6 +31,9 @@ namespace NGL.Tests.Enrollment
             var parentTelephone = parent.ParentTelephones.First();
             parentTelephone.TelephoneNumber.ShouldBe("933-2378");
             parentTelephone.TelephoneNumberTypeId.ShouldBe((int) TelephoneNumberTypeEnum.Emergency1);
+            var parentEmail = parent.ParentElectronicMails.First();
+            parentEmail.ElectronicMailAddress.ShouldBe("some@body.org");
+            parentEmail.ElectronicMailTypeId.ShouldBe((int) ElectronicMailTypeEnum.HomePersonal);
         }
     }
 }

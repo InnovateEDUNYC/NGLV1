@@ -50,6 +50,9 @@ namespace NGL.Tests.Enrollment
             parentTelephone.TelephoneNumberTypeId.ShouldBe((int) TelephoneNumberTypeEnum.Emergency1);
             parentTelephone.TelephoneNumber.ShouldBe("555-0221");
 
+            var parentEmail = parent.ParentElectronicMails.First();
+            parentEmail.ElectronicMailAddress.ShouldBe("Jenny@grandma.com");
+            parentEmail.ElectronicMailTypeId.ShouldBe((int) ElectronicMailTypeEnum.HomePersonal);
         }
 
         private CreateStudentModelToStudentMapper _mapper;
@@ -85,7 +88,8 @@ namespace NGL.Tests.Enrollment
                 RelationshipToStudent = RelationTypeEnum.Grandmother,
                 SexTypeEnum = SexTypeEnum.Female,
                 IsPrimaryContact = true,
-                TelephoneNumber = "555-0221"
+                TelephoneNumber = "555-0221",
+                EmailAddress = "Jenny@grandma.com" 
             };
 
             _createStudentModel.ParentEnrollmentInfoModel = _parentEnrollmentInfoModel;

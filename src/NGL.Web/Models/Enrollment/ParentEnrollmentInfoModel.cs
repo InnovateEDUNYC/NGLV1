@@ -24,9 +24,9 @@ namespace NGL.Web.Models.Enrollment
         [StringLength(24)]
         public String TelephoneNumber { get; set; }
 
-//        [Display(Name = "Email Address")]
-//        [StringLength(128)]
-//        public String ParentEmailAddress { get; set; }
+        [Display(Name = "Email Address")]
+        [StringLength(128)]
+        public String EmailAddress { get; set; }
 
         [Display(Name = "Make this primary contact")]
         public bool IsPrimaryContact { get; set; }
