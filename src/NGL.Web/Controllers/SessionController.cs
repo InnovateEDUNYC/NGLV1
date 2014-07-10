@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -47,7 +48,12 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
-            CheckIfExists(createModel);
+            //var sessionByTermTypeAndSchoolYearQuery = new SessionByTermTypeAndSchoolYearQuery(
+            //    (int) createModel.Term,
+            //    (short) createModel.SchoolYear);
+
+            //CheckIfExists(createModel, sessionByTermTypeAndSchoolYearQuery);
+
             if (!ModelState.IsValid)
                 return View(createModel);
 
@@ -60,25 +66,30 @@ namespace NGL.Web.Controllers
             return RedirectToAction(Actions.Index());
         }
 
-        private void CheckIfExists(CreateModel createModel)
-        {
-            if (createModel.Term != null)
-            {
-                var existingSession = _genericRepository.Get(new SessionByTermTypeAndSchoolYearQuery(
-                    (int) createModel.Term,
-                    (short) createModel.SchoolYear));
+        //private void CheckIfExists(CreateModel createModel, SessionByTermTypeAndSchoolYearQuery query)
+        //{
+        //    if (createModel.Term != null)
+        //    {
+        //        ValidateExistence(createModel, query);
+        //    }
+        //}
 
-                if (existingSession != null)
-                {
-                    PutModelErrors();
-                }
-            }
-        }
+        //private void ValidateExistence<T>(CreateModel createModel, IQuery<T> query) where T : class
+        //{
+        //    var existingEntity = _genericRepository.Get(query);
 
-        private void PutModelErrors()
-        {
-            ModelState.AddModelError("term", " ");
-            ModelState.AddModelError("schoolYear", "This session already exists!");
-        }
+        //    if (existingEntity != null)
+        //    {
+        //        PutModelErrors(createModel);
+        //    }
+        //}
+
+        //private void PutModelErrors(IFormModel formModel)
+        //{
+        //    foreach (var error in formModel.GetErrors())
+        //    {
+        //        ModelState.AddModelError(error.Key, error.Value);
+        //    }
+        //}
     }
 }
