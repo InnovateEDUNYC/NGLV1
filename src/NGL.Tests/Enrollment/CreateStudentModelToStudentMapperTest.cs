@@ -72,24 +72,24 @@ namespace NGL.Tests.Enrollment
             _createStudentModel.StudentUsi = 10001;
             _createStudentModel.FirstName = "John";
             _createStudentModel.LastName = "Doe";
-            _createStudentModel.SexTypeEnum = SexTypeEnum.Male;
+            _createStudentModel.Sex = SexTypeEnum.Male;
             _createStudentModel.BirthDate = new DateTime(2001, 1, 1);
             _createStudentModel.HispanicLatinoEthnicity = false;
             _createStudentModel.OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative;
-            _createStudentModel.StreetNumberName = "1060 W Addison St";
+            _createStudentModel.Address = "1060 W Addison St";
             _createStudentModel.ApartmentRoomSuiteNumber = "33";
             _createStudentModel.City = "London";
-            _createStudentModel.LanguageDescriptorEnum = LanguageDescriptorEnum.English;
+            _createStudentModel.HomeLanguage = LanguageDescriptorEnum.English;
             _createStudentModel.PostalCode = "60657";
-            _createStudentModel.StateAbbreviationTypeEnum = StateAbbreviationTypeEnum.CA;
+            _createStudentModel.State = StateAbbreviationTypeEnum.CA;
 
             _parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
             {
                 FirstName = "Jenny",
                 LastName = "Doe",
                 RelationshipToStudent = RelationTypeEnum.Grandmother,
-                SexTypeEnum = SexTypeEnum.Female,
-                IsPrimaryContact = true,
+                Sex = SexTypeEnum.Female,
+                MakeThisPrimatyContact = true,
                 TelephoneNumber = "555-0221",
                 EmailAddress = "Jenny@grandma.com",
                 SameAddressAsStudent = false

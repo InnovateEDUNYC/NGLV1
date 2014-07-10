@@ -31,15 +31,15 @@ namespace NGL.UiTests
                 StudentUsi = 123240, //change every test run
                 FirstName = "Joe",
                 LastName = "ZZ",
-                SexTypeEnum = SexTypeEnum.Male,
+                Sex = SexTypeEnum.Male,
                 OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative,
-                StreetNumberName = "123 Oak St",
-                ApartmentRoomSuiteNumber = "1A",
+                Address = "123 Oak St",
+                Address2 = "1A",
                 City = "Springfield",
-                StateAbbreviationTypeEnum = StateAbbreviationTypeEnum.CA,
+                State = StateAbbreviationTypeEnum.CA,
                 PostalCode = "6000",
                 HispanicLatinoEthnicity = true,
-                LanguageDescriptorEnum = LanguageDescriptorEnum.English,
+                HomeLanguage = LanguageDescriptorEnum.English,
                 ParentEnrollmentInfoModel = GetParentEnrollmentModel()
             };
         }
@@ -50,9 +50,9 @@ namespace NGL.UiTests
             {
                 FirstName = "Jan",
                 LastName = "Smith",
-                SexTypeEnum = SexTypeEnum.Male,
+                Sex = SexTypeEnum.Male,
                 RelationshipToStudent = RelationTypeEnum.MothersCivilPartner,
-                IsPrimaryContact = true,
+                MakeThisPrimatyContact = true,
                 TelephoneNumber = "123-4567",
                 EmailAddress = "jan@civilpartner.me",
             };

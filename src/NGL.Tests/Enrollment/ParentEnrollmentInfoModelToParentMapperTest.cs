@@ -16,7 +16,7 @@ namespace NGL.Tests.Enrollment
             {
                 FirstName = "Cameron",
                 LastName = "James",
-                SexTypeEnum = SexTypeEnum.Male,
+                Sex = SexTypeEnum.Male,
                 TelephoneNumber = "933-2378",
                 EmailAddress = "some@body.org",
             };
