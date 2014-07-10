@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Models;
 using NGL.Web.Models.Student;
-using Ninject.Extensions.Conventions.BindingGenerators;
 
 namespace NGL.Web.Controllers
 {
     public partial class StudentController : Controller
     {
-        private IGenericRepository _repository;
+        private readonly IGenericRepository _repository;
         private readonly IMapper<Student, ProfileModel> _studentToDetailsModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
 

@@ -1445,6 +1445,7 @@
     <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModel.cs" />
+    <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToParentMapper.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />

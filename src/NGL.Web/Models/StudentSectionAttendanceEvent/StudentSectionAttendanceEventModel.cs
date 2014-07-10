@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
 using NGL.Web.Models.Section;
-using NGL.Web.Models.Student;
 
 namespace NGL.Web.Models.StudentSectionAttendanceEvent
 {

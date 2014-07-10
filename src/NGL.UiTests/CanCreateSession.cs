@@ -1,11 +1,8 @@
-﻿using System;
-using NGL.UiTests.Pages;
-using NGL.Web.Models.Account;
+﻿using NGL.UiTests.Pages;
 using NGL.Web.Models.Session;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
-using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests
 {
@@ -35,7 +32,7 @@ namespace NGL.UiTests
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _createSessionModel = new CreateModel()
+            _createSessionModel = new CreateModel
             {
                 Term = ObjectMother.Fall2014Semester.Term,
                 SchoolYear = ObjectMother.Fall2014Semester.SchoolYear,
@@ -50,7 +47,7 @@ namespace NGL.UiTests
 
         public void ThenANewSessionShouldBeDisplayedOnTheSessionIndexPage()
         {
-            bool sessionExists = _sessionIndexPage.sessionExists(_createSessionModel);
+            bool sessionExists = _sessionIndexPage.SessionExists(_createSessionModel);
 
             sessionExists.ShouldBe(true);
         }

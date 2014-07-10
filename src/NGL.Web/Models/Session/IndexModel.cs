@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Session
 {

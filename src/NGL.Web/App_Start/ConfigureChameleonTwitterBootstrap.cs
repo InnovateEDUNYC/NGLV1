@@ -1,10 +1,11 @@
+using System.Web.Optimization;
 using ChameleonForms;
 using ChameleonForms.Templates.TwitterBootstrap3;
-using System.Web.Optimization;
+using NGL.Web;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(NGL.Web.App_Start.ConfigureChameleonTwitterBootstrap), "Start")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(ConfigureChameleonTwitterBootstrap), "Start")]
 
-namespace NGL.Web.App_Start
+namespace NGL.Web
 {
     public static class ConfigureChameleonTwitterBootstrap
     {

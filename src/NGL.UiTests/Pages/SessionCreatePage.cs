@@ -1,5 +1,4 @@
-﻿using System.Web.UI;
-using NGL.Web.Models.Session;
+﻿using NGL.Web.Models.Session;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 

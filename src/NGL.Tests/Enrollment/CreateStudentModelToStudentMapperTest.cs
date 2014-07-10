@@ -2,7 +2,6 @@
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Student;
 using Shouldly;
 using Xunit;
 
@@ -13,6 +12,7 @@ namespace NGL.Tests.Enrollment
         private CreateStudentModelToStudentMapper _mapper;
         private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
         readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
+        private ParentEnrollmentInfoModel _parentEnrollmentInfoModel;
 
         [Fact]
         public void ShouldMapCreateStudentModelToStudent()
@@ -24,7 +24,7 @@ namespace NGL.Tests.Enrollment
 
             _student.FirstName.ShouldBe("John");
             _student.LastSurname.ShouldBe("Doe");
-            _student.SexTypeId.ShouldBe(2);
+            _student.SexTypeId.ShouldBe((int)SexTypeEnum.Male);
             _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             _student.HispanicLatinoEthnicity.ShouldBe(false);
             _student.OldEthnicityTypeId.ShouldBe((int)OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative);
@@ -40,11 +40,20 @@ namespace NGL.Tests.Enrollment
             studentAddress.StateAbbreviationTypeId.ShouldBe((int)StateAbbreviationTypeEnum.CA);
             studentAddress.City.ShouldBe("London");
             studentAddress.AddressTypeId.ShouldBe((int)AddressTypeEnum.Home);
+
+            var studentParentAssociation = _student.StudentParentAssociations.First();
+            studentParentAssociation.RelationTypeId.ShouldBe((int)RelationTypeEnum.Grandmother);
+
+            var parent = studentParentAssociation.Parent;
+            
+            parent.FirstName.ShouldBe("Jenny");
+            parent.LastSurname.ShouldBe("Doe");
+            parent.SexTypeId.ShouldBe((int) SexTypeEnum.Female);
         }
 
         private void SetUp()
         {
-            _mapper = new CreateStudentModelToStudentMapper();
+            _mapper = new CreateStudentModelToStudentMapper(new ParentEnrollmentInfoModelToParentMapper());
 
             _createStudentModel.StudentUsi = 10001;
             _createStudentModel.FirstName = "John";
@@ -53,15 +62,24 @@ namespace NGL.Tests.Enrollment
             _createStudentModel.BirthDate = new DateTime(2001, 1, 1);
             _createStudentModel.HispanicLatinoEthnicity = false;
             _createStudentModel.OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative;
-
             _createStudentModel.StreetNumberName = "1060 W Addison St";
-
             _createStudentModel.ApartmentRoomSuiteNumber = "33";
             _createStudentModel.City = "London";
-            
             _createStudentModel.LanguageDescriptorEnum = LanguageDescriptorEnum.English;
             _createStudentModel.PostalCode = "60657";
             _createStudentModel.StateAbbreviationTypeEnum = StateAbbreviationTypeEnum.CA;
+
+            _parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+            {
+                FirstName = "Jenny",
+                LastName = "Doe",
+                RelationshipToStudent = RelationTypeEnum.Grandmother,
+                SexTypeEnum = SexTypeEnum.Female
+            };
+
+            _createStudentModel.ParentEnrollmentInfoModel = _parentEnrollmentInfoModel;
+
+
         }
     }
 }
