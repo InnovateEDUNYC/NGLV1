@@ -15,7 +15,6 @@ namespace NGL.Tests.Enrollment
         private CreateStudentModelToStudentMapper _mapper;
         private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
         readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
-        private ParentEnrollmentInfoModelToParentMapper _parentMapper;
         private ParentEnrollmentInfoModel _parentEnrollmentInfoModel;
 
         [Fact]
@@ -28,7 +27,7 @@ namespace NGL.Tests.Enrollment
 
             _student.FirstName.ShouldBe("John");
             _student.LastSurname.ShouldBe("Doe");
-            _student.SexTypeId.ShouldBe(2);
+            _student.SexTypeId.ShouldBe((int)SexTypeEnum.Male);
             _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             _student.HispanicLatinoEthnicity.ShouldBe(false);
             _student.OldEthnicityTypeId.ShouldBe((int)OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative);
@@ -45,8 +44,11 @@ namespace NGL.Tests.Enrollment
             studentAddress.City.ShouldBe("London");
             studentAddress.AddressTypeId.ShouldBe((int)AddressTypeEnum.Home);
 
-            var parent = _student.StudentParentAssociations.First().Parent;
+            var studentParentAssociation = _student.StudentParentAssociations.First();
+            studentParentAssociation.RelationTypeId.ShouldBe((int)RelationTypeEnum.Grandmother);
 
+            var parent = studentParentAssociation.Parent;
+            
             parent.FirstName.ShouldBe("Jenny");
             parent.LastSurname.ShouldBe("Doe");
             parent.SexTypeId.ShouldBe((int) SexTypeEnum.Female);
@@ -74,6 +76,7 @@ namespace NGL.Tests.Enrollment
             {
                 FirstName = "Jenny",
                 LastName = "Doe",
+                RelationshipToStudent = RelationTypeEnum.Grandmother,
                 SexTypeEnum = SexTypeEnum.Female
             };
 

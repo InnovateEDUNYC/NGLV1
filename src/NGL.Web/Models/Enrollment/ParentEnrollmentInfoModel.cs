@@ -16,9 +16,9 @@ namespace NGL.Web.Models.Enrollment
         [StringLength(75)]
         public String LastName { get; set; }
 
-//        [Display(Name = "Relationship To Student")]
-//        [Required]
-//        public RelationTypeEnum? RelationshipToStudent { get; set; }
+        [Display(Name = "Relationship To Student")]
+        [Required]
+        public RelationTypeEnum? RelationshipToStudent { get; set; }
 //
 //        [Display(Name = "Phone number")]
 //        [StringLength(24)]

@@ -24,7 +24,7 @@ namespace NGL.Web.Models.Enrollment
             var studentParentAssociation = new StudentParentAssociation
             {
                 Parent = parent,
-                RelationTypeId = 2
+                RelationTypeId = (int) source.ParentEnrollmentInfoModel.RelationshipToStudent
             };
 
             _parentMapper.Map(source.ParentEnrollmentInfoModel, parent);
