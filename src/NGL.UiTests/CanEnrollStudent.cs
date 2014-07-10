@@ -32,7 +32,7 @@ namespace NGL.UiTests
                 FirstName = "Joe",
                 LastName = "ZZ",
                 Sex = SexTypeEnum.Male,
-                OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative,
+                Race = RaceTypeEnum.AmericanIndianAlaskanNative,
                 Address = "123 Oak St",
                 Address2 = "1A",
                 City = "Springfield",

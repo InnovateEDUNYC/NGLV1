@@ -28,10 +28,12 @@ namespace NGL.Tests.Enrollment
             _student.SexTypeId.ShouldBe((int)SexTypeEnum.Male);
             _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             _student.HispanicLatinoEthnicity.ShouldBe(false);
-            _student.OldEthnicityTypeId.ShouldBe((int)OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative);
             _student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
             _student.StudentLanguages.First().StudentLanguageUses.First().LanguageUseTypeId.ShouldBe((int)LanguageUseTypeEnum.Homelanguage);
             _student.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
+
+            var studentRace = _student.StudentRaces.First();
+            studentRace.RaceTypeId.ShouldBe((int) RaceTypeEnum.AmericanIndianAlaskanNative);
 
             var studentAddress = _student.StudentAddresses.First();
             
@@ -75,9 +77,9 @@ namespace NGL.Tests.Enrollment
             _createStudentModel.Sex = SexTypeEnum.Male;
             _createStudentModel.BirthDate = new DateTime(2001, 1, 1);
             _createStudentModel.HispanicLatinoEthnicity = false;
-            _createStudentModel.OldEthnicityTypeEnum = OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative;
+            _createStudentModel.Race = RaceTypeEnum.AmericanIndianAlaskanNative;
             _createStudentModel.Address = "1060 W Addison St";
-            _createStudentModel.ApartmentRoomSuiteNumber = "33";
+            _createStudentModel.Address2 = "33";
             _createStudentModel.City = "London";
             _createStudentModel.HomeLanguage = LanguageDescriptorEnum.English;
             _createStudentModel.PostalCode = "60657";

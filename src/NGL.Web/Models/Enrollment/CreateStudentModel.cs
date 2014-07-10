@@ -39,9 +39,8 @@ namespace NGL.Web.Models.Enrollment
         [Display(Name = "Hispanic/Latino Ethnicity")]
         public bool HispanicLatinoEthnicity { get; set; }
 
-        [Display(Name = "Race")]
         [Required]
-        public OldEthnicityTypeEnum? OldEthnicityTypeEnum { get; set; }
+        public RaceTypeEnum? Race { get; set; }
 
         [Required]
         public StateAbbreviationTypeEnum? State { get; set; }

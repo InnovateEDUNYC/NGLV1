@@ -7,11 +7,11 @@ namespace NGL.Web.Models.Enrollment
         private const int HomeLanguageTypeId = (int)LanguageUseTypeEnum.Homelanguage;
         public override void Map(CreateStudentModel source, StudentLanguage target)
         {
-            target.LanguageDescriptorId = (int) source.LanguageDescriptorEnum.GetValueOrDefault();
+            target.LanguageDescriptorId = (int) source.HomeLanguage.GetValueOrDefault();
 
             var studentHomeLanguageUse = new StudentLanguageUse
             {
-                LanguageDescriptorId = (int) source.LanguageDescriptorEnum.GetValueOrDefault(),
+                LanguageDescriptorId = (int) source.HomeLanguage.GetValueOrDefault(),
                 LanguageUseTypeId = HomeLanguageTypeId
             };
 
