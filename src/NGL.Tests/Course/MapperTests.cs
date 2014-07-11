@@ -27,11 +27,11 @@ namespace NGL.Tests.Course
                 CourseGPAApplicabilityTypeId = (int)CourseGPAApplicabilityTypeEnum.Applicable,
                 CourseDefinedByTypeId = (int)CourseDefinedByTypeEnum.LEA,
                 MinimumAvailableCreditTypeId = (int)CreditTypeEnum.Adulteducationcredit,
-                MinimumAvailableCreditConversion = new decimal(3.0),
-                MinimumAvailableCredit = new decimal(3.0),
+                MinimumAvailableCreditConversion = 3m,
+                MinimumAvailableCredit = 3m,
                 MaximumAvailableCreditTypeId = (int)CreditTypeEnum.CareerandTechnicalEducationcredit,
-                MaximumAvailableCreditConversion = new decimal(3.0),
-                MaximumAvailableCredit = new decimal(3.0),
+                MaximumAvailableCreditConversion = 3m,
+                MaximumAvailableCredit = 3m,
                 CareerPathwayTypeId = (int)CareerPathwayTypeEnum.AgricultureFoodandNaturalResources,
                 TimeRequiredForCompletion = 10,
             };
@@ -67,11 +67,11 @@ namespace NGL.Tests.Course
                 CourseGPAApplicability = CourseGPAApplicabilityTypeEnum.Applicable,
                 CourseDefinedBy = CourseDefinedByTypeEnum.LEA,
                 MinimumAvailableCreditType = CreditTypeEnum.Adulteducationcredit,
-                MinimumAvailableCreditConversion = new decimal(3.0),
-                MinimumAvailableCredit = new decimal(3.0),
+                MinimumAvailableCreditConversion = 3m,
+                MinimumAvailableCredit = 3m,
                 MaximumAvailableCreditType = CreditTypeEnum.CareerandTechnicalEducationcredit,
-                MaximumAvailableCreditConversion = new decimal(3.0),
-                MaximumAvailableCredit = new decimal(3.0),
+                MaximumAvailableCreditConversion = 3m,
+                MaximumAvailableCredit = 3m,
                 CareerPathway = CareerPathwayTypeEnum.AgricultureFoodandNaturalResources,
                 TimeRequiredForCompletion = 10,
             };
@@ -89,11 +89,11 @@ namespace NGL.Tests.Course
             courseEntity.CourseGPAApplicabilityTypeId.ShouldBe((int)CourseGPAApplicabilityTypeEnum.Applicable);
             courseEntity.CourseDefinedByTypeId.ShouldBe((int)CourseDefinedByTypeEnum.LEA);
             courseEntity.MinimumAvailableCreditTypeId.ShouldBe((int)CreditTypeEnum.Adulteducationcredit);
-            courseEntity.MinimumAvailableCreditConversion.ShouldBe(new decimal(3.0));
-            courseEntity.MinimumAvailableCredit.ShouldBe(new decimal(3.0));
+            courseEntity.MinimumAvailableCreditConversion.ShouldBe(3m);
+            courseEntity.MinimumAvailableCredit.ShouldBe(3m);
             courseEntity.MaximumAvailableCreditTypeId.ShouldBe((int)CreditTypeEnum.CareerandTechnicalEducationcredit);
-            courseEntity.MaximumAvailableCreditConversion.ShouldBe(new decimal(3.0));
-            courseEntity.MaximumAvailableCredit.ShouldBe(new decimal(3.0));
+            courseEntity.MaximumAvailableCreditConversion.ShouldBe(3m);
+            courseEntity.MaximumAvailableCredit.ShouldBe(3m);
             courseEntity.CareerPathwayTypeId.ShouldBe((int)CareerPathwayTypeEnum.AgricultureFoodandNaturalResources);
             courseEntity.TimeRequiredForCompletion.ShouldBe(10);
         }
