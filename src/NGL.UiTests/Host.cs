@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using NGL.Web;
 using TestStack.Seleno.Configuration;
@@ -21,6 +22,7 @@ namespace NGL.UiTests
 
         static Host()
         {
+            StopIisExpress();
             DatabaseManager.RefreshDatabase();
 
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SelenoScreenShots");
@@ -31,6 +33,15 @@ namespace NGL.UiTests
                  .UsingControlIdGenerator(new MvcControlIdGenerator())
                  .WithEnvironmentVariable("ConnectionString", DatabaseManager.ConnectionString)
                  .UsingCamera(filePath));
+        }
+
+        static void StopIisExpress()
+        {
+            var iisexpress = Process.GetProcessesByName("IISExpress");
+            foreach (var process in iisexpress)
+            {
+                process.Kill();
+            }
         }
     }
 }
