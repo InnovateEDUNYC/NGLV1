@@ -13,7 +13,7 @@ namespace NGL.UiTests
         public void Verify()
         {
             var homePage = Host.Instance.NavigateToInitialPage<HomePage>().Login(ObjectMother.JohnSmith.ViewModel);
-            var studentPage = homePage.TopMenu.GoToStudentPage();
+            var studentPage = homePage.TopMenu.GoToStudentsPage();
             var createStudentModel = GetCreateStudentModel();
 
             studentPage = studentPage.GoToEnroll().Enroll(createStudentModel);
@@ -22,7 +22,6 @@ namespace NGL.UiTests
 
             var usiStringOfStudent = studentPage.LastUsiInTheList;
             usiStringOfStudent.ShouldBe(createStudentModel.StudentUsi.ToString());
-
         }
 
         private CreateStudentModel GetCreateStudentModel()

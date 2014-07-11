@@ -7,7 +7,7 @@ namespace NGL.UiTests.Pages
     {
         public SchoolPage GoToSchoolPage()
         {
-            return Navigate.To<SchoolPage>(By.LinkText("School Info"));
+            return Navigate.To<SchoolPage>(By.LinkText("NGL Platform"));
         }
 
         public LoginPage GoToLoginPage()
@@ -15,14 +15,15 @@ namespace NGL.UiTests.Pages
             return Navigate.To<LoginPage>(By.LinkText("Log in"));
         }
 
-        public StudentIndexPage GoToStudentPage()
+        public StudentIndexPage GoToStudentsPage()
         {
-            return Navigate.To<StudentIndexPage>(By.LinkText("Students"));
+            return Navigate.To<StudentIndexPage>(By.LinkText("Profile"));
         }
 
-        public SessionIndexPage GoToSessionPage()
+        public SessionCreatePage GoToSchedulingPage()
         {
-            return Navigate.To<SessionIndexPage>(By.LinkText("Sessions"));
+            Find.Element(By.LinkText("Planning")).Click();
+            return Navigate.To<SessionCreatePage>(By.LinkText("Scheduling"));
         }
 
         public Page LogOff()

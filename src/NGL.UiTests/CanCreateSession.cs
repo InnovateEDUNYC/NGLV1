@@ -26,8 +26,7 @@ namespace NGL.UiTests
 
         public void AndGivenIAmOnTheCreateSessionPage()
         {
-            _sessionIndexPage = _homePage.TopMenu.GoToSessionPage();
-            _sessionCreatePage = _sessionIndexPage.GoToCreatePage();
+            _sessionCreatePage = _homePage.TopMenu.GoToSchedulingPage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()
@@ -51,8 +50,6 @@ namespace NGL.UiTests
 
             sessionExists.ShouldBe(true);
         }
-
-
 
         [Fact]
         public void ShouldCreateSession()
