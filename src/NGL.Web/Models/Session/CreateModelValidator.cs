@@ -5,6 +5,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.Infrastructure;
 
 namespace NGL.Web.Models.Session
 {
@@ -33,8 +34,8 @@ namespace NGL.Web.Models.Session
 
             if (_genericRepository.Get(query) != null)
             {
-                yield return new ValidationFailure("term", " ");
-                yield return new ValidationFailure("schoolYear", "This session already exists!");
+                yield return new ValidationFailure(createModel.GetNameFor(c => c.Term), " ");
+                yield return new ValidationFailure(createModel.GetNameFor(c => c.SchoolYear), "This session already exists!");
             }
         }
     }
