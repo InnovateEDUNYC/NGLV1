@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using FluentValidation;
 using FluentValidation.Mvc;
 using NGL.Web.Data;
@@ -77,7 +78,11 @@ namespace NGL.Web.App_Start
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
-            kernel.Bind<CreateModelValidator>().ToSelf();
+            kernel.Bind(
+            x => x.FromThisAssembly()
+                .SelectAllTypes()
+                .InheritedFrom<IValidator>()
+                .BindDefaultInterfaces());
             kernel.Bind(
                 x => x.FromThisAssembly()
                     .SelectAllTypes()
@@ -85,49 +90,13 @@ namespace NGL.Web.App_Start
                     .BindDefaultInterfaces());
 
             var factory = new NinjectValidatorFactory(kernel);
-            ModelValidatorProviders.Providers.Add(new FluentValidationModelValidatorProvider(factory));
+            var fluentValidationModelValidatorProvider =
+                new FluentValidationModelValidatorProvider(factory)
+                {
+                    AddImplicitRequiredValidator = false
+                };
+            ModelValidatorProviders.Providers.Add(fluentValidationModelValidatorProvider);
             DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
         }        
-    }
-
-    /// <summary>
-    /// Validation factory that uses ninject to create validators  
-    /// </summary>
-    public class NinjectValidatorFactory : ValidatorFactoryBase
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NinjectValidatorFactory"/> class.
-        /// </summary>
-        /// <param name="kernel">The kernel.</param>
-        public NinjectValidatorFactory(IKernel kernel)
-        {
-            Kernel = kernel;
-        }
-
-        /// <summary>
-        /// Gets or sets the kernel.
-        /// </summary>
-        /// <value>The kernel.</value>
-        public IKernel Kernel
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Creates an instance of a validator with the given type using ninject.
-        /// </summary>
-        /// <param name="validatorType">Type of the validator.</param>
-        /// <returns>The newly created validator</returns>
-        public override IValidator CreateInstance(Type validatorType)
-        {
-            return Kernel.Get<CreateModelValidator>();
-            //if (((IList<IBinding>)Kernel.GetBindings(validatorType)).Count == 0)
-            //{
-            //    return null;
-            //}
-
-            //return Kernel.Get(validatorType) as IValidator;
-        }
     }
 }

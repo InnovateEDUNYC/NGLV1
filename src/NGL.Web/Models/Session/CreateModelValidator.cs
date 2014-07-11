@@ -33,7 +33,7 @@ namespace NGL.Web.Models.Session
 
             if (_genericRepository.Get(query) != null)
             {
-                yield return new ValidationFailure("term", string.Empty);
+                yield return new ValidationFailure("term", " ");
                 yield return new ValidationFailure("schoolYear", "This session already exists!");
             }
         }
