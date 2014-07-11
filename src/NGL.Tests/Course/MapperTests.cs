@@ -12,9 +12,9 @@ namespace NGL.Tests.Course
     {
 
         [Fact]
-        public void ShouldMapCourseToCreateModel()
+        public void ShouldMapCourseToIndexModel()
         {
-            var courseCreateModel = new CreateModel();
+            var courseIndexModel = new IndexModel();
             var courseEntity = new Web.Data.Entities.Course
             {
                 CourseCode = "CSC101",
@@ -36,26 +36,12 @@ namespace NGL.Tests.Course
                 TimeRequiredForCompletion = 10,
             };
 
-            var courseToCreateModelMapper = new CourseToCreateModelMapper();
-            courseToCreateModelMapper.Map(courseEntity, courseCreateModel);
+            var courseToCreateModelMapper = new CourseToIndexModelMapper();
+            courseToCreateModelMapper.Map(courseEntity, courseIndexModel);
 
-            courseCreateModel.CourseCode.ShouldBe("CSC101");
-            courseCreateModel.CourseTitle.ShouldBe("Intro to Programming");
-            courseCreateModel.NumberOfParts.ShouldBe(1);
-            courseCreateModel.AcademicSubject.ShouldBe(AcademicSubjectDescriptorEnum.EnglishLanguageArts);
-            courseCreateModel.CourseDescription.ShouldBe("Learnin some Java");
-            courseCreateModel.DateCourseAdopted.ShouldBe(new DateTime(2014, 07, 03));
-            courseCreateModel.HighSchoolCourseRequirement.ShouldBe(false);
-            courseCreateModel.CourseGPAApplicability.ShouldBe(CourseGPAApplicabilityTypeEnum.Applicable);
-            courseCreateModel.CourseDefinedBy.ShouldBe(CourseDefinedByTypeEnum.LEA);
-            courseCreateModel.MinimumAvailableCreditType.ShouldBe(CreditTypeEnum.Adulteducationcredit);
-            courseCreateModel.MinimumAvailableCreditConversion.ShouldBe(new decimal(3.0));
-            courseCreateModel.MinimumAvailableCredit.ShouldBe(new decimal(3.0));
-            courseCreateModel.MaximumAvailableCreditType.ShouldBe(CreditTypeEnum.CareerandTechnicalEducationcredit);
-            courseCreateModel.MaximumAvailableCreditConversion.ShouldBe(new decimal(3.0));
-            courseCreateModel.MaximumAvailableCredit.ShouldBe(new decimal(3.0));
-            courseCreateModel.CareerPathway.ShouldBe(CareerPathwayTypeEnum.AgricultureFoodandNaturalResources);
-            courseCreateModel.TimeRequiredForCompletion.ShouldBe(10);
+            courseIndexModel.CourseCode.ShouldBe("CSC101");
+            courseIndexModel.CourseTitle.ShouldBe("Intro to Programming");
+            courseIndexModel.CourseDescription.ShouldBe("Learnin some Java");
         }
 
         [Fact]

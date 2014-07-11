@@ -12,15 +12,15 @@ namespace NGL.Web.Controllers
     public partial class CourseController : Controller
     {
         private readonly IGenericRepository _genericRepository;
-        private readonly IMapper<Course, CreateModel> _courseToCreateModelMapper;
+        private readonly IMapper<Course, IndexModel> _courseToIndexModelMapper;
         private readonly IMapper<CreateModel, Course> _createModelToCourseMapper;
 
         public CourseController(IGenericRepository genericRepository, 
-            IMapper<Course, CreateModel> courseToCreateModelMapper, 
+            IMapper<Course, IndexModel> courseToIndexModelMapper, 
             IMapper<CreateModel, Course> createModelToCourseMapper)
         {
             _genericRepository = genericRepository;
-            _courseToCreateModelMapper = courseToCreateModelMapper;
+            _courseToIndexModelMapper = courseToIndexModelMapper;
             _createModelToCourseMapper = createModelToCourseMapper;
         }
 
@@ -30,16 +30,16 @@ namespace NGL.Web.Controllers
         {
 
             IEnumerable<Course> courses = _genericRepository.GetAll<Course>();
-            var courseModels = new List<CreateModel>();
+            var indexModels = new List<IndexModel>();
 
             foreach (var course in courses)
             {
-                var courseModel = new CreateModel();
-                _courseToCreateModelMapper.Map(course, courseModel);
-                courseModels.Add(courseModel);
+                var indexModel = new IndexModel();
+                _courseToIndexModelMapper.Map(course, indexModel);
+                indexModels.Add(indexModel);
             }
 
-            return View(courseModels);
+            return View(indexModels);
         }
 
         // GET: /Course/Create
