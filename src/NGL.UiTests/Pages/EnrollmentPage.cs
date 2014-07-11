@@ -9,8 +9,6 @@ namespace NGL.UiTests.Pages
         public StudentIndexPage Enroll(CreateStudentModel createStudentModel)
         {
             Input.Model(createStudentModel);
-            Input.ReplaceInputValueWith("BirthDate", "12/12/12");
-
             return Navigate.To<StudentIndexPage>(By.ClassName("btn"));
         }
     }

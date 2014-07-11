@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Pages;
+﻿using System;
+using NGL.UiTests.Pages;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
@@ -40,7 +41,8 @@ namespace NGL.UiTests
                 PostalCode = "6000",
                 HispanicLatinoEthnicity = true,
                 HomeLanguage = LanguageDescriptorEnum.English,
-                ParentEnrollmentInfoModel = GetParentEnrollmentModel()
+                ParentEnrollmentInfoModel = GetParentEnrollmentModel(),
+                BirthDate = new DateTime(1999, 1, 5)
             };
         }
 

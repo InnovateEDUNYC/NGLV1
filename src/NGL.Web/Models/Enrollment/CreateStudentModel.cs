@@ -32,7 +32,6 @@ namespace NGL.Web.Models.Enrollment
         [Required]
         public SexTypeEnum? Sex { get; set; }
 
-        [DataType(DataType.Date)]
         [Required]
         public DateTime? BirthDate { get; set; }
 

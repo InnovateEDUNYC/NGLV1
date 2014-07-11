@@ -40,7 +40,7 @@ namespace NGL.Web.Models.Enrollment
             target.LastSurname = source.LastName;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.SexTypeId = (int) source.Sex.GetValueOrDefault();
-            if (source.BirthDate != null) target.BirthDate = (DateTime) source.BirthDate;
+            target.BirthDate = source.BirthDate.GetValueOrDefault();
             target.StudentRaces.Add(new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()});
         }
     }
