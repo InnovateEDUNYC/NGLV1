@@ -1,10 +1,13 @@
-using System.Configuration;
-using System.Data.Entity.Core.EntityClient;
+using System.Web.Mvc;
+using Antlr.Runtime.Misc;
+using FluentValidation;
+using FluentValidation.Mvc;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
+using NGL.Web.Models.Session;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NGL.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NGL.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -76,10 +79,24 @@ namespace NGL.Web.App_Start
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
             kernel.Bind(
+            x => x.FromThisAssembly()
+                .SelectAllTypes()
+                .InheritedFrom<IValidator>()
+                .BindDefaultInterfaces());
+            kernel.Bind(
                 x => x.FromThisAssembly()
                     .SelectAllTypes()
                     .InheritedFrom(typeof (IMapper<,>))
                     .BindDefaultInterfaces());
-        }
+
+            var factory = new NinjectValidatorFactory(kernel);
+            var fluentValidationModelValidatorProvider =
+                new FluentValidationModelValidatorProvider(factory)
+                {
+                    AddImplicitRequiredValidator = false
+                };
+            ModelValidatorProviders.Providers.Add(fluentValidationModelValidatorProvider);
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+        }        
     }
 }
