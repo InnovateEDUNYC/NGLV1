@@ -28,7 +28,6 @@ namespace NGL.Web.Models.Enrollment
         [Required]
         public SexTypeEnum? Sex { get; set; }
 
-        
         public bool SameAddressAsStudent { get; set; }
 
         [StringLength(150)]

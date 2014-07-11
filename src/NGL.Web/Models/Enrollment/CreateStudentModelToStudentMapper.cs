@@ -31,6 +31,7 @@ namespace NGL.Web.Models.Enrollment
 
             var studentParentAssociation = _studentParentAssociationMapper.Build(source.ParentEnrollmentInfoModel);
             target.StudentParentAssociations.Add(studentParentAssociation);
+
         }
 
         private static void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)

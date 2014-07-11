@@ -4,7 +4,6 @@ using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
 using Xunit;
-using Xunit.Sdk;
 
 namespace NGL.Tests.Enrollment
 {
@@ -21,31 +20,39 @@ namespace NGL.Tests.Enrollment
             SetUp();
             _mapper.Map(_createStudentModel, _student);
 
-            const int languageDescriptorId = (int)LanguageDescriptorEnum.English;
+            const int languageDescriptorId = (int) LanguageDescriptorEnum.English;
 
             _student.FirstName.ShouldBe("John");
             _student.LastSurname.ShouldBe("Doe");
-            _student.SexTypeId.ShouldBe((int)SexTypeEnum.Male);
+            _student.SexTypeId.ShouldBe((int) SexTypeEnum.Male);
             _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             _student.HispanicLatinoEthnicity.ShouldBe(false);
+<<<<<<< HEAD
+=======
+            _student.OldEthnicityTypeId.ShouldBe((int) OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative);
+>>>>>>> Added mappers and tests for parent address
             _student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
-            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageUseTypeId.ShouldBe((int)LanguageUseTypeEnum.Homelanguage);
-            _student.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
+            _student.StudentLanguages.First()
+                .StudentLanguageUses.First()
+                .LanguageUseTypeId.ShouldBe((int) LanguageUseTypeEnum.Homelanguage);
+            _student.StudentLanguages.First()
+                .StudentLanguageUses.First()
+                .LanguageDescriptorId.ShouldBe(languageDescriptorId);
 
             var studentRace = _student.StudentRaces.First();
             studentRace.RaceTypeId.ShouldBe((int) RaceTypeEnum.AmericanIndianAlaskanNative);
 
             var studentAddress = _student.StudentAddresses.First();
-            
+
             studentAddress.StreetNumberName.ShouldBe("1060 W Addison St");
             studentAddress.ApartmentRoomSuiteNumber.ShouldBe("33");
             studentAddress.PostalCode.ShouldBe("60657");
-            studentAddress.StateAbbreviationTypeId.ShouldBe((int)StateAbbreviationTypeEnum.CA);
+            studentAddress.StateAbbreviationTypeId.ShouldBe((int) StateAbbreviationTypeEnum.CA);
             studentAddress.City.ShouldBe("London");
-            studentAddress.AddressTypeId.ShouldBe((int)AddressTypeEnum.Home);
+            studentAddress.AddressTypeId.ShouldBe((int) AddressTypeEnum.Home);
 
             var studentParentAssociation = _student.StudentParentAssociations.First();
-            studentParentAssociation.RelationTypeId.ShouldBe((int)RelationTypeEnum.Grandmother);
+            studentParentAssociation.RelationTypeId.ShouldBe((int) RelationTypeEnum.Grandmother);
             studentParentAssociation.PrimaryContactStatus.ShouldBe(true);
             studentParentAssociation.LivesWith.ShouldBe(false);
 
@@ -62,6 +69,13 @@ namespace NGL.Tests.Enrollment
             var parentEmail = parent.ParentElectronicMails.First();
             parentEmail.ElectronicMailAddress.ShouldBe("Jenny@grandma.com");
             parentEmail.ElectronicMailTypeId.ShouldBe((int) ElectronicMailTypeEnum.HomePersonal);
+
+            var parentAddress = parent.ParentAddresses.First();
+            parentAddress.City.ShouldBe("Austin");
+            parentAddress.StateAbbreviationTypeId.ShouldBe((int) StateAbbreviationTypeEnum.TX);
+            parentAddress.PostalCode.ShouldBe("70101");
+            parentAddress.StreetNumberName.ShouldBe("1 Oak St");
+            parentAddress.ApartmentRoomSuiteNumber.ShouldBe("1A");
         }
 
         private void SetUp()
@@ -69,7 +83,7 @@ namespace NGL.Tests.Enrollment
             _mapper = new CreateStudentModelToStudentMapper(
                 new StudentHomeAddressMapper(), 
                 new StudentHomeLanguageMapper(),
-                new ParentEnrollmentInfoModelToStudentParentAssociationMapper(new ParentEnrollmentInfoModelToParentMapper()));
+                new ParentEnrollmentInfoModelToStudentParentAssociationMapper(new ParentEnrollmentInfoModelToParentMapper(), new ParentEnrollmentInfoModelToParentAddressMapper()));
 
             _createStudentModel.StudentUsi = 10001;
             _createStudentModel.FirstName = "John";
@@ -94,7 +108,12 @@ namespace NGL.Tests.Enrollment
                 MakeThisPrimaryContact = true,
                 TelephoneNumber = "555-0221",
                 EmailAddress = "Jenny@grandma.com",
-                SameAddressAsStudent = false
+                SameAddressAsStudent = false,
+                City = "Austin",
+                State = StateAbbreviationTypeEnum.TX,
+                PostalCode = "70101",
+                Address = "1 Oak St",
+                Address2 = "1A"
             };
 
             _createStudentModel.ParentEnrollmentInfoModel = _parentEnrollmentInfoModel;

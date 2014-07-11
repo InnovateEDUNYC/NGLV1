@@ -1583,6 +1583,7 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModel.cs" />
+    <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToParentAddressMapper.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToParentMapper.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToStudentParentAssociationMapper.cs" />
     <Compile Include="Models\Enrollment\EnterProgramStatusModel.cs" />
