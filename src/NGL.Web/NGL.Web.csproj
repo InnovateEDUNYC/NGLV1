@@ -1448,6 +1448,10 @@
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
     <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
+    <Compile Include="Infrastructure\ChameleonForms\FieldGeneratorHandlersRouter.cs" />
+    <Compile Include="Infrastructure\ChameleonForms\FormHelpers.cs" />
+    <Compile Include="Infrastructure\ChameleonForms\NglDateTimeHandler.cs" />
+    <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
@@ -1720,12 +1724,14 @@
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

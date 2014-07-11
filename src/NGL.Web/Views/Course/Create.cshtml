@@ -6,7 +6,7 @@
 
 <h2>Course</h2>
 
-@using (var f = Html.BeginChameleonForm())
+@using (var f = Html.BeginNglForm())
 {
    using (var s = f.BeginSection("Info"))
     {
@@ -15,7 +15,7 @@
         @s.FieldFor(m => m.NumberOfParts)
         @s.FieldFor(m => m.AcademicSubject)
         @s.FieldFor(m => m.CourseDescription)
-        @s.FieldFor(m => m.DateCourseAdopted).AddClass("datepicker")
+        @s.FieldFor(m => m.DateCourseAdopted)
         @s.FieldFor(m => m.HighSchoolCourseRequirement)
         @s.FieldFor(m => m.CourseGPAApplicability)
         @s.FieldFor(m => m.CourseDefinedBy)

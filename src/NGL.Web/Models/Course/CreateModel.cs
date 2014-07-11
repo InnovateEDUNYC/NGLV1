@@ -16,8 +16,6 @@ namespace NGL.Web.Models.Course
         public int NumberOfParts { get; set; }
         public AcademicSubjectDescriptorEnum? AcademicSubject { get; set; }
         public string CourseDescription { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime? DateCourseAdopted { get; set; }
         public bool? HighSchoolCourseRequirement { get; set; }
         public CourseGPAApplicabilityTypeEnum? CourseGPAApplicability { get; set; }
