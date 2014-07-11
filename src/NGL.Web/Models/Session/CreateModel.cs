@@ -20,11 +20,9 @@ namespace NGL.Web.Models.Session
         public SchoolYearTypeEnum SchoolYear { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime? BeginDate { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime? EndDate { get; set; }
 
         [Required]

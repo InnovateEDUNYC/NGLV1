@@ -6,14 +6,14 @@
 
 <h2>Session</h2>
 
-@using (var f = Html.BeginChameleonForm())
+@using (var f = Html.BeginNglForm())
 {
     using (var s = f.BeginSection("Info"))
     {
         @s.FieldFor(m => m.Term)
         @s.FieldFor(m => m.SchoolYear)
-        @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
-        @s.FieldFor(m => m.EndDate).AddClass("datepicker")
+        @s.FieldFor(m => m.BeginDate)
+        @s.FieldFor(m => m.EndDate)
         @s.FieldFor(m => m.TotalInstructionalDays)
     }
     using (var n = f.BeginNavigation())
