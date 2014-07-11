@@ -8,6 +8,11 @@ namespace NGL.Web.Models.Session
     [Validator(typeof(CreateModelValidator))]
     public class CreateModel
     {
+        public CreateModel()
+        {
+            SchoolYear = (SchoolYearTypeEnum)DateTime.Today.Year;
+        }
+
         [Required]
         public TermTypeEnum? Term { get; set; }
 
