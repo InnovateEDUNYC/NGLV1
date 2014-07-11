@@ -30,12 +30,24 @@
         @s.FieldFor(m => m.ParentEnrollmentInfoModel.RelationshipToStudent)
         @s.FieldFor(m => m.ParentEnrollmentInfoModel.TelephoneNumber)
         @s.FieldFor(m => m.ParentEnrollmentInfoModel.EmailAddress) 
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.MakeThisPrimatyContact) 
-        
-    }
-    
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.MakeThisPrimaryContact) 
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.SameAddressAsStudent)
+
+    <div class="parent-address" hidden="true">
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.Address)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.Address2)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.City)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.PostalCode)
+        @s.FieldFor(m => m.ParentEnrollmentInfoModel.State)
+    </div>
+
     using (var n = f.BeginNavigation())
     {
         @n.Submit("CreateStudent")
     }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Assets/Scripts/hide-parent-address.js")
 }

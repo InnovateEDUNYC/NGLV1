@@ -14,7 +14,7 @@ namespace NGL.Web.Models.Enrollment
         public override void Map(ParentEnrollmentInfoModel source, StudentParentAssociation target)
         {
             target.RelationTypeId = (int)source.RelationshipToStudent.GetValueOrDefault();
-            target.PrimaryContactStatus = source.MakeThisPrimatyContact;
+            target.PrimaryContactStatus = source.MakeThisPrimaryContact;
             target.LivesWith = source.SameAddressAsStudent;
             target.Parent = _parentMapper.Build(source);
         }

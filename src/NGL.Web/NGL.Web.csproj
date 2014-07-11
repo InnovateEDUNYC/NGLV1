@@ -1687,6 +1687,7 @@
     <Content Include="Assets\Scripts\forms.js" />
     <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\006 - Schema - StudentProgramStatus.sql" />
+    <Content Include="Assets\Scripts\hide-parent-address.js" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

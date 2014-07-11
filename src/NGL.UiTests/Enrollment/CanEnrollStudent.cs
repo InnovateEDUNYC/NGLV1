@@ -53,7 +53,7 @@ namespace NGL.UiTests.Enrollment
                 LastName = "Smith",
                 Sex = SexTypeEnum.Male,
                 RelationshipToStudent = RelationTypeEnum.MothersCivilPartner,
-                MakeThisPrimatyContact = true,
+                MakeThisPrimaryContact = true,
                 TelephoneNumber = "123-4567",
                 EmailAddress = "jan@civilpartner.me",
             };

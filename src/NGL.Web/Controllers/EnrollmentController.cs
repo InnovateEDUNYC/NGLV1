@@ -24,23 +24,27 @@ namespace NGL.Web.Controllers
 			_programStatusMapper = programStatusMapper;
 		}
 
-		//
-		// GET: /Enrollment/CreateStudent
-		public virtual ActionResult CreateStudent()
-		{
-			var enrollmentModel = new CreateStudentModel
-			{
-				ParentEnrollmentInfoModel = new ParentEnrollmentInfoModel()
+        //
+        // GET: /Enrollment/CreateStudent
+        public virtual ActionResult CreateStudent()
+        {
+            var enrollmentModel = new CreateStudentModel
+            {
+				ParentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+                {
+                    SameAddressAsStudent = true
+                }
 			};
-			return View(enrollmentModel);
+            return View(enrollmentModel);
 		}
-
 		// POST: /Enrollment/CreateStudent
 		[HttpPost]
 		public virtual ActionResult CreateStudent(CreateStudentModel createStudentModel)
 		{
 			if (!ModelState.IsValid) 
 				return View(createStudentModel);
+                
+            
 
 			var student = new Student();
 

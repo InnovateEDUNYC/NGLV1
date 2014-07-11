@@ -91,7 +91,7 @@ namespace NGL.Tests.Enrollment
                 LastName = "Doe",
                 RelationshipToStudent = RelationTypeEnum.Grandmother,
                 Sex = SexTypeEnum.Female,
-                MakeThisPrimatyContact = true,
+                MakeThisPrimaryContact = true,
                 TelephoneNumber = "555-0221",
                 EmailAddress = "Jenny@grandma.com",
                 SameAddressAsStudent = false
