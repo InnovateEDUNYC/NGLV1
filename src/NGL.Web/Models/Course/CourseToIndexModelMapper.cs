@@ -2,10 +2,10 @@
 
 namespace NGL.Web.Models.Course
 {
-    public class CourseToIndexModelMapper : IMapper<Data.Entities.Course, IndexModel>
+    public class CourseToIndexModelMapper : MapperBase<Data.Entities.Course, IndexModel>
     {
 
-        public void Map(Data.Entities.Course source, IndexModel target)
+        public override void Map(Data.Entities.Course source, IndexModel target)
         {
             target.CourseCode = source.CourseCode;
             target.CourseTitle = source.CourseTitle;
