@@ -9,11 +9,11 @@ namespace NGL.Web.Models.Enrollment
         public override void Map(CreateStudentModel source, StudentAddress target)
         {
             target.AddressTypeId = HomeAddressTypeId;
-            target.StreetNumberName = source.StreetNumberName;
-            target.ApartmentRoomSuiteNumber = source.ApartmentRoomSuiteNumber;
+            target.StreetNumberName = source.Address;
+            target.ApartmentRoomSuiteNumber = source.Address2;
             target.City = source.City;
             target.PostalCode = source.PostalCode;
-            target.StateAbbreviationTypeId = (int) source.StateAbbreviationTypeEnum.GetValueOrDefault();
+            target.StateAbbreviationTypeId = (int) source.State.GetValueOrDefault();
         }
     }
 }

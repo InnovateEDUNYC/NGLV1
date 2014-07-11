@@ -8,7 +8,7 @@ namespace NGL.Web.Models.Enrollment
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
-            target.SexTypeId = (int) source.SexTypeEnum.GetValueOrDefault();
+            target.SexTypeId = (int) source.Sex.GetValueOrDefault();
             var parentTelephone = new ParentTelephone
             {
                 TelephoneNumber = source.TelephoneNumber,

@@ -20,44 +20,37 @@ namespace NGL.Web.Models.Enrollment
 
         [Required]
         [StringLength(150)]
-        [Display(Name = "Address")]
-        public String StreetNumberName { get; set; }
+        public String Address { get; set; }
 
         [StringLength(20)]
-        [Display(Name = "Address 2")]
-        public String ApartmentRoomSuiteNumber { get; set; }
+        public String Address2 { get; set; }
 
         [Required]
         [StringLength(30)]
         public String City { get; set; }
 
-        [Display(Name = "Sex")]
         [Required]
-        public SexTypeEnum? SexTypeEnum { get; set; }
+        public SexTypeEnum? Sex { get; set; }
 
         [DataType(DataType.Date)]
         [Required]
-        [Display(Name = "Birth Date")]
         public DateTime? BirthDate { get; set; }
 
         [Display(Name = "Hispanic/Latino Ethnicity")]
         public bool HispanicLatinoEthnicity { get; set; }
 
-        [Display(Name = "Race")]
         [Required]
-        public OldEthnicityTypeEnum? OldEthnicityTypeEnum { get; set; }
+        public RaceTypeEnum? Race { get; set; }
 
         [Required]
-        [Display(Name = "State")]
-        public StateAbbreviationTypeEnum? StateAbbreviationTypeEnum { get; set; }
+        public StateAbbreviationTypeEnum? State { get; set; }
 
         [Required]
         [StringLength(17)]
         public String PostalCode { get; set; }
 
-        [Display(Name = "Home Language")]
         [Required]
-        public LanguageDescriptorEnum? LanguageDescriptorEnum { get; set; }
+        public LanguageDescriptorEnum? HomeLanguage { get; set; }
 
         public ParentEnrollmentInfoModel ParentEnrollmentInfoModel { get; set; }
     }
