@@ -1441,6 +1441,7 @@
     </Compile>
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\IRepositoryBase.cs" />
+    <Compile Include="Data\Queries\CourseByCourseCodeQuery.cs" />
     <Compile Include="Data\Queries\SessionByTermTypeAndSchoolYearQuery.cs" />
     <Compile Include="Data\Queries\StudentByUsiQuery.cs" />
     <Compile Include="Data\Repositories\ILookupRepository.cs" />
@@ -1448,8 +1449,9 @@
     <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
-    <Compile Include="Models\Course\CourseModelToCourseMapper.cs" />
-    <Compile Include="Models\Course\CourseToCourseModelMapper.cs" />
+    <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
+    <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
+    <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModel.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToParentMapper.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToStudentParentAssociationMapper.cs" />
@@ -1580,7 +1582,7 @@
     <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
-    <Compile Include="Models\Course\CourseModel.cs" />
+    <Compile Include="Models\Course\CreateModel.cs" />
     <Compile Include="Models\Location\LocationModel.cs" />
     <Compile Include="Models\Section\SectionModel.cs" />
     <Compile Include="Models\Session\CreateModel.cs" />

@@ -1,4 +1,4 @@
-﻿@model NGL.Web.Models.Course.CourseModel
+﻿@model NGL.Web.Models.Course.CreateModel
 
 @{
     ViewBag.Title = "Add a New Course";
@@ -13,19 +13,19 @@
         @s.FieldFor(m => m.CourseCode)
         @s.FieldFor(m => m.CourseTitle)
         @s.FieldFor(m => m.NumberOfParts)
-        @s.FieldFor(m => m.AcademicSubjectDescriptorId)
+        @s.FieldFor(m => m.AcademicSubject)
         @s.FieldFor(m => m.CourseDescription)
-        @s.FieldFor(m => m.DateCourseAdopted)
+        @s.FieldFor(m => m.DateCourseAdopted).AddClass("datepicker")
         @s.FieldFor(m => m.HighSchoolCourseRequirement)
-        @s.FieldFor(m => m.CourseGPAApplicabilityTypeId)
-        @s.FieldFor(m => m.CourseDefinedByTypeId)
-        @s.FieldFor(m => m.MinimumAvailableCreditTypeId)
+        @s.FieldFor(m => m.CourseGPAApplicability)
+        @s.FieldFor(m => m.CourseDefinedBy)
+        @s.FieldFor(m => m.MinimumAvailableCreditType)
         @s.FieldFor(m => m.MinimumAvailableCreditConversion)
         @s.FieldFor(m => m.MinimumAvailableCredit)
-        @s.FieldFor(m => m.MaximumAvailableCreditTypeId)
+        @s.FieldFor(m => m.MaximumAvailableCreditType)
         @s.FieldFor(m => m.MaximumAvailableCreditConversion)
         @s.FieldFor(m => m.MaximumAvailableCredit)
-        @s.FieldFor(m => m.CareerPathwayTypeId)
+        @s.FieldFor(m => m.CareerPathway)
         @s.FieldFor(m => m.TimeRequiredForCompletion)
     }
     using (var n = f.BeginNavigation())
