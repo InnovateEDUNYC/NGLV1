@@ -1,11 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using FluentValidation;
-using FluentValidation.Results;
+﻿using FluentValidation;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Infrastructure;
 
 namespace NGL.Web.Models.Course
 {
@@ -13,27 +7,21 @@ namespace NGL.Web.Models.Course
     {
         private readonly IGenericRepository _genericRepository;
 
-        public CreateModelValidator()
+        public CreateModelValidator(IGenericRepository repo)
         {
-            _genericRepository = DependencyResolver.Current.GetService<IGenericRepository>();
+            _genericRepository = repo;
+            RuleFor(m => m.CourseCode).Must(NotExist).WithMessage("This course already exists.");
         }
 
-        public override ValidationResult Validate(ValidationContext<CreateModel> context)
+        private bool NotExist(string courseCode)
         {
-            var result = base.Validate(context);
-            return new ValidationResult(result.Errors.Union(ValidateExistence(context.InstanceToValidate)));
-        }
+            if (string.IsNullOrEmpty(courseCode)) 
+                return true;
 
-        private IEnumerable<ValidationFailure> ValidateExistence(CreateModel createModel)
-        {
-            if (createModel.CourseCode == null) yield break;
-            
-            if (_genericRepository.Get<Data.Entities.Course>(
-                c => c.CourseCode == createModel.CourseCode) != null)
-            {
-                yield return new ValidationFailure(createModel.GetNameFor(c => c.CourseCode), 
-                    "This course already exists!");
-            }
+            if (_genericRepository.Get<Data.Entities.Course>(c => c.CourseCode == courseCode) != null)
+                return false;
+
+            return true;
         }
     }
 }

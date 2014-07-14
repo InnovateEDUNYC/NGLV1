@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 using FluentValidation;
 using FluentValidation.Results;
 using NGL.Web.Data.Infrastructure;
@@ -13,9 +12,9 @@ namespace NGL.Web.Models.Session
     {
         private readonly IGenericRepository _genericRepository;
 
-        public CreateModelValidator()
+        public CreateModelValidator(IGenericRepository repo)
         {
-            _genericRepository = DependencyResolver.Current.GetService<IGenericRepository>();
+            _genericRepository = repo;
         }
 
         public override ValidationResult Validate(ValidationContext<CreateModel> context)
