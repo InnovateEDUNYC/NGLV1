@@ -123,5 +123,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<StudentSectionAttendanceEvent> StudentSectionAttendanceEvents { get; set; }
         public virtual ICollection<StudentTelephone> StudentTelephones { get; set; }
         public virtual ICollection<StudentVisa> StudentVisas { get; set; }
+        public virtual StudentProgramStatus StudentProgramStatus { get; set; }
     }
 }

@@ -1142,6 +1142,9 @@
         <AssociationConnector Association="Entities.FK_TeachingCredentialDescriptor_TeachingCredentialType_TeachingCredentialTypeId" ManuallyRouted="false" />
         <AssociationConnector Association="Entities.FK_WeaponDescriptor_WeaponsType_WeaponsTypeId" ManuallyRouted="false" />
         <AssociationConnector Association="Entities.StudentTitleIPartAProgramAssociation" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Entities.StudentProgramStatus" Width="1.5" PointX="46.5" PointY="315.125" />
+        <AssociationConnector Association="Entities.FK_StudentProgramStatus_SchoolFoodServicesEligibilityType" />
+        <AssociationConnector Association="Entities.FK_StudentProgramStatus_Student" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
