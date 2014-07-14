@@ -63,7 +63,6 @@
     <Compile Include="ClassPeriod\ValidationTests.cs" />
     <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentMapperTest.cs" />
     <Compile Include="Course\MapperTests.cs" />
-    <Compile Include="Course\CourseMapperTests.cs" />
     <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentAddressMapperTest.cs" />
     <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentMapperTest.cs" />
     <Compile Include="Enrollment\ParentEnrollmentInfoModelToStudentParentAssociationMapperTest.cs" />

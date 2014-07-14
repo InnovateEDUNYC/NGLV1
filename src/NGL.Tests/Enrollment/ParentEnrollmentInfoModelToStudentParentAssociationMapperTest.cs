@@ -72,8 +72,8 @@ namespace NGL.Tests.Enrollment
                 FirstName = "Mari",
                 LastName = "Chavez",
                 RelationshipToStudent = RelationTypeEnum.Mother,
-                SexTypeEnum = SexTypeEnum.Female,
-                IsPrimaryContact = true,
+                Sex = SexTypeEnum.Female,
+                MakeThisPrimaryContact = true,
                 TelephoneNumber = "555-5555",
                 EmailAddress = "mari@mother.com",
                 SameAddressAsStudent = hasSameAddress
