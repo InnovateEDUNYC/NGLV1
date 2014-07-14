@@ -1,11 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using NGL.Web.Data.Entities;
-using FluentValidation.Attributes;
 
 namespace NGL.Web.Models.Session
 {
-    [Validator(typeof(CreateModelValidator))]
     public class CreateModel
     {
         public CreateModel()

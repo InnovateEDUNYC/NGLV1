@@ -52,7 +52,6 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
-            CheckIfExists(createModel);
             if (!ModelState.IsValid)
                 return View(createModel);
 
@@ -63,25 +62,6 @@ namespace NGL.Web.Controllers
             _genericRepository.Save();
 
             return RedirectToAction(Actions.Index());
-        }
-
-        private void CheckIfExists(CreateModel createModel)
-        {
-            if (createModel.CourseCode != null)
-            {
-                var existingCourse = _genericRepository.Get(new CourseByCourseCodeQuery(
-                    createModel.CourseCode));
-
-                if (existingCourse != null)
-                {
-                    PutModelErrors();
-                }
-            }
-        }
-
-        private void PutModelErrors()
-        {
-            ModelState.AddModelError("coursecode", "This course already exists!");
         }
     }
 }

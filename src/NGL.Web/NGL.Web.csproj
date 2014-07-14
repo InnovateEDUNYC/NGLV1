@@ -1455,6 +1455,7 @@
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
+    <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModel.cs" />
     <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToParentMapper.cs" />
