@@ -1,9 +1,10 @@
-﻿using NGL.Web.Models.Course;
+﻿using NGL.UiTests.Shared;
+using NGL.Web.Models.Course;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
 
-namespace NGL.UiTests.Pages
+namespace NGL.UiTests.Course
 {
     [Story(
         AsA = "As a school admin",
@@ -37,8 +38,7 @@ namespace NGL.UiTests.Pages
                 NumberOfParts = ObjectMother.Math101.NumberOfParts,
                 CourseDescription = ObjectMother.Math101.CourseDescription
             };
-            _courseCreatePage.Input.Model(_createCourseModel);
-            _courseIndexPage = _courseCreatePage.CreateCourse();
+            _courseIndexPage = _courseCreatePage.CreateCourse(_createCourseModel);
         }
 
         public void ThenANewCourseShouldBeDisplayedOnTheCourseIndexPage()

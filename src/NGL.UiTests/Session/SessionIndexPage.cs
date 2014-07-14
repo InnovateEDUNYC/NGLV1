@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using Shouldly;
 using TestStack.Seleno.PageObjects;
 
-namespace NGL.UiTests.Pages
+namespace NGL.UiTests.Session
 {
     public class SessionIndexPage : Page<IndexModel>
     {

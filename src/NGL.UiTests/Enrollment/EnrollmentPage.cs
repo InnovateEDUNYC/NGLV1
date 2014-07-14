@@ -1,8 +1,8 @@
 ﻿using NGL.Web.Models.Enrollment;
+using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
-using By = OpenQA.Selenium.By;
 
-namespace NGL.UiTests.Pages
+namespace NGL.UiTests.Enrollment
 {
     class EnrollmentPage : Page<CreateStudentModel>
     {

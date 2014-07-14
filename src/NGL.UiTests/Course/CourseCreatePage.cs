@@ -2,12 +2,13 @@
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
-namespace NGL.UiTests.Pages
+namespace NGL.UiTests.Course
 {
     public class CourseCreatePage : Page<CreateModel>
     {
-        public CourseIndexPage CreateCourse()
+        public CourseIndexPage CreateCourse(CreateModel createCourseModel)
         {
+            Input.Model(createCourseModel);
             return Navigate.To<CourseIndexPage>(By.ClassName("btn"));
         }
     }

@@ -1,7 +1,7 @@
 using NGL.Web.Models.Account;
 using TestStack.Seleno.PageObjects;
 
-namespace NGL.UiTests.Pages
+namespace NGL.UiTests.Shared
 {
     class HomePage : Page
     {

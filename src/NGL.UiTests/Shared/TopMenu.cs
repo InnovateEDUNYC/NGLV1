@@ -1,7 +1,11 @@
-﻿using OpenQA.Selenium;
+﻿using NGL.UiTests.Course;
+using NGL.UiTests.Enrollment;
+using NGL.UiTests.School;
+using NGL.UiTests.Session;
+using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
-namespace NGL.UiTests.Pages
+namespace NGL.UiTests.Shared
 {
     class TopMenu : UiComponent
     {

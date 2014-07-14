@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
-namespace NGL.UiTests.Pages
+namespace NGL.UiTests.Shared
 {
     class LoginPage : Page<LoginViewModel>
     {

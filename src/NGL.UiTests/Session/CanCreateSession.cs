@@ -1,10 +1,10 @@
-﻿using NGL.UiTests.Pages;
+﻿using NGL.UiTests.Shared;
 using NGL.Web.Models.Session;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
 
-namespace NGL.UiTests
+namespace NGL.UiTests.Session
 {
     [Story(
         AsA = "As a school admin",
