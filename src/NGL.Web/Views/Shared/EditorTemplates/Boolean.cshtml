@@ -1,0 +1,17 @@
+﻿@model bool?
+
+<div class="form-group">
+    @Html.LabelFor(m => m, new { @class = "control-label" })
+    <em class="required" title="Required">∗</em>
+    <div class="input-group">
+        <label class="radio-inline">
+            @Html.RadioButtonFor(m => m, true) Yes
+        </label>
+        <label class="radio-inline">
+            @Html.RadioButtonFor(m => m, false) No
+        </label>
+    </div>
+
+    @Html.ValidationMessageFor(m => m, null, new { @class = "field-validation-valid help-block" })
+</div>
+
