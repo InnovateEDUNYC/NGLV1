@@ -5,7 +5,7 @@ using ChameleonForms;
 
 namespace NGL.Web
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class NglApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
