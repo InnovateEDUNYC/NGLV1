@@ -89,20 +89,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CanCreateSession.cs" />
-    <Compile Include="CanEnrollStudent.cs" />
-    <Compile Include="CanUpdateSchoolInfo.cs" />
+    <Compile Include="Session\CanCreateSession.cs" />
+    <Compile Include="Enrollment\CanEnrollStudent.cs" />
+    <Compile Include="School\CanUpdateSchoolInfo.cs" />
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="ObjectMother.cs" />
-    <Compile Include="Pages\EnrollmentPage.cs" />
-    <Compile Include="Pages\HomePage.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Pages\SchoolPage.cs" />
-    <Compile Include="Pages\SessionCreatePage.cs" />
-    <Compile Include="Pages\SessionIndexPage.cs" />
-    <Compile Include="Pages\StudentIndexPage.cs" />
-    <Compile Include="Pages\TopMenu.cs" />
+    <Compile Include="Course\CanCreateCourse.cs" />
+    <Compile Include="Course\CourseCreatePage.cs" />
+    <Compile Include="Course\CourseIndexPage.cs" />
+    <Compile Include="Enrollment\EnrollmentPage.cs" />
+    <Compile Include="Shared\HomePage.cs" />
+    <Compile Include="Shared\LoginPage.cs" />
+    <Compile Include="School\SchoolPage.cs" />
+    <Compile Include="Session\SessionCreatePage.cs" />
+    <Compile Include="Session\SessionIndexPage.cs" />
+    <Compile Include="Enrollment\StudentIndexPage.cs" />
+    <Compile Include="Shared\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

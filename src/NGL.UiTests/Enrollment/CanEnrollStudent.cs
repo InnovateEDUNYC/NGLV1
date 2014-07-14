@@ -1,11 +1,11 @@
 ﻿using System;
-using NGL.UiTests.Pages;
+using NGL.UiTests.Shared;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
 using Xunit;
 
-namespace NGL.UiTests
+namespace NGL.UiTests.Enrollment
 {
     public class CanEnrollStudent
     {

@@ -1,10 +1,10 @@
 ﻿using System;
-using NGL.UiTests.Pages;
+using NGL.UiTests.Shared;
 using NGL.Web.Models.School;
 using Shouldly;
 using Xunit;
 
-namespace NGL.UiTests
+namespace NGL.UiTests.School
 {
     public class CanUpdateSchoolInfo
     {
