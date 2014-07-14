@@ -95,6 +95,9 @@
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="ObjectMother.cs" />
+    <Compile Include="Pages\CanCreateCourse.cs" />
+    <Compile Include="Pages\CourseCreatePage.cs" />
+    <Compile Include="Pages\CourseIndexPage.cs" />
     <Compile Include="Pages\EnrollmentPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />

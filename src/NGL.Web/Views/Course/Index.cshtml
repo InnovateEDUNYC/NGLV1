@@ -23,13 +23,13 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td class="course-code">
                 @Html.DisplayFor(modelItem => item.CourseCode)
             </td>
-            <td>
+            <td class="course-title">
                 @Html.DisplayFor(modelItem => item.CourseTitle)
             </td>
-            <td>
+            <td class="course-description">
                 @Html.DisplayFor(modelItem => item.CourseDescription)
             </td>
 
