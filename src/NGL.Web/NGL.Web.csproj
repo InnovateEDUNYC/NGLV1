@@ -258,6 +258,9 @@
     <Compile Include="Data\Entities\AdditionalCreditType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\AddressType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\AdministrationEnvironmentType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -506,6 +509,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Descriptors.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\DatabaseManager.cs" />
     <Compile Include="Data\Entities\DiagnosisDescriptor.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -560,7 +564,6 @@
     <Compile Include="Data\Entities\EdFiException.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\DatabaseManager.cs" />
     <Compile Include="Data\Entities\EducationalEnvironmentType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -586,6 +589,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\EducationContentLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\EducationOrganization.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\EducationOrganizationAddress.cs">
@@ -625,6 +631,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\EducationServiceCenter.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ElectronicMailType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\EmploymentStatusDescriptor.cs">
@@ -816,6 +825,15 @@
     <Compile Include="Data\Entities\InterventionURI.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\LanguageDescriptor.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\LanguageUseType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\LearningObjective.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -927,6 +945,9 @@
     <Compile Include="Data\Entities\ObjectiveAssessmentPerformanceLevel.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\OldEthnicityType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\OpenStaffPosition.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -942,6 +963,15 @@
     <Compile Include="Data\Entities\OtherNameType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\Parent.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentElectronicMail.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\ParentIdentificationDocument.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -949,6 +979,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\ParentOtherName.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentTelephone.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\Payroll.cs">
@@ -1023,6 +1056,9 @@
     <Compile Include="Data\Entities\PublicationStatusType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\RaceType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\ReasonExitedDescriptor.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1035,10 +1071,8 @@
     <Compile Include="Data\Entities\RecognitionType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\Types.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Types.tt</DependentUpon>
+    <Compile Include="Data\Entities\RelationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\RepeatIdentifierType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
@@ -1092,6 +1126,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\RetestIndicatorType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\School.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\SchoolCategory.cs">
@@ -1155,6 +1192,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\SessionGradingPeriod.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SexType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\SpecialEducationSettingDescriptor.cs">
@@ -1235,6 +1275,9 @@
     <Compile Include="Data\Entities\StaffVisa.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\StateAbbreviationType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\StateEducationAgency.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1242,6 +1285,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StateEducationAgencyFederalFund.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Student.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StudentAcademicRecord.cs">
@@ -1260,6 +1306,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StudentAcademicRecordReportCard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentAddress.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StudentAssessment.cs">
@@ -1355,6 +1404,12 @@
     <Compile Include="Data\Entities\StudentInterventionAttendanceEvent.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\StudentLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentLanguageUse.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\StudentLearningObjective.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1365,6 +1420,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StudentOtherName.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentParentAssociation.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StudentParticipationCodeType.cs">
@@ -1383,6 +1441,12 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StudentProgramParticipationProgramCharacteristic.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentProgramStatus.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StudentRace.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StudentSchoolAssociation.cs">
@@ -1421,6 +1485,9 @@
     <Compile Include="Data\Entities\TeachingCredentialType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\TelephoneNumberType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\TermType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1429,6 +1496,11 @@
     </Compile>
     <Compile Include="Data\Entities\TitleIPartASchoolDesignationType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Types.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Types.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\VisaType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
@@ -1481,80 +1553,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Data\Entities\AddressType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Data\Entities\ApplicationUser.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data\Entities\EducationOrganization.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\ElectronicMailType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\LanguageDescriptor.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\LanguageType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\LanguageUseType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\OldEthnicityType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\Parent.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\ParentAddress.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\ParentElectronicMail.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\ParentTelephone.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\RaceType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\RelationType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\School.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\SexType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StateAbbreviationType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\Student.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StudentAddress.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StudentLanguage.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StudentLanguageUse.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StudentParentAssociation.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StudentRace.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\TelephoneNumberType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Infrastructure\GenericRepository.cs" />
     <Compile Include="Data\Infrastructure\IEntity.cs" />
@@ -1627,6 +1628,7 @@
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Scripts\forms.js" />
     <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />
+    <EmbeddedResource Include="Data\Scripts\006 - Schema - StudentProgramStatus.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

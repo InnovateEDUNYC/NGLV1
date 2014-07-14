@@ -12,26 +12,33 @@ namespace NGL.Web.Data.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class SchoolFoodServicesEligibilityType
+    public partial class StudentProgramStatus
     {
-        public SchoolFoodServicesEligibilityType()
+        public StudentProgramStatus()
         {
     		this.Id = System.Guid.NewGuid();
     		this.LastModifiedDate = System.DateTime.Now;
     		this.CreateDate = System.DateTime.Now;
-            this.SchoolFoodServicesEligibilityDescriptors = new HashSet<SchoolFoodServicesEligibilityDescriptor>();
-            this.StudentProgramStatus = new HashSet<StudentProgramStatus>();
         }
     
+        public int StudentUSI { get; set; }
+        public bool TestingAccommodation { get; set; }
+        public string TestingAccommodationFileUrl { get; set; }
+        public bool BilingualProgram { get; set; }
+        public bool EnglishAsSecondLanguage { get; set; }
         public int SchoolFoodServicesEligibilityTypeId { get; set; }
-        public string CodeValue { get; set; }
-        public string Description { get; set; }
-        public string ShortDescription { get; set; }
+        public bool Gifted { get; set; }
+        public bool SpecialEducation { get; set; }
+        public string SpecialEducationFileUrl { get; set; }
+        public bool TitleParticipation { get; set; }
+        public string TitleParticipationFileUrl { get; set; }
+        public bool McKinneyVento { get; set; }
+        public string McKinneyVentoFileUrl { get; set; }
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual ICollection<SchoolFoodServicesEligibilityDescriptor> SchoolFoodServicesEligibilityDescriptors { get; set; }
-        public virtual ICollection<StudentProgramStatus> StudentProgramStatus { get; set; }
+        public virtual SchoolFoodServicesEligibilityType SchoolFoodServicesEligibilityType { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

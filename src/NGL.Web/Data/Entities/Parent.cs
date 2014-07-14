@@ -40,6 +40,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+    
         public virtual SexType SexType { get; set; }
         public virtual ICollection<ParentAddress> ParentAddresses { get; set; }
         public virtual ICollection<ParentElectronicMail> ParentElectronicMails { get; set; }

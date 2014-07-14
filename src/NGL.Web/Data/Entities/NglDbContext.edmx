@@ -4,7 +4,28 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="StudentProgramStatus">
+          <Key>
+            <PropertyRef Name="StudentUSI" />
+          </Key>
+          <Property Name="StudentUSI" Type="int" Nullable="false" />
+          <Property Name="TestingAccommodation" Type="bit" Nullable="false" />
+          <Property Name="TestingAccommodationFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="BilingualProgram" Type="bit" Nullable="false" />
+          <Property Name="EnglishAsSecondLanguage" Type="bit" Nullable="false" />
+          <Property Name="SchoolFoodServicesEligibilityTypeId" Type="int" Nullable="false" />
+          <Property Name="Gifted" Type="bit" Nullable="false" />
+          <Property Name="SpecialEducation" Type="bit" Nullable="false" />
+          <Property Name="SpecialEducationFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="TitleParticipation" Type="bit" Nullable="false" />
+          <Property Name="TitleParticipationFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="McKinneyVento" Type="bit" Nullable="false" />
+          <Property Name="McKinneyVentoFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="AcademicHonorCategoryType">
           <Key>
             <PropertyRef Name="AcademicHonorCategoryTypeId" />
@@ -15204,6 +15225,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StudentProgramStatus_SchoolFoodServicesEligibilityType">
+          <End Role="SchoolFoodServicesEligibilityType" Type="Self.SchoolFoodServicesEligibilityType" Multiplicity="1" />
+          <End Role="StudentProgramStatus" Type="Self.StudentProgramStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolFoodServicesEligibilityType">
+              <PropertyRef Name="SchoolFoodServicesEligibilityTypeId" />
+            </Principal>
+            <Dependent Role="StudentProgramStatus">
+              <PropertyRef Name="SchoolFoodServicesEligibilityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentProgramStatus_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="StudentProgramStatus" Type="Self.StudentProgramStatus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentUSI" />
+            </Principal>
+            <Dependent Role="StudentProgramStatus">
+              <PropertyRef Name="StudentUSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentRace_RaceType_RaceTypeId">
           <End Role="RaceType" Type="Self.RaceType" Multiplicity="1" />
           <End Role="StudentRace" Type="Self.StudentRace" Multiplicity="*" />
@@ -15741,6 +15786,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EntitiesStoreContainer">
+          <EntitySet Name="StudentProgramStatus" EntityType="Self.StudentProgramStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademicHonorCategoryType" EntityType="Self.AcademicHonorCategoryType" Schema="edfi" store:Type="Tables" />
           <EntitySet Name="AcademicSubjectDescriptor" EntityType="Self.AcademicSubjectDescriptor" Schema="edfi" store:Type="Tables" />
           <EntitySet Name="AcademicSubjectType" EntityType="Self.AcademicSubjectType" Schema="edfi" store:Type="Tables" />
@@ -18867,6 +18913,14 @@
           <AssociationSet Name="FK_StudentProgramParticipations_Student_StudentUSI" Association="Self.FK_StudentProgramParticipations_Student_StudentUSI">
             <End Role="Student" EntitySet="Student" />
             <End Role="StudentProgramParticipation" EntitySet="StudentProgramParticipation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentProgramStatus_SchoolFoodServicesEligibilityType" Association="Self.FK_StudentProgramStatus_SchoolFoodServicesEligibilityType">
+            <End Role="SchoolFoodServicesEligibilityType" EntitySet="SchoolFoodServicesEligibilityType" />
+            <End Role="StudentProgramStatus" EntitySet="StudentProgramStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentProgramStatus_Student" Association="Self.FK_StudentProgramStatus_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentProgramStatus" EntitySet="StudentProgramStatus" />
           </AssociationSet>
           <AssociationSet Name="FK_StudentRace_RaceType_RaceTypeId" Association="Self.FK_StudentRace_RaceType_RaceTypeId">
             <End Role="RaceType" EntitySet="RaceType" />
@@ -24133,6 +24187,7 @@
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SchoolFoodServicesEligibilityDescriptors" Relationship="Self.FK_SchoolFoodServicesEligibilityDescriptor_SchoolFoodServicesEligibilityType_SchoolFoodServicesEligibilityTypeId" FromRole="SchoolFoodServicesEligibilityType" ToRole="SchoolFoodServicesEligibilityDescriptor" />
+          <NavigationProperty Name="StudentProgramStatus" Relationship="Entities.FK_StudentProgramStatus_SchoolFoodServicesEligibilityType" FromRole="SchoolFoodServicesEligibilityType" ToRole="StudentProgramStatus" />
         </EntityType>
         <EntityType Name="SchoolGradeLevel">
           <Key>
@@ -25086,6 +25141,7 @@
           <NavigationProperty Name="StudentSectionAttendanceEvents" Relationship="Self.FK_StudentSectionAttendanceEvent_Student_StudentUSI" FromRole="Student" ToRole="StudentSectionAttendanceEvent" />
           <NavigationProperty Name="StudentTelephones" Relationship="Self.FK_StudentTelephone_Student_StudentUSI" FromRole="Student" ToRole="StudentTelephone" />
           <NavigationProperty Name="StudentVisas" Relationship="Self.FK_StudentVisa_Student_StudentUSI" FromRole="Student" ToRole="StudentVisa" />
+          <NavigationProperty Name="StudentProgramStatus" Relationship="Entities.FK_StudentProgramStatus_Student" FromRole="Student" ToRole="StudentProgramStatus" />
         </EntityType>
         <EntityType Name="StudentAcademicRecord">
           <Key>
@@ -39438,7 +39494,63 @@
             <End Role="StudentProgramAssociation" EntitySet="StudentProgramAssociations" />
             <End Role="TitleIPartAParticipantType" EntitySet="TitleIPartAParticipantTypes" />
           </AssociationSet>
+          <EntitySet Name="StudentProgramStatus" EntityType="Entities.StudentProgramStatus" />
+          <AssociationSet Name="FK_StudentProgramStatus_SchoolFoodServicesEligibilityType" Association="Entities.FK_StudentProgramStatus_SchoolFoodServicesEligibilityType">
+            <End Role="SchoolFoodServicesEligibilityType" EntitySet="SchoolFoodServicesEligibilityTypes" />
+            <End Role="StudentProgramStatus" EntitySet="StudentProgramStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentProgramStatus_Student" Association="Entities.FK_StudentProgramStatus_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="StudentProgramStatus" EntitySet="StudentProgramStatus" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="StudentProgramStatus">
+          <Key>
+            <PropertyRef Name="StudentUSI" />
+          </Key>
+          <Property Name="StudentUSI" Type="Int32" Nullable="false" />
+          <Property Name="TestingAccommodation" Type="Boolean" Nullable="false" />
+          <Property Name="TestingAccommodationFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BilingualProgram" Type="Boolean" Nullable="false" />
+          <Property Name="EnglishAsSecondLanguage" Type="Boolean" Nullable="false" />
+          <Property Name="SchoolFoodServicesEligibilityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Gifted" Type="Boolean" Nullable="false" />
+          <Property Name="SpecialEducation" Type="Boolean" Nullable="false" />
+          <Property Name="SpecialEducationFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TitleParticipation" Type="Boolean" Nullable="false" />
+          <Property Name="TitleParticipationFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="McKinneyVento" Type="Boolean" Nullable="false" />
+          <Property Name="McKinneyVentoFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SchoolFoodServicesEligibilityType" Relationship="Entities.FK_StudentProgramStatus_SchoolFoodServicesEligibilityType" FromRole="StudentProgramStatus" ToRole="SchoolFoodServicesEligibilityType" />
+          <NavigationProperty Name="Student" Relationship="Entities.FK_StudentProgramStatus_Student" FromRole="StudentProgramStatus" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_StudentProgramStatus_SchoolFoodServicesEligibilityType">
+          <End Type="Entities.SchoolFoodServicesEligibilityType" Role="SchoolFoodServicesEligibilityType" Multiplicity="1" />
+          <End Type="Entities.StudentProgramStatus" Role="StudentProgramStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolFoodServicesEligibilityType">
+              <PropertyRef Name="SchoolFoodServicesEligibilityTypeId" />
+            </Principal>
+            <Dependent Role="StudentProgramStatus">
+              <PropertyRef Name="SchoolFoodServicesEligibilityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentProgramStatus_Student">
+          <End Type="Entities.Student" Role="Student" Multiplicity="1" />
+          <End Type="Entities.StudentProgramStatus" Role="StudentProgramStatus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentUSI" />
+            </Principal>
+            <Dependent Role="StudentProgramStatus">
+              <PropertyRef Name="StudentUSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -45308,6 +45420,28 @@
               <ScalarProperty Name="TitleIPartAParticipantTypeId" ColumnName="TitleIPartAParticipantTypeId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="StudentProgramStatus">
+            <EntityTypeMapping TypeName="Entities.StudentProgramStatus">
+              <MappingFragment StoreEntitySet="StudentProgramStatus">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="McKinneyVentoFileUrl" ColumnName="McKinneyVentoFileUrl" />
+                <ScalarProperty Name="McKinneyVento" ColumnName="McKinneyVento" />
+                <ScalarProperty Name="TitleParticipationFileUrl" ColumnName="TitleParticipationFileUrl" />
+                <ScalarProperty Name="TitleParticipation" ColumnName="TitleParticipation" />
+                <ScalarProperty Name="SpecialEducationFileUrl" ColumnName="SpecialEducationFileUrl" />
+                <ScalarProperty Name="SpecialEducation" ColumnName="SpecialEducation" />
+                <ScalarProperty Name="Gifted" ColumnName="Gifted" />
+                <ScalarProperty Name="SchoolFoodServicesEligibilityTypeId" ColumnName="SchoolFoodServicesEligibilityTypeId" />
+                <ScalarProperty Name="EnglishAsSecondLanguage" ColumnName="EnglishAsSecondLanguage" />
+                <ScalarProperty Name="BilingualProgram" ColumnName="BilingualProgram" />
+                <ScalarProperty Name="TestingAccommodationFileUrl" ColumnName="TestingAccommodationFileUrl" />
+                <ScalarProperty Name="TestingAccommodation" ColumnName="TestingAccommodation" />
+                <ScalarProperty Name="StudentUSI" ColumnName="StudentUSI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -45322,7 +45456,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

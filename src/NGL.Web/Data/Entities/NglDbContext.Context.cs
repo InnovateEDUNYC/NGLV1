@@ -443,5 +443,6 @@ namespace NGL.Web.Data.Entities
         public virtual DbSet<VisaType> VisaTypes { get; set; }
         public virtual DbSet<WeaponDescriptor> WeaponDescriptors { get; set; }
         public virtual DbSet<WeaponType> WeaponTypes { get; set; }
+        public virtual DbSet<StudentProgramStatus> StudentProgramStatus { get; set; }
     }
 }
