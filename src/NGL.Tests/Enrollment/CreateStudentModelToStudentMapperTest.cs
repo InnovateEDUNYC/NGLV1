@@ -27,10 +27,6 @@ namespace NGL.Tests.Enrollment
             _student.SexTypeId.ShouldBe((int) SexTypeEnum.Male);
             _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             _student.HispanicLatinoEthnicity.ShouldBe(false);
-<<<<<<< HEAD
-=======
-            _student.OldEthnicityTypeId.ShouldBe((int) OldEthnicityTypeEnum.AmericanIndianOrAlaskanNative);
->>>>>>> Added mappers and tests for parent address
             _student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
             _student.StudentLanguages.First()
                 .StudentLanguageUses.First()
