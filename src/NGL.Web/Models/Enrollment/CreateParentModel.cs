@@ -1,10 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using NGL.Web.Data.Entities;
 
-namespace NGL.Web.Models.Enrollment.Parent
+namespace NGL.Web.Models.Enrollment
 {
-    public class ParentEnrollmentInfoModel
+    public class CreateParentModel
     {
         public String FirstName { get; set; }
 

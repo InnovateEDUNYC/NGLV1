@@ -1,18 +1,17 @@
 ﻿using NGL.Web.Data.Entities;
-using NGL.Web.Models.Enrollment.Parent;
 
-namespace NGL.Web.Models.Enrollment.Student
+namespace NGL.Web.Models.Enrollment
 {
     public class CreateStudentModelToStudentMapper : MapperBase<CreateStudentModel, Data.Entities.Student>
     {
         private readonly IMapper<CreateStudentModel, StudentAddress> _studentAddressMapper;
         private readonly IMapper<CreateStudentModel, StudentLanguage> _studentLanguageMapper;
-        private readonly IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationMapper;
+        private readonly IMapper<CreateParentModel, StudentParentAssociation> _studentParentAssociationMapper;
 
         public CreateStudentModelToStudentMapper(
             IMapper<CreateStudentModel, StudentAddress> studentAddressMapper, 
             IMapper<CreateStudentModel, StudentLanguage> studentLanguageMapper, 
-            IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationMapper)
+            CreateParentModelToStudentParentAssociationMapper studentParentAssociationMapper)
         {
             _studentAddressMapper = studentAddressMapper;
             _studentLanguageMapper = studentLanguageMapper;

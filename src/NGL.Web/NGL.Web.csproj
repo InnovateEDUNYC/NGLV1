@@ -1598,6 +1598,16 @@
     <Compile Include="Models\Enrollment\Student\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\Enrollment\Student\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\Student\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModel.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModelToStudentParentAssociationMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModelValidator.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModelValidator.cs" />
+    <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
+    <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />

@@ -2,8 +2,6 @@
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Enrollment.Parent;
-using NGL.Web.Models.Enrollment.Student;
 using Shouldly;
 using Xunit;
 
@@ -14,7 +12,7 @@ namespace NGL.Tests.Enrollment
         private CreateStudentModelToStudentMapper _mapper;
         private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
         readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
-        private ParentEnrollmentInfoModel _parentEnrollmentInfoModel;
+        private CreateParentModel _parentEnrollmentInfoModel;
 
         [Fact]
         public void ShouldMapCreateStudentModelToStudent()
@@ -81,7 +79,7 @@ namespace NGL.Tests.Enrollment
             _mapper = new CreateStudentModelToStudentMapper(
                 new StudentHomeAddressMapper(), 
                 new StudentHomeLanguageMapper(),
-                new ParentEnrollmentInfoModelToStudentParentAssociationMapper(new ParentEnrollmentInfoModelToParentMapper(), new ParentEnrollmentInfoModelToParentAddressMapper()));
+                new CreateParentModelToStudentParentAssociationMapper(new CreateParentModelToParentMapper(), new CreateParentModelToParentAddressMapper()));
 
             _createStudentModel.StudentUsi = 10001;
             _createStudentModel.FirstName = "John";
@@ -97,7 +95,7 @@ namespace NGL.Tests.Enrollment
             _createStudentModel.PostalCode = "60657";
             _createStudentModel.State = StateAbbreviationTypeEnum.CA;
 
-            _parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+            _parentEnrollmentInfoModel = new CreateParentModel
             {
                 FirstName = "Jenny",
                 LastName = "Doe",

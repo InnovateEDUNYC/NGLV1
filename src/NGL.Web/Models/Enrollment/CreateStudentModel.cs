@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using NGL.Web.Data.Entities;
-using NGL.Web.Models.Enrollment.Parent;
 
-namespace NGL.Web.Models.Enrollment.Student
+namespace NGL.Web.Models.Enrollment
 {
     public class CreateStudentModel
     {
@@ -35,6 +34,6 @@ namespace NGL.Web.Models.Enrollment.Student
 
         public LanguageDescriptorEnum? HomeLanguage { get; set; }
 
-        public ParentEnrollmentInfoModel FirstParent { get; set; }
+        public CreateParentModel FirstParent { get; set; }
     }
 }

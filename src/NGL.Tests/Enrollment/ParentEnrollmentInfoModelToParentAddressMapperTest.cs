@@ -1,6 +1,5 @@
 ﻿using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Enrollment.Parent;
 using Shouldly;
 using Xunit;
 
@@ -11,7 +10,7 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldMap()
         {
-            var parentAddressMapper = new ParentEnrollmentInfoModelToParentAddressMapper();
+            var parentAddressMapper = new CreateParentModelToParentAddressMapper();
             var parentAddress = new ParentAddress();
             var parentEnrollmentInfoModel = SetUpParentEnrollmentInfoModel();
 
@@ -24,9 +23,9 @@ namespace NGL.Tests.Enrollment
             parentAddress.ApartmentRoomSuiteNumber.ShouldBe("19th fl");
         }
 
-        private static ParentEnrollmentInfoModel SetUpParentEnrollmentInfoModel()
+        private static CreateParentModel SetUpParentEnrollmentInfoModel()
         {
-            return new ParentEnrollmentInfoModel
+            return new CreateParentModel
             {
                 City = "Seattle",
                 State = StateAbbreviationTypeEnum.LA,

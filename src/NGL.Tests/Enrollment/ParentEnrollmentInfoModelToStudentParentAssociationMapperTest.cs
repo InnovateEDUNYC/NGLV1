@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Enrollment.Parent;
 using Shouldly;
 using Xunit;
 
@@ -13,7 +12,7 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldBuildAssociationWithParentAddressWhenAddressIsDifferentFromStudent()
         {
-            var mapper = new ParentEnrollmentInfoModelToStudentParentAssociationMapper(new ParentEnrollmentInfoModelToParentMapper(), new ParentEnrollmentInfoModelToParentAddressMapper());
+            var mapper = new CreateParentModelToStudentParentAssociationMapper(new CreateParentModelToParentMapper(), new CreateParentModelToParentAddressMapper());
             var parentEnrollmentInfoModel = MakeParentEnrollmentInfoModel(false);
 
             var studentParentAssociation = mapper.Build(parentEnrollmentInfoModel);
@@ -34,7 +33,7 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldBuildAssociationWithoutParentAddressWhenParentLivesWithStudent()
         {
-            var mapper = new ParentEnrollmentInfoModelToStudentParentAssociationMapper(new ParentEnrollmentInfoModelToParentMapper(), new ParentEnrollmentInfoModelToParentAddressMapper());
+            var mapper = new CreateParentModelToStudentParentAssociationMapper(new CreateParentModelToParentMapper(), new CreateParentModelToParentAddressMapper());
             var parentEnrollmentInfoModel = MakeParentEnrollmentInfoModel(true);
 
             var studentParentAssociation = mapper.Build(parentEnrollmentInfoModel);
@@ -64,10 +63,10 @@ namespace NGL.Tests.Enrollment
             parentEmail.ElectronicMailTypeId.ShouldBe((int) ElectronicMailTypeEnum.HomePersonal);
         }
 
-        private ParentEnrollmentInfoModel MakeParentEnrollmentInfoModel(bool hasSameAddress)
+        private CreateParentModel MakeParentEnrollmentInfoModel(bool hasSameAddress)
         {
 
-            var model = new ParentEnrollmentInfoModel
+            var model = new CreateParentModel
             {
 
                 FirstName = "Mari",

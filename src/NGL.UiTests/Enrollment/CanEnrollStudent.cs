@@ -2,8 +2,6 @@
 using NGL.UiTests.Shared;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Enrollment.Parent;
-using NGL.Web.Models.Enrollment.Student;
 using Shouldly;
 using Xunit;
 
@@ -47,9 +45,9 @@ namespace NGL.UiTests.Enrollment
             };
         }
 
-        private ParentEnrollmentInfoModel GetParentEnrollmentModel()
+        private CreateParentModel GetParentEnrollmentModel()
         {
-            var parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+            var parentEnrollmentInfoModel = new CreateParentModel
             {
                 FirstName = "Jan",
                 LastName = "Smith",

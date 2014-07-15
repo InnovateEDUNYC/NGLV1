@@ -1,6 +1,6 @@
 ﻿using NGL.Web.Data.Entities;
 
-namespace NGL.Web.Models.Enrollment.Student
+namespace NGL.Web.Models.Enrollment
 {
     public class StudentHomeLanguageMapper : MapperBase<CreateStudentModel, StudentLanguage>
     {

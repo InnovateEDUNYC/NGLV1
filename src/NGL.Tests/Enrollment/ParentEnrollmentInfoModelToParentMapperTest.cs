@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Enrollment.Parent;
 using Shouldly;
 using Xunit;
 
@@ -12,8 +11,8 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldMap()
         {
-            var mapper = new ParentEnrollmentInfoModelToParentMapper();
-            var parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+            var mapper = new CreateParentModelToParentMapper();
+            var parentEnrollmentInfoModel = new CreateParentModel
             {
                 FirstName = "Cameron",
                 LastName = "James",

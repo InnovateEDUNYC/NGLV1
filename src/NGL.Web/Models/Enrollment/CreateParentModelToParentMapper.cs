@@ -1,10 +1,10 @@
 ﻿using NGL.Web.Data.Entities;
 
-namespace NGL.Web.Models.Enrollment.Parent
+namespace NGL.Web.Models.Enrollment
 {
-    public class ParentEnrollmentInfoModelToParentMapper : MapperBase<ParentEnrollmentInfoModel, Data.Entities.Parent>
+    public class CreateParentModelToParentMapper : MapperBase<CreateParentModel, Parent>
     {
-        public override void Map(ParentEnrollmentInfoModel source, Data.Entities.Parent target)
+        public override void Map(CreateParentModel source, Parent target)
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
