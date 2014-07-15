@@ -9,7 +9,7 @@ namespace NGL.Web.Models.Enrollment
         public override void Map(CreateParentModel source, ParentAddress target)
         {
             target.AddressTypeId = HomeAddressTypeId;
-            target.StreetNumberName = source.ParentAddress;
+            target.StreetNumberName = source.Address;
             target.ApartmentRoomSuiteNumber = source.Address2;
             target.City = source.City;
             target.PostalCode = source.PostalCode;

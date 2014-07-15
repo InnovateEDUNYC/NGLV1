@@ -108,7 +108,7 @@ namespace NGL.Tests.Enrollment
                 City = "Austin",
                 State = StateAbbreviationTypeEnum.TX,
                 PostalCode = "70101",
-                ParentAddress = "1 Oak St",
+                Address = "1 Oak St",
                 Address2 = "1A"
             };
 

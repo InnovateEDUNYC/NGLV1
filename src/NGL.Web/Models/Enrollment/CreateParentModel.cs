@@ -20,7 +20,7 @@ namespace NGL.Web.Models.Enrollment
 
         public bool SameAddressAsStudent { get; set; }
 
-        public String ParentAddress { get; set; }
+        public String Address { get; set; }
 
         public String Address2 { get; set; }
 

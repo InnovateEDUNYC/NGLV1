@@ -30,7 +30,7 @@ namespace NGL.Tests.Enrollment
                 City = "Seattle",
                 State = StateAbbreviationTypeEnum.LA,
                 PostalCode = "90210",
-                ParentAddress = "1600 Pennsylvania",
+                Address = "1600 Pennsylvania",
                 Address2 = "19th fl"
             };
         }

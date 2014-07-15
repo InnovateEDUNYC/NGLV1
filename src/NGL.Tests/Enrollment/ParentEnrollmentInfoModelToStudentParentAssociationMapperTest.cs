@@ -83,7 +83,7 @@ namespace NGL.Tests.Enrollment
                 model.City = "Durham";
                 model.State = StateAbbreviationTypeEnum.NC;
                 model.PostalCode = "70131";
-                model.ParentAddress = "1 Boak St";
+                model.Address = "1 Boak St";
                 model.Address2 = "1st flr";
             }
             return model;

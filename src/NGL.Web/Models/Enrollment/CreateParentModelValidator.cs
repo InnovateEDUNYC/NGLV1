@@ -15,7 +15,7 @@ namespace NGL.Web.Models.Enrollment
 
             When(pm => !pm.SameAddressAsStudent, () =>
             {
-                RuleFor(pm => pm.ParentAddress).NotEmpty().Length(1, 150);
+                RuleFor(pm => pm.Address).NotEmpty().Length(1, 150);
                 RuleFor(pm => pm.Address2).Length(0, 20);
                 RuleFor(pm => pm.City).NotEmpty();
                 RuleFor(pm => pm.State).NotNull();
