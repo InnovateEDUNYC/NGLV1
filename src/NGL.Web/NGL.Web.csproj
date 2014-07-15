@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectValidatorFactory.cs" />
+    <Compile Include="Controllers\ClassPeriodController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
@@ -1572,6 +1573,7 @@
     <Compile Include="Infrastructure\ChameleonForms\NglDateTimeHandler.cs" />
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
+    <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
     <Compile Include="Models\Course\CreateModelValidator.cs" />
@@ -1635,7 +1637,7 @@
     <Compile Include="Models\School\SchoolModel.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
-    <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
+    <Compile Include="Models\ClassPeriod\CreateModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CreateModel.cs" />
     <Compile Include="Models\Location\LocationModel.cs" />
@@ -1781,6 +1783,7 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Enrollment\EnterProgramStatus.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\ClassPeriod\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

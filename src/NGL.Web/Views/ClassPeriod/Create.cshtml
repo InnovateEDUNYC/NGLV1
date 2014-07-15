@@ -1,0 +1,19 @@
+﻿@model NGL.Web.Models.ClassPeriod.CreateModel
+
+@{
+    ViewBag.Title = "Create Class Period";
+}
+
+<h2>Class Period</h2>
+
+@using (var f = Html.BeginNglForm())
+{
+    using (var s = f.BeginSection("Info"))
+    {
+        @s.FieldFor(m => m.ClassPeriodName)
+    }
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Create")
+    }
+}
