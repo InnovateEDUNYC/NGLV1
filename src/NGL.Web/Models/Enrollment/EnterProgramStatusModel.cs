@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class ProgramStatusModel
+    public class EnterProgramStatusModel
     {
         [Required]
         public bool? TestingAccommodation { get; set; }
-        public string TestingAccommodationFile { get; set; }
+        public HttpPostedFileBase TestingAccommodationFile { get; set; }
         [Required]
         public bool? BilingualProgram { get; set; }
         [Required]
@@ -16,14 +17,14 @@ namespace NGL.Web.Models.Enrollment
         public bool? Gifted { get; set; }
         [Required]
         public bool? SpecialEducation { get; set; }
-        public string SpecialEducationFile { get; set; }
+        public HttpPostedFileBase SpecialEducationFile { get; set; }
         [Required]
         public bool? TitleParticipation { get; set; }
-        public string TitleParticipationFile { get; set; }
+        public HttpPostedFileBase TitleParticipationFile { get; set; }
         [Required]
         [Display(Name = "McKinney Vento")]
         public bool? McKinneyVento { get; set; }
-        public string McKinneyVentoFileUrl { get; set; }
+        public HttpPostedFileBase McKinneyVentoFileUrl { get; set; }
         public SchoolFoodServicesEligibilityTypeEnum FoodServiceEligibilityStatus { get; set; }
     }
 }
