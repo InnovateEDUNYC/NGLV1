@@ -9,6 +9,7 @@ using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using Ninject;
 using Ninject.Extensions.Conventions;
@@ -74,6 +75,7 @@ namespace NGL.Web
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
+            kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
             kernel.Bind(
             x => x.FromThisAssembly()
                 .SelectAllTypes()

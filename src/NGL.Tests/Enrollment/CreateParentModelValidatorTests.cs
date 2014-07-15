@@ -4,11 +4,11 @@ using Xunit;
 
 namespace NGL.Tests.Enrollment
 {
-    public class CreateParentModelValidatorTest
+    public class CreateParentModelValidatorTests
     {
         private readonly CreateParentModelValidator _validator;
 
-        public CreateParentModelValidatorTest()
+        public CreateParentModelValidatorTests()
         {
             _validator = new CreateParentModelValidator();
         }

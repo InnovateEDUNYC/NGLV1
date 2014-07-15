@@ -5,7 +5,7 @@ using Xunit;
 
 namespace NGL.Tests.Enrollment
 {
-    public class ParentEnrollmentInfoModelToParentAddressMapperTest
+    public class CreateParentModelToParentAddressMapperTests
     {
         [Fact]
         public void ShouldMap()

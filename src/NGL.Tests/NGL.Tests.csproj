@@ -63,14 +63,15 @@
     <Compile Include="ClassPeriod\ValidationTests.cs" />
     <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentMapperTest.cs" />
     <Compile Include="Course\MapperTests.cs" />
-    <Compile Include="Enrollment\CreateParentModelValidatorTest.cs" />
-    <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentAddressMapperTest.cs" />
-    <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentMapperTest.cs" />
-    <Compile Include="Enrollment\ParentEnrollmentInfoModelToStudentParentAssociationMapperTest.cs" />
+    <Compile Include="Enrollment\CreateParentModelValidatorTests.cs" />
+    <Compile Include="Enrollment\CreateParentModelToParentAddressMapperTests.cs" />
+    <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
+    <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
     <Compile Include="Session\MapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enrollment\CreateStudentModelToStudentMapperTest.cs" />
     <Compile Include="Session\ValidatorTests.cs" />
+    <Compile Include="Enrollment\CreateStudentModelToStudentMapperTests.cs" />
     <Compile Include="Student\StudentToProfileModelMapperTest.cs" />
   </ItemGroup>
   <ItemGroup>

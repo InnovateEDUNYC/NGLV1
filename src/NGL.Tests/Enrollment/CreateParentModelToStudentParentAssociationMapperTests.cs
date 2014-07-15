@@ -6,7 +6,7 @@ using Xunit;
 
 namespace NGL.Tests.Enrollment
 {
-    public class ParentEnrollmentInfoModelToStudentParentAssociationMapperTest
+    public class CreateParentModelToStudentParentAssociationMapperTests
     {
 
         [Fact]

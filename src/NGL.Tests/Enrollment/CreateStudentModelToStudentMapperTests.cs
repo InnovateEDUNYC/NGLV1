@@ -7,7 +7,7 @@ using Xunit;
 
 namespace NGL.Tests.Enrollment
 {
-    public class CreateStudentModelToStudentMapperTest
+    public class CreateStudentModelToStudentMapperTests
     {
         private CreateStudentModelToStudentMapper _mapper;
         private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
@@ -113,8 +113,6 @@ namespace NGL.Tests.Enrollment
             };
 
             _createStudentModel.FirstParent = _parentEnrollmentInfoModel;
-
-
         }
     }
 }

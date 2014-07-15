@@ -18,8 +18,6 @@ namespace NGL.Web.Models.Enrollment
             RuleFor(csm => csm.State).NotNull();
             RuleFor(csm => csm.PostalCode).NotEmpty().Length(1,17);
             RuleFor(csm => csm.HomeLanguage).NotNull();
-
-
             RuleFor(csm => csm.FirstParent).SetValidator(new CreateParentModelValidator());
         }
     }
