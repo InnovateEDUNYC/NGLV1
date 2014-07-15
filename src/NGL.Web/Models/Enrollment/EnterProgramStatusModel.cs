@@ -24,7 +24,7 @@ namespace NGL.Web.Models.Enrollment
         [Required]
         [Display(Name = "McKinney Vento")]
         public bool? McKinneyVento { get; set; }
-        public HttpPostedFileBase McKinneyVentoFileUrl { get; set; }
+        public HttpPostedFileBase McKinneyVentoFile { get; set; }
         public SchoolFoodServicesEligibilityTypeEnum FoodServiceEligibilityStatus { get; set; }
     }
 }

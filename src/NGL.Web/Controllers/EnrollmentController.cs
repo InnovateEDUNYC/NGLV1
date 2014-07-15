@@ -67,7 +67,7 @@ namespace NGL.Web.Controllers
 			var specialEducationFileUri = _fileUploader.Upload(enterProgramStatusModel.SpecialEducationFile, blobContainer, getUri("specialEducation"));
 			var testingAccomodationFileUri = _fileUploader.Upload(enterProgramStatusModel.TestingAccommodationFile, blobContainer, getUri("testingAccomodation"));
 			var titleParticipationFileUri = _fileUploader.Upload(enterProgramStatusModel.TitleParticipationFile, blobContainer, getUri("titleParticipation"));
-			var mcKinneyVentoFileUri = _fileUploader.Upload(enterProgramStatusModel.McKinneyVentoFileUrl, blobContainer, getUri("McKinneyVento"));
+			var mcKinneyVentoFileUri = _fileUploader.Upload(enterProgramStatusModel.McKinneyVentoFile, blobContainer, getUri("McKinneyVento"));
 
 			var studentProgramStatus = _programStatusMapper.Build(enterProgramStatusModel,
 				psm =>

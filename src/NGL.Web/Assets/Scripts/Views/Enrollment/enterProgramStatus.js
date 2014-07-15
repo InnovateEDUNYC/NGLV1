@@ -4,6 +4,9 @@ Ngl.enrollment.enterProgramStatus = (function () {
     var setConditionalFileUploads = function()
     {
         allowFileUploadConditionally("TestingAccommodation", "TestingAccommodationFile");
+        allowFileUploadConditionally("SpecialEducation", "SpecialEducationFile");
+        allowFileUploadConditionally("TitleParticipation", "TitleParticipationFile");
+        allowFileUploadConditionally("McKinneyVento", "McKinneyVentoFile");
     }
 
     var allowFileUploadConditionally = function (radioInputId, fileInputId) {
