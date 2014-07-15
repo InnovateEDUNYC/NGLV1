@@ -1575,6 +1575,7 @@
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
+    <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />
     <Compile Include="Models\ClassPeriod\IndexModel.cs" />
     <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />

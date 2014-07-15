@@ -35,7 +35,7 @@ namespace NGL.Web.Controllers
                 indexModels.Add(indexModel);
             }
 
-            return View();
+            return View(indexModels);
         }
 
         // GET: /ClassPeriod/Create
