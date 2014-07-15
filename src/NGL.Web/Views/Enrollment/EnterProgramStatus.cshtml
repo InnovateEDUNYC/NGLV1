@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Program Status";
+    var fileAttributes = new {type = "file", @class = "form-control", disabled = "disabled"};
 }
 
 <h2>Program Status</h2>
@@ -10,7 +11,7 @@
 {
     <div class="inline separator">
         @Html.EditorFor(m => m.TestingAccommodation)
-        @Html.TextBoxFor(m => m.TestingAccommodationFile, new {type = "file", @class="form-control"})
+        @Html.TextBoxFor(m => m.TestingAccommodationFile, fileAttributes)
     </div>
 
     <div class="inline separator">
@@ -32,18 +33,24 @@
 
     <div class="inline separator">
         @Html.EditorFor(m => m.SpecialEducation)
-        @Html.TextBoxFor(m => m.SpecialEducationFile, new {type = "file", @class="form-control"})
+        @Html.TextBoxFor(m => m.SpecialEducationFile, fileAttributes)
     </div>
 
     <div class="inline separator">
         @Html.EditorFor(m => m.TitleParticipation)
-        @Html.TextBoxFor(m => m.TitleParticipationFile, new {type = "file", @class="form-control"})
+        @Html.TextBoxFor(m => m.TitleParticipationFile, fileAttributes)
     </div>
 
     <div class="inline separator">
         @Html.EditorFor(m => m.McKinneyVento)
-        @Html.TextBoxFor(m => m.McKinneyVentoFileUrl, new {type = "file", @class="form-control"})
+        @Html.TextBoxFor(m => m.McKinneyVentoFileUrl, fileAttributes)
     </div>
 
     <input type="submit" class="btn btn-default" value="Submit" />
     }
+
+
+@section scripts
+{
+    Ngl.enrollment.enterProgramStatus.init();
+}

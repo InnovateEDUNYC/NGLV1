@@ -1675,6 +1675,7 @@
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
     <Content Include="Assets\Content\datepicker.css" />
+    <Content Include="Assets\Scripts\createNamespace.js" />
     <Content Include="Assets\Scripts\forms.js" />
     <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\006 - Schema - StudentProgramStatus.sql" />
@@ -1736,6 +1737,7 @@
     <Content Include="Assets\Scripts\lib\jquery.validate.unobtrusive.chameleon.js" />
     <Content Include="Assets\Scripts\lib\jquery.validate.unobtrusive.twitterbootstrap.js" />
     <None Include="T4MVC\T4MVC.tt.settings.xml" />
+    <Content Include="Assets\Scripts\Views\Enrollment\enterProgramStatus.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

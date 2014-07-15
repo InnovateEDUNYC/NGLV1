@@ -78,8 +78,12 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/forms")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/views")
+
+    <script type="text/javascript">
+        @RenderSection("scripts", required: false)
+    </script>
 
     @MiniProfiler.RenderIncludes()
 </body>
