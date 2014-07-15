@@ -1589,6 +1589,15 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModel.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Enrollment\Parent\ParentEnrollmentInfoModel.cs" />
+    <Compile Include="Models\Enrollment\Parent\ParentEnrollmentInfoModelToParentAddressMapper.cs" />
+    <Compile Include="Models\Enrollment\Parent\ParentEnrollmentInfoModelToParentMapper.cs" />
+    <Compile Include="Models\Enrollment\Parent\ParentEnrollmentInfoModelToStudentParentAssociationMapper.cs" />
+    <Compile Include="Models\Enrollment\Parent\CreateStudentModelValidator.cs" />
+    <Compile Include="Models\Enrollment\Student\CreateStudentModel.cs" />
+    <Compile Include="Models\Enrollment\Student\CreateStudentModelToStudentMapper.cs" />
+    <Compile Include="Models\Enrollment\Student\StudentHomeAddressMapper.cs" />
+    <Compile Include="Models\Enrollment\Student\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
@@ -1645,6 +1654,7 @@
     <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModel.cs" />
+    <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CreateModel.cs" />
     <Compile Include="Models\Location\LocationModel.cs" />

@@ -1,7 +1,7 @@
-﻿using System;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
+using NGL.Web.Models.Enrollment.Parent;
 
-namespace NGL.Web.Models.Enrollment
+namespace NGL.Web.Models.Enrollment.Student
 {
     public class CreateStudentModelToStudentMapper : MapperBase<CreateStudentModel, Data.Entities.Student>
     {
@@ -29,7 +29,7 @@ namespace NGL.Web.Models.Enrollment
             var studentLanguage = _studentLanguageMapper.Build(source);
             target.StudentLanguages.Add(studentLanguage);
 
-            var studentParentAssociation = _studentParentAssociationMapper.Build(source.ParentEnrollmentInfoModel);
+            var studentParentAssociation = _studentParentAssociationMapper.Build(source.FirstParent);
             target.StudentParentAssociations.Add(studentParentAssociation);
 
         }

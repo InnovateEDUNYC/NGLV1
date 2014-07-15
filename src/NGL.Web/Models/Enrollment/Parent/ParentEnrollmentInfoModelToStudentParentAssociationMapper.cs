@@ -1,15 +1,15 @@
 ﻿using NGL.Web.Data.Entities;
 
-namespace NGL.Web.Models.Enrollment
+namespace NGL.Web.Models.Enrollment.Parent
 {
     public class ParentEnrollmentInfoModelToStudentParentAssociationMapper :
         MapperBase<ParentEnrollmentInfoModel, StudentParentAssociation>
     {
-        private readonly IMapper<ParentEnrollmentInfoModel, Parent> _parentMapper;
+        private readonly IMapper<ParentEnrollmentInfoModel, Data.Entities.Parent> _parentMapper;
         private readonly IMapper<ParentEnrollmentInfoModel, ParentAddress> _parentAddressMapper;
 
         public ParentEnrollmentInfoModelToStudentParentAssociationMapper(
-            IMapper<ParentEnrollmentInfoModel, Parent> parentMapper, IMapper<ParentEnrollmentInfoModel, ParentAddress> parentAddressMapper)
+            IMapper<ParentEnrollmentInfoModel, Data.Entities.Parent> parentMapper, IMapper<ParentEnrollmentInfoModel, ParentAddress> parentAddressMapper)
         {
             _parentMapper = parentMapper;
             _parentAddressMapper = parentAddressMapper;

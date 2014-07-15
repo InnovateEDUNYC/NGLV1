@@ -1,5 +1,6 @@
 ﻿using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Enrollment.Parent;
 using Shouldly;
 using Xunit;
 
@@ -30,7 +31,7 @@ namespace NGL.Tests.Enrollment
                 City = "Seattle",
                 State = StateAbbreviationTypeEnum.LA,
                 PostalCode = "90210",
-                Address = "1600 Pennsylvania",
+                ParentAddress = "1600 Pennsylvania",
                 Address2 = "19th fl"
             };
         }

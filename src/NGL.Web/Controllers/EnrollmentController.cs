@@ -5,6 +5,8 @@ using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Enrollment.Parent;
+using NGL.Web.Models.Enrollment.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -14,14 +16,16 @@ namespace NGL.Web.Controllers
 		private readonly IMapper<CreateStudentModel, Student> _enrollmentMapper;
 		private readonly IMapper<EnterProgramStatusModel, StudentProgramStatus> _programStatusMapper;
 		private readonly IFileUploader _fileUploader;
+        private readonly CreateStudentModelValidator _validator;
 
 		public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper, 
-			IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper)
+			IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, CreateStudentModelValidator validator)
 		{
 			_fileUploader = new AzureStorageUploader();
 			_repository = repository;
 			_enrollmentMapper = enrollmentMapper;
 			_programStatusMapper = programStatusMapper;
+			_validator = validator;
 		}
 
         //
@@ -30,7 +34,8 @@ namespace NGL.Web.Controllers
         {
             var enrollmentModel = new CreateStudentModel
             {
-				ParentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+
+                FirstParent = new ParentEnrollmentInfoModel
                 {
                     SameAddressAsStudent = true
                 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Enrollment.Parent;
 using Shouldly;
 using Xunit;
 

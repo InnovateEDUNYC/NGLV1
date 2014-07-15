@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Enrollment.Parent;
 using Shouldly;
 using Xunit;
 
@@ -38,7 +39,7 @@ namespace NGL.Tests.Enrollment
 
             var studentParentAssociation = mapper.Build(parentEnrollmentInfoModel);
 
-            studentParentAssociation.LivesWith.ShouldBe(false);
+            studentParentAssociation.LivesWith.ShouldBe(true);
             CheckBasicParentInfo(studentParentAssociation);
         }
 
@@ -83,7 +84,7 @@ namespace NGL.Tests.Enrollment
                 model.City = "Durham";
                 model.State = StateAbbreviationTypeEnum.NC;
                 model.PostalCode = "70131";
-                model.Address = "1 Boak St";
+                model.ParentAddress = "1 Boak St";
                 model.Address2 = "1st flr";
             }
             return model;

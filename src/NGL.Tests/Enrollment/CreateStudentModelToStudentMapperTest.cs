@@ -2,6 +2,8 @@
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Enrollment.Parent;
+using NGL.Web.Models.Enrollment.Student;
 using Shouldly;
 using Xunit;
 
@@ -108,11 +110,11 @@ namespace NGL.Tests.Enrollment
                 City = "Austin",
                 State = StateAbbreviationTypeEnum.TX,
                 PostalCode = "70101",
-                Address = "1 Oak St",
+                ParentAddress = "1 Oak St",
                 Address2 = "1A"
             };
 
-            _createStudentModel.ParentEnrollmentInfoModel = _parentEnrollmentInfoModel;
+            _createStudentModel.FirstParent = _parentEnrollmentInfoModel;
 
 
         }

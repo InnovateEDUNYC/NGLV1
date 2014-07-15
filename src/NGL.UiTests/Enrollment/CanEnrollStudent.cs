@@ -2,6 +2,8 @@
 using NGL.UiTests.Shared;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Enrollment.Parent;
+using NGL.Web.Models.Enrollment.Student;
 using Shouldly;
 using Xunit;
 
@@ -40,7 +42,7 @@ namespace NGL.UiTests.Enrollment
                 PostalCode = "6000",
                 HispanicLatinoEthnicity = true,
                 HomeLanguage = LanguageDescriptorEnum.English,
-                ParentEnrollmentInfoModel = GetParentEnrollmentModel(),
+                FirstParent = GetParentEnrollmentModel(),
                 BirthDate = new DateTime(1999, 1, 5)
             };
         }
@@ -56,6 +58,7 @@ namespace NGL.UiTests.Enrollment
                 MakeThisPrimaryContact = true,
                 TelephoneNumber = "123-4567",
                 EmailAddress = "jan@civilpartner.me",
+                SameAddressAsStudent = true
             };
             return parentEnrollmentInfoModel;
         }

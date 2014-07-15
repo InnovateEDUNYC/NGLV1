@@ -1,6 +1,6 @@
 ﻿using NGL.Web.Data.Entities;
 
-namespace NGL.Web.Models.Enrollment
+namespace NGL.Web.Models.Enrollment.Parent
 {
     public class ParentEnrollmentInfoModelToParentAddressMapper : MapperBase<ParentEnrollmentInfoModel, ParentAddress>
     {
@@ -9,7 +9,7 @@ namespace NGL.Web.Models.Enrollment
         public override void Map(ParentEnrollmentInfoModel source, ParentAddress target)
         {
             target.AddressTypeId = HomeAddressTypeId;
-            target.StreetNumberName = source.Address;
+            target.StreetNumberName = source.ParentAddress;
             target.ApartmentRoomSuiteNumber = source.Address2;
             target.City = source.City;
             target.PostalCode = source.PostalCode;
