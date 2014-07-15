@@ -1573,7 +1573,9 @@
     <Compile Include="Infrastructure\ChameleonForms\NglDateTimeHandler.cs" />
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
+    <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
+    <Compile Include="Models\ClassPeriod\IndexModel.cs" />
     <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
     <Compile Include="Models\Course\CreateModelValidator.cs" />
@@ -1784,6 +1786,7 @@
     <Content Include="Views\Enrollment\EnterProgramStatus.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\ClassPeriod\Create.cshtml" />
+    <Content Include="Views\ClassPeriod\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

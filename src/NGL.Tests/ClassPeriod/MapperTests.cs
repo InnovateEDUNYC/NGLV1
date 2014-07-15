@@ -9,29 +9,50 @@ namespace NGL.Tests.ClassPeriod
 {
     public class MapperTests
     {
+        private ISchoolRepository _schoolRepository;
 
 
         [Fact]
         public void ShouldMapCreateModelToClassPeriod()
         {
-            var schoolRepository = Substitute.For<ISchoolRepository>();
-            schoolRepository.GetSchool().Returns(
-                new School
-                {
-                    SchoolId = 1
-                });
-
+            SetUp();
             var classPeriodEntity = new Web.Data.Entities.ClassPeriod();
             var classPeriodCreateModel = new CreateModel
             {
                 ClassPeriodName = "Period 1"
             };
 
-            var createModeltoClassPeriodMapper = new CreateModelToClassPeriodMapper(schoolRepository);
+            var createModeltoClassPeriodMapper = new CreateModelToClassPeriodMapper(_schoolRepository);
             createModeltoClassPeriodMapper.Map(classPeriodCreateModel, classPeriodEntity);
 
             classPeriodEntity.ClassPeriodName.ShouldBe("Period 1");
             classPeriodEntity.SchoolId.ShouldBe(1);
+        }
+
+        [Fact]
+        public void ShouldMapClassPeriodToIndexModel()
+        {
+            var classPeriodIndexModel = new IndexModel();
+            var classPeriodEntity = new Web.Data.Entities.ClassPeriod
+            {
+                ClassPeriodName = "Period 1"
+            };
+
+            var classPeriodToIndexMapper = new ClassPeriodToIndexModelMapper();
+
+            classPeriodToIndexMapper.Map(classPeriodEntity, classPeriodIndexModel);
+
+            classPeriodIndexModel.ClassPeriodName.ShouldBe("Period 1");
+        }
+
+        private void SetUp()
+        {
+            _schoolRepository = Substitute.For<ISchoolRepository>();
+            _schoolRepository.GetSchool().Returns(
+                new School
+                {
+                    SchoolId = 1
+                });
         }
 
     }
