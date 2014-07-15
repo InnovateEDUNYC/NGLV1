@@ -4,7 +4,7 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments
-using NGL.Web.Models.Enrollment.Student;
+using NGL.Web.Models.Enrollment;
 #pragma warning disable 1591
 #region T4MVC
 

@@ -1,6 +1,5 @@
 ﻿using NGL.Web.Models.Enrollment;
 using OpenQA.Selenium;
-using NGL.Web.Models.Enrollment.Student;
 using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Enrollment

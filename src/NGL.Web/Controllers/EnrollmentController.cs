@@ -15,7 +15,6 @@ namespace NGL.Web.Controllers
 		private readonly IMapper<EnterProgramStatusModel, StudentProgramStatus> _programStatusMapper;
 		private readonly IFileUploader _fileUploader;
         private readonly CreateStudentModelValidator _validator;
-		private readonly IMapper<CreateStudentModel, Student> _enrollmentMapper;
 
 		public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper, 
 			IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, CreateStudentModelValidator validator)
