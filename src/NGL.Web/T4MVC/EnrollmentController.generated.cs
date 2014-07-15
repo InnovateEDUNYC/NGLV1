@@ -4,6 +4,8 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments
+
+using NGL.Web.Infrastructure.Azure;
 #pragma warning disable 1591
 #region T4MVC
 
@@ -26,7 +28,10 @@ namespace NGL.Web.Controllers
     public partial class EnrollmentController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected EnrollmentController(Dummy d) { }
+        protected EnrollmentController(Dummy d)
+        {
+            _fileUploader = new AzureStorageUploader();
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -64,9 +69,9 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0")]
         public const string NameConst = "Enrollment";
 
-        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        static readonly ActionNamesClass s_actions = new EnrollmentController.ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionNamesClass ActionNames { get { return s_actions; } }
+        public EnrollmentController.ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
@@ -80,17 +85,17 @@ namespace NGL.Web.Controllers
         }
 
 
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        static readonly ActionParamsClass_Create s_params_Create = new EnrollmentController.ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        public EnrollmentController.ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
             public readonly string createStudentModel = "createStudentModel";
         }
-        static readonly ViewsClass s_views = new ViewsClass();
+        static readonly ViewsClass s_views = new EnrollmentController.ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ViewsClass Views { get { return s_views; } }
+        public EnrollmentController.ViewsClass Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewsClass
         {

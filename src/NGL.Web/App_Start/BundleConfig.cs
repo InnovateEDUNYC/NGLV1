@@ -28,9 +28,14 @@ namespace NGL.Web
                       "~/Assets/Content/site.css",
                       "~/Assets/Content/datepicker.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/forms").Include(
-                "~/Assets/Scripts/lib/bootstrap-datepicker.js",
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                 "~/Assets/Scripts/createNamespace.js",
+                 "~/Assets/Scripts/lib/bootstrap-datepicker.js",
                  "~/Assets/Scripts/forms.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/views").Include(
+                "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js"
                 ));
         }
     }
