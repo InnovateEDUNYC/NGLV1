@@ -6,8 +6,9 @@ namespace NGL.UiTests.Session
 {
     public class SessionCreatePage : Page<CreateModel>
     {
-        public SessionIndexPage CreateSession()
+        public SessionIndexPage CreateSession(CreateModel createSessionModel)
         {
+            Input.Model(createSessionModel);
             return Navigate.To<SessionIndexPage>(By.ClassName("btn"));
         }
     }

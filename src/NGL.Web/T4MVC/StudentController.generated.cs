@@ -54,6 +54,12 @@ namespace NGL.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StudentController Actions { get { return MVC.Student; } }
@@ -70,25 +76,25 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "All";
-            public readonly string Details = "Index";
+            public readonly string All = "All";
+            public readonly string Index = "Index";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "All";
-            public const string Details = "Index";
+            public const string All = "All";
+            public const string Index = "Index";
         }
 
 
-        static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Details
+        public class ActionParamsClass_Index
         {
-            public readonly string id = "id";
+            public readonly string usi = "usi";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -100,15 +106,15 @@ namespace NGL.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string All = "All";
                 public readonly string Delete = "Delete";
-                public readonly string Details = "Index";
                 public readonly string Edit = "Edit";
-                public readonly string Index = "All";
+                public readonly string Index = "Index";
             }
+            public readonly string All = "~/Views/Student/All.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
-            public readonly string Details = "~/Views/Student/Index.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
-            public readonly string Index = "~/Views/Student/All.cshtml";
+            public readonly string Index = "~/Views/Student/Index.cshtml";
         }
     }
 
@@ -118,25 +124,25 @@ namespace NGL.Web.Controllers
         public T4MVC_StudentController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void AllOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
         public override System.Web.Mvc.ActionResult All()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.All);
+            AllOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int usi);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(int id)
+        public override System.Web.Mvc.ActionResult Index(int usi)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DetailsOverride(callInfo, id);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usi", usi);
+            IndexOverride(callInfo, usi);
             return callInfo;
         }
 

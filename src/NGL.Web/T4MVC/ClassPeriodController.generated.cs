@@ -23,10 +23,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace NGL.Web.Controllers
 {
-    public partial class CourseController
+    public partial class ClassPeriodController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected CourseController(Dummy d) { }
+        protected ClassPeriodController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -56,13 +56,13 @@ namespace NGL.Web.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public CourseController Actions { get { return MVC.Course; } }
+        public ClassPeriodController Actions { get { return MVC.ClassPeriod; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Course";
+        public readonly string Name = "ClassPeriod";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Course";
+        public const string NameConst = "ClassPeriod";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,15 +103,15 @@ namespace NGL.Web.Controllers
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Views/Course/Create.cshtml";
-            public readonly string Index = "~/Views/Course/Index.cshtml";
+            public readonly string Create = "~/Views/ClassPeriod/Create.cshtml";
+            public readonly string Index = "~/Views/ClassPeriod/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_CourseController : NGL.Web.Controllers.CourseController
+    public partial class T4MVC_ClassPeriodController : NGL.Web.Controllers.ClassPeriodController
     {
-        public T4MVC_CourseController() : base(Dummy.Instance) { }
+        public T4MVC_ClassPeriodController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -136,10 +136,10 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Course.CreateModel createModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ClassPeriod.CreateModel createModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Course.CreateModel createModel)
+        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.ClassPeriod.CreateModel createModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);

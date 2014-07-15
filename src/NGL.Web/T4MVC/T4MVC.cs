@@ -26,6 +26,7 @@ using T4MVC;
 public static partial class MVC
 {
     public static NGL.Web.Controllers.AccountController Account = new NGL.Web.Controllers.T4MVC_AccountController();
+    public static NGL.Web.Controllers.ClassPeriodController ClassPeriod = new NGL.Web.Controllers.T4MVC_ClassPeriodController();
     public static NGL.Web.Controllers.CourseController Course = new NGL.Web.Controllers.T4MVC_CourseController();
     public static NGL.Web.Controllers.EnrollmentController Enrollment = new NGL.Web.Controllers.T4MVC_EnrollmentController();
     public static NGL.Web.Controllers.HomeController Home = new NGL.Web.Controllers.T4MVC_HomeController();
