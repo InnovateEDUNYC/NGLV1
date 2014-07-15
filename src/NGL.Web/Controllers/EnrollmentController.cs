@@ -47,7 +47,7 @@ namespace NGL.Web.Controllers
 			_enrollmentMapper.Map(createStudentModel, student);
 			_repository.Add(student);
 			_repository.Save();
-			return RedirectToAction(Actions.EnterProgramStatus(student.StudentUSI));
+		    return RedirectToAction("All", "Student");
 		}
 
 		public virtual ActionResult EnterProgramStatus(int id)
