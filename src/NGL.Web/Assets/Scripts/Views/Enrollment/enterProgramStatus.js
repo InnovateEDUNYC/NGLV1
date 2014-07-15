@@ -1,11 +1,15 @@
 ﻿Ngl.createNS('Ngl.enrollment.enterProgramStatus');
 
 Ngl.enrollment.enterProgramStatus = (function () {
-    var allowFileUploadConditionally = function() {
-        var $accomodationFile = $('#TestingAccommodationFile');
-        $accomodationFile.attr('disabled', 'disabled');
+    var setConditionalFileUploads = function()
+    {
+        allowFileUploadConditionally("TestingAccommodation", "TestingAccommodationFile");
+    }
 
-        $('input[name=TestingAccommodation]').click(function () {
+    var allowFileUploadConditionally = function (radioInputId, fileInputId) {
+        var $accomodationFile = $('#' + fileInputId);
+
+        $('input[name='+radioInputId+']').click(function () {
             var self = $(this);
             if (self.val() === 'True')
                 $accomodationFile.removeAttr('disabled');
@@ -16,7 +20,8 @@ Ngl.enrollment.enterProgramStatus = (function () {
         });
     };
 
+
     return {
-        init: allowFileUploadConditionally
+        init: setConditionalFileUploads
         }
 })(); 
