@@ -8,10 +8,10 @@ using Xunit;
 
 namespace NGL.Tests.ClassPeriod
 {
-    public class ValidationTests
+    public class ValidatorTests
     {
         [Fact]
-        public void ShouldReturnTrueIfClassPeriodDoesNotExist()
+        public void ShouldNotHaveErrorsIfClassPeriodDoesNotExist()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var classPeriodCreateModel = new CreateModel
@@ -29,7 +29,7 @@ namespace NGL.Tests.ClassPeriod
         }
 
         [Fact]
-        public void ShouldReturnFalseIfClassPeriodExists()
+        public void ShouldHaveErrorsIfClassPeriodExists()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var classPeriodCreateModel = new CreateModel

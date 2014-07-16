@@ -8,10 +8,10 @@ using Xunit;
 
 namespace NGL.Tests.Location
 {
-    public class ValidationTests
+    public class ValidatorTests
     {
         [Fact]
-        public void ShouldReturnTrueIfLocationDoesNotExist()
+        public void ShouldNotHaveErrorsWhenLocationDoesNotExist()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var locationCreateModel = new CreateModel()
@@ -30,7 +30,7 @@ namespace NGL.Tests.Location
         }
 
         [Fact]
-        public void ShouldReturnFalseIfLocationExists()
+        public void ShouldHaveErrorsWhenLocationExists()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var locationCreateModel = new CreateModel()

@@ -14,7 +14,7 @@ namespace NGL.Tests.Session
     {
 
         [Fact]
-        public void ShouldReturnTrueIfSessionDoesNotExist()
+        public void ShouldNotHaveErrorsIfSessionDoesNotExist()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var sessionCreateModel = new CreateModel
@@ -38,7 +38,7 @@ namespace NGL.Tests.Session
 
 
         [Fact]
-        public void ShouldReturnFalseIfSessionExists()
+        public void ShouldHaveErrorsIfSessionExists()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var sessionCreateModel = new CreateModel
