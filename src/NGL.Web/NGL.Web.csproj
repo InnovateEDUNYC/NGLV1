@@ -1593,6 +1593,7 @@
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
+    <Compile Include="Models\Location\CreateModelValidator.cs" />
     <Compile Include="Models\Location\IndexModel.cs" />
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
