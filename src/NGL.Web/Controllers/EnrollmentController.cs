@@ -28,24 +28,15 @@ namespace NGL.Web.Controllers
         // GET: /Enrollment/CreateStudent
         public virtual ActionResult CreateStudent()
         {
-            var enrollmentModel = new CreateStudentModel
-            {
-
-                FirstParent = new CreateParentModel
-                {
-                    SameAddressAsStudent = true
-                }
-			};
-            return View(enrollmentModel);
+            return View(CreateStudentModel.New());
 		}
+
 		// POST: /Enrollment/CreateStudent
 		[HttpPost]
 		public virtual ActionResult CreateStudent(CreateStudentModel createStudentModel)
 		{
 			if (!ModelState.IsValid) 
 				return View(createStudentModel);
-                
-            
 
 			var student = new Student();
 

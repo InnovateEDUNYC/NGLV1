@@ -6,6 +6,15 @@ namespace NGL.Web.Models.Enrollment
 {
     public class CreateStudentModel
     {
+        public static CreateStudentModel New()
+        {
+            return new CreateStudentModel
+            {
+                FirstParent = new CreateParentModel {SameAddressAsStudent = true},
+                SecondParent = new CreateParentModel {SameAddressAsStudent = true}
+            };
+        }
+
         [Display(Name = "Student USI")]
         public int? StudentUsi { get; set; }
 
@@ -35,5 +44,7 @@ namespace NGL.Web.Models.Enrollment
         public LanguageDescriptorEnum? HomeLanguage { get; set; }
 
         public CreateParentModel FirstParent { get; set; }
+
+        public CreateParentModel SecondParent { get; set; }
     }
 }

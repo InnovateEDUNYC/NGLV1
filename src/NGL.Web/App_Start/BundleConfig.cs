@@ -35,7 +35,8 @@ namespace NGL.Web
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
-                "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js"
+                "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",
+                "~/Assets/Scripts/Views/Enrollment/createStudent.js"
                 ));
         }
     }
