@@ -1671,7 +1671,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Shared\HtmlHelpers\HtmlHelperExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Content\bootstrap-theme.css" />

@@ -1,7 +1,4 @@
-﻿@using Humanizer
-@using NGL.Web.Data.Entities
-@using NGL.Web.Views.Shared.HtmlHelpers
-@model NGL.Web.Models.Enrollment.EnterProgramStatusModel
+﻿@model NGL.Web.Models.Enrollment.EnterProgramStatusModel
 
 @{
     ViewBag.Title = "Program Status";
@@ -10,47 +7,48 @@
 
 <h2>Program Status</h2>
 
-@using (Html.BeginForm("EnterProgramStatus", "Enrollment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart))
 {
-    <div class="inline separator">
-        @Html.EditorFor(m => m.TestingAccommodation)
-        @Html.TextBoxFor(m => m.TestingAccommodationFile, fileAttributes)
-    </div>
+    using (var s = f.BeginSection())
+    {
+        <div class="inline separator">
+            @Html.EditorFor(m => m.TestingAccommodation)
+            @s.FieldFor(m => m.TestingAccommodationFile).Attrs(fileAttributes).Label("")
+        </div>
 
-    <div class="inline separator">
-        @Html.EditorFor(m => m.BilingualProgram)
-    </div>
+        <div class="inline separator">
+            @Html.EditorFor(m => m.BilingualProgram)
+        </div>
 
-    <div class="inline separator">
-        @Html.EditorFor(m => m.EnglishAsSecondLanguage)
-    </div>
+        <div class="inline separator">
+            @Html.EditorFor(m => m.EnglishAsSecondLanguage)
+        </div>
 
-    <div class="inline separator">
-        @Html.LabelFor(m => m.FoodServiceEligibilityStatus)
-        @Html.DropDownListFor(m => m.FoodServiceEligibilityStatus, SchoolFoodServicesEligibilityTypeEnum.Free.GetHumanizedListItems())
-    </div>
+        <div class="inline separator">
+            @s.FieldFor(m => m.FoodServiceEligibilityStatus)
+        </div>
 
-    <div class="inline separator">
-        @Html.EditorFor(m => m.Gifted)
-    </div>
+        <div class="inline separator">
+            @Html.EditorFor(m => m.Gifted)
+        </div>
 
-    <div class="inline separator">
-        @Html.EditorFor(m => m.SpecialEducation)
-        @Html.TextBoxFor(m => m.SpecialEducationFile, fileAttributes)
-    </div>
+        <div class="inline separator">
+            @Html.EditorFor(m => m.SpecialEducation)
+            @s.FieldFor(m => m.SpecialEducationFile).Attrs(fileAttributes).Label("")
+        </div>
 
-    <div class="inline separator">
-        @Html.EditorFor(m => m.TitleParticipation)
-        @Html.TextBoxFor(m => m.TitleParticipationFile, fileAttributes)
-    </div>
+        <div class="inline separator">
+            @Html.EditorFor(m => m.TitleParticipation)
+            @s.FieldFor(m => m.TitleParticipationFile).Attrs(fileAttributes).Label("")
+        </div>
 
-    <div class="inline separator">
-        @Html.EditorFor(m => m.McKinneyVento)
-        @Html.TextBoxFor(m => m.McKinneyVentoFile, fileAttributes)
-    </div>
-
-    <input type="submit" class="btn btn-default" value="Submit" />
+        <div class="inline separator">
+            @Html.EditorFor(m => m.McKinneyVento)
+            @s.FieldFor(m => m.McKinneyVentoFile).Attrs(fileAttributes).Label("")
+        </div>
     }
+    <input type="submit" class="btn btn-default" value="Submit" />
+}
 
 
 @section scripts
