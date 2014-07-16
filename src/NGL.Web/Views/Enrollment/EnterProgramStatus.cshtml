@@ -1,4 +1,7 @@
-﻿@model NGL.Web.Models.Enrollment.EnterProgramStatusModel
+﻿@using Humanizer
+@using NGL.Web.Data.Entities
+@using NGL.Web.Views.Shared.HtmlHelpers
+@model NGL.Web.Models.Enrollment.EnterProgramStatusModel
 
 @{
     ViewBag.Title = "Program Status";
@@ -24,7 +27,7 @@
 
     <div class="inline separator">
         @Html.LabelFor(m => m.FoodServiceEligibilityStatus)
-        @Html.EnumDropDownListFor(m => m.FoodServiceEligibilityStatus)
+        @Html.DropDownListFor(m => m.FoodServiceEligibilityStatus, SchoolFoodServicesEligibilityTypeEnum.Free.GetHumanizedListItems())
     </div>
 
     <div class="inline separator">
