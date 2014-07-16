@@ -1585,7 +1585,6 @@
     <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToStudentParentAssociationMapper.cs" />
-    <Compile Include="Models\Enrollment\CreateParentModelValidator.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModelValidator.cs" />

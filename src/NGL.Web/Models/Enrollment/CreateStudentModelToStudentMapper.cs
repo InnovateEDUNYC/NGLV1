@@ -28,9 +28,14 @@ namespace NGL.Web.Models.Enrollment
             var studentLanguage = _studentLanguageMapper.Build(source);
             target.StudentLanguages.Add(studentLanguage);
 
-            var studentParentAssociation = _studentParentAssociationMapper.Build(source.FirstParent);
-            target.StudentParentAssociations.Add(studentParentAssociation);
-
+            var firstParentAssociation = _studentParentAssociationMapper.Build(source.FirstParent);
+            target.StudentParentAssociations.Add(firstParentAssociation);
+            
+            if (source.AddSecondParent)
+            {
+                var secondParentAssociation = _studentParentAssociationMapper.Build(source.SecondParent);
+                target.StudentParentAssociations.Add(secondParentAssociation);
+            }
         }
 
         private static void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)

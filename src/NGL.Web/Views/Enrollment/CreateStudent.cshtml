@@ -43,7 +43,9 @@
             </div>
         </div>
 
-        <div>
+        @s.FieldFor(m => m.AddSecondParent)
+
+        <div id="second-parent">
             <h3>Second Parent Information</h3>
             @s.FieldFor(m => m.SecondParent.FirstName)
             @s.FieldFor(m => m.SecondParent.LastName)
@@ -64,7 +66,7 @@
         </div>
         using (var n = f.BeginNavigation())
         {
-            @n.Submit("CreateStudent")
+            @n.Submit("Create Student")
         }
     }
 }
