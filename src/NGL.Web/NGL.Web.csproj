@@ -1592,6 +1592,7 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\ExistenceValidator.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
     <Compile Include="Models\Location\CreateModelValidator.cs" />
     <Compile Include="Models\Location\IndexModel.cs" />
