@@ -22,20 +22,55 @@
         @s.FieldFor(m => m.State)
         @s.FieldFor(m => m.PostalCode)
         @s.FieldFor(m => m.HomeLanguage)
-    
-        <h3>Parent Information</h3>
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.FirstName)
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.LastName)
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.Sex)
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.RelationshipToStudent)
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.TelephoneNumber)
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.EmailAddress) 
-        @s.FieldFor(m => m.ParentEnrollmentInfoModel.MakeThisPrimatyContact) 
-        
+
+        <div>
+            <h3>First Parent Information</h3>
+            @s.FieldFor(m => m.FirstParent.FirstName)
+            @s.FieldFor(m => m.FirstParent.LastName)
+            @s.FieldFor(m => m.FirstParent.Sex)
+            @s.FieldFor(m => m.FirstParent.RelationshipToStudent)
+            @s.FieldFor(m => m.FirstParent.TelephoneNumber)
+            @s.FieldFor(m => m.FirstParent.EmailAddress)
+            @s.FieldFor(m => m.FirstParent.MakeThisPrimaryContact)
+            @s.FieldFor(m => m.FirstParent.SameAddressAsStudent).AddClass("same-address-as-student")
+
+            <div class="parent-address">
+                @s.FieldFor(m => m.FirstParent.Address)
+                @s.FieldFor(m => m.FirstParent.Address2)
+                @s.FieldFor(m => m.FirstParent.City)
+                @s.FieldFor(m => m.FirstParent.PostalCode)
+                @s.FieldFor(m => m.FirstParent.State)
+            </div>
+        </div>
+
+        @s.FieldFor(m => m.AddSecondParent)
+
+        <div id="second-parent">
+            <h3>Second Parent Information</h3>
+            @s.FieldFor(m => m.SecondParent.FirstName)
+            @s.FieldFor(m => m.SecondParent.LastName)
+            @s.FieldFor(m => m.SecondParent.Sex)
+            @s.FieldFor(m => m.SecondParent.RelationshipToStudent)
+            @s.FieldFor(m => m.SecondParent.TelephoneNumber)
+            @s.FieldFor(m => m.SecondParent.EmailAddress)
+            @s.FieldFor(m => m.SecondParent.MakeThisPrimaryContact)
+            @s.FieldFor(m => m.SecondParent.SameAddressAsStudent).AddClass("same-address-as-student")
+
+            <div class="parent-address">
+                @s.FieldFor(m => m.SecondParent.Address)
+                @s.FieldFor(m => m.SecondParent.Address2)
+                @s.FieldFor(m => m.SecondParent.City)
+                @s.FieldFor(m => m.SecondParent.PostalCode)
+                @s.FieldFor(m => m.SecondParent.State)
+            </div>
+        </div>
+        using (var n = f.BeginNavigation())
+        {
+            @n.Submit("Create Student")
+        }
     }
-    
-    using (var n = f.BeginNavigation())
-    {
-        @n.Submit("CreateStudent")
-    }
+}
+
+@section Scripts {
+    Ngl.enrollment.createStudent.init();
 }

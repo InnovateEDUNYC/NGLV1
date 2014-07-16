@@ -28,7 +28,7 @@ namespace NGL.UiTests.Enrollment
         {
             return new CreateStudentModel
             {
-                StudentUsi = 123240, //change every test run
+                StudentUsi = 123240,
                 FirstName = "Joe",
                 LastName = "ZZ",
                 Sex = SexTypeEnum.Male,
@@ -40,22 +40,23 @@ namespace NGL.UiTests.Enrollment
                 PostalCode = "6000",
                 HispanicLatinoEthnicity = true,
                 HomeLanguage = LanguageDescriptorEnum.English,
-                ParentEnrollmentInfoModel = GetParentEnrollmentModel(),
+                FirstParent = GetParentEnrollmentModel(),
                 BirthDate = new DateTime(1999, 1, 5)
             };
         }
 
-        private ParentEnrollmentInfoModel GetParentEnrollmentModel()
+        private CreateParentModel GetParentEnrollmentModel()
         {
-            var parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+            var parentEnrollmentInfoModel = new CreateParentModel
             {
                 FirstName = "Jan",
                 LastName = "Smith",
                 Sex = SexTypeEnum.Male,
                 RelationshipToStudent = RelationTypeEnum.MothersCivilPartner,
-                MakeThisPrimatyContact = true,
+                MakeThisPrimaryContact = true,
                 TelephoneNumber = "123-4567",
                 EmailAddress = "jan@civilpartner.me",
+                SameAddressAsStudent = true
             };
             return parentEnrollmentInfoModel;
         }

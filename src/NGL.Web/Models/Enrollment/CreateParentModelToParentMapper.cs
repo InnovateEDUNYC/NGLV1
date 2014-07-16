@@ -2,9 +2,9 @@
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class ParentEnrollmentInfoModelToParentMapper : MapperBase<ParentEnrollmentInfoModel, Parent>
+    public class CreateParentModelToParentMapper : MapperBase<CreateParentModel, Parent>
     {
-        public override void Map(ParentEnrollmentInfoModel source, Parent target)
+        public override void Map(CreateParentModel source, Parent target)
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;

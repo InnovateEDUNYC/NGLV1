@@ -1581,11 +1581,14 @@
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
     <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
-    <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
-    <Compile Include="Models\Enrollment\ParentEnrollmentInfoModel.cs" />
-    <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToParentMapper.cs" />
-    <Compile Include="Models\Enrollment\ParentEnrollmentInfoModelToStudentParentAssociationMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModel.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateParentModelToStudentParentAssociationMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModelValidator.cs" />
     <Compile Include="Models\Enrollment\EnterProgramStatusModel.cs" />
+    <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
@@ -1642,7 +1645,6 @@
     <Compile Include="Models\School\EducationOrganizationToSchoolModelMapper.cs" />
     <Compile Include="Models\School\SchoolModel.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
-    <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CreateModel.cs" />
@@ -1687,6 +1689,7 @@
     <Content Include="Assets\Scripts\forms.js" />
     <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\006 - Schema - StudentProgramStatus.sql" />
+    <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -16,23 +16,19 @@ namespace NGL.Web.Controllers
 		private readonly IFileUploader _fileUploader;
 
 		public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper, 
-			IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper)
+			IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, IFileUploader fileUploader)
 		{
-			_fileUploader = new AzureStorageUploader();
+			_fileUploader = fileUploader;
 			_repository = repository;
 			_enrollmentMapper = enrollmentMapper;
 			_programStatusMapper = programStatusMapper;
 		}
 
-		//
-		// GET: /Enrollment/CreateStudent
-		public virtual ActionResult CreateStudent()
-		{
-			var enrollmentModel = new CreateStudentModel
-			{
-				ParentEnrollmentInfoModel = new ParentEnrollmentInfoModel()
-			};
-			return View(enrollmentModel);
+        //
+        // GET: /Enrollment/CreateStudent
+        public virtual ActionResult CreateStudent()
+        {
+            return View(CreateStudentModel.New());
 		}
 
 		// POST: /Enrollment/CreateStudent
@@ -47,7 +43,7 @@ namespace NGL.Web.Controllers
 			_enrollmentMapper.Map(createStudentModel, student);
 			_repository.Add(student);
 			_repository.Save();
-		    return RedirectToAction("All", "Student");
+		    return RedirectToAction(MVC.Student.All());
 		}
 
 		public virtual ActionResult EnterProgramStatus(int id)

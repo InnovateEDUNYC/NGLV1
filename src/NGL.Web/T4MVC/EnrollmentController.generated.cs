@@ -4,6 +4,7 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments
+using NGL.Web.Models.Enrollment;
 #pragma warning disable 1591
 #region T4MVC
 
@@ -141,9 +142,10 @@ namespace NGL.Web.Controllers
 
         [NonAction]
         partial void CreateStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Enrollment.CreateStudentModel createStudentModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, CreateStudentModel createStudentModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateStudent(NGL.Web.Models.Enrollment.CreateStudentModel createStudentModel)
+        public override System.Web.Mvc.ActionResult CreateStudent(CreateStudentModel createStudentModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateStudent);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createStudentModel", createStudentModel);

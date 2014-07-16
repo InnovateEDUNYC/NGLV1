@@ -1,5 +1,4 @@
-﻿using System;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
@@ -7,12 +6,12 @@ namespace NGL.Web.Models.Enrollment
     {
         private readonly IMapper<CreateStudentModel, StudentAddress> _studentAddressMapper;
         private readonly IMapper<CreateStudentModel, StudentLanguage> _studentLanguageMapper;
-        private readonly IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> _studentParentAssociationMapper;
+        private readonly IMapper<CreateParentModel, StudentParentAssociation> _studentParentAssociationMapper;
 
         public CreateStudentModelToStudentMapper(
             IMapper<CreateStudentModel, StudentAddress> studentAddressMapper, 
             IMapper<CreateStudentModel, StudentLanguage> studentLanguageMapper, 
-            IMapper<ParentEnrollmentInfoModel, StudentParentAssociation> studentParentAssociationMapper)
+            CreateParentModelToStudentParentAssociationMapper studentParentAssociationMapper)
         {
             _studentAddressMapper = studentAddressMapper;
             _studentLanguageMapper = studentLanguageMapper;
@@ -29,8 +28,14 @@ namespace NGL.Web.Models.Enrollment
             var studentLanguage = _studentLanguageMapper.Build(source);
             target.StudentLanguages.Add(studentLanguage);
 
-            var studentParentAssociation = _studentParentAssociationMapper.Build(source.ParentEnrollmentInfoModel);
-            target.StudentParentAssociations.Add(studentParentAssociation);
+            var firstParentAssociation = _studentParentAssociationMapper.Build(source.FirstParent);
+            target.StudentParentAssociations.Add(firstParentAssociation);
+            
+            if (source.AddSecondParent)
+            {
+                var secondParentAssociation = _studentParentAssociationMapper.Build(source.SecondParent);
+                target.StudentParentAssociations.Add(secondParentAssociation);
+            }
         }
 
         private static void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)

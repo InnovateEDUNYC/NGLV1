@@ -6,13 +6,13 @@ using Xunit;
 
 namespace NGL.Tests.Enrollment
 {
-    public class ParentEnrollmentInfoModelToParentMapperTest
+    public class CreateParentModelToParentMapperTests
     {
         [Fact]
         public void ShouldMap()
         {
-            var mapper = new ParentEnrollmentInfoModelToParentMapper();
-            var parentEnrollmentInfoModel = new ParentEnrollmentInfoModel
+            var mapper = new CreateParentModelToParentMapper();
+            var parentEnrollmentInfoModel = new CreateParentModel
             {
                 FirstName = "Cameron",
                 LastName = "James",
