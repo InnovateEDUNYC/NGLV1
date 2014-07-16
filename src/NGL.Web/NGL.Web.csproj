@@ -260,6 +260,7 @@
     <Compile Include="Controllers\ClassPeriodController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -1591,6 +1592,9 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
+    <Compile Include="Models\Location\IndexModel.cs" />
+    <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
@@ -1648,13 +1652,16 @@
     <Compile Include="Models\ClassPeriod\CreateModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CreateModel.cs" />
-    <Compile Include="Models\Location\LocationModel.cs" />
+    <Compile Include="Models\Location\CreateModel.cs" />
     <Compile Include="Models\Section\SectionModel.cs" />
     <Compile Include="Models\Session\CreateModel.cs" />
     <Compile Include="Models\Staff\StaffModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentModelForStudentSectionAttendanceEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="T4MVC\LocationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\SchoolController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1794,6 +1801,8 @@
     <Content Include="Views\ClassPeriod\Create.cshtml" />
     <Content Include="Views\ClassPeriod\Index.cshtml" />
     <Content Include="Views\Home\Scheduling.cshtml" />
+    <Content Include="Views\Location\Create.cshtml" />
+    <Content Include="Views\Location\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

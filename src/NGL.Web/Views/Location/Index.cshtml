@@ -1,0 +1,37 @@
+﻿@model IEnumerable<NGL.Web.Models.Location.IndexModel>
+
+@{
+    ViewBag.Title = "Locations";
+}
+
+<h2>Locations</h2>
+<p>
+    @Html.ActionLink("Create New Classroom Location", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassroomIdentificationCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaximumNumberOfSeats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OptimalNumberOfSeats)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="classroom-code">
+                @Html.DisplayFor(modelItem => item.ClassroomIdentificationCode)
+            </td>
+            <td class="max-seats">
+                @Html.DisplayFor(modelItem => item.MaximumNumberOfSeats)
+            </td>
+            <td class="optimal-seats">
+                @Html.DisplayFor(modelItem => item.OptimalNumberOfSeats)
+            </td>
+        </tr>
+    }
+</table>
