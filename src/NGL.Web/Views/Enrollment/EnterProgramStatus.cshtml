@@ -1,4 +1,7 @@
-﻿@model NGL.Web.Models.Enrollment.EnterProgramStatusModel
+﻿@using Humanizer
+@using NGL.Web.Data.Entities
+@using NGL.Web.Views.Shared.HtmlHelpers
+@model NGL.Web.Models.Enrollment.EnterProgramStatusModel
 
 @{
     ViewBag.Title = "Program Status";
@@ -24,7 +27,7 @@
 
     <div class="inline separator">
         @Html.LabelFor(m => m.FoodServiceEligibilityStatus)
-        @Html.EnumDropDownListFor(m => m.FoodServiceEligibilityStatus)
+        @Html.DropDownListFor(m => m.FoodServiceEligibilityStatus, SchoolFoodServicesEligibilityTypeEnum.Free.GetHumanizedListItems())
     </div>
 
     <div class="inline separator">
@@ -43,7 +46,7 @@
 
     <div class="inline separator">
         @Html.EditorFor(m => m.McKinneyVento)
-        @Html.TextBoxFor(m => m.McKinneyVentoFileUrl, fileAttributes)
+        @Html.TextBoxFor(m => m.McKinneyVentoFile, fileAttributes)
     </div>
 
     <input type="submit" class="btn btn-default" value="Submit" />
