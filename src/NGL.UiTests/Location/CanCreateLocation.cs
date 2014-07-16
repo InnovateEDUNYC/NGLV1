@@ -13,7 +13,7 @@ using CreateModel = NGL.Web.Models.Location.CreateModel;
 namespace NGL.UiTests.Location
 {
     [Story(
-        AsA = "As a school amin",
+        AsA = "As a school admin",
         IWant = "I want to create locations",
         SoThat = "So that I know what are the different class rooms"
         )]
