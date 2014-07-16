@@ -13,9 +13,10 @@ namespace NGL.UiTests.Course
     public class CanCreateCourse
     {
         private HomePage _homePage;
-        private CourseCreatePage _courseCreatePage;
+        private SchedulingPage _schedulingPage;
         private CreateModel _createCourseModel;
         private CourseIndexPage _courseIndexPage;
+        private CourseCreatePage _courseCreatePage;
 
         public void GivenIHaveLoggedIn()
         {
@@ -26,7 +27,8 @@ namespace NGL.UiTests.Course
 
         public void AndGivenIAmOnTheCreateCoursePage()
         {
-            _courseCreatePage = _homePage.TopMenu.GoToCourseCreatePage();
+            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
+            _courseCreatePage = _schedulingPage.GoToCourseIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()
@@ -38,13 +40,13 @@ namespace NGL.UiTests.Course
                 NumberOfParts = ObjectMother.Math101.NumberOfParts,
                 CourseDescription = ObjectMother.Math101.CourseDescription
             };
+
             _courseIndexPage = _courseCreatePage.CreateCourse(_createCourseModel);
         }
 
         public void ThenANewCourseShouldBeDisplayedOnTheCourseIndexPage()
         {
             bool coureExists = _courseIndexPage.CourseExists(_createCourseModel);
-
             coureExists.ShouldBe(true);
         }
 
@@ -53,8 +55,5 @@ namespace NGL.UiTests.Course
         {
             this.BDDfy();
         }
-
-
-
     }
 }

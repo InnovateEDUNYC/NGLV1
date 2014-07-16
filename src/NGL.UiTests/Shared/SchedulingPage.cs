@@ -1,4 +1,5 @@
 ﻿using NGL.UiTests.ClassPeriod;
+using NGL.UiTests.Course;
 using NGL.UiTests.Session;
 using OpenQA.Selenium;
 using Page = TestStack.Seleno.PageObjects.Page;
@@ -11,6 +12,11 @@ namespace NGL.UiTests.Shared
         public SessionIndexPage GoToSessionIndexPage()
         {
             return Navigate.To<SessionIndexPage>(By.LinkText("Sessions"));
+        }
+
+        public CourseIndexPage GoToCourseIndexPage()
+        {
+            return Navigate.To<CourseIndexPage>(By.LinkText("Courses"));
         }
 
         public ClassPeriodIndexPage GoToClassPeriodIndexPage()

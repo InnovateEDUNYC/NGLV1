@@ -29,12 +29,6 @@ namespace NGL.UiTests.Shared
             return Navigate.To<SchedulingPage>(By.LinkText("Scheduling"));
         }
 
-        public CourseCreatePage GoToCourseCreatePage()
-        {
-            Find.Element(By.LinkText("Planning")).Click();
-            return Navigate.To<CourseCreatePage>(By.LinkText("Courses"));
-        }
-
         public Page LogOff()
         {
             return Navigate.To<Page>(By.LinkText("Log off"));
