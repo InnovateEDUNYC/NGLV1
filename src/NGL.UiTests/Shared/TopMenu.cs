@@ -1,7 +1,6 @@
 ﻿using NGL.UiTests.Course;
 using NGL.UiTests.Enrollment;
 using NGL.UiTests.School;
-using NGL.UiTests.Session;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
@@ -24,16 +23,10 @@ namespace NGL.UiTests.Shared
             return Navigate.To<StudentIndexPage>(By.LinkText("Profile"));
         }
 
-        public SessionCreatePage GoToSchedulingPage()
+        public SchedulingPage GoToSchedulingPage()
         {
             Find.Element(By.LinkText("Planning")).Click();
-            return Navigate.To<SessionCreatePage>(By.LinkText("Scheduling"));
-        }
-
-        public CourseCreatePage GoToCourseCreatePage()
-        {
-            Find.Element(By.LinkText("Planning")).Click();
-            return Navigate.To<CourseCreatePage>(By.LinkText("Courses"));
+            return Navigate.To<SchedulingPage>(By.LinkText("Scheduling"));
         }
 
         public Page LogOff()

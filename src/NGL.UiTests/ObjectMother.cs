@@ -60,5 +60,10 @@ namespace NGL.UiTests
             public static int TimeRequiredForCompletion = 2000;
 
         }
+
+        public static class PeriodOne
+        {
+            public static string ClassPeriodName = "Period 1";
+        }
     }
 }

@@ -89,6 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassPeriod\CanCreateClassPeriod.cs" />
+    <Compile Include="ClassPeriod\ClassPeriodCreatePage.cs" />
+    <Compile Include="ClassPeriod\ClassPeriodIndexPage.cs" />
     <Compile Include="Session\CanCreateSession.cs" />
     <Compile Include="Enrollment\CanEnrollStudent.cs" />
     <Compile Include="School\CanUpdateSchoolInfo.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Session\SessionCreatePage.cs" />
     <Compile Include="Session\SessionIndexPage.cs" />
     <Compile Include="Enrollment\StudentIndexPage.cs" />
+    <Compile Include="Shared\SchedulingPage.cs" />
     <Compile Include="Shared\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

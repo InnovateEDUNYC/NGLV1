@@ -13,9 +13,10 @@ namespace NGL.UiTests.Session
     public class CanCreateSession
     {
         private HomePage _homePage;
-        private SessionCreatePage _sessionCreatePage;
+        private SchedulingPage _schedulingPage;
         private CreateModel _createSessionModel;
         private SessionIndexPage _sessionIndexPage;
+        private SessionCreatePage _sessionCreatePage;
 
         public void GivenIHaveLoggedIn()
         {
@@ -26,7 +27,8 @@ namespace NGL.UiTests.Session
 
         public void AndGivenIAmOnTheCreateSessionPage()
         {
-            _sessionCreatePage = _homePage.TopMenu.GoToSchedulingPage();
+            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
+            _sessionCreatePage = _schedulingPage.GoToSessionIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()
@@ -40,8 +42,7 @@ namespace NGL.UiTests.Session
                 TotalInstructionalDays = ObjectMother.Fall2014Semester.TotalInstructionalDays
             };
 
-            _sessionCreatePage.Input.Model(_createSessionModel);
-            _sessionIndexPage = _sessionCreatePage.CreateSession();
+            _sessionIndexPage = _sessionCreatePage.CreateSession(_createSessionModel);
         }
 
         public void ThenANewSessionShouldBeDisplayedOnTheSessionIndexPage()

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<NGL.Web.Models.ClassPeriod.IndexModel>
+
+@{
+    ViewBag.Title = "Class Periods";
+ }
+
+<h2>Class Periods</h2>
+<p>
+    @Html.ActionLink("Create New Period", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassPeriodName)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="period-name">
+                @Html.DisplayFor(modelItem => item.ClassPeriodName)
+            </td>
+        </tr>
+    }
+</table>

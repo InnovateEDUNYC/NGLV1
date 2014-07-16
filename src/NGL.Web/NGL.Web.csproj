@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectValidatorFactory.cs" />
+    <Compile Include="Controllers\ClassPeriodController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
@@ -1572,6 +1573,10 @@
     <Compile Include="Infrastructure\ChameleonForms\NglDateTimeHandler.cs" />
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
+    <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
+    <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
+    <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />
+    <Compile Include="Models\ClassPeriod\IndexModel.cs" />
     <Compile Include="Models\Course\CreateModelToCourseMapper.cs" />
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
     <Compile Include="Models\Course\CreateModelValidator.cs" />
@@ -1619,6 +1624,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC\ClassPeriodController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\CourseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1635,7 +1643,7 @@
     <Compile Include="Models\School\SchoolModel.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
     <Compile Include="Models\Enrollment\CreateStudentModelToStudentMapper.cs" />
-    <Compile Include="Models\ClassPeriod\ClassPeriodModel.cs" />
+    <Compile Include="Models\ClassPeriod\CreateModel.cs" />
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CreateModel.cs" />
     <Compile Include="Models\Location\LocationModel.cs" />
@@ -1751,8 +1759,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -1781,6 +1787,9 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Enrollment\EnterProgramStatus.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <Content Include="Views\ClassPeriod\Create.cshtml" />
+    <Content Include="Views\ClassPeriod\Index.cshtml" />
+    <Content Include="Views\Home\Scheduling.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

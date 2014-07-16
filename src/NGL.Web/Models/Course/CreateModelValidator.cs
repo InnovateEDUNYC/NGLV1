@@ -18,10 +18,7 @@ namespace NGL.Web.Models.Course
             if (string.IsNullOrEmpty(courseCode)) 
                 return true;
 
-            if (_genericRepository.Get<Data.Entities.Course>(c => c.CourseCode == courseCode) != null)
-                return false;
-
-            return true;
+            return _genericRepository.Get<Data.Entities.Course>(c => c.CourseCode == courseCode) == null;
         }
     }
 }

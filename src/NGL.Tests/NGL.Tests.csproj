@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Course\ValidatorTests.cs" />
+    <Compile Include="ClassPeriod\MapperTests.cs" />
+    <Compile Include="ClassPeriod\ValidationTests.cs" />
     <Compile Include="Enrollment\ParentEnrollmentInfoModelToParentMapperTest.cs" />
     <Compile Include="Course\MapperTests.cs" />
     <Compile Include="Session\MapperTests.cs" />
