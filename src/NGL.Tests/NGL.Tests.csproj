@@ -58,14 +58,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassPeriod\ValidatorTests.cs" />
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />
-    <Compile Include="ClassPeriod\ValidationTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentAddressMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelValidatorTests.cs" />
+    <Compile Include="Location\MapperTests.cs" />
+    <Compile Include="Location\ValidatorTests.cs" />
     <Compile Include="Session\MapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\ValidatorTests.cs" />

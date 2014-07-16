@@ -65,5 +65,12 @@ namespace NGL.UiTests
         {
             public static string ClassPeriodName = "Period 1";
         }
+
+        public static class RoomA101
+        {
+            public static string ClassRoomIdentificationCode = "A101";
+            public static int MaximumNumberOfSeats = 40;
+            public static int OptimalNumberOfSeats = 30;
+        }
     }
 }

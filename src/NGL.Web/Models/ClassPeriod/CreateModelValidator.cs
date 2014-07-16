@@ -1,25 +1,23 @@
-﻿using FluentValidation;
+﻿using System;
+using System.Linq.Expressions;
+using FluentValidation;
 using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Models.ClassPeriod
 {
     public class CreateModelValidator : AbstractValidator<CreateModel>
     {
-        private readonly IGenericRepository _genericRepository;
-
-
         public CreateModelValidator(IGenericRepository genericRepository)
         {
-            _genericRepository = genericRepository;
-            RuleFor(m => m.ClassPeriodName).Must(NotExist).WithMessage("This period name already exists.");
+            var existenceValidator = new ExistenceValidator<Data.Entities.ClassPeriod>(genericRepository);
+            Expression<Func<Data.Entities.ClassPeriod, bool>> expression;
+
+            RuleFor(model => model.ClassPeriodName).Must(classPeriodName =>
+            {
+                expression = entity => entity.ClassPeriodName == classPeriodName;
+                return existenceValidator.Validate(classPeriodName, expression);
+            }).WithMessage("This period name already exists.");
         }
 
-        private bool NotExist(string classPeriodName)
-        {
-            if (string.IsNullOrEmpty(classPeriodName))
-                return true;
-
-            return _genericRepository.Get<Data.Entities.ClassPeriod>(c => c.ClassPeriodName == classPeriodName) == null;
-        }
     }
 }

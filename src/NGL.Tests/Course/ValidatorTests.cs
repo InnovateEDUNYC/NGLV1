@@ -11,7 +11,7 @@ namespace NGL.Tests.Course
     public class ValidatorTests
     {
         [Fact]
-        public void ShouldReturnTrueIfCourseDoesNotExist()
+        public void ShouldNotHaveErrorsIfCourseDoesNotExist()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var courseCreateModel = new CreateModel
@@ -31,7 +31,7 @@ namespace NGL.Tests.Course
         }
 
         [Fact]
-        public void ShouldReturnFalseIfCourseExists()
+        public void ShouldHaveErrorsIfCourseExists()
         {
             var genericRepository = Substitute.For<IGenericRepository>();
             var courseCreateModel = new CreateModel

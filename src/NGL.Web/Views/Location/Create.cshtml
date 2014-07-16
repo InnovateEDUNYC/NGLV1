@@ -1,0 +1,22 @@
+﻿@model NGL.Web.Models.Location.CreateModel
+@{
+    ViewBag.Title = "Location";
+    
+}
+
+<h2>Location</h2>
+
+@using (var f = Html.BeginNglForm())
+{
+    using (var s = f.BeginSection("Info"))
+    {
+        @s.FieldFor(m => m.ClassroomIdentificationCode)
+        @s.FieldFor(m => m.MaximumNumberOfSeats)
+        @s.FieldFor(m => m.OptimalNumberOfSeats)
+    }
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Create")
+    }
+}
+
