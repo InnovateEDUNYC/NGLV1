@@ -81,7 +81,7 @@ namespace NGL.Web.Controllers
 
 			_repository.Add(studentProgramStatus);
 			_repository.Save();
-			return RedirectToAction("Home", "Index");
+			return RedirectToAction("Index", "Home");
 		}
 	}
 
