@@ -13,7 +13,7 @@ namespace NGL.Tests.Enrollment
             _validator = new CreateStudentModelValidator();
         }
         [Fact]
-        public void ShouldHaveErrosIfModelNotValid()
+        public void ShouldHaveErrorsIfModelNotValid()
         {
             var createStudentModel = new CreateStudentModel
             {
