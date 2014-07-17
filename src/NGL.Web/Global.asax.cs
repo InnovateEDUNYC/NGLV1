@@ -40,16 +40,16 @@ namespace NGL.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            var httpException = Server.GetLastError() as HttpException;
-
-            if (httpException != null && httpException.GetHttpCode() == 404)
-                return;
-
             Response.Clear();
 
             var routeData = new RouteData();
-            routeData.Values.Add("action", "General");
             routeData.Values.Add("controller", "Error");
+
+            var httpException = Server.GetLastError() as HttpException;
+            if (httpException != null && httpException.GetHttpCode() == 404)
+                routeData.Values.Add("action", "HttpError404");
+            else
+                routeData.Values.Add("action", "General");
 
             // Clear the error on server.
             Server.ClearError();
