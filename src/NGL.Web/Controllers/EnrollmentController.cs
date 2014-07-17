@@ -1,5 +1,10 @@
-﻿using System.Web.Mvc;
-using Antlr.Runtime.Misc;
+﻿using System;
+using System.Data.Entity.Core.Common.EntitySql;
+using System.Drawing;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
+using System.Web.Mvc;
+using Microsoft.Owin.Security.Provider;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
@@ -86,10 +91,26 @@ namespace NGL.Web.Controllers
 
 
         //
-        // GET: /Enrollment/EnterAcademicHistory
-        public virtual ActionResult EnterAcademicHistory()
+        // GET: /Enrollment/EnterAcademicHistory/id
+        public virtual ActionResult EnterAcademicHistory(int id)
         {
             return View(new AcademicHistoryModel());
+        }
+        //
+        // POST: /Enrollment/EnterAcademicHistory/id
+        [HttpPost]
+        public virtual ActionResult EnterAcademicHistory(AcademicHistoryModel academicHistoryModel, int id)
+        {
+            if (!ModelState.IsValid)
+                return View(academicHistoryModel);
+
+            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}/{3}", id, "AcademicHistory", academicHistoryModel.SchoolYear, fileName);
+            const string blobContainer = "student";
+
+            var performanceHistoryFile = _fileUploader.Upload(academicHistoryModel.PerformanceHistoryFile,
+                blobContainer, getUri("performanceHistory"));
+
+            return View();
         }
 
         // POST: /Enrollment/EnterAcademicHistory

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
@@ -24,5 +25,6 @@ namespace NGL.Web.Models.Enrollment
         [StringLength(4000)]
         [DataType(DataType.MultilineText)]
         public String PerformanceHistory { get; set; }
+        public HttpPostedFileBase PerformanceHistoryFile { get; set; }
     }
 }

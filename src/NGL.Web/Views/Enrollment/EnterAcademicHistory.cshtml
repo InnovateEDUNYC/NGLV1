@@ -5,7 +5,7 @@
 }
 
 <h2>Academic Details</h2>
-@using (var f = Html.BeginNglForm())
+@using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart))
 {
     using (var r = f.BeginSection("Enter student's previous grade or percentage for each subject below"))
     {
@@ -20,8 +20,8 @@
     <h2>Performance History</h2>  
     using (var t = f.BeginSection("Elaborate on the student's performance history and upload performance records"))
     {
-        @t.FieldFor(s => s.PerformanceHistory).AddClass("form-control").Attr("rows", "3").Attr("type", "textarea")
-
+        @t.FieldFor(s => s.PerformanceHistory)
+        @t.FieldFor(s => s.PerformanceHistoryFile).Attr("type", "file")
     }
     
     using (var v = f.BeginNavigation())
