@@ -12,16 +12,18 @@ namespace NGL.UiTests.Enrollment
         [Fact]
         public void Verify()
         {
-            var homePage = Host.Instance.NavigateToInitialPage<HomePage>().Login(ObjectMother.JohnSmith.ViewModel);
-            var studentPage = homePage.TopMenu.GoToStudentsPage();
             var createStudentModel = GetCreateStudentModel();
 
-            studentPage = studentPage.GoToEnroll().Enroll(createStudentModel);
+            var studentPage = Host
+                .Instance
+                .NavigateToInitialPage<HomePage>()
+                .Login(ObjectMother.JohnSmith.ViewModel)
+                .TopMenu
+                .GoToStudentsPage()
+                .GoToEnroll()
+                .Enroll(createStudentModel);
 
             studentPage.LastUsiInTheList.ShouldBe(createStudentModel.StudentUsi.ToString());
-
-            var usiStringOfStudent = studentPage.LastUsiInTheList;
-            usiStringOfStudent.ShouldBe(createStudentModel.StudentUsi.ToString());
         }
 
         private CreateStudentModel GetCreateStudentModel()
