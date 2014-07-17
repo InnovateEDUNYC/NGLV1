@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ChameleonForms;
+using NGL.Web.Controllers;
 using StackExchange.Profiling;
 
 namespace NGL.Web
 {
-    public class NglApplication : System.Web.HttpApplication
+    public class NglApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -33,6 +36,30 @@ namespace NGL.Web
             {
                 MiniProfiler.Stop();
             }
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var httpException = Server.GetLastError() as HttpException;
+
+            if (httpException != null && httpException.GetHttpCode() == 404)
+                return;
+
+            Response.Clear();
+
+            var routeData = new RouteData();
+            routeData.Values.Add("action", "General");
+            routeData.Values.Add("controller", "Error");
+
+            // Clear the error on server.
+            Server.ClearError();
+
+            // Avoid IIS7 getting in the middle
+            Response.TrySkipIisCustomErrors = true;
+
+            // Call target Controller and pass the routeData.
+            IController errorController = new ErrorController();
+            errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
         }
     }
 }
