@@ -14,6 +14,9 @@ namespace NGL.Web.Models.Student
             target.Sex = ((SexTypeEnum)source.SexTypeId).Humanize();
             target.BirthDate = source.BirthDate;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+
+//            if (source.OldEthnicityTypeId != null)
+//                target.Race = ((OldEthnicityTypeEnum) source.OldEthnicityTypeId).Humanize();
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
             
             var studentAddresses = source.StudentAddresses;
