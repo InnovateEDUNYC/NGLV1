@@ -1,36 +1,3 @@
-/*
-  
-   ELMAH - Error Logging Modules and Handlers for ASP.NET
-   Copyright (c) 2004-9 Atif Aziz. All rights reserved.
-  
-    Author(s):
-  
-        Atif Aziz, http://www.raboof.com
-        Phil Haacked, http://haacked.com
-  
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-  
-      http://www.apache.org/licenses/LICENSE-2.0
-  
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-  
-*/
-
--- ELMAH DDL script for Microsoft SQL Server 2000 or later.
-
--- $Id: SQLServer.sql 677 2009-09-29 18:02:39Z azizatif $
-
-
-/* ------------------------------------------------------------------------ 
-        TABLES
-   ------------------------------------------------------------------------ */
-
 CREATE TABLE [dbo].[ELMAH_Error]
 (
     [ErrorId]     UNIQUEIDENTIFIER NOT NULL,
@@ -45,45 +12,43 @@ CREATE TABLE [dbo].[ELMAH_Error]
     [Sequence]    INT IDENTITY (1, 1) NOT NULL,
     [AllXml]      NTEXT COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL 
 ) 
-ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
+ 
 GO
-
+ 
 ALTER TABLE [dbo].[ELMAH_Error] WITH NOCHECK ADD 
-    CONSTRAINT [PK_ELMAH_Error] PRIMARY KEY NONCLUSTERED ([ErrorId]) ON [PRIMARY] 
+    CONSTRAINT [PK_ELMAH_Error] PRIMARY KEY ([ErrorId])
 GO
-
+ 
 ALTER TABLE [dbo].[ELMAH_Error] ADD 
     CONSTRAINT [DF_ELMAH_Error_ErrorId] DEFAULT (NEWID()) FOR [ErrorId]
 GO
-
+ 
 CREATE NONCLUSTERED INDEX [IX_ELMAH_Error_App_Time_Seq] ON [dbo].[ELMAH_Error] 
 (
     [Application]   ASC,
     [TimeUtc]       DESC,
     [Sequence]      DESC
 ) 
-ON [PRIMARY]
 GO
-
+ 
 /* ------------------------------------------------------------------------ 
         STORED PROCEDURES                                                      
    ------------------------------------------------------------------------ */
-
+ 
 SET QUOTED_IDENTIFIER ON 
 GO
 SET ANSI_NULLS ON 
 GO
-
+ 
 CREATE PROCEDURE [dbo].[ELMAH_GetErrorXml]
 (
     @Application NVARCHAR(60),
     @ErrorId UNIQUEIDENTIFIER
 )
 AS
-
+ 
     SET NOCOUNT ON
-
+ 
     SELECT 
         [AllXml]
     FROM 
@@ -92,18 +57,18 @@ AS
         [ErrorId] = @ErrorId
     AND
         [Application] = @Application
-
+ 
 GO
 SET QUOTED_IDENTIFIER OFF 
 GO
 SET ANSI_NULLS ON 
 GO
-
+ 
 SET QUOTED_IDENTIFIER ON 
 GO
 SET ANSI_NULLS ON 
 GO
-
+ 
 CREATE PROCEDURE [dbo].[ELMAH_GetErrorsXml]
 (
     @Application NVARCHAR(60),
@@ -112,30 +77,30 @@ CREATE PROCEDURE [dbo].[ELMAH_GetErrorsXml]
     @TotalCount INT OUTPUT
 )
 AS 
-
+ 
     SET NOCOUNT ON
-
+ 
     DECLARE @FirstTimeUTC DATETIME
     DECLARE @FirstSequence INT
     DECLARE @StartRow INT
     DECLARE @StartRowIndex INT
-
+ 
     SELECT 
         @TotalCount = COUNT(1) 
     FROM 
         [ELMAH_Error]
     WHERE 
         [Application] = @Application
-
+ 
     -- Get the ID of the first error for the requested page
-
+ 
     SET @StartRowIndex = @PageIndex * @PageSize + 1
-
+ 
     IF @StartRowIndex <= @TotalCount
     BEGIN
-
+ 
         SET ROWCOUNT @StartRowIndex
-
+ 
         SELECT  
             @FirstTimeUTC = [TimeUtc],
             @FirstSequence = [Sequence]
@@ -146,20 +111,20 @@ AS
         ORDER BY 
             [TimeUtc] DESC, 
             [Sequence] DESC
-
+ 
     END
     ELSE
     BEGIN
-
+ 
         SET @PageSize = 0
-
+ 
     END
-
+ 
     -- Now set the row count to the requested page size and get
     -- all records below it for the pertaining application.
-
+ 
     SET ROWCOUNT @PageSize
-
+ 
     SELECT 
         errorId     = [ErrorId], 
         application = [Application],
@@ -183,18 +148,18 @@ AS
         [Sequence] DESC
     FOR
         XML AUTO
-
+ 
 GO
 SET QUOTED_IDENTIFIER OFF 
 GO
 SET ANSI_NULLS ON 
 GO
-
+ 
 SET QUOTED_IDENTIFIER ON 
 GO
 SET ANSI_NULLS ON 
 GO
-
+ 
 CREATE PROCEDURE [dbo].[ELMAH_LogError]
 (
     @ErrorId UNIQUEIDENTIFIER,
@@ -209,9 +174,9 @@ CREATE PROCEDURE [dbo].[ELMAH_LogError]
     @TimeUtc DATETIME
 )
 AS
-
+ 
     SET NOCOUNT ON
-
+ 
     INSERT
     INTO
         [ELMAH_Error]
@@ -240,7 +205,7 @@ AS
             @StatusCode,
             @TimeUtc
         )
-
+ 
 GO
 SET QUOTED_IDENTIFIER OFF 
 GO
