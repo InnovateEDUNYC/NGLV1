@@ -1595,6 +1595,7 @@
     <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
+    <Compile Include="Models\Enrollment\AcademicHistoryModel.cs" />
     <Compile Include="Models\Enrollment\CreateParentModel.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />
@@ -1824,6 +1825,7 @@
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\CourseGeneration\Index.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
+    <Content Include="Views\Enrollment\EnterAcademicHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

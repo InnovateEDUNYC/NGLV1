@@ -1,0 +1,28 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using NGL.Web.Data.Entities;
+
+namespace NGL.Web.Models.Enrollment
+{
+    public class AcademicHistoryModel
+    {
+        public AcademicHistoryModel()
+        {
+            SchoolYear = (SchoolYearTypeEnum)DateTime.Today.Year;
+        }
+
+        [Required]
+        public decimal? Reading { get; set; }
+        [Required]
+        public decimal? Writing { get; set; }
+        [Required]
+        public decimal? Math { get; set; }
+        [Required]
+        public GradeLevelTypeEnum? AnticipatedGrade { get; set; }
+        [Required]
+        public SchoolYearTypeEnum SchoolYear { get; set; }
+        [StringLength(4000)]
+        [DataType(DataType.MultilineText)]
+        public String PerformanceHistory { get; set; }
+    }
+}
