@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
+using Humanizer;
 using Microsoft.Owin.Security.Provider;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -104,7 +105,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicHistoryModel);
 
-            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}/{3}", id, "AcademicHistory", academicHistoryModel.SchoolYear, fileName);
+            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}/{3}", id, "AcademicHistory", academicHistoryModel.SchoolYear.Humanize(), fileName);
             const string blobContainer = "student";
 
             var performanceHistoryFile = _fileUploader.Upload(academicHistoryModel.PerformanceHistoryFile,
@@ -112,20 +113,5 @@ namespace NGL.Web.Controllers
 
             return View();
         }
-
-        // POST: /Enrollment/EnterAcademicHistory
-//		[HttpPost]
-//		public virtual ActionResult CreateStudent(CreateStudentModel createStudentModel)
-//		{
-//			if (!ModelState.IsValid) 
-//				return View(createStudentModel);
-//
-//			var student = new Student();
-//
-//			_enrollmentMapper.Map(createStudentModel, student);
-//			_repository.Add(student);
-//			_repository.Save();
-//		    return RedirectToAction(MVC.Student.All());
-//		}
     }
 }
