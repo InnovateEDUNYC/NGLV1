@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -39,41 +40,16 @@ namespace NGL.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            Exception exception = Server.GetLastError();
+            var httpException = Server.GetLastError() as HttpException;
+
+            if (httpException != null && httpException.GetHttpCode() == 404)
+                return;
 
             Response.Clear();
 
-            var httpException = exception as HttpException;
-
             var routeData = new RouteData();
+            routeData.Values.Add("action", "General");
             routeData.Values.Add("controller", "Error");
-
-            if (httpException == null)
-            {
-                routeData.Values.Add("action", "Index");
-            }
-            else //It's an Http Exception, Let's handle it.
-            {
-                switch (httpException.GetHttpCode())
-                {
-                    case 404:
-                        return;
-
-                    case 500:
-                        // Server error.
-                        routeData.Values.Add("action", "HttpError500");
-                        break;
-
-                    // Here you can handle Views to other error codes.
-                    // I choose a General error template  
-                    default:
-                        routeData.Values.Add("action", "General");
-                        break;
-                }
-            }
-
-            // Pass exception details to the target error View.
-            routeData.Values.Add("error", exception);
 
             // Clear the error on server.
             Server.ClearError();
@@ -83,8 +59,7 @@ namespace NGL.Web
 
             // Call target Controller and pass the routeData.
             IController errorController = new ErrorController();
-            errorController.Execute(new RequestContext(
-                 new HttpContextWrapper(Context), routeData));
+            errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
         }
     }
 }
