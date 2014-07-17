@@ -10,18 +10,25 @@ Ngl.enrollment.enterProgramStatus = (function () {
     }
 
     var allowFileUploadConditionally = function (radioInputId, fileInputId) {
-        var $accomodationFile = $('#' + fileInputId);
+        var $fileInputField = $('#' + fileInputId);
+        var $radioButtons = $('input[name=' + radioInputId + ']');
+        var $checkedRadioButton = $('input[name=' + radioInputId + ']:checked');
 
-        $('input[name='+radioInputId+']').click(function () {
-            var self = $(this);
-            if (self.val() === 'True')
-                $accomodationFile.removeAttr('disabled');
-            else {
-                 $accomodationFile.attr('disabled', 'disabled');
-                 $accomodationFile.val('');
-            }
+        enableOrDisableFileUploadInput($fileInputField, $checkedRadioButton.val());
+        $radioButtons.click(function () {
+            enableOrDisableFileUploadInput($fileInputField, $(this).val());
         });
     };
+
+    var enableOrDisableFileUploadInput = function (fileInputField, radioButtonVal) {
+        if (radioButtonVal === 'True') {
+            fileInputField.removeAttr('disabled');
+        }
+        else {
+            fileInputField.attr('disabled', 'disabled');
+            fileInputField.val('');
+        }
+    }
 
 
     return {
