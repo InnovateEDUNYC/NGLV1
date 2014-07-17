@@ -28,7 +28,9 @@ public static partial class MVC
     public static NGL.Web.Controllers.AccountController Account = new NGL.Web.Controllers.T4MVC_AccountController();
     public static NGL.Web.Controllers.ClassPeriodController ClassPeriod = new NGL.Web.Controllers.T4MVC_ClassPeriodController();
     public static NGL.Web.Controllers.CourseController Course = new NGL.Web.Controllers.T4MVC_CourseController();
+    public static NGL.Web.Controllers.CourseGenerationController CourseGeneration = new NGL.Web.Controllers.T4MVC_CourseGenerationController();
     public static NGL.Web.Controllers.EnrollmentController Enrollment = new NGL.Web.Controllers.T4MVC_EnrollmentController();
+    public static NGL.Web.Controllers.ErrorController Error = new NGL.Web.Controllers.T4MVC_ErrorController();
     public static NGL.Web.Controllers.HomeController Home = new NGL.Web.Controllers.T4MVC_HomeController();
     public static NGL.Web.Controllers.LocationController Location = new NGL.Web.Controllers.T4MVC_LocationController();
     public static NGL.Web.Controllers.SchoolController School = new NGL.Web.Controllers.T4MVC_SchoolController();

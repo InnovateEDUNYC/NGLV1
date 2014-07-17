@@ -23,13 +23,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace NGL.Web.Controllers
 {
-    public partial class HomeController
+    public partial class CourseGenerationController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController() { }
+        public CourseGenerationController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected HomeController(Dummy d) { }
+        protected CourseGenerationController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -59,13 +59,13 @@ namespace NGL.Web.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController Actions { get { return MVC.Home; } }
+        public CourseGenerationController Actions { get { return MVC.CourseGeneration; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Home";
+        public readonly string Name = "CourseGeneration";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Home";
+        public const string NameConst = "CourseGeneration";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -74,14 +74,12 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Contact = "Contact";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Contact = "Contact";
         }
 
 
@@ -95,18 +93,16 @@ namespace NGL.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Contact = "Contact";
                 public readonly string Index = "Index";
             }
-            public readonly string Contact = "~/Views/Home/Contact.cshtml";
-            public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string Index = "~/Views/CourseGeneration/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_HomeController : NGL.Web.Controllers.HomeController
+    public partial class T4MVC_CourseGenerationController : NGL.Web.Controllers.CourseGenerationController
     {
-        public T4MVC_HomeController() : base(Dummy.Instance) { }
+        public T4MVC_CourseGenerationController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -116,17 +112,6 @@ namespace NGL.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ContactOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Contact()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Contact);
-            ContactOverride(callInfo);
             return callInfo;
         }
 

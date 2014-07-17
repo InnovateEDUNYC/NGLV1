@@ -26,7 +26,7 @@ namespace NGL.UiTests.Shared
         public SchedulingPage GoToSchedulingPage()
         {
             Find.Element(By.LinkText("Planning")).Click();
-            return Navigate.To<SchedulingPage>(By.LinkText("Scheduling"));
+            return Navigate.To<SchedulingPage>(By.LinkText("Course Generation"));
         }
 
         public EnrollmentPage GoToEnrollmentPage()

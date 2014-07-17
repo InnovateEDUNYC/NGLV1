@@ -269,6 +269,7 @@
     <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -1647,7 +1648,13 @@
     <Compile Include="T4MVC\CourseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC\CourseGenerationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\EnrollmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC\ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\HomeController.generated.cs">
@@ -1810,12 +1817,12 @@
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\ClassPeriod\Create.cshtml" />
     <Content Include="Views\ClassPeriod\Index.cshtml" />
-    <Content Include="Views\Home\Scheduling.cshtml" />
     <Content Include="Views\Location\Create.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
     <Content Include="Views\Error\HttpError404.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Error\General.cshtml" />
+    <Content Include="Views\CourseGeneration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

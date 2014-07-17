@@ -3,15 +3,15 @@ using System.Web.Mvc;
 
 namespace NGL.Web.Controllers
 {
-    public class ErrorController : Controller
+    public partial class ErrorController : Controller
     {
-        public ActionResult HttpError404()
+        public virtual ActionResult HttpError404()
         {
             Response.StatusCode = (int) HttpStatusCode.NotFound;
             return View();
         }
 
-        public ActionResult General()
+        public virtual ActionResult General()
         {
             return View();
         }
