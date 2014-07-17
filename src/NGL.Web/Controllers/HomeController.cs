@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace NGL.Web.Controllers
 {
@@ -19,11 +18,6 @@ namespace NGL.Web.Controllers
         public ActionResult Contact()
         {
             return View();
-        }
-
-        public ActionResult Crash()
-        {
-            throw new Exception();
         }
     }
 }
