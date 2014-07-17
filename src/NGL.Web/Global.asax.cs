@@ -1,17 +1,15 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ChameleonForms;
-using Microsoft.Owin.Logging;
 using NGL.Web.Controllers;
 using StackExchange.Profiling;
 
 namespace NGL.Web
 {
-    public class NglApplication : System.Web.HttpApplication
+    public class NglApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -59,9 +57,8 @@ namespace NGL.Web
                 switch (httpException.GetHttpCode())
                 {
                     case 404:
-                        // Page not found.
-                        routeData.Values.Add("action", "HttpError404");
-                        break;
+                        return;
+
                     case 500:
                         // Server error.
                         routeData.Values.Add("action", "HttpError500");

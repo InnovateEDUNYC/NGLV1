@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace NGL.Web.Controllers
 {
@@ -13,6 +14,16 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Scheduling()
         {
             return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        public ActionResult Crash()
+        {
+            throw new Exception();
         }
     }
 }

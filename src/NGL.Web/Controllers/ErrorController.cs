@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using Antlr.Runtime.Misc;
+﻿using System.Net;
+using System.Web.Mvc;
 
 namespace NGL.Web.Controllers
 {
@@ -12,7 +12,8 @@ namespace NGL.Web.Controllers
 
         public ActionResult HttpError404()
         {
-            return Content("Caught a 404");
+            Response.StatusCode = (int) HttpStatusCode.NotFound;
+            return View();
         }
 
         public ActionResult HttpError500()
