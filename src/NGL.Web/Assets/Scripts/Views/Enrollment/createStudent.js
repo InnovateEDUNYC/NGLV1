@@ -17,8 +17,9 @@ Ngl.enrollment.createStudent = (function () {
         });
 
         $(".same-address-as-student").on("click", function () {
-            var addressPanel = $(this.parentElement.parentElement);
-            addressPanel.find(".parent-address").toggle();
+            var parentPanel = $(this.parentElement.parentElement);
+            var addressPanel = parentPanel.find(".parent-address");
+            addressPanel.toggle();
             clearFieldsInElement(addressPanel);
         });
     };
