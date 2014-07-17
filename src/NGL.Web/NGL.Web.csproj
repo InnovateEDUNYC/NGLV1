@@ -267,6 +267,7 @@
     <Compile Include="Controllers\ClassPeriodController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
@@ -1812,6 +1813,7 @@
     <Content Include="Views\Home\Scheduling.cshtml" />
     <Content Include="Views\Location\Create.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
