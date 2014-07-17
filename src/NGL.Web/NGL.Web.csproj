@@ -1689,7 +1689,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Shared\HtmlHelpers\HtmlHelperExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Scripts\007 - Schema - Elmah.sql" />
