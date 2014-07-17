@@ -35,7 +35,6 @@ namespace NGL.Tests.Student
                 SexTypeId = (int) SexTypeEnum.Male,
                 BirthDate = new DateTime(2000, 2, 2),
                 HispanicLatinoEthnicity = true,
-//                OldEthnicityTypeId = (int?) OldEthnicityTypeEnum.BlackNotOfHispanicOrigin,
             };
 
             student.StudentAddresses.Add(studentAddress);
