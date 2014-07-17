@@ -41,7 +41,7 @@ namespace NGL.Web.Controllers
         // GET: /Student/5
         public virtual ActionResult Index(int usi)
         {
-            var student = _repository.Get(new StudentByUsiQuery(usi));
+            var student = _repository.Get(new StudentByUsiQuery(usi), s => s.StudentAddresses, s => s.StudentRaces);
             if (student == null)
             {
                 return HttpNotFound();

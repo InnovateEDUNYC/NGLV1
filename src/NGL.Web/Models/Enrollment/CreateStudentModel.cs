@@ -24,7 +24,7 @@ namespace NGL.Web.Models.Enrollment
         public String Address2 { get; set; }
         public String City { get; set; }
         public SexTypeEnum? Sex { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Display(Name = "Hispanic/Latino Ethnicity")]
         public bool HispanicLatinoEthnicity { get; set; }

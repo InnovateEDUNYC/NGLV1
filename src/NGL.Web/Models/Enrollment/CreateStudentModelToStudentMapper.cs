@@ -45,7 +45,7 @@ namespace NGL.Web.Models.Enrollment
             target.LastSurname = source.LastName;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.SexTypeId = (int) source.Sex.GetValueOrDefault();
-            target.BirthDate = source.BirthDate.GetValueOrDefault();
+            target.BirthDate = source.BirthDate;
             target.StudentRaces.Add(new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()});
         }
     }

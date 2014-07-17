@@ -15,7 +15,7 @@ namespace NGL.UiTests.School
         {
             var homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(ObjectMother.JohnSmith.ViewModel);
+                .Login(ObjectMother.UserJohnSmith.ViewModel);
         
             var schoolPage = homePage.TopMenu.GoToSchoolPage();
 

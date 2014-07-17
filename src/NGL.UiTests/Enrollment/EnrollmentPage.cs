@@ -9,6 +9,11 @@ namespace NGL.UiTests.Enrollment
         public StudentIndexPage Enroll(CreateStudentModel createStudentModel)
         {
             Input.Model(createStudentModel);
+            if (createStudentModel.HispanicLatinoEthnicity)
+            {
+                Input.TickCheckbox(m => m.HispanicLatinoEthnicity, true);    
+            }
+            
             return Navigate.To<StudentIndexPage>(By.ClassName("btn"));
         }
     }

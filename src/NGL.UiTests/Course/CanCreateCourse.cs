@@ -22,7 +22,7 @@ namespace NGL.UiTests.Course
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(ObjectMother.JohnSmith.ViewModel);
+                .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
         public void AndGivenIAmOnTheCreateCoursePage()
@@ -46,8 +46,8 @@ namespace NGL.UiTests.Course
 
         public void ThenANewCourseShouldBeDisplayedOnTheCourseIndexPage()
         {
-            bool coureExists = _courseIndexPage.CourseExists(_createCourseModel);
-            coureExists.ShouldBe(true);
+            bool courseExists = _courseIndexPage.CourseExists(_createCourseModel);
+            courseExists.ShouldBe(true);
         }
 
         [Fact]
