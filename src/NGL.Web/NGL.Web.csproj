@@ -1692,7 +1692,7 @@
     <Compile Include="Views\Shared\HtmlHelpers\HtmlHelperExtension.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Scripts\007 - Schema - Elmah.sql" />
+    <EmbeddedResource Include="Data\Scripts\007 - Schema - Elmah.sql" />
     <Content Include="Assets\Content\bootstrap-theme.css" />
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.css" />
