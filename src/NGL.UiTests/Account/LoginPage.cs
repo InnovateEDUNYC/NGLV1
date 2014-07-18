@@ -1,8 +1,9 @@
-﻿using NGL.Web.Models.Account;
+﻿using NGL.UiTests.Shared;
+using NGL.Web.Models.Account;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
-namespace NGL.UiTests.Shared
+namespace NGL.UiTests.Account
 {
     class LoginPage : Page<LoginViewModel>
     {
