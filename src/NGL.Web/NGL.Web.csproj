@@ -1594,6 +1594,7 @@
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
     <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
+    <Compile Include="Models\CreditAttribute.cs" />
     <Compile Include="Models\Enrollment\CreateParentModel.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />

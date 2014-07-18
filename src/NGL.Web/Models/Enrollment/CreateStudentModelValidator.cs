@@ -9,14 +9,14 @@ namespace NGL.Web.Models.Enrollment
             RuleFor(csm => csm.StudentUsi).NotNull();
             RuleFor(csm => csm.FirstName).NotEmpty().Length(1, 75);
             RuleFor(csm => csm.LastName).NotEmpty().Length(1, 75);
-            RuleFor(csm => csm.Address).NotEmpty().Length(1,150);
-            RuleFor(csm => csm.Address2).Length(0,20);
-            RuleFor(csm => csm.City).NotEmpty();
+            RuleFor(csm => csm.Address).NotEmpty().Length(1, 150);
+            RuleFor(csm => csm.Address2).Length(0, 20);
+            RuleFor(csm => csm.City).NotEmpty().Length(1, 30);
             RuleFor(csm => csm.Sex).NotNull();
             RuleFor(csm => csm.BirthDate).NotNull();
             RuleFor(csm => csm.Race).NotNull();
             RuleFor(csm => csm.State).NotNull();
-            RuleFor(csm => csm.PostalCode).NotEmpty().Length(1,17);
+            RuleFor(csm => csm.PostalCode).NotEmpty().Length(1, 17);
             RuleFor(csm => csm.HomeLanguage).NotNull();
             RuleFor(csm => csm.FirstParent).SetValidator(new CreateParentModelValidator());
 
@@ -38,7 +38,7 @@ namespace NGL.Web.Models.Enrollment
                 {
                     RuleFor(pm => pm.Address).NotEmpty().Length(1, 150);
                     RuleFor(pm => pm.Address2).Length(0, 20);
-                    RuleFor(pm => pm.City).NotEmpty();
+                    RuleFor(pm => pm.City).NotEmpty().Length(1, 30);
                     RuleFor(pm => pm.State).NotNull();
                     RuleFor(pm => pm.PostalCode).NotEmpty().Length(1, 17);
                 });
