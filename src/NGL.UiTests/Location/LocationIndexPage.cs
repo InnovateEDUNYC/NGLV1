@@ -15,15 +15,15 @@ namespace NGL.UiTests.Location
         public bool LocationExists(CreateModel createModel)
         {
             var classroomIdCodeExists =
-                Find.Element(By.CssSelector("tr:nth-child(2) td.classroom-code")).Text.Equals(createModel.ClassroomIdentificationCode);
+                Find.Element(By.CssSelector("tr:last-of-type td.classroom-code")).Text.Equals(createModel.ClassroomIdentificationCode);
 
 
             var maxSeatsExists =
-                Find.Element(By.CssSelector("tr:nth-child(2) td.max-seats")).Text.Equals(createModel.MaximumNumberOfSeats.ToString());
+                Find.Element(By.CssSelector("tr:last-of-type td.max-seats")).Text.Equals(createModel.MaximumNumberOfSeats.ToString());
 
 
             var optimalSeatsExists =
-                Find.Element(By.CssSelector("tr:nth-child(2) td.optimal-seats")).Text.Equals(createModel.OptimalNumberOfSeats.ToString());
+                Find.Element(By.CssSelector("tr:last-of-type td.optimal-seats")).Text.Equals(createModel.OptimalNumberOfSeats.ToString());
 
             return classroomIdCodeExists && maxSeatsExists && optimalSeatsExists;
         }

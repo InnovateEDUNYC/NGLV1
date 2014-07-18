@@ -15,9 +15,9 @@ namespace NGL.UiTests.Session
 
         public bool SessionExists(CreateModel createModel)
         {
-            var termExists = Find.Element(By.CssSelector("tr:nth-child(2) td.term")).Text.Equals(createModel.Term.Humanize());
+            var termExists = Find.Element(By.CssSelector("tr:last-of-type td.term")).Text.Equals(createModel.Term.Humanize());
             var yearExists =
-                Find.Element(By.CssSelector("tr:nth-child(2) td.school-year")).Text.Equals(createModel.SchoolYear.Humanize());
+                Find.Element(By.CssSelector("tr:last-of-type td.school-year")).Text.Equals(createModel.SchoolYear.Humanize());
 
             Find.Element(By.CssSelector("td.term")).Text.ShouldBe(createModel.Term.Humanize());
 
