@@ -1,4 +1,4 @@
-﻿using NGL.UiTests.Course;
+﻿using NGL.UiTests.Account;
 using NGL.UiTests.Enrollment;
 using NGL.UiTests.School;
 using OpenQA.Selenium;
@@ -38,6 +38,11 @@ namespace NGL.UiTests.Shared
         public Page LogOff()
         {
             return Navigate.To<Page>(By.LinkText("Log off"));
+        }
+
+        public ManageUserPage GoToManageUserPage()
+        {
+            return Navigate.To<ManageUserPage>(By.Id("manageUser"));
         }
     }
 }
