@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -59,17 +60,14 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(enterProgramStatusModel);
 
-            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
-            const string blobContainer = "student";
+            Func<string, string> makeUri = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
 
-            var specialEducationFileUri = _fileUploader.Upload(enterProgramStatusModel.SpecialEducationFile,
-                blobContainer, getUri("specialEducation"));
-            var testingAccomodationFileUri = _fileUploader.Upload(enterProgramStatusModel.TestingAccommodationFile,
-                blobContainer, getUri("testingAccomodation"));
-            var titleParticipationFileUri = _fileUploader.Upload(enterProgramStatusModel.TitleParticipationFile,
-                blobContainer, getUri("titleParticipation"));
-            var mcKinneyVentoFileUri = _fileUploader.Upload(enterProgramStatusModel.McKinneyVentoFile, blobContainer,
-                getUri("McKinneyVento"));
+            var specialEducationFileUri = UploadAndGetUriFor(enterProgramStatusModel.SpecialEducationFile,
+                    makeUri("specialEducation"));
+            var testingAccomodationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TestingAccommodationFile, makeUri("testingAccomodation"));
+            var titleParticipationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TitleParticipationFile, makeUri("titleParticipation"));
+            var mcKinneyVentoFileUri = UploadAndGetUriFor(enterProgramStatusModel.McKinneyVentoFile,
+                makeUri("McKinneyVento"));
 
             var studentProgramStatus = _programStatusMapper.Build(enterProgramStatusModel,
                 psm =>
@@ -101,15 +99,13 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-            string performanceHistoryFileUri = null;
-            if (academicDetailModel.PerformanceHistoryFile != null)
-            {
-                Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "AcademicHistory", fileName);
-                const string blobContainer = "student";
+//            string performanceHistoryFileUri = uploadAndGetUri;
+            
+                Func<string, string> makeUri = fileName => string.Format("{0}/{1}", id, fileName);
 
-                performanceHistoryFileUri = _fileUploader.Upload(academicDetailModel.PerformanceHistoryFile,
-                    blobContainer, getUri("performanceHistory"));
-            }
+                var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
+                    makeUri("performanceHistory"));
+                    
 
             StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
                 adm =>
@@ -121,6 +117,15 @@ namespace NGL.Web.Controllers
             _repository.Add(studentAcademicDetail);
             _repository.Save();
             return View();
+        }
+
+        private string UploadAndGetUriFor(HttpPostedFileBase file, string relativePath)
+        {
+            const string blobContainer = "student";
+            if (file != null)
+                return _fileUploader.Upload(file, blobContainer, relativePath);
+          
+            return null;
         }
     }
 }
