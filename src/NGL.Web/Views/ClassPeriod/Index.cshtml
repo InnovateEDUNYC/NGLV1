@@ -2,24 +2,31 @@
 
 @{
     ViewBag.Title = "Class Periods";
- }
+}
 
 <h2>Class Periods</h2>
-<p>
-    @Html.ActionLink("Create New Period", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ClassPeriodName)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<ul class="nav nav-pills">
+    <li>
+        @Html.ActionLink("Create New Period", "Create")
+    </li>
+</ul>
+
+<table class="table table-striped">
+    <thead>
         <tr>
-            <td class="period-name">
-                @Html.DisplayFor(modelItem => item.ClassPeriodName)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassPeriodName)
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="period-name">
+                    @Html.DisplayFor(modelItem => item.ClassPeriodName)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

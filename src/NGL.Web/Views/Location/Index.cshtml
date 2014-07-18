@@ -5,33 +5,39 @@
 }
 
 <h2>Locations</h2>
-<p>
-    @Html.ActionLink("Create New Classroom Location", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ClassroomIdentificationCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaximumNumberOfSeats)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OptimalNumberOfSeats)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Create New Classroom Location", "Create")</li>
+</ul>
+
+<table class="table table-striped">
+    <thead>
         <tr>
-            <td class="classroom-code">
-                @Html.DisplayFor(modelItem => item.ClassroomIdentificationCode)
-            </td>
-            <td class="max-seats">
-                @Html.DisplayFor(modelItem => item.MaximumNumberOfSeats)
-            </td>
-            <td class="optimal-seats">
-                @Html.DisplayFor(modelItem => item.OptimalNumberOfSeats)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassroomIdentificationCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaximumNumberOfSeats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OptimalNumberOfSeats)
+            </th>
         </tr>
-    }
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="classroom-code">
+                    @Html.DisplayFor(modelItem => item.ClassroomIdentificationCode)
+                </td>
+                <td class="max-seats">
+                    @Html.DisplayFor(modelItem => item.MaximumNumberOfSeats)
+                </td>
+                <td class="optimal-seats">
+                    @Html.DisplayFor(modelItem => item.OptimalNumberOfSeats)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

@@ -4,13 +4,17 @@
 }
 
 <h2>Users</h2>
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Add User", "AddUser")</li>
+</ul>
 
-<table>
-    <tbody>
+<table class="table table-striped">
+    <thead>
         <tr>
             <th>Username</th>
         </tr>
-
+    </thead>
+    <tbody>
         @foreach (var user in Model)
         {
             <tr>
@@ -20,4 +24,3 @@
     </tbody>
 </table>
 
-@Html.ActionLink("Add User", "AddUser")
