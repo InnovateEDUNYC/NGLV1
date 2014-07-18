@@ -40,14 +40,14 @@ namespace NGL.UiTests.Shared
             return Navigate.To<HomePage>(By.LinkText("Log off"));
         }
 
-        public ManageUserPage GoToManageUserPage()
+        public ChangePasswordPage GoToChangePasswordPage()
         {
-            return Navigate.To<ManageUserPage>(By.Id("manageUser"));
+            return Navigate.To<ChangePasswordPage>(By.Id("changePassword"));
         }
 
         public bool IsLoggedOn
         {
-            get { return Find.OptionalElement(By.Id("manageUser")) != null; }
+            get { return Find.OptionalElement(By.Id("changePassword")) != null; }
         }
     }
 }

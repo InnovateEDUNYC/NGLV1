@@ -5,12 +5,12 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Account
 {
-    class ManageUserPage : Page<ManageUserViewModel>
+    class ChangePasswordPage : Page<ChangePasswordModel>
     {
-        public ManageUserPage ChangePassword(ManageUserViewModel model)
+        public ChangePasswordPage ChangePassword(ChangePasswordModel model)
         {
             Input.Model(model);
-            return Navigate.To<ManageUserPage>(By.ClassName("btn"));
+            return Navigate.To<ChangePasswordPage>(By.ClassName("btn"));
         }
 
         public TopMenu Menu

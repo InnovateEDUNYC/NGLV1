@@ -69,7 +69,7 @@ namespace NGL.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Manage()
+        public virtual System.Web.Mvc.ActionResult ChangePassword()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
         }
@@ -318,7 +318,7 @@ namespace NGL.Web.Controllers
         partial void ManageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Controllers.AccountController.ManageMessageId? message);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Manage(NGL.Web.Controllers.AccountController.ManageMessageId? message)
+        public override System.Web.Mvc.ActionResult ChangePassword(NGL.Web.Controllers.AccountController.ManageMessageId? message)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
@@ -327,10 +327,10 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void ManageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.ManageUserViewModel model);
+        partial void ManageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.ChangePasswordModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Manage(NGL.Web.Models.Account.ManageUserViewModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangePassword(NGL.Web.Models.Account.ChangePasswordModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

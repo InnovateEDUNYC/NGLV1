@@ -94,12 +94,12 @@ namespace NGL.Web.Controllers
             ManageMessageId? message;
             IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
             message = result.Succeeded ? ManageMessageId.RemoveLoginSuccess : ManageMessageId.Error;
-            return RedirectToAction(Actions.Manage(message));
+            return RedirectToAction(Actions.ChangePassword(message));
         }
 
         //
-        // GET: /Account/Manage
-        public virtual ActionResult Manage(ManageMessageId? message)
+        // GET: /Account/ChangePassword
+        public virtual ActionResult ChangePassword(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -108,27 +108,27 @@ namespace NGL.Web.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("ChangePassword");
             return View();
         }
 
         //
-        // POST: /Account/Manage
+        // POST: /Account/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Manage(ManageUserViewModel model)
+        public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
             bool hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("ChangePassword");
             if (hasPassword)
             {
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.CurrentPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("ChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     
                     AddErrors(result);
@@ -136,8 +136,8 @@ namespace NGL.Web.Controllers
             }
             else
             {
-                // User does not have a password so remove any validation errors caused by a missing OldPassword field
-                ModelState state = ModelState["OldPassword"];
+                // User does not have a password so remove any validation errors caused by a missing CurrentPassword field
+                ModelState state = ModelState["CurrentPassword"];
                 if (state != null)
                 {
                     state.Errors.Clear();
@@ -148,7 +148,7 @@ namespace NGL.Web.Controllers
                     IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction("ChangePassword", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
                     
                     AddErrors(result);
@@ -212,16 +212,16 @@ namespace NGL.Web.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
-                return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+                return RedirectToAction("ChangePassword", new { Message = ManageMessageId.Error });
             }
             
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             if (result.Succeeded)
             {
-                return RedirectToAction("Manage");
+                return RedirectToAction("ChangePassword");
             }
 
-            return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+            return RedirectToAction("ChangePassword", new { Message = ManageMessageId.Error });
         }
 
         //
@@ -233,7 +233,7 @@ namespace NGL.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Manage");
+                return RedirectToAction("ChangePassword");
             }
 
             if (ModelState.IsValid)
