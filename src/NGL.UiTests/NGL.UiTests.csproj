@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\CanAddNewUser.cs" />
     <Compile Include="Account\CanChangePassword.cs" />
     <Compile Include="Account\ChangePasswordPage.cs" />
     <Compile Include="ClassPeriod\CanCreateClassPeriod.cs" />

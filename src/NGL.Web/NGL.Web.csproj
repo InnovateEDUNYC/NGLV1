@@ -1584,6 +1584,7 @@
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
+    <Compile Include="Models\Account\UserModel.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />
@@ -1824,6 +1825,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\CourseGeneration\Index.cshtml" />
+    <Content Include="Views\Account\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

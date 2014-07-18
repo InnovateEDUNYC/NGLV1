@@ -1,0 +1,22 @@
+﻿@model IEnumerable<NGL.Web.Models.Account.UserModel>
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Username</th>
+        </tr>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

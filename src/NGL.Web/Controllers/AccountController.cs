@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -52,6 +53,13 @@ namespace NGL.Web.Controllers
             ModelState.AddModelError("", "Invalid username or password.");
 
             return View(model);
+        }
+
+        public ActionResult Users()
+        {
+            var users = UserManager.Users;
+            var um = users.Select(u => new UserModel { Username = u.UserName }).ToList();
+            return View(um);
         }
 
         //
