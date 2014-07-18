@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -41,7 +42,14 @@ namespace NGL.Web.Controllers
         // GET: /Student/5
         public virtual ActionResult Index(int usi)
         {
-            var student = _repository.Get(new StudentByUsiQuery(usi), s => s.StudentAddresses, s => s.StudentRaces);
+            var student = _repository.Get(
+                new StudentByUsiQuery(usi),
+                s => s.StudentAddresses,
+                s => s.StudentRaces,
+                s => s.StudentLanguages,
+                s => s.StudentLanguages.Select(l => l.StudentLanguageUses)
+            );
+
             if (student == null)
             {
                 return HttpNotFound();

@@ -1,7 +1,6 @@
 ﻿using NGL.UiTests.Shared;
 using NGL.UiTests.Student;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Student;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -77,7 +76,7 @@ namespace NGL.UiTests.Enrollment
 
         public void ThenIShouldBeAbleToViewTheStudenInfo()
         {
-            bool allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
+            var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
             allFieldsExist.ShouldBe(true);
         }
 
