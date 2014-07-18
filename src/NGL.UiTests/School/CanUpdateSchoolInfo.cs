@@ -10,7 +10,7 @@ namespace NGL.UiTests.School
     [Story(
         AsA = "As a school admin",
         IWant = "I want to edit my school's details",
-        SoThat = "So that"
+        SoThat = "So that I can change school information"
         )]
     public class CanUpdateSchoolInfo
     {
@@ -46,7 +46,7 @@ namespace NGL.UiTests.School
             _updatedModel = _schoolPage.Read.ModelFromPage();
         }
 
-        public void ThenDerp()
+        public void ThenIShouldBeAbleToViewTheNewSchoolInfo()
         {
             _updatedModel.WebSite.ShouldBe(_schoolModel.WebSite);
             _updatedModel.NameOfInstitution.ShouldBe(_schoolModel.NameOfInstitution);
