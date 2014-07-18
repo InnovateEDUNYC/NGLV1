@@ -2,23 +2,37 @@
 using NGL.UiTests.Shared;
 using NGL.Web.Models.School;
 using Shouldly;
+using TestStack.BDDfy;
 using Xunit;
 
 namespace NGL.UiTests.School
 {
+    [Story(
+        AsA = "As a school admin",
+        IWant = "I want to edit my school's details",
+        SoThat = "So that I can change school information"
+        )]
     public class CanUpdateSchoolInfo
     {
+        private HomePage _homePage;
         private SchoolModel _schoolModel;
+        private SchoolPage _schoolPage;
+        private SchoolModel _updatedModel;
 
-        [Fact]
-        public void Verify()
+        public void GivenIHaveLoggedIn()
         {
-            var homePage = Host.Instance
+            _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
-        
-            var schoolPage = homePage.TopMenu.GoToSchoolPage();
+        }
 
+        public void AndGivenIAmOnTheSchoolEditPage()
+        {
+            _schoolPage = _homePage.TopMenu.GoToSchoolPage();
+        }
+
+        public void WhenIInputValidDetailsForMySchool()
+        {
             var salt = Guid.NewGuid();
             _schoolModel = new SchoolModel
             {
@@ -26,13 +40,24 @@ namespace NGL.UiTests.School
                 StateOrganizationId = "State " + salt, 
                 WebSite = "website " + salt
             };
-            schoolPage.Input.Model(_schoolModel); 
-            homePage = schoolPage.Save();
-            schoolPage = homePage.TopMenu.GoToSchoolPage();
-            var updatedModel = schoolPage.Read.ModelFromPage();
-            updatedModel.WebSite.ShouldBe(_schoolModel.WebSite);
-            updatedModel.NameOfInstitution.ShouldBe(_schoolModel.NameOfInstitution);
-            updatedModel.StateOrganizationId.ShouldBe(_schoolModel.StateOrganizationId);
+
+            _homePage = _schoolPage.Save(_schoolModel);
+            _schoolPage = _homePage.TopMenu.GoToSchoolPage();
+            _updatedModel = _schoolPage.Read.ModelFromPage();
         }
+
+        public void ThenIShouldBeAbleToViewTheNewSchoolInfo()
+        {
+            _updatedModel.WebSite.ShouldBe(_schoolModel.WebSite);
+            _updatedModel.NameOfInstitution.ShouldBe(_schoolModel.NameOfInstitution);
+            _updatedModel.StateOrganizationId.ShouldBe(_schoolModel.StateOrganizationId);
+        }
+
+        [Fact]
+        public void ShouldEditSchoolInfo()
+        {
+            this.BDDfy();
+        }
+
     }
 }

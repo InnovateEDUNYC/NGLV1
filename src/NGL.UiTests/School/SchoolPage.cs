@@ -7,8 +7,9 @@ namespace NGL.UiTests.School
 {
     class SchoolPage : Page<SchoolModel>
     {
-        public HomePage Save()
+        public HomePage Save(SchoolModel schoolModel)
         {
+            Input.Model(schoolModel);
             return Navigate.To<HomePage>(By.ClassName("btn"));
         }
     }
