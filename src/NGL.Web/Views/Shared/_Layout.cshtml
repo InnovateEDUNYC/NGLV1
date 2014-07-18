@@ -80,8 +80,10 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/app")
     @Scripts.Render("~/bundles/views")
-
-    @RenderSection("scripts", required: false)
+    
+    <script type="text/javascript">
+        @RenderSection("scripts", required: false)
+    </script>
 
     @MiniProfiler.RenderIncludes()
 </body>
