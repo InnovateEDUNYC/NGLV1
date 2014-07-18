@@ -1,14 +1,14 @@
 ﻿@model NGL.Web.Models.Account.AddUserModel
 @{
-    ViewBag.Title = "AddUserdd User";
+    ViewBag.Title = "Add User";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("AddUser", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>Create a new account</h4>
     <hr />
     @Html.ValidationSummary()
     <div class="form-group">

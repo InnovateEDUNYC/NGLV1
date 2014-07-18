@@ -12,15 +12,15 @@ namespace NGL.UiTests
             private const string Username = "JohnSmith";
             private const string Password = "123123";
 
-            public static LoginViewModel ViewModel
+            public static LoginModel ViewModel
             {
                 get
                 {
                     return
 
-                        new LoginViewModel
+                        new LoginModel
                         {
-                            UserName = Username,
+                            Username = Username,
                             Password = Password
                         };
                 }

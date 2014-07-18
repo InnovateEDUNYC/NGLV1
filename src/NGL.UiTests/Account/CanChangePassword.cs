@@ -23,7 +23,7 @@ namespace NGL.UiTests.Account
             var manageUserPage = Host
                 .Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(new LoginViewModel {UserName = username, Password = oldPassword})
+                .Login(new LoginModel {Username = username, Password = oldPassword})
                 .TopMenu
                 .GoToChangePasswordPage()
                 .ChangePassword(changePasswordModel);
@@ -33,7 +33,7 @@ namespace NGL.UiTests.Account
             manageUserPage
                 .Menu
                 .LogOff()
-                .Login(new LoginViewModel {UserName = username, Password = newPassword})
+                .Login(new LoginModel {Username = username, Password = newPassword})
                 .TopMenu
                 .IsLoggedOn
                 .ShouldBe(true);

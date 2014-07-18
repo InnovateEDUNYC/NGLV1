@@ -46,7 +46,7 @@ namespace NGL.UiTests.Account
 
         void AndTheUserCanLogin()
         {
-            _homePage.TopMenu.LogOff().Login(new LoginViewModel {UserName = _newUser.Username, Password = _newUser.Password});
+            _homePage.TopMenu.LogOff().Login(new LoginModel {Username = _newUser.Username, Password = _newUser.Password});
             _homePage.TopMenu.IsLoggedOn.ShouldBe(true);
         }
 
