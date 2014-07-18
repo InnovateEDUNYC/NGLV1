@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NGL.UiTests.Shared;
+using NGL.Web.Models.Account;
+using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
 
@@ -10,34 +12,42 @@ namespace NGL.UiTests.Account
         SoThat = "school staff can login to the website")]
     public class CanAddNewUser
     {
+        private HomePage _homePage;
+        private UsersPage _usersPage;
+        private readonly AddUserModel _newUser = new AddUserModel
+            {
+                UserName = "NewUser",
+                Password = "NewPassword",
+                ConfirmPassword = "NewPassword"
+            };
+
         void GivenIHaveLoggedInAsAMasterAdmin()
         {
-            throw new NotImplementedException();
+            _homePage = Host
+                .Instance
+                .NavigateToInitialPage<HomePage>()
+                .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
         void WhenINavigateToUsersManagerPage()
         {
-            throw new NotImplementedException();            
+            _usersPage = _homePage.TopMenu.GoToUsersPage();
         }
 
         void AndWhenICreateANewUser()
         {
-            throw new NotImplementedException();            
+            _usersPage.GoToAddUserPage().Register(_newUser);
         }
 
-        void ThenTheUserIsCreated()
+        void ThenTheUserAppearsOnTheUserLists()
         {
-            throw new NotImplementedException();            
-        }
-
-        void AndItAppearsOnTheUserLists()
-        {
-            throw new NotImplementedException();            
+            _usersPage.GetUsers().ShouldContain(_newUser.UserName);
         }
 
         void AndTheUserCanLogin()
         {
-            throw new NotImplementedException();            
+            _homePage.TopMenu.LogOff().Login(new LoginViewModel {UserName = _newUser.UserName, Password = _newUser.Password});
+            _homePage.TopMenu.IsLoggedOn.ShouldBe(true);
         }
 
         [Fact]

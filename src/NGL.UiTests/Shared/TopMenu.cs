@@ -49,5 +49,10 @@ namespace NGL.UiTests.Shared
         {
             get { return Find.OptionalElement(By.Id("changePassword")) != null; }
         }
+
+        public UsersPage GoToUsersPage()
+        {
+            return Navigate.To<UsersPage>(By.LinkText("Users"));
+        }
     }
 }
