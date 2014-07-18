@@ -105,7 +105,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicHistoryModel);
 
-            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "AcademicHistory");
+            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "AcademicHistory", fileName);
             const string blobContainer = "student";
 
             var performanceHistoryFile = _fileUploader.Upload(academicHistoryModel.PerformanceHistoryFile,

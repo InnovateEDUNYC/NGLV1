@@ -13298,18 +13298,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentAcademicDetails_GradeType">
-          <End Role="GradeLevelType" Type="Self.GradeLevelType" Multiplicity="1" />
-          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GradeLevelType">
-              <PropertyRef Name="GradeLevelTypeId" />
-            </Principal>
-            <Dependent Role="StudentAcademicDetails">
-              <PropertyRef Name="GradeTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StudentAcademicDetails_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="0..1" />
@@ -18406,10 +18394,6 @@
             <End Role="StateAbbreviationType" EntitySet="StateAbbreviationType" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudentAcademicDetails_GradeType" Association="Self.FK_StudentAcademicDetails_GradeType">
-            <End Role="GradeLevelType" EntitySet="GradeLevelType" />
-            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_StudentAcademicDetails_Student" Association="Self.FK_StudentAcademicDetails_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
@@ -19149,7 +19133,6 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="GradeLevelType" Relationship="Self.FK_StudentAcademicDetails_GradeType" FromRole="StudentAcademicDetails" ToRole="GradeLevelType" />
           <NavigationProperty Name="Student" Relationship="Self.FK_StudentAcademicDetails_Student" FromRole="StudentAcademicDetails" ToRole="Student" />
         </EntityType>
         <EntityType Name="AcademicHonorCategoryType">
@@ -21803,7 +21786,6 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="StudentAcademicDetails" Relationship="Self.FK_StudentAcademicDetails_GradeType" FromRole="GradeLevelType" ToRole="StudentAcademicDetails" />
           <NavigationProperty Name="GradeLevelDescriptors" Relationship="Self.FK_GradeLevelDescriptor_GradeLevelType_GradeLevelTypeId" FromRole="GradeLevelType" ToRole="GradeLevelDescriptor" />
         </EntityType>
         <EntityType Name="GradeType">
@@ -26722,18 +26704,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="WeaponDescriptors" Relationship="Self.FK_WeaponDescriptor_WeaponsType_WeaponsTypeId" FromRole="WeaponType" ToRole="WeaponDescriptor" />
         </EntityType>
-        <Association Name="FK_StudentAcademicDetails_GradeType">
-          <End Role="GradeLevelType" Type="Self.GradeLevelType" Multiplicity="1" />
-          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GradeLevelType">
-              <PropertyRef Name="GradeLevelTypeId" />
-            </Principal>
-            <Dependent Role="StudentAcademicDetails">
-              <PropertyRef Name="GradeTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StudentAcademicDetails_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="0..1" />
@@ -36726,10 +36696,6 @@
           <EntitySet Name="VisaTypes" EntityType="Self.VisaType" />
           <EntitySet Name="WeaponDescriptors" EntityType="Self.WeaponDescriptor" />
           <EntitySet Name="WeaponTypes" EntityType="Self.WeaponType" />
-          <AssociationSet Name="FK_StudentAcademicDetails_GradeType" Association="Self.FK_StudentAcademicDetails_GradeType">
-            <End Role="GradeLevelType" EntitySet="GradeLevelTypes" />
-            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_StudentAcademicDetails_Student" Association="Self.FK_StudentAcademicDetails_Student">
             <End Role="Student" EntitySet="Students" />
             <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
