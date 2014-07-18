@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
 
@@ -16,7 +17,21 @@ namespace NGL.Web.Models.Student
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
 
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
-            
+
+
+            var studentLanguages =
+                source.StudentLanguages.Where(
+                    language => language.StudentLanguageUses.Any(
+                        languageUse => languageUse.LanguageUseTypeId.Equals((int) LanguageUseTypeEnum.Homelanguage))
+                    );
+
+            target.HomeLanguage = ((LanguageDescriptorEnum) studentLanguages.First().LanguageDescriptorId).Humanize();            
+                    
+
+
+
+
+
             var studentAddresses = source.StudentAddresses;
             
             var studentAddress = studentAddresses.First(address => address.AddressTypeId == (int)AddressTypeEnum.Home);

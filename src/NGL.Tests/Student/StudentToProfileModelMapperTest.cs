@@ -27,6 +27,17 @@ namespace NGL.Tests.Student
                 RaceTypeId = (int) RaceTypeEnum.NativeHawaiianPacificIslander 
             };
 
+            var studentLanguageUse = new StudentLanguageUse
+            {
+                LanguageUseTypeId = (int) LanguageUseTypeEnum.Homelanguage,
+                LanguageDescriptorId = (int) LanguageDescriptorEnum.English
+            };
+
+            var studentLanguage = new StudentLanguage
+            {
+                LanguageDescriptorId = (int) LanguageDescriptorEnum.English
+            };
+
             var student = new Web.Data.Entities.Student
             {
                 StudentUSI = 1789,
@@ -37,8 +48,12 @@ namespace NGL.Tests.Student
                 HispanicLatinoEthnicity = true,
             };
 
+
             student.StudentAddresses.Add(studentAddress);
             student.StudentRaces.Add(studentRace);
+
+            studentLanguage.StudentLanguageUses.Add(studentLanguageUse);
+            student.StudentLanguages.Add(studentLanguage);
 
             var studentDetailsModel = new ProfileModel();
 
@@ -51,6 +66,7 @@ namespace NGL.Tests.Student
             studentDetailsModel.Race.ShouldBe(RaceTypeEnum.NativeHawaiianPacificIslander.Humanize());
             studentDetailsModel.HispanicLatinoEthnicity.ShouldBe(true);
             studentDetailsModel.Sex.ShouldBe(SexTypeEnum.Male.Humanize());
+            studentDetailsModel.HomeLanguage.ShouldBe(LanguageDescriptorEnum.English.Humanize());
         }
     }
 }

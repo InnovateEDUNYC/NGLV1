@@ -7,21 +7,22 @@ namespace NGL.UiTests.Student
 {
     public class ProfilePage : Page<ProfileModel>
     {
-        public bool AllFieldsExist(CreateStudentModel profile)
+        public bool AllFieldsExist(CreateStudentModel createStudentModel)
         {
             return
-                Browser.PageSource.Contains(profile.StudentUsi.ToString()) &&
-                Browser.PageSource.Contains(profile.FirstName) &&
-                Browser.PageSource.Contains(profile.LastName) &&
-                Browser.PageSource.Contains(profile.Sex.Humanize()) &&
-                Browser.PageSource.Contains(profile.BirthDate.GetValueOrDefault().ToString("MM-dd-yyyy")) &&
-                Browser.PageSource.Contains(profile.HispanicLatinoEthnicity.ToString()) &&
-                Browser.PageSource.Contains(profile.Race.Humanize()) &&
-                Browser.PageSource.Contains(profile.Address) &&
-                Browser.PageSource.Contains(profile.Address2) &&
-                Browser.PageSource.Contains(profile.City) &&
-                Browser.PageSource.Contains(profile.State.Humanize()) &&
-                Browser.PageSource.Contains(profile.PostalCode);
+                Browser.PageSource.Contains(createStudentModel.StudentUsi.ToString()) &&
+                Browser.PageSource.Contains(createStudentModel.FirstName) &&
+                Browser.PageSource.Contains(createStudentModel.LastName) &&
+                Browser.PageSource.Contains(createStudentModel.Sex.Humanize()) &&
+                Browser.PageSource.Contains(createStudentModel.BirthDate.GetValueOrDefault().ToString("MM-dd-yyyy")) &&
+                Browser.PageSource.Contains(createStudentModel.HispanicLatinoEthnicity.ToString()) &&
+                Browser.PageSource.Contains(createStudentModel.Race.Humanize()) &&
+                Browser.PageSource.Contains(createStudentModel.HomeLanguage.GetValueOrDefault().ToString()) &&
+                Browser.PageSource.Contains(createStudentModel.Address) &&
+                Browser.PageSource.Contains(createStudentModel.Address2) &&
+                Browser.PageSource.Contains(createStudentModel.City) &&
+                Browser.PageSource.Contains(createStudentModel.State.Humanize()) &&
+                Browser.PageSource.Contains(createStudentModel.PostalCode);
         }
 
     }
