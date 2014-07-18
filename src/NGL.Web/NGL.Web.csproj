@@ -270,6 +270,27 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Data\Entities\AspNetRole.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUser.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUserClaim.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUserLogin.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ELMAH_Error.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchemaVersion.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\VersionLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -561,12 +582,6 @@
     <Compile Include="Data\Entities\Descriptor.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\Descriptors.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Descriptors.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\DatabaseManager.cs" />
     <Compile Include="Data\Entities\DiagnosisDescriptor.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1347,6 +1362,9 @@
     <Compile Include="Data\Entities\Student.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\StudentAcademicDetail.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\StudentAcademicRecord.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1554,11 +1572,6 @@
     <Compile Include="Data\Entities\TitleIPartASchoolDesignationType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\Types.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Types.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Entities\VisaType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1567,6 +1580,17 @@
     </Compile>
     <Compile Include="Data\Entities\WeaponType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\Descriptors.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Descriptors.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\DatabaseManager.cs" />
+    <Compile Include="Data\Entities\Types.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Types.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\IRepositoryBase.cs" />
@@ -1595,6 +1619,9 @@
     <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
+    <Compile Include="Models\Enrollment\AcademicHistoryModel.cs" />
+    <Compile Include="Models\Enrollment\AcademicDetailModel.cs" />
+    <Compile Include="Models\Enrollment\AdademicDetailModelToAcademicDetailMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModel.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />
@@ -1719,6 +1746,7 @@
     <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\006 - Schema - StudentProgramStatus.sql" />
     <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
+    <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1728,23 +1756,6 @@
     <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\Content\bootstrap-theme.css.map" />
     <Compile Include="App_Start\Startup.Database.cs" />
-    <EntityDeploy Include="Data\Entities\NglDbContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NglDbContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\Entities\NglDbContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NglDbContext.edmx</DependentUpon>
-      <LastGenOutput>NglDbContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\Entities\NglDbContext.edmx.diagram">
-      <DependentUpon>NglDbContext.edmx</DependentUpon>
-    </Content>
-    <Content Include="Data\Entities\NglDbContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NglDbContext.edmx</DependentUpon>
-      <LastGenOutput>NglDbContext.cs</LastGenOutput>
-    </Content>
     <Content Include="Data\Entities\Types.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Types.cs</LastGenOutput>
@@ -1776,6 +1787,23 @@
     <Content Include="Assets\Scripts\lib\bootstrap-datepicker.js" />
     <Content Include="Assets\Scripts\lib\jquery.validate.unobtrusive.chameleon.js" />
     <Content Include="Assets\Scripts\lib\jquery.validate.unobtrusive.twitterbootstrap.js" />
+    <EntityDeploy Include="Data\Entities\NglDbContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NglDbContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Entities\NglDbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
+      <LastGenOutput>NglDbContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Entities\NglDbContext.edmx.diagram">
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Data\Entities\NglDbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
+      <LastGenOutput>NglDbContext.cs</LastGenOutput>
+    </Content>
     <None Include="T4MVC\T4MVC.tt.settings.xml" />
     <Content Include="Assets\Scripts\Views\Enrollment\enterProgramStatus.js" />
     <Content Include="Web.config">
@@ -1824,6 +1852,7 @@
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\CourseGeneration\Index.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
+    <Content Include="Views\Enrollment\EnterAcademicHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

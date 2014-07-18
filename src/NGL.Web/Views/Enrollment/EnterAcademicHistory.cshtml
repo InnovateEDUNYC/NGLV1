@@ -1,0 +1,35 @@
+﻿@model NGL.Web.Models.Enrollment.AcademicDetailModel
+
+@{
+    ViewBag.Title = "Academic Details";
+    
+}
+
+<h2>Academic Details</h2>
+@using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart))
+{
+    using (var r = f.BeginSection("Enter student's previous grade or percentage for each subject below"))
+    {
+        @r.FieldFor(s => s.Reading)
+        @r.FieldFor(s => s.Writing)
+        @r.FieldFor(s => s.Math)
+        
+        @r.FieldFor(s => s.SchoolYear)
+        @r.FieldFor(s => s.AnticipatedGrade)
+    }
+
+    <h2>Performance History</h2>  
+    using (var t = f.BeginSection("Elaborate on the student's performance history and upload performance records"))
+    {
+        @t.FieldFor(s => s.PerformanceHistory)
+        @t.FieldFor(s => s.PerformanceHistoryFile).Attr("type", "file")
+    }
+    
+    using (var v = f.BeginNavigation())
+        {
+            @v.Submit("Save")
+        }
+}
+
+@section Scripts {
+}

@@ -12,26 +12,29 @@ namespace NGL.Web.Data.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class GradeLevelType
+    public partial class StudentAcademicDetail
     {
-        public GradeLevelType()
+        public StudentAcademicDetail()
         {
     		this.Id = System.Guid.NewGuid();
     		this.LastModifiedDate = System.DateTime.Now;
     		this.CreateDate = System.DateTime.Now;
-            this.GradeLevelDescriptors = new HashSet<GradeLevelDescriptor>();
-            this.StudentAcademicDetails = new HashSet<StudentAcademicDetail>();
         }
     
+        public int StudentUSI { get; set; }
+        public decimal ReadingScore { get; set; }
+        public decimal WritingScore { get; set; }
+        public decimal MathScore { get; set; }
+        public short SchoolYear { get; set; }
         public int GradeLevelTypeId { get; set; }
-        public string CodeValue { get; set; }
-        public string ShortDescription { get; set; }
-        public string Description { get; set; }
+        public string PerfomanceHistory { get; set; }
+        public string PerformanceHistoryFileUrl { get; set; }
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual ICollection<GradeLevelDescriptor> GradeLevelDescriptors { get; set; }
-        public virtual ICollection<StudentAcademicDetail> StudentAcademicDetails { get; set; }
+        public virtual GradeLevelType GradeLevelType { get; set; }
+        public virtual SchoolYearType SchoolYearType { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

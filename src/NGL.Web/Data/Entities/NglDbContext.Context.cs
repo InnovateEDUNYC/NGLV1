@@ -444,5 +444,13 @@ namespace NGL.Web.Data.Entities
         public virtual DbSet<WeaponDescriptor> WeaponDescriptors { get; set; }
         public virtual DbSet<WeaponType> WeaponTypes { get; set; }
         public virtual DbSet<StudentProgramStatus> StudentProgramStatus { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<ELMAH_Error> ELMAH_Error { get; set; }
+        public virtual DbSet<SchemaVersion> SchemaVersions { get; set; }
+        public virtual DbSet<StudentAcademicDetail> StudentAcademicDetailSet { get; set; }
+        public virtual DbSet<VersionLevel> VersionLevels { get; set; }
     }
 }

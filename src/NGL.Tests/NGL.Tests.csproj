@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,7 @@
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
+    <Compile Include="Enrollment\StudentAcademicDetailMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentAddressMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
