@@ -14,7 +14,7 @@ namespace NGL.UiTests.Student
                 Browser.PageSource.Contains(profile.FirstName) &&
                 Browser.PageSource.Contains(profile.LastName) &&
                 Browser.PageSource.Contains(profile.Sex.Humanize()) &&
-                Browser.PageSource.Contains(profile.BirthDate.ToString("MM-dd-yyyy")) &&
+                Browser.PageSource.Contains(profile.BirthDate.GetValueOrDefault().ToString("MM-dd-yyyy")) &&
                 Browser.PageSource.Contains(profile.HispanicLatinoEthnicity.ToString()) &&
                 Browser.PageSource.Contains(profile.Race.Humanize()) &&
                 Browser.PageSource.Contains(profile.Address) &&

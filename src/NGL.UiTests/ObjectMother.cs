@@ -79,7 +79,7 @@ namespace NGL.UiTests
             public const string FirstName = "Jane";
             public const string LastName = "Novak";
             public const SexTypeEnum Sex = SexTypeEnum.Female;
-            public static readonly DateTime BirthDate = new DateTime(1999, 1, 5);
+            public static DateTime? BirthDate = new DateTime(1999, 1, 5);
             public const bool HispanicLatinoEthnicity = true;
             public const RaceTypeEnum Race = RaceTypeEnum.AmericanIndianAlaskanNative;
             public const string Address = "123 Oak St";

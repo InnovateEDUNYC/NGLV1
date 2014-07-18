@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
@@ -45,7 +46,7 @@ namespace NGL.Web.Models.Enrollment
             target.LastSurname = source.LastName;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.SexTypeId = (int) source.Sex.GetValueOrDefault();
-            target.BirthDate = source.BirthDate;
+            target.BirthDate = source.BirthDate.GetValueOrDefault();
             target.StudentRaces.Add(new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()});
         }
     }
