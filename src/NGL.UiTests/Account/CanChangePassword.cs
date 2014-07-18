@@ -11,9 +11,11 @@ namespace NGL.UiTests.Account
         public void Verify()
         {
             const string newPassword = "234234";
+            const string oldPassword = "123123";
+            const string username = "HellenSmith";
             var manageUserViewModel = new ManageUserViewModel
             {
-                OldPassword = ObjectMother.JohnSmith.Password,
+                OldPassword = oldPassword,
                 NewPassword = newPassword,
                 ConfirmPassword= newPassword,
             };
@@ -21,13 +23,20 @@ namespace NGL.UiTests.Account
             var manageUserPage = Host
                 .Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(ObjectMother.JohnSmith.ViewModel)
+                .Login(new LoginViewModel {UserName = username, Password = oldPassword})
                 .TopMenu
                 .GoToManageUserPage()
                 .ChangePassword(manageUserViewModel);
 
             manageUserPage.HasSuccessMessage().ShouldBe(true);
-        }
 
+            manageUserPage
+                .Menu
+                .LogOff()
+                .Login(new LoginViewModel {UserName = username, Password = newPassword})
+                .TopMenu
+                .IsLoggedOn
+                .ShouldBe(true);
+        }
     }
 }
