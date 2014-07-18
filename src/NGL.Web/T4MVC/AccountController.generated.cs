@@ -71,33 +71,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ChangePassword()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ExternalLogin()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLogin);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginCallback()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginCallback);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult LinkLogin()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LinkLogin);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginConfirmation()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginConfirmation);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -116,16 +90,11 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Login = "Login";
-            public readonly string Register = "Register";
+            public readonly string Users = "Users";
+            public readonly string AddUser = "AddUser";
             public readonly string Disassociate = "Disassociate";
-            public readonly string Manage = "Manage";
-            public readonly string ExternalLogin = "ExternalLogin";
-            public readonly string ExternalLoginCallback = "ExternalLoginCallback";
-            public readonly string LinkLogin = "LinkLogin";
-            public readonly string LinkLoginCallback = "LinkLoginCallback";
-            public readonly string ExternalLoginConfirmation = "ExternalLoginConfirmation";
+            public readonly string ChangePassword = "ChangePassword";
             public readonly string LogOff = "LogOff";
-            public readonly string ExternalLoginFailure = "ExternalLoginFailure";
             public readonly string RemoveAccountList = "RemoveAccountList";
         }
 
@@ -133,16 +102,11 @@ namespace NGL.Web.Controllers
         public class ActionNameConstants
         {
             public const string Login = "Login";
-            public const string Register = "Register";
+            public const string Users = "Users";
+            public const string AddUser = "AddUser";
             public const string Disassociate = "Disassociate";
-            public const string Manage = "Manage";
-            public const string ExternalLogin = "ExternalLogin";
-            public const string ExternalLoginCallback = "ExternalLoginCallback";
-            public const string LinkLogin = "LinkLogin";
-            public const string LinkLoginCallback = "LinkLoginCallback";
-            public const string ExternalLoginConfirmation = "ExternalLoginConfirmation";
+            public const string ChangePassword = "ChangePassword";
             public const string LogOff = "LogOff";
-            public const string ExternalLoginFailure = "ExternalLoginFailure";
             public const string RemoveAccountList = "RemoveAccountList";
         }
 
@@ -156,11 +120,11 @@ namespace NGL.Web.Controllers
             public readonly string returnUrl = "returnUrl";
             public readonly string model = "model";
         }
-        static readonly ActionParamsClass_Register s_params_Register = new ActionParamsClass_Register();
+        static readonly ActionParamsClass_AddUser s_params_AddUser = new ActionParamsClass_AddUser();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Register RegisterParams { get { return s_params_Register; } }
+        public ActionParamsClass_AddUser AddUserParams { get { return s_params_AddUser; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Register
+        public class ActionParamsClass_AddUser
         {
             public readonly string model = "model";
         }
@@ -173,48 +137,14 @@ namespace NGL.Web.Controllers
             public readonly string loginProvider = "loginProvider";
             public readonly string providerKey = "providerKey";
         }
-        static readonly ActionParamsClass_Manage s_params_Manage = new ActionParamsClass_Manage();
+        static readonly ActionParamsClass_ChangePassword s_params_ChangePassword = new ActionParamsClass_ChangePassword();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Manage ManageParams { get { return s_params_Manage; } }
+        public ActionParamsClass_ChangePassword ChangePasswordParams { get { return s_params_ChangePassword; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Manage
+        public class ActionParamsClass_ChangePassword
         {
             public readonly string message = "message";
             public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_ExternalLogin s_params_ExternalLogin = new ActionParamsClass_ExternalLogin();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ExternalLogin ExternalLoginParams { get { return s_params_ExternalLogin; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ExternalLogin
-        {
-            public readonly string provider = "provider";
-            public readonly string returnUrl = "returnUrl";
-        }
-        static readonly ActionParamsClass_ExternalLoginCallback s_params_ExternalLoginCallback = new ActionParamsClass_ExternalLoginCallback();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ExternalLoginCallback ExternalLoginCallbackParams { get { return s_params_ExternalLoginCallback; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ExternalLoginCallback
-        {
-            public readonly string returnUrl = "returnUrl";
-        }
-        static readonly ActionParamsClass_LinkLogin s_params_LinkLogin = new ActionParamsClass_LinkLogin();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_LinkLogin LinkLoginParams { get { return s_params_LinkLogin; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_LinkLogin
-        {
-            public readonly string provider = "provider";
-        }
-        static readonly ActionParamsClass_ExternalLoginConfirmation s_params_ExternalLoginConfirmation = new ActionParamsClass_ExternalLoginConfirmation();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ExternalLoginConfirmation ExternalLoginConfirmationParams { get { return s_params_ExternalLoginConfirmation; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ExternalLoginConfirmation
-        {
-            public readonly string model = "model";
-            public readonly string returnUrl = "returnUrl";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -227,24 +157,18 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _ChangePasswordPartial = "_ChangePasswordPartial";
-                public readonly string _ExternalLoginsListPartial = "_ExternalLoginsListPartial";
                 public readonly string _RemoveAccountPartial = "_RemoveAccountPartial";
-                public readonly string _SetPasswordPartial = "_SetPasswordPartial";
-                public readonly string ExternalLoginConfirmation = "ExternalLoginConfirmation";
-                public readonly string ExternalLoginFailure = "ExternalLoginFailure";
+                public readonly string AddUser = "AddUser";
+                public readonly string ChangePassword = "ChangePassword";
                 public readonly string Login = "Login";
-                public readonly string Manage = "Manage";
-                public readonly string Register = "Register";
+                public readonly string Users = "Users";
             }
             public readonly string _ChangePasswordPartial = "~/Views/Account/_ChangePasswordPartial.cshtml";
-            public readonly string _ExternalLoginsListPartial = "~/Views/Account/_ExternalLoginsListPartial.cshtml";
             public readonly string _RemoveAccountPartial = "~/Views/Account/_RemoveAccountPartial.cshtml";
-            public readonly string _SetPasswordPartial = "~/Views/Account/_SetPasswordPartial.cshtml";
-            public readonly string ExternalLoginConfirmation = "~/Views/Account/ExternalLoginConfirmation.cshtml";
-            public readonly string ExternalLoginFailure = "~/Views/Account/ExternalLoginFailure.cshtml";
+            public readonly string AddUser = "~/Views/Account/AddUser.cshtml";
+            public readonly string ChangePassword = "~/Views/Account/ChangePassword.cshtml";
             public readonly string Login = "~/Views/Account/Login.cshtml";
-            public readonly string Manage = "~/Views/Account/Manage.cshtml";
-            public readonly string Register = "~/Views/Account/Register.cshtml";
+            public readonly string Users = "~/Views/Account/Users.cshtml";
         }
     }
 
@@ -266,10 +190,10 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.LoginViewModel model, string returnUrl);
+        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.LoginModel model, string returnUrl);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Login(NGL.Web.Models.Account.LoginViewModel model, string returnUrl)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Login(NGL.Web.Models.Account.LoginModel model, string returnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -279,25 +203,36 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void UsersOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult AddUser()
+        public override System.Web.Mvc.ActionResult Users()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
-            RegisterOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Users);
+            UsersOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.AddUserModel model);
+        partial void AddUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult AddUser()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddUser);
+            AddUserOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.AddUserModel model);
 
         [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AddUser(NGL.Web.Models.Account.AddUserModel model)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddUser);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            RegisterOverride(callInfo, model);
+            AddUserOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
@@ -315,87 +250,26 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void ManageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Controllers.AccountController.ManageMessageId? message);
+        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Controllers.AccountController.ManageMessageId? message);
 
         [NonAction]
         public override System.Web.Mvc.ActionResult ChangePassword(NGL.Web.Controllers.AccountController.ManageMessageId? message)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
-            ManageOverride(callInfo, message);
+            ChangePasswordOverride(callInfo, message);
             return callInfo;
         }
 
         [NonAction]
-        partial void ManageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.ChangePasswordModel model);
+        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.ChangePasswordModel model);
 
         [NonAction]
         public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangePassword(NGL.Web.Models.Account.ChangePasswordModel model)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangePassword);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ManageOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        [NonAction]
-        partial void ExternalLoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string provider, string returnUrl);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ExternalLogin(string provider, string returnUrl)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLogin);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "provider", provider);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            ExternalLoginOverride(callInfo, provider, returnUrl);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ExternalLoginCallbackOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string returnUrl);
-
-        [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginCallback);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            ExternalLoginCallbackOverride(callInfo, returnUrl);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        [NonAction]
-        partial void LinkLoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string provider);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult LinkLogin(string provider)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LinkLogin);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "provider", provider);
-            LinkLoginOverride(callInfo, provider);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void LinkLoginCallbackOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> LinkLoginCallback()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LinkLoginCallback);
-            LinkLoginCallbackOverride(callInfo);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        [NonAction]
-        partial void ExternalLoginConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.ExternalLoginConfirmationViewModel model, string returnUrl);
-
-        [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginConfirmation(NGL.Web.Models.Account.ExternalLoginConfirmationViewModel model, string returnUrl)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginConfirmation);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            ExternalLoginConfirmationOverride(callInfo, model, returnUrl);
+            ChangePasswordOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
@@ -407,17 +281,6 @@ namespace NGL.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LogOff);
             LogOffOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ExternalLoginFailureOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ExternalLoginFailure()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginFailure);
-            ExternalLoginFailureOverride(callInfo);
             return callInfo;
         }
 

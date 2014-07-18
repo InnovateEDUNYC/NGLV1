@@ -1663,7 +1663,7 @@
     <Compile Include="T4MVC\HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\IMapper.cs" />
     <Compile Include="Models\School\SchoolModelToEducationOrganizationMapper.cs" />
     <Compile Include="Models\School\EducationOrganizationToSchoolModelMapper.cs" />
@@ -1792,11 +1792,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />

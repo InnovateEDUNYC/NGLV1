@@ -10,7 +10,7 @@ namespace NGL.UiTests.Shared
             get { return GetComponent<TopMenu>(); }
         }
 
-        public HomePage Login(LoginViewModel login)
+        public HomePage Login(LoginModel login)
         {
             return TopMenu.GoToLoginPage().Login(login);
         }
