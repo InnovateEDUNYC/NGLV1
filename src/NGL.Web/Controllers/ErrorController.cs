@@ -8,6 +8,7 @@ namespace NGL.Web.Controllers
         public virtual ActionResult HttpError404()
         {
             Response.StatusCode = (int) HttpStatusCode.NotFound;
+            Response.ContentType = "text/html";
             return View();
         }
 
