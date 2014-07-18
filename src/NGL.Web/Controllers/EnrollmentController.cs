@@ -114,9 +114,12 @@ namespace NGL.Web.Controllers
             StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
                 adm =>
                 {
+                    adm.StudentUSI = id;
                     adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
                 });
 
+            _repository.Add(studentAcademicDetail);
+            _repository.Save();
             return View();
         }
     }
