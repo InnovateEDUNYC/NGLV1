@@ -101,7 +101,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-            string performanceHistoryFileUri;
+            string performanceHistoryFileUri = null;
             if (academicDetailModel.PerformanceHistoryFile != null)
             {
                 Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "AcademicHistory", fileName);
@@ -111,7 +111,12 @@ namespace NGL.Web.Controllers
                     blobContainer, getUri("performanceHistory"));
             }
 
-//            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel);
+            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
+                adm =>
+                {
+                    adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
+                });
+
             return View();
         }
     }
