@@ -82,6 +82,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual StudentAcademicDetail StudentAcademicDetail { get; set; }
         public virtual CitizenshipStatusType CitizenshipStatusType { get; set; }
         public virtual CountryCodeType CountryCodeType { get; set; }
         public virtual ICollection<DisciplineAction> DisciplineActions { get; set; }

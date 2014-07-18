@@ -21,6 +21,7 @@ namespace NGL.Web.Data.Entities
             this.Configuration.LazyLoadingEnabled = false;
         }
     
+        public virtual DbSet<StudentAcademicDetail> StudentAcademicDetails { get; set; }
         public virtual DbSet<AcademicHonorCategoryType> AcademicHonorCategoryTypes { get; set; }
         public virtual DbSet<AcademicSubjectDescriptor> AcademicSubjectDescriptors { get; set; }
         public virtual DbSet<AcademicSubjectType> AcademicSubjectTypes { get; set; }
