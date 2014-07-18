@@ -3,7 +3,6 @@
 	[ReadingScore] [decimal](3, 2) NOT NULL,
 	[WritingScore] [decimal](3, 2) NOT NULL,
 	[MathScore] [decimal](3, 2) NOT NULL,
-	[GradeTypeId] [int] NOT NULL,
 	[PerfomanceHistory] [nvarchar](4000),
 	[PerformanceHistoryFileUrl] [varchar](200),
 	[Id] [uniqueidentifier] NOT NULL,
@@ -27,13 +26,6 @@ ALTER TABLE [dbo].[StudentAcademicDetails] ADD  CONSTRAINT [DF_StudentAcademicDe
 GO
 
 ALTER TABLE [dbo].[StudentAcademicDetails] ADD  CONSTRAINT [DF_StudentAcademicDetails_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
-GO
-
-ALTER TABLE [dbo].[StudentAcademicDetails]  WITH CHECK ADD  CONSTRAINT [FK_StudentAcademicDetails_GradeType] FOREIGN KEY([GradeTypeId])
-REFERENCES [edfi].[GradeLevelType] ([GradeLevelTypeId])
-GO
-
-ALTER TABLE [dbo].[StudentAcademicDetails] CHECK CONSTRAINT [FK_StudentAcademicDetails_GradeType]
 GO
 
 ALTER TABLE [dbo].[StudentAcademicDetails]  WITH CHECK ADD  CONSTRAINT [FK_StudentAcademicDetails_Student] FOREIGN KEY([StudentUSI])
