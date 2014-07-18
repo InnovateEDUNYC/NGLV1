@@ -13,14 +13,14 @@ namespace NGL.UiTests.Course
 
         public bool CourseExists(CreateModel createModel)
         {
-            var courseCodeExists = 
-                Find.Element(By.CssSelector("tr:nth-child(2) td.course-code")).Text.Equals(createModel.CourseCode);
+            var courseCodeExists =
+                Find.Element(By.CssSelector("tr:last-of-type td.course-code")).Text.Equals(createModel.CourseCode);
 
             var courseTitleExists =
-                Find.Element(By.CssSelector("tr:nth-child(2) td.course-title")).Text.Equals(createModel.CourseTitle);
+                Find.Element(By.CssSelector("tr:last-of-type td.course-title")).Text.Equals(createModel.CourseTitle);
 
             var courseDescriptionExists =
-                Find.Element(By.CssSelector("tr:nth-child(2) td.course-description")).Text.Equals(createModel.CourseDescription);
+                Find.Element(By.CssSelector("tr:last-of-type td.course-description")).Text.Equals(createModel.CourseDescription);
 
             return courseCodeExists && courseTitleExists && courseDescriptionExists;
         }

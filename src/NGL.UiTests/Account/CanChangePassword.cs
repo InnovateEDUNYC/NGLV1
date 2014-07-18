@@ -13,9 +13,9 @@ namespace NGL.UiTests.Account
             const string newPassword = "234234";
             const string oldPassword = "123123";
             const string username = "HellenSmith";
-            var manageUserViewModel = new ManageUserViewModel
+            var changePasswordModel = new ChangePasswordModel
             {
-                OldPassword = oldPassword,
+                CurrentPassword = oldPassword,
                 NewPassword = newPassword,
                 ConfirmPassword= newPassword,
             };
@@ -25,8 +25,8 @@ namespace NGL.UiTests.Account
                 .NavigateToInitialPage<HomePage>()
                 .Login(new LoginViewModel {UserName = username, Password = oldPassword})
                 .TopMenu
-                .GoToManageUserPage()
-                .ChangePassword(manageUserViewModel);
+                .GoToChangePasswordPage()
+                .ChangePassword(changePasswordModel);
 
             manageUserPage.HasSuccessMessage().ShouldBe(true);
 

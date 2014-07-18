@@ -14,7 +14,7 @@ namespace NGL.UiTests.ClassPeriod
 
         public bool ClassPeriodExists(CreateModel createModel)
         {
-            return Find.Element(By.CssSelector("tr:nth-child(2) td.period-name")).Text.Equals(createModel.ClassPeriodName);
+            return Find.Element(By.CssSelector("tr:last-of-type td.period-name")).Text.Equals(createModel.ClassPeriodName);
         }
 
     }

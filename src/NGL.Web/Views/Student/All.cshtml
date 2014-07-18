@@ -6,34 +6,40 @@
 
 <h2>Students</h2>
 
-<p>
-    @Html.ActionLink("Enroll a Student", "CreateStudent", "Enrollment")
-</p>
-<table class="table" id="student-table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th> 
-        <th>
-            @Html.DisplayNameFor(model => model.StudentUsi)
-        </th>
-    </tr>
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Enroll a Student", "CreateStudent", "Enrollment")</li>
+</ul>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.FirstName, "Index", "Student", new { usi = item.StudentUsi }, null)
-        </td>
-        <td>
-            @Html.ActionLink(item.LastName, "Index", "Student", new { usi = item.StudentUsi }, null)
-        </td>
-        <td>
-            @Html.ActionLink(item.StudentUsi.ToString(), "Index", "Student", new { usi = item.StudentUsi }, null)
-        </td>
-    </tr>
-}
+<table class="table table-striped" id="student-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentUsi)
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.FirstName, "Index", "Student", new { usi = item.StudentUsi }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.LastName, "Index", "Student", new { usi = item.StudentUsi }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.StudentUsi.ToString(), "Index", "Student", new { usi = item.StudentUsi }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>

@@ -5,34 +5,40 @@
 }
 
 <h2>Courses</h2>
-<p>
-    @Html.ActionLink("Create New Course", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseDescription)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td class="course-code">
-                @Html.DisplayFor(modelItem => item.CourseCode)
-            </td>
-            <td class="course-title">
-                @Html.DisplayFor(modelItem => item.CourseTitle)
-            </td>
-            <td class="course-description">
-                @Html.DisplayFor(modelItem => item.CourseDescription)
-            </td>
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Create New Course", "Create")</li>
+</ul>
 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseDescription)
+            </th>
         </tr>
-    }
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="course-code">
+                    @Html.DisplayFor(modelItem => item.CourseCode)
+                </td>
+                <td class="course-title">
+                    @Html.DisplayFor(modelItem => item.CourseTitle)
+                </td>
+                <td class="course-description">
+                    @Html.DisplayFor(modelItem => item.CourseDescription)
+                </td>
+
+            </tr>
+        }
+    </tbody>
 </table>

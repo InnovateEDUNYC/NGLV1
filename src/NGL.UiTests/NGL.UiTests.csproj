@@ -89,8 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\CanAddNewUser.cs" />
     <Compile Include="Account\CanChangePassword.cs" />
-    <Compile Include="Account\ManageUserPage.cs" />
+    <Compile Include="Account\ChangePasswordPage.cs" />
     <Compile Include="ClassPeriod\CanCreateClassPeriod.cs" />
     <Compile Include="ClassPeriod\ClassPeriodCreatePage.cs" />
     <Compile Include="ClassPeriod\ClassPeriodIndexPage.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Course\CourseCreatePage.cs" />
     <Compile Include="Course\CourseIndexPage.cs" />
     <Compile Include="Enrollment\EnrollmentPage.cs" />
+    <Compile Include="Shared\AddUserPage.cs" />
     <Compile Include="Shared\HomePage.cs" />
     <Compile Include="Account\LoginPage.cs" />
     <Compile Include="School\SchoolPage.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Shared\SchedulingPage.cs" />
     <Compile Include="Shared\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\UsersPage.cs" />
     <Compile Include="Student\ProfilePage.cs" />
   </ItemGroup>
   <ItemGroup>

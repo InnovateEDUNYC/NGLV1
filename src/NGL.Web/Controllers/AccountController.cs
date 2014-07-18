@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -54,31 +55,35 @@ namespace NGL.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Users()
+        {
+            var users = UserManager.Users;
+            var um = users.Select(u => new UserModel { Username = u.UserName }).ToList();
+            return View(um);
+        }
+
         //
-        // GET: /Account/Register
+        // GET: /Account/AddUser
         [AllowAnonymous]
-        public virtual ActionResult Register()
+        public virtual ActionResult AddUser()
         {
             return View();
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/AddUser
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Register(RegisterViewModel model)
+        public virtual async Task<ActionResult> AddUser(AddUserModel model)
         {
             if (!ModelState.IsValid) 
                 return View(model);
             
-            var user = new ApplicationUser { UserName = model.UserName };
+            var user = new ApplicationUser { UserName = model.Username };
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
-            {
-                await SignInAsync(user, isPersistent: false);
-                return RedirectToAction(MVC.Home.Index());
-            }
+                return RedirectToAction("Users");
             
             AddErrors(result);
 
@@ -91,15 +96,14 @@ namespace NGL.Web.Controllers
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
         {
-            ManageMessageId? message;
             IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
-            message = result.Succeeded ? ManageMessageId.RemoveLoginSuccess : ManageMessageId.Error;
-            return RedirectToAction(Actions.Manage(message));
+            ManageMessageId? message = result.Succeeded ? ManageMessageId.RemoveLoginSuccess : ManageMessageId.Error;
+            return RedirectToAction(Actions.ChangePassword(message));
         }
 
         //
-        // GET: /Account/Manage
-        public virtual ActionResult Manage(ManageMessageId? message)
+        // GET: /Account/ChangePassword
+        public virtual ActionResult ChangePassword(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -108,27 +112,27 @@ namespace NGL.Web.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("ChangePassword");
             return View();
         }
 
         //
-        // POST: /Account/Manage
+        // POST: /Account/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Manage(ManageUserViewModel model)
+        public virtual async Task<ActionResult> ChangePassword(ChangePasswordModel model)
         {
             bool hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("ChangePassword");
             if (hasPassword)
             {
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.CurrentPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("ChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     
                     AddErrors(result);
@@ -136,8 +140,8 @@ namespace NGL.Web.Controllers
             }
             else
             {
-                // User does not have a password so remove any validation errors caused by a missing OldPassword field
-                ModelState state = ModelState["OldPassword"];
+                // User does not have a password so remove any validation errors caused by a missing CurrentPassword field
+                ModelState state = ModelState["CurrentPassword"];
                 if (state != null)
                 {
                     state.Errors.Clear();
@@ -148,7 +152,7 @@ namespace NGL.Web.Controllers
                     IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction("ChangePassword", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
                     
                     AddErrors(result);
@@ -212,16 +216,16 @@ namespace NGL.Web.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
-                return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+                return RedirectToAction("ChangePassword", new { Message = ManageMessageId.Error });
             }
             
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             if (result.Succeeded)
             {
-                return RedirectToAction("Manage");
+                return RedirectToAction("ChangePassword");
             }
 
-            return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+            return RedirectToAction("ChangePassword", new { Message = ManageMessageId.Error });
         }
 
         //
@@ -233,7 +237,7 @@ namespace NGL.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Manage");
+                return RedirectToAction("ChangePassword");
             }
 
             if (ModelState.IsValid)
@@ -244,7 +248,7 @@ namespace NGL.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -314,7 +318,7 @@ namespace NGL.Web.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
         }
 
         private void AddErrors(IdentityResult result)
@@ -366,13 +370,13 @@ namespace NGL.Web.Controllers
                 UserId = userId;
             }
 
-            public string LoginProvider { get; set; }
-            public string RedirectUri { get; set; }
-            public string UserId { get; set; }
+            private string LoginProvider { get; set; }
+            private string RedirectUri { get; set; }
+            private string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = UserId;
