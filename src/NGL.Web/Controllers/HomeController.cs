@@ -10,12 +10,7 @@ namespace NGL.Web.Controllers
             return View();
         }
 
-        public virtual ActionResult Scheduling()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
+        public virtual ActionResult Contact()
         {
             return View();
         }
