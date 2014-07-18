@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
@@ -57,7 +58,7 @@ namespace NGL.Tests.Student
 
             var studentDetailsModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper();
+            var mapper = new StudentToProfileModelMapper(new StudentToProfileHomeLanguageModelMapper());
             mapper.Map(student, studentDetailsModel);
 
             studentDetailsModel.FirstName.ShouldBe("Bob");
@@ -66,7 +67,8 @@ namespace NGL.Tests.Student
             studentDetailsModel.Race.ShouldBe(RaceTypeEnum.NativeHawaiianPacificIslander.Humanize());
             studentDetailsModel.HispanicLatinoEthnicity.ShouldBe(true);
             studentDetailsModel.Sex.ShouldBe(SexTypeEnum.Male.Humanize());
-            studentDetailsModel.HomeLanguage.ShouldBe(LanguageDescriptorEnum.English.Humanize());
+            var studentProfileHomeLanguages = studentDetailsModel.ProfileHomeLanguageModel.HomeLanguages;
+            studentProfileHomeLanguages.First().ShouldBe(LanguageDescriptorEnum.English.Humanize());
         }
     }
 }

@@ -7,6 +7,13 @@ namespace NGL.Web.Models.Student
 {
     public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
+        private IMapper<Data.Entities.Student, ProfileHomeLanguageModel> _studentToProfileHomeLanguageModelMapper;
+
+        public StudentToProfileModelMapper(IMapper<Data.Entities.Student, ProfileHomeLanguageModel> studentToProfileHomeLanguageModelMapper)
+        {
+            _studentToProfileHomeLanguageModelMapper = studentToProfileHomeLanguageModelMapper;
+        }
+
         public override void Map(Data.Entities.Student source, ProfileModel target)
         {
             target.StudentUsi = source.StudentUSI;
@@ -15,22 +22,9 @@ namespace NGL.Web.Models.Student
             target.Sex = ((SexTypeEnum)source.SexTypeId).Humanize();
             target.BirthDate = source.BirthDate;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
 
-
-            var studentLanguages =
-                source.StudentLanguages.Where(
-                    language => language.StudentLanguageUses.Any(
-                        languageUse => languageUse.LanguageUseTypeId.Equals((int) LanguageUseTypeEnum.Homelanguage))
-                    );
-
-            target.HomeLanguage = ((LanguageDescriptorEnum) studentLanguages.First().LanguageDescriptorId).Humanize();            
-                    
-
-
-
-
+            target.ProfileHomeLanguageModel = _studentToProfileHomeLanguageModelMapper.Build(source);
 
             var studentAddresses = source.StudentAddresses;
             

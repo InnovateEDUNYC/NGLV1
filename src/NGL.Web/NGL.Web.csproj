@@ -1643,7 +1643,9 @@
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
+    <Compile Include="Models\Student\ProfileHomeLanguageModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
+    <Compile Include="Models\Student\StudentToProfileHomeLanguageModelMapper.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
     <Compile Include="Models\Session\IndexModel.cs" />
