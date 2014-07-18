@@ -26,21 +26,17 @@ namespace NGL.Web.Models.Course
         public CourseDefinedByTypeEnum? CourseDefinedBy { get; set; }
         public CreditTypeEnum? MinimumAvailableCreditType { get; set; }
 
-        [RegularExpression(@"^\d+.\d{0,2}$")]
-        [Range(0, 9999999.99)]
+        [Credit]
         public decimal? MinimumAvailableCreditConversion { get; set; }
 
-        [RegularExpression(@"^\d+.\d{0,2}$")]
-        [Range(0, 9999999.99)]
+        [Credit]
         public decimal? MinimumAvailableCredit { get; set; }
         public CreditTypeEnum? MaximumAvailableCreditType { get; set; }
 
-        [RegularExpression(@"^\d+.\d{0,2}$")]
-        [Range(0, 9999999.99)]
+        [Credit]
         public decimal? MaximumAvailableCreditConversion { get; set; }
 
-        [RegularExpression(@"^\d+.\d{0,2}$")]
-        [Range(0, 9999999.99)]
+        [Credit]
         public decimal? MaximumAvailableCredit { get; set; }
         public CareerPathwayTypeEnum? CareerPathway { get; set; }
         public int? TimeRequiredForCompletion { get; set; }
