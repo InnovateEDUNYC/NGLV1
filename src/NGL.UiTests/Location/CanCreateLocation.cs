@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NGL.UiTests.Shared;
-using NGL.Web.Models.ClassPeriod;
+﻿using NGL.UiTests.Shared;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -29,7 +23,7 @@ namespace NGL.UiTests.Location
         {
             _homePage = Host.Instance
            .NavigateToInitialPage<HomePage>()
-           .Login(ObjectMother.JohnSmith.ViewModel); 
+           .Login(ObjectMother.UserJohnSmith.ViewModel); 
         }
 
         public void AndGivenIAmOnTheCreateLocationPage()
@@ -40,7 +34,7 @@ namespace NGL.UiTests.Location
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _locationCreateModel = new CreateModel()
+            _locationCreateModel = new CreateModel
             {
                 ClassroomIdentificationCode = ObjectMother.RoomA101.ClassRoomIdentificationCode,
                 MaximumNumberOfSeats = ObjectMother.RoomA101.MaximumNumberOfSeats,

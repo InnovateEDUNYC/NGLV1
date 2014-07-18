@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NGL.UiTests.Shared;
+﻿using NGL.UiTests.Shared;
 using NGL.Web.Models.ClassPeriod;
 using Shouldly;
 using TestStack.BDDfy;
@@ -27,7 +22,7 @@ namespace NGL.UiTests.ClassPeriod
         {
             _homePage = Host.Instance
                    .NavigateToInitialPage<HomePage>()
-                   .Login(ObjectMother.JohnSmith.ViewModel);   
+                   .Login(ObjectMother.UserJohnSmith.ViewModel);   
         }
 
         public void AndGivenIAmOnTheCreateClassPeriodPage()
