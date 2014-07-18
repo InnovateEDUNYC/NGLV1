@@ -1560,9 +1560,6 @@
     <Compile Include="Data\Entities\WeaponType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
-    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
-    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\Descriptors.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
