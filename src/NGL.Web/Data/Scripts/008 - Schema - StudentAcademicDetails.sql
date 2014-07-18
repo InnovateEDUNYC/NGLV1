@@ -32,7 +32,7 @@ ALTER TABLE [dbo].[StudentAcademicDetails] ADD  CONSTRAINT [DF_StudentAcademicDe
 GO
 
 ALTER TABLE [dbo].[StudentAcademicDetails]  WITH CHECK ADD  CONSTRAINT [FK_StudentAcademicDetails_SchoolYear] FOREIGN KEY([SchoolYear])
-REFERENCES [edfi].[SchoolYear] ([SchoolYear])
+REFERENCES [edfi].[SchoolYearType] ([SchoolYear])
 GO
 
 ALTER TABLE [dbo].[StudentAcademicDetails] CHECK CONSTRAINT [FK_StudentAcademicDetails_SchoolYear]
