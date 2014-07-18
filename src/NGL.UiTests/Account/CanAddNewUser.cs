@@ -16,7 +16,7 @@ namespace NGL.UiTests.Account
         private UsersPage _usersPage;
         private readonly AddUserModel _newUser = new AddUserModel
             {
-                UserName = "NewUser",
+                Username = "NewUser",
                 Password = "NewPassword",
                 ConfirmPassword = "NewPassword"
             };
@@ -41,12 +41,12 @@ namespace NGL.UiTests.Account
 
         void ThenTheUserAppearsOnTheUserLists()
         {
-            _usersPage.GetUsers().ShouldContain(_newUser.UserName);
+            _usersPage.GetUsers().ShouldContain(_newUser.Username);
         }
 
         void AndTheUserCanLogin()
         {
-            _homePage.TopMenu.LogOff().Login(new LoginViewModel {UserName = _newUser.UserName, Password = _newUser.Password});
+            _homePage.TopMenu.LogOff().Login(new LoginViewModel {UserName = _newUser.Username, Password = _newUser.Password});
             _homePage.TopMenu.IsLoggedOn.ShouldBe(true);
         }
 
