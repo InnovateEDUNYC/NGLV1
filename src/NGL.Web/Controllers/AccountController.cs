@@ -63,19 +63,19 @@ namespace NGL.Web.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/AddUser
         [AllowAnonymous]
-        public virtual ActionResult Register()
+        public virtual ActionResult AddUser()
         {
             return View();
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/AddUser
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Register(RegisterViewModel model)
+        public virtual async Task<ActionResult> AddUser(AddUserModel model)
         {
             if (!ModelState.IsValid) 
                 return View(model);

@@ -1583,6 +1583,7 @@
     <Compile Include="Infrastructure\ChameleonForms\NglDateTimeHandler.cs" />
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
+    <Compile Include="Models\Account\AddUserModel.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
     <Compile Include="Models\Account\UserModel.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
@@ -1798,7 +1799,7 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\AddUser.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\School\Edit.cshtml" />
     <None Include="T4MVC\T4MVC.tt.hooks.t4" />
