@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using System.Diagnostics;
 using System.Linq;
 
 namespace NGL.Web.Data.Entities
@@ -17,7 +16,8 @@ namespace NGL.Web.Data.Entities
             }
             catch (DbEntityValidationException ex)
             {
-                Debug.WriteLine(DbEntityValidationExceptionToString(ex));
+                var elmahException = new DbEntityValidationException(DbEntityValidationExceptionToString(ex), ex);
+                Elmah.ErrorSignal.FromCurrentContext().Raise(elmahException);
                 throw;
             }
         }
