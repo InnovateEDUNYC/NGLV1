@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Data.Entity.Core.Common.EntitySql;
-using System.Drawing;
-using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
-using Humanizer;
-using Microsoft.Owin.Security.Provider;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
@@ -20,11 +14,13 @@ namespace NGL.Web.Controllers
         private readonly IMapper<CreateStudentModel, Student> _enrollmentMapper;
         private readonly IMapper<EnterProgramStatusModel, StudentProgramStatus> _programStatusMapper;
         private readonly IFileUploader _fileUploader;
+        private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
-            IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, IFileUploader fileUploader)
+            IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, IMapper<AcademicDetailModel, StudentAcademicDetail> academicDetailMapper, IFileUploader fileUploader)
         {
             _fileUploader = fileUploader;
+            _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
             _programStatusMapper = programStatusMapper;
@@ -95,22 +91,27 @@ namespace NGL.Web.Controllers
         // GET: /Enrollment/EnterAcademicHistory/id
         public virtual ActionResult EnterAcademicHistory(int id)
         {
-            return View(new AcademicHistoryModel());
+            return View(new AcademicDetailModel());
         }
         //
         // POST: /Enrollment/EnterAcademicHistory/id
         [HttpPost]
-        public virtual ActionResult EnterAcademicHistory(AcademicHistoryModel academicHistoryModel, int id)
+        public virtual ActionResult EnterAcademicHistory(AcademicDetailModel academicDetailModel, int id)
         {
             if (!ModelState.IsValid)
-                return View(academicHistoryModel);
+                return View(academicDetailModel);
 
-            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "AcademicHistory", fileName);
-            const string blobContainer = "student";
+            string performanceHistoryFileUri;
+            if (academicDetailModel.PerformanceHistoryFile != null)
+            {
+                Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "AcademicHistory", fileName);
+                const string blobContainer = "student";
 
-            var performanceHistoryFile = _fileUploader.Upload(academicHistoryModel.PerformanceHistoryFile,
-                blobContainer, getUri("performanceHistory"));
+                performanceHistoryFileUri = _fileUploader.Upload(academicDetailModel.PerformanceHistoryFile,
+                    blobContainer, getUri("performanceHistory"));
+            }
 
+//            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel);
             return View();
         }
     }
