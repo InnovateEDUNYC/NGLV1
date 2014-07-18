@@ -5,15 +5,92 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="NGLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ELMAH_Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Application" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Host" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="User" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
+          <Property Name="TimeUtc" Type="datetime" Nullable="false" />
+          <Property Name="Sequence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AllXml" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SchemaVersions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Applied" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="StudentAcademicDetails">
           <Key>
             <PropertyRef Name="StudentUSI" />
+            <PropertyRef Name="SchoolYear" />
           </Key>
           <Property Name="StudentUSI" Type="int" Nullable="false" />
           <Property Name="ReadingScore" Type="decimal" Precision="3" Scale="2" Nullable="false" />
           <Property Name="WritingScore" Type="decimal" Precision="3" Scale="2" Nullable="false" />
           <Property Name="MathScore" Type="decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="GradeTypeId" Type="int" Nullable="false" />
+          <Property Name="SchoolYear" Type="smallint" Nullable="false" />
+          <Property Name="GradeLevelTypeId" Type="int" Nullable="false" />
           <Property Name="PerfomanceHistory" Type="nvarchar" MaxLength="4000" />
           <Property Name="PerformanceHistoryFileUrl" Type="varchar" MaxLength="200" />
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
@@ -40,6 +117,21 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VersionLevel">
+          <Key>
+            <PropertyRef Name="ScriptSource" />
+            <PropertyRef Name="ScriptType" />
+            <PropertyRef Name="DatabaseType" />
+            <PropertyRef Name="VersionLevel" />
+          </Key>
+          <Property Name="ScriptSource" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="ScriptType" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="DatabaseType" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="SubType" Type="varchar" MaxLength="1024" />
+          <Property Name="VersionLevel" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AcademicHonorCategoryType">
           <Key>
@@ -7912,6 +8004,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DiagnosisDescriptor_Descriptor_DescriptorId">
           <End Role="Descriptor" Type="Self.Descriptor" Multiplicity="1" />
           <End Role="DiagnosisDescriptor" Type="Self.DiagnosisDescriptor" Multiplicity="0..1" />
@@ -13298,9 +13446,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StudentAcademicDetails_GradeLevelType">
+          <End Role="GradeLevelType" Type="Self.GradeLevelType" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeLevelType">
+              <PropertyRef Name="GradeLevelTypeId" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="GradeLevelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolYear">
+          <End Role="SchoolYearType" Type="Self.SchoolYearType" Multiplicity="1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolYearType">
+              <PropertyRef Name="SchoolYear" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetails">
+              <PropertyRef Name="SchoolYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentAcademicDetails_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="0..1" />
+          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="StudentUSI" />
@@ -15813,6 +15985,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NGLModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchemaVersions" EntityType="Self.SchemaVersions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentAcademicDetails" EntityType="Self.StudentAcademicDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentProgramStatus" EntityType="Self.StudentProgramStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademicHonorCategoryType" EntityType="Self.AcademicHonorCategoryType" Schema="edfi" store:Type="Tables" />
@@ -16238,6 +16417,15 @@
           <EntitySet Name="VisaType" EntityType="Self.VisaType" Schema="edfi" store:Type="Tables" />
           <EntitySet Name="WeaponDescriptor" EntityType="Self.WeaponDescriptor" Schema="edfi" store:Type="Tables" />
           <EntitySet Name="WeaponType" EntityType="Self.WeaponType" Schema="edfi" store:Type="Tables" />
+          <EntitySet Name="VersionLevel" EntityType="Self.VersionLevel" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VersionLevel].[ScriptSource] AS [ScriptSource], 
+    [VersionLevel].[ScriptType] AS [ScriptType], 
+    [VersionLevel].[DatabaseType] AS [DatabaseType], 
+    [VersionLevel].[SubType] AS [SubType], 
+    [VersionLevel].[VersionLevel] AS [VersionLevel]
+    FROM [dbo].[VersionLevel] AS [VersionLevel]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AcademicSubjectDescriptor_AcademicSubjectType_AcademicSubjectTypeId" Association="Self.FK_AcademicSubjectDescriptor_AcademicSubjectType_AcademicSubjectTypeId">
             <End Role="AcademicSubjectType" EntitySet="AcademicSubjectType" />
             <End Role="AcademicSubjectDescriptor" EntitySet="AcademicSubjectDescriptor" />
@@ -16753,6 +16941,22 @@
           <AssociationSet Name="FK_CredentialFieldDescriptor_Descriptor_DescriptorId" Association="Self.FK_CredentialFieldDescriptor_Descriptor_DescriptorId">
             <End Role="Descriptor" EntitySet="Descriptor" />
             <End Role="CredentialFieldDescriptor" EntitySet="CredentialFieldDescriptor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_DiagnosisDescriptor_Descriptor_DescriptorId" Association="Self.FK_DiagnosisDescriptor_Descriptor_DescriptorId">
             <End Role="Descriptor" EntitySet="Descriptor" />
@@ -18394,6 +18598,14 @@
             <End Role="StateAbbreviationType" EntitySet="StateAbbreviationType" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_GradeLevelType" Association="Self.FK_StudentAcademicDetails_GradeLevelType">
+            <End Role="GradeLevelType" EntitySet="GradeLevelType" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolYear" Association="Self.FK_StudentAcademicDetails_SchoolYear">
+            <End Role="SchoolYearType" EntitySet="SchoolYearType" />
+            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_StudentAcademicDetails_Student" Association="Self.FK_StudentAcademicDetails_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
@@ -19119,22 +19331,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NGLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="StudentAcademicDetail">
-          <Key>
-            <PropertyRef Name="StudentUSI" />
-          </Key>
-          <Property Name="StudentUSI" Type="Int32" Nullable="false" />
-          <Property Name="ReadingScore" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="WritingScore" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="MathScore" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="GradeTypeId" Type="Int32" Nullable="false" />
-          <Property Name="PerfomanceHistory" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="PerformanceHistoryFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_StudentAcademicDetails_Student" FromRole="StudentAcademicDetails" ToRole="Student" />
-        </EntityType>
         <EntityType Name="AcademicHonorCategoryType">
           <Key>
             <PropertyRef Name="AcademicHonorCategoryTypeId" />
@@ -21787,6 +21983,7 @@
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="GradeLevelDescriptors" Relationship="Self.FK_GradeLevelDescriptor_GradeLevelType_GradeLevelTypeId" FromRole="GradeLevelType" ToRole="GradeLevelDescriptor" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="NGLModel.FK_StudentAcademicDetails_GradeLevelType" FromRole="GradeLevelType" ToRole="StudentAcademicDetail1" />
         </EntityType>
         <EntityType Name="GradeType">
           <Key>
@@ -24281,6 +24478,7 @@
           <NavigationProperty Name="StudentCohortYears" Relationship="Self.FK_StudentCohortYears_SchoolYearType_SchoolYear" FromRole="SchoolYearType" ToRole="StudentCohortYear" />
           <NavigationProperty Name="StudentSchoolAssociations" Relationship="Self.FK_StudentSchoolAssociation_SchoolYearType_ClassOfSchoolYear" FromRole="SchoolYearType" ToRole="StudentSchoolAssociation" />
           <NavigationProperty Name="StudentSchoolAssociations1" Relationship="Self.FK_StudentSchoolAssociation_SchoolYearType_SchoolYear" FromRole="SchoolYearType" ToRole="StudentSchoolAssociation" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="NGLModel.FK_StudentAcademicDetails_SchoolYear" FromRole="SchoolYearType" ToRole="StudentAcademicDetail1" />
         </EntityType>
         <EntityType Name="Section">
           <Key>
@@ -25148,7 +25346,6 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="StudentAcademicDetail" Relationship="Self.FK_StudentAcademicDetails_Student" FromRole="Student" ToRole="StudentAcademicDetails" />
           <NavigationProperty Name="CitizenshipStatusType" Relationship="Self.FK_Student_CitizenshipStatusType_CitizenshipStatusTypeId" FromRole="Student" ToRole="CitizenshipStatusType" />
           <NavigationProperty Name="CountryCodeType" Relationship="Self.FK_Student_CountryCodeType_BirthCountryCodeTypeId" FromRole="Student" ToRole="CountryCodeType" />
           <NavigationProperty Name="DisciplineActions" Relationship="Self.FK_DisciplineAction_Student_StudentUSI" FromRole="Student" ToRole="DisciplineAction" />
@@ -25191,6 +25388,7 @@
           <NavigationProperty Name="StudentTelephones" Relationship="Self.FK_StudentTelephone_Student_StudentUSI" FromRole="Student" ToRole="StudentTelephone" />
           <NavigationProperty Name="StudentVisas" Relationship="Self.FK_StudentVisa_Student_StudentUSI" FromRole="Student" ToRole="StudentVisa" />
           <NavigationProperty Name="StudentProgramStatus" Relationship="NGLModel.FK_StudentProgramStatus_Student" FromRole="Student" ToRole="StudentProgramStatus" />
+          <NavigationProperty Name="StudentAcademicDetails" Relationship="NGLModel.FK_StudentAcademicDetails_Student1" FromRole="Student" ToRole="StudentAcademicDetail1" />
         </EntityType>
         <EntityType Name="StudentAcademicRecord">
           <Key>
@@ -26704,18 +26902,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="WeaponDescriptors" Relationship="Self.FK_WeaponDescriptor_WeaponsType_WeaponsTypeId" FromRole="WeaponType" ToRole="WeaponDescriptor" />
         </EntityType>
-        <Association Name="FK_StudentAcademicDetails_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="StudentAcademicDetails" Type="Self.StudentAcademicDetail" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="StudentUSI" />
-            </Principal>
-            <Dependent Role="StudentAcademicDetails">
-              <PropertyRef Name="StudentUSI" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StudentAcademicRecordAcademicHonor_AcademicHonorCategoryType_AcademicHonorCategoryTypeId">
           <End Role="AcademicHonorCategoryType" Type="Self.AcademicHonorCategoryType" Multiplicity="1" />
           <End Role="StudentAcademicRecordAcademicHonor" Type="Self.StudentAcademicRecordAcademicHonor" Multiplicity="*" />
@@ -36273,7 +36459,6 @@
           <End Role="TitleIPartAParticipantType" Type="Self.TitleIPartAParticipantType" Multiplicity="0..1" />
         </Association>
         <EntityContainer Name="NglDbContext" annotation:LazyLoadingEnabled="false">
-          <EntitySet Name="StudentAcademicDetails" EntityType="Self.StudentAcademicDetail" />
           <EntitySet Name="AcademicHonorCategoryTypes" EntityType="Self.AcademicHonorCategoryType" />
           <EntitySet Name="AcademicSubjectDescriptors" EntityType="Self.AcademicSubjectDescriptor" />
           <EntitySet Name="AcademicSubjectTypes" EntityType="Self.AcademicSubjectType" />
@@ -36696,10 +36881,6 @@
           <EntitySet Name="VisaTypes" EntityType="Self.VisaType" />
           <EntitySet Name="WeaponDescriptors" EntityType="Self.WeaponDescriptor" />
           <EntitySet Name="WeaponTypes" EntityType="Self.WeaponType" />
-          <AssociationSet Name="FK_StudentAcademicDetails_Student" Association="Self.FK_StudentAcademicDetails_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="StudentAcademicDetails" EntitySet="StudentAcademicDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_StudentAcademicRecordAcademicHonor_AcademicHonorCategoryType_AcademicHonorCategoryTypeId" Association="Self.FK_StudentAcademicRecordAcademicHonor_AcademicHonorCategoryType_AcademicHonorCategoryTypeId">
             <End Role="AcademicHonorCategoryType" EntitySet="AcademicHonorCategoryTypes" />
             <End Role="StudentAcademicRecordAcademicHonor" EntitySet="StudentAcademicRecordAcademicHonors" />
@@ -39569,6 +39750,38 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="StudentProgramStatus" EntitySet="StudentProgramStatus" />
           </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="NGLModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="NGLModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="NGLModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="NGLModel.AspNetUser" />
+          <EntitySet Name="ELMAH_Error" EntityType="NGLModel.ELMAH_Error" />
+          <EntitySet Name="SchemaVersions" EntityType="NGLModel.SchemaVersion" />
+          <EntitySet Name="StudentAcademicDetailSet" EntityType="NGLModel.StudentAcademicDetail" />
+          <EntitySet Name="VersionLevels" EntityType="NGLModel.VersionLevel" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="NGLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="NGLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_GradeLevelType" Association="NGLModel.FK_StudentAcademicDetails_GradeLevelType">
+            <End Role="GradeLevelType" EntitySet="GradeLevelTypes" />
+            <End Role="StudentAcademicDetail1" EntitySet="StudentAcademicDetailSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_SchoolYear" Association="NGLModel.FK_StudentAcademicDetails_SchoolYear">
+            <End Role="SchoolYearType" EntitySet="SchoolYearTypes" />
+            <End Role="StudentAcademicDetail1" EntitySet="StudentAcademicDetailSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentAcademicDetails_Student1" Association="NGLModel.FK_StudentAcademicDetails_Student1">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="StudentAcademicDetail1" EntitySet="StudentAcademicDetailSet" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="NGLModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentProgramStatus">
           <Key>
@@ -39617,28 +39830,186 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="NGLModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="NGLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="NGLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="NGLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="NGLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="NGLModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="ELMAH_Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="Guid" Nullable="false" />
+          <Property Name="Application" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Host" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusCode" Type="Int32" Nullable="false" />
+          <Property Name="TimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AllXml" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SchemaVersion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Applied" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="StudentAcademicDetail">
+          <Key>
+            <PropertyRef Name="StudentUSI" />
+            <PropertyRef Name="SchoolYear" />
+          </Key>
+          <Property Name="StudentUSI" Type="Int32" Nullable="false" />
+          <Property Name="ReadingScore" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="WritingScore" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="MathScore" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="SchoolYear" Type="Int16" Nullable="false" />
+          <Property Name="GradeLevelTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PerfomanceHistory" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PerformanceHistoryFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GradeLevelType" Relationship="NGLModel.FK_StudentAcademicDetails_GradeLevelType" FromRole="StudentAcademicDetail1" ToRole="GradeLevelType" />
+          <NavigationProperty Name="SchoolYearType" Relationship="NGLModel.FK_StudentAcademicDetails_SchoolYear" FromRole="StudentAcademicDetail1" ToRole="SchoolYearType" />
+          <NavigationProperty Name="Student" Relationship="NGLModel.FK_StudentAcademicDetails_Student1" FromRole="StudentAcademicDetail1" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="VersionLevel">
+          <Key>
+            <PropertyRef Name="ScriptSource" />
+            <PropertyRef Name="ScriptType" />
+            <PropertyRef Name="DatabaseType" />
+            <PropertyRef Name="VersionLevel1" />
+          </Key>
+          <Property Name="ScriptSource" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="ScriptType" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="DatabaseType" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="SubType" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="VersionLevel1" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="NGLModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NGLModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="NGLModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NGLModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_GradeLevelType">
+          <End Type="NGLModel.GradeLevelType" Role="GradeLevelType" Multiplicity="1" />
+          <End Type="NGLModel.StudentAcademicDetail" Role="StudentAcademicDetail1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeLevelType">
+              <PropertyRef Name="GradeLevelTypeId" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetail1">
+              <PropertyRef Name="GradeLevelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_SchoolYear">
+          <End Type="NGLModel.SchoolYearType" Role="SchoolYearType" Multiplicity="1" />
+          <End Type="NGLModel.StudentAcademicDetail" Role="StudentAcademicDetail1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolYearType">
+              <PropertyRef Name="SchoolYear" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetail1">
+              <PropertyRef Name="SchoolYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentAcademicDetails_Student1">
+          <End Type="NGLModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="NGLModel.StudentAcademicDetail" Role="StudentAcademicDetail1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentUSI" />
+            </Principal>
+            <Dependent Role="StudentAcademicDetail1">
+              <PropertyRef Name="StudentUSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="NGLModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="NGLModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NGLModelStoreContainer" CdmEntityContainer="NglDbContext">
-          <EntitySetMapping Name="StudentAcademicDetails">
-            <EntityTypeMapping TypeName="NGLModel.StudentAcademicDetail">
-              <MappingFragment StoreEntitySet="StudentAcademicDetails">
-                <ScalarProperty Name="StudentUSI" ColumnName="StudentUSI" />
-                <ScalarProperty Name="ReadingScore" ColumnName="ReadingScore" />
-                <ScalarProperty Name="WritingScore" ColumnName="WritingScore" />
-                <ScalarProperty Name="MathScore" ColumnName="MathScore" />
-                <ScalarProperty Name="GradeTypeId" ColumnName="GradeTypeId" />
-                <ScalarProperty Name="PerfomanceHistory" ColumnName="PerfomanceHistory" />
-                <ScalarProperty Name="PerformanceHistoryFileUrl" ColumnName="PerformanceHistoryFileUrl" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AcademicHonorCategoryTypes">
             <EntityTypeMapping TypeName="NGLModel.AcademicHonorCategoryType">
               <MappingFragment StoreEntitySet="AcademicHonorCategoryType">
@@ -45524,6 +45895,113 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="NGLModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="NGLModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="NGLModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="NGLModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ELMAH_Error">
+            <EntityTypeMapping TypeName="NGLModel.ELMAH_Error">
+              <MappingFragment StoreEntitySet="ELMAH_Error">
+                <ScalarProperty Name="AllXml" ColumnName="AllXml" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="TimeUtc" ColumnName="TimeUtc" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchemaVersions">
+            <EntityTypeMapping TypeName="NGLModel.SchemaVersion">
+              <MappingFragment StoreEntitySet="SchemaVersions">
+                <ScalarProperty Name="Applied" ColumnName="Applied" />
+                <ScalarProperty Name="ScriptName" ColumnName="ScriptName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentAcademicDetailSet">
+            <EntityTypeMapping TypeName="NGLModel.StudentAcademicDetail">
+              <MappingFragment StoreEntitySet="StudentAcademicDetails">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PerformanceHistoryFileUrl" ColumnName="PerformanceHistoryFileUrl" />
+                <ScalarProperty Name="PerfomanceHistory" ColumnName="PerfomanceHistory" />
+                <ScalarProperty Name="GradeLevelTypeId" ColumnName="GradeLevelTypeId" />
+                <ScalarProperty Name="SchoolYear" ColumnName="SchoolYear" />
+                <ScalarProperty Name="MathScore" ColumnName="MathScore" />
+                <ScalarProperty Name="WritingScore" ColumnName="WritingScore" />
+                <ScalarProperty Name="ReadingScore" ColumnName="ReadingScore" />
+                <ScalarProperty Name="StudentUSI" ColumnName="StudentUSI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VersionLevels">
+            <EntityTypeMapping TypeName="NGLModel.VersionLevel">
+              <MappingFragment StoreEntitySet="VersionLevel">
+                <ScalarProperty Name="VersionLevel1" ColumnName="VersionLevel" />
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="DatabaseType" ColumnName="DatabaseType" />
+                <ScalarProperty Name="ScriptType" ColumnName="ScriptType" />
+                <ScalarProperty Name="ScriptSource" ColumnName="ScriptSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="NGLModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -45538,7 +46016,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

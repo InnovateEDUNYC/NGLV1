@@ -19,8 +19,8 @@ namespace NGL.Web.Data.Entities
     		this.Id = System.Guid.NewGuid();
     		this.LastModifiedDate = System.DateTime.Now;
     		this.CreateDate = System.DateTime.Now;
-            this.StudentAcademicDetails = new HashSet<StudentAcademicDetail>();
             this.GradeLevelDescriptors = new HashSet<GradeLevelDescriptor>();
+            this.StudentAcademicDetails = new HashSet<StudentAcademicDetail>();
         }
     
         public int GradeLevelTypeId { get; set; }
@@ -31,7 +31,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual ICollection<StudentAcademicDetail> StudentAcademicDetails { get; set; }
         public virtual ICollection<GradeLevelDescriptor> GradeLevelDescriptors { get; set; }
+        public virtual ICollection<StudentAcademicDetail> StudentAcademicDetails { get; set; }
     }
 }

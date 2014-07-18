@@ -52,6 +52,7 @@ namespace NGL.Web.Data.Entities
             this.StudentSectionAttendanceEvents = new HashSet<StudentSectionAttendanceEvent>();
             this.StudentTelephones = new HashSet<StudentTelephone>();
             this.StudentVisas = new HashSet<StudentVisa>();
+            this.StudentAcademicDetails = new HashSet<StudentAcademicDetail>();
         }
     
         public int StudentUSI { get; set; }
@@ -82,7 +83,6 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual StudentAcademicDetail StudentAcademicDetail { get; set; }
         public virtual CitizenshipStatusType CitizenshipStatusType { get; set; }
         public virtual CountryCodeType CountryCodeType { get; set; }
         public virtual ICollection<DisciplineAction> DisciplineActions { get; set; }
@@ -125,5 +125,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<StudentTelephone> StudentTelephones { get; set; }
         public virtual ICollection<StudentVisa> StudentVisas { get; set; }
         public virtual StudentProgramStatus StudentProgramStatus { get; set; }
+        public virtual ICollection<StudentAcademicDetail> StudentAcademicDetails { get; set; }
     }
 }

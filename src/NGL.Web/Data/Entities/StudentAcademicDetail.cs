@@ -25,7 +25,8 @@ namespace NGL.Web.Data.Entities
         public decimal ReadingScore { get; set; }
         public decimal WritingScore { get; set; }
         public decimal MathScore { get; set; }
-        public int GradeTypeId { get; set; }
+        public short SchoolYear { get; set; }
+        public int GradeLevelTypeId { get; set; }
         public string PerfomanceHistory { get; set; }
         public string PerformanceHistoryFileUrl { get; set; }
         public System.Guid Id { get; set; }
@@ -33,6 +34,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime CreateDate { get; set; }
     
         public virtual GradeLevelType GradeLevelType { get; set; }
+        public virtual SchoolYearType SchoolYearType { get; set; }
         public virtual Student Student { get; set; }
     }
 }

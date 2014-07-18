@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
             this.StudentCohortYears = new HashSet<StudentCohortYear>();
             this.StudentSchoolAssociations = new HashSet<StudentSchoolAssociation>();
             this.StudentSchoolAssociations1 = new HashSet<StudentSchoolAssociation>();
+            this.StudentAcademicDetails = new HashSet<StudentAcademicDetail>();
         }
     
         public short SchoolYear { get; set; }
@@ -46,5 +47,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<StudentCohortYear> StudentCohortYears { get; set; }
         public virtual ICollection<StudentSchoolAssociation> StudentSchoolAssociations { get; set; }
         public virtual ICollection<StudentSchoolAssociation> StudentSchoolAssociations1 { get; set; }
+        public virtual ICollection<StudentAcademicDetail> StudentAcademicDetails { get; set; }
     }
 }
