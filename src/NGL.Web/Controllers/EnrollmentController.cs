@@ -60,14 +60,14 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(enterProgramStatusModel);
 
-            Func<string, string> makeUri = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
+            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
 
             var specialEducationFileUri = UploadAndGetUriFor(enterProgramStatusModel.SpecialEducationFile,
-                    makeUri("specialEducation"));
-            var testingAccomodationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TestingAccommodationFile, makeUri("testingAccomodation"));
-            var titleParticipationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TitleParticipationFile, makeUri("titleParticipation"));
+                    makeUriFor("specialEducation"));
+            var testingAccomodationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TestingAccommodationFile, makeUriFor("testingAccomodation"));
+            var titleParticipationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TitleParticipationFile, makeUriFor("titleParticipation"));
             var mcKinneyVentoFileUri = UploadAndGetUriFor(enterProgramStatusModel.McKinneyVentoFile,
-                makeUri("McKinneyVento"));
+                makeUriFor("McKinneyVento"));
 
             var studentProgramStatus = _programStatusMapper.Build(enterProgramStatusModel,
                 psm =>
@@ -99,14 +99,11 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-//            string performanceHistoryFileUri = uploadAndGetUri;
-            
-                Func<string, string> makeUri = fileName => string.Format("{0}/{1}", id, fileName);
+                Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}", id, fileName);
 
                 var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
-                    makeUri("performanceHistory"));
+                    makeUriFor("performanceHistory"));
                     
-
             StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
                 adm =>
                 {
