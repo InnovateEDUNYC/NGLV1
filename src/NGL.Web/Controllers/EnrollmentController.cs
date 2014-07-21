@@ -46,7 +46,7 @@ namespace NGL.Web.Controllers
             _enrollmentMapper.Map(createStudentModel, student);
             _repository.Add(student);
             _repository.Save();
-            return RedirectToAction(MVC.Enrollment.EnterAcademicHistory((int) createStudentModel.StudentUsi));
+            return RedirectToAction(MVC.Student.All());
         }
 
         // GET: /Enrollment/EnterAcademicHistory/id
