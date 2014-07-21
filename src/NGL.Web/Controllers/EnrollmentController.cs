@@ -28,7 +28,6 @@ namespace NGL.Web.Controllers
             _programStatusMapper = programStatusMapper;
         }
 
-        //
         // GET: /Enrollment/CreateStudent
         public virtual ActionResult CreateStudent()
         {
@@ -47,7 +46,47 @@ namespace NGL.Web.Controllers
             _enrollmentMapper.Map(createStudentModel, student);
             _repository.Add(student);
             _repository.Save();
-            return RedirectToAction(MVC.Student.All());
+            return RedirectToAction(MVC.Enrollment.EnterAcademicHistory((int) createStudentModel.StudentUsi));
+        }
+
+        // GET: /Enrollment/EnterAcademicHistory/id
+        public virtual ActionResult EnterAcademicHistory(int id)
+        {
+            var model = new AcademicDetailModel{StudentUsi = id};
+            
+            if (StudentDoesNotExist(id))
+                RedirectToAction(MVC.Error.General());
+
+            return View(model);
+        }
+
+        private bool StudentDoesNotExist(int id)
+        {
+            return _repository.Get(new StudentByUsiQuery(id)) == null;
+        }
+
+        // POST: /Enrollment/EnterAcademicHistory/id
+        [HttpPost]
+        public virtual ActionResult EnterAcademicHistory(AcademicDetailModel academicDetailModel, int id)
+        {
+            if (!ModelState.IsValid)
+                return View(academicDetailModel);
+
+            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
+
+            var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
+                makeUriFor("performanceHistory"));
+                    
+            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
+                adm =>
+                {
+                    adm.StudentUSI = id;
+                    adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
+                });
+
+            _repository.Add(studentAcademicDetail);
+            _repository.Save();
+            return RedirectToAction(MVC.Enrollment.EnterProgramStatus(id));
         }
 
         // GET: /Enrollment/EnterProgramStatus/id
@@ -86,49 +125,7 @@ namespace NGL.Web.Controllers
 
             _repository.Add(studentProgramStatus);
             _repository.Save();
-            return RedirectToAction("Index", "Home");
-        }
-
-        //
-        // GET: /Enrollment/EnterAcademicHistory/id
-        public virtual ActionResult EnterAcademicHistory(int id)
-        {
-            var model = new AcademicDetailModel{StudentUsi = id};
-            
-            if (StudentDoesNotExist(id))
-                RedirectToAction(MVC.Error.General());
-
-            return View(model);
-        }
-
-        private bool StudentDoesNotExist(int id)
-        {
-            return _repository.Get(new StudentByUsiQuery(id)) == null;
-        }
-
-        //
-        // POST: /Enrollment/EnterAcademicHistory/id
-        [HttpPost]
-        public virtual ActionResult EnterAcademicHistory(AcademicDetailModel academicDetailModel, int id)
-        {
-            if (!ModelState.IsValid)
-                return View(academicDetailModel);
-
-            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
-
-                var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
-                    makeUriFor("performanceHistory"));
-                    
-            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
-                adm =>
-                {
-                    adm.StudentUSI = id;
-                    adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
-                });
-
-            _repository.Add(studentAcademicDetail);
-            _repository.Save();
-            return View();
+            return RedirectToAction(MVC.Student.Index(id));
         }
 
         private string UploadAndGetUriFor(HttpPostedFileBase file, string relativePath)
