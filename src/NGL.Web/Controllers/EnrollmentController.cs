@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
@@ -84,13 +86,28 @@ namespace NGL.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
         //
         // GET: /Enrollment/EnterAcademicHistory/id
         public virtual ActionResult EnterAcademicHistory(int id)
         {
-            return View(new AcademicDetailModel());
+            var model = new AcademicDetailModel{StudentUsi = id};
+            
+            if (StudentDoesNotExist(id))
+                PutErrorFlagIntoModel(model);
+
+            return View(model);
         }
+
+        private bool StudentDoesNotExist(int id)
+        {
+            return _repository.Get(new StudentByUsiQuery(id)) == null;
+        }
+
+        private static void PutErrorFlagIntoModel(AcademicDetailModel model)
+        {
+            model.IsNonExistantStudent = true;
+        }
+
         //
         // POST: /Enrollment/EnterAcademicHistory/id
         [HttpPost]
@@ -99,7 +116,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-                Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
+            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
 
                 var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
                     makeUriFor("performanceHistory"));

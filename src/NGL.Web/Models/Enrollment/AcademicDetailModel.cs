@@ -7,12 +7,12 @@ namespace NGL.Web.Models.Enrollment
 {
     public class AcademicDetailModel
     {
-
         public AcademicDetailModel()
         {
             SchoolYear = (SchoolYearTypeEnum)DateTime.Today.Year;
         }
-
+        public bool IsNonExistantStudent { get; set; }
+        public int StudentUsi { get; set; }
         public decimal? Reading { get; set; }
         public decimal? Writing { get; set; }
         public decimal? Math { get; set; }

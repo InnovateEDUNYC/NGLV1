@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using FluentValidation.TestHelper;
-using NGL.Web.Controllers;
+using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Enrollment;
 using NSubstitute;
@@ -15,8 +11,8 @@ namespace NGL.Tests.Enrollment
 {
     public class AcademicDetailModelValidatorTests
     {
-        private AcademicDetailModelValidator _validator;
-        private IGenericRepository _repository;
+        private readonly AcademicDetailModelValidator _validator;
+        private readonly IGenericRepository _repository;
 
         public AcademicDetailModelValidatorTests()
         {
@@ -27,7 +23,7 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldHaveErrorsIfModelNotValidWithNulls()
         {
-            var academicDetailModel = new AcademicDetailModel()
+            var academicDetailModel = new AcademicDetailModel
             {
                 Reading = null,
                 Writing = null,
@@ -62,7 +58,7 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldHaveErrorsIfModelNotValidWithGradesOutOfRange()
         {
-            var academicDetailModel = new AcademicDetailModel()
+            var academicDetailModel = new AcademicDetailModel
             {
                 Reading = 12345678m, //Too long
                 Math = 1.000m, //Too many decimal places
@@ -78,6 +74,38 @@ namespace NGL.Tests.Enrollment
         {
             _validator.ShouldNotHaveValidationErrorFor(adm => adm.PerformanceHistory, null as string);
             _validator.ShouldNotHaveValidationErrorFor(adm => adm.PerformanceHistoryFile, null as HttpPostedFileBase);
+        }
+
+        [Fact]
+        public void ShouldHaveErrorsWhenCreatingDuplicateAcademicDetailEntities()
+        {
+            var academicDetailModel = new AcademicDetailModel
+            {
+                StudentUsi = 1,
+                SchoolYear = SchoolYearTypeEnum.Year1990
+            };
+
+            _repository
+                .Get(Arg.Any<Web.Data.Queries.StudentAcademicDetailsByStudentUsiAndSchoolYearQuery>())
+                .Returns(new StudentAcademicDetail());
+
+            _validator.ShouldHaveValidationErrorFor(adm => adm.SchoolYear, academicDetailModel);
+        }
+
+        [Fact]
+        public void ShouldNotHaveErrorsWhenCreatingNewEntity()
+        {
+            var academicDetailModel = new AcademicDetailModel
+            {
+                StudentUsi = 1,
+                SchoolYear = SchoolYearTypeEnum.Year1990
+            };
+
+            _repository
+               .Get(Arg.Any<Web.Data.Queries.StudentAcademicDetailsByStudentUsiAndSchoolYearQuery>())
+               .Returns((StudentAcademicDetail) null);
+
+            _validator.ShouldNotHaveValidationErrorFor(adm => adm.SchoolYear, academicDetailModel);
         }
     }
 }
