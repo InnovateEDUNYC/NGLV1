@@ -8,6 +8,7 @@ using Microsoft.Owin.Security;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.Models;
 using NGL.Web.Models.Account;
 
 namespace NGL.Web.Controllers
@@ -16,11 +17,13 @@ namespace NGL.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IGenericRepository _genericRepository;
+        private readonly IMapper<AspNetUser, UserModel> _userMapper;
 
-        public AccountController(UserManager<ApplicationUser> userManager, IGenericRepository genericRepository)
+        public AccountController(UserManager<ApplicationUser> userManager, IGenericRepository genericRepository, IMapper<AspNetUser, UserModel> userMapper)
         {
             _userManager = userManager;
             _genericRepository = genericRepository;
+            _userMapper = userMapper;
         }
 
         //
@@ -57,17 +60,9 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Users()
         {
             var users = _genericRepository.Query(new UserRolesQuery(), u => u.AspNetRoles).ToList();
-            var um = users.Select(u =>
-            {
-                var role = u.AspNetRoles.FirstOrDefault();
-                return new UserModel
-                    {
-                        Username = u.UserName, 
-                        Role = role == null ? "(role not set)" : role.Name 
-                    };
-            }).ToList();
+            var userModels = users.Select(_userMapper.Build).ToList();
 
-            return View(um);
+            return View(userModels);
         }
 
         //
