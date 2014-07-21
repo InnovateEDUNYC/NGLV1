@@ -1,17 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using ChameleonForms.Attributes;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.ComponentModel.DataAnnotations;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Account
 {
     public class AddUserModel
     {
-        public AddUserModel()
-        {
-            Roles = new List<IdentityRole>();
-        }
-
         [Required]
         public string Username { get; set; }
 
@@ -25,9 +18,6 @@ namespace NGL.Web.Models.Account
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [ExistsIn("Roles", "Name", "Name", enableValidation: false)]
-        public string Role { get; set; }
-
-        public IList<IdentityRole> Roles { get; set; }
+        public ApplicationRole Role { get; set; }
     }
 }

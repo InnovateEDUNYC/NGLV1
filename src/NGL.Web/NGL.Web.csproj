@@ -270,6 +270,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\AspNetRole.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>

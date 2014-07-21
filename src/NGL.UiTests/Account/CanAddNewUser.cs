@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using NGL.UiTests.Shared;
+﻿using NGL.UiTests.Shared;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Account;
-using Ninject;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -40,9 +37,7 @@ namespace NGL.UiTests.Account
 
         void AndWhenICreateANewUserAsAdmin()
         {
-            var repo = Host.Locator.Get<IGenericRepository>();
-            var role = repo.GetAll<AspNetRole>().FirstOrDefault(r => r.Name == "Admin");
-            _newUser.Role = role.Id;
+            _newUser.Role = ApplicationRole.Admin;
             _usersPage.GoToAddUserPage().Register(_newUser);
         }
 

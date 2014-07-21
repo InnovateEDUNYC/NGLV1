@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Humanizer;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -15,20 +15,11 @@ namespace NGL.Web.Controllers
     public partial class AccountController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
-        private RoleManager<IdentityRole> _roleManager;
         private readonly IGenericRepository _genericRepository;
 
-        public AccountController(IGenericRepository genericRepository) : this(
-            new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())), 
-            new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())),
-            genericRepository)
-        {
-        }
-
-        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IGenericRepository genericRepository)
+        public AccountController(UserManager<ApplicationUser> userManager, IGenericRepository genericRepository)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
             _genericRepository = genericRepository;
         }
 
@@ -79,8 +70,7 @@ namespace NGL.Web.Controllers
         // GET: /Account/AddUser
         public virtual ActionResult AddUser()
         {
-            var addUserModel = new AddUserModel {Roles = _roleManager.Roles.ToList()};
-            return View(addUserModel);
+            return View();
         }
 
         //
@@ -96,7 +86,7 @@ namespace NGL.Web.Controllers
             var result = _userManager.Create(user, model.Password);
             if (result.Succeeded)
             {
-                _userManager.AddToRole(user.Id, model.Role);
+                _userManager.AddToRole(user.Id, model.Role.Humanize());
                 return RedirectToAction("Users");
             }
 
@@ -195,25 +185,6 @@ namespace NGL.Web.Controllers
             var linkedAccounts = _userManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return PartialView("_RemoveAccountPartial", linkedAccounts);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_roleManager != null)
-                {
-                    _roleManager.Dispose();
-                    _roleManager = null;
-                }
-            }
-            base.Dispose(disposing);
         }
 
         private IAuthenticationManager AuthenticationManager
