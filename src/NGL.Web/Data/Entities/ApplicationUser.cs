@@ -11,7 +11,7 @@ namespace NGL.Web.Data.Entities
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            :base(DatabaseManager.ConnectionString)
+            :base(ConfigManager.ConnectionString)
         {
         }
     }

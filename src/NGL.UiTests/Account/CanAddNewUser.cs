@@ -1,5 +1,9 @@
-﻿using NGL.UiTests.Shared;
+﻿using System.Linq;
+using NGL.UiTests.Shared;
+using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Account;
+using Ninject;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -34,8 +38,11 @@ namespace NGL.UiTests.Account
             _usersPage = _homePage.TopMenu.GoToUsersPage();
         }
 
-        void AndWhenICreateANewUser()
+        void AndWhenICreateANewUserAsAdmin()
         {
+            var repo = Host.Locator.Get<IGenericRepository>();
+            var role = repo.GetAll<AspNetRole>().FirstOrDefault(r => r.Name == "Admin");
+            _newUser.Role = role.Id;
             _usersPage.GoToAddUserPage().Register(_newUser);
         }
 

@@ -22,7 +22,7 @@ namespace NGL.Web
             
             var upgrader =
                 DeployChanges.To
-                    .SqlDatabase(DatabaseManager.ConnectionString)
+                    .SqlDatabase(ConfigManager.ConnectionString)
                     .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly(), filter)
                     .LogToConsole()
                     .Build();

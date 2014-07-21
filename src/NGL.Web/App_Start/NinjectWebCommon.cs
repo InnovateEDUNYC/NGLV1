@@ -70,7 +70,7 @@ namespace NGL.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<INglDbContext>().To<NglDbContext>().WithConstructorArgument(DatabaseManager.EdmxConnectionString);
+            kernel.Bind<INglDbContext>().To<NglDbContext>().WithConstructorArgument(ConfigManager.EdmxConnectionString);
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();

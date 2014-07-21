@@ -6,23 +6,31 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Models.Account;
 
 namespace NGL.Web.Controllers
 {
     public partial class AccountController : Controller
     {
-        public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+        private UserManager<ApplicationUser> _userManager;
+        private RoleManager<IdentityRole> _roleManager;
+        private readonly IGenericRepository _genericRepository;
+
+        public AccountController(IGenericRepository genericRepository) : this(
+            new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())), 
+            new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())),
+            genericRepository)
         {
         }
 
-        public AccountController(UserManager<ApplicationUser> userManager)
+        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IGenericRepository genericRepository)
         {
-            UserManager = userManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _genericRepository = genericRepository;
         }
-
-        public UserManager<ApplicationUser> UserManager { get; private set; }
 
         //
         // GET: /Account/Login
@@ -43,7 +51,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid) 
                 return View(model);
 
-            var user = await UserManager.FindAsync(model.Username, model.Password);
+            var user = await _userManager.FindAsync(model.Username, model.Password);
             if (user != null)
             {
                 await SignInAsync(user, model.RememberMe);
@@ -57,8 +65,13 @@ namespace NGL.Web.Controllers
 
         public virtual ActionResult Users()
         {
-            var users = UserManager.Users;
-            var um = users.Select(u => new UserModel { Username = u.UserName }).ToList();
+            var users = _genericRepository.Query(new UserRolesQuery(), u => u.AspNetRoles).ToList();
+            var um = users.Select(u => new UserModel
+            {
+                Username = u.UserName, 
+                Roles = string.Join(", ", u.AspNetRoles.Select(r => r.Name))
+            }).ToList();
+
             return View(um);
         }
 
@@ -66,23 +79,27 @@ namespace NGL.Web.Controllers
         // GET: /Account/AddUser
         public virtual ActionResult AddUser()
         {
-            return View();
+            var addUserModel = new AddUserModel {Roles = _roleManager.Roles.ToList()};
+            return View(addUserModel);
         }
 
         //
         // POST: /Account/AddUser
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> AddUser(AddUserModel model)
+        public virtual ActionResult AddUser(AddUserModel model)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return View(model);
-            
-            var user = new ApplicationUser { UserName = model.Username };
-            var result = await UserManager.CreateAsync(user, model.Password);
+
+            var user = new ApplicationUser {UserName = model.Username};
+            var result = _userManager.Create(user, model.Password);
             if (result.Succeeded)
+            {
+                _userManager.AddToRole(user.Id, model.Role);
                 return RedirectToAction("Users");
-            
+            }
+
             AddErrors(result);
 
             return View(model);
@@ -94,7 +111,7 @@ namespace NGL.Web.Controllers
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
         {
-            IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            IdentityResult result = await _userManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
             ManageMessageId? message = result.Succeeded ? ManageMessageId.RemoveLoginSuccess : ManageMessageId.Error;
             return RedirectToAction(Actions.ChangePassword(message));
         }
@@ -127,7 +144,7 @@ namespace NGL.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.CurrentPassword, model.NewPassword);
+                    IdentityResult result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.CurrentPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -147,7 +164,7 @@ namespace NGL.Web.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                    IdentityResult result = await _userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ChangePassword", new { Message = ManageMessageId.SetPasswordSuccess });
@@ -175,17 +192,26 @@ namespace NGL.Web.Controllers
         [ChildActionOnly]
         public virtual ActionResult RemoveAccountList()
         {
-            var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
+            var linkedAccounts = _userManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return PartialView("_RemoveAccountPartial", linkedAccounts);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && UserManager != null)
+            if (disposing)
             {
-                UserManager.Dispose();
-                UserManager = null;
+                if (_userManager != null)
+                {
+                    _userManager.Dispose();
+                    _userManager = null;
+                }
+
+                if (_roleManager != null)
+                {
+                    _roleManager.Dispose();
+                    _roleManager = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -201,7 +227,7 @@ namespace NGL.Web.Controllers
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
         }
 
@@ -215,7 +241,7 @@ namespace NGL.Web.Controllers
 
         private bool HasPassword()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
+            var user = _userManager.FindById(User.Identity.GetUserId());
             if (user != null)
             {
                 return user.PasswordHash != null;

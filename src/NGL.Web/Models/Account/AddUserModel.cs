@@ -1,9 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using ChameleonForms.Attributes;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace NGL.Web.Models.Account
 {
     public class AddUserModel
     {
+        public AddUserModel()
+        {
+            Roles = new List<IdentityRole>();
+        }
+
         [Required]
         public string Username { get; set; }
 
@@ -15,5 +23,11 @@ namespace NGL.Web.Models.Account
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [ExistsIn("Roles", "Name", "Name", enableValidation: false)]
+        public string Role { get; set; }
+
+        public IList<IdentityRole> Roles { get; set; }
     }
 }
