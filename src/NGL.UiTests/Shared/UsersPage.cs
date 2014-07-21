@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
+using NGL.Web.Models.Account;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
+using TestStack.Seleno.PageObjects.Actions;
 
 namespace NGL.UiTests.Shared
 {
@@ -12,9 +12,9 @@ namespace NGL.UiTests.Shared
             return Navigate.To<AddUserPage>(By.LinkText("Add User"));
         }
 
-        public IList<string> GetUsers()
+        public TableReader<UserModel> GetUsers()
         {
-            return Find.Elements(By.ClassName("userName")).Select(e => e.Text).ToList();
+            return TableFor<UserModel>("users");
         }
     }
 }

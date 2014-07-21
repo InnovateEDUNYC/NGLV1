@@ -270,6 +270,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\AspNetRole.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -291,6 +292,7 @@
     <Compile Include="Data\Entities\VersionLevel.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Queries\UserRolesQuery.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -1586,7 +1588,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Descriptors.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\DatabaseManager.cs" />
+    <Compile Include="Data\Entities\ConfigManager.cs" />
     <Compile Include="Data\Entities\Types.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1608,6 +1610,7 @@
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Account\AddUserModel.cs" />
+    <Compile Include="Models\Account\AspNetUserToUserModelMapper.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
     <Compile Include="Models\Account\UserModel.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
@@ -1735,7 +1738,7 @@
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
     <Content Include="Assets\Content\bootstrap.css" />
     <EmbeddedResource Include="Data\Scripts\001 - Schema - Create ODS.sql" />
-    <EmbeddedResource Include="Data\Scripts\002 - Setup ASP.Net Identity.sql" />
+    <EmbeddedResource Include="Data\Scripts\002 - Schema - Setup ASP.Net Identity.sql" />
     <Content Include="Assets\Content\chameleonforms-twitterbootstrap.css" />
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
@@ -1747,6 +1750,7 @@
     <EmbeddedResource Include="Data\Scripts\006 - Schema - StudentProgramStatus.sql" />
     <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
+    <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AspNetUserToUserModelMapperTests.cs" />
     <Compile Include="ClassPeriod\ValidatorTests.cs" />
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />

@@ -228,12 +228,12 @@ namespace NGL.Web.Controllers
         partial void AddUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Account.AddUserModel model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AddUser(NGL.Web.Models.Account.AddUserModel model)
+        public override System.Web.Mvc.ActionResult AddUser(NGL.Web.Models.Account.AddUserModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddUser);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             AddUserOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+            return callInfo;
         }
 
         [NonAction]

@@ -9,7 +9,7 @@ namespace NGL.UiTests
 {
     public static class Host
     {
-        static readonly SelenoHost _instance;
+        static SelenoHost _instance;
 
         public static SelenoHost Instance
         {
@@ -24,15 +24,19 @@ namespace NGL.UiTests
         {
             StopIisExpress();
             DatabaseManager.RefreshDatabase();
+            RunIisExpress();
+        }
 
+        private static void RunIisExpress()
+        {
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SelenoScreenShots");
 
             _instance = new SelenoHost();
-            _instance.Run("NGL.Web", 12345, c => 
+            _instance.Run("NGL.Web", 12345, c =>
                 c.WithRouteConfig(RouteConfig.RegisterRoutes)
-                 .UsingControlIdGenerator(new MvcControlIdGenerator())
-                 .WithEnvironmentVariable("ConnectionString", DatabaseManager.ConnectionString)
-                 .UsingCamera(filePath));
+                    .UsingControlIdGenerator(new MvcControlIdGenerator())
+                    .WithEnvironmentVariable("ConnectionString", DatabaseManager.ConnectionString)
+                    .UsingCamera(filePath));
         }
 
         static void StopIisExpress()

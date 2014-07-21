@@ -3,18 +3,20 @@ using System.Configuration;
 
 namespace NGL.Web.Data.Entities
 {
-    public class DatabaseManager
+    public class ConfigManager
     {
         public static string EdmxConnectionString
         {
-            get
-            {
+            get { return GetEdmxConnectionString(ConnectionString); }
+        }
+
+        public static string GetEdmxConnectionString(string connectionString)
+        {
             var edmxConnectionString =
                 string.Format(
                     "metadata=res://*/Data.Entities.NglDbContext.csdl|res://*/Data.Entities.NglDbContext.ssdl|res://*/Data.Entities.NglDbContext.msl;provider=System.Data.SqlClient;provider connection string='{0}'",
-                    ConnectionString);
+                    connectionString);
             return edmxConnectionString;
-            }
         }
 
         public static string ConnectionString

@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<NGL.Web.Models.Account.UserModel>
 @{
     ViewBag.Title = "Users";
+    var username = @Html.DisplayNameFor(m => m.Username);
+    var role = @Html.DisplayNameFor(m => m.Role);
 }
 
 <h2>Users</h2>
@@ -8,17 +10,19 @@
     <li>@Html.ActionLink("Add User", "AddUser")</li>
 </ul>
 
-<table class="table table-striped">
+<table class="table table-striped" id="users">
     <thead>
         <tr>
-            <th>Username</th>
+            <th data-property-name="@username">@username</th>
+            <th data-property-name="@role">@role</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
             <tr>
-                <td class="userName">@user.Username</td>
+                <td data-property-name="@username">@user.Username</td>
+                <td data-property-name="@role">@user.Role</td>
             </tr>
         }
     </tbody>

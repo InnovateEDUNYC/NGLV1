@@ -1,7 +1,10 @@
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using FluentValidation;
 using FluentValidation.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using NGL.Web;
 using NGL.Web.App_Start;
@@ -9,6 +12,7 @@ using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using Ninject;
@@ -70,8 +74,14 @@ namespace NGL.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<INglDbContext>().To<NglDbContext>().WithConstructorArgument(DatabaseManager.EdmxConnectionString);
+            kernel.Bind<INglDbContext>().To<NglDbContext>().WithConstructorArgument(ConfigManager.EdmxConnectionString);
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
+            kernel.Bind<ApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
+            kernel
+                .Bind<UserManager<ApplicationUser>>()
+                .ToMethod<UserManager<ApplicationUser>>(c =>
+                    new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(c.Kernel.Get<ApplicationDbContext>())));
+
             kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
             kernel.Bind<IGenericRepository>().To<GenericRepository>();

@@ -1,4 +1,7 @@
-﻿using NGL.UiTests.Shared;
+﻿using System.Linq;
+using Humanizer;
+using NGL.UiTests.Shared;
+using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
 using Shouldly;
 using TestStack.BDDfy;
@@ -18,7 +21,8 @@ namespace NGL.UiTests.Account
             {
                 Username = "NewUser",
                 Password = "NewPassword",
-                ConfirmPassword = "NewPassword"
+                ConfirmPassword = "NewPassword",
+                Role = ApplicationRole.Admin
             };
 
         void GivenIHaveLoggedInAsAMasterAdmin()
@@ -34,14 +38,14 @@ namespace NGL.UiTests.Account
             _usersPage = _homePage.TopMenu.GoToUsersPage();
         }
 
-        void AndWhenICreateANewUser()
+        void AndWhenICreateANewUserAsAdmin()
         {
             _usersPage.GoToAddUserPage().Register(_newUser);
         }
 
         void ThenTheUserAppearsOnTheUserLists()
         {
-            _usersPage.GetUsers().ShouldContain(_newUser.Username);
+            _usersPage.GetUsers().Count(u => u.Username == _newUser.Username && u.Role == _newUser.Role.Humanize()).ShouldBe(1);
         }
 
         void AndTheUserCanLogin()

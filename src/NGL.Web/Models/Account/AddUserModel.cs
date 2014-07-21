@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Account
 {
@@ -15,5 +16,8 @@ namespace NGL.Web.Models.Account
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public ApplicationRole Role { get; set; }
     }
 }
