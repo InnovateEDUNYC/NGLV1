@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Linq;
+﻿using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
 
@@ -7,11 +6,15 @@ namespace NGL.Web.Models.Student
 {
     public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
-        private IMapper<Data.Entities.Student, ProfileHomeLanguageModel> _studentToProfileHomeLanguageModelMapper;
+        private readonly IMapper<Data.Entities.Student, ProfileHomeLanguageModel> _studentToProfileHomeLanguageModelMapper;
+        private readonly IMapper<Data.Entities.Student, ProfileParentModel> _studentToProfileParentModelMapper;
 
-        public StudentToProfileModelMapper(IMapper<Data.Entities.Student, ProfileHomeLanguageModel> studentToProfileHomeLanguageModelMapper)
+        public StudentToProfileModelMapper(
+            IMapper<Data.Entities.Student, ProfileHomeLanguageModel> studentToProfileHomeLanguageModelMapper, 
+            IMapper<Data.Entities.Student, ProfileParentModel> studentToProfileParentModelMapper)
         {
             _studentToProfileHomeLanguageModelMapper = studentToProfileHomeLanguageModelMapper;
+            _studentToProfileParentModelMapper = studentToProfileParentModelMapper;
         }
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
@@ -35,6 +38,7 @@ namespace NGL.Web.Models.Student
             target.State = ((StateAbbreviationTypeEnum) studentAddress.StateAbbreviationTypeId).Humanize();
             target.PostalCode = studentAddress.PostalCode;
 
+            target.ProfileParentModel = _studentToProfileParentModelMapper.Build(source);
         }
     }
 }

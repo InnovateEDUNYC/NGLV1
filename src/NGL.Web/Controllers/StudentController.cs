@@ -47,7 +47,11 @@ namespace NGL.Web.Controllers
                 s => s.StudentAddresses,
                 s => s.StudentRaces,
                 s => s.StudentLanguages,
-                s => s.StudentLanguages.Select(l => l.StudentLanguageUses)
+                s => s.StudentLanguages.Select(l => l.StudentLanguageUses),
+                s => s.StudentParentAssociations.Select(p => p.Parent),
+                s => s.StudentParentAssociations.Select(p => p.Parent.ParentTelephones),
+                s => s.StudentParentAssociations.Select(p => p.Parent.ParentElectronicMails)
+
             );
 
             if (student == null)
