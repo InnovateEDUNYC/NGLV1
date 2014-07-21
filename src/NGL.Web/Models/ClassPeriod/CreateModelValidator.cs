@@ -15,7 +15,7 @@ namespace NGL.Web.Models.ClassPeriod
             RuleFor(model => model.ClassPeriodName).Must(classPeriodName =>
             {
                 expression = entity => entity.ClassPeriodName == classPeriodName;
-                return repositoryReader.RepositoryReturnsNullFor(classPeriodName, expression);
+                return repositoryReader.DoesRepositoryReturnNullFor(classPeriodName, expression);
             }).WithMessage("This period name already exists.");
         }
 

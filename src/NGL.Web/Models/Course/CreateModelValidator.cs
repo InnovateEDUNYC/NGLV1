@@ -15,7 +15,7 @@ namespace NGL.Web.Models.Course
             RuleFor(model => model.CourseCode).Must(courseCode =>
             {
                 expression = entity => entity.CourseCode == courseCode;
-                return repositoryReader.RepositoryReturnsNullFor(courseCode, expression);
+                return repositoryReader.DoesRepositoryReturnNullFor(courseCode, expression);
             }).WithMessage("This course already exists.");
         }
 

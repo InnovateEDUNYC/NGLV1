@@ -11,8 +11,11 @@ namespace NGL.Tests.Enrollment
 {
     public class AcademicDetailModelValidatorTests
     {
+        private const decimal TooLongNumber = 12345678m;
         private readonly AcademicDetailModelValidator _validator;
         private readonly IGenericRepository _repository;
+        private const decimal TooManyDecimals = 1.000m;
+        private const int NegativeNumber = -1;
 
         public AcademicDetailModelValidatorTests()
         {
@@ -40,19 +43,8 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldHaveErrorsIfStringsTooLong()
         {
-            var longString = createStringOfLength(4001);
+            var longString = new String('a', 4001);
             _validator.ShouldHaveValidationErrorFor(adm => adm.PerformanceHistory, longString);
-        }
-
-        private String createStringOfLength(int length)
-        {
-            var retString = "";
-            for (int i = 0; i < length; i++)
-            {
-                retString += "a";
-            }
-
-            return retString;
         }
 
         [Fact]
@@ -60,9 +52,9 @@ namespace NGL.Tests.Enrollment
         {
             var academicDetailModel = new AcademicDetailModel
             {
-                Reading = 12345678m, //Too long
-                Math = 1.000m, //Too many decimal places
-                Writing = -1 //No negatives
+                Reading = TooLongNumber,
+                Math = TooManyDecimals,
+                Writing = NegativeNumber
             };
             _validator.ShouldHaveValidationErrorFor(adm => adm.Reading, academicDetailModel);
             _validator.ShouldHaveValidationErrorFor(adm => adm.Writing, academicDetailModel);

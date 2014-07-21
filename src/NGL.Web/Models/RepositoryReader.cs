@@ -14,7 +14,7 @@ namespace NGL.Web.Models
             _genericRepository = genericRepository;
         }
 
-        public bool RepositoryReturnsNullFor(string primaryKey, Expression<Func<T, bool>> expression)
+        public bool DoesRepositoryReturnNullFor(string primaryKey, Expression<Func<T, bool>> expression)
         {
             return string.IsNullOrEmpty(primaryKey) || _genericRepository.Get(expression) == null;
         }

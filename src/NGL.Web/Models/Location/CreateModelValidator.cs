@@ -15,7 +15,7 @@ namespace NGL.Web.Models.Location
             RuleFor(model => model.ClassroomIdentificationCode).Must(classroomIdentificationCode =>
             {
                 expression = entity => entity.ClassroomIdentificationCode == classroomIdentificationCode;
-                return repositoryReader.RepositoryReturnsNullFor(classroomIdentificationCode, expression);
+                return repositoryReader.DoesRepositoryReturnNullFor(classroomIdentificationCode, expression);
             }).WithMessage("This classroom location already exists.");
         }
     }
