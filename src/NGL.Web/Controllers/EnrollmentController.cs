@@ -99,7 +99,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-                Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}", id, fileName);
+                Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
 
                 var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
                     makeUriFor("performanceHistory"));
