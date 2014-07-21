@@ -75,7 +75,7 @@ namespace NGL.UiTests.Enrollment
         }
 
         public void ThenIShouldBeAbleToViewTheStudenInfo()
-        {
+        {   
             var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
             allFieldsExist.ShouldBe(true);
         }
