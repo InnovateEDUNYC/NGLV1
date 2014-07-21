@@ -2,10 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using NGL.Web;
-using NGL.Web.Data;
-using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
-using Ninject;
 using TestStack.Seleno.Configuration;
 using TestStack.Seleno.Configuration.ControlIdGenerators;
 
@@ -14,7 +10,6 @@ namespace NGL.UiTests
     public static class Host
     {
         static SelenoHost _instance;
-        static IKernel _ninject;
 
         public static SelenoHost Instance
         {
@@ -25,24 +20,11 @@ namespace NGL.UiTests
             }
         }
 
-        public static IKernel Locator
-        {
-            get { return _ninject; }
-        }
-
         static Host()
         {
             StopIisExpress();
             DatabaseManager.RefreshDatabase();
-            SetupNinject();
             RunIisExpress();
-        }
-
-        private static void SetupNinject()
-        {
-            _ninject = new StandardKernel();
-            _ninject.Bind<INglDbContext>().To<NglDbContext>().WithConstructorArgument(ConfigManager.GetEdmxConnectionString(DatabaseManager.ConnectionString));
-            _ninject.Bind<IGenericRepository>().To<GenericRepository>();
         }
 
         private static void RunIisExpress()
