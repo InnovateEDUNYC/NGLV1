@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
@@ -51,11 +50,15 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Student.All());
         }
 
+        // GET: /Enrollment/EnterProgramStatus/id
         public virtual ActionResult EnterProgramStatus(int id)
         {
+            if (StudentDoesNotExist(id))
+                RedirectToAction(MVC.Error.General());
             return View();
         }
 
+        // POST: /Enrollment/EnterProgramStatus/id
         [HttpPost]
         public virtual ActionResult EnterProgramStatus(EnterProgramStatusModel enterProgramStatusModel, int id)
         {
@@ -93,7 +96,7 @@ namespace NGL.Web.Controllers
             var model = new AcademicDetailModel{StudentUsi = id};
             
             if (StudentDoesNotExist(id))
-                PutErrorFlagIntoModel(model);
+                RedirectToAction(MVC.Error.General());
 
             return View(model);
         }
@@ -101,11 +104,6 @@ namespace NGL.Web.Controllers
         private bool StudentDoesNotExist(int id)
         {
             return _repository.Get(new StudentByUsiQuery(id)) == null;
-        }
-
-        private static void PutErrorFlagIntoModel(AcademicDetailModel model)
-        {
-            model.IsNonExistantStudent = true;
         }
 
         //

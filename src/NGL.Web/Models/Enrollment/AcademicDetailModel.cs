@@ -11,7 +11,6 @@ namespace NGL.Web.Models.Enrollment
         {
             SchoolYear = (SchoolYearTypeEnum)DateTime.Today.Year;
         }
-        public bool IsNonExistantStudent { get; set; }
         public int StudentUsi { get; set; }
         public decimal? Reading { get; set; }
         public decimal? Writing { get; set; }
