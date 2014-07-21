@@ -14,7 +14,7 @@ namespace NGL.Web.Controllers
 {
     public partial class AccountController : Controller
     {
-        private UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IGenericRepository _genericRepository;
 
         public AccountController(UserManager<ApplicationUser> userManager, IGenericRepository genericRepository)
@@ -57,10 +57,14 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Users()
         {
             var users = _genericRepository.Query(new UserRolesQuery(), u => u.AspNetRoles).ToList();
-            var um = users.Select(u => new UserModel
+            var um = users.Select(u =>
             {
-                Username = u.UserName, 
-                Roles = string.Join(", ", u.AspNetRoles.Select(r => r.Name))
+                var role = u.AspNetRoles.FirstOrDefault();
+                return new UserModel
+                    {
+                        Username = u.UserName, 
+                        Role = role == null ? "(role not set)" : role.Name 
+                    };
             }).ToList();
 
             return View(um);
