@@ -13,19 +13,13 @@ namespace NGL.Web.Models.Enrollment
             SchoolYear = (SchoolYearTypeEnum)DateTime.Today.Year;
         }
 
-        [Required]
         public decimal? Reading { get; set; }
-        [Required]
         public decimal? Writing { get; set; }
-        [Required]
         public decimal? Math { get; set; }
 
-        [Required]
         public SchoolYearTypeEnum SchoolYear { get; set; }
-        [Required]
         public GradeLevelTypeEnum? AnticipatedGrade { get; set; }
 
-        [StringLength(4000)]
         [DataType(DataType.MultilineText)]
         public String PerformanceHistory { get; set; }
         public HttpPostedFileBase PerformanceHistoryFile { get; set; }
