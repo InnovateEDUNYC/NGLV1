@@ -7,25 +7,18 @@ namespace NGL.Web.Models.Enrollment
 {
     public class AcademicDetailModel
     {
-
         public AcademicDetailModel()
         {
             SchoolYear = (SchoolYearTypeEnum)DateTime.Today.Year;
         }
-
-        [Required]
+        public int StudentUsi { get; set; }
         public decimal? Reading { get; set; }
-        [Required]
         public decimal? Writing { get; set; }
-        [Required]
         public decimal? Math { get; set; }
 
-        [Required]
         public SchoolYearTypeEnum SchoolYear { get; set; }
-        [Required]
         public GradeLevelTypeEnum? AnticipatedGrade { get; set; }
 
-        [StringLength(4000)]
         [DataType(DataType.MultilineText)]
         public String PerformanceHistory { get; set; }
         public HttpPostedFileBase PerformanceHistoryFile { get; set; }

@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[StudentAcademicDetails](
 	[StudentUSI] [int] NOT NULL,
-	[ReadingScore] [decimal](3, 2) NOT NULL,
-	[WritingScore] [decimal](3, 2) NOT NULL,
-	[MathScore] [decimal](3, 2) NOT NULL,
+	[ReadingScore] [decimal](9, 2) NOT NULL,
+	[WritingScore] [decimal](9, 2) NOT NULL,
+	[MathScore] [decimal](9, 2) NOT NULL,
 	[SchoolYear] [smallint] NOT NULL,
 	[GradeLevelTypeId] [int] NOT NULL,
 	[PerfomanceHistory] [nvarchar](4000),

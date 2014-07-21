@@ -9,13 +9,13 @@ namespace NGL.Web.Models.Location
     {
         public CreateModelValidator(IGenericRepository genericRepository)
         {
-            var existenceValidator = new ExistenceValidator<Data.Entities.Location>(genericRepository);
+            var repositoryReader = new RepositoryReader<Data.Entities.Location>(genericRepository);
             Expression<Func<Data.Entities.Location, bool>> expression;
 
             RuleFor(model => model.ClassroomIdentificationCode).Must(classroomIdentificationCode =>
             {
                 expression = entity => entity.ClassroomIdentificationCode == classroomIdentificationCode;
-                return existenceValidator.Validate(classroomIdentificationCode, expression);
+                return repositoryReader.DoesRepositoryReturnNullFor(classroomIdentificationCode, expression);
             }).WithMessage("This classroom location already exists.");
         }
     }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
@@ -26,7 +28,6 @@ namespace NGL.Web.Controllers
             _programStatusMapper = programStatusMapper;
         }
 
-        //
         // GET: /Enrollment/CreateStudent
         public virtual ActionResult CreateStudent()
         {
@@ -45,31 +46,72 @@ namespace NGL.Web.Controllers
             _enrollmentMapper.Map(createStudentModel, student);
             _repository.Add(student);
             _repository.Save();
-            return RedirectToAction(MVC.Student.All());
+            return RedirectToAction(MVC.Enrollment.EnterAcademicHistory((int) createStudentModel.StudentUsi));
         }
 
+        // GET: /Enrollment/EnterAcademicHistory/id
+        public virtual ActionResult EnterAcademicHistory(int id)
+        {
+            var model = new AcademicDetailModel{StudentUsi = id};
+            
+            if (StudentDoesNotExist(id))
+                RedirectToAction(MVC.Error.General());
+
+            return View(model);
+        }
+
+        private bool StudentDoesNotExist(int id)
+        {
+            return _repository.Get(new StudentByUsiQuery(id)) == null;
+        }
+
+        // POST: /Enrollment/EnterAcademicHistory/id
+        [HttpPost]
+        public virtual ActionResult EnterAcademicHistory(AcademicDetailModel academicDetailModel, int id)
+        {
+            if (!ModelState.IsValid)
+                return View(academicDetailModel);
+
+            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
+
+            var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
+                makeUriFor("performanceHistory"));
+                    
+            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
+                adm =>
+                {
+                    adm.StudentUSI = id;
+                    adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
+                });
+
+            _repository.Add(studentAcademicDetail);
+            _repository.Save();
+            return RedirectToAction(MVC.Enrollment.EnterProgramStatus(id));
+        }
+
+        // GET: /Enrollment/EnterProgramStatus/id
         public virtual ActionResult EnterProgramStatus(int id)
         {
+            if (StudentDoesNotExist(id))
+                RedirectToAction(MVC.Error.General());
             return View();
         }
 
+        // POST: /Enrollment/EnterProgramStatus/id
         [HttpPost]
         public virtual ActionResult EnterProgramStatus(EnterProgramStatusModel enterProgramStatusModel, int id)
         {
             if (!ModelState.IsValid)
                 return View(enterProgramStatusModel);
 
-            Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
-            const string blobContainer = "student";
+            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
 
-            var specialEducationFileUri = _fileUploader.Upload(enterProgramStatusModel.SpecialEducationFile,
-                blobContainer, getUri("specialEducation"));
-            var testingAccomodationFileUri = _fileUploader.Upload(enterProgramStatusModel.TestingAccommodationFile,
-                blobContainer, getUri("testingAccomodation"));
-            var titleParticipationFileUri = _fileUploader.Upload(enterProgramStatusModel.TitleParticipationFile,
-                blobContainer, getUri("titleParticipation"));
-            var mcKinneyVentoFileUri = _fileUploader.Upload(enterProgramStatusModel.McKinneyVentoFile, blobContainer,
-                getUri("McKinneyVento"));
+            var specialEducationFileUri = UploadAndGetUriFor(enterProgramStatusModel.SpecialEducationFile,
+                    makeUriFor("specialEducation"));
+            var testingAccomodationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TestingAccommodationFile, makeUriFor("testingAccomodation"));
+            var titleParticipationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TitleParticipationFile, makeUriFor("titleParticipation"));
+            var mcKinneyVentoFileUri = UploadAndGetUriFor(enterProgramStatusModel.McKinneyVentoFile,
+                makeUriFor("McKinneyVento"));
 
             var studentProgramStatus = _programStatusMapper.Build(enterProgramStatusModel,
                 psm =>
@@ -83,44 +125,16 @@ namespace NGL.Web.Controllers
 
             _repository.Add(studentProgramStatus);
             _repository.Save();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.Student.Index(id));
         }
 
-
-        //
-        // GET: /Enrollment/EnterAcademicHistory/id
-        public virtual ActionResult EnterAcademicHistory(int id)
+        private string UploadAndGetUriFor(HttpPostedFileBase file, string relativePath)
         {
-            return View(new AcademicDetailModel());
-        }
-        //
-        // POST: /Enrollment/EnterAcademicHistory/id
-        [HttpPost]
-        public virtual ActionResult EnterAcademicHistory(AcademicDetailModel academicDetailModel, int id)
-        {
-            if (!ModelState.IsValid)
-                return View(academicDetailModel);
-
-            string performanceHistoryFileUri = null;
-            if (academicDetailModel.PerformanceHistoryFile != null)
-            {
-                Func<string, string> getUri = fileName => string.Format("{0}/{1}/{2}", id, "AcademicHistory", fileName);
-                const string blobContainer = "student";
-
-                performanceHistoryFileUri = _fileUploader.Upload(academicDetailModel.PerformanceHistoryFile,
-                    blobContainer, getUri("performanceHistory"));
-            }
-
-            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
-                adm =>
-                {
-                    adm.StudentUSI = id;
-                    adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
-                });
-
-            _repository.Add(studentAcademicDetail);
-            _repository.Save();
-            return View();
+            const string blobContainer = "student";
+            if (file != null)
+                return _fileUploader.Upload(file, blobContainer, relativePath);
+          
+            return null;
         }
     }
 }

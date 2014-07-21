@@ -293,6 +293,7 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Queries\UserRolesQuery.cs" />
+    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
     <Compile Include="Controllers\SessionController.cs" />
@@ -1622,8 +1623,8 @@
     <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
-    <Compile Include="Models\Enrollment\AcademicHistoryModel.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModel.cs" />
+    <Compile Include="Models\Enrollment\AcademicDetailModelValidator.cs" />
     <Compile Include="Models\Enrollment\AdademicDetailModelToAcademicDetailMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModel.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
@@ -1635,7 +1636,7 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
-    <Compile Include="Models\ExistenceValidator.cs" />
+    <Compile Include="Models\RepositoryReader.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
     <Compile Include="Models\Location\CreateModelValidator.cs" />
     <Compile Include="Models\Location\IndexModel.cs" />
