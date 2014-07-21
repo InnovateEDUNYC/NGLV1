@@ -55,7 +55,7 @@ namespace NGL.Web.Controllers
             var model = new AcademicDetailModel{StudentUsi = id};
             
             if (StudentDoesNotExist(id))
-                RedirectToAction(MVC.Error.General());
+                return RedirectToAction(MVC.Error.General());
 
             return View(model);
         }
@@ -93,7 +93,7 @@ namespace NGL.Web.Controllers
         public virtual ActionResult EnterProgramStatus(int id)
         {
             if (StudentDoesNotExist(id))
-                RedirectToAction(MVC.Error.General());
+               return RedirectToAction(MVC.Error.General());
             return View();
         }
 
