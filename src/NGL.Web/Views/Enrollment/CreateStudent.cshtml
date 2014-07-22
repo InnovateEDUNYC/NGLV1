@@ -22,8 +22,8 @@
         @s.FieldFor(m => m.State)
         @s.FieldFor(m => m.PostalCode)
         @s.FieldFor(m => m.HomeLanguage)
-
-        <div>
+    <div class="parent-panels">
+        <div class="first-parent">
             <h3>First Parent Information</h3>
             @s.FieldFor(m => m.FirstParent.FirstName)
             @s.FieldFor(m => m.FirstParent.LastName)
@@ -41,11 +41,9 @@
                 @s.FieldFor(m => m.FirstParent.PostalCode)
                 @s.FieldFor(m => m.FirstParent.State)
             </div>
+            @s.FieldFor(m => m.AddSecondParent)
         </div>
-
-        @s.FieldFor(m => m.AddSecondParent)
-
-        <div id="second-parent">
+        <div class="second-parent">
             <h3>Second Parent Information</h3>
             @s.FieldFor(m => m.SecondParent.FirstName)
             @s.FieldFor(m => m.SecondParent.LastName)
@@ -64,6 +62,7 @@
                 @s.FieldFor(m => m.SecondParent.State)
             </div>
         </div>
+    </div>
         using (var n = f.BeginNavigation())
         {
             @n.Submit("Create Student")

@@ -31,7 +31,7 @@ Ngl.enrollment.createStudent = (function () {
 
     var showHideSecondParent = function () {
         var hasSecondParentCheckbox = $("#AddSecondParent");
-        var secondParentPanel = $("#second-parent");
+        var secondParentPanel = $(".second-parent");
 
         if (hasSecondParentCheckbox.is(":checked"))
             secondParentPanel.show();

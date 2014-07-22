@@ -61,3 +61,15 @@ form .inline input {
 .separator:last-of-type {
     border-bottom: none;
 }
+
+.first-parent {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+}
+
+.second-parent {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+}
