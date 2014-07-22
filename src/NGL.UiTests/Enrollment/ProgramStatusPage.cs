@@ -23,6 +23,7 @@ namespace NGL.UiTests.Enrollment
             Input.SelectButtonInRadioGroup(m => m.EnglishAsSecondLanguage, programStatusModel.EnglishAsSecondLanguage);
             Input.SelectButtonInRadioGroup(m => m.SpecialEducation, programStatusModel.SpecialEducation);
             Input.SelectButtonInRadioGroup(m => m.Gifted, programStatusModel.Gifted);
+            Input.SelectButtonInRadioGroup(m => m.TitleParticipation, programStatusModel.TitleParticipation);
             return Navigate.To<ProfilePage>(By.ClassName("btn"));
         }
     }
