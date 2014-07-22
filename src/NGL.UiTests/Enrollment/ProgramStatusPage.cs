@@ -17,6 +17,12 @@ namespace NGL.UiTests.Enrollment
         public ProfilePage InputProgramStatus(EnterProgramStatusModel programStatusModel)
         {
             Input.Model(programStatusModel);
+            Input.SelectButtonInRadioGroup(m => m.McKinneyVento, programStatusModel.McKinneyVento);
+            Input.SelectButtonInRadioGroup(m => m.TestingAccommodation, programStatusModel.TestingAccommodation);
+            Input.SelectButtonInRadioGroup(m => m.BilingualProgram, programStatusModel.BilingualProgram);
+            Input.SelectButtonInRadioGroup(m => m.EnglishAsSecondLanguage, programStatusModel.EnglishAsSecondLanguage);
+            Input.SelectButtonInRadioGroup(m => m.SpecialEducation, programStatusModel.SpecialEducation);
+            Input.SelectButtonInRadioGroup(m => m.Gifted, programStatusModel.Gifted);
             return Navigate.To<ProfilePage>(By.ClassName("btn"));
         }
     }
