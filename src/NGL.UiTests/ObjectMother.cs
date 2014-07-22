@@ -1,5 +1,4 @@
 ﻿using System;
-using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
 
@@ -99,8 +98,12 @@ namespace NGL.UiTests
             public const bool MakeThisPrimaryContact = true;
             public const string TelephoneNumber = "123-4567";
             public const string EmailAddress = "roberto@mail.co";
-            public const bool SameAddressAsStudent = true;
+            public const bool SameAddressAsStudent = false;
+            public const string Address = "890 Willow Ave";
+            public const string Address2 = "flr 4";
+            public const string City = "Honolulu";
+            public const StateAbbreviationTypeEnum State = StateAbbreviationTypeEnum.NM;
+            public const string PostalCode = "27890";
         }
-
     }
 }

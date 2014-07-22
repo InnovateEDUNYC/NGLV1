@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Linq;
+﻿using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
 
@@ -7,6 +6,17 @@ namespace NGL.Web.Models.Student
 {
     public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
+        private readonly IMapper<Data.Entities.Student, ProfileHomeLanguageModel> _studentToProfileHomeLanguageModelMapper;
+        private readonly IMapper<Data.Entities.Student, ProfileParentModel> _studentToProfileParentModelMapper;
+
+        public StudentToProfileModelMapper(
+            IMapper<Data.Entities.Student, ProfileHomeLanguageModel> studentToProfileHomeLanguageModelMapper, 
+            IMapper<Data.Entities.Student, ProfileParentModel> studentToProfileParentModelMapper)
+        {
+            _studentToProfileHomeLanguageModelMapper = studentToProfileHomeLanguageModelMapper;
+            _studentToProfileParentModelMapper = studentToProfileParentModelMapper;
+        }
+
         public override void Map(Data.Entities.Student source, ProfileModel target)
         {
             target.StudentUsi = source.StudentUSI;
@@ -15,22 +25,9 @@ namespace NGL.Web.Models.Student
             target.Sex = ((SexTypeEnum)source.SexTypeId).Humanize();
             target.BirthDate = source.BirthDate;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
 
-
-            var studentLanguages =
-                source.StudentLanguages.Where(
-                    language => language.StudentLanguageUses.Any(
-                        languageUse => languageUse.LanguageUseTypeId.Equals((int) LanguageUseTypeEnum.Homelanguage))
-                    );
-
-            target.HomeLanguage = ((LanguageDescriptorEnum) studentLanguages.First().LanguageDescriptorId).Humanize();            
-                    
-
-
-
-
+            target.ProfileHomeLanguageModel = _studentToProfileHomeLanguageModelMapper.Build(source);
 
             var studentAddresses = source.StudentAddresses;
             
@@ -41,6 +38,7 @@ namespace NGL.Web.Models.Student
             target.State = ((StateAbbreviationTypeEnum) studentAddress.StateAbbreviationTypeId).Humanize();
             target.PostalCode = studentAddress.PostalCode;
 
+            target.ProfileParentModel = _studentToProfileParentModelMapper.Build(source);
         }
     }
 }

@@ -30,10 +30,10 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink(item.FirstName, "Index", "Student", new { usi = item.StudentUsi }, null)
+                    @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td>
-                    @Html.ActionLink(item.LastName, "Index", "Student", new { usi = item.StudentUsi }, null)
+                    @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
                     @Html.ActionLink(item.StudentUsi.ToString(), "Index", "Student", new { usi = item.StudentUsi }, null)

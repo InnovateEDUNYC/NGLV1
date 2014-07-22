@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
@@ -10,63 +10,93 @@ namespace NGL.Tests.Student
     public class StudentToProfileModelMapperTest
     {
         [Fact]
-        public void ShouldMap()
+        public void ShouldMapStudentToProfileModel()
         {
-            var studentAddress = new StudentAddress
-            {
-                AddressTypeId = (int)AddressTypeEnum.Home,
-                StreetNumberName = "200 E Randolph",
-                ApartmentRoomSuiteNumber = "25th Floor",
-                City = "Chicago",
-                StateAbbreviationTypeId = (int) StateAbbreviationTypeEnum.IL,
-                PostalCode = "60601"
-            };
+            var student = StudentFactory.CreateStudentWithOneParent();
+            var parent = student.StudentParentAssociations.First().Parent;
+            var profileModel = new ProfileModel();
 
-            var studentRace = new StudentRace
-            {
-                RaceTypeId = (int) RaceTypeEnum.NativeHawaiianPacificIslander 
-            };
+            var mapper = new StudentToProfileModelMapper(
+                new StudentToProfileHomeLanguageModelMapper(), 
+                new StudentToProfileParentModelMapper()
+            );
+            mapper.Map(student, profileModel);
 
-            var studentLanguageUse = new StudentLanguageUse
-            {
-                LanguageUseTypeId = (int) LanguageUseTypeEnum.Homelanguage,
-                LanguageDescriptorId = (int) LanguageDescriptorEnum.English
-            };
+            profileModel.StudentUsi.ShouldBe(student.StudentUSI);
+            profileModel.FirstName.ShouldBe(student.FirstName);
+            profileModel.LastName.ShouldBe(student.LastSurname);
+            profileModel.BirthDate.ShouldBe(student.BirthDate);
+            
+            var studentRace = student.StudentRaces.First();
+            profileModel.Race.ShouldBe(((RaceTypeEnum) studentRace.RaceTypeId).Humanize());
+            profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
+            profileModel.Sex.ShouldBe(((SexTypeEnum) student.SexTypeId).Humanize());
 
-            var studentLanguage = new StudentLanguage
-            {
-                LanguageDescriptorId = (int) LanguageDescriptorEnum.English
-            };
+            var studentProfileHomeLanguages = profileModel.ProfileHomeLanguageModel.HomeLanguages;
+            studentProfileHomeLanguages.First().ShouldBe(
+                ((LanguageDescriptorEnum) student.StudentLanguages.First().LanguageDescriptorId).Humanize());
 
-            var student = new Web.Data.Entities.Student
-            {
-                StudentUSI = 1789,
-                FirstName = "Bob",
-                LastSurname = "Jenkins",
-                SexTypeId = (int) SexTypeEnum.Male,
-                BirthDate = new DateTime(2000, 2, 2),
-                HispanicLatinoEthnicity = true,
-            };
+            var profileParentModel = profileModel.ProfileParentModel;
+            profileParentModel.FirstName.ShouldBe(parent.FirstName);
+            profileParentModel.LastName.ShouldBe(parent.LastSurname);
+            profileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId).Humanize());
+            profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
+            profileParentModel.EmailAddress.ShouldBe(parent.ParentElectronicMails.First().ElectronicMailAddress);
+           
+            var studentParentAssociation = student.StudentParentAssociations.First();
+            profileParentModel.RelationshipToStudent.ShouldBe(
+                ((RelationTypeEnum) studentParentAssociation.RelationTypeId ).Humanize());
+            profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
+        }
 
+        [Fact]
+        public void ShouldMapStudentToProfileModelWithDifferentParentAddress()
+        {
+            var parent = ParentFactory.CreateParentWithAddress();
+            var student = StudentFactory.CreateStudentWithOneParent(parent, false);
+            var profileModel = new ProfileModel();
 
-            student.StudentAddresses.Add(studentAddress);
-            student.StudentRaces.Add(studentRace);
+            var mapper = new StudentToProfileModelMapper(
+                new StudentToProfileHomeLanguageModelMapper(),
+                new StudentToProfileParentModelMapper()
+            );
+            mapper.Map(student, profileModel);
 
-            studentLanguage.StudentLanguageUses.Add(studentLanguageUse);
-            student.StudentLanguages.Add(studentLanguage);
+            profileModel.StudentUsi.ShouldBe(student.StudentUSI);
+            profileModel.FirstName.ShouldBe(student.FirstName);
+            profileModel.LastName.ShouldBe(student.LastSurname);
+            profileModel.BirthDate.ShouldBe(student.BirthDate);
+           
+            var studentRace = student.StudentRaces.First();
+            profileModel.Race.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
+            profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
+            profileModel.Sex.ShouldBe(((SexTypeEnum)student.SexTypeId).Humanize());
 
-            var studentDetailsModel = new ProfileModel();
+            var studentProfileHomeLanguages = profileModel.ProfileHomeLanguageModel.HomeLanguages;
+            studentProfileHomeLanguages.First().ShouldBe(
+                ((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId).Humanize());
 
-            var mapper = new StudentToProfileModelMapper();
-            mapper.Map(student, studentDetailsModel);
+            var profileParentModel = profileModel.ProfileParentModel;
+            profileParentModel.FirstName.ShouldBe(parent.FirstName);
+            profileParentModel.LastName.ShouldBe(parent.LastSurname);
+            profileParentModel.Sex.ShouldBe(((SexTypeEnum)parent.SexTypeId).Humanize());
+            profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
+            profileParentModel.EmailAddress.ShouldBe(parent.ParentElectronicMails.First().ElectronicMailAddress);
 
-            studentDetailsModel.FirstName.ShouldBe("Bob");
-            studentDetailsModel.LastName.ShouldBe("Jenkins");
-            studentDetailsModel.BirthDate.ShouldBe(new DateTime(2000, 2, 2));
-            studentDetailsModel.Race.ShouldBe(RaceTypeEnum.NativeHawaiianPacificIslander.Humanize());
-            studentDetailsModel.HispanicLatinoEthnicity.ShouldBe(true);
-            studentDetailsModel.Sex.ShouldBe(SexTypeEnum.Male.Humanize());
-            studentDetailsModel.HomeLanguage.ShouldBe(LanguageDescriptorEnum.English.Humanize());
+            var profileParentAddressModel = profileModel.ProfileParentModel.ProfileParentAddressModel;
+            var parentHomeAddress = parent.ParentAddresses.First();
+            profileParentAddressModel.Address.ShouldBe(parentHomeAddress.StreetNumberName);
+            profileParentAddressModel.Address2.ShouldBe(parentHomeAddress.ApartmentRoomSuiteNumber);
+            profileParentAddressModel.City.ShouldBe(parentHomeAddress.City);
+            profileParentAddressModel.State.ShouldBe(((StateAbbreviationTypeEnum) parentHomeAddress.StateAbbreviationTypeId).Humanize());
+            profileParentAddressModel.PostalCode.ShouldBe(parentHomeAddress.PostalCode);
+
+            var studentParentAssociation = student.StudentParentAssociations.First();
+            profileParentModel.RelationshipToStudent.ShouldBe(
+                ((RelationTypeEnum)studentParentAssociation.RelationTypeId).Humanize());
+            profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
+
+            
         }
     }
 }

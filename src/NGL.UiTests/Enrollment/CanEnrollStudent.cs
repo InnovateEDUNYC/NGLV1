@@ -45,7 +45,12 @@ namespace NGL.UiTests.Enrollment
                 MakeThisPrimaryContact = ObjectMother.StudentJanesDad.MakeThisPrimaryContact,
                 TelephoneNumber = ObjectMother.StudentJanesDad.TelephoneNumber,
                 EmailAddress = ObjectMother.StudentJanesDad.EmailAddress,
-                SameAddressAsStudent = ObjectMother.StudentJanesDad.SameAddressAsStudent
+                SameAddressAsStudent = ObjectMother.StudentJanesDad.SameAddressAsStudent,
+                Address = ObjectMother.StudentJanesDad.Address,
+                Address2 = ObjectMother.StudentJanesDad.Address2,
+                City = ObjectMother.StudentJanesDad.City,
+                State = ObjectMother.StudentJanesDad.State,
+                PostalCode = ObjectMother.StudentJanesDad.PostalCode
             };
 
             _createStudentModel = new CreateStudentModel
