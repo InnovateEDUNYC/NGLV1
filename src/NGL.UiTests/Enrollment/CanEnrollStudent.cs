@@ -16,8 +16,8 @@ namespace NGL.UiTests.Enrollment
     {
         private HomePage _homePage;
         private EnrollmentPage _enrollmentPage;
-//        private StudentIndexPage _studentIndexPage;
-//        private ProfilePage _profilePage;
+        private ProfilePage _profilePage;
+        private ProgramStatusPage _programStatusPage;
         private CreateStudentModel _createStudentModel;
         private CreateParentModel _createParentModel;
         private AcademicDetailPage _academicDetailPage;
@@ -78,20 +78,51 @@ namespace NGL.UiTests.Enrollment
         {
             _academicDetailPage.IsTitleCorrect().ShouldBe(true);
         }
-//
-//        public void AndWhenIViewTheStudentProfile()
-//        {
-//            var studentUsi = _createStudentModel.StudentUsi.ToString();
-//            _profilePage = _studentIndexPage.GoToProfilePage(studentUsi);
-//        }
-//
-//        public void IShouldBeAbleToViewTheStudenInfo()
-//        {
-//            var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
-//            allFieldsExist.ShouldBe(true);
-//        }
+        private void IHaveInputAcademicDetails()
+        {
+            var academicDetailModel = new AcademicDetailModel
+            {
+                Reading = ObjectMother.JanesAcademicDetails.Reading,
+                Writing = ObjectMother.JanesAcademicDetails.Writing,
+                Math = ObjectMother.JanesAcademicDetails.Math,
+                AnticipatedGrade = ObjectMother.JanesAcademicDetails.AnticipatedGrade,
+                SchoolYear = ObjectMother.JanesAcademicDetails.SchoolYear,
+                PerformanceHistory = ObjectMother.JanesAcademicDetails.PerformanceHistory,
+                PerformanceHistoryFile = ObjectMother.JanesAcademicDetails.PerformanceHistoryFile
+            };
 
+            _programStatusPage = _academicDetailPage.InputDetails(academicDetailModel);
+        }
 
+        private void IShouldArriveOnTheProgramStatusPage()
+        {
+            _programStatusPage.IsTitleCorrect().ShouldBe(true);
+        }
+        private void IHaveInputProgramStatus()
+        {
+            var programStatusModel = new EnterProgramStatusModel
+            {
+                TestingAccommodation = ObjectMother.JanesProgramStatus.TestingAccommodation,
+                TestingAccommodationFile = ObjectMother.JanesProgramStatus.TestingAccommodationFile,
+                BilingualProgram = ObjectMother.JanesProgramStatus.BilingualProgram,
+                EnglishAsSecondLanguage = ObjectMother.JanesProgramStatus.EnglishAsSecondLanguage,
+                FoodServiceEligibilityStatus = ObjectMother.JanesProgramStatus.FoodServiceEligibilityStatus,
+                Gifted = ObjectMother.JanesProgramStatus.Gifted,
+                SpecialEducation = ObjectMother.JanesProgramStatus.SpecialEducation,
+                SpecialEducationFile = ObjectMother.JanesProgramStatus.SpecialEducationFile,
+                McKinneyVento = ObjectMother.JanesProgramStatus.McKinneyVento,
+                McKinneyVentoFile = ObjectMother.JanesProgramStatus.McKinneyVentoFile,
+                TitleParticipation = ObjectMother.JanesProgramStatus.TitleParticipation,
+                TitleParticipationFile = ObjectMother.JanesProgramStatus.TitleParticipationFile,
+            };
+            _profilePage = _programStatusPage.InputProgramStatus(programStatusModel);
+        }
+        public void IShouldBeAbleToViewTheStudenInfo()
+
+        {
+            var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
+            allFieldsExist.ShouldBe(true);
+        }
         [Fact]
         public void ShouldEnrollStudent()
         {
@@ -99,26 +130,11 @@ namespace NGL.UiTests.Enrollment
                 .And(_ => IAmOnTheEnrollPage())
                 .When(_ => IHaveEnteredValidInputForAllFields())
                 .Then(_ => IShouldArriveOnTheAcademicDetailPage())
-//                .When(_ => IHaveInputAcademicHistory())
-//                .Then(_ => IShouldArriveOnTheProgramStatusPage())
-//                .When(_ => IHaveInputProgramStatus())
-//                .Then(_ => IShouldBeAbleToViewTheStudenInfo())
+                .When(_ => IHaveInputAcademicDetails())
+                .Then(_ => IShouldArriveOnTheProgramStatusPage())
+                .When(_ => IHaveInputProgramStatus())
+                .Then(_ => IShouldBeAbleToViewTheStudenInfo())
                 .BDDfy();
         }
-
-//        private void IHaveInputProgramStatus()
-//        {
-//            throw new System.NotImplementedException();
-//        }
-//
-//        private void IShouldArriveOnTheProgramStatusPage()
-//        {
-//            throw new System.NotImplementedException();
-//        }
-//
-//        private void IHaveInputAcademicHistory()
-//        {
-//            throw new System.NotImplementedException();
-//        }
     }
 }

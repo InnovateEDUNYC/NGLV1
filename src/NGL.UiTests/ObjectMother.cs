@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Web;
+using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
 
@@ -104,6 +106,33 @@ namespace NGL.UiTests
             public const string City = "Honolulu";
             public const StateAbbreviationTypeEnum State = StateAbbreviationTypeEnum.NM;
             public const string PostalCode = "27890";
+        }
+        public static class JanesAcademicDetails
+        {
+            public static decimal? Reading = 88.88m;
+            public static decimal? Writing = 0m;
+            public static decimal? Math = 100.00m;
+            public static GradeLevelTypeEnum? AnticipatedGrade = GradeLevelTypeEnum._7thGrade;
+            public const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2014;
+            public const string PerformanceHistory = "Needs writing practice";
+            public static HttpPostedFileBase PerformanceHistoryFile = null;
+        }
+
+        public static class JanesProgramStatus
+        {
+            public static bool? TestingAccommodation = true;
+            public static bool? SpecialEducation = true;
+            public static bool? McKinneyVento = false;
+            public static bool? TitleParticipation = true;
+            public static bool? BilingualProgram = false;
+            public static bool? EnglishAsSecondLanguage = true;
+            public static bool? Gifted = true;
+            public static SchoolFoodServicesEligibilityTypeEnum FoodServiceEligibilityStatus =
+                SchoolFoodServicesEligibilityTypeEnum.Fullprice;
+            public static readonly HttpPostedFileBase TestingAccommodationFile = null;
+            public static readonly HttpPostedFileBase SpecialEducationFile = null;
+            public static readonly HttpPostedFileBase McKinneyVentoFile = null;
+            public static readonly HttpPostedFileBase TitleParticipationFile = null;
         }
     }
 }
