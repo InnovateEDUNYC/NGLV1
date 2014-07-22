@@ -12,5 +12,11 @@ namespace NGL.UiTests.Enrollment
         {
             return Find.Element(By.CssSelector("h2.title")).Text.Equals(AcademicDetailTitle);
         }
+
+        public ProgramStatusPage InputDetails(AcademicDetailModel academicDetailModel)
+        {
+            Input.Model(academicDetailModel);
+            return Navigate.To<ProgramStatusPage>(By.Id("submit-details"));
+        }
     }
 }

@@ -31,8 +31,8 @@ namespace NGL.Web.Models.Enrollment
                 RuleFor(pm => pm.LastName).NotEmpty().Length(1, 75);
                 RuleFor(pm => pm.Sex).NotNull();
                 RuleFor(pm => pm.RelationshipToStudent).NotNull();
-                RuleFor(pm => pm.EmailAddress).Length(0, 128);
-                RuleFor(pm => pm.TelephoneNumber).Length(0, 24);
+                RuleFor(pm => pm.EmailAddress).NotNull().Length(1, 128).EmailAddress();
+                RuleFor(pm => pm.TelephoneNumber).NotNull().Length(1, 24);
 
                 When(pm => !pm.SameAddressAsStudent, () =>
                 {
