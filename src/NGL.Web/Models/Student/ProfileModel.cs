@@ -12,9 +12,11 @@ namespace NGL.Web.Models.Student
 
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+        
+        [Display(Name = "Hispanic/Latino")]
         public bool HispanicLatinoEthnicity { get; set; }
         public string Race { get; set; }
-        public ProfileHomeLanguageModel ProfileHomeLanguageModel { get; set; }
+        public ProfileHomeLanguageModel HomeLanguage { get; set; }
 
         public string Address { get; set; }
         public string Address2 { get; set; }

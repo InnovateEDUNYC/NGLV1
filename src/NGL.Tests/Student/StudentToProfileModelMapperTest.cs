@@ -32,7 +32,7 @@ namespace NGL.Tests.Student
             profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
             profileModel.Sex.ShouldBe(((SexTypeEnum) student.SexTypeId).Humanize());
 
-            var studentProfileHomeLanguages = profileModel.ProfileHomeLanguageModel.HomeLanguages;
+            var studentProfileHomeLanguages = profileModel.HomeLanguage.HomeLanguages;
             studentProfileHomeLanguages.First().ShouldBe(
                 ((LanguageDescriptorEnum) student.StudentLanguages.First().LanguageDescriptorId).Humanize());
 
@@ -72,7 +72,7 @@ namespace NGL.Tests.Student
             profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
             profileModel.Sex.ShouldBe(((SexTypeEnum)student.SexTypeId).Humanize());
 
-            var studentProfileHomeLanguages = profileModel.ProfileHomeLanguageModel.HomeLanguages;
+            var studentProfileHomeLanguages = profileModel.HomeLanguage.HomeLanguages;
             studentProfileHomeLanguages.First().ShouldBe(
                 ((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId).Humanize());
 

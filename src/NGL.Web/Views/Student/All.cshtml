@@ -22,6 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.StudentUsi)
             </th>
+            <th>
+                
+            </th>
         </tr>
     </thead>
     
@@ -36,7 +39,10 @@
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
-                    @Html.ActionLink(item.StudentUsi.ToString(), "Index", "Student", new { usi = item.StudentUsi }, null)
+                    @Html.DisplayFor(modelItem => item.StudentUsi)
+                </td>
+                <td>
+                    @Html.ActionLink("Profile", "Index", "Student", new { usi = item.StudentUsi }, null)
                 </td>
             </tr>
         }

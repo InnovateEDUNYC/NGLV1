@@ -27,7 +27,7 @@ namespace NGL.Web.Models.Student
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
 
-            target.ProfileHomeLanguageModel = _studentToProfileHomeLanguageModelMapper.Build(source);
+            target.HomeLanguage = _studentToProfileHomeLanguageModelMapper.Build(source);
 
             var studentAddresses = source.StudentAddresses;
             
