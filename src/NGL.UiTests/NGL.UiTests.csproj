@@ -95,6 +95,7 @@
     <Compile Include="ClassPeriod\CanCreateClassPeriod.cs" />
     <Compile Include="ClassPeriod\ClassPeriodCreatePage.cs" />
     <Compile Include="ClassPeriod\ClassPeriodIndexPage.cs" />
+    <Compile Include="Enrollment\AcademicDetailPage.cs" />
     <Compile Include="Location\CanCreateLocation.cs" />
     <Compile Include="Location\LocationCreatePage.cs" />
     <Compile Include="Location\LocationIndexPage.cs" />

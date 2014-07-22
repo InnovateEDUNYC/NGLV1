@@ -86,9 +86,9 @@
             <PropertyRef Name="SchoolYear" />
           </Key>
           <Property Name="StudentUSI" Type="int" Nullable="false" />
-          <Property Name="ReadingScore" Type="decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="WritingScore" Type="decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="MathScore" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="ReadingScore" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="WritingScore" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="MathScore" Type="decimal" Precision="9" Scale="2" Nullable="false" />
           <Property Name="SchoolYear" Type="smallint" Nullable="false" />
           <Property Name="GradeLevelTypeId" Type="int" Nullable="false" />
           <Property Name="PerfomanceHistory" Type="nvarchar" MaxLength="4000" />
@@ -39909,9 +39909,9 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <PropertyRef Name="SchoolYear" />
           </Key>
           <Property Name="StudentUSI" Type="Int32" Nullable="false" />
-          <Property Name="ReadingScore" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
-          <Property Name="WritingScore" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
-          <Property Name="MathScore" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="ReadingScore" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="WritingScore" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="MathScore" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
           <Property Name="SchoolYear" Type="Int16" Nullable="false" />
           <Property Name="GradeLevelTypeId" Type="Int32" Nullable="false" />
           <Property Name="PerfomanceHistory" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />

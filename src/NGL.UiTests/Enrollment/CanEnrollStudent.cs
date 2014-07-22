@@ -16,24 +16,25 @@ namespace NGL.UiTests.Enrollment
     {
         private HomePage _homePage;
         private EnrollmentPage _enrollmentPage;
-        private StudentIndexPage _studentIndexPage;
-        private ProfilePage _profilePage;
+//        private StudentIndexPage _studentIndexPage;
+//        private ProfilePage _profilePage;
         private CreateStudentModel _createStudentModel;
         private CreateParentModel _createParentModel;
+        private AcademicDetailPage _academicDetailPage;
 
-        public void GivenIHaveLoggedIn()
+        public void IHaveLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void AndGivenIAmOnTheEnrollPage()
+        public void IAmOnTheEnrollPage()
         {
             _enrollmentPage = _homePage.TopMenu.GoToEnrollmentPage();
         }
 
-        public void WhenIHaveEnteredValidInputForAllFields()
+        public void IHaveEnteredValidInputForAllFields()
         {
             _createParentModel = new CreateParentModel
             {
@@ -65,27 +66,54 @@ namespace NGL.UiTests.Enrollment
                 FirstParent = _createParentModel
             };
 
-            _studentIndexPage = _enrollmentPage.Enroll(_createStudentModel);
+            _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
         }
 
-        public void AndWhenIViewTheStudentProfile()
+        private void IShouldArriveOnTheAcademicDetailPage()
         {
-            var studentUsi = _createStudentModel.StudentUsi.ToString();
-            _profilePage = _studentIndexPage.GoToProfilePage(studentUsi);
+            _academicDetailPage.IsTitleCorrect().ShouldBe(true);
         }
-
-        public void ThenIShouldBeAbleToViewTheStudenInfo()
-        {   
-            var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
-            allFieldsExist.ShouldBe(true);
-        }
+//
+//        public void AndWhenIViewTheStudentProfile()
+//        {
+//            var studentUsi = _createStudentModel.StudentUsi.ToString();
+//            _profilePage = _studentIndexPage.GoToProfilePage(studentUsi);
+//        }
+//
+//        public void IShouldBeAbleToViewTheStudenInfo()
+//        {
+//            var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
+//            allFieldsExist.ShouldBe(true);
+//        }
 
 
         [Fact]
         public void ShouldEnrollStudent()
         {
-            this.BDDfy();
+            this.Given(_ => IHaveLoggedIn())
+                .And(_ => IAmOnTheEnrollPage())
+                .When(_ => IHaveEnteredValidInputForAllFields())
+                .Then(_ => IShouldArriveOnTheAcademicDetailPage())
+//                .When(_ => IHaveInputAcademicHistory())
+//                .Then(_ => IShouldArriveOnTheProgramStatusPage())
+//                .When(_ => IHaveInputProgramStatus())
+//                .Then(_ => IShouldBeAbleToViewTheStudenInfo())
+                .BDDfy();
         }
 
+//        private void IHaveInputProgramStatus()
+//        {
+//            throw new System.NotImplementedException();
+//        }
+//
+//        private void IShouldArriveOnTheProgramStatusPage()
+//        {
+//            throw new System.NotImplementedException();
+//        }
+//
+//        private void IHaveInputAcademicHistory()
+//        {
+//            throw new System.NotImplementedException();
+//        }
     }
 }
