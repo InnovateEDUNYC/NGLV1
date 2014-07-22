@@ -5,18 +5,27 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (var form = Html.BeginNglForm("AddUser"))
+@using (var f = Html.BeginNglForm("AddUser"))
 {
     @Html.AntiForgeryToken()
-    using (var s = form.BeginSection("Create a new account"))
+
+    using (var s = f.BeginSection("Account Info"))
     {
-        @s.FieldFor(m => m.Username)    
-        @s.FieldFor(m => m.Password)    
-        @s.FieldFor(m => m.ConfirmPassword)    
+        @s.FieldFor(m => m.Username)
+        @s.FieldFor(m => m.Password)
+        @s.FieldFor(m => m.ConfirmPassword)
         @s.FieldFor(m => m.Role).HideEmptyItem()
+    }
+
+    using (var s = f.BeginSection("Staff Info")) 
+    { 
+        @s.FieldFor(m => m.StaffUSI)    
+        @s.FieldFor(m => m.FirstName)    
+        @s.FieldFor(m => m.LastName)    
+        @s.FieldFor(m => m.HispanicLatino)    
      }
 
-    using (var a = form.BeginNavigation())
+    using (var a = f.BeginNavigation())
     {
         @a.Submit("Register").Id("registerButton")
     }

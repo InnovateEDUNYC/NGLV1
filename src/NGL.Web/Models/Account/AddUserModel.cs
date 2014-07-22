@@ -17,7 +17,19 @@ namespace NGL.Web.Models.Account
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         public ApplicationRole Role { get; set; }
+
+        [Required]
+        public int? StaffUSI { get; set; }
+        
+        [Required]
+        [MaxLength(75)]
+        public string FirstName { get; set; }
+        
+        [Required]
+        [MaxLength(75)]
+        public string LastName { get; set; }
+        
+        public bool HispanicLatino { get; set; }
     }
 }
