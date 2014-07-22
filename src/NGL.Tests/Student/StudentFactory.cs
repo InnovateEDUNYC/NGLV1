@@ -5,27 +5,28 @@ namespace NGL.Tests.Student
 {
     public static class StudentFactory
     {
-        public const int StudentUsi = 1789;
-        public const string FirstName = "Bob";
-        public const string LastName = "Jenkins";
-        public const int Sex = (int) SexTypeEnum.Male;
-        public static readonly DateTime BirthDate = new DateTime(2000, 2, 2);
-        public const bool HispanicLatinoEthnicity = true;
-        public const int Race = (int)RaceTypeEnum.NativeHawaiianPacificIslander;
-
-        public const int PrimaryParentRelationType = (int) RelationTypeEnum.Father;
-        public const bool LivesWithPrimaryParent = true;
+        private const int StudentUsi = 1789;
+        private const string FirstName = "Bob";
+        private const string LastName = "Jenkins";
+        private const int Sex = (int) SexTypeEnum.Male;
+        private static readonly DateTime BirthDate = new DateTime(2000, 2, 2);
+        private const bool HispanicLatinoEthnicity = true;
+        private const int Race = (int) RaceTypeEnum.NativeHawaiianPacificIslander;
+        private const int PrimaryParentRelationType = (int) RelationTypeEnum.Father;
 
         public static Web.Data.Entities.Student CreateStudentWithOneParent()
+        {
+            return CreateStudentWithOneParent(ParentFactory.CreateParentWithoutAddress(), true);
+        }
+
+        public static Web.Data.Entities.Student CreateStudentWithOneParent(Parent parent, bool livesWith)
         {
             var student = CreateStudent();
             student.StudentRaces.Add(CreateStudentRace());
             student.StudentAddresses.Add(StudentAddressFactory.CreateStudentAddress());
             student.StudentLanguages.Add(StudentLanguageFactory.CreateStudentLanguageWithHomeUse());
-
-            var parent = ParentFactory.CreateParentWithoutAddress();
-
-            var studentParentAssociation = CreateStudentParentAssociation(parent, student);
+            
+            var studentParentAssociation = CreateStudentParentAssociation(parent, student, livesWith);
             student.StudentParentAssociations.Add(studentParentAssociation);
             parent.StudentParentAssociations.Add(studentParentAssociation);
 
@@ -53,12 +54,12 @@ namespace NGL.Tests.Student
             };
         }
 
-        private static StudentParentAssociation CreateStudentParentAssociation(Parent parent, Web.Data.Entities.Student student)
+        private static StudentParentAssociation CreateStudentParentAssociation(Parent parent, Web.Data.Entities.Student student, bool livesWith)
         {
             return new StudentParentAssociation
             {
                 RelationTypeId = PrimaryParentRelationType,
-                LivesWith = LivesWithPrimaryParent,
+                LivesWith = livesWith,
                 Parent = parent,
                 Student = student
             };

@@ -8,6 +8,6 @@
         public string RelationshipToStudent { get; set; }
         public string TelephoneNumber { get; set; }
         public string EmailAddress { get; set; }
-        public bool SameAddressAsStudent { get; set; }
+        public bool? SameAddressAsStudent { get; set; }
     }
 }

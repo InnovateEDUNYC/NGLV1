@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.Linq;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Student
 {
@@ -10,6 +11,7 @@ namespace NGL.Tests.Student
         public const string PhoneNumber = "928-326-4567";
         private const int PhoneNumberType = (int) TelephoneNumberTypeEnum.Emergency1;
         public const string Email = "leroy@jenk.net";
+        private const bool DoesNotLiveWithStudent = false;
 
 
         public static Parent CreateParentWithoutAddress()
@@ -17,6 +19,15 @@ namespace NGL.Tests.Student
             var parent = CreateParent();
             parent.ParentTelephones.Add(CreateParentPhoneNumber());
             parent.ParentElectronicMails.Add(CreateParentEmailAddress());
+
+            return parent;
+        }
+
+        public static Parent CreateParentWithAddress()
+        {
+            var parent = CreateParentWithoutAddress();
+            var parentAddress = ParentAddressFactory.CreateParentHomeAddress();
+            parent.ParentAddresses.Add(parentAddress);
 
             return parent;
         }

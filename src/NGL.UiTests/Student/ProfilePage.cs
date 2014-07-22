@@ -25,14 +25,19 @@ namespace NGL.UiTests.Student
                 Browser.PageSource.Contains(createStudentModel.PostalCode);
 
 
-            var parentFields = 
+            var parentFields =
                 Browser.PageSource.Contains(createStudentModel.FirstParent.FirstName) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.LastName) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.Sex.Humanize()) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.RelationshipToStudent.Humanize()) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.TelephoneNumber) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.EmailAddress) &&
-                Browser.PageSource.Contains(createStudentModel.FirstParent.SameAddressAsStudent.ToString());
+                Browser.PageSource.Contains(createStudentModel.FirstParent.SameAddressAsStudent.ToString()) &&
+                Browser.PageSource.Contains(createStudentModel.FirstParent.Address) &&
+                Browser.PageSource.Contains(createStudentModel.FirstParent.Address2) &&
+                Browser.PageSource.Contains(createStudentModel.FirstParent.City) &&
+                Browser.PageSource.Contains(createStudentModel.FirstParent.State.Humanize()) &&
+                Browser.PageSource.Contains(createStudentModel.FirstParent.PostalCode);
 
             return studentFields && parentFields;
         }
