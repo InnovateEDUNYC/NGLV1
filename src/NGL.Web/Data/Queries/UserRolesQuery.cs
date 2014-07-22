@@ -4,9 +4,9 @@ using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Data.Queries
 {
-    public class UserRolesQuery : IQuery<AspNetUser>
+    public class StaffUserQuery : IQuery<Staff>
     {
-        public IQueryable<AspNetUser> ApplyPredicate(IQueryable<AspNetUser> inputSet)
+        public IQueryable<Staff> ApplyPredicate(IQueryable<Staff> inputSet)
         {
             return inputSet;
         }

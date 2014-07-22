@@ -1160,6 +1160,7 @@
         <AssociationConnector Association="NGLModel.FK_StudentAcademicDetails_SchoolYear" />
         <AssociationConnector Association="NGLModel.FK_StudentAcademicDetails_Student1" />
         <AssociationConnector Association="NGLModel.AspNetUserRoles" />
+        <AssociationConnector Association="NGLModel.FK_dbo_AspNetUsers_edfi_Staff_StaffUSI" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

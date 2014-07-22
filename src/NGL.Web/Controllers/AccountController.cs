@@ -65,7 +65,7 @@ namespace NGL.Web.Controllers
 
         public virtual ActionResult Users()
         {
-            var users = _genericRepository.Query(new UserRolesQuery(), u => u.AspNetRoles).ToList();
+            var users = _genericRepository.Query(new StaffUserQuery(), u => u.AspNetRoles).ToList();
             var userModels = users.Select(_aspNetUserToUserModelMapper.Build).ToList();
 
             return View(userModels);
