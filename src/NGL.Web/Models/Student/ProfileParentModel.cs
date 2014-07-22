@@ -9,5 +9,6 @@
         public string TelephoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public bool? SameAddressAsStudent { get; set; }
+        public ProfileParentAddressModel ProfileParentAddressModel { get; set; }
     }
 }

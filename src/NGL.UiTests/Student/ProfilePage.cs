@@ -32,7 +32,6 @@ namespace NGL.UiTests.Student
                 Browser.PageSource.Contains(createStudentModel.FirstParent.RelationshipToStudent.Humanize()) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.TelephoneNumber) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.EmailAddress) &&
-                Browser.PageSource.Contains(createStudentModel.FirstParent.SameAddressAsStudent.ToString()) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.Address) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.Address2) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.City) &&

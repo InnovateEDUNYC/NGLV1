@@ -26,6 +26,7 @@ namespace NGL.Tests.Student
             profileModel.FirstName.ShouldBe(student.FirstName);
             profileModel.LastName.ShouldBe(student.LastSurname);
             profileModel.BirthDate.ShouldBe(student.BirthDate);
+            
             var studentRace = student.StudentRaces.First();
             profileModel.Race.ShouldBe(((RaceTypeEnum) studentRace.RaceTypeId).Humanize());
             profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
@@ -41,6 +42,7 @@ namespace NGL.Tests.Student
             profileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId).Humanize());
             profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
             profileParentModel.EmailAddress.ShouldBe(parent.ParentElectronicMails.First().ElectronicMailAddress);
+           
             var studentParentAssociation = student.StudentParentAssociations.First();
             profileParentModel.RelationshipToStudent.ShouldBe(
                 ((RelationTypeEnum) studentParentAssociation.RelationTypeId ).Humanize());
@@ -48,7 +50,7 @@ namespace NGL.Tests.Student
         }
 
         [Fact]
-        public void ShouldMapStudentToProfileModelWithAddress()
+        public void ShouldMapStudentToProfileModelWithDifferentParentAddress()
         {
             var parent = ParentFactory.CreateParentWithAddress();
             var student = StudentFactory.CreateStudentWithOneParent(parent, false);
@@ -64,6 +66,7 @@ namespace NGL.Tests.Student
             profileModel.FirstName.ShouldBe(student.FirstName);
             profileModel.LastName.ShouldBe(student.LastSurname);
             profileModel.BirthDate.ShouldBe(student.BirthDate);
+           
             var studentRace = student.StudentRaces.First();
             profileModel.Race.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
             profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
@@ -79,12 +82,21 @@ namespace NGL.Tests.Student
             profileParentModel.Sex.ShouldBe(((SexTypeEnum)parent.SexTypeId).Humanize());
             profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
             profileParentModel.EmailAddress.ShouldBe(parent.ParentElectronicMails.First().ElectronicMailAddress);
+
+            var profileParentAddressModel = profileModel.ProfileParentModel.ProfileParentAddressModel;
+            var parentHomeAddress = parent.ParentAddresses.First();
+            profileParentAddressModel.Address.ShouldBe(parentHomeAddress.StreetNumberName);
+            profileParentAddressModel.Address2.ShouldBe(parentHomeAddress.ApartmentRoomSuiteNumber);
+            profileParentAddressModel.City.ShouldBe(parentHomeAddress.City);
+            profileParentAddressModel.State.ShouldBe(((StateAbbreviationTypeEnum) parentHomeAddress.StateAbbreviationTypeId).Humanize());
+            profileParentAddressModel.PostalCode.ShouldBe(parentHomeAddress.PostalCode);
+
             var studentParentAssociation = student.StudentParentAssociations.First();
             profileParentModel.RelationshipToStudent.ShouldBe(
                 ((RelationTypeEnum)studentParentAssociation.RelationTypeId).Humanize());
             profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
 
-            // does live the parent....
+            
         }
     }
 }

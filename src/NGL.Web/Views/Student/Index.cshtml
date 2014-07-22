@@ -156,13 +156,48 @@
         <dd>
             @Html.DisplayTextFor(model => model.ProfileParentModel.EmailAddress)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ProfileParentModel.SameAddressAsStudent)
-        </dt>
-
-        <dd>
-            @Html.DisplayTextFor(model => model.ProfileParentModel.SameAddressAsStudent)
-        </dd>
     </dl>
+   
+        @if (Model.ProfileParentModel.SameAddressAsStudent == false)
+        {
+            <h4>Parent Address</h4>
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address2)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address2)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.City)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.City)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.State)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.State)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.PostalCode)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.PostalCode)
+                </dd>
+            </dl>
+        }
+        else
+        {
+            <h4>Parent Address same as student</h4>
+        }
+ 
     <hr />
 </div>
