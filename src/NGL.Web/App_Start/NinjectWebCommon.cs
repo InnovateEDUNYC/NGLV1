@@ -105,6 +105,7 @@ namespace NGL.Web
                 };
             ModelValidatorProviders.Providers.Add(fluentValidationModelValidatorProvider);
             DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+            ModelMetadataProviders.Current = new CustomModelMetadataProvider(factory);
         }        
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using ChameleonForms;
 using NGL.Web.Controllers;
+using NGL.Web.Infrastructure;
 using StackExchange.Profiling;
 
 namespace NGL.Web
@@ -18,8 +19,6 @@ namespace NGL.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            HumanizedLabels.Register();
         }
 
         protected void Application_BeginRequest()
