@@ -9,14 +9,8 @@ namespace NGL.Web.Models.Student
     {
         public override void Map(Data.Entities.Student source, ProfileHomeLanguageModel target)
         {
-            target.HomeLanguages = new List<string>();
-            var homeLanguages = GetAllHomeLanguagesOfStudent(source);
-
-            foreach (var language in homeLanguages)
-            {
-                var humanizedLanguage = ((LanguageDescriptorEnum) language.LanguageDescriptorId).Humanize();
-                target.HomeLanguages.Add(humanizedLanguage);
-            }
+            var homeLanguage = GetAllHomeLanguagesOfStudent(source).First();
+            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
         }
 
         private IEnumerable<StudentLanguage> GetAllHomeLanguagesOfStudent(Data.Entities.Student source)

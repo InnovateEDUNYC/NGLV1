@@ -64,15 +64,8 @@
         <dt>
             @Html.DisplayNameFor(model => model.HomeLanguage)
         </dt>    
-            @{
-                foreach (var homeLanguage in Model.HomeLanguage.HomeLanguages)
-                {
-                <dd>
-                    @homeLanguage
-                </dd>            
-                }
-            }
         <dd>
+            @Html.DisplayFor(model => model.HomeLanguage.HomeLanguage)
         </dd>
     </dl>
     <h4>Home Address</h4>
