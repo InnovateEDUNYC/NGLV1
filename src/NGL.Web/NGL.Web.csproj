@@ -1600,9 +1600,7 @@
     <Compile Include="Data\Queries\CourseByCourseCodeQuery.cs" />
     <Compile Include="Data\Queries\SessionByTermTypeAndSchoolYearQuery.cs" />
     <Compile Include="Data\Queries\StudentByUsiQuery.cs" />
-    <Compile Include="Data\Repositories\ILookupRepository.cs" />
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
-    <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Infrastructure\ChameleonForms\FieldGeneratorHandlersRouter.cs" />

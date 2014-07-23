@@ -82,7 +82,6 @@ namespace NGL.Web
                 .ToMethod<UserManager<ApplicationUser>>(c =>
                     new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(c.Kernel.Get<ApplicationDbContext>())));
 
-            kernel.Bind<ILookupRepository>().To<LookupRepository>();
             kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
             kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
@@ -96,16 +95,6 @@ namespace NGL.Web
                     .SelectAllTypes()
                     .InheritedFrom(typeof (IMapper<,>))
                     .BindDefaultInterfaces());
-
-            var factory = new NinjectValidatorFactory(kernel);
-            var fluentValidationModelValidatorProvider =
-                new FluentValidationModelValidatorProvider(factory)
-                {
-                    AddImplicitRequiredValidator = false
-                };
-            ModelValidatorProviders.Providers.Add(fluentValidationModelValidatorProvider);
-            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
-            ModelMetadataProviders.Current = new CustomModelMetadataProvider(factory);
         }        
     }
 }
