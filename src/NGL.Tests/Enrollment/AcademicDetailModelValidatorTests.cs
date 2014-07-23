@@ -26,18 +26,13 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldHaveErrorsIfModelNotValidWithNulls()
         {
-            var academicDetailModel = new AcademicDetailModel
-            {
-                Reading = null,
-                Writing = null,
-                Math = null,
-                AnticipatedGrade = null,
-            };
+            var academicDetailModel = new AcademicDetailModel();
 
             _validator.ShouldHaveValidationErrorFor(adm => adm.Reading, academicDetailModel);
             _validator.ShouldHaveValidationErrorFor(adm => adm.Writing, academicDetailModel);
             _validator.ShouldHaveValidationErrorFor(adm => adm.Math, academicDetailModel);
             _validator.ShouldHaveValidationErrorFor(adm => adm.AnticipatedGrade, academicDetailModel);
+            _validator.ShouldHaveValidationErrorFor(adm => adm.EntryDate, academicDetailModel);
         }
 
         [Fact]

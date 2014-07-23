@@ -3,6 +3,7 @@ using System.Linq;
 using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.Validators;
+using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure;
@@ -24,6 +25,7 @@ namespace NGL.Web.Models.Enrollment
             RuleFor(adm => adm.Writing).NotNull().GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
             RuleFor(adm => adm.AnticipatedGrade).NotNull();
             RuleFor(adm => adm.PerformanceHistory).Length(0, 4000);
+            RuleFor(adm => adm.EntryDate).NotNull();
         }
 
         public override ValidationResult Validate(ValidationContext<AcademicDetailModel> context)
