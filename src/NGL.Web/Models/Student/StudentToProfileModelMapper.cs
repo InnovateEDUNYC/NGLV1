@@ -7,14 +7,14 @@ namespace NGL.Web.Models.Student
     public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
         private readonly IMapper<Data.Entities.Student, ProfileHomeLanguageModel> _studentToProfileHomeLanguageModelMapper;
-        private readonly IMapper<Data.Entities.Student, ProfileParentModel> _studentToProfileParentModelMapper;
+        private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
 
         public StudentToProfileModelMapper(
             IMapper<Data.Entities.Student, ProfileHomeLanguageModel> studentToProfileHomeLanguageModelMapper, 
-            IMapper<Data.Entities.Student, ProfileParentModel> studentToProfileParentModelMapper)
+            IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper)
         {
             _studentToProfileHomeLanguageModelMapper = studentToProfileHomeLanguageModelMapper;
-            _studentToProfileParentModelMapper = studentToProfileParentModelMapper;
+            _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
         }
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
@@ -29,8 +29,8 @@ namespace NGL.Web.Models.Student
 
             target.HomeLanguage = _studentToProfileHomeLanguageModelMapper.Build(source);
 
+
             var studentAddresses = source.StudentAddresses;
-            
             var studentAddress = studentAddresses.First(address => address.AddressTypeId == (int)AddressTypeEnum.Home);
             target.Address = studentAddress.StreetNumberName;
             target.Address2 = studentAddress.ApartmentRoomSuiteNumber;
@@ -38,7 +38,16 @@ namespace NGL.Web.Models.Student
             target.State = ((StateAbbreviationTypeEnum) studentAddress.StateAbbreviationTypeId).Humanize();
             target.PostalCode = studentAddress.PostalCode;
 
-            target.ProfileParentModel = _studentToProfileParentModelMapper.Build(source);
+
+            var studentParentAssociations = source.StudentParentAssociations;
+            var parent1 = studentParentAssociations.First().Parent;
+            target.ProfileParentModel = _parentToProfileParentModelMapper.Build(parent1);
+
+            if (studentParentAssociations.Count == 2)
+            {
+                var parent2 = studentParentAssociations.ElementAt(1).Parent;
+                target.SecondProfileParentModel = _parentToProfileParentModelMapper.Build(parent2);
+            }
         }
     }
 }

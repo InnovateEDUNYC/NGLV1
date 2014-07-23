@@ -1653,8 +1653,8 @@
     <Compile Include="Models\Session\SessionToIndexModelMapper.cs" />
     <Compile Include="Models\Student\IndexModel.cs" />
     <Compile Include="Models\Session\CreateModelToSessionMapper.cs" />
-    <Compile Include="Models\Student\StudentToProfileParentAddressModelMapper.cs" />
-    <Compile Include="Models\Student\StudentToProfileParentModelMapper.cs" />
+    <Compile Include="Models\Student\ParentToProfileParentAddressModelMapper.cs" />
+    <Compile Include="Models\Student\ParentToProfileParentModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
