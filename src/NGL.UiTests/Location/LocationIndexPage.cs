@@ -9,7 +9,7 @@ namespace NGL.UiTests.Location
 
         public LocationCreatePage GoToCreatePage()
         {
-            return Navigate.To<LocationCreatePage>(By.LinkText("Create New Classroom Location"));
+            return Navigate.To<LocationCreatePage>(By.LinkText("Add Classroom"));
         }
 
         public bool LocationExists(CreateModel createModel)

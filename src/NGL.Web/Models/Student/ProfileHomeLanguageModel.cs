@@ -7,6 +7,6 @@ namespace NGL.Web.Models.Student
 {
     public class ProfileHomeLanguageModel
     {
-        public ICollection<string> HomeLanguages { get; set; }
+        public string HomeLanguage { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace NGL.UiTests.ClassPeriod
 
         public ClassPeriodCreatePage GoToCreatePage()
         {
-            return Navigate.To<ClassPeriodCreatePage>(By.LinkText("Create New Period"));
+            return Navigate.To<ClassPeriodCreatePage>(By.LinkText("Add Period"));
         }
 
         public bool ClassPeriodExists(CreateModel createModel)

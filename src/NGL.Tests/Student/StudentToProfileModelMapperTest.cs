@@ -32,8 +32,8 @@ namespace NGL.Tests.Student
             profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
             profileModel.Sex.ShouldBe(((SexTypeEnum) student.SexTypeId).Humanize());
 
-            var studentProfileHomeLanguages = profileModel.ProfileHomeLanguageModel.HomeLanguages;
-            studentProfileHomeLanguages.First().ShouldBe(
+            var studentProfileHomeLanguage = profileModel.HomeLanguage.HomeLanguage;
+            studentProfileHomeLanguage.ShouldBe(
                 ((LanguageDescriptorEnum) student.StudentLanguages.First().LanguageDescriptorId).Humanize());
 
             var profileParentModel = profileModel.ProfileParentModel;
@@ -44,7 +44,7 @@ namespace NGL.Tests.Student
             profileParentModel.EmailAddress.ShouldBe(parent.ParentElectronicMails.First().ElectronicMailAddress);
            
             var studentParentAssociation = student.StudentParentAssociations.First();
-            profileParentModel.RelationshipToStudent.ShouldBe(
+            profileParentModel.Relationship.ShouldBe(
                 ((RelationTypeEnum) studentParentAssociation.RelationTypeId ).Humanize());
             profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
         }
@@ -72,8 +72,8 @@ namespace NGL.Tests.Student
             profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
             profileModel.Sex.ShouldBe(((SexTypeEnum)student.SexTypeId).Humanize());
 
-            var studentProfileHomeLanguages = profileModel.ProfileHomeLanguageModel.HomeLanguages;
-            studentProfileHomeLanguages.First().ShouldBe(
+            var studentProfileHomeLanguage = profileModel.HomeLanguage.HomeLanguage;
+            studentProfileHomeLanguage.ShouldBe(
                 ((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId).Humanize());
 
             var profileParentModel = profileModel.ProfileParentModel;
@@ -92,7 +92,7 @@ namespace NGL.Tests.Student
             profileParentAddressModel.PostalCode.ShouldBe(parentHomeAddress.PostalCode);
 
             var studentParentAssociation = student.StudentParentAssociations.First();
-            profileParentModel.RelationshipToStudent.ShouldBe(
+            profileParentModel.Relationship.ShouldBe(
                 ((RelationTypeEnum)studentParentAssociation.RelationTypeId).Humanize());
             profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
 
