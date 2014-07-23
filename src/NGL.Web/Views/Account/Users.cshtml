@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<NGL.Web.Models.Account.UserModel>
 @{
     ViewBag.Title = "Users";
-    var username = @Html.DisplayNameFor(m => m.Username);
-    var role = @Html.DisplayNameFor(m => m.Role);
 }
 
 <h2>Users</h2>
@@ -13,16 +11,24 @@
 <table class="table table-striped" id="users">
     <thead>
         <tr>
-            <th data-property-name="@username">@username</th>
-            <th data-property-name="@role">@role</th>
+            <th>Staff USI</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Hispanic/Latino</th>
+            <th>Username</th>
+            <th>Role</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
             <tr>
-                <td data-property-name="@username">@user.Username</td>
-                <td data-property-name="@role">@user.Role</td>
+                <td class="staffusi">@user.StaffUSI</td>
+                <td class="firstname">@user.FirstName</td>
+                <td class="lastname">@user.LastName</td>
+                <td class="hispanicLatino">@user.HispanicLatino</td>
+                <td class="username">@user.Username</td>
+                <td class="role">@user.Role</td>
             </tr>
         }
     </tbody>

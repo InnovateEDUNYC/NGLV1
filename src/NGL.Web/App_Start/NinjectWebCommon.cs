@@ -77,19 +77,25 @@ namespace NGL.Web
             kernel.Bind<INglDbContext>().To<NglDbContext>().WithConstructorArgument(ConfigManager.EdmxConnectionString);
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
+            kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
+
             kernel
                 .Bind<UserManager<ApplicationUser>>()
                 .ToMethod<UserManager<ApplicationUser>>(c =>
                     new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(c.Kernel.Get<ApplicationDbContext>())));
 
-            kernel.Bind<ISchoolRepository>().To<SchoolRepository>();
-            kernel.Bind<IGenericRepository>().To<GenericRepository>();
-            kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
+            kernel.Bind(x => x
+                .FromThisAssembly()
+                .SelectAllTypes()
+                .InheritedFrom<IRepositoryBase>()
+                .BindAllInterfaces());
+
             kernel.Bind(
             x => x.FromThisAssembly()
                 .SelectAllTypes()
                 .InheritedFrom<IValidator>()
                 .BindDefaultInterfaces());
+
             kernel.Bind(
                 x => x.FromThisAssembly()
                     .SelectAllTypes()

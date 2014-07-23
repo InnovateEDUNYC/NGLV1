@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Account;
 
@@ -17,18 +17,21 @@ namespace NGL.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IGenericRepository _genericRepository;
-        private readonly IMapper<AspNetUser, UserModel> _aspNetUserToUserModelMapper;
+        private readonly IStaffRepository _staffRepository;
+        private readonly IMapper<Staff, UserModel> _staffToUserModelMapper;
         private readonly IMapper<AddUserModel, Staff> _addUserModelToStaffMapper;
 
         public AccountController(
             UserManager<ApplicationUser> userManager, 
             IGenericRepository genericRepository, 
-            IMapper<AspNetUser, UserModel> aspNetUserToUserModelMapper,
+            IStaffRepository staffRepository,
+            IMapper<Staff, UserModel> staffToUserModelMapper,
             IMapper<AddUserModel, Staff> addUserModelToStaffMapper)
         {
             _userManager = userManager;
             _genericRepository = genericRepository;
-            _aspNetUserToUserModelMapper = aspNetUserToUserModelMapper;
+            _staffRepository = staffRepository;
+            _staffToUserModelMapper = staffToUserModelMapper;
             _addUserModelToStaffMapper = addUserModelToStaffMapper;
         }
 
@@ -65,9 +68,8 @@ namespace NGL.Web.Controllers
 
         public virtual ActionResult Users()
         {
-            var users = _genericRepository.Query(new StaffUserQuery(), u => u.AspNetRoles).ToList();
-            var userModels = users.Select(_aspNetUserToUserModelMapper.Build).ToList();
-
+            var users = _staffRepository.GetStaffWithUsers();
+            var userModels = users.Select(_staffToUserModelMapper.Build).ToList();
             return View(userModels);
         }
 

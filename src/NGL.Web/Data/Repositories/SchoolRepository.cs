@@ -5,7 +5,7 @@ using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Data.Repositories
 {
-    class SchoolRepository : RepositoryBase, ISchoolRepository
+    public class SchoolRepository : RepositoryBase, ISchoolRepository
     {
         public SchoolRepository(INglDbContext dbContext) : base(dbContext)
         {
