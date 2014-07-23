@@ -74,45 +74,6 @@ namespace NGL.UiTests
             public const int OptimalNumberOfSeats = 30;
         }
 
-        public static class StudentJane
-        {
-            public const int StudentUsi = 123240;
-            public const string FirstName = "Jane";
-            public const string LastName = "Novak";
-            public const SexTypeEnum Sex = SexTypeEnum.Female;
-            public static DateTime? BirthDate = new DateTime(1999, 1, 5);
-            public const bool HispanicLatinoEthnicity = true;
-            public const RaceTypeEnum Race = RaceTypeEnum.AmericanIndianAlaskanNative;
-            public const string Address = "123 Oak St";
-            public const string Address2 = "1A";
-            public const string City = "Springfield";
-            public const StateAbbreviationTypeEnum State = StateAbbreviationTypeEnum.CA;
-            public const string PostalCode = "6000";
-            public const LanguageDescriptorEnum HomeLanguage = LanguageDescriptorEnum.English;
-        }
-
-        public static class StudentJanesDad
-        {
-            public const string FirstName = "Roberto";
-            public const string LastName = "Mayorga";
-            public const SexTypeEnum Sex = SexTypeEnum.Male;
-            public const RelationTypeEnum RelationshipToStudent = RelationTypeEnum.Father;
-            public const bool MakeThisPrimaryContact = true;
-            public const string TelephoneNumber = "123-4567";
-            public const string EmailAddress = "roberto@mail.co";
-        }
-
-        public static class StudentJanesMom
-        {
-            public const string FirstName = "Maria";
-            public const string LastName = "Mayorga";
-            public const SexTypeEnum Sex = SexTypeEnum.Female;
-            public const RelationTypeEnum RelationshipToStudent = RelationTypeEnum.Mother;
-            public const bool MakeThisPrimaryContact = false;
-            public const string TelephoneNumber = "439-4067";
-            public const string EmailAddress = "maria@mail.co";
-            public const bool SameAddressAsStudent = true;
-        }
         public static class JanesAcademicDetails
         {
             public static decimal? Reading = 88.88m;
@@ -123,7 +84,7 @@ namespace NGL.UiTests
             public const string PerformanceHistory = "Needs writing practice";
             public static HttpPostedFileBase PerformanceHistoryFile = null;
             public static DateTime? EntryDate = new DateTime(2001, 1, 1);
-            public static int StudentUsi = StudentJane.StudentUsi;
+            public static int StudentUsi = 123240;
         }
 
         public static class JanesProgramStatus

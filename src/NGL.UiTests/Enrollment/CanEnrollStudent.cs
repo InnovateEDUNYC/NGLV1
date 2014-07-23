@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Shared;
+﻿using System;
+using NGL.UiTests.Shared;
 using NGL.UiTests.Student;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
@@ -21,7 +22,6 @@ namespace NGL.UiTests.Enrollment
         private ProfilePage _profilePage;
         private ProgramStatusPage _programStatusPage;
         private CreateStudentModel _createStudentModel;
-        private CreateParentModel _createParentModel;
         private AcademicDetailPage _academicDetailPage;
         private CreateParentModel _createParentModelTwo;
 
@@ -39,40 +39,8 @@ namespace NGL.UiTests.Enrollment
 
         public void IHaveEnteredValidInputForAllFields()
         {
-            _createParentModel = ParentModelFactory.CreateParentWithAddress();
-            
+            _createStudentModel = StudentModelFactory.CreateStudent();
 
-            _createParentModelTwo = new CreateParentModel
-            {
-                FirstName = ObjectMother.StudentJanesMom.FirstName,
-                LastName = ObjectMother.StudentJanesMom.LastName,
-                Sex = ObjectMother.StudentJanesMom.Sex,
-                RelationshipToStudent = ObjectMother.StudentJanesMom.RelationshipToStudent,
-                MakeThisPrimaryContact = ObjectMother.StudentJanesMom.MakeThisPrimaryContact,
-                TelephoneNumber = ObjectMother.StudentJanesMom.TelephoneNumber,
-                EmailAddress = ObjectMother.StudentJanesMom.EmailAddress,
-                SameAddressAsStudent = ObjectMother.StudentJanesMom.SameAddressAsStudent,
-            };
-
-            _createStudentModel = new CreateStudentModel
-            {
-                StudentUsi = ObjectMother.StudentJane.StudentUsi,
-                FirstName = ObjectMother.StudentJane.FirstName,
-                LastName = ObjectMother.StudentJane.LastName,
-                Sex = ObjectMother.StudentJane.Sex,
-                BirthDate = ObjectMother.StudentJane.BirthDate,
-                HispanicLatinoEthnicity = ObjectMother.StudentJane.HispanicLatinoEthnicity,
-                Race = ObjectMother.StudentJane.Race,
-                Address = ObjectMother.StudentJane.Address,
-                Address2 = ObjectMother.StudentJane.Address2,
-                City = ObjectMother.StudentJane.City,
-                State = ObjectMother.StudentJane.State,
-                PostalCode = ObjectMother.StudentJane.PostalCode,
-                HomeLanguage = ObjectMother.StudentJane.HomeLanguage,
-                AddSecondParent = true,
-                FirstParent = _createParentModel,
-                SecondParent = _createParentModelTwo
-            };
 
             _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
         }
