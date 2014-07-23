@@ -14,7 +14,7 @@ namespace NGL.Web.Models.Student
             target.FirstName = parent.FirstName;
             target.LastName = parent.LastSurname;
             target.Sex = ((SexTypeEnum) parent.SexTypeId).Humanize();
-            target.RelationshipToStudent = ((RelationTypeEnum) studentParentAssociation.RelationTypeId).Humanize();
+            target.Relationship = ((RelationTypeEnum) studentParentAssociation.RelationTypeId).Humanize();
             target.TelephoneNumber = parent.ParentTelephones.First().TelephoneNumber;
             target.EmailAddress = parent.ParentElectronicMails.First().ElectronicMailAddress;
             target.SameAddressAsStudent = (bool) studentParentAssociation.LivesWith;
