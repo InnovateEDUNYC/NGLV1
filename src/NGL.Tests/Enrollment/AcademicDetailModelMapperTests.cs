@@ -11,6 +11,13 @@ namespace NGL.Tests.Enrollment
         readonly MapperBase<AcademicDetailModel, StudentAcademicDetail> _mapper = new AdademicDetailModelToAcademicDetailMapper();
 
         [Fact]
+        public void ShouldMapAcademicDetailModelToStudentSchoolAssociation()
+        {
+            var academicDetailModel = AcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
+            
+        }
+
+        [Fact]
         public void ShouldMapAcademicDetailModelToAcademicDetailEntity()
         {
             var academicDetailModel = AcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();

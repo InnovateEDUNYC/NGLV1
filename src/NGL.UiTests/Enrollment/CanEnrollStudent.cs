@@ -3,6 +3,8 @@ using NGL.UiTests.Student;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
 using TestStack.BDDfy;
+using TestStack.Seleno.Configuration;
+using TestStack.Seleno.PageObjects.Actions;
 using Xunit;
 
 namespace NGL.UiTests.Enrollment
@@ -96,14 +98,15 @@ namespace NGL.UiTests.Enrollment
         private void IHaveInputAcademicDetails()
         {
             var academicDetailModel = new AcademicDetailModel
-            {
+            {   StudentUsi = ObjectMother.JanesAcademicDetails.StudentUsi,
                 Reading = ObjectMother.JanesAcademicDetails.Reading,
                 Writing = ObjectMother.JanesAcademicDetails.Writing,
                 Math = ObjectMother.JanesAcademicDetails.Math,
                 AnticipatedGrade = ObjectMother.JanesAcademicDetails.AnticipatedGrade,
                 SchoolYear = ObjectMother.JanesAcademicDetails.SchoolYear,
+                EntryDate = ObjectMother.JanesAcademicDetails.EntryDate,
                 PerformanceHistory = ObjectMother.JanesAcademicDetails.PerformanceHistory,
-                PerformanceHistoryFile = ObjectMother.JanesAcademicDetails.PerformanceHistoryFile
+                PerformanceHistoryFile = ObjectMother.JanesAcademicDetails.PerformanceHistoryFile,
             };
 
             _programStatusPage = _academicDetailPage.InputDetails(academicDetailModel);

@@ -33,6 +33,13 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
@@ -47,6 +54,7 @@
       <HintPath>..\packages\Shouldly.2.1.1\lib\net40\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -64,6 +72,7 @@
     <Compile Include="ClassPeriod\MapperTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
     <Compile Include="Enrollment\AcademicDetailModelFactory.cs" />
+    <Compile Include="Enrollment\AcademicDetailModelToStudentSchoolAssociationMapperTest.cs" />
     <Compile Include="Enrollment\AcademicDetailModelValidatorTests.cs" />
     <Compile Include="Enrollment\AcademicDetailModelMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentAddressMapperTests.cs" />

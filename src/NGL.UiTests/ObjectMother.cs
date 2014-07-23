@@ -128,6 +128,8 @@ namespace NGL.UiTests
             public const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2014;
             public const string PerformanceHistory = "Needs writing practice";
             public static HttpPostedFileBase PerformanceHistoryFile = null;
+            public static DateTime? EntryDate = new DateTime(2001, 1, 1);
+            public static int StudentUsi = StudentJane.StudentUsi;
         }
 
         public static class JanesProgramStatus

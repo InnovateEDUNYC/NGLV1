@@ -16,12 +16,14 @@ namespace NGL.Web.Controllers
         private readonly IMapper<CreateStudentModel, Student> _enrollmentMapper;
         private readonly IMapper<EnterProgramStatusModel, StudentProgramStatus> _programStatusMapper;
         private readonly IFileUploader _fileUploader;
+        private readonly IMapper<AcademicDetailModel, StudentSchoolAssociation> _schoolAssociationMapper;
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
-            IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, IMapper<AcademicDetailModel, StudentAcademicDetail> academicDetailMapper, IFileUploader fileUploader)
+            IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, IMapper<AcademicDetailModel, StudentAcademicDetail> academicDetailMapper, IFileUploader fileUploader, IMapper<AcademicDetailModel, StudentSchoolAssociation> schoolAssociationMapper)
         {
             _fileUploader = fileUploader;
+            _schoolAssociationMapper = schoolAssociationMapper;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -77,14 +79,17 @@ namespace NGL.Web.Controllers
             var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
                 makeUriFor("performanceHistory"));
                     
-            StudentAcademicDetail studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
+            var studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
                 adm =>
                 {
                     adm.StudentUSI = id;
                     adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
                 });
 
+            var studentSchoolAssociation = _schoolAssociationMapper.Build(academicDetailModel);
+
             _repository.Add(studentAcademicDetail);
+            _repository.Add(studentSchoolAssociation);
             _repository.Save();
             return RedirectToAction(MVC.Enrollment.EnterProgramStatus(id));
         }
