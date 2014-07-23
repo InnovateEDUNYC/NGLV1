@@ -19,8 +19,9 @@ namespace NGL.UiTests.Enrollment
         private ProfilePage _profilePage;
         private ProgramStatusPage _programStatusPage;
         private CreateStudentModel _createStudentModel;
-        private CreateParentModel _createParentModel;
+        private CreateParentModel _createParentModelOne;
         private AcademicDetailPage _academicDetailPage;
+        private CreateParentModel _createParentModelTwo;
 
         public void IHaveLoggedIn()
         {
@@ -36,7 +37,7 @@ namespace NGL.UiTests.Enrollment
 
         public void IHaveEnteredValidInputForAllFields()
         {
-            _createParentModel = new CreateParentModel
+            _createParentModelOne = new CreateParentModel
             {
                 FirstName = ObjectMother.StudentJanesDad.FirstName,
                 LastName = ObjectMother.StudentJanesDad.LastName,
@@ -51,6 +52,18 @@ namespace NGL.UiTests.Enrollment
                 City = ObjectMother.StudentJanesDad.City,
                 State = ObjectMother.StudentJanesDad.State,
                 PostalCode = ObjectMother.StudentJanesDad.PostalCode
+            };
+
+            _createParentModelTwo = new CreateParentModel
+            {
+                FirstName = ObjectMother.StudentJanesMom.FirstName,
+                LastName = ObjectMother.StudentJanesMom.LastName,
+                Sex = ObjectMother.StudentJanesMom.Sex,
+                RelationshipToStudent = ObjectMother.StudentJanesMom.RelationshipToStudent,
+                MakeThisPrimaryContact = ObjectMother.StudentJanesMom.MakeThisPrimaryContact,
+                TelephoneNumber = ObjectMother.StudentJanesMom.TelephoneNumber,
+                EmailAddress = ObjectMother.StudentJanesMom.EmailAddress,
+                SameAddressAsStudent = ObjectMother.StudentJanesMom.SameAddressAsStudent,
             };
 
             _createStudentModel = new CreateStudentModel
@@ -68,7 +81,9 @@ namespace NGL.UiTests.Enrollment
                 State = ObjectMother.StudentJane.State,
                 PostalCode = ObjectMother.StudentJane.PostalCode,
                 HomeLanguage = ObjectMother.StudentJane.HomeLanguage,
-                FirstParent = _createParentModel
+                AddSecondParent = true,
+                FirstParent = _createParentModelOne,
+                SecondParent = _createParentModelTwo
             };
 
             _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
@@ -98,6 +113,7 @@ namespace NGL.UiTests.Enrollment
         {
             _programStatusPage.IsTitleCorrect().ShouldBe(true);
         }
+
         private void IHaveInputProgramStatus()
         {
             var programStatusModel = new EnterProgramStatusModel
@@ -117,7 +133,8 @@ namespace NGL.UiTests.Enrollment
             };
             _profilePage = _programStatusPage.InputProgramStatus(programStatusModel);
         }
-        public void IShouldBeAbleToViewTheStudenInfo()
+
+        private void IShouldBeAbleToViewTheStudentInfo()
 
         {
             var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
@@ -133,7 +150,7 @@ namespace NGL.UiTests.Enrollment
                 .When(_ => IHaveInputAcademicDetails())
                 .Then(_ => IShouldArriveOnTheProgramStatusPage())
                 .When(_ => IHaveInputProgramStatus())
-                .Then(_ => IShouldBeAbleToViewTheStudenInfo())
+                .Then(_ => IShouldBeAbleToViewTheStudentInfo())
                 .BDDfy();
         }
     }

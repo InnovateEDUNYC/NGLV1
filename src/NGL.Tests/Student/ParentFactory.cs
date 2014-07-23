@@ -5,14 +5,12 @@ namespace NGL.Tests.Student
 {
     public static class ParentFactory
     {
-        public const string FirstName = "Leroy";
-        public const string LastName = "Jenkins";
-        public const int Sex = (int) SexTypeEnum.Male;
-        public const string PhoneNumber = "928-326-4567";
+        private const string FirstName = "Leroy";
+        private const string LastName = "Jenkins";
+        private const int Sex = (int) SexTypeEnum.Male;
+        private const string PhoneNumber = "928-326-4567";
         private const int PhoneNumberType = (int) TelephoneNumberTypeEnum.Emergency1;
-        public const string Email = "leroy@jenk.net";
-        private const bool DoesNotLiveWithStudent = false;
-
+        private const string Email = "leroy@jenk.net";
 
         public static Parent CreateParentWithoutAddress()
         {
@@ -22,6 +20,16 @@ namespace NGL.Tests.Student
 
             return parent;
         }
+
+        public static Parent CreateParentWithoutAddress(string firstName)
+        {
+            var parent = CreateParent(firstName);
+            parent.ParentTelephones.Add(CreateParentPhoneNumber());
+            parent.ParentElectronicMails.Add(CreateParentEmailAddress());
+
+            return parent;
+        }
+
 
         public static Parent CreateParentWithAddress()
         {
@@ -38,6 +46,16 @@ namespace NGL.Tests.Student
             return new Parent
             {
                 FirstName = FirstName,
+                LastSurname = LastName,
+                SexTypeId = Sex,
+            };
+        }
+
+        private static Parent CreateParent(string firstName)
+        {
+            return new Parent
+            {
+                FirstName = firstName,
                 LastSurname = LastName,
                 SexTypeId = Sex,
             };

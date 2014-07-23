@@ -25,7 +25,7 @@ namespace NGL.UiTests.Student
                 Browser.PageSource.Contains(createStudentModel.PostalCode);
 
 
-            var parentFields =
+            var parentOneFields =
                 Browser.PageSource.Contains(createStudentModel.FirstParent.FirstName) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.LastName) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.Sex.Humanize()) &&
@@ -38,7 +38,15 @@ namespace NGL.UiTests.Student
                 Browser.PageSource.Contains(createStudentModel.FirstParent.State.Humanize()) &&
                 Browser.PageSource.Contains(createStudentModel.FirstParent.PostalCode);
 
-            return studentFields && parentFields;
+            var parentTwoFields =
+                Browser.PageSource.Contains(createStudentModel.SecondParent.FirstName) &&
+                Browser.PageSource.Contains(createStudentModel.SecondParent.LastName) &&
+                Browser.PageSource.Contains(createStudentModel.SecondParent.Sex.Humanize()) &&
+                Browser.PageSource.Contains(createStudentModel.SecondParent.RelationshipToStudent.Humanize()) &&
+                Browser.PageSource.Contains(createStudentModel.SecondParent.TelephoneNumber) &&
+                Browser.PageSource.Contains(createStudentModel.SecondParent.EmailAddress);
+
+            return studentFields && parentOneFields && parentTwoFields;
         }
 
     }

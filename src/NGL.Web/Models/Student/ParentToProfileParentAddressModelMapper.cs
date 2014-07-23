@@ -4,11 +4,11 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentToProfileParentAddressModelMapper : MapperBase<Data.Entities.Student, ProfileParentAddressModel>
+    public class ParentToProfileParentAddressModelMapper : MapperBase<Parent, ProfileParentAddressModel>
     {
-        public override void Map(Data.Entities.Student source, ProfileParentAddressModel target)
+        public override void Map(Parent source, ProfileParentAddressModel target)
         {
-            var parentAddress = source.StudentParentAssociations.First().Parent.ParentAddresses.First();
+            var parentAddress = source.ParentAddresses.First();
 
             target.Address = parentAddress.StreetNumberName;
             target.Address2 = parentAddress.ApartmentRoomSuiteNumber;

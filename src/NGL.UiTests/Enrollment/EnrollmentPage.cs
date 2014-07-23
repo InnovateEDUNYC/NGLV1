@@ -18,6 +18,12 @@ namespace NGL.UiTests.Enrollment
             {
                 Input.TickCheckbox(m => m.FirstParent.SameAddressAsStudent, false);
             }
+
+            if (createStudentModel.AddSecondParent)
+            {
+                Input.TickCheckbox(m => m.AddSecondParent, true);
+            }
+
             Input.Model(createStudentModel);
 
             return Navigate.To<AcademicDetailPage>(By.ClassName("btn"));

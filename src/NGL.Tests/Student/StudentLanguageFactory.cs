@@ -4,7 +4,7 @@ namespace NGL.Tests.Student
 {
     public static class StudentLanguageFactory
     {
-        public const int LanguageDescriptorId = (int) LanguageDescriptorEnum.English;
+        private const int LanguageDescriptorId = (int) LanguageDescriptorEnum.English;
         private const int LanguageUseTypeId = (int) LanguageUseTypeEnum.Homelanguage;
 
 

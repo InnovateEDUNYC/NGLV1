@@ -107,6 +107,18 @@ namespace NGL.UiTests
             public const StateAbbreviationTypeEnum State = StateAbbreviationTypeEnum.NM;
             public const string PostalCode = "27890";
         }
+
+        public static class StudentJanesMom
+        {
+            public const string FirstName = "Maria";
+            public const string LastName = "Mayorga";
+            public const SexTypeEnum Sex = SexTypeEnum.Female;
+            public const RelationTypeEnum RelationshipToStudent = RelationTypeEnum.Mother;
+            public const bool MakeThisPrimaryContact = false;
+            public const string TelephoneNumber = "439-4067";
+            public const string EmailAddress = "maria@mail.co";
+            public const bool SameAddressAsStudent = true;
+        }
         public static class JanesAcademicDetails
         {
             public static decimal? Reading = 88.88m;

@@ -1642,19 +1642,17 @@
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
-    <Compile Include="Models\Student\ProfileHomeLanguageModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\ProfileParentAddressModel.cs" />
     <Compile Include="Models\Student\ProfileParentModel.cs" />
-    <Compile Include="Models\Student\StudentToProfileHomeLanguageModelMapper.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
     <Compile Include="Models\Session\IndexModel.cs" />
     <Compile Include="Models\Session\SessionToIndexModelMapper.cs" />
     <Compile Include="Models\Student\IndexModel.cs" />
     <Compile Include="Models\Session\CreateModelToSessionMapper.cs" />
-    <Compile Include="Models\Student\StudentToProfileParentAddressModelMapper.cs" />
-    <Compile Include="Models\Student\StudentToProfileParentModelMapper.cs" />
+    <Compile Include="Models\Student\ParentToProfileParentAddressModelMapper.cs" />
+    <Compile Include="Models\Student\ParentToProfileParentModelMapper.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
