@@ -8,6 +8,8 @@ namespace NGL.Tests.Student
         private const int StudentUsi = 1789;
         private const string FirstName = "Bob";
         private const string LastName = "Jenkins";
+        private const string Parent1FirstName = "Leroy";
+        private const string Parent2FirstName = "Johanna";
         private const int Sex = (int) SexTypeEnum.Male;
         private static readonly DateTime BirthDate = new DateTime(2000, 2, 2);
         private const bool HispanicLatinoEthnicity = true;
@@ -32,8 +34,8 @@ namespace NGL.Tests.Student
 
         public static Web.Data.Entities.Student CreateStudentWithTwoParents()
         {
-            var parentOne = ParentFactory.CreateParentWithoutAddress();
-            var parentTwo = ParentFactory.CreateParentWithoutAddress();
+            var parentOne = ParentFactory.CreateParentWithoutAddress(Parent1FirstName);
+            var parentTwo = ParentFactory.CreateParentWithoutAddress(Parent2FirstName);
             var student = CreateStudent();
             var studentParentAssociationOne = CreateStudentParentAssociation(parentOne, student, true);
             var studentParentAssociationTwo = CreateStudentParentAssociation(parentTwo, student, true);

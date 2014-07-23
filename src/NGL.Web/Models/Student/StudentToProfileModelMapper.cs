@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
 
@@ -6,14 +7,10 @@ namespace NGL.Web.Models.Student
 {
     public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
-        private readonly IMapper<Data.Entities.Student, ProfileHomeLanguageModel> _studentToProfileHomeLanguageModelMapper;
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
 
-        public StudentToProfileModelMapper(
-            IMapper<Data.Entities.Student, ProfileHomeLanguageModel> studentToProfileHomeLanguageModelMapper, 
-            IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper)
+        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper)
         {
-            _studentToProfileHomeLanguageModelMapper = studentToProfileHomeLanguageModelMapper;
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
         }
 
@@ -27,18 +24,34 @@ namespace NGL.Web.Models.Student
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
 
-            target.HomeLanguage = _studentToProfileHomeLanguageModelMapper.Build(source);
+            var homeLanguage = GetAllHomeLanguages(source).First();
+            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
 
+            MapStudentAddress(source, target);
+            MapParentInformation(source, target);
+        }
 
+        private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)
+        {
+            return source.StudentLanguages.Where(
+                language => language.StudentLanguageUses.Any(
+                    languageUse => languageUse.LanguageUseTypeId.Equals((int)LanguageUseTypeEnum.Homelanguage)));
+        }
+
+        private static void MapStudentAddress(Data.Entities.Student source, ProfileModel target)
+        {
             var studentAddresses = source.StudentAddresses;
-            var studentAddress = studentAddresses.First(address => address.AddressTypeId == (int)AddressTypeEnum.Home);
+            var studentAddress = studentAddresses.First(address => address.AddressTypeId == (int) AddressTypeEnum.Home);
             target.Address = studentAddress.StreetNumberName;
             target.Address2 = studentAddress.ApartmentRoomSuiteNumber;
             target.City = studentAddress.City;
             target.State = ((StateAbbreviationTypeEnum) studentAddress.StateAbbreviationTypeId).Humanize();
             target.PostalCode = studentAddress.PostalCode;
+        }
 
 
+        private void MapParentInformation(Data.Entities.Student source, ProfileModel target)
+        {
             var studentParentAssociations = source.StudentParentAssociations;
             var parent1 = studentParentAssociations.First().Parent;
             target.ProfileParentModel = _parentToProfileParentModelMapper.Build(parent1);
@@ -49,5 +62,6 @@ namespace NGL.Web.Models.Student
                 target.SecondProfileParentModel = _parentToProfileParentModelMapper.Build(parent2);
             }
         }
+
     }
 }
