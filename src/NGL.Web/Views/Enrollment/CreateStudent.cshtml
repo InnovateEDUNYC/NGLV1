@@ -9,65 +9,76 @@
 {
     using (var s = f.BeginSection("Enroll a student"))
     {
-        @s.FieldFor(m => m.StudentUsi)
-        @s.FieldFor(m => m.FirstName)
-        @s.FieldFor(m => m.LastName)
-        @s.FieldFor(m => m.Sex)
-        @s.FieldFor(m => m.BirthDate)
-        @s.FieldFor(m => m.HispanicLatinoEthnicity)
-        @s.FieldFor(m => m.Race)
-        @s.FieldFor(m => m.Address)
-        @s.FieldFor(m => m.Address2)
-        @s.FieldFor(m => m.City)
-        @s.FieldFor(m => m.State)
-        @s.FieldFor(m => m.PostalCode)
-        @s.FieldFor(m => m.HomeLanguage)
-
-        <div>
-            <h3>First Parent Information</h3>
-            @s.FieldFor(m => m.FirstParent.FirstName)
-            @s.FieldFor(m => m.FirstParent.LastName)
-            @s.FieldFor(m => m.FirstParent.Sex)
-            @s.FieldFor(m => m.FirstParent.RelationshipToStudent)
-            @s.FieldFor(m => m.FirstParent.TelephoneNumber)
-            @s.FieldFor(m => m.FirstParent.EmailAddress)
-            @s.FieldFor(m => m.FirstParent.MakeThisPrimaryContact)
-            @s.FieldFor(m => m.FirstParent.SameAddressAsStudent).AddClass("same-address-as-student")
-
-            <div class="parent-address">
-                @s.FieldFor(m => m.FirstParent.Address)
-                @s.FieldFor(m => m.FirstParent.Address2)
-                @s.FieldFor(m => m.FirstParent.City)
-                @s.FieldFor(m => m.FirstParent.PostalCode)
-                @s.FieldFor(m => m.FirstParent.State)
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                @s.FieldFor(m => m.StudentUsi)
+                @s.FieldFor(m => m.FirstName)
+                @s.FieldFor(m => m.LastName)
+                @s.FieldFor(m => m.Sex)
+                @s.FieldFor(m => m.BirthDate)
+                @s.FieldFor(m => m.Race)
+                @s.FieldFor(m => m.HispanicLatinoEthnicity)
+            </div>
+            <div class="col-sm-6">
+                @s.FieldFor(m => m.Address)
+                @s.FieldFor(m => m.Address2)
+                @s.FieldFor(m => m.City)
+                @s.FieldFor(m => m.State)
+                @s.FieldFor(m => m.PostalCode)
+                @s.FieldFor(m => m.HomeLanguage)
             </div>
         </div>
+        <div class="parent-panels row">
+            <div class="col-sm-6 col-md-4">
+                <div class="first-parent">
+                    <h3>First Parent Information</h3>
+                    @s.FieldFor(m => m.FirstParent.FirstName)
+                    @s.FieldFor(m => m.FirstParent.LastName)
+                    @s.FieldFor(m => m.FirstParent.Sex)
+                    @s.FieldFor(m => m.FirstParent.RelationshipToStudent)
+                    @s.FieldFor(m => m.FirstParent.TelephoneNumber)
+                    @s.FieldFor(m => m.FirstParent.EmailAddress)
+                    @s.FieldFor(m => m.FirstParent.MakeThisPrimaryContact)
+                    @s.FieldFor(m => m.FirstParent.SameAddressAsStudent).AddClass("same-address-as-student")
 
-        @s.FieldFor(m => m.AddSecondParent)
+                    <div class="parent-address">
+                        @s.FieldFor(m => m.FirstParent.Address)
+                        @s.FieldFor(m => m.FirstParent.Address2)
+                        @s.FieldFor(m => m.FirstParent.City)
+                        @s.FieldFor(m => m.FirstParent.PostalCode)
+                        @s.FieldFor(m => m.FirstParent.State)
+                    </div>
+                </div>
+                @s.FieldFor(m => m.AddSecondParent)
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="second-parent">
+                    <h3>Second Parent Information</h3>
+                    @s.FieldFor(m => m.SecondParent.FirstName)
+                    @s.FieldFor(m => m.SecondParent.LastName)
+                    @s.FieldFor(m => m.SecondParent.Sex)
+                    @s.FieldFor(m => m.SecondParent.RelationshipToStudent)
+                    @s.FieldFor(m => m.SecondParent.TelephoneNumber)
+                    @s.FieldFor(m => m.SecondParent.EmailAddress)
+                    @s.FieldFor(m => m.SecondParent.MakeThisPrimaryContact)
+                    @s.FieldFor(m => m.SecondParent.SameAddressAsStudent).AddClass("same-address-as-student")
 
-        <div id="second-parent">
-            <h3>Second Parent Information</h3>
-            @s.FieldFor(m => m.SecondParent.FirstName)
-            @s.FieldFor(m => m.SecondParent.LastName)
-            @s.FieldFor(m => m.SecondParent.Sex)
-            @s.FieldFor(m => m.SecondParent.RelationshipToStudent)
-            @s.FieldFor(m => m.SecondParent.TelephoneNumber)
-            @s.FieldFor(m => m.SecondParent.EmailAddress)
-            @s.FieldFor(m => m.SecondParent.MakeThisPrimaryContact)
-            @s.FieldFor(m => m.SecondParent.SameAddressAsStudent).AddClass("same-address-as-student")
-
-            <div class="parent-address">
-                @s.FieldFor(m => m.SecondParent.Address)
-                @s.FieldFor(m => m.SecondParent.Address2)
-                @s.FieldFor(m => m.SecondParent.City)
-                @s.FieldFor(m => m.SecondParent.PostalCode)
-                @s.FieldFor(m => m.SecondParent.State)
+                    <div class="parent-address">
+                        @s.FieldFor(m => m.SecondParent.Address)
+                        @s.FieldFor(m => m.SecondParent.Address2)
+                        @s.FieldFor(m => m.SecondParent.City)
+                        @s.FieldFor(m => m.SecondParent.PostalCode)
+                        @s.FieldFor(m => m.SecondParent.State)
+                    </div>
+                </div>
             </div>
         </div>
-        using (var n = f.BeginNavigation())
+    <div class="submit-student-button-container col-md-7">
+        @using (var n = f.BeginNavigation())
         {
-            @n.Submit("Create Student")
+            @n.Submit("Create Student").AddClass("submit-student-button")
         }
+    </div>
     }
 }
 

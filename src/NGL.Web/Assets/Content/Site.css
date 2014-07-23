@@ -61,3 +61,8 @@ form .inline input {
 .separator:last-of-type {
     border-bottom: none;
 }
+
+.submit-student-button-container div {
+    float: right;
+    margin-right: 15px;
+}
