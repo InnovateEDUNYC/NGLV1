@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using ChameleonForms;
+using FluentValidation.Mvc;
+using NGL.Web.App_Start;
 using NGL.Web.Controllers;
+using NGL.Web.Infrastructure;
 using StackExchange.Profiling;
 
 namespace NGL.Web
@@ -19,7 +20,20 @@ namespace NGL.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            HumanizedLabels.Register();
+            SetupValidationAndMetadata();
+        }
+
+        private static void SetupValidationAndMetadata()
+        {
+            var factory = new NinjectValidatorFactory();
+            var fluentValidationModelValidatorProvider =
+                new FluentValidationModelValidatorProvider(factory)
+                {
+                    AddImplicitRequiredValidator = false
+                };
+            ModelValidatorProviders.Providers.Add(fluentValidationModelValidatorProvider);
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+            ModelMetadataProviders.Current = new CustomModelMetadataProvider(factory);
         }
 
         protected void Application_BeginRequest()

@@ -1600,15 +1600,14 @@
     <Compile Include="Data\Queries\CourseByCourseCodeQuery.cs" />
     <Compile Include="Data\Queries\SessionByTermTypeAndSchoolYearQuery.cs" />
     <Compile Include="Data\Queries\StudentByUsiQuery.cs" />
-    <Compile Include="Data\Repositories\ILookupRepository.cs" />
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
-    <Compile Include="Data\Repositories\LookupRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Infrastructure\ChameleonForms\FieldGeneratorHandlersRouter.cs" />
     <Compile Include="Infrastructure\ChameleonForms\FormHelpers.cs" />
     <Compile Include="Infrastructure\ChameleonForms\NglDateTimeHandler.cs" />
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
+    <Compile Include="Infrastructure\CustomMetadataProvider.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Account\AddUserModel.cs" />
     <Compile Include="Models\Account\AspNetUserToUserModelMapper.cs" />
