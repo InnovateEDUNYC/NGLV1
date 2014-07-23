@@ -107,6 +107,5 @@ namespace NGL.Tests.Student
                 ((StateAbbreviationTypeEnum) parentHomeAddress.StateAbbreviationTypeId).Humanize());
             profileParentAddressModel.PostalCode.ShouldBe(parentHomeAddress.PostalCode);
         }
-
     }
 }
