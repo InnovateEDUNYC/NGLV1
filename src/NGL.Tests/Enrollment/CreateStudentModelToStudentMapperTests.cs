@@ -12,7 +12,7 @@ namespace NGL.Tests.Enrollment
         private CreateStudentModelToStudentMapper _mapper;
         private readonly Web.Data.Entities.Student _student = new Web.Data.Entities.Student();
         readonly CreateStudentModel _createStudentModel = new CreateStudentModel();
-        private CreateParentModel _parentEnrollmentInfoModel;
+        private CreateParentModel _createParentEnrollmentInfoModel;
 
         [Fact]
         public void ShouldMapBasicCreateStudentModelToStudent()
@@ -155,7 +155,7 @@ namespace NGL.Tests.Enrollment
             _createStudentModel.State = StateAbbreviationTypeEnum.CA;
             _createStudentModel.AddSecondParent = false;
 
-            _parentEnrollmentInfoModel = new CreateParentModel
+            _createParentEnrollmentInfoModel = new CreateParentModel
             {
                 FirstName = "Jenny",
                 LastName = "Doe",
@@ -172,7 +172,7 @@ namespace NGL.Tests.Enrollment
                 Address2 = "1A"
             };
 
-            _createStudentModel.FirstParent = _parentEnrollmentInfoModel;
+            _createStudentModel.FirstParent = _createParentEnrollmentInfoModel;
         }
     }
 }

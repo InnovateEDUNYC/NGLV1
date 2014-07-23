@@ -14,7 +14,7 @@ namespace NGL.Tests.Student
 
         public static Parent CreateParentWithoutAddress()
         {
-            var parent = CreateParent();
+            var parent = CreateParentShell();
             parent.ParentTelephones.Add(CreateParentPhoneNumber());
             parent.ParentElectronicMails.Add(CreateParentEmailAddress());
 
@@ -41,7 +41,7 @@ namespace NGL.Tests.Student
         }
 
 
-        private static Parent CreateParent()
+        private static Parent CreateParentShell()
         {
             return new Parent
             {

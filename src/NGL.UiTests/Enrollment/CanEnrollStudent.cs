@@ -21,7 +21,7 @@ namespace NGL.UiTests.Enrollment
         private ProfilePage _profilePage;
         private ProgramStatusPage _programStatusPage;
         private CreateStudentModel _createStudentModel;
-        private CreateParentModel _createParentModelOne;
+        private CreateParentModel _createParentModel;
         private AcademicDetailPage _academicDetailPage;
         private CreateParentModel _createParentModelTwo;
 
@@ -39,22 +39,8 @@ namespace NGL.UiTests.Enrollment
 
         public void IHaveEnteredValidInputForAllFields()
         {
-            _createParentModelOne = new CreateParentModel
-            {
-                FirstName = ObjectMother.StudentJanesDad.FirstName,
-                LastName = ObjectMother.StudentJanesDad.LastName,
-                Sex = ObjectMother.StudentJanesDad.Sex,
-                RelationshipToStudent = ObjectMother.StudentJanesDad.RelationshipToStudent,
-                MakeThisPrimaryContact = ObjectMother.StudentJanesDad.MakeThisPrimaryContact,
-                TelephoneNumber = ObjectMother.StudentJanesDad.TelephoneNumber,
-                EmailAddress = ObjectMother.StudentJanesDad.EmailAddress,
-                SameAddressAsStudent = ObjectMother.StudentJanesDad.SameAddressAsStudent,
-                Address = ObjectMother.StudentJanesDad.Address,
-                Address2 = ObjectMother.StudentJanesDad.Address2,
-                City = ObjectMother.StudentJanesDad.City,
-                State = ObjectMother.StudentJanesDad.State,
-                PostalCode = ObjectMother.StudentJanesDad.PostalCode
-            };
+            _createParentModel = ParentModelFactory.CreateParentWithAddress();
+            
 
             _createParentModelTwo = new CreateParentModel
             {
@@ -84,7 +70,7 @@ namespace NGL.UiTests.Enrollment
                 PostalCode = ObjectMother.StudentJane.PostalCode,
                 HomeLanguage = ObjectMother.StudentJane.HomeLanguage,
                 AddSecondParent = true,
-                FirstParent = _createParentModelOne,
+                FirstParent = _createParentModel,
                 SecondParent = _createParentModelTwo
             };
 
