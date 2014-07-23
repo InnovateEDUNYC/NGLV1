@@ -12,6 +12,7 @@
 {
     using (var r = f.BeginSection("Enter student's previous grade or percentage for each subject below"))
     {
+        @Html.HiddenFor(s => s.StudentUsi) // Needs to be passed back for validation
         @r.FieldFor(s => s.Reading)
         @r.FieldFor(s => s.Writing)
         @r.FieldFor(s => s.Math)
@@ -28,6 +29,6 @@
 
     using (var v = f.BeginNavigation())
     {
-        @v.Submit("Save").Id("submit-details")
+        @v.Submit("Save and Continue").Id("submit-details")
     }
 }

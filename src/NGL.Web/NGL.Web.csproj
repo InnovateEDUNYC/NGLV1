@@ -1862,7 +1862,7 @@
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\CourseGeneration\Index.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
-    <Content Include="Views\Enrollment\EnterAcademicHistory.cshtml" />
+    <Content Include="Views\Enrollment\EnterAcademicDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

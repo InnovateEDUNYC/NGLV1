@@ -46,11 +46,11 @@ namespace NGL.Web.Controllers
             _enrollmentMapper.Map(createStudentModel, student);
             _repository.Add(student);
             _repository.Save();
-            return RedirectToAction(MVC.Enrollment.EnterAcademicHistory((int) createStudentModel.StudentUsi));
+            return RedirectToAction(MVC.Enrollment.EnterAcademicDetails((int) createStudentModel.StudentUsi));
         }
 
-        // GET: /Enrollment/EnterAcademicHistory/id
-        public virtual ActionResult EnterAcademicHistory(int id)
+        // GET: /Enrollment/EnterAcademicDetails/id
+        public virtual ActionResult EnterAcademicDetails(int id)
         {
             var model = new AcademicDetailModel{StudentUsi = id};
             
@@ -65,9 +65,9 @@ namespace NGL.Web.Controllers
             return _repository.Get(new StudentByUsiQuery(id)) == null;
         }
 
-        // POST: /Enrollment/EnterAcademicHistory/id
+        // POST: /Enrollment/EnterAcademicDetails/id
         [HttpPost]
-        public virtual ActionResult EnterAcademicHistory(AcademicDetailModel academicDetailModel, int id)
+        public virtual ActionResult EnterAcademicDetails(AcademicDetailModel academicDetailModel, int id)
         {
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
