@@ -6,7 +6,7 @@
 	[SchoolYear] [smallint] NOT NULL,
 	[GradeLevelTypeId] [int] NOT NULL,
 	[PerfomanceHistory] [nvarchar](4000),
-	[PerformanceHistoryFileUrl] [varchar](200),
+	[PerformanceHistoryFile] [varchar](200),
 	[Id] [uniqueidentifier] NOT NULL,
 	[LastModifiedDate] [datetime] NOT NULL,
 	[CreateDate] [datetime] NOT NULL,

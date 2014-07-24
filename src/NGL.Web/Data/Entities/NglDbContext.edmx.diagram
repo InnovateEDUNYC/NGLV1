@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7a5ff79b92a241fe9b46c8535c0d1538" Name="Diagram1" ZoomLevel="60">
+      <Diagram DiagramId="7a5ff79b92a241fe9b46c8535c0d1538" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="NGLModel.AcademicHonorCategoryType" Width="1.5" PointX="15" PointY="422.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NGLModel.AcademicSubjectDescriptor" Width="1.5" PointX="3" PointY="370" IsExpanded="true" />
         <EntityTypeShape EntityType="NGLModel.AcademicSubjectType" Width="1.5" PointX="0.75" PointY="387.625" IsExpanded="true" />
@@ -1143,7 +1143,7 @@
         <AssociationConnector Association="NGLModel.FK_TeachingCredentialDescriptor_TeachingCredentialType_TeachingCredentialTypeId" ManuallyRouted="false" />
         <AssociationConnector Association="NGLModel.FK_WeaponDescriptor_WeaponsType_WeaponsTypeId" ManuallyRouted="false" />
         <AssociationConnector Association="NGLModel.StudentTitleIPartAProgramAssociation" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="NGLModel.StudentProgramStatus" Width="1.5" PointX="43.5" PointY="331.125" />
+        <EntityTypeShape EntityType="NGLModel.StudentProgramStatus" Width="6.125" PointX="43.5" PointY="331.125" />
         <AssociationConnector Association="NGLModel.FK_StudentProgramStatus_SchoolFoodServicesEligibilityType" />
         <AssociationConnector Association="NGLModel.FK_StudentProgramStatus_Student" />
         <EntityTypeShape EntityType="NGLModel.AspNetRole" Width="1.5" PointX="3.75" PointY="6.5" />
@@ -1152,7 +1152,7 @@
         <EntityTypeShape EntityType="NGLModel.AspNetUser" Width="1.5" PointX="6" PointY="5.375" />
         <EntityTypeShape EntityType="NGLModel.ELMAH_Error" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="NGLModel.SchemaVersion" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="NGLModel.StudentAcademicDetail" Width="1.5" PointX="45.875" PointY="337.625" />
+        <EntityTypeShape EntityType="NGLModel.StudentAcademicDetail" Width="3.25" PointX="45.875" PointY="337.625" />
         <EntityTypeShape EntityType="NGLModel.VersionLevel" Width="1.5" PointX="9.75" PointY="0.75" />
         <AssociationConnector Association="NGLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="NGLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
