@@ -1625,7 +1625,7 @@
     <Compile Include="Models\Enrollment\AcademicDetailModel.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModelToStudentSchoolAssociationMapper.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModelValidator.cs" />
-    <Compile Include="Models\Enrollment\AdademicDetailModelToAcademicDetailMapper.cs" />
+    <Compile Include="Models\Enrollment\AcademicDetailModelToAcademicDetailMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModel.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />

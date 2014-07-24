@@ -5,7 +5,7 @@ using NGL.Web.Models.Enrollment;
 
 namespace NGL.UiTests.Enrollment
 {
-    public class StudentModelFactory
+    public class CreateStudentModelFactory
     {
         private static readonly DateTime BirthDate = new DateTime(1999, 1, 5);
         private const int StudentUsi = 123240;
@@ -16,7 +16,7 @@ namespace NGL.UiTests.Enrollment
         private const RaceTypeEnum AmericanIndianAlaskanNative = RaceTypeEnum.AmericanIndianAlaskanNative;
         private const string Address1 = "123 Oak St";
         private const string Address2 = "1A";
-        private const string Springfield = "Springfield";
+        private const string City = "Springfield";
         private const StateAbbreviationTypeEnum StateAbbreviationTypeEnum = Web.Data.Entities.StateAbbreviationTypeEnum.CA;
         private const string PostalCode = "6000";
         private const LanguageDescriptorEnum LanguageDescriptorEnum = Web.Data.Entities.LanguageDescriptorEnum.English;
@@ -34,7 +34,7 @@ namespace NGL.UiTests.Enrollment
                 Race = AmericanIndianAlaskanNative,
                 Address = Address1,
                 Address2 = Address2,
-                City = Springfield,
+                City = City,
                 State = StateAbbreviationTypeEnum,
                 PostalCode = PostalCode,
                 HomeLanguage = LanguageDescriptorEnum,

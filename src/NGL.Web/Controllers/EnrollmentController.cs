@@ -20,7 +20,11 @@ namespace NGL.Web.Controllers
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
-            IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, IMapper<AcademicDetailModel, StudentAcademicDetail> academicDetailMapper, IFileUploader fileUploader, IMapper<AcademicDetailModel, StudentSchoolAssociation> schoolAssociationMapper)
+                                                IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
+                                                IMapper<AcademicDetailModel, StudentAcademicDetail> academicDetailMapper, 
+                                                IFileUploader fileUploader,
+                                                IMapper<AcademicDetailModel, 
+                                                StudentSchoolAssociation> schoolAssociationMapper)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;

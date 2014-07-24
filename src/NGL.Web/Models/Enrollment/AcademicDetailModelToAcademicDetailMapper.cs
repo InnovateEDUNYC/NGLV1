@@ -2,7 +2,7 @@
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class AdademicDetailModelToAcademicDetailMapper : MapperBase<AcademicDetailModel, StudentAcademicDetail>
+    public class AcademicDetailModelToAcademicDetailMapper : MapperBase<AcademicDetailModel, StudentAcademicDetail>
     {
         public override void Map(AcademicDetailModel source, StudentAcademicDetail target)
         {

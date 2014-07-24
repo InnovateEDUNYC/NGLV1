@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
-using NSubstitute;
 
 namespace NGL.Tests.Enrollment
 {
-    public static class AcademicDetailModelFactory
+    public static class CreateAcademicDetailModelFactory
     {
         private static readonly DateTime EntryDate = new DateTime(2014, 8, 1);
         private static readonly HttpPostedFileBase NullHttpPostedFileBase = null;
@@ -48,6 +43,15 @@ namespace NGL.Tests.Enrollment
                 SchoolYear = SchoolYearTypeEnum,
                 AnticipatedGrade = GradeLevelTypeEnum,
                 EntryDate = EntryDate
+            };
+        }
+        public static AcademicDetailModel CreateAcademicDetailModelWithGrade(GradeLevelTypeEnum grade)
+        {
+            return new AcademicDetailModel
+            {
+                StudentUsi = StudentUsi,
+                EntryDate = EntryDate,
+                AnticipatedGrade = grade
             };
         }
     }

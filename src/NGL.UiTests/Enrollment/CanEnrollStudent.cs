@@ -39,7 +39,7 @@ namespace NGL.UiTests.Enrollment
 
         public void IHaveEnteredValidInputForAllFields()
         {
-            _createStudentModel = StudentModelFactory.CreateStudent();
+            _createStudentModel = CreateStudentModelFactory.CreateStudent();
 
             _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
         }
@@ -51,7 +51,7 @@ namespace NGL.UiTests.Enrollment
         private void IHaveInputAcademicDetails()
         {
 
-            var academicDetailModel = AcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
+            var academicDetailModel = CreateAcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
 
             _programStatusPage = _academicDetailPage.InputDetails(academicDetailModel);
         }

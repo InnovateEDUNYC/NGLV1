@@ -14,6 +14,8 @@ namespace NGL.Tests.Enrollment
 {
     public class AcademicDetailModelToStudentSchoolAssociationMapperTest
     {
+        private const int GradeLevelDescriptorId = 125;
+        private const int SchoolId = 123;
         private ISchoolRepository _schoolRepository;
         private AcademicDetailModelToStudentSchoolAssociationMapper _mapper;
         private IGenericRepository _genericRepository;
@@ -28,23 +30,25 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldMapAcademicDetailModelToStudentSchoolAssociation()
         {
-            var academicDetailModel = new AcademicDetailModel()
-            {
-                StudentUsi = 9999,
-                EntryDate = new DateTime(2014,12,12),
-                AnticipatedGrade = GradeLevelTypeEnum._4thGrade
-            };
+            var academicDetailModel =
+                CreateAcademicDetailModelFactory.CreateAcademicDetailModelWithoutPerformanceHistory();
 
-            _schoolRepository.GetSchool().Returns(new School{SchoolId = 123});
-
-            _genericRepository.Get<GradeLevelDescriptor>(Arg.Any<Expression<Func<GradeLevelDescriptor, bool>>>()).Returns(new GradeLevelDescriptor { GradeLevelDescriptorId = 125 });
+            SetUpStubs();
 
             var association = _mapper.Build(academicDetailModel);
 
             association.StudentUSI.ShouldBe(academicDetailModel.StudentUsi);
             association.EntryDate.ShouldBe((DateTime)academicDetailModel.EntryDate);
-            association.SchoolId.ShouldBe(123);
-            association.EntryGradeLevelDescriptorId.ShouldBe(125);
+            association.SchoolId.ShouldBe(SchoolId);
+            association.EntryGradeLevelDescriptorId.ShouldBe(GradeLevelDescriptorId);
+        }
+
+        private void SetUpStubs()
+        {
+            _schoolRepository.GetSchool().Returns(new School {SchoolId = SchoolId});
+
+            _genericRepository.Get<GradeLevelDescriptor>(Arg.Any<Expression<Func<GradeLevelDescriptor, bool>>>())
+                .Returns(new GradeLevelDescriptor {GradeLevelDescriptorId = GradeLevelDescriptorId});
         }
     }
 }

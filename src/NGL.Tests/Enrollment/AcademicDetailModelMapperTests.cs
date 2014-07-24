@@ -8,19 +8,12 @@ namespace NGL.Tests.Enrollment
 {
     public class AcademicDetailModelMapperTests
     {
-        readonly MapperBase<AcademicDetailModel, StudentAcademicDetail> _mapper = new AdademicDetailModelToAcademicDetailMapper();
-
-        [Fact]
-        public void ShouldMapAcademicDetailModelToStudentSchoolAssociation()
-        {
-            var academicDetailModel = AcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
-            
-        }
+        private MapperBase<AcademicDetailModel, StudentAcademicDetail> _mapper = new AcademicDetailModelToAcademicDetailMapper();
 
         [Fact]
         public void ShouldMapAcademicDetailModelToAcademicDetailEntity()
         {
-            var academicDetailModel = AcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
+            var academicDetailModel = CreateAcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
 
             var academicDetailEntity = _mapper.Build(academicDetailModel,
                 adm =>
@@ -42,7 +35,7 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldMapAcademicDetailModelWithoutPerformanceHistoryToAcademicDetailEntity()
         {
-            var academicDetailModel = AcademicDetailModelFactory.CreateAcademicDetailModelWithoutPerformanceHistory();
+            var academicDetailModel = CreateAcademicDetailModelFactory.CreateAcademicDetailModelWithoutPerformanceHistory();
 
             var academicDetailEntity = _mapper.Build(academicDetailModel,
                 adm =>

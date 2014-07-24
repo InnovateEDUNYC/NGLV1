@@ -23,7 +23,7 @@ namespace NGL.Tests.Student
 
         public static Web.Data.Entities.Student CreateStudentWithOneParent(Parent parent, bool livesWith)
         {
-            var student = CreateStudent();
+            var student = CreateStudentShell();
             var studentParentAssociation = CreateStudentParentAssociation(parent, student, livesWith);
 
             student.StudentParentAssociations.Add(studentParentAssociation);
@@ -36,7 +36,7 @@ namespace NGL.Tests.Student
         {
             var parentOne = ParentFactory.CreateParentWithoutAddress(Parent1FirstName);
             var parentTwo = ParentFactory.CreateParentWithoutAddress(Parent2FirstName);
-            var student = CreateStudent();
+            var student = CreateStudentShell();
             var studentParentAssociationOne = CreateStudentParentAssociation(parentOne, student, true);
             var studentParentAssociationTwo = CreateStudentParentAssociation(parentTwo, student, true);
 
@@ -47,7 +47,7 @@ namespace NGL.Tests.Student
             return student;
         }
 
-        private static Web.Data.Entities.Student CreateStudent()
+        private static Web.Data.Entities.Student CreateStudentShell()
         {
             var student = new Web.Data.Entities.Student
             {
@@ -67,10 +67,7 @@ namespace NGL.Tests.Student
 
         private static StudentRace CreateStudentRace()
         {
-            return new StudentRace
-            {
-                RaceTypeId = Race
-            };
+            return new StudentRace{RaceTypeId = Race};
         }
 
         private static StudentParentAssociation CreateStudentParentAssociation(Parent parent, Web.Data.Entities.Student student, bool livesWith)

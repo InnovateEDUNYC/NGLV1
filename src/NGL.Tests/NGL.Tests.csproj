@@ -71,7 +71,7 @@
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
-    <Compile Include="Enrollment\AcademicDetailModelFactory.cs" />
+    <Compile Include="Enrollment\CreateAcademicDetailModelFactory.cs" />
     <Compile Include="Enrollment\AcademicDetailModelToStudentSchoolAssociationMapperTest.cs" />
     <Compile Include="Enrollment\AcademicDetailModelValidatorTests.cs" />
     <Compile Include="Enrollment\AcademicDetailModelMapperTests.cs" />
