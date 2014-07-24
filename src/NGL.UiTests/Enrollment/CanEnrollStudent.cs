@@ -1,8 +1,12 @@
-﻿using NGL.UiTests.Shared;
+﻿using System;
+using NGL.Tests.Enrollment;
+using NGL.UiTests.Shared;
 using NGL.UiTests.Student;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
 using TestStack.BDDfy;
+using TestStack.Seleno.Configuration;
+using TestStack.Seleno.PageObjects.Actions;
 using Xunit;
 
 namespace NGL.UiTests.Enrollment
@@ -19,9 +23,7 @@ namespace NGL.UiTests.Enrollment
         private ProfilePage _profilePage;
         private ProgramStatusPage _programStatusPage;
         private CreateStudentModel _createStudentModel;
-        private CreateParentModel _createParentModelOne;
         private AcademicDetailPage _academicDetailPage;
-        private CreateParentModel _createParentModelTwo;
 
         public void IHaveLoggedIn()
         {
@@ -37,54 +39,7 @@ namespace NGL.UiTests.Enrollment
 
         public void IHaveEnteredValidInputForAllFields()
         {
-            _createParentModelOne = new CreateParentModel
-            {
-                FirstName = ObjectMother.StudentJanesDad.FirstName,
-                LastName = ObjectMother.StudentJanesDad.LastName,
-                Sex = ObjectMother.StudentJanesDad.Sex,
-                RelationshipToStudent = ObjectMother.StudentJanesDad.RelationshipToStudent,
-                MakeThisPrimaryContact = ObjectMother.StudentJanesDad.MakeThisPrimaryContact,
-                TelephoneNumber = ObjectMother.StudentJanesDad.TelephoneNumber,
-                EmailAddress = ObjectMother.StudentJanesDad.EmailAddress,
-                SameAddressAsStudent = ObjectMother.StudentJanesDad.SameAddressAsStudent,
-                Address = ObjectMother.StudentJanesDad.Address,
-                Address2 = ObjectMother.StudentJanesDad.Address2,
-                City = ObjectMother.StudentJanesDad.City,
-                State = ObjectMother.StudentJanesDad.State,
-                PostalCode = ObjectMother.StudentJanesDad.PostalCode
-            };
-
-            _createParentModelTwo = new CreateParentModel
-            {
-                FirstName = ObjectMother.StudentJanesMom.FirstName,
-                LastName = ObjectMother.StudentJanesMom.LastName,
-                Sex = ObjectMother.StudentJanesMom.Sex,
-                RelationshipToStudent = ObjectMother.StudentJanesMom.RelationshipToStudent,
-                MakeThisPrimaryContact = ObjectMother.StudentJanesMom.MakeThisPrimaryContact,
-                TelephoneNumber = ObjectMother.StudentJanesMom.TelephoneNumber,
-                EmailAddress = ObjectMother.StudentJanesMom.EmailAddress,
-                SameAddressAsStudent = ObjectMother.StudentJanesMom.SameAddressAsStudent,
-            };
-
-            _createStudentModel = new CreateStudentModel
-            {
-                StudentUsi = ObjectMother.StudentJane.StudentUsi,
-                FirstName = ObjectMother.StudentJane.FirstName,
-                LastName = ObjectMother.StudentJane.LastName,
-                Sex = ObjectMother.StudentJane.Sex,
-                BirthDate = ObjectMother.StudentJane.BirthDate,
-                HispanicLatinoEthnicity = ObjectMother.StudentJane.HispanicLatinoEthnicity,
-                Race = ObjectMother.StudentJane.Race,
-                Address = ObjectMother.StudentJane.Address,
-                Address2 = ObjectMother.StudentJane.Address2,
-                City = ObjectMother.StudentJane.City,
-                State = ObjectMother.StudentJane.State,
-                PostalCode = ObjectMother.StudentJane.PostalCode,
-                HomeLanguage = ObjectMother.StudentJane.HomeLanguage,
-                AddSecondParent = true,
-                FirstParent = _createParentModelOne,
-                SecondParent = _createParentModelTwo
-            };
+            _createStudentModel = CreateStudentModelFactory.CreateStudent();
 
             _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
         }
@@ -95,16 +50,8 @@ namespace NGL.UiTests.Enrollment
         }
         private void IHaveInputAcademicDetails()
         {
-            var academicDetailModel = new AcademicDetailModel
-            {
-                Reading = ObjectMother.JanesAcademicDetails.Reading,
-                Writing = ObjectMother.JanesAcademicDetails.Writing,
-                Math = ObjectMother.JanesAcademicDetails.Math,
-                AnticipatedGrade = ObjectMother.JanesAcademicDetails.AnticipatedGrade,
-                SchoolYear = ObjectMother.JanesAcademicDetails.SchoolYear,
-                PerformanceHistory = ObjectMother.JanesAcademicDetails.PerformanceHistory,
-                PerformanceHistoryFile = ObjectMother.JanesAcademicDetails.PerformanceHistoryFile
-            };
+
+            var academicDetailModel = CreateAcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
 
             _programStatusPage = _academicDetailPage.InputDetails(academicDetailModel);
         }
@@ -116,21 +63,7 @@ namespace NGL.UiTests.Enrollment
 
         private void IHaveInputProgramStatus()
         {
-            var programStatusModel = new EnterProgramStatusModel
-            {
-                TestingAccommodation = ObjectMother.JanesProgramStatus.TestingAccommodation,
-                TestingAccommodationFile = ObjectMother.JanesProgramStatus.TestingAccommodationFile,
-                BilingualProgram = ObjectMother.JanesProgramStatus.BilingualProgram,
-                EnglishAsSecondLanguage = ObjectMother.JanesProgramStatus.EnglishAsSecondLanguage,
-                FoodServiceEligibilityStatus = ObjectMother.JanesProgramStatus.FoodServiceEligibilityStatus,
-                Gifted = ObjectMother.JanesProgramStatus.Gifted,
-                SpecialEducation = ObjectMother.JanesProgramStatus.SpecialEducation,
-                SpecialEducationFile = ObjectMother.JanesProgramStatus.SpecialEducationFile,
-                McKinneyVento = ObjectMother.JanesProgramStatus.McKinneyVento,
-                McKinneyVentoFile = ObjectMother.JanesProgramStatus.McKinneyVentoFile,
-                TitleParticipation = ObjectMother.JanesProgramStatus.TitleParticipation,
-                TitleParticipationFile = ObjectMother.JanesProgramStatus.TitleParticipationFile,
-            };
+            var programStatusModel = EnterProgramStatusModelFactory.CreateProgramStatus();
             _profilePage = _programStatusPage.InputProgramStatus(programStatusModel);
         }
 

@@ -22,5 +22,6 @@ namespace NGL.Web.Models.Enrollment
         [DataType(DataType.MultilineText)]
         public String PerformanceHistory { get; set; }
         public HttpPostedFileBase PerformanceHistoryFile { get; set; }
+        public DateTime? EntryDate { get; set; }
     }
 }
