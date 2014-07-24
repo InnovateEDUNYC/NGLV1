@@ -72,7 +72,8 @@ namespace NGL.Tests.Student
             profileModel.AcademicDetail.ReadingScore.ShouldBe(studentAcademicDetail.ReadingScore);
             profileModel.AcademicDetail.WritingScore.ShouldBe(studentAcademicDetail.WritingScore);
             profileModel.AcademicDetail.MathScore.ShouldBe(studentAcademicDetail.MathScore);
-
+            profileModel.AcademicDetail.PerformanceHistoryFileUrl.ShouldBe(
+                studentAcademicDetail.PerformanceHistoryFileUrl);
         }
 
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)

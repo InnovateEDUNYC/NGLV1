@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using System;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -15,13 +15,17 @@ namespace NGL.Web.Infrastructure.Azure
             _blobClient = storageAccount.CreateCloudBlobClient();
         }
 
-        public void Download(HttpPostedFileBase file, string container, string fileName)
+        public string DownloadPath(string container, string fileName)
         {
             var blobContainer = _blobClient.GetContainerReference(container);
             var blockBlob = blobContainer.GetBlockBlobReference(fileName);
-            
-            blockBlob.Properties.ContentType = file.ContentType;
-            blockBlob.DownloadToStream(file.InputStream);
+
+            var sasConstraints = new SharedAccessBlobPolicy();
+            sasConstraints.SharedAccessExpiryTime = DateTime.UtcNow.AddHours(4);
+            sasConstraints.Permissions = SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.List;
+            var sasContainerToken = blockBlob.GetSharedAccessSignature(sasConstraints);
+
+            return blockBlob.Uri + sasContainerToken;
         }
     }
 }

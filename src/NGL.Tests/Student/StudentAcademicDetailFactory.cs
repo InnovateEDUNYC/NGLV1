@@ -12,7 +12,8 @@ namespace NGL.Tests.Student
                 WritingScore = 78,
                 MathScore = 80,
                 GradeLevelTypeId = (int) GradeLevelTypeEnum._5thGrade,
-                SchoolYear = (int) SchoolYearTypeEnum.Year2014
+                SchoolYear = (int) SchoolYearTypeEnum.Year2014,
+                PerformanceHistoryFileUrl = "www.example.com/here/example.txt"
             };
         }
     }

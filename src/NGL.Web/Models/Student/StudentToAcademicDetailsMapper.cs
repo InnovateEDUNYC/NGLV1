@@ -9,6 +9,7 @@ namespace NGL.Web.Models.Student
             target.ReadingScore = source.StudentAcademicDetails.First().ReadingScore;
             target.WritingScore = source.StudentAcademicDetails.First().WritingScore;
             target.MathScore = source.StudentAcademicDetails.First().MathScore;
+            target.PerformanceHistoryFileUrl = source.StudentAcademicDetails.First().PerformanceHistoryFileUrl;
         }
     }
 }

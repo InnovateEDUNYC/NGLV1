@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Student;
 
@@ -61,7 +63,14 @@ namespace NGL.Web.Controllers
             }
             var profileModel = new ProfileModel();
             _studentToDetailsModelMapper.Map(student, profileModel);
+//            var thePath = Download("");
             return View(profileModel);
+        }
+        private string Download(string relativePath)
+        {
+            var fileDownloader = new AzureStorageDownloader();
+            const string blobContainer = "student";
+            return fileDownloader.DownloadPath(blobContainer, relativePath);
         }
 
     }
