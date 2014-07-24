@@ -79,6 +79,7 @@
     <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelValidatorTests.cs" />
+    <Compile Include="Enrollment\EnterProgramStatusModelFactory.cs" />
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />
     <Compile Include="Session\MapperTests.cs" />

@@ -73,22 +73,5 @@ namespace NGL.UiTests
             public const int MaximumNumberOfSeats = 40;
             public const int OptimalNumberOfSeats = 30;
         }
-
-        public static class JanesProgramStatus
-        {
-            public static bool? TestingAccommodation = true;
-            public static bool? SpecialEducation = true;
-            public static bool? McKinneyVento = false;
-            public static bool? TitleParticipation = true;
-            public static bool? BilingualProgram = false;
-            public static bool? EnglishAsSecondLanguage = true;
-            public static bool? Gifted = true;
-            public static SchoolFoodServicesEligibilityTypeEnum FoodServiceEligibilityStatus =
-                SchoolFoodServicesEligibilityTypeEnum.Fullprice;
-            public static readonly HttpPostedFileBase TestingAccommodationFile = null;
-            public static readonly HttpPostedFileBase SpecialEducationFile = null;
-            public static readonly HttpPostedFileBase McKinneyVentoFile = null;
-            public static readonly HttpPostedFileBase TitleParticipationFile = null;
-        }
     }
 }

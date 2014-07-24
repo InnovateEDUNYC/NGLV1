@@ -65,21 +65,23 @@ namespace NGL.UiTests.Enrollment
 
         private void IHaveInputProgramStatus()
         {
-            var programStatusModel = new EnterProgramStatusModel
-            {
-                TestingAccommodation = ObjectMother.JanesProgramStatus.TestingAccommodation,
-                TestingAccommodationFile = ObjectMother.JanesProgramStatus.TestingAccommodationFile,
-                BilingualProgram = ObjectMother.JanesProgramStatus.BilingualProgram,
-                EnglishAsSecondLanguage = ObjectMother.JanesProgramStatus.EnglishAsSecondLanguage,
-                FoodServiceEligibilityStatus = ObjectMother.JanesProgramStatus.FoodServiceEligibilityStatus,
-                Gifted = ObjectMother.JanesProgramStatus.Gifted,
-                SpecialEducation = ObjectMother.JanesProgramStatus.SpecialEducation,
-                SpecialEducationFile = ObjectMother.JanesProgramStatus.SpecialEducationFile,
-                McKinneyVento = ObjectMother.JanesProgramStatus.McKinneyVento,
-                McKinneyVentoFile = ObjectMother.JanesProgramStatus.McKinneyVentoFile,
-                TitleParticipation = ObjectMother.JanesProgramStatus.TitleParticipation,
-                TitleParticipationFile = ObjectMother.JanesProgramStatus.TitleParticipationFile,
-            };
+            var programStatusModel = EnterProgramStatusModelFactory.CreateProgramStatus();
+
+//            var programStatusModel = new EnterProgramStatusModel
+//            {
+//                TestingAccommodation = ObjectMother.JanesProgramStatus.TestingAccommodation,
+//                TestingAccommodationFile = ObjectMother.JanesProgramStatus.TestingAccommodationFile,
+//                BilingualProgram = ObjectMother.JanesProgramStatus.BilingualProgram,
+//                EnglishAsSecondLanguage = ObjectMother.JanesProgramStatus.EnglishAsSecondLanguage,
+//                FoodServiceEligibilityStatus = ObjectMother.JanesProgramStatus.FoodServiceEligibilityStatus,
+//                Gifted = ObjectMother.JanesProgramStatus.Gifted,
+//                SpecialEducation = ObjectMother.JanesProgramStatus.SpecialEducation,
+//                SpecialEducationFile = ObjectMother.JanesProgramStatus.SpecialEducationFile,
+//                McKinneyVento = ObjectMother.JanesProgramStatus.McKinneyVento,
+//                McKinneyVentoFile = ObjectMother.JanesProgramStatus.McKinneyVentoFile,
+//                TitleParticipation = ObjectMother.JanesProgramStatus.TitleParticipation,
+//                TitleParticipationFile = ObjectMother.JanesProgramStatus.TitleParticipationFile,
+//            };
             _profilePage = _programStatusPage.InputProgramStatus(programStatusModel);
         }
 
