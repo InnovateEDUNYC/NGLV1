@@ -22,7 +22,11 @@ namespace NGL.UiTests.Account
                 Username = "NewUser",
                 Password = "NewPassword",
                 ConfirmPassword = "NewPassword",
-                Role = ApplicationRole.Admin
+                Role = ApplicationRole.Admin,
+                FirstName = "McKinney ;)",
+                LastName = "Vento",
+                HispanicLatino = false,
+                StaffUSI = 1232
             };
 
         void GivenIHaveLoggedInAsAMasterAdmin()
@@ -45,7 +49,7 @@ namespace NGL.UiTests.Account
 
         void ThenTheUserAppearsOnTheUserLists()
         {
-            _usersPage.GetUsers().Count(u => u.Username == _newUser.Username && u.Role == _newUser.Role.Humanize()).ShouldBe(1);
+            _usersPage.UserExists(_newUser).ShouldBe(true);
         }
 
         void AndTheUserCanLogin()

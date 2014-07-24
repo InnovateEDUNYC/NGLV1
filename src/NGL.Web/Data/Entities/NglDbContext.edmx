@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NGLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NGLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -44,6 +44,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StaffUSI" Type="int" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="256" />
           <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
@@ -8005,9 +8006,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
@@ -8019,9 +8018,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
@@ -8033,9 +8030,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
           <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetRoles">
@@ -8047,9 +8042,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
@@ -8057,6 +8050,18 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Principal>
             <Dependent Role="AspNetUserRoles">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_edfi_Staff_StaffUSI">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffUSI" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="StaffUSI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16958,6 +16963,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_edfi_Staff_StaffUSI" Association="Self.FK_dbo_AspNetUsers_edfi_Staff_StaffUSI">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK_DiagnosisDescriptor_Descriptor_DescriptorId" Association="Self.FK_DiagnosisDescriptor_Descriptor_DescriptorId">
             <End Role="Descriptor" EntitySet="Descriptor" />
             <End Role="DiagnosisDescriptor" EntitySet="DiagnosisDescriptor" />
@@ -24832,6 +24841,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="StaffTelephones" Relationship="Self.FK_StaffTelephone_Staff_StaffUSI" FromRole="Staff" ToRole="StaffTelephone" />
           <NavigationProperty Name="StaffVisas" Relationship="Self.FK_StaffVisa_Staff_StaffUSI" FromRole="Staff" ToRole="StaffVisa" />
           <NavigationProperty Name="StudentSpecialEducationProgramAssociationServiceProviders" Relationship="Self.FK_StudentSpecialEducationProgramAssociationServiceProvider_Staff_StaffUSI" FromRole="Staff" ToRole="StudentSpecialEducationProgramAssociationServiceProvider" />
+          <NavigationProperty Name="Users" Relationship="NGLModel.FK_dbo_AspNetUsers_edfi_Staff_StaffUSI" FromRole="Staff" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="StaffAddress">
           <Key>
@@ -39782,6 +39792,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_edfi_Staff_StaffUSI" Association="NGLModel.FK_dbo_AspNetUsers_edfi_Staff_StaffUSI">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentProgramStatus">
           <Key>
@@ -39878,6 +39892,8 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="AspNetUserClaims" Relationship="NGLModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="NGLModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="AspNetRoles" Relationship="NGLModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <Property Name="StaffUSI" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="NGLModel.FK_dbo_AspNetUsers_edfi_Staff_StaffUSI" FromRole="AspNetUser" ToRole="Staff" />
         </EntityType>
         <EntityType Name="ELMAH_Error">
           <Key>
@@ -40003,6 +40019,18 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
         <Association Name="AspNetUserRoles">
           <End Type="NGLModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="NGLModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_edfi_Staff_StaffUSI">
+          <End Type="NGLModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="NGLModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffUSI" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="StaffUSI" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -45925,6 +45953,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="NGLModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="StaffUSI" ColumnName="StaffUSI" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />

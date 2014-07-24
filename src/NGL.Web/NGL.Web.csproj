@@ -270,33 +270,6 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
-    <Compile Include="Data\Entities\ApplicationRole.cs" />
-    <Compile Include="Data\Entities\AspNetRole.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\AspNetUser.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\AspNetUserClaim.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\AspNetUserLogin.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\ELMAH_Error.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\SchemaVersion.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\VersionLevel.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Queries\UserRolesQuery.cs" />
-    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
-    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
-    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
-    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -349,6 +322,19 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\AdministrativeFundingControlType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ApplicationRole.cs" />
+    <Compile Include="Data\Entities\AspNetRole.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUser.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUserClaim.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AspNetUserLogin.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\Assessment.cs">
@@ -711,6 +697,9 @@
     <Compile Include="Data\Entities\ElectronicMailType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\ELMAH_Error.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\EmploymentStatusDescriptor.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -990,21 +979,6 @@
     <Compile Include="Data\Entities\NetworkPurposeType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\NglDbContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NglDbContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\NglDbContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\NglDbContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NglDbContext.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Data\Entities\ObjectiveAssessment.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1201,6 +1175,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\RetestIndicatorType.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\SchemaVersion.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\School.cs">
@@ -1575,6 +1552,9 @@
     <Compile Include="Data\Entities\TitleIPartASchoolDesignationType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\VersionLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\VisaType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1583,6 +1563,27 @@
     </Compile>
     <Compile Include="Data\Entities\WeaponType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
+    <Compile Include="Data\Repositories\IStaffRepository.cs" />
+    <Compile Include="Data\Repositories\StaffRepository.cs" />
+    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
+    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Data\Entities\NglDbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NglDbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NglDbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\NglDbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NglDbContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\Descriptors.cs">
       <AutoGen>True</AutoGen>
@@ -1610,7 +1611,8 @@
     <Compile Include="Infrastructure\CustomMetadataProvider.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Account\AddUserModel.cs" />
-    <Compile Include="Models\Account\AspNetUserToUserModelMapper.cs" />
+    <Compile Include="Models\Account\AddUserModelToStaffMapper.cs" />
+    <Compile Include="Models\Account\StaffToUserModelMapper.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
     <Compile Include="Models\Account\UserModel.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />

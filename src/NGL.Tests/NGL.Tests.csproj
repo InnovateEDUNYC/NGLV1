@@ -67,6 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AddUserModelToStaffMapperTests.cs" />
+    <Compile Include="Account\StaffToUserModelMapperTests.cs" />
+    <Compile Include="Builders\StaffBuilder.cs" />
     <Compile Include="ClassPeriod\ValidatorTests.cs" />
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />

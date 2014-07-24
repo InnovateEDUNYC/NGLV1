@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Data.Infrastructure
 {
