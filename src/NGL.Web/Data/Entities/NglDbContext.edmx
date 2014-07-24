@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NGLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NGLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -87,9 +87,9 @@
             <PropertyRef Name="SchoolYear" />
           </Key>
           <Property Name="StudentUSI" Type="int" Nullable="false" />
-          <Property Name="ReadingScore" Type="decimal" Precision="9" Scale="2" Nullable="false" />
-          <Property Name="WritingScore" Type="decimal" Precision="9" Scale="2" Nullable="false" />
-          <Property Name="MathScore" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="ReadingScore" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="WritingScore" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="MathScore" Type="decimal" Precision="9" Scale="2" />
           <Property Name="SchoolYear" Type="smallint" Nullable="false" />
           <Property Name="GradeLevelTypeId" Type="int" Nullable="false" />
           <Property Name="PerfomanceHistory" Type="nvarchar" MaxLength="4000" />
@@ -39925,9 +39925,9 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <PropertyRef Name="SchoolYear" />
           </Key>
           <Property Name="StudentUSI" Type="Int32" Nullable="false" />
-          <Property Name="ReadingScore" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
-          <Property Name="WritingScore" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
-          <Property Name="MathScore" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="ReadingScore" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="WritingScore" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="MathScore" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="SchoolYear" Type="Int16" Nullable="false" />
           <Property Name="GradeLevelTypeId" Type="Int32" Nullable="false" />
           <Property Name="PerfomanceHistory" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />

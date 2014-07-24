@@ -22,9 +22,9 @@ namespace NGL.Web.Data.Entities
         }
     
         public int StudentUSI { get; set; }
-        public decimal ReadingScore { get; set; }
-        public decimal WritingScore { get; set; }
-        public decimal MathScore { get; set; }
+        public Nullable<decimal> ReadingScore { get; set; }
+        public Nullable<decimal> WritingScore { get; set; }
+        public Nullable<decimal> MathScore { get; set; }
         public short SchoolYear { get; set; }
         public int GradeLevelTypeId { get; set; }
         public string PerfomanceHistory { get; set; }

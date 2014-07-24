@@ -6,9 +6,9 @@ namespace NGL.Web.Models.Enrollment
     {
         public override void Map(AcademicDetailModel source, StudentAcademicDetail target)
         {
-            target.ReadingScore = source.Reading.GetValueOrDefault();
-            target.WritingScore = source.Writing.GetValueOrDefault();
-            target.MathScore = source.Math.GetValueOrDefault();
+            target.ReadingScore = source.Reading;
+            target.WritingScore = source.Writing;
+            target.MathScore = source.Math;
             target.SchoolYear = (short)source.SchoolYear;
             target.GradeLevelTypeId = (int) source.AnticipatedGrade;
             target.PerfomanceHistory = source.PerformanceHistory;
