@@ -66,3 +66,7 @@ form .inline input {
     float: right;
     margin-right: 15px;
 }
+
+.performance-history-textbox {
+    max-width: 500px;
+}
