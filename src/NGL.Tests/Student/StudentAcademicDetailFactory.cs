@@ -13,7 +13,8 @@ namespace NGL.Tests.Student
                 MathScore = 80,
                 GradeLevelTypeId = (int) GradeLevelTypeEnum._5thGrade,
                 SchoolYear = (int) SchoolYearTypeEnum.Year2014,
-                PerformanceHistoryFileUrl = "www.example.com/here/example.txt"
+                PerformanceHistoryFile = "/here/example",
+                PerfomanceHistory = "An Incredible Student. Many Times I wasn't sure if I was the teacher or pupil. Pure Genius."
             };
         }
     }

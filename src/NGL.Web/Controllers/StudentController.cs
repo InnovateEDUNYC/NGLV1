@@ -63,14 +63,7 @@ namespace NGL.Web.Controllers
             }
             var profileModel = new ProfileModel();
             _studentToDetailsModelMapper.Map(student, profileModel);
-//            var thePath = Download("");
             return View(profileModel);
-        }
-        private string Download(string relativePath)
-        {
-            var fileDownloader = new AzureStorageDownloader();
-            const string blobContainer = "student";
-            return fileDownloader.DownloadPath(blobContainer, relativePath);
         }
 
     }

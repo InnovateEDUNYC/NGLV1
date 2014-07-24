@@ -5,24 +5,21 @@ using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace NGL.Web.Infrastructure.Azure
 {
-    public class AzureStorageDownloader
+    public class AzureStorageDownloader : IFileDownloader
     {
-        private CloudBlobClient _blobClient;
-
-        public AzureStorageDownloader()
-        {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("BlobConnectionString"));
-            _blobClient = storageAccount.CreateCloudBlobClient();
-        }
 
         public string DownloadPath(string container, string fileName)
         {
-            var blobContainer = _blobClient.GetContainerReference(container);
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("BlobConnectionString"));
+            var blobClient = storageAccount.CreateCloudBlobClient();
+
+            var blobContainer = blobClient.GetContainerReference(container);
             var blockBlob = blobContainer.GetBlockBlobReference(fileName);
 
             var sasConstraints = new SharedAccessBlobPolicy();
-            sasConstraints.SharedAccessExpiryTime = DateTime.UtcNow.AddHours(4);
-            sasConstraints.Permissions = SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.List;
+            sasConstraints.SharedAccessStartTime = DateTime.UtcNow.AddMinutes(-10);
+            sasConstraints.SharedAccessExpiryTime = DateTime.UtcNow.AddHours(2);
+            sasConstraints.Permissions = SharedAccessBlobPermissions.Read;
             var sasContainerToken = blockBlob.GetSharedAccessSignature(sasConstraints);
 
             return blockBlob.Uri + sasContainerToken;

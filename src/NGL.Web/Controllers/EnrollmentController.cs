@@ -78,16 +78,16 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
+            Func<string, string> makeFileNameFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
 
-            var performanceHistoryFileUri = UploadAndGetUriFor(academicDetailModel.PerformanceHistoryFile,
-                makeUriFor("performanceHistory"));
+            var performanceHistoryFileName = makeFileNameFor("performanceHistory");
+            Upload(academicDetailModel.PerformanceHistoryFile, performanceHistoryFileName);
                     
             var studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
                 adm =>
                 {
                     adm.StudentUSI = id;
-                    adm.PerformanceHistoryFile = performanceHistoryFileUri;
+                    adm.PerformanceHistoryFile = performanceHistoryFileName;
                 });
 
             var studentSchoolAssociation = _schoolAssociationMapper.Build(academicDetailModel);
@@ -113,23 +113,25 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(enterProgramStatusModel);
 
-            Func<string, string> makeUriFor = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
+            Func<string, string> makeFileNameFor = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
 
-            var specialEducationFileUri = UploadAndGetUriFor(enterProgramStatusModel.SpecialEducationFile,
-                    makeUriFor("specialEducation"));
-            var testingAccomodationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TestingAccommodationFile, makeUriFor("testingAccomodation"));
-            var titleParticipationFileUri = UploadAndGetUriFor(enterProgramStatusModel.TitleParticipationFile, makeUriFor("titleParticipation"));
-            var mcKinneyVentoFileUri = UploadAndGetUriFor(enterProgramStatusModel.McKinneyVentoFile,
-                makeUriFor("McKinneyVento"));
+            var specialEducationFileName = makeFileNameFor("specialEducation");
+            Upload(enterProgramStatusModel.SpecialEducationFile, specialEducationFileName);
+            var testingAccomodationFileName = makeFileNameFor("testingAccomodation");
+            Upload(enterProgramStatusModel.TestingAccommodationFile, testingAccomodationFileName);
+            var titleParticipationFileName = makeFileNameFor("titleParticipation");
+            Upload(enterProgramStatusModel.TitleParticipationFile, titleParticipationFileName);
+            var mcKinneyVentoFileName = makeFileNameFor("McKinneyVento");
+            Upload(enterProgramStatusModel.McKinneyVentoFile, mcKinneyVentoFileName);
 
             var studentProgramStatus = _programStatusMapper.Build(enterProgramStatusModel,
                 psm =>
                 {
                     psm.StudentUSI = id;
-                    psm.TitleParticipationFile = titleParticipationFileUri;
-                    psm.TestingAccommodationFile = testingAccomodationFileUri;
-                    psm.SpecialEducationFile = specialEducationFileUri;
-                    psm.McKinneyVentoFile = mcKinneyVentoFileUri;
+                    psm.TitleParticipationFile = titleParticipationFileName;
+                    psm.TestingAccommodationFile = testingAccomodationFileName;
+                    psm.SpecialEducationFile = specialEducationFileName;
+                    psm.McKinneyVentoFile = mcKinneyVentoFileName;
                 });
 
             _repository.Add(studentProgramStatus);
@@ -137,13 +139,11 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Student.Index(id));
         }
 
-        private string UploadAndGetUriFor(HttpPostedFileBase file, string relativePath)
+        private void Upload(HttpPostedFileBase file, string relativePath)
         {
             const string blobContainer = "student";
             if (file != null)
-                return _fileUploader.Upload(file, blobContainer, relativePath);
-          
-            return null;
+               _fileUploader.Upload(file, blobContainer, relativePath);
         }
     }
 }

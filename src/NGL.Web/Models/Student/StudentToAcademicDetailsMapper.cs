@@ -1,15 +1,33 @@
 ﻿using System.Linq;
+using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Student
 {
     public class StudentToAcademicDetailsMapper : MapperBase<Data.Entities.Student, ProfileAcademicDetailModel>
     {
+        private readonly IFileDownloader _azureStorageDownloader;
+
+        public StudentToAcademicDetailsMapper(IFileDownloader azureStorageDownloader)
+        {
+            _azureStorageDownloader = azureStorageDownloader;
+        }
+
         public override void Map(Data.Entities.Student source, ProfileAcademicDetailModel target)
         {
-            target.ReadingScore = source.StudentAcademicDetails.First().ReadingScore;
-            target.WritingScore = source.StudentAcademicDetails.First().WritingScore;
-            target.MathScore = source.StudentAcademicDetails.First().MathScore;
-            target.PerformanceHistoryFileUrl = source.StudentAcademicDetails.First().PerformanceHistoryFileUrl;
+            var studentAcademicDetail = source.StudentAcademicDetails.First();
+
+            target.ReadingScore = studentAcademicDetail.ReadingScore;
+            target.WritingScore = studentAcademicDetail.WritingScore;
+            target.MathScore = studentAcademicDetail.MathScore;
+            target.PerformanceHistoryFileUrl = CreateSignitureUri(studentAcademicDetail.PerformanceHistoryFile);
+            target.PerformanceHistory = studentAcademicDetail.PerfomanceHistory;
+        }
+
+        private string CreateSignitureUri(string filename)
+        {
+            var fileDownloader = _azureStorageDownloader;
+            const string blobContainer = "student";
+            return fileDownloader.DownloadPath(blobContainer, filename);
         }
     }
 }

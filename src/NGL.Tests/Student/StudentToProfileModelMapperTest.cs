@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models.Student;
+using NSubstitute;
 using Shouldly;
 using Xunit;
 
@@ -16,7 +18,10 @@ namespace NGL.Tests.Student
             var parent = student.StudentParentAssociations.First().Parent;
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
+            var downloader = Substitute.For<IFileDownloader>();
+            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
+
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
             mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
@@ -31,7 +36,10 @@ namespace NGL.Tests.Student
             var student = StudentFactory.CreateStudentWithOneParent(parent, false);
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
+            var downloader = Substitute.For<IFileDownloader>();
+            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
+
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
             mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
@@ -48,7 +56,10 @@ namespace NGL.Tests.Student
             var secondParent = student.StudentParentAssociations.ElementAt(1).Parent;
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
+            var downloader = Substitute.For<IFileDownloader>();
+            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
+
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
             mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
@@ -63,7 +74,13 @@ namespace NGL.Tests.Student
             var student = StudentFactory.CreateStudentWithOneParent();
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
+            var fileName = student.StudentAcademicDetails.First().PerformanceHistoryFile;
+            var filePath = "https://ngl.blob.core.windows.net/" + fileName;
+            
+            var downloader = Substitute.For<IFileDownloader>();
+            downloader.DownloadPath("student", fileName).Returns(filePath);
+
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
             mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
@@ -72,8 +89,8 @@ namespace NGL.Tests.Student
             profileModel.AcademicDetail.ReadingScore.ShouldBe(studentAcademicDetail.ReadingScore);
             profileModel.AcademicDetail.WritingScore.ShouldBe(studentAcademicDetail.WritingScore);
             profileModel.AcademicDetail.MathScore.ShouldBe(studentAcademicDetail.MathScore);
-            profileModel.AcademicDetail.PerformanceHistoryFileUrl.ShouldBe(
-                studentAcademicDetail.PerformanceHistoryFileUrl);
+            profileModel.AcademicDetail.PerformanceHistoryFileUrl.ShouldBe(filePath);
+            profileModel.AcademicDetail.PerformanceHistory.ShouldBe(studentAcademicDetail.PerfomanceHistory);
         }
 
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
