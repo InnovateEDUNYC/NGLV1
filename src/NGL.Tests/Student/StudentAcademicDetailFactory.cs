@@ -8,9 +8,9 @@ namespace NGL.Tests.Student
         {
             return new StudentAcademicDetail
             {
-                ReadingScore = 98,
-                WritingScore = 78,
-                MathScore = 80,
+                ReadingScore = 98m,
+                WritingScore = 78m,
+                MathScore = 80m,
                 GradeLevelTypeId = (int) GradeLevelTypeEnum._5thGrade,
                 SchoolYear = (int) SchoolYearTypeEnum.Year2014,
                 PerformanceHistoryFile = "/here/example",
