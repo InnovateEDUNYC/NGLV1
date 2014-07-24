@@ -28,7 +28,6 @@ namespace NGL.Web.Data.Entities
         public short SchoolYear { get; set; }
         public int GradeLevelTypeId { get; set; }
         public string PerfomanceHistory { get; set; }
-        public string PerformanceHistoryFileUrl { get; set; }
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }

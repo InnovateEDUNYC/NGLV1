@@ -87,7 +87,7 @@ namespace NGL.Web.Controllers
                 adm =>
                 {
                     adm.StudentUSI = id;
-                    adm.PerformanceHistoryFileUrl = performanceHistoryFileUri;
+                    adm.PerformanceHistoryFile = performanceHistoryFileUri;
                 });
 
             var studentSchoolAssociation = _schoolAssociationMapper.Build(academicDetailModel);
@@ -126,10 +126,10 @@ namespace NGL.Web.Controllers
                 psm =>
                 {
                     psm.StudentUSI = id;
-                    psm.TitleParticipationFileUrl = titleParticipationFileUri;
-                    psm.TestingAccommodationFileUrl = testingAccomodationFileUri;
-                    psm.SpecialEducationFileUrl = specialEducationFileUri;
-                    psm.McKinneyVentoFileUrl = mcKinneyVentoFileUri;
+                    psm.TitleParticipationFile = titleParticipationFileUri;
+                    psm.TestingAccommodationFile = testingAccomodationFileUri;
+                    psm.SpecialEducationFile = specialEducationFileUri;
+                    psm.McKinneyVentoFile = mcKinneyVentoFileUri;
                 });
 
             _repository.Add(studentProgramStatus);

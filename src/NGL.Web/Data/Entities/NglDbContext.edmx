@@ -39803,17 +39803,13 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           </Key>
           <Property Name="StudentUSI" Type="Int32" Nullable="false" />
           <Property Name="TestingAccommodation" Type="Boolean" Nullable="false" />
-          <Property Name="TestingAccommodationFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="BilingualProgram" Type="Boolean" Nullable="false" />
           <Property Name="EnglishAsSecondLanguage" Type="Boolean" Nullable="false" />
           <Property Name="SchoolFoodServicesEligibilityTypeId" Type="Int32" Nullable="false" />
           <Property Name="Gifted" Type="Boolean" Nullable="false" />
           <Property Name="SpecialEducation" Type="Boolean" Nullable="false" />
-          <Property Name="SpecialEducationFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TitleParticipation" Type="Boolean" Nullable="false" />
-          <Property Name="TitleParticipationFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="McKinneyVento" Type="Boolean" Nullable="false" />
-          <Property Name="McKinneyVentoFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -39935,7 +39931,6 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="SchoolYear" Type="Int16" Nullable="false" />
           <Property Name="GradeLevelTypeId" Type="Int32" Nullable="false" />
           <Property Name="PerfomanceHistory" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="PerformanceHistoryFileUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />

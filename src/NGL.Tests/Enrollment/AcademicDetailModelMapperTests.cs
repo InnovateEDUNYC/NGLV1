@@ -19,7 +19,7 @@ namespace NGL.Tests.Enrollment
                 adm =>
                 {
                     adm.StudentUSI = academicDetailModel.StudentUsi;
-                    adm.PerformanceHistoryFileUrl = "http://example.com/phf.pdf";
+                    adm.PerformanceHistoryFile = "http://example.com/phf.pdf";
                 });
 
             academicDetailEntity.StudentUSI.ShouldBe(academicDetailModel.StudentUsi);
@@ -29,7 +29,7 @@ namespace NGL.Tests.Enrollment
             academicDetailEntity.SchoolYear.ShouldBe((short)academicDetailModel.SchoolYear);
             academicDetailEntity.GradeLevelTypeId.ShouldBe((int)academicDetailModel.AnticipatedGrade);
             academicDetailEntity.PerfomanceHistory.ShouldBe(academicDetailModel.PerformanceHistory);
-            academicDetailEntity.PerformanceHistoryFileUrl.ShouldBe("http://example.com/phf.pdf");
+            academicDetailEntity.PerformanceHistoryFile.ShouldBe("http://example.com/phf.pdf");
         }
 
         [Fact]
@@ -44,13 +44,13 @@ namespace NGL.Tests.Enrollment
                 });
 
             academicDetailEntity.StudentUSI.ShouldBe(academicDetailModel.StudentUsi);
-            academicDetailEntity.ReadingScore.ShouldBe((decimal)academicDetailModel.Reading);
-            academicDetailEntity.WritingScore.ShouldBe((decimal)academicDetailModel.Writing);
-            academicDetailEntity.MathScore.ShouldBe((decimal)academicDetailModel.Math);
+            academicDetailEntity.ReadingScore.ShouldBe(academicDetailModel.Reading);
+            academicDetailEntity.WritingScore.ShouldBe(academicDetailModel.Writing);
+            academicDetailEntity.MathScore.ShouldBe(academicDetailModel.Math);
             academicDetailEntity.SchoolYear.ShouldBe((short)academicDetailModel.SchoolYear);
             academicDetailEntity.GradeLevelTypeId.ShouldBe((int)academicDetailModel.AnticipatedGrade);
             academicDetailEntity.PerfomanceHistory.ShouldBe(null);
-            academicDetailEntity.PerformanceHistoryFileUrl.ShouldBe(null);
+            academicDetailEntity.PerformanceHistoryFile.ShouldBe(null);
         }
 
 
