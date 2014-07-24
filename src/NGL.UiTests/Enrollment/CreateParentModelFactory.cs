@@ -24,7 +24,7 @@ namespace NGL.UiTests.Enrollment
         private const StateAbbreviationTypeEnum State = StateAbbreviationTypeEnum.NM;
         private const string PostalCode = "27890" ;
 
-        public static CreateParentModel CreateParentWithAddress()
+        public static CreateParentModel CreateParentWithEmailAddress()
         {
             return new CreateParentModel
             {
@@ -34,6 +34,26 @@ namespace NGL.UiTests.Enrollment
                 RelationshipToStudent = RelationshipToStudent,
                 TelephoneNumber = PhoneNumber,
                 EmailAddress = Email,
+                SameAddressAsStudent = SameAddressAsStudent,
+                Address = Address,
+                Address2 = Address2,
+                City = City,
+                State = State,
+                PostalCode = PostalCode,
+                MakeThisPrimaryContact = MakeThisPrimaryContact
+            };
+        }
+
+        public static CreateParentModel CreateParentWithoutEmailAddress()
+        {
+            return new CreateParentModel
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Sex = Sex,
+                RelationshipToStudent = RelationshipToStudent,
+                TelephoneNumber = PhoneNumber,
+                EmailAddress = null,
                 SameAddressAsStudent = SameAddressAsStudent,
                 Address = Address,
                 Address2 = Address2,

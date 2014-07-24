@@ -43,8 +43,7 @@ namespace NGL.UiTests.Student
                 Browser.PageSource.Contains(createStudentModel.SecondParent.LastName) &&
                 Browser.PageSource.Contains(createStudentModel.SecondParent.Sex.Humanize()) &&
                 Browser.PageSource.Contains(createStudentModel.SecondParent.RelationshipToStudent.Humanize()) &&
-                Browser.PageSource.Contains(createStudentModel.SecondParent.TelephoneNumber) &&
-                Browser.PageSource.Contains(createStudentModel.SecondParent.EmailAddress);
+                Browser.PageSource.Contains(createStudentModel.SecondParent.TelephoneNumber);
 
             return studentFields && parentOneFields && parentTwoFields;
         }
