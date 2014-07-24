@@ -10,7 +10,7 @@
     using (var s = f.BeginSection("Enroll a student"))
     {
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5 col-lg-4">
                 @s.FieldFor(m => m.StudentUsi)
                 @s.FieldFor(m => m.FirstName)
                 @s.FieldFor(m => m.LastName)
@@ -28,8 +28,9 @@
                 @s.FieldFor(m => m.HomeLanguage)
             </div>
         </div>
+        <hr />
         <div class="parent-panels row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5 col-lg-4">
                 <div class="first-parent">
                     <h3>First Parent Information</h3>
                     @s.FieldFor(m => m.FirstParent.FirstName)
@@ -51,7 +52,7 @@
                 </div>
                 @s.FieldFor(m => m.AddSecondParent)
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-5 col-lg-4">
                 <div class="second-parent">
                     <h3>Second Parent Information</h3>
                     @s.FieldFor(m => m.SecondParent.FirstName)

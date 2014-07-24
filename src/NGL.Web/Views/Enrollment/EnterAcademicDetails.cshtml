@@ -16,6 +16,7 @@
         @r.FieldFor(s => s.Reading)
         @r.FieldFor(s => s.Writing)
         @r.FieldFor(s => s.Math)
+    <hr/>
         @r.FieldFor(s => s.SchoolYear)
         @r.FieldFor(s => s.AnticipatedGrade)
         @r.FieldFor(s => s.EntryDate)
@@ -24,7 +25,7 @@
     <h2>Performance History</h2>
     using (var t = f.BeginSection("Elaborate on the student's performance history and upload performance records"))
     {
-        @t.FieldFor(s => s.PerformanceHistory)
+        @t.FieldFor(s => s.PerformanceHistory).AddClass("performance-history-textbox").Attr("rows", "5")
         @t.FieldFor(s => s.PerformanceHistoryFile).Attr("type", "file")
     }
 
