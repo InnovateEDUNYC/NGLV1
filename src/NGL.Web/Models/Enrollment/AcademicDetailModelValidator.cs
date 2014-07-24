@@ -20,9 +20,9 @@ namespace NGL.Web.Models.Enrollment
             _genericRepository = genericRepository;
 
 
-            RuleFor(adm => adm.Reading).NotNull().GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
-            RuleFor(adm => adm.Math).NotNull().GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
-            RuleFor(adm => adm.Writing).NotNull().GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
+            RuleFor(adm => adm.Reading).GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
+            RuleFor(adm => adm.Math).GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
+            RuleFor(adm => adm.Writing).GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
             RuleFor(adm => adm.AnticipatedGrade).NotNull();
             RuleFor(adm => adm.PerformanceHistory).Length(0, 4000);
             RuleFor(adm => adm.EntryDate).NotNull();

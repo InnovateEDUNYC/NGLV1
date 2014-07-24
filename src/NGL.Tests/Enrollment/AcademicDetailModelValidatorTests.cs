@@ -28,9 +28,6 @@ namespace NGL.Tests.Enrollment
         {
             var academicDetailModel = new AcademicDetailModel();
 
-            _validator.ShouldHaveValidationErrorFor(adm => adm.Reading, academicDetailModel);
-            _validator.ShouldHaveValidationErrorFor(adm => adm.Writing, academicDetailModel);
-            _validator.ShouldHaveValidationErrorFor(adm => adm.Math, academicDetailModel);
             _validator.ShouldHaveValidationErrorFor(adm => adm.AnticipatedGrade, academicDetailModel);
             _validator.ShouldHaveValidationErrorFor(adm => adm.EntryDate, academicDetailModel);
         }
