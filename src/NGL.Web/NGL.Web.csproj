@@ -1645,9 +1645,11 @@
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
+    <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\ProfileParentAddressModel.cs" />
     <Compile Include="Models\Student\ProfileParentModel.cs" />
+    <Compile Include="Models\Student\StudentToAcademicDetailsMapper.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
     <Compile Include="Models\Session\IndexModel.cs" />

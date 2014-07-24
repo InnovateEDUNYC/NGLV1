@@ -51,7 +51,8 @@ namespace NGL.Web.Controllers
                 s => s.StudentParentAssociations.Select(p => p.Parent),
                 s => s.StudentParentAssociations.Select(p => p.Parent.ParentAddresses),
                 s => s.StudentParentAssociations.Select(p => p.Parent.ParentTelephones),
-                s => s.StudentParentAssociations.Select(p => p.Parent.ParentElectronicMails)
+                s => s.StudentParentAssociations.Select(p => p.Parent.ParentElectronicMails),
+                s => s.StudentAcademicDetails
             );
 
             if (student == null)

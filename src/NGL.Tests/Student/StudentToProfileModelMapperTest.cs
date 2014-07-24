@@ -16,8 +16,7 @@ namespace NGL.Tests.Student
             var parent = student.StudentParentAssociations.First().Parent;
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper()
-            );
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
             mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
@@ -32,8 +31,7 @@ namespace NGL.Tests.Student
             var student = StudentFactory.CreateStudentWithOneParent(parent, false);
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper()
-            );
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
             mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
@@ -50,14 +48,31 @@ namespace NGL.Tests.Student
             var secondParent = student.StudentParentAssociations.ElementAt(1).Parent;
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper()
-            );
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
             mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(firstParent, profileModel.ProfileParentModel);
             NativeParentPropertiesShouldBeMapped(secondParent, profileModel.SecondProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
+        }
+
+        [Fact]
+        public void ShouldMapStudentToProfileModelWithAcademicDetails()
+        {
+            var student = StudentFactory.CreateStudentWithOneParent();
+            var profileModel = new ProfileModel();
+
+            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper());
+            mapper.Map(student, profileModel);
+
+            NativeStudentPropertiesShouldBeMapped(student, profileModel);
+
+            var studentAcademicDetail = student.StudentAcademicDetails.First();
+            profileModel.AcademicDetail.ReadingScore.ShouldBe(studentAcademicDetail.ReadingScore);
+            profileModel.AcademicDetail.WritingScore.ShouldBe(studentAcademicDetail.WritingScore);
+            profileModel.AcademicDetail.MathScore.ShouldBe(studentAcademicDetail.MathScore);
+
         }
 
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
