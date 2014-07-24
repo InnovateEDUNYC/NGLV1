@@ -4,6 +4,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.Validators;
 using Microsoft.Ajax.Utilities;
+using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure;
@@ -36,11 +37,35 @@ namespace NGL.Web.Models.Enrollment
 
         private IEnumerable<ValidationFailure> ValidateExistence(AcademicDetailModel academicDetailModel)
         {
-            var query = new StudentAcademicDetailsByStudentUsiAndSchoolYearQuery(academicDetailModel.StudentUsi, (short)academicDetailModel.SchoolYear);
+            foreach (var validationFailure in ValidateStudentAcademicDetailExistence(academicDetailModel)) yield return validationFailure;
+
+            foreach (var validationFailure in ValidateStudentSchoolAssociationExistence(academicDetailModel)) yield return validationFailure;
+        }
+
+        private IEnumerable<ValidationFailure> ValidateStudentSchoolAssociationExistence(AcademicDetailModel academicDetailModel)
+        {
+            var result = _genericRepository.Get<StudentSchoolAssociation>(
+                ssa => ssa.EntryDate == academicDetailModel.EntryDate &&
+                       ssa.StudentUSI == academicDetailModel.StudentUsi);
+
+            if (result != null)
+            {
+                yield return
+                    new ValidationFailure(academicDetailModel.GetNameFor(adm => adm.EntryDate),
+                        "A record for this entry date already exists");
+            }
+        }
+
+        private IEnumerable<ValidationFailure> ValidateStudentAcademicDetailExistence(AcademicDetailModel academicDetailModel)
+        {
+            var query = new StudentAcademicDetailsByStudentUsiAndSchoolYearQuery(academicDetailModel.StudentUsi,
+                (short) academicDetailModel.SchoolYear);
 
             if (_genericRepository.Get(query) != null)
             {
-                yield return new ValidationFailure(academicDetailModel.GetNameFor(adm => adm.SchoolYear), "A record for this student for this year already exists");
+                yield return
+                    new ValidationFailure(academicDetailModel.GetNameFor(adm => adm.SchoolYear),
+                        "A record for this student for this year already exists");
             }
         }
     }
