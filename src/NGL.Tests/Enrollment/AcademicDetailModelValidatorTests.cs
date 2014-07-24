@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Web;
 using FluentValidation.TestHelper;
 using NGL.Web.Data.Entities;
@@ -90,6 +91,36 @@ namespace NGL.Tests.Enrollment
                .Returns((StudentAcademicDetail) null);
 
             _validator.ShouldNotHaveValidationErrorFor(adm => adm.SchoolYear, academicDetailModel);
+        }
+
+        [Fact]
+        public void ShouldHaveErrorsForDuplicateStudentSchoolAssociation()
+        {
+            var academicDetailModel = new AcademicDetailModel
+            {
+                EntryDate = new DateTime(2014, 07, 07)
+            };
+            
+            _repository
+                .Get(Arg.Any<Expression<Func<StudentSchoolAssociation, bool>>>())
+                .Returns(new StudentSchoolAssociation());
+
+            _validator.ShouldHaveValidationErrorFor(adm => adm.EntryDate, academicDetailModel);
+        }
+
+        [Fact]
+        public void ShouldNotHaveErrorsForNewStudentSchoolAssociation()
+        {
+            var academicDetailModel = new AcademicDetailModel
+            {
+                EntryDate = new DateTime(2014, 07, 07)
+            };
+
+            _repository
+                .Get(Arg.Any<Expression<Func<StudentSchoolAssociation, bool>>>())
+                .Returns((StudentSchoolAssociation) null);
+
+            _validator.ShouldNotHaveValidationErrorFor(adm => adm.EntryDate, academicDetailModel);
         }
     }
 }
