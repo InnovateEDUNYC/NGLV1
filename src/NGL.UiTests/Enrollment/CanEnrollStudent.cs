@@ -24,7 +24,6 @@ namespace NGL.UiTests.Enrollment
         private ProgramStatusPage _programStatusPage;
         private CreateStudentModel _createStudentModel;
         private AcademicDetailPage _academicDetailPage;
-        private CreateParentModel _createParentModelTwo;
 
         public void IHaveLoggedIn()
         {
@@ -41,7 +40,6 @@ namespace NGL.UiTests.Enrollment
         public void IHaveEnteredValidInputForAllFields()
         {
             _createStudentModel = StudentModelFactory.CreateStudent();
-
 
             _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
         }
@@ -66,22 +64,6 @@ namespace NGL.UiTests.Enrollment
         private void IHaveInputProgramStatus()
         {
             var programStatusModel = EnterProgramStatusModelFactory.CreateProgramStatus();
-
-//            var programStatusModel = new EnterProgramStatusModel
-//            {
-//                TestingAccommodation = ObjectMother.JanesProgramStatus.TestingAccommodation,
-//                TestingAccommodationFile = ObjectMother.JanesProgramStatus.TestingAccommodationFile,
-//                BilingualProgram = ObjectMother.JanesProgramStatus.BilingualProgram,
-//                EnglishAsSecondLanguage = ObjectMother.JanesProgramStatus.EnglishAsSecondLanguage,
-//                FoodServiceEligibilityStatus = ObjectMother.JanesProgramStatus.FoodServiceEligibilityStatus,
-//                Gifted = ObjectMother.JanesProgramStatus.Gifted,
-//                SpecialEducation = ObjectMother.JanesProgramStatus.SpecialEducation,
-//                SpecialEducationFile = ObjectMother.JanesProgramStatus.SpecialEducationFile,
-//                McKinneyVento = ObjectMother.JanesProgramStatus.McKinneyVento,
-//                McKinneyVentoFile = ObjectMother.JanesProgramStatus.McKinneyVentoFile,
-//                TitleParticipation = ObjectMother.JanesProgramStatus.TitleParticipation,
-//                TitleParticipationFile = ObjectMother.JanesProgramStatus.TitleParticipationFile,
-//            };
             _profilePage = _programStatusPage.InputProgramStatus(programStatusModel);
         }
 

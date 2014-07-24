@@ -38,7 +38,8 @@ namespace NGL.UiTests.Enrollment
                 State = StateAbbreviationTypeEnum,
                 PostalCode = PostalCode,
                 HomeLanguage = LanguageDescriptorEnum,
-                FirstParent = ParentModelFactory.CreateParentWithAddress()
+                FirstParent = ParentModelFactory.CreateParentWithAddress(),
+                SecondParent = ParentModelFactory.CreateParentWithAddress()
             };
         }
     }
