@@ -70,3 +70,16 @@ form .inline input {
 .performance-history-textbox {
     max-width: 500px;
 }
+
+.input-group {
+    display: block;
+}
+
+.input-group-addon,
+.input-group-btn {
+    width: 0%;
+}
+
+.input-group-addon {
+    padding: 9px 20px;
+}
