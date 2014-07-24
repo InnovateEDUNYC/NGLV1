@@ -96,7 +96,7 @@
     <Compile Include="ClassPeriod\ClassPeriodCreatePage.cs" />
     <Compile Include="ClassPeriod\ClassPeriodIndexPage.cs" />
     <Compile Include="Enrollment\AcademicDetailPage.cs" />
-    <Compile Include="Enrollment\ParentModelFactory.cs" />
+    <Compile Include="Enrollment\CreateParentModelFactory.cs" />
     <Compile Include="Enrollment\ProgramStatusPage.cs" />
     <Compile Include="Enrollment\CreateStudentModelFactory.cs" />
     <Compile Include="Location\CanCreateLocation.cs" />
