@@ -93,7 +93,7 @@
           <Property Name="SchoolYear" Type="smallint" Nullable="false" />
           <Property Name="GradeLevelTypeId" Type="int" Nullable="false" />
           <Property Name="PerfomanceHistory" Type="nvarchar" MaxLength="4000" />
-          <Property Name="PerformanceHistoryFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="PerformanceHistoryFile" Type="varchar" MaxLength="200" />
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -104,17 +104,17 @@
           </Key>
           <Property Name="StudentUSI" Type="int" Nullable="false" />
           <Property Name="TestingAccommodation" Type="bit" Nullable="false" />
-          <Property Name="TestingAccommodationFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="TestingAccommodationFile" Type="varchar" MaxLength="200" />
           <Property Name="BilingualProgram" Type="bit" Nullable="false" />
           <Property Name="EnglishAsSecondLanguage" Type="bit" Nullable="false" />
           <Property Name="SchoolFoodServicesEligibilityTypeId" Type="int" Nullable="false" />
           <Property Name="Gifted" Type="bit" Nullable="false" />
           <Property Name="SpecialEducation" Type="bit" Nullable="false" />
-          <Property Name="SpecialEducationFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="SpecialEducationFile" Type="varchar" MaxLength="200" />
           <Property Name="TitleParticipation" Type="bit" Nullable="false" />
-          <Property Name="TitleParticipationFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="TitleParticipationFile" Type="varchar" MaxLength="200" />
           <Property Name="McKinneyVento" Type="bit" Nullable="false" />
-          <Property Name="McKinneyVentoFileUrl" Type="varchar" MaxLength="200" />
+          <Property Name="McKinneyVentoFile" Type="varchar" MaxLength="200" />
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -39819,6 +39819,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SchoolFoodServicesEligibilityType" Relationship="NGLModel.FK_StudentProgramStatus_SchoolFoodServicesEligibilityType" FromRole="StudentProgramStatus" ToRole="SchoolFoodServicesEligibilityType" />
           <NavigationProperty Name="Student" Relationship="NGLModel.FK_StudentProgramStatus_Student" FromRole="StudentProgramStatus" ToRole="Student" />
+          <Property Name="TestingAccommodationFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialEducationFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TitleParticipationFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="McKinneyVentoFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_StudentProgramStatus_SchoolFoodServicesEligibilityType">
           <End Type="NGLModel.SchoolFoodServicesEligibilityType" Role="SchoolFoodServicesEligibilityType" Multiplicity="1" />
@@ -39938,6 +39942,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="GradeLevelType" Relationship="NGLModel.FK_StudentAcademicDetails_GradeLevelType" FromRole="StudentAcademicDetail1" ToRole="GradeLevelType" />
           <NavigationProperty Name="SchoolYearType" Relationship="NGLModel.FK_StudentAcademicDetails_SchoolYear" FromRole="StudentAcademicDetail1" ToRole="SchoolYearType" />
           <NavigationProperty Name="Student" Relationship="NGLModel.FK_StudentAcademicDetails_Student1" FromRole="StudentAcademicDetail1" ToRole="Student" />
+          <Property Name="PerformanceHistoryFile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VersionLevel">
           <Key>
@@ -45904,20 +45909,20 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySetMapping Name="StudentProgramStatus">
             <EntityTypeMapping TypeName="NGLModel.StudentProgramStatus">
               <MappingFragment StoreEntitySet="StudentProgramStatus">
+                <ScalarProperty Name="McKinneyVentoFile" ColumnName="McKinneyVentoFile" />
+                <ScalarProperty Name="TitleParticipationFile" ColumnName="TitleParticipationFile" />
+                <ScalarProperty Name="SpecialEducationFile" ColumnName="SpecialEducationFile" />
+                <ScalarProperty Name="TestingAccommodationFile" ColumnName="TestingAccommodationFile" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="McKinneyVentoFileUrl" ColumnName="McKinneyVentoFileUrl" />
                 <ScalarProperty Name="McKinneyVento" ColumnName="McKinneyVento" />
-                <ScalarProperty Name="TitleParticipationFileUrl" ColumnName="TitleParticipationFileUrl" />
                 <ScalarProperty Name="TitleParticipation" ColumnName="TitleParticipation" />
-                <ScalarProperty Name="SpecialEducationFileUrl" ColumnName="SpecialEducationFileUrl" />
                 <ScalarProperty Name="SpecialEducation" ColumnName="SpecialEducation" />
                 <ScalarProperty Name="Gifted" ColumnName="Gifted" />
                 <ScalarProperty Name="SchoolFoodServicesEligibilityTypeId" ColumnName="SchoolFoodServicesEligibilityTypeId" />
                 <ScalarProperty Name="EnglishAsSecondLanguage" ColumnName="EnglishAsSecondLanguage" />
                 <ScalarProperty Name="BilingualProgram" ColumnName="BilingualProgram" />
-                <ScalarProperty Name="TestingAccommodationFileUrl" ColumnName="TestingAccommodationFileUrl" />
                 <ScalarProperty Name="TestingAccommodation" ColumnName="TestingAccommodation" />
                 <ScalarProperty Name="StudentUSI" ColumnName="StudentUSI" />
               </MappingFragment>
@@ -45998,10 +46003,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySetMapping Name="StudentAcademicDetailSet">
             <EntityTypeMapping TypeName="NGLModel.StudentAcademicDetail">
               <MappingFragment StoreEntitySet="StudentAcademicDetails">
+                <ScalarProperty Name="PerformanceHistoryFile" ColumnName="PerformanceHistoryFile" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PerformanceHistoryFileUrl" ColumnName="PerformanceHistoryFileUrl" />
                 <ScalarProperty Name="PerfomanceHistory" ColumnName="PerfomanceHistory" />
                 <ScalarProperty Name="GradeLevelTypeId" ColumnName="GradeLevelTypeId" />
                 <ScalarProperty Name="SchoolYear" ColumnName="SchoolYear" />

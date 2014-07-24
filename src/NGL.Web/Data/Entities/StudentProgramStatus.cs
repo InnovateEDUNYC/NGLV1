@@ -37,6 +37,10 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public string TestingAccommodationFile { get; set; }
+        public string SpecialEducationFile { get; set; }
+        public string TitleParticipationFile { get; set; }
+        public string McKinneyVentoFile { get; set; }
     
         public virtual SchoolFoodServicesEligibilityType SchoolFoodServicesEligibilityType { get; set; }
         public virtual Student Student { get; set; }
