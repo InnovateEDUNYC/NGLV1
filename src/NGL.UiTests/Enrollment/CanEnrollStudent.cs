@@ -1,4 +1,5 @@
 ﻿using System;
+using NGL.Tests.Enrollment;
 using NGL.UiTests.Shared;
 using NGL.UiTests.Student;
 using NGL.Web.Models.Enrollment;
@@ -51,17 +52,8 @@ namespace NGL.UiTests.Enrollment
         }
         private void IHaveInputAcademicDetails()
         {
-            var academicDetailModel = new AcademicDetailModel
-            {   StudentUsi = ObjectMother.JanesAcademicDetails.StudentUsi,
-                Reading = ObjectMother.JanesAcademicDetails.Reading,
-                Writing = ObjectMother.JanesAcademicDetails.Writing,
-                Math = ObjectMother.JanesAcademicDetails.Math,
-                AnticipatedGrade = ObjectMother.JanesAcademicDetails.AnticipatedGrade,
-                SchoolYear = ObjectMother.JanesAcademicDetails.SchoolYear,
-                EntryDate = ObjectMother.JanesAcademicDetails.EntryDate,
-                PerformanceHistory = ObjectMother.JanesAcademicDetails.PerformanceHistory,
-                PerformanceHistoryFile = ObjectMother.JanesAcademicDetails.PerformanceHistoryFile,
-            };
+
+            var academicDetailModel = AcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
 
             _programStatusPage = _academicDetailPage.InputDetails(academicDetailModel);
         }

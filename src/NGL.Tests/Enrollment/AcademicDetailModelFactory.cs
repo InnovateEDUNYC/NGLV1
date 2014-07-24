@@ -13,14 +13,14 @@ namespace NGL.Tests.Enrollment
     public static class AcademicDetailModelFactory
     {
         private static readonly DateTime EntryDate = new DateTime(2014, 8, 1);
-        private static readonly HttpPostedFileBase HttpPostedFileBase = Substitute.For<HttpPostedFileBase>();
+        private static readonly HttpPostedFileBase NullHttpPostedFileBase = null;
         private const decimal Reading = 75.2m;
         private const decimal Writing = 60m;
         private const decimal Math = 78m;
         private const SchoolYearTypeEnum SchoolYearTypeEnum = Web.Data.Entities.SchoolYearTypeEnum.Year2014;
         private const GradeLevelTypeEnum GradeLevelTypeEnum = Web.Data.Entities.GradeLevelTypeEnum._7thGrade;
         private const string PerformanceHistory = "Good writer";
-        private const int StudentUsi = 123;
+        private const int StudentUsi = 123240;
 
         public static AcademicDetailModel CreateAcademicDetailModelWithPerformanceHistory()
         {
@@ -34,7 +34,7 @@ namespace NGL.Tests.Enrollment
                 AnticipatedGrade = GradeLevelTypeEnum,
                 EntryDate = EntryDate,
                 PerformanceHistory = PerformanceHistory,
-                PerformanceHistoryFile = HttpPostedFileBase,
+                PerformanceHistoryFile = NullHttpPostedFileBase,
             };
         }
 

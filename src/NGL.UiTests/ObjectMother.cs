@@ -74,19 +74,6 @@ namespace NGL.UiTests
             public const int OptimalNumberOfSeats = 30;
         }
 
-        public static class JanesAcademicDetails
-        {
-            public static decimal? Reading = 88.88m;
-            public static decimal? Writing = 0m;
-            public static decimal? Math = 100.00m;
-            public static GradeLevelTypeEnum? AnticipatedGrade = GradeLevelTypeEnum._7thGrade;
-            public const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2014;
-            public const string PerformanceHistory = "Needs writing practice";
-            public static HttpPostedFileBase PerformanceHistoryFile = null;
-            public static DateTime? EntryDate = new DateTime(2001, 1, 1);
-            public static int StudentUsi = 123240;
-        }
-
         public static class JanesProgramStatus
         {
             public static bool? TestingAccommodation = true;

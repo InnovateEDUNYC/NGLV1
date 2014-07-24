@@ -135,6 +135,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NGL.Tests\NGL.Tests.csproj">
+      <Project>{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}</Project>
+      <Name>NGL.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NGL.Web\NGL.Web.csproj">
       <Project>{F035A15E-9F41-4907-A370-B8F2EB8C4010}</Project>
       <Name>NGL.Web</Name>
