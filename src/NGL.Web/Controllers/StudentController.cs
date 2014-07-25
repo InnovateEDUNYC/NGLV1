@@ -18,13 +18,15 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Student, ProfileModel> _studentToDetailsModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
+        private AzureStorageDownloader _fileDownloader;
 
-        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper, AzureStorageUploader fileUploader)
+        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper, AzureStorageUploader fileUploader, AzureStorageDownloader fileDownloader)
         {
             _repository = repository;
             _studentToDetailsModelMapper = studentToDetailsModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
             _fileUploader = fileUploader;
+            _fileDownloader = fileDownloader;
         }
 
         // GET: /Student/All
@@ -64,8 +66,11 @@ namespace NGL.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var profileModel = new ProfileModel();
-            _studentToDetailsModelMapper.Map(student, profileModel);
+
+            var profileModel = _studentToDetailsModelMapper.Build(student);
+            
+            profileModel.ProfilePhotoUrl = _fileDownloader.DownloadPath("student", student.StudentUSI + "/profilePhoto");
+
             return View(profileModel);
         }
 
