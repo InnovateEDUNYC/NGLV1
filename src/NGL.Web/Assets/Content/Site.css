@@ -83,3 +83,7 @@ form .inline input {
 .input-group-addon {
     padding: 9px 20px;
 }
+
+.checkbox > .required {
+    display: none;
+}
