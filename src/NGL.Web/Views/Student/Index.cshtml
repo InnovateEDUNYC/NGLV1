@@ -72,6 +72,9 @@
             @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
         </dt>
         <dd>
+            @Html.DisplayFor(model => model.AcademicDetail.PerformanceHistory)
+        </dd>
+        <dd>
             <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">Download</a>
         </dd>
     </dl>
@@ -87,9 +90,8 @@
         <dt>
             @Html.DisplayNameFor(model => model.Address2)
         </dt>
-
         <dd>
-            @Html.DisplayTextFor(model => model.Address2)
+            @Html.DisplayTextFor(model => model.Address2)<br/>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.City)
@@ -157,46 +159,47 @@
             @Html.DisplayTextFor(model => model.ProfileParentModel.EmailAddress)
         </dd>
     </dl>
-   
+    <hr />
+    <h4>Parent Address</h4>
     @if (Model.ProfileParentModel.SameAddressAsStudent == false)
-    {
-        <h4>Parent Address</h4>
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address)
-            </dt>
-            <dd>
-                @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address2)
-            </dt>
-            <dd>
-                @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address2)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.City)
-            </dt>
-            <dd>
-                @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.City)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.State)
-            </dt>
-            <dd>
-                @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.State)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.PostalCode)
-            </dt>
-            <dd>
-                @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.PostalCode)
-            </dd>
-        </dl>
-    }
-    else
-    {
-        <h4>Parent Address same as student</h4>
+{
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address)
+        </dt>
+        <dd>
+            @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address2)
+        </dt>
+        <dd>
+            @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.Address2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.City)
+        </dt>
+        <dd>
+            @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.City)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.State)
+        </dt>
+        <dd>
+            @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileParentModel.ProfileParentAddressModel.PostalCode)
+        </dt>
+        <dd>
+            @Html.DisplayTextFor(model => model.ProfileParentModel.ProfileParentAddressModel.PostalCode)
+        </dd>
+    </dl>
+}
+else
+{
+        <p>Same as student</p>
     }
  
     @if (Model.SecondProfileParentModel != null)
