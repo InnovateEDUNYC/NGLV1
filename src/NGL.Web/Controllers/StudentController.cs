@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Student;
 
@@ -14,12 +17,14 @@ namespace NGL.Web.Controllers
         private readonly IGenericRepository _repository;
         private readonly IMapper<Student, ProfileModel> _studentToDetailsModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
+        private readonly AzureStorageUploader _fileUploader;
 
-        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper)
+        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper, AzureStorageUploader fileUploader)
         {
             _repository = repository;
             _studentToDetailsModelMapper = studentToDetailsModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
+            _fileUploader = fileUploader;
         }
 
         // GET: /Student/All
@@ -66,9 +71,16 @@ namespace NGL.Web.Controllers
 
         //
         // POST: /Student/UploadPhoto/5
-        public virtual ActionResult UploadPhoto(int usi)
+        public virtual ActionResult UploadPhoto(HttpPostedFileBase profilePhoto, int usi)
         {
+            Upload(profilePhoto, usi + "/profilePhoto");
             return RedirectToAction(MVC.Student.Index(usi));
+        }
+
+        private void Upload(HttpPostedFileBase file, string relativePath)
+        {
+            if (file != null)
+                _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
         }
 
     }
