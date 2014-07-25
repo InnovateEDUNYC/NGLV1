@@ -83,7 +83,7 @@
     <Compile Include="Enrollment\CreateStudentModelToStudentMapperTests.cs" />
     <Compile Include="Student\ParentAddressFactory.cs" />
     <Compile Include="Student\ParentFactory.cs" />
-    <Compile Include="Student\StudentAcademicDetailFactory.cs" />
+    <Compile Include="Student\StudentAcademicDetailBuilder.cs" />
     <Compile Include="Student\StudentAddressFactory.cs" />
     <Compile Include="Student\StudentFactory.cs" />
     <Compile Include="Student\StudentLanguageFactory.cs" />

@@ -11,18 +11,28 @@ namespace NGL.Tests.Student
 {
     public class StudentToProfileModelMapperTest
     {
+        private StudentToProfileModelMapper _mapper;
+
+        private void Setup()
+        {
+            var downloader = Substitute.For<IFileDownloader>();
+            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
+
+            _mapper = new StudentToProfileModelMapper(
+                new ParentToProfileParentModelMapper(), 
+                new StudentToAcademicDetailsMapper(downloader));
+        }
+
         [Fact]
         public void ShouldMapStudentToProfileModel()
         {
+            Setup();
+
             var student = StudentFactory.CreateStudentWithOneParent();
             var parent = student.StudentParentAssociations.First().Parent;
             var profileModel = new ProfileModel();
 
-            var downloader = Substitute.For<IFileDownloader>();
-            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
-
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
-            mapper.Map(student, profileModel);
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
@@ -32,15 +42,13 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMapStudentToProfileModelWithDifferentParentAddress()
         {
+            Setup();
+
             var parent = ParentFactory.CreateParentWithAddress();
             var student = StudentFactory.CreateStudentWithOneParent(parent, false);
             var profileModel = new ProfileModel();
 
-            var downloader = Substitute.For<IFileDownloader>();
-            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
-
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
-            mapper.Map(student, profileModel);
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
@@ -51,16 +59,14 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMapStudentToProfileModelWithMultipleParents()
         {
+            Setup();
+
             var student = StudentFactory.CreateStudentWithTwoParents();
             var firstParent = student.StudentParentAssociations.First().Parent;
             var secondParent = student.StudentParentAssociations.ElementAt(1).Parent;
             var profileModel = new ProfileModel();
 
-            var downloader = Substitute.For<IFileDownloader>();
-            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
-
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
-            mapper.Map(student, profileModel);
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(firstParent, profileModel.ProfileParentModel);
@@ -80,8 +86,8 @@ namespace NGL.Tests.Student
             var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath("student", fileName).Returns(filePath);
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
-            mapper.Map(student, profileModel);
+            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
 

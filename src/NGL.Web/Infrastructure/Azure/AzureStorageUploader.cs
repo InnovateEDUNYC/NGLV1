@@ -1,6 +1,7 @@
 using System.Web;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Infrastructure.Azure
 {
@@ -8,7 +9,7 @@ namespace NGL.Web.Infrastructure.Azure
     {
         public void Upload(HttpPostedFileBase file, string container, string fileName)
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("BlobConnectionString"));
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigManager.BlobConnectionString);
             var blobClient = storageAccount.CreateCloudBlobClient();
 
             var blobContainer = blobClient.GetContainerReference(container);

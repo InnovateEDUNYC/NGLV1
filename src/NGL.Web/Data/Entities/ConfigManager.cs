@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Configuration;
+using Microsoft.WindowsAzure;
 
 namespace NGL.Web.Data.Entities
 {
     public class ConfigManager
     {
+        public const string StudentBlobContainer = "student";
+
         public static string EdmxConnectionString
         {
             get { return GetEdmxConnectionString(ConnectionString); }
@@ -26,6 +29,11 @@ namespace NGL.Web.Data.Entities
                 var injectedConnectionString = Environment.GetEnvironmentVariable("ConnectionString");
                 return injectedConnectionString ?? ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             }
+        }
+
+        public static string BlobConnectionString
+        {
+            get { return CloudConfigurationManager.GetSetting("BlobConnectionString"); }
         }
     }
 }

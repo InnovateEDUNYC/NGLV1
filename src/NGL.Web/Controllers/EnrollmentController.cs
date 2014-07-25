@@ -141,9 +141,8 @@ namespace NGL.Web.Controllers
 
         private void Upload(HttpPostedFileBase file, string relativePath)
         {
-            const string blobContainer = "student";
             if (file != null)
-               _fileUploader.Upload(file, blobContainer, relativePath);
+               _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
         }
     }
 }

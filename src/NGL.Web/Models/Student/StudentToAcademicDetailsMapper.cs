@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Student
@@ -26,8 +27,7 @@ namespace NGL.Web.Models.Student
         private string CreateSignitureUri(string filename)
         {
             var fileDownloader = _azureStorageDownloader;
-            const string blobContainer = "student";
-            return fileDownloader.DownloadPath(blobContainer, filename);
+            return fileDownloader.DownloadPath(ConfigManager.StudentBlobContainer, filename);
         }
     }
 }
