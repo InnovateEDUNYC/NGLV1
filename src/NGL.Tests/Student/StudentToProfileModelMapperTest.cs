@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models.Student;
+using NSubstitute;
 using Shouldly;
 using Xunit;
 
@@ -9,16 +11,28 @@ namespace NGL.Tests.Student
 {
     public class StudentToProfileModelMapperTest
     {
+        private StudentToProfileModelMapper _mapper;
+
+        private void Setup()
+        {
+            var downloader = Substitute.For<IFileDownloader>();
+            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
+
+            _mapper = new StudentToProfileModelMapper(
+                new ParentToProfileParentModelMapper(), 
+                new StudentToAcademicDetailsMapper(downloader));
+        }
+
         [Fact]
         public void ShouldMapStudentToProfileModel()
         {
+            Setup();
+
             var student = StudentFactory.CreateStudentWithOneParent();
             var parent = student.StudentParentAssociations.First().Parent;
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper()
-            );
-            mapper.Map(student, profileModel);
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
@@ -28,13 +42,13 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMapStudentToProfileModelWithDifferentParentAddress()
         {
+            Setup();
+
             var parent = ParentFactory.CreateParentWithAddress();
             var student = StudentFactory.CreateStudentWithOneParent(parent, false);
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper()
-            );
-            mapper.Map(student, profileModel);
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
@@ -45,19 +59,44 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMapStudentToProfileModelWithMultipleParents()
         {
+            Setup();
+
             var student = StudentFactory.CreateStudentWithTwoParents();
             var firstParent = student.StudentParentAssociations.First().Parent;
             var secondParent = student.StudentParentAssociations.ElementAt(1).Parent;
             var profileModel = new ProfileModel();
 
-            var mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper()
-            );
-            mapper.Map(student, profileModel);
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(firstParent, profileModel.ProfileParentModel);
             NativeParentPropertiesShouldBeMapped(secondParent, profileModel.SecondProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
+        }
+
+        [Fact]
+        public void ShouldMapStudentToProfileModelWithAcademicDetails()
+        {
+            var student = StudentFactory.CreateStudentWithOneParent();
+            var profileModel = new ProfileModel();
+
+            var fileName = student.StudentAcademicDetails.First().PerformanceHistoryFile;
+            var filePath = "https://ngl.blob.core.windows.net/" + fileName;
+            
+            var downloader = Substitute.For<IFileDownloader>();
+            downloader.DownloadPath("student", fileName).Returns(filePath);
+
+            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
+            _mapper.Map(student, profileModel);
+
+            NativeStudentPropertiesShouldBeMapped(student, profileModel);
+
+            var studentAcademicDetail = student.StudentAcademicDetails.First();
+            profileModel.AcademicDetail.ReadingScore.ShouldBe(studentAcademicDetail.ReadingScore);
+            profileModel.AcademicDetail.WritingScore.ShouldBe(studentAcademicDetail.WritingScore);
+            profileModel.AcademicDetail.MathScore.ShouldBe(studentAcademicDetail.MathScore);
+            profileModel.AcademicDetail.PerformanceHistoryFileUrl.ShouldBe(filePath);
+            profileModel.AcademicDetail.PerformanceHistory.ShouldBe(studentAcademicDetail.PerfomanceHistory);
         }
 
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)

@@ -26,5 +26,6 @@ namespace NGL.Web.Models.Student
         public string PostalCode { get; set; }
         public ProfileParentModel ProfileParentModel { get; set; }
         public ProfileParentModel SecondProfileParentModel { get; set; }
+        public ProfileAcademicDetailModel AcademicDetail { get; set; }
     }
 }

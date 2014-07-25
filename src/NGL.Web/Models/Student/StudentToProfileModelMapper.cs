@@ -8,10 +8,12 @@ namespace NGL.Web.Models.Student
     public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
+        private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
 
-        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper)
+        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper, StudentToAcademicDetailsMapper studentToAcademicDetailsMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
+            _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
         }
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
@@ -29,6 +31,8 @@ namespace NGL.Web.Models.Student
 
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
+
+            target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
         }
 
         private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)

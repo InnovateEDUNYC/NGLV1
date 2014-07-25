@@ -62,6 +62,7 @@ namespace NGL.Tests.Student
             student.StudentRaces.Add(CreateStudentRace());
             student.StudentAddresses.Add(StudentAddressFactory.CreateStudentAddress());
             student.StudentLanguages.Add(StudentLanguageFactory.CreateStudentLanguageWithHomeUse());
+            student.StudentAcademicDetails.Add(new StudentAcademicDetailBuilder().Build());
             return student;
         }
 

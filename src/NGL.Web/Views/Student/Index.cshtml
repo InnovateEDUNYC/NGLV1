@@ -68,6 +68,12 @@
         <dd>
             @Html.DisplayFor(model => model.HomeLanguage)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
+        </dt>
+        <dd>
+            <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">Download</a>
+        </dd>
     </dl>
     <h4>Home Address</h4>
     <dl class="dl-horizontal">
