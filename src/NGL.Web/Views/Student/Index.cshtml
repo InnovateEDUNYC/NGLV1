@@ -75,7 +75,14 @@
             @Html.DisplayFor(model => model.AcademicDetail.PerformanceHistory)
         </dd>
         <dd>
-            <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">Download</a>
+            @if (Model.AcademicDetail.PerformanceHistory != null)
+            {
+                <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">Download</a>
+            }
+            else
+            {
+                <p>Not Specified</p>
+            }
         </dd>
     </dl>
     <h4>Home Address</h4>

@@ -26,8 +26,12 @@ namespace NGL.Web.Models.Student
 
         private string CreateSignitureUri(string filename)
         {
-            var fileDownloader = _azureStorageDownloader;
-            return fileDownloader.DownloadPath(ConfigManager.StudentBlobContainer, filename);
+            if (filename != null)
+            {
+                var fileDownloader = _azureStorageDownloader;
+                return fileDownloader.DownloadPath(ConfigManager.StudentBlobContainer, filename);
+            }
+            return null;
         }
     }
 }

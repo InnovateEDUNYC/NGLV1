@@ -10,7 +10,7 @@ namespace NGL.Tests.Student
         private const int GradeLevelTypeId = (int) GradeLevelTypeEnum._5thGrade;
         private const int SchoolYear = (int) SchoolYearTypeEnum.Year2014;
         private const string PerformanceHistoryFileUrl = "/here/example";
-        private const string AnIncredibleStudentManyTimesIWasnTSureIfIWasTheTeacherOrPupilPureGenius = "An Incredible Student. Many Times I wasn't sure if I was the teacher or pupil. Pure Genius.";
+        private const string PerformanceHistory = "An Incredible Student. Many Times I wasn't sure if I was the teacher or pupil. Pure Genius.";
 
 
         public StudentAcademicDetail Build()
@@ -23,7 +23,7 @@ namespace NGL.Tests.Student
                 GradeLevelTypeId = GradeLevelTypeId,
                 SchoolYear = SchoolYear,
                 PerformanceHistoryFile = PerformanceHistoryFileUrl,
-                PerfomanceHistory = AnIncredibleStudentManyTimesIWasnTSureIfIWasTheTeacherOrPupilPureGenius
+                PerfomanceHistory = PerformanceHistory
             };
         }
 
