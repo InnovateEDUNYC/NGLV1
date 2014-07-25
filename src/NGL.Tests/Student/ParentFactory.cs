@@ -16,7 +16,6 @@ namespace NGL.Tests.Student
         {
             var parent = CreateParentShell();
             parent.ParentTelephones.Add(CreateParentPhoneNumber());
-            parent.ParentElectronicMails.Add(CreateParentEmailAddress());
 
             return parent;
         }
@@ -25,7 +24,6 @@ namespace NGL.Tests.Student
         {
             var parent = CreateParentShell(firstName);
             parent.ParentTelephones.Add(CreateParentPhoneNumber());
-            parent.ParentElectronicMails.Add(CreateParentEmailAddress());
 
             return parent;
         }

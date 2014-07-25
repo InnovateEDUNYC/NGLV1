@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Castle.Core.Internal;
 using Humanizer;
 using NGL.Web.Data.Entities;
 
@@ -15,7 +16,9 @@ namespace NGL.Web.Models.Student
             target.Sex = ((SexTypeEnum) source.SexTypeId).Humanize();
             target.Relationship = ((RelationTypeEnum) studentParentAssociation.RelationTypeId).Humanize();
             target.TelephoneNumber = source.ParentTelephones.First().TelephoneNumber;
-            target.EmailAddress = source.ParentElectronicMails.First().ElectronicMailAddress;
+            if (!source.ParentElectronicMails.IsNullOrEmpty())
+                target.EmailAddress = source.ParentElectronicMails.First().ElectronicMailAddress; 
+
             target.SameAddressAsStudent = (bool) studentParentAssociation.LivesWith;
 
             if (studentParentAssociation.LivesWith == false)

@@ -121,7 +121,6 @@ namespace NGL.Tests.Student
             profileParentModel.LastName.ShouldBe(parent.LastSurname);
             profileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId).Humanize());
             profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
-            profileParentModel.EmailAddress.ShouldBe(parent.ParentElectronicMails.First().ElectronicMailAddress);
         }
 
         private static void StudentParentAssociationShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)

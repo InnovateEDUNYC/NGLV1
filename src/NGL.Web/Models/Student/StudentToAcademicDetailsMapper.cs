@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
 
@@ -26,6 +27,7 @@ namespace NGL.Web.Models.Student
 
         private string CreateSignitureUri(string filename)
         {
+            if (filename.IsNullOrEmpty()) return null;
             var fileDownloader = _azureStorageDownloader;
             return fileDownloader.DownloadPath(ConfigManager.StudentBlobContainer, filename);
         }
