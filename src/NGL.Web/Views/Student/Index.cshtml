@@ -6,7 +6,12 @@
 }
 
 <h2>Profile</h2>
-
+<img src="http://www.placehold.it/200x250"></img>
+@using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+{
+    <input type="file" name="Upload new photo"/>
+    <button type="submit">Upload!</button>
+}
 <div>
     <h4>Biographical Information</h4>
 	<hr />

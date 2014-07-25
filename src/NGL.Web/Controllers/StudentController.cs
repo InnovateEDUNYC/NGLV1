@@ -64,6 +64,13 @@ namespace NGL.Web.Controllers
             return View(profileModel);
         }
 
+        //
+        // POST: /Student/UploadPhoto/5
+        public virtual ActionResult UploadPhoto(int usi)
+        {
+            return RedirectToAction(MVC.Student.Index(usi));
+        }
+
     }
 
 }
