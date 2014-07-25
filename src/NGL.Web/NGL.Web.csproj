@@ -46,6 +46,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="ChameleonForms">
       <HintPath>..\packages\ChameleonForms.1.0.4.4\lib\NET40\ChameleonForms.dll</HintPath>
     </Reference>
@@ -270,6 +273,19 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Data\Entities\ApplicationRole.cs" />
+    <Compile Include="Data\Entities\SchemaVersion.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\VersionLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
+    <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
+    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
+    <Compile Include="Infrastructure\Azure\IFileDownloader.cs" />
+    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -324,7 +340,6 @@
     <Compile Include="Data\Entities\AdministrativeFundingControlType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\AspNetRole.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1177,9 +1192,6 @@
     <Compile Include="Data\Entities\RetestIndicatorType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\SchemaVersion.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Entities\School.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1552,9 +1564,6 @@
     <Compile Include="Data\Entities\TitleIPartASchoolDesignationType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Entities\VersionLevel.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Entities\VisaType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1564,12 +1573,8 @@
     <Compile Include="Data\Entities\WeaponType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
     <Compile Include="Data\Repositories\IStaffRepository.cs" />
     <Compile Include="Data\Repositories\StaffRepository.cs" />
-    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
-    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
-    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\NglDbContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1625,9 +1630,9 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModel.cs" />
+    <Compile Include="Models\Enrollment\AcademicDetailModelToAcademicDetailMapper.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModelToStudentSchoolAssociationMapper.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModelValidator.cs" />
-    <Compile Include="Models\Enrollment\AcademicDetailModelToAcademicDetailMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModel.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentAddressMapper.cs" />
     <Compile Include="Models\Enrollment\CreateParentModelToParentMapper.cs" />
@@ -1645,9 +1650,11 @@
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
+    <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\ProfileParentAddressModel.cs" />
     <Compile Include="Models\Student\ProfileParentModel.cs" />
+    <Compile Include="Models\Student\StudentToAcademicDetailsMapper.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
     <Compile Include="Models\Session\IndexModel.cs" />

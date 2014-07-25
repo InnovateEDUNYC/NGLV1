@@ -4,6 +4,6 @@ namespace NGL.Web.Infrastructure.Azure
 {
     public interface IFileUploader
     {
-        string Upload(HttpPostedFileBase file, string container, string fileName);
+        void Upload(HttpPostedFileBase file, string container, string fileName);
     }
 }

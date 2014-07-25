@@ -78,6 +78,7 @@ namespace NGL.Web
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
             kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
+            kernel.Bind<IFileDownloader>().To<AzureStorageDownloader>().InSingletonScope();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()

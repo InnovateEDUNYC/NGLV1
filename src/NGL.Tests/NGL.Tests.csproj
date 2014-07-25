@@ -33,13 +33,6 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="FluentValidation, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
@@ -54,7 +47,6 @@
       <HintPath>..\packages\Shouldly.2.1.1\lib\net40\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -75,15 +67,15 @@
     <Compile Include="ClassPeriod\ValidatorTests.cs" />
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
-    <Compile Include="Enrollment\CreateAcademicDetailModelFactory.cs" />
+    <Compile Include="Enrollment\AcademicDetailModelMapperTests.cs" />
     <Compile Include="Enrollment\AcademicDetailModelToStudentSchoolAssociationMapperTest.cs" />
     <Compile Include="Enrollment\AcademicDetailModelValidatorTests.cs" />
-    <Compile Include="Enrollment\AcademicDetailModelMapperTests.cs" />
+    <Compile Include="Enrollment\CreateAcademicDetailModelFactory.cs" />
+    <Compile Include="Enrollment\EnterProgramStatusModelFactory.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentAddressMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelValidatorTests.cs" />
-    <Compile Include="Enrollment\EnterProgramStatusModelFactory.cs" />
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />
     <Compile Include="Session\MapperTests.cs" />
@@ -92,6 +84,7 @@
     <Compile Include="Enrollment\CreateStudentModelToStudentMapperTests.cs" />
     <Compile Include="Student\ParentAddressFactory.cs" />
     <Compile Include="Student\ParentFactory.cs" />
+    <Compile Include="Student\StudentAcademicDetailBuilder.cs" />
     <Compile Include="Student\StudentAddressFactory.cs" />
     <Compile Include="Student\StudentFactory.cs" />
     <Compile Include="Student\StudentLanguageFactory.cs" />
