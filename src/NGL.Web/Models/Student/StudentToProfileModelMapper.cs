@@ -3,6 +3,7 @@ using System.Linq;
 using Castle.Core.Internal;
 using Humanizer;
 using NGL.Web.Data.Entities;
+using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Student
 {
@@ -10,11 +11,13 @@ namespace NGL.Web.Models.Student
     {
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
+        private readonly IFileDownloader _fileDownloader;
 
-        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper, StudentToAcademicDetailsMapper studentToAcademicDetailsMapper)
+        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper, StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, IFileDownloader fileDownloader)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
+            _fileDownloader = fileDownloader;
         }
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
@@ -29,6 +32,8 @@ namespace NGL.Web.Models.Student
 
             var homeLanguage = GetAllHomeLanguages(source).First();
             target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
+
+            target.ProfilePhotoUrl = _fileDownloader.DownloadPath("student", source.StudentUSI + "/profilePhoto");
 
             MapStudentAddress(source, target);
             MapParentInformation(source, target);

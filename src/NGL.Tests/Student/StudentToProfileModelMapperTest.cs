@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Runtime.InteropServices;
 using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
@@ -12,15 +13,16 @@ namespace NGL.Tests.Student
     public class StudentToProfileModelMapperTest
     {
         private StudentToProfileModelMapper _mapper;
+        private IFileDownloader downloader;
 
         private void Setup()
         {
-            var downloader = Substitute.For<IFileDownloader>();
+            downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
 
             _mapper = new StudentToProfileModelMapper(
                 new ParentToProfileParentModelMapper(), 
-                new StudentToAcademicDetailsMapper(downloader));
+                new StudentToAcademicDetailsMapper(downloader), downloader);
         }
 
         [Fact]
@@ -86,7 +88,7 @@ namespace NGL.Tests.Student
             var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath("student", fileName).Returns(filePath);
 
-            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader));
+            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader), downloader);
             _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
@@ -108,7 +110,6 @@ namespace NGL.Tests.Student
 
             _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(new AzureStorageDownloader()));
             _mapper.Map(student, profileModel);
-
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             profileModel.AcademicDetail.ShouldBe(null);
         }

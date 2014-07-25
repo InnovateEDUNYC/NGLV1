@@ -18,7 +18,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Student, ProfileModel> _studentToDetailsModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
-        private AzureStorageDownloader _fileDownloader;
+        private readonly AzureStorageDownloader _fileDownloader;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper, AzureStorageUploader fileUploader, AzureStorageDownloader fileDownloader)
         {
@@ -68,9 +68,6 @@ namespace NGL.Web.Controllers
             }
 
             var profileModel = _studentToDetailsModelMapper.Build(student);
-            
-            profileModel.ProfilePhotoUrl = _fileDownloader.DownloadPath("student", student.StudentUSI + "/profilePhoto");
-
             return View(profileModel);
         }
 
