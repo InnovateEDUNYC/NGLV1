@@ -17,9 +17,8 @@ namespace NGL.Web.Models.Student
             target.Relationship = ((RelationTypeEnum) studentParentAssociation.RelationTypeId).Humanize();
             target.TelephoneNumber = source.ParentTelephones.First().TelephoneNumber;
             if (!source.ParentElectronicMails.IsNullOrEmpty())
-            {
                 target.EmailAddress = source.ParentElectronicMails.First().ElectronicMailAddress; 
-            }
+
             target.SameAddressAsStudent = (bool) studentParentAssociation.LivesWith;
 
             if (studentParentAssociation.LivesWith == false)
