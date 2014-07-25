@@ -1,0 +1,28 @@
+﻿@model NGL.Web.Models.Section.CreateModel
+           
+@{
+    ViewBag.Title = "Create a Section";
+}
+
+<h2>Section</h2>
+
+@using (var f = Html.BeginNglForm())
+{
+    using (var s = f.BeginSection("Info"))
+    {
+        @s.FieldFor(m => m.SchoolYear)
+        @s.FieldFor(m => m.TermTypeId)
+        @s.FieldFor(m => m.ClassPeriodName)
+        @s.FieldFor(m => m.ClassroomIdentificationCode)
+    
+        @s.FieldFor(m => m.LocalCourseCode)
+        @s.FieldFor(m => m.UniqueSectionCode)
+        @s.FieldFor(m => m.SequenceOfCourse)
+    
+    }
+
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Create")
+    }
+}

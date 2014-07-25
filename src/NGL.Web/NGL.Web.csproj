@@ -273,6 +273,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\SchemaVersion.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
@@ -1724,7 +1725,7 @@
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CreateModel.cs" />
     <Compile Include="Models\Location\CreateModel.cs" />
-    <Compile Include="Models\Section\SectionModel.cs" />
+    <Compile Include="Models\Section\CreateModel.cs" />
     <Compile Include="Models\Session\CreateModel.cs" />
     <Compile Include="Models\Staff\StaffModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
@@ -1881,6 +1882,7 @@
     <Content Include="Views\CourseGeneration\Index.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Enrollment\EnterAcademicDetails.cshtml" />
+    <Content Include="Views\Section\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
