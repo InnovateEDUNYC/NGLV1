@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
@@ -12,28 +13,38 @@ namespace NGL.Tests.Enrollment
         public void ShouldMap()
         {
             var mapper = new CreateParentModelToParentMapper();
-            var parentEnrollmentInfoModel = new CreateParentModel
-            {
-                FirstName = "Cameron",
-                LastName = "James",
-                Sex = SexTypeEnum.Male,
-                TelephoneNumber = "933-2378",
-                EmailAddress = "some@body.org",
-            };
+            var parentEnrollmentInfoModel = new CreateParentModelBuilder().WithEmailAddress().Build();
 
-            var parent = new Parent();
-            
-            mapper.Map(parentEnrollmentInfoModel, parent);
+            var parent = mapper.Build(parentEnrollmentInfoModel);
 
-            parent.FirstName.ShouldBe("Cameron");
-            parent.LastSurname.ShouldBe("James");
-            parent.SexTypeId.ShouldBe((int) SexTypeEnum.Male);
+            parent.FirstName.ShouldBe(parentEnrollmentInfoModel.FirstName);
+            parent.LastSurname.ShouldBe(parentEnrollmentInfoModel.LastName);
+            parent.SexTypeId.ShouldBe((int)parentEnrollmentInfoModel.Sex.GetValueOrDefault());
             var parentTelephone = parent.ParentTelephones.First();
-            parentTelephone.TelephoneNumber.ShouldBe("933-2378");
-            parentTelephone.TelephoneNumberTypeId.ShouldBe((int) TelephoneNumberTypeEnum.Emergency1);
+            parentTelephone.TelephoneNumber.ShouldBe(parentEnrollmentInfoModel.TelephoneNumber);
+            parentTelephone.TelephoneNumberTypeId.ShouldBe((int)TelephoneNumberTypeEnum.Emergency1);
             var parentEmail = parent.ParentElectronicMails.First();
-            parentEmail.ElectronicMailAddress.ShouldBe("some@body.org");
+            parentEmail.ElectronicMailAddress.ShouldBe(parentEnrollmentInfoModel.EmailAddress);
             parentEmail.ElectronicMailTypeId.ShouldBe((int) ElectronicMailTypeEnum.HomePersonal);
+        }
+
+        [Fact]
+        public void ShouldMapWithoutEmail()
+        {
+            var mapper = new CreateParentModelToParentMapper();
+            var parentModelBuilder = new CreateParentModelBuilder();
+
+            var parentEnrollmentInfoModel = parentModelBuilder.Build();
+
+            var parent = mapper.Build(parentEnrollmentInfoModel);
+
+            parent.FirstName.ShouldBe(parentEnrollmentInfoModel.FirstName);
+            parent.LastSurname.ShouldBe(parentEnrollmentInfoModel.LastName);
+            parent.SexTypeId.ShouldBe((int)parentEnrollmentInfoModel.Sex.GetValueOrDefault());
+            var parentTelephone = parent.ParentTelephones.First();
+            parentTelephone.TelephoneNumber.ShouldBe(parentEnrollmentInfoModel.TelephoneNumber);
+            parentTelephone.TelephoneNumberTypeId.ShouldBe((int)TelephoneNumberTypeEnum.Emergency1);
+            parent.ParentElectronicMails.ShouldBeEmpty();
         }
     }
 }

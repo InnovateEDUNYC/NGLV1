@@ -69,10 +69,11 @@
   <ItemGroup>
     <Compile Include="Account\AddUserModelToStaffMapperTests.cs" />
     <Compile Include="Account\StaffToUserModelMapperTests.cs" />
+    <Compile Include="Builders\CreateParentModelBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
+    <Compile Include="ClassPeriod\MapperTests.cs" />
     <Compile Include="ClassPeriod\ValidatorTests.cs" />
     <Compile Include="Course\ValidatorTests.cs" />
-    <Compile Include="ClassPeriod\MapperTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
     <Compile Include="Enrollment\CreateAcademicDetailModelFactory.cs" />
     <Compile Include="Enrollment\AcademicDetailModelToStudentSchoolAssociationMapperTest.cs" />

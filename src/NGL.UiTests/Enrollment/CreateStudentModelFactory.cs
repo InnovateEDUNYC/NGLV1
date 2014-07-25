@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
+using NGL.Tests.Builders;
 
 namespace NGL.UiTests.Enrollment
 {
@@ -23,6 +24,8 @@ namespace NGL.UiTests.Enrollment
 
         public static CreateStudentModel CreateStudent()
         {
+            var parentBuilder = new CreateParentModelBuilder();
+
             return new CreateStudentModel
             {
                 StudentUsi = StudentUsi,
@@ -38,8 +41,8 @@ namespace NGL.UiTests.Enrollment
                 State = StateAbbreviationTypeEnum,
                 PostalCode = PostalCode,
                 HomeLanguage = LanguageDescriptorEnum,
-                FirstParent = ParentModelFactory.CreateParentWithAddress(),
-                SecondParent = ParentModelFactory.CreateParentWithAddress()
+                FirstParent = parentBuilder.WithEmailAddress().Build(),
+                SecondParent = parentBuilder.Build()
             };
         }
     }
