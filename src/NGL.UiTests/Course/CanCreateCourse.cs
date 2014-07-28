@@ -13,7 +13,7 @@ namespace NGL.UiTests.Course
     public class CanCreateCourse
     {
         private HomePage _homePage;
-        private SchedulingPage _schedulingPage;
+        private CourseGenerationPage _courseGenerationPage;
         private CreateModel _createCourseModel;
         private CourseIndexPage _courseIndexPage;
         private CourseCreatePage _courseCreatePage;
@@ -27,8 +27,8 @@ namespace NGL.UiTests.Course
 
         public void AndGivenIAmOnTheCreateCoursePage()
         {
-            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
-            _courseCreatePage = _schedulingPage.GoToCourseIndexPage().GoToCreatePage();
+            _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
+            _courseCreatePage = _courseGenerationPage.GoToCourseIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()

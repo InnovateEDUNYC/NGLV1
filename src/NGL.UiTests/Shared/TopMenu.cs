@@ -23,10 +23,10 @@ namespace NGL.UiTests.Shared
             return Navigate.To<StudentIndexPage>(By.LinkText("Profile"));
         }
 
-        public SchedulingPage GoToSchedulingPage()
+        public CourseGenerationPage GoToCourseGenerationPage()
         {
             Find.Element(By.LinkText("Planning")).Click();
-            return Navigate.To<SchedulingPage>(By.LinkText("Course Generation"));
+            return Navigate.To<CourseGenerationPage>(By.LinkText("Course Generation"));
         }
 
         public EnrollmentPage GoToEnrollmentPage()

@@ -1657,6 +1657,8 @@
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Section\CreateModelToSectionMapper.cs" />
+    <Compile Include="Models\Section\IndexModel.cs" />
+    <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />

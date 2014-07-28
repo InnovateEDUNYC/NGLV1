@@ -4,34 +4,20 @@ using NGL.Web.Models.Section;
 using NSubstitute;
 using Shouldly;
 using Xunit;
+using Humanizer;
 
 namespace NGL.Tests.Section
 {
     public class MapperTests
     {
-        private CreateModelToSectionMapper _createModelToSectionMapper;
-        private ISchoolRepository _schoolRepository;
-
-
-        private void Setup()
-        {
-            _schoolRepository = Substitute.For<ISchoolRepository>();
-            _schoolRepository.GetSchool().Returns(
-                new School
-                {
-                    SchoolId = 1
-                });
-
-            _createModelToSectionMapper = new CreateModelToSectionMapper(_schoolRepository);
-        }
-
         [Fact]
         public void ShouldMapCreateModelToSection()
         {
-            Setup();
+            var schoolRepository = Substitute.For<ISchoolRepository>();
+            schoolRepository.GetSchool().Returns(new School { SchoolId = Constants.SchoolId });
 
             var sectionCreateModel = new CreateModelBuilder().Build();
-            var sectionEntity = _createModelToSectionMapper.Build(sectionCreateModel);
+            var sectionEntity = new CreateModelToSectionMapper(schoolRepository).Build(sectionCreateModel);
 
             sectionEntity.SchoolId.ShouldBe(Constants.SchoolId);
             sectionEntity.SchoolYear.ShouldBe(sectionCreateModel.SchoolYear);
@@ -41,6 +27,21 @@ namespace NGL.Tests.Section
             sectionEntity.LocalCourseCode.ShouldBe(sectionCreateModel.LocalCourseCode);
             sectionEntity.UniqueSectionCode.ShouldBe(sectionCreateModel.UniqueSectionCode);
             sectionEntity.SequenceOfCourse.ShouldBe(sectionCreateModel.SequenceOfCourse);
+        }
+
+        [Fact]
+        public void ShouldMapSectionToIndexModel()
+        {
+            var sectionEntity = new SectionBuilder().Build();
+            var sectionIndexModel = new SectionToIndexModelMapper().Build(sectionEntity);
+
+            sectionIndexModel.SchoolYear.ShouldBe(((SchoolYearTypeEnum) sectionEntity.SchoolYear).Humanize());
+            sectionIndexModel.Term.ShouldBe(((TermTypeEnum) sectionEntity.TermTypeId).Humanize());
+            sectionIndexModel.ClassPeriod.ShouldBe(sectionEntity.ClassPeriodName);
+            sectionIndexModel.Classroom.ShouldBe(sectionEntity.ClassroomIdentificationCode);
+            sectionIndexModel.LocalCourseCode.ShouldBe(sectionEntity.LocalCourseCode);
+            sectionIndexModel.UniqueSectionCode.ShouldBe(sectionEntity.UniqueSectionCode);
+            sectionIndexModel.SequenceOfCourse.ShouldBe(sectionEntity.SequenceOfCourse);
         }
     }
 }

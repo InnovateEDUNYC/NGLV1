@@ -11,25 +11,14 @@ namespace NGL.Tests.Session
 {
     public class MapperTests
     {
-        private ISchoolRepository _schoolRepository;
-        private CreateModelToSessionMapper _createModelToEntityMapper;
-        private SessionToIndexModelMapper _entityToIndexModelMapper;
-
-        private void Setup()
-        {
-            _schoolRepository = Substitute.For<ISchoolRepository>();
-            _schoolRepository.GetSchool().Returns(new School { SchoolId = Constants.SchoolId });
-            _createModelToEntityMapper = new CreateModelToSessionMapper(_schoolRepository);
-            _entityToIndexModelMapper = new SessionToIndexModelMapper();
-        }
-
         [Fact]
         public void ShouldMapCreateModelToEntity()
         {
-            Setup();
+            var schoolRepository = Substitute.For<ISchoolRepository>();
+            schoolRepository.GetSchool().Returns(new School { SchoolId = Constants.SchoolId });
 
             var sessionCreateModel = new CreateModelBuilder().Build();
-            var sessionEntity = _createModelToEntityMapper.Build(sessionCreateModel);
+            var sessionEntity = new CreateModelToSessionMapper(schoolRepository).Build(sessionCreateModel);
 
             sessionEntity.SchoolId.ShouldBe(Constants.SchoolId);
             sessionEntity.TermTypeId.ShouldBe((int) sessionCreateModel.Term);
@@ -42,10 +31,8 @@ namespace NGL.Tests.Session
         [Fact]
         public void ShouldMapEntityToIndexModel()
         {
-            Setup();
-
             var sessionEntity = new SessionBuilder().Build();
-            var sessionIndexModel = _entityToIndexModelMapper.Build(sessionEntity);
+            var sessionIndexModel = new SessionToIndexModelMapper().Build(sessionEntity);
 
             sessionIndexModel.Term.ShouldBe(((TermTypeEnum) sessionEntity.TermTypeId).Humanize());
             sessionIndexModel.SchoolYear.ShouldBe(((SchoolYearTypeEnum) sessionEntity.SchoolYear).Humanize());

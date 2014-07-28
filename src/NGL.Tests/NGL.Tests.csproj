@@ -91,6 +91,7 @@
     <Compile Include="Location\ValidatorTests.cs" />
     <Compile Include="Section\CreateModelBuilder.cs" />
     <Compile Include="Section\MapperTests.cs" />
+    <Compile Include="Section\SectionBuilder.cs" />
     <Compile Include="Session\CreateModelBuilder.cs" />
     <Compile Include="Session\SessionBuilder.cs" />
     <Compile Include="Session\MapperTests.cs" />

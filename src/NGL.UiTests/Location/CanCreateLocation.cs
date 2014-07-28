@@ -14,7 +14,7 @@ namespace NGL.UiTests.Location
     public class CanCreateLocation
     {
         private HomePage _homePage;
-        private SchedulingPage _schedulingPage;
+        private CourseGenerationPage _courseGenerationPage;
         private LocationCreatePage _locationCreatePage;
         private CreateModel _locationCreateModel;
         private LocationIndexPage _locationIndexPage;
@@ -28,8 +28,8 @@ namespace NGL.UiTests.Location
 
         public void AndGivenIAmOnTheCreateLocationPage()
         {
-            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
-            _locationCreatePage = _schedulingPage.GoToLocationIndexPage().GoToCreatePage();
+            _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
+            _locationCreatePage = _courseGenerationPage.GoToLocationIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()

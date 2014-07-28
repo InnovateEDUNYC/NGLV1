@@ -13,7 +13,7 @@ namespace NGL.UiTests.ClassPeriod
     public class CanCreateClassPeriod
     {
         private HomePage _homePage;
-        private SchedulingPage _schedulingPage;
+        private CourseGenerationPage _courseGenerationPage;
         private ClassPeriodCreatePage _classPeriodCreatePage;
         private CreateModel _classPeriodCreateModel;
         private ClassPeriodIndexPage _classPeriodIndexPage;
@@ -27,8 +27,8 @@ namespace NGL.UiTests.ClassPeriod
 
         public void AndGivenIAmOnTheCreateClassPeriodPage()
         {
-            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
-            _classPeriodCreatePage = _schedulingPage.GoToClassPeriodIndexPage().GoToCreatePage();
+            _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
+            _classPeriodCreatePage = _courseGenerationPage.GoToClassPeriodIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()
