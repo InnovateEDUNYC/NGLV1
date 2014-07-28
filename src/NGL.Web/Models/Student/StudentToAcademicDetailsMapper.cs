@@ -18,6 +18,7 @@ namespace NGL.Web.Models.Student
         {
             var studentAcademicDetail = source.StudentAcademicDetails.First();
 
+            target.SchoolYear = studentAcademicDetail.SchoolYear;
             target.ReadingScore = studentAcademicDetail.ReadingScore;
             target.WritingScore = studentAcademicDetail.WritingScore;
             target.MathScore = studentAcademicDetail.MathScore;

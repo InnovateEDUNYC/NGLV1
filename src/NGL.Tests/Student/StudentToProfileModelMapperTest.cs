@@ -92,6 +92,7 @@ namespace NGL.Tests.Student
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
 
             var studentAcademicDetail = student.StudentAcademicDetails.First();
+            profileModel.AcademicDetail.SchoolYear.ShouldBe(studentAcademicDetail.SchoolYear);
             profileModel.AcademicDetail.ReadingScore.ShouldBe(studentAcademicDetail.ReadingScore);
             profileModel.AcademicDetail.WritingScore.ShouldBe(studentAcademicDetail.WritingScore);
             profileModel.AcademicDetail.MathScore.ShouldBe(studentAcademicDetail.MathScore);

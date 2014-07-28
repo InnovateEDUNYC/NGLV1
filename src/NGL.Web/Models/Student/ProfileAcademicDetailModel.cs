@@ -12,5 +12,6 @@ namespace NGL.Web.Models.Student
         public string PerformanceHistoryFileUrl { get; set; }
 
         public string PerformanceHistory { get; set; }
+        public int SchoolYear { get; set; }
     }
 }

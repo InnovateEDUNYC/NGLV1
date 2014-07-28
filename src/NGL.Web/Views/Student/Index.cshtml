@@ -77,6 +77,28 @@
             <dd>
                 @Html.DisplayFor(model => model.HomeLanguage)
             </dd>
+        </dl>
+        <h4>@Html.DisplayFor(model => model.AcademicDetail.SchoolYear) Academic Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AcademicDetail.WritingScore)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AcademicDetail.WritingScore)<br/>
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AcademicDetail.ReadingScore)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AcademicDetail.ReadingScore)<br/>
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AcademicDetail.MathScore)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AcademicDetail.MathScore)<br/>
+            </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
             </dt>
@@ -95,6 +117,7 @@
             </dd>
         </dl>
         <h4>Home Address</h4>
+        <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Address)
@@ -130,8 +153,8 @@
                 @Html.DisplayTextFor(model => model.PostalCode)
             </dd>
         </dl>
-        <hr />
         <h4>Parent</h4>
+        <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.ProfileParentModel.FirstName)
@@ -172,11 +195,11 @@
             </dt>
 
             <dd>
-                @Html.DisplayTextFor(model => model.ProfileParentModel.EmailAddress)
+                @Html.DisplayTextFor(model => model.ProfileParentModel.EmailAddress)<br/>
             </dd>
         </dl>
-        <hr />
         <h4>Parent Address</h4>
+        <hr />
         @if (Model.ProfileParentModel.SameAddressAsStudent == false)
         {
 
@@ -215,14 +238,15 @@
         }
         else
         {
-            <p>Same as student</p>
+            <p>Same as student</p><br/>
         }
 
         @if (Model.SecondProfileParentModel != null)
         {
 
             <h4>Second Parent</h4>
-            <dl>
+            <hr />
+            <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.SecondProfileParentModel.FirstName)
                 </dt>
@@ -262,14 +286,16 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.EmailAddress)
+                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.EmailAddress)<br />
                 </dd>
             </dl>
-
+            
+            <h4>Second Parent Address</h4>
+            <hr />
             if (Model.SecondProfileParentModel.SameAddressAsStudent == false)
             {
-                <h4>Second Parent Address</h4>
-                <dl>
+                
+                <dl class="dl-horizontal">
                     <dt>
                         @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
                     </dt>
@@ -304,11 +330,10 @@
             }
             else
             {
-                <h4>Second Parent Address same as student</h4>
+                <p>Same as student</p><br/>
             }
 
         }
 
-        <hr />
-    </div>
+        </div>
 </div>
