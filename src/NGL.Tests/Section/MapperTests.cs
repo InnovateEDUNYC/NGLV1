@@ -30,17 +30,17 @@ namespace NGL.Tests.Section
         {
             Setup();
 
-            var createModel = new CreateModelBuilder().Build();
-            var section = _createModelToSectionMapper.Build(createModel);
+            var sectionCreateModel = new CreateModelBuilder().Build();
+            var sectionEntity = _createModelToSectionMapper.Build(sectionCreateModel);
 
-            section.SchoolId.ShouldBe(Constants.SchoolId);
-            section.SchoolYear.ShouldBe(createModel.SchoolYear);
-            section.TermTypeId.ShouldBe(createModel.TermTypeId);
-            section.ClassPeriodName.ShouldBe(createModel.ClassPeriodName);
-            section.ClassroomIdentificationCode.ShouldBe(createModel.ClassroomIdentificationCode);
-            section.LocalCourseCode.ShouldBe(createModel.LocalCourseCode);
-            section.UniqueSectionCode.ShouldBe(createModel.UniqueSectionCode);
-            section.SequenceOfCourse.ShouldBe(createModel.SequenceOfCourse);
+            sectionEntity.SchoolId.ShouldBe(Constants.SchoolId);
+            sectionEntity.SchoolYear.ShouldBe(sectionCreateModel.SchoolYear);
+            sectionEntity.TermTypeId.ShouldBe(sectionCreateModel.TermTypeId);
+            sectionEntity.ClassPeriodName.ShouldBe(sectionCreateModel.ClassPeriodName);
+            sectionEntity.ClassroomIdentificationCode.ShouldBe(sectionCreateModel.ClassroomIdentificationCode);
+            sectionEntity.LocalCourseCode.ShouldBe(sectionCreateModel.LocalCourseCode);
+            sectionEntity.UniqueSectionCode.ShouldBe(sectionCreateModel.UniqueSectionCode);
+            sectionEntity.SequenceOfCourse.ShouldBe(sectionCreateModel.SequenceOfCourse);
         }
     }
 }

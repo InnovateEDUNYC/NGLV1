@@ -26,6 +26,5 @@ namespace NGL.Tests.Section
                 SequenceOfCourse = SequenceOfCourse
             };
         }
-
     }
 }

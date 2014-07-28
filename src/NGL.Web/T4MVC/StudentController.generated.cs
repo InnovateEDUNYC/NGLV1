@@ -60,6 +60,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UploadPhoto()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPhoto);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StudentController Actions { get { return MVC.Student; } }
@@ -78,6 +84,7 @@ namespace NGL.Web.Controllers
         {
             public readonly string All = "All";
             public readonly string Index = "Index";
+            public readonly string UploadPhoto = "UploadPhoto";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,6 +92,7 @@ namespace NGL.Web.Controllers
         {
             public const string All = "All";
             public const string Index = "Index";
+            public const string UploadPhoto = "UploadPhoto";
         }
 
 
@@ -93,6 +101,14 @@ namespace NGL.Web.Controllers
         public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
+        {
+            public readonly string usi = "usi";
+        }
+        static readonly ActionParamsClass_UploadPhoto s_params_UploadPhoto = new ActionParamsClass_UploadPhoto();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UploadPhoto UploadPhotoParams { get { return s_params_UploadPhoto; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UploadPhoto
         {
             public readonly string usi = "usi";
         }
@@ -143,6 +159,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usi", usi);
             IndexOverride(callInfo, usi);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UploadPhotoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int usi);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UploadPhoto(int usi)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPhoto);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usi", usi);
+            UploadPhotoOverride(callInfo, usi);
             return callInfo;
         }
 
