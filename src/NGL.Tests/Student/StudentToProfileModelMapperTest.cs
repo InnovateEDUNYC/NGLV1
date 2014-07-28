@@ -66,9 +66,7 @@ namespace NGL.Tests.Student
             var student = StudentFactory.CreateStudentWithTwoParents();
             var firstParent = student.StudentParentAssociations.First().Parent;
             var secondParent = student.StudentParentAssociations.ElementAt(1).Parent;
-            var profileModel = new ProfileModel();
-
-            _mapper.Map(student, profileModel);
+            var profileModel = _mapper.Build(student);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(firstParent, profileModel.ProfileParentModel);
@@ -103,16 +101,15 @@ namespace NGL.Tests.Student
         }
 
         [Fact]
-        public void ShouldMapStudentToProfileModelWithoutAcademicDetails()
+        public void ShouldMapWithDefaultValueIfNoProfilePhotoExists()
         {
-            var student = StudentFactory.CreateStudentWithOneParentWithoutAcademicDetails();
-            var profileModel = new ProfileModel();
+            Setup();
+            var student = StudentFactory.CreateStudentWithOneParent();
+            var profileModel = _mapper.Build(student);
 
-            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(new AzureStorageDownloader()));
-            _mapper.Map(student, profileModel);
-            NativeStudentPropertiesShouldBeMapped(student, profileModel);
-            profileModel.AcademicDetail.ShouldBe(null);
+            profileModel.ProfilePhotoUrl.ShouldBe("http://placehold.it/200x250");
         }
+
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);

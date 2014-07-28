@@ -6,25 +6,15 @@
 }
 
 <h2>Profile</h2>
-<img src=@Model.ProfilePhotoUrl></img>
-@using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
-{
-    <input type="file" name="profilePhoto"/>
-    <button type="submit">Upload!</button>
-}
-<div>
-    <h4>Biographical Information</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StudentUsi)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StudentUsi)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+<div class="container">
+    <div class="col-md-4">
+        <img src="http://www.placehold.it/200x250"></img>
+        @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+        {
+            <input type="file" name="Upload new photo" />
+            <button type="submit">Upload!</button>
+        }
+    </div>
 
     <div class="col-md-6">
         <h4>Biographical Information</h4>
@@ -40,6 +30,12 @@
                 @Html.DisplayNameFor(model => model.FirstName)
             </dt>
 
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.LastName)

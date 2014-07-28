@@ -12,6 +12,7 @@ namespace NGL.Web.Models.Student
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
         private readonly IFileDownloader _fileDownloader;
+        private string _defaultFileUrl = "http://placehold.it/200x250";
 
         public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper, StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, IFileDownloader fileDownloader)
         {
@@ -22,24 +23,40 @@ namespace NGL.Web.Models.Student
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
         {
-            target.StudentUsi = source.StudentUSI;
-            target.FirstName = source.FirstName;
-            target.LastName = source.LastSurname;
-            target.Sex = ((SexTypeEnum)source.SexTypeId).Humanize();
-            target.BirthDate = source.BirthDate;
-            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
-
-            var homeLanguage = GetAllHomeLanguages(source).First();
-            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
-
-            target.ProfilePhotoUrl = _fileDownloader.DownloadPath("student", source.StudentUSI + "/profilePhoto");
-
+            MapBasicStudentInfo(source, target);
+            MapHomeLanguage(source, target);
+            SetProfilePhotoUrlOrDefault(source, target);
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
 
-            if (!source.StudentAcademicDetails.IsNullOrEmpty())
+			if (!source.StudentAcademicDetails.IsNullOrEmpty())
                 target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
+        }
+
+        private static void MapHomeLanguage(Data.Entities.Student source, ProfileModel target)
+        {
+            var homeLanguage = GetAllHomeLanguages(source).First();
+            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
+        }
+
+        private static void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
+        {
+            target.StudentUsi = source.StudentUSI;
+            target.FirstName = source.FirstName;
+            target.LastName = source.LastSurname;
+            target.Sex = ((SexTypeEnum) source.SexTypeId).Humanize();
+            target.BirthDate = source.BirthDate;
+            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+            target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
+        }
+            
+        private void SetProfilePhotoUrlOrDefault(Data.Entities.Student source, ProfileModel target)
+        {
+            var profilePhotoUrl = _fileDownloader.DownloadPath("student", source.StudentUSI + "/profilePhoto");
+            if (profilePhotoUrl.IsNullOrEmpty())
+                target.ProfilePhotoUrl = _defaultFileUrl;
+            else
+                target.ProfilePhotoUrl = profilePhotoUrl;
         }
 
         private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)
