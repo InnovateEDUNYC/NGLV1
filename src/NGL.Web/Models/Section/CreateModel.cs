@@ -5,6 +5,12 @@ namespace NGL.Web.Models.Section
     public class CreateModel
     {
         [Required]
+        public short SchoolYear { get; set; }
+
+        [Required]
+        public int TermTypeId { get; set; }
+
+        [Required]
         public string ClassPeriodName { get; set; }
 
         [Required]
@@ -13,12 +19,6 @@ namespace NGL.Web.Models.Section
         [Required]
         [StringLength(20)]
         public string LocalCourseCode { get; set; }
-
-        [Required]
-        public int TermTypeId { get; set; }
-
-        [Required]
-        public short SchoolYear { get; set; }
 
         [Required]
         [StringLength(255)]
