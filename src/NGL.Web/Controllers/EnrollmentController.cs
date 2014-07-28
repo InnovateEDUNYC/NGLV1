@@ -142,7 +142,7 @@ namespace NGL.Web.Controllers
         private void Upload(HttpPostedFileBase file, string relativePath)
         {
             if (file != null)
-               _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
+               _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
         }
     }
 }

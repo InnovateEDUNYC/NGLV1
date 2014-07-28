@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Antlr.Runtime.Misc;
+using Elmah;
+using ImageResizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.ImageTools;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Student;
@@ -63,9 +69,7 @@ namespace NGL.Web.Controllers
             );
 
             if (student == null)
-            {
                 return HttpNotFound();
-            }
 
             var profileModel = _studentToDetailsModelMapper.Build(student);
             return View(profileModel);
@@ -75,16 +79,25 @@ namespace NGL.Web.Controllers
         // POST: /Student/UploadPhoto/5
         public virtual ActionResult UploadPhoto(HttpPostedFileBase profilePhoto, int usi)
         {
-            Upload(profilePhoto, usi + "/profilePhoto");
+            try
+            {
+                var photoStream = Resizer.ScaleImage(profilePhoto.InputStream, 200, 250);
+                var thumbNailStream = Resizer.ScaleImage(profilePhoto.InputStream, 50, 50);
+
+                Upload(photoStream, usi + "/profilePhoto");
+                Upload(thumbNailStream, usi + "/profileThumbnail");
+            }
+            catch (System.ArgumentException ex)
+            {
+                ErrorSignal.FromCurrentContext().Raise(ex);
+            }
             return RedirectToAction(MVC.Student.Index(usi));
         }
 
-        private void Upload(HttpPostedFileBase file, string relativePath)
+        private void Upload(Stream file, string relativePath)
         {
             if (file != null)
                 _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
         }
-
     }
-
 }

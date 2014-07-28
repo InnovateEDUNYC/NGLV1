@@ -99,6 +99,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Humanizer.1.28.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Mvc">
+      <HintPath>..\packages\ImageResizer.Mvc.3.4.3\lib\ImageResizer.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -281,6 +287,7 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
+    <Compile Include="ImageTools\Resizer.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileDownloader.cs" />
@@ -1765,6 +1772,7 @@
     <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
+    <Content Include="Assets\Scripts\Views\Student\index.js" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
