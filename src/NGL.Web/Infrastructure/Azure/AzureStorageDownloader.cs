@@ -17,9 +17,11 @@ namespace NGL.Web.Infrastructure.Azure
             if (blobContainer == null) return null;
             var blockBlob = blobContainer.GetBlockBlobReference(fileName);
             if (blockBlob == null) return null;
-            var sasConstraints = new SharedAccessBlobPolicy();
-            sasConstraints.SharedAccessExpiryTime = DateTime.UtcNow.AddHours(2);
-            sasConstraints.Permissions = SharedAccessBlobPermissions.Read;
+            
+            var sasConstraints = new SharedAccessBlobPolicy {
+                sasConstraints.SharedAccessExpiryTime = DateTime.UtcNow.AddHours(2),
+                sasConstraints.Permissions = SharedAccessBlobPermissions.Read
+            }
             var sasContainerToken = blockBlob.GetSharedAccessSignature(sasConstraints);
 
             return blockBlob.Uri + sasContainerToken;
