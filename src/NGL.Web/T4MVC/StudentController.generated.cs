@@ -110,6 +110,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_UploadPhoto
         {
+            public readonly string profilePhoto = "profilePhoto";
             public readonly string usi = "usi";
         }
         static readonly ViewsClass s_views = new ViewsClass();
@@ -163,14 +164,15 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void UploadPhotoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int usi);
+        partial void UploadPhotoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase profilePhoto, int usi);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UploadPhoto(int usi)
+        public override System.Web.Mvc.ActionResult UploadPhoto(System.Web.HttpPostedFileBase profilePhoto, int usi)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPhoto);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "profilePhoto", profilePhoto);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usi", usi);
-            UploadPhotoOverride(callInfo, usi);
+            UploadPhotoOverride(callInfo, profilePhoto, usi);
             return callInfo;
         }
 
