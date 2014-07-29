@@ -17,7 +17,6 @@ namespace NGL.Web.Infrastructure.Azure
             blobContainer.CreateIfNotExists();
 
             var blockBlob = blobContainer.GetBlockBlobReference(fileName);
-//            blockBlob.Properties.ContentType = ;
             blockBlob.UploadFromStream(file);
         }
     }
