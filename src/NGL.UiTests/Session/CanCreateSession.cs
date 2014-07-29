@@ -35,11 +35,11 @@ namespace NGL.UiTests.Session
         {
             _createSessionModel = new CreateModel
             {
-                Term = ObjectMother.Fall2014Semester.Term,
-                SchoolYear = ObjectMother.Fall2014Semester.SchoolYear,
-                BeginDate = ObjectMother.Fall2014Semester.BeginDate,
-                EndDate = ObjectMother.Fall2014Semester.EndDate,
-                TotalInstructionalDays = ObjectMother.Fall2014Semester.TotalInstructionalDays
+                Term = ObjectMother.Spring2038Semester.Term,
+                SchoolYear = ObjectMother.Spring2038Semester.SchoolYear,
+                BeginDate = ObjectMother.Spring2038Semester.BeginDate,
+                EndDate = ObjectMother.Spring2038Semester.EndDate,
+                TotalInstructionalDays = ObjectMother.Spring2038Semester.TotalInstructionalDays
             };
 
             _sessionIndexPage = _sessionCreatePage.CreateSession(_createSessionModel);

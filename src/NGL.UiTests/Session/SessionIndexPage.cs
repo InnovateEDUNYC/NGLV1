@@ -19,8 +19,6 @@ namespace NGL.UiTests.Session
             var yearExists =
                 Find.Element(By.CssSelector("tr:last-of-type td.school-year")).Text.Equals(createModel.SchoolYear.Humanize());
 
-            Find.Element(By.CssSelector("td.term")).Text.ShouldBe(createModel.Term.Humanize());
-
             return termExists && yearExists;
         }
     }

@@ -28,18 +28,18 @@ namespace NGL.UiTests
             }
         }
 
-        public static class Fall2014Semester
+        public static class Spring2038Semester
         {
-            public const TermTypeEnum Term = TermTypeEnum.FallSemester;
-            public const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2014;
-            public static DateTime BeginDate = new DateTime(2014, 08, 30);
-            public static DateTime EndDate = new DateTime(2014, 12, 12);
+            public const TermTypeEnum Term = TermTypeEnum.SpringSemester;
+            public const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2038;
+            public static DateTime BeginDate = new DateTime(2038, 08, 30);
+            public static DateTime EndDate = new DateTime(2038, 12, 12);
             public const int TotalInstructionalDays = 120;
         }
 
         public static class Math101
         {
-            public const string CourseCode = "MATH101";
+            public const string CourseCode = "ZMATH101";
             public const string CourseTitle = "Pre Algebra";
             public const int NumberOfParts = 1;
             public const AcademicSubjectDescriptorEnum AcademicSubject = AcademicSubjectDescriptorEnum.Mathematics;
@@ -64,12 +64,12 @@ namespace NGL.UiTests
 
         public static class PeriodOne
         {
-            public static string ClassPeriodName = "Period 1";
+            public static string ClassPeriodName = "ZPeriod 1";
         }
 
         public static class RoomA101
         {
-            public const string ClassRoomIdentificationCode = "A101";
+            public const string ClassRoomIdentificationCode = "Z101";
             public const int MaximumNumberOfSeats = 40;
             public const int OptimalNumberOfSeats = 30;
         }

@@ -166,6 +166,20 @@ INSERT INTO [edfi].[Section]
 	 (1, 1, 2014, 'ENGL400 - CW',
 	 'Period 3', 'Room 207', 'ENGL400-Fall2014-001', 1)
 
+INSERT INTO [edfi].[Section]
+	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
+	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
+	VALUES
+	 (1, 1, 2014, 'ENGL400 - DI',
+	 'Period 4', 'Room 207', 'ENGL400-Fall2014-001', 1)
+
+INSERT INTO [edfi].[Section]
+	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
+	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
+	VALUES
+	 (1, 1, 2014, 'ENGL400 - CW',
+	 'Period 4', 'Room 207', 'ENGL400-Fall2014-001', 1)
+
 
 INSERT INTO [edfi].[Student]
            ([StudentUSI]
