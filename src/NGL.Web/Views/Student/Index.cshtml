@@ -106,7 +106,7 @@
                 @Html.DisplayFor(model => model.AcademicDetail.PerformanceHistory)<br/>
             </dd>
             <dd>
-                @if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistory != null)
+                @if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistoryFileUrl != null)
                 {
                     <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">Download</a><br/>
                 }
