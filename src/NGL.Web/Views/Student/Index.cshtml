@@ -8,14 +8,16 @@
 <h2>Profile</h2>
 <div class="container">
     <div class="col-md-4">
-        <img src="@Model.ProfilePhotoUrl"></img>
-        @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
-        {
-            <div class="upload-profile-photo">
-                <button class="click-button">New photo</button>
-                <input type="file" class="ghost-button" name="profilePhoto" accept="image/*" />
-            </div>
-        }   
+        <div class="profile-photo-container">
+            <img src="@Model.ProfilePhotoUrl"></img>
+            @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+            {
+                <div class="upload-profile-photo">
+                    <button class="click-button btn btn-default">New photo</button>
+                    <input type="file" class="ghost-button" name="profilePhoto" accept="image/*" />
+                </div>
+            }
+        </div>
     </div>
 
     <div class="col-md-6">

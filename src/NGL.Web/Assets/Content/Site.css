@@ -95,12 +95,16 @@ form .inline input {
 .ghost-button {
     opacity: 0;
     position: absolute;
-    height: 26px;
-    width: 82px;
+    height: 34px;
+    width: 92px;
 }
 
 .click-button {
     position: absolute;
-    min-height: 26px;
-    min-width: 82px;
+    min-height: 34px;
+    min-width: 92px;
+}
+
+.profile-photo-container {
+    margin-bottom: 45px;
 }
