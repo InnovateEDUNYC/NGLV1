@@ -1889,6 +1889,7 @@
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Enrollment\EnterAcademicDetails.cshtml" />
     <Content Include="Views\Section\Create.cshtml" />
+    <Content Include="Views\Section\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

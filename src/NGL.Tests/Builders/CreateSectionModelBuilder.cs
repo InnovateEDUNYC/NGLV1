@@ -3,7 +3,7 @@ using NGL.Web.Models.Section;
 
 namespace NGL.Tests.Section
 {
-    public class CreateModelBuilder
+    public class CreateSectionModelBuilder
     {
         private const short SchoolYear = (short) SchoolYearTypeEnum.Year2014;
         private const int TermTypeId = (int) TermTypeEnum.FallSemester;

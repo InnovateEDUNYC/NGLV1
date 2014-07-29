@@ -89,7 +89,7 @@
     <Compile Include="Enrollment\CreateStudentModelValidatorTests.cs" />
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />
-    <Compile Include="Section\CreateModelBuilder.cs" />
+    <Compile Include="Builders\CreateSectionModelBuilder.cs" />
     <Compile Include="Section\MapperTests.cs" />
     <Compile Include="Section\SectionBuilder.cs" />
     <Compile Include="Session\CreateModelBuilder.cs" />

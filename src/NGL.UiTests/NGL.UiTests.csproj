@@ -101,6 +101,7 @@
     <Compile Include="Location\CanCreateLocation.cs" />
     <Compile Include="Location\LocationCreatePage.cs" />
     <Compile Include="Location\LocationIndexPage.cs" />
+    <Compile Include="Section\CanCreateSection.cs" />
     <Compile Include="Section\SectionCreatePage.cs" />
     <Compile Include="Section\SectionIndexPage.cs" />
     <Compile Include="Session\CanCreateSession.cs" />

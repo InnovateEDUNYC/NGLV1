@@ -16,7 +16,7 @@ namespace NGL.Tests.Section
             var schoolRepository = Substitute.For<ISchoolRepository>();
             schoolRepository.GetSchool().Returns(new School { SchoolId = Constants.SchoolId });
 
-            var sectionCreateModel = new CreateModelBuilder().Build();
+            var sectionCreateModel = new CreateSectionModelBuilder().Build();
             var sectionEntity = new CreateModelToSectionMapper(schoolRepository).Build(sectionCreateModel);
 
             sectionEntity.SchoolId.ShouldBe(Constants.SchoolId);
