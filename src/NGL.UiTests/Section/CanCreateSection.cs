@@ -49,7 +49,7 @@ namespace NGL.UiTests.Section
         }
 
         [Fact]
-        public void ShouldEnrollStudent()
+        public void ShouldCreateSection()
         {
             this.Given(_ => IHaveLoggedIn())
                 .And(_ => IAmOnTheCreateSectionPage())

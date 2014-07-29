@@ -40,5 +40,11 @@ namespace NGL.Web.Controllers
             return View();
         }
 
+        // POST: /Section/Create
+        [HttpPost]
+        public virtual ActionResult Create(CreateModel createModel)
+        {
+            return View();
+        }
     }
 }
