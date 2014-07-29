@@ -81,6 +81,17 @@
           <Property Name="ScriptName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Applied" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="StaffCertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StaffUSI" Type="int" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="StudentAcademicDetails">
           <Key>
             <PropertyRef Name="StudentUSI" />
@@ -12627,6 +12638,18 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StaffCertificate_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="StaffCertificate" Type="Self.StaffCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffUSI" />
+            </Principal>
+            <Dependent Role="StaffCertificate">
+              <PropertyRef Name="StaffUSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StaffClassificationDescriptor_Descriptor_DescriptorId">
           <End Role="Descriptor" Type="Self.Descriptor" Multiplicity="1" />
           <End Role="StaffClassificationDescriptor" Type="Self.StaffClassificationDescriptor" Multiplicity="0..1" />
@@ -15997,6 +16020,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SchemaVersions" EntityType="Self.SchemaVersions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffCertificate" EntityType="Self.StaffCertificate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentAcademicDetails" EntityType="Self.StudentAcademicDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentProgramStatus" EntityType="Self.StudentProgramStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademicHonorCategoryType" EntityType="Self.AcademicHonorCategoryType" Schema="edfi" store:Type="Tables" />
@@ -18342,6 +18366,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <AssociationSet Name="FK_StaffAddress_StateAbbreviationType_StateAbbreviationTypeId" Association="Self.FK_StaffAddress_StateAbbreviationType_StateAbbreviationTypeId">
             <End Role="StateAbbreviationType" EntitySet="StateAbbreviationType" />
             <End Role="StaffAddress" EntitySet="StaffAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StaffCertificate_Staff" Association="Self.FK_StaffCertificate_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="StaffCertificate" EntitySet="StaffCertificate" />
           </AssociationSet>
           <AssociationSet Name="FK_StaffClassificationDescriptor_Descriptor_DescriptorId" Association="Self.FK_StaffClassificationDescriptor_Descriptor_DescriptorId">
             <End Role="Descriptor" EntitySet="Descriptor" />
@@ -24842,6 +24870,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="StaffVisas" Relationship="Self.FK_StaffVisa_Staff_StaffUSI" FromRole="Staff" ToRole="StaffVisa" />
           <NavigationProperty Name="StudentSpecialEducationProgramAssociationServiceProviders" Relationship="Self.FK_StudentSpecialEducationProgramAssociationServiceProvider_Staff_StaffUSI" FromRole="Staff" ToRole="StudentSpecialEducationProgramAssociationServiceProvider" />
           <NavigationProperty Name="Users" Relationship="NGLModel.FK_dbo_AspNetUsers_edfi_Staff_StaffUSI" FromRole="Staff" ToRole="AspNetUser" />
+          <NavigationProperty Name="StaffCertificates" Relationship="NGLModel.FK_StaffCertificate_Staff" FromRole="Staff" ToRole="StaffCertificate" />
         </EntityType>
         <EntityType Name="StaffAddress">
           <Key>
@@ -39796,6 +39825,11 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="StaffCertificates" EntityType="NGLModel.StaffCertificate" />
+          <AssociationSet Name="FK_StaffCertificate_Staff" Association="NGLModel.FK_StaffCertificate_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="StaffCertificate" EntitySet="StaffCertificates" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentProgramStatus">
           <Key>
@@ -40028,6 +40062,30 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
               <PropertyRef Name="StaffUSI" />
             </Principal>
             <Dependent Role="AspNetUser">
+              <PropertyRef Name="StaffUSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StaffCertificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="StaffUSI" Type="Int32" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Staff" Relationship="NGLModel.FK_StaffCertificate_Staff" FromRole="StaffCertificate" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_StaffCertificate_Staff">
+          <End Type="NGLModel.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="NGLModel.StaffCertificate" Role="StaffCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffUSI" />
+            </Principal>
+            <Dependent Role="StaffCertificate">
               <PropertyRef Name="StaffUSI" />
             </Dependent>
           </ReferentialConstraint>
@@ -46031,6 +46089,18 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="StaffCertificates">
+            <EntityTypeMapping TypeName="NGLModel.StaffCertificate">
+              <MappingFragment StoreEntitySet="StaffCertificate">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="StaffUSI" ColumnName="StaffUSI" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

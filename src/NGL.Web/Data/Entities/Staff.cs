@@ -45,6 +45,7 @@ namespace NGL.Web.Data.Entities
             this.StaffVisas = new HashSet<StaffVisa>();
             this.StudentSpecialEducationProgramAssociationServiceProviders = new HashSet<StudentSpecialEducationProgramAssociationServiceProvider>();
             this.Users = new HashSet<AspNetUser>();
+            this.StaffCertificates = new HashSet<StaffCertificate>();
         }
     
         public int StaffUSI { get; set; }
@@ -99,5 +100,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<StaffVisa> StaffVisas { get; set; }
         public virtual ICollection<StudentSpecialEducationProgramAssociationServiceProvider> StudentSpecialEducationProgramAssociationServiceProviders { get; set; }
         public virtual ICollection<AspNetUser> Users { get; set; }
+        public virtual ICollection<StaffCertificate> StaffCertificates { get; set; }
     }
 }

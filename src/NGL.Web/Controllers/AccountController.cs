@@ -20,19 +20,22 @@ namespace NGL.Web.Controllers
         private readonly IStaffRepository _staffRepository;
         private readonly IMapper<Staff, UserModel> _staffToUserModelMapper;
         private readonly IMapper<AddUserModel, Staff> _addUserModelToStaffMapper;
+        private readonly IMapper<AddUserModel, ApplicationUser> _addUserModelToApplicationUserMapper;
 
         public AccountController(
             UserManager<ApplicationUser> userManager, 
             IGenericRepository genericRepository, 
             IStaffRepository staffRepository,
             IMapper<Staff, UserModel> staffToUserModelMapper,
-            IMapper<AddUserModel, Staff> addUserModelToStaffMapper)
+            IMapper<AddUserModel, Staff> addUserModelToStaffMapper,
+            IMapper<AddUserModel, ApplicationUser> addUserModelToApplicationUserMapper)
         {
             _userManager = userManager;
             _genericRepository = genericRepository;
             _staffRepository = staffRepository;
             _staffToUserModelMapper = staffToUserModelMapper;
             _addUserModelToStaffMapper = addUserModelToStaffMapper;
+            _addUserModelToApplicationUserMapper = addUserModelToApplicationUserMapper;
         }
 
         //
@@ -93,7 +96,7 @@ namespace NGL.Web.Controllers
             _genericRepository.Add(staff);
             _genericRepository.Save();
 
-            var user = new ApplicationUser { UserName = model.Username, StaffUSI = staff.StaffUSI };
+            var user = _addUserModelToApplicationUserMapper.Build(model);
             var result = _userManager.Create(user, model.Password);
             if (result.Succeeded)
             {
@@ -104,6 +107,7 @@ namespace NGL.Web.Controllers
             AddErrors(result);
 
             return View(model);
+
         }
 
         //

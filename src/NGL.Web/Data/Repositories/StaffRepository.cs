@@ -16,5 +16,10 @@ namespace NGL.Web.Data.Repositories
         {
             return DbContext.Set<Staff>().Include(s => Enumerable.Select<AspNetUser, ICollection<AspNetRole>>(s.Users, u => u.AspNetRoles));
         }
+
+        public Staff GetStaffByStaffUSI(int staffUSI)
+        {
+            return DbContext.Set<Staff>().SingleOrDefault(s => s.StaffUSI == staffUSI);
+        }
     }
 }

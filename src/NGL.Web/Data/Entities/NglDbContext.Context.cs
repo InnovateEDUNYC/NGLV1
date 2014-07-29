@@ -452,5 +452,6 @@ namespace NGL.Web.Data.Entities
         public virtual DbSet<SchemaVersion> SchemaVersions { get; set; }
         public virtual DbSet<StudentAcademicDetail> StudentAcademicDetailSet { get; set; }
         public virtual DbSet<VersionLevel> VersionLevels { get; set; }
+        public virtual DbSet<StaffCertificate> StaffCertificates { get; set; }
     }
 }
