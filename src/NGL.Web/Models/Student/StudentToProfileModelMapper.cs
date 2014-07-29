@@ -3,6 +3,7 @@ using System.Linq;
 using Castle.Core.Internal;
 using Humanizer;
 using NGL.Web.Data.Entities;
+using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Student
 {
@@ -10,31 +11,53 @@ namespace NGL.Web.Models.Student
     {
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
+        private readonly IFileDownloader _fileDownloader;
+        private string _defaultFileUrl = "/Assets/Images/placeholder.png";
 
-        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper, StudentToAcademicDetailsMapper studentToAcademicDetailsMapper)
+        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper,
+                    StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, IFileDownloader fileDownloader)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
+            _fileDownloader = fileDownloader;
         }
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
         {
-            target.StudentUsi = source.StudentUSI;
-            target.FirstName = source.FirstName;
-            target.LastName = source.LastSurname;
-            target.Sex = ((SexTypeEnum)source.SexTypeId).Humanize();
-            target.BirthDate = source.BirthDate;
-            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
-
-            var homeLanguage = GetAllHomeLanguages(source).First();
-            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
-
+            MapBasicStudentInfo(source, target);
+            MapHomeLanguage(source, target);
+            SetProfilePhotoUrlOrDefault(source, target);
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
 
-            if (!source.StudentAcademicDetails.IsNullOrEmpty())
+			if (!source.StudentAcademicDetails.IsNullOrEmpty())
                 target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
+        }
+
+        private static void MapHomeLanguage(Data.Entities.Student source, ProfileModel target)
+        {
+            var homeLanguage = GetAllHomeLanguages(source).First();
+            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
+        }
+
+        private static void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
+        {
+            target.StudentUsi = source.StudentUSI;
+            target.FirstName = source.FirstName;
+            target.LastName = source.LastSurname;
+            target.Sex = ((SexTypeEnum) source.SexTypeId).Humanize();
+            target.BirthDate = source.BirthDate;
+            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+            target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
+        }
+            
+        private void SetProfilePhotoUrlOrDefault(Data.Entities.Student source, ProfileModel target)
+        {
+            var profilePhotoUrl = _fileDownloader.DownloadPath("student", source.StudentUSI + "/profilePhoto");
+            if (profilePhotoUrl.IsNullOrEmpty())
+                target.ProfilePhotoUrl = _defaultFileUrl;
+            else
+                target.ProfilePhotoUrl = profilePhotoUrl;
         }
 
         private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)

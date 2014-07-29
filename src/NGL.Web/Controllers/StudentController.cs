@@ -1,9 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Elmah;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.ImageTools;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Student;
 
@@ -14,12 +22,18 @@ namespace NGL.Web.Controllers
         private readonly IGenericRepository _repository;
         private readonly IMapper<Student, ProfileModel> _studentToDetailsModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
+        private readonly AzureStorageUploader _fileUploader;
+        private readonly AzureStorageDownloader _fileDownloader;
 
-        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper)
+        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper,
+                                                IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
+                                                AzureStorageUploader fileUploader, AzureStorageDownloader fileDownloader)
         {
             _repository = repository;
             _studentToDetailsModelMapper = studentToDetailsModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
+            _fileUploader = fileUploader;
+            _fileDownloader = fileDownloader;
         }
 
         // GET: /Student/All
@@ -56,21 +70,35 @@ namespace NGL.Web.Controllers
             );
 
             if (student == null)
-            {
                 return HttpNotFound();
-            }
-            var profileModel = new ProfileModel();
-            _studentToDetailsModelMapper.Map(student, profileModel);
+
+            var profileModel = _studentToDetailsModelMapper.Build(student);
             return View(profileModel);
         }
 
         //
         // POST: /Student/UploadPhoto/5
-        public virtual ActionResult UploadPhoto(int usi)
+        public virtual ActionResult UploadPhoto(HttpPostedFileBase profilePhoto, int usi)
         {
+            try
+            {
+                var photoStream = Resizer.ScaleImage(profilePhoto.InputStream, 200, 250);
+                var thumbNailStream = Resizer.ScaleImage(profilePhoto.InputStream, 50, 50);
+
+                Upload(photoStream, usi + "/profilePhoto");
+                Upload(thumbNailStream, usi + "/profileThumbnail");
+            }
+            catch (System.ArgumentException ex)
+            {
+                ErrorSignal.FromCurrentContext().Raise(ex);
+            }
             return RedirectToAction(MVC.Student.Index(usi));
         }
 
+        private void Upload(Stream file, string relativePath)
+        {
+            if (file != null)
+                _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
+        }
     }
-
 }

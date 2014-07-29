@@ -16,9 +16,10 @@ namespace NGL.Web.Infrastructure.Azure
             var blobContainer = blobClient.GetContainerReference(container);
             if (blobContainer == null) return null;
             var blockBlob = blobContainer.GetBlockBlobReference(fileName);
-            if (blockBlob == null) return null;
+            if (blockBlob == null || !blockBlob.Exists()) return null;
             
-            var sasConstraints = new SharedAccessBlobPolicy {
+            var sasConstraints = new SharedAccessBlobPolicy
+            {
                 SharedAccessExpiryTime = DateTime.UtcNow.AddHours(2),
                 Permissions = SharedAccessBlobPermissions.Read
             };

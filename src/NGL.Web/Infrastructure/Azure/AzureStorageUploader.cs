@@ -1,3 +1,4 @@
+using System.IO;
 using System.Web;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
@@ -7,7 +8,7 @@ namespace NGL.Web.Infrastructure.Azure
 {
     public class AzureStorageUploader : IFileUploader
     {
-        public void Upload(HttpPostedFileBase file, string container, string fileName)
+        public void Upload(Stream file, string container, string fileName)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigManager.BlobConnectionString);
             var blobClient = storageAccount.CreateCloudBlobClient();
@@ -16,8 +17,7 @@ namespace NGL.Web.Infrastructure.Azure
             blobContainer.CreateIfNotExists();
 
             var blockBlob = blobContainer.GetBlockBlobReference(fileName);
-            blockBlob.Properties.ContentType = file.ContentType;
-            blockBlob.UploadFromStream(file.InputStream);
+            blockBlob.UploadFromStream(file);
         }
     }
 }

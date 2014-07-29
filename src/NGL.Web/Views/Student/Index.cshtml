@@ -8,12 +8,14 @@
 <h2>Profile</h2>
 <div class="container">
     <div class="col-md-4">
-        <img src="http://www.placehold.it/200x250"></img>
+        <img src="@Model.ProfilePhotoUrl"></img>
         @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
         {
-            <input type="file" name="Upload new photo" />
-            <button type="submit">Upload!</button>
-        }
+            <div class="upload-profile-photo">
+                <button class="click-button">New photo</button>
+                <input type="file" class="ghost-button" name="profilePhoto" accept="image/*" />
+            </div>
+        }   
     </div>
 
     <div class="col-md-6">
@@ -333,3 +335,7 @@
 
         </div>
 </div>
+
+@section Scripts {
+    Ngl.student.index.init();
+}

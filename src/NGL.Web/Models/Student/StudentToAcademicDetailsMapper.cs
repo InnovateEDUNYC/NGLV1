@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Web.UI.WebControls;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
@@ -15,16 +16,18 @@ namespace NGL.Web.Models.Student
         }
 
         public override void Map(Data.Entities.Student source, ProfileAcademicDetailModel target)
-        {
-            
-            var studentAcademicDetail = source.StudentAcademicDetails.First();
+        {          
+            if (!source.StudentAcademicDetails.IsNullOrEmpty()) 
+			{
+            	var studentAcademicDetail = source.StudentAcademicDetails.First();
 
-            target.SchoolYear = studentAcademicDetail.SchoolYear;
-            target.ReadingScore = studentAcademicDetail.ReadingScore;
-            target.WritingScore = studentAcademicDetail.WritingScore;
-            target.MathScore = studentAcademicDetail.MathScore;
-            target.PerformanceHistoryFileUrl = CreateSignitureUri(studentAcademicDetail.PerformanceHistoryFile);
-            target.PerformanceHistory = studentAcademicDetail.PerfomanceHistory;
+            	target.SchoolYear = studentAcademicDetail.SchoolYear;
+            	target.ReadingScore = studentAcademicDetail.ReadingScore;
+            	target.WritingScore = studentAcademicDetail.WritingScore;
+            	target.MathScore = studentAcademicDetail.MathScore;
+            	target.PerformanceHistoryFileUrl = CreateSignitureUri(studentAcademicDetail.PerformanceHistoryFile);
+            	target.PerformanceHistory = studentAcademicDetail.PerfomanceHistory;
+            }
         }
 
         private string CreateSignitureUri(string filename)
