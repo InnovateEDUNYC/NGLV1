@@ -1765,6 +1765,7 @@
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
     <Content Include="Assets\Content\datepicker.css" />
+    <Content Include="Assets\Images\placeholder.png" />
     <Content Include="Assets\Scripts\createNamespace.js" />
     <Content Include="Assets\Scripts\forms.js" />
     <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />

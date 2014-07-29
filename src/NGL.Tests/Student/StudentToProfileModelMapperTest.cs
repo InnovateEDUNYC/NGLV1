@@ -107,7 +107,7 @@ namespace NGL.Tests.Student
             var student = StudentFactory.CreateStudentWithOneParent();
             var profileModel = _mapper.Build(student);
 
-            profileModel.ProfilePhotoUrl.ShouldBe("http://placehold.it/200x250");
+            profileModel.ProfilePhotoUrl.ShouldBe("/Assets/Images/placeholder.png");
         }
 
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)

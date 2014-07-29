@@ -12,7 +12,7 @@ namespace NGL.Web.Models.Student
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
         private readonly IFileDownloader _fileDownloader;
-        private string _defaultFileUrl = "http://placehold.it/200x250";
+        private string _defaultFileUrl = "/Assets/Images/placeholder.png";
 
         public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper, StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, IFileDownloader fileDownloader)
         {
