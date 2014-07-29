@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NGL.Tests.Section;
+﻿using NGL.Tests.Section;
 using NGL.UiTests.Shared;
 using NGL.Web.Models.Section;
 using Shouldly;

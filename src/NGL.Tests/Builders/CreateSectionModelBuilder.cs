@@ -5,8 +5,8 @@ namespace NGL.Tests.Section
 {
     public class CreateSectionModelBuilder
     {
-        private const short SchoolYear = (short) SchoolYearTypeEnum.Year2014;
-        private const int TermTypeId = (int) TermTypeEnum.FallSemester;
+        private const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2014;
+        private const TermTypeEnum TermType = TermTypeEnum.FallSemester;
         private const string ClassPeriodName = "Period 3";
         private const string ClassroomIdentificationCode = "BKL 200";
         private const string LocalCourseCode = "CHEM2090";
@@ -18,7 +18,7 @@ namespace NGL.Tests.Section
             return new CreateModel
             {
                 SchoolYear = SchoolYear,
-                TermTypeId = TermTypeId,
+                Term = TermType,
                 ClassPeriodName = ClassPeriodName,
                 ClassroomIdentificationCode = ClassroomIdentificationCode,
                 LocalCourseCode = LocalCourseCode,

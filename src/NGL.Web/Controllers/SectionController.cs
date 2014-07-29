@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -12,11 +12,15 @@ namespace NGL.Web.Controllers
     {
         private readonly IGenericRepository _genericRepository;
         private readonly IMapper<Section, IndexModel> _sectionToIndexModelMapper;
+        private readonly IMapper<ClassPeriod, ClassPeriodNameModel> _classPeriodToClassPeriodNameModelMapper;
 
-        public SectionController(IGenericRepository genericRepository, IMapper<Section, IndexModel> sectionToIndexModelMapper)
+        public SectionController(IGenericRepository genericRepository, 
+            IMapper<Section, IndexModel> sectionToIndexModelMapper, 
+            IMapper<ClassPeriod, ClassPeriodNameModel> classPeriodToClassPeriodNameModelMapper)
         {
             _genericRepository = genericRepository;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
+            _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
         }
 
         // GET: /Section
@@ -37,14 +41,32 @@ namespace NGL.Web.Controllers
         // GET: /Section/Create
         public virtual ActionResult Create()
         {
-            return View();
+            var classPeriodModels = GetClassPeriodNameModels();
+
+            var createModel = CreateModel.CreateNewWith(classPeriodModels);
+            return View(createModel);
         }
 
         // POST: /Section/Create
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                createModel.ClassPeriodNames = GetClassPeriodNameModels();
+                return View(createModel);
+            }
+
+
+            return RedirectToAction(Actions.Index());
+        }
+
+        private List<ClassPeriodNameModel> GetClassPeriodNameModels()
+        {
+            var classPeriods = _genericRepository.GetAll<ClassPeriod>();
+            var classPeriodModels = classPeriods.Select(classPeriod =>
+                _classPeriodToClassPeriodNameModelMapper.Build(classPeriod)).ToList();
+            return classPeriodModels;
         }
     }
 }

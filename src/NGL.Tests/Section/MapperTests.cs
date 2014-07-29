@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using NGL.Tests.Builders;
+using NGL.Web.Data.Entities;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Section;
 using NSubstitute;
@@ -20,8 +21,8 @@ namespace NGL.Tests.Section
             var sectionEntity = new CreateModelToSectionMapper(schoolRepository).Build(sectionCreateModel);
 
             sectionEntity.SchoolId.ShouldBe(Constants.SchoolId);
-            sectionEntity.SchoolYear.ShouldBe(sectionCreateModel.SchoolYear);
-            sectionEntity.TermTypeId.ShouldBe(sectionCreateModel.TermTypeId);
+            sectionEntity.SchoolYear.ShouldBe((short)sectionCreateModel.SchoolYear);
+            sectionEntity.TermTypeId.ShouldBe((int)sectionCreateModel.Term);
             sectionEntity.ClassPeriodName.ShouldBe(sectionCreateModel.ClassPeriodName);
             sectionEntity.ClassroomIdentificationCode.ShouldBe(sectionCreateModel.ClassroomIdentificationCode);
             sectionEntity.LocalCourseCode.ShouldBe(sectionCreateModel.LocalCourseCode);
@@ -42,6 +43,15 @@ namespace NGL.Tests.Section
             sectionIndexModel.LocalCourseCode.ShouldBe(sectionEntity.LocalCourseCode);
             sectionIndexModel.UniqueSectionCode.ShouldBe(sectionEntity.UniqueSectionCode);
             sectionIndexModel.SequenceOfCourse.ShouldBe(sectionEntity.SequenceOfCourse);
+        }
+
+        [Fact]
+        public void ShouldMapClassPeriodToClassPeriodModel()
+        {
+            var classPeriodEntity = new ClassPeriodBuilder().Build();
+            var classPeriodModel = new ClassPeriodToClassPeriodNameModelMapper().Build(classPeriodEntity);
+
+            classPeriodModel.ClassPeriodName.ShouldBe(classPeriodEntity.ClassPeriodName);
         }
     }
 }

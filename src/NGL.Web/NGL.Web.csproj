@@ -1656,6 +1656,8 @@
     <Compile Include="Models\Location\IndexModel.cs" />
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
+    <Compile Include="Models\Section\ClassPeriodNameModel.cs" />
+    <Compile Include="Models\Section\ClassPeriodToClassPeriodNameModelMapper.cs" />
     <Compile Include="Models\Section\CreateModelToSectionMapper.cs" />
     <Compile Include="Models\Section\IndexModel.cs" />
     <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />

@@ -14,8 +14,8 @@ namespace NGL.Web.Models.Section
         public override void Map(CreateModel source, Data.Entities.Section target)
         {
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
-            target.SchoolYear = source.SchoolYear;
-            target.TermTypeId = source.TermTypeId;
+            target.SchoolYear = (short) source.SchoolYear;
+            target.TermTypeId = (int) source.Term;
             target.ClassPeriodName = source.ClassPeriodName;
             target.ClassroomIdentificationCode = source.ClassroomIdentificationCode;
             target.LocalCourseCode = source.LocalCourseCode;
