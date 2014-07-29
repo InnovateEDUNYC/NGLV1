@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Runtime.InteropServices;
 using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
@@ -13,15 +12,14 @@ namespace NGL.Tests.Student
     public class StudentToProfileModelMapperTest
     {
         private StudentToProfileModelMapper _mapper;
-        private IFileDownloader downloader;
 
         private void Setup()
         {
-            downloader = Substitute.For<IFileDownloader>();
+            var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
 
             _mapper = new StudentToProfileModelMapper(
-                new ParentToProfileParentModelMapper(), 
+                new ParentToProfileParentModelMapper(),
                 new StudentToAcademicDetailsMapper(downloader), downloader);
         }
 
@@ -66,7 +64,9 @@ namespace NGL.Tests.Student
             var student = StudentFactory.CreateStudentWithTwoParents();
             var firstParent = student.StudentParentAssociations.First().Parent;
             var secondParent = student.StudentParentAssociations.ElementAt(1).Parent;
-            var profileModel = _mapper.Build(student);
+            var profileModel = new ProfileModel();
+
+            _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(firstParent, profileModel.ProfileParentModel);
@@ -82,7 +82,7 @@ namespace NGL.Tests.Student
 
             var fileName = student.StudentAcademicDetails.First().PerformanceHistoryFile;
             var filePath = "https://ngl.blob.core.windows.net/" + fileName;
-            
+
             var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath("student", fileName).Returns(filePath);
 
@@ -98,6 +98,21 @@ namespace NGL.Tests.Student
             profileModel.AcademicDetail.MathScore.ShouldBe(studentAcademicDetail.MathScore);
             profileModel.AcademicDetail.PerformanceHistoryFileUrl.ShouldBe(filePath);
             profileModel.AcademicDetail.PerformanceHistory.ShouldBe(studentAcademicDetail.PerfomanceHistory);
+        }
+
+        [Fact]
+        public void ShouldMapStudentToProfileModelWithoutAcademicDetails()
+        {
+            var student = StudentFactory.CreateStudentWithOneParentWithoutAcademicDetails();
+            var profileModel = new ProfileModel();
+
+            var downloader = Substitute.For<IFileDownloader>();
+
+            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader), downloader);
+            _mapper.Map(student, profileModel);
+
+            NativeStudentPropertiesShouldBeMapped(student, profileModel);
+            profileModel.AcademicDetail.ShouldBe(null);
         }
 
         [Fact]
@@ -118,19 +133,19 @@ namespace NGL.Tests.Student
             profileModel.BirthDate.ShouldBe(student.BirthDate);
 
             var studentRace = student.StudentRaces.First();
-            profileModel.Race.ShouldBe(((RaceTypeEnum) studentRace.RaceTypeId).Humanize());
+            profileModel.Race.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
             profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
-            profileModel.Sex.ShouldBe(((SexTypeEnum) student.SexTypeId).Humanize());
+            profileModel.Sex.ShouldBe(((SexTypeEnum)student.SexTypeId).Humanize());
 
             var studentProfileHomeLanguage = profileModel.HomeLanguage;
-            studentProfileHomeLanguage.ShouldBe(((LanguageDescriptorEnum) student.StudentLanguages.First().LanguageDescriptorId).Humanize());
+            studentProfileHomeLanguage.ShouldBe(((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId).Humanize());
         }
 
         private static void NativeParentPropertiesShouldBeMapped(Parent parent, ProfileParentModel profileParentModel)
         {
             profileParentModel.FirstName.ShouldBe(parent.FirstName);
             profileParentModel.LastName.ShouldBe(parent.LastSurname);
-            profileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId).Humanize());
+            profileParentModel.Sex.ShouldBe(((SexTypeEnum)parent.SexTypeId).Humanize());
             profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
         }
 
@@ -153,7 +168,7 @@ namespace NGL.Tests.Student
             profileParentAddressModel.Address2.ShouldBe(parentHomeAddress.ApartmentRoomSuiteNumber);
             profileParentAddressModel.City.ShouldBe(parentHomeAddress.City);
             profileParentAddressModel.State.ShouldBe(
-                ((StateAbbreviationTypeEnum) parentHomeAddress.StateAbbreviationTypeId).Humanize());
+                ((StateAbbreviationTypeEnum)parentHomeAddress.StateAbbreviationTypeId).Humanize());
             profileParentAddressModel.PostalCode.ShouldBe(parentHomeAddress.PostalCode);
         }
     }

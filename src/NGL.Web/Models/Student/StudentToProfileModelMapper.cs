@@ -14,7 +14,8 @@ namespace NGL.Web.Models.Student
         private readonly IFileDownloader _fileDownloader;
         private string _defaultFileUrl = "/Assets/Images/placeholder.png";
 
-        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper, StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, IFileDownloader fileDownloader)
+        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper,
+                    StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, IFileDownloader fileDownloader)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;

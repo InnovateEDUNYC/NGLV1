@@ -25,7 +25,9 @@ namespace NGL.Web.Controllers
         private readonly AzureStorageUploader _fileUploader;
         private readonly AzureStorageDownloader _fileDownloader;
 
-        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper, IMapper<Student, IndexModel> studentToStudentIndexModelMapper, AzureStorageUploader fileUploader, AzureStorageDownloader fileDownloader)
+        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper,
+                                                IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
+                                                AzureStorageUploader fileUploader, AzureStorageDownloader fileDownloader)
         {
             _repository = repository;
             _studentToDetailsModelMapper = studentToDetailsModelMapper;
