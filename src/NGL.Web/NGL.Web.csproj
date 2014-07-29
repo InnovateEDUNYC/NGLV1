@@ -277,6 +277,9 @@
     <Compile Include="Data\Entities\SchemaVersion.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\StaffCertificate.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\VersionLevel.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1617,7 +1620,9 @@
     <Compile Include="Infrastructure\CustomMetadataProvider.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
     <Compile Include="Models\Account\AddUserModel.cs" />
+    <Compile Include="Models\Account\AddUserModelToApplicationUserMapper.cs" />
     <Compile Include="Models\Account\AddUserModelToStaffMapper.cs" />
+    <Compile Include="Models\Account\AddUserModelValidator.cs" />
     <Compile Include="Models\Account\StaffToUserModelMapper.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
     <Compile Include="Models\Account\UserModel.cs" />
@@ -1767,6 +1772,7 @@
     <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
+    <EmbeddedResource Include="Data\Scripts\009 - Schema - StaffCertificate.sql" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
