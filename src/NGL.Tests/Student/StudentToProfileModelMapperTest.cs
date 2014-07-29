@@ -100,6 +100,18 @@ namespace NGL.Tests.Student
             profileModel.AcademicDetail.PerformanceHistory.ShouldBe(studentAcademicDetail.PerfomanceHistory);
         }
 
+        [Fact]
+        public void ShouldMapStudentToProfileModelWithoutAcademicDetails()
+        {
+            var student = StudentFactory.CreateStudentWithOneParentWithoutAcademicDetails();
+            var profileModel = new ProfileModel();
+
+            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(new AzureStorageDownloader()));
+            _mapper.Map(student, profileModel);
+
+            NativeStudentPropertiesShouldBeMapped(student, profileModel);
+            profileModel.AcademicDetail.ShouldBe(null);
+        }
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);

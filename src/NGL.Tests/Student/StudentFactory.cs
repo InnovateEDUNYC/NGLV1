@@ -16,6 +16,13 @@ namespace NGL.Tests.Student
         private const int Race = (int) RaceTypeEnum.NativeHawaiianPacificIslander;
         private const int PrimaryParentRelationType = (int) RelationTypeEnum.Father;
 
+        public static Web.Data.Entities.Student CreateStudentWithOneParentWithoutAcademicDetails()
+        {
+            var studentWithOneParent = CreateStudentWithOneParent();
+            studentWithOneParent.StudentAcademicDetails = null;
+            return studentWithOneParent;
+        }
+
         public static Web.Data.Entities.Student CreateStudentWithOneParent()
         {
             return CreateStudentWithOneParent(ParentFactory.CreateParentWithoutAddress(), true);

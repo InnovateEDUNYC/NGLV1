@@ -16,6 +16,7 @@ namespace NGL.Web.Models.Student
 
         public override void Map(Data.Entities.Student source, ProfileAcademicDetailModel target)
         {
+            
             var studentAcademicDetail = source.StudentAcademicDetails.First();
 
             target.SchoolYear = studentAcademicDetail.SchoolYear;

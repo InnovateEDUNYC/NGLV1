@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Castle.Core.Internal;
 using Humanizer;
 using NGL.Web.Data.Entities;
 
@@ -32,7 +33,8 @@ namespace NGL.Web.Models.Student
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
 
-            target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
+            if (!source.StudentAcademicDetails.IsNullOrEmpty())
+                target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
         }
 
         private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)
