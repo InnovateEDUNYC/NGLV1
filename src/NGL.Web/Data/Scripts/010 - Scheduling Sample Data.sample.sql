@@ -210,3 +210,113 @@ INSERT INTO [edfi].[Student]
            ,1
            ,'2/12/1980'
            ,0)
+
+INSERT INTO [edfi].[StudentRace]
+			([StudentUSI],
+			[RaceTypeId])
+	VALUES
+		(999, 2)
+		
+INSERT INTO [edfi].[StudentRace]
+			([StudentUSI],
+			[RaceTypeId])
+	VALUES
+		(1000, 2)
+
+INSERT INTO [edfi].[StudentLanguage]
+			([StudentUSI],
+			[LanguageDescriptorId])
+	VALUES
+		(999, 165)
+
+INSERT INTO [edfi].[StudentLanguage]
+			([StudentUSI],
+			[LanguageDescriptorId])
+	VALUES
+		(1000, 165)
+
+INSERT INTO [edfi].[StudentLanguageUse]
+			([StudentUSI],
+			[LanguageDescriptorId],
+			[LanguageUseTypeId])
+	VALUES
+		(999, 165, 1)
+
+INSERT INTO [edfi].[StudentLanguageUse]
+			([StudentUSI],
+			[LanguageDescriptorId],
+			[LanguageUseTypeId])
+	VALUES
+		(1000, 165, 1)
+
+INSERT INTO [edfi].[StudentAddress]
+			([StudentUSI],
+			[AddressTypeId],
+			[StreetNumberName],
+			[ApartmentRoomSuiteNumber],
+			[City],
+			[StateAbbreviationTypeId],
+			[PostalCode])
+	VALUES
+		(999, 1, '123 fake st', '1', 'Chicago', 23, '60664')
+
+INSERT INTO [edfi].[StudentAddress]
+			([StudentUSI],
+			[AddressTypeId],
+			[StreetNumberName],
+			[ApartmentRoomSuiteNumber],
+			[City],
+			[StateAbbreviationTypeId],
+			[PostalCode])
+	VALUES
+		(1000, 1, '1234 fake st', '1', 'NYC', 21, '32314')
+
+INSERT INTO [edfi].[Parent]
+		   ([FirstName]
+           ,[LastSurname]
+           ,[SexTypeId])
+	VALUES
+	('Jake', 'Goob', 1)
+
+INSERT INTO [edfi].[Parent]
+		   ([FirstName]
+           ,[LastSurname]
+           ,[SexTypeId])
+	VALUES
+	('Jill', 'Cook', 1)
+
+declare @jakeparentusi int
+declare @jillparentusi int
+
+select @jakeparentusi = ParentUSI from [edfi].[Parent] where FirstName like 'Jake'
+select @jillparentusi = ParentUSI from [edfi].[Parent] where FirstName like 'Jill'
+
+INSERT INTO [edfi].[StudentParentAssociation]
+           ([StudentUSI]
+           ,[ParentUSI]
+           ,[RelationTypeId]
+           ,[LivesWith])
+	VALUES
+	(999, @jakeparentusi, 1, 1)
+
+INSERT INTO [edfi].[StudentParentAssociation]
+           ([StudentUSI]
+           ,[ParentUSI]
+           ,[RelationTypeId]
+           ,[LivesWith])
+	VALUES
+	(1000, @jillparentusi, 1, 1)
+
+INSERT INTO [edfi].[ParentTelephone]
+           ([ParentUSI]
+           ,[TelephoneNumberTypeId]
+           ,[TelephoneNumber])
+	VALUES
+	(@jakeparentusi, 1, '123421')
+
+INSERT INTO [edfi].[ParentTelephone]
+           ([ParentUSI]
+           ,[TelephoneNumberTypeId]
+           ,[TelephoneNumber])
+	VALUES
+	(@jillparentusi, 1, '123423421')
