@@ -78,10 +78,8 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-            Func<string, string> makeFileNameFor = fileName => string.Format("{0}/{1}/{2}", id, (int)academicDetailModel.SchoolYear, fileName);
-
-            var performanceHistoryFileName = makeFileNameFor("performanceHistory");
-            Upload(academicDetailModel.PerformanceHistoryFile, performanceHistoryFileName);
+            var fileCategory = ((int)academicDetailModel.SchoolYear).ToString();
+            var performanceHistoryFileName = Upload(academicDetailModel.PerformanceHistoryFile, id, fileCategory, "performanceHistory");
                     
             var studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
                 adm =>
@@ -113,16 +111,10 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(enterProgramStatusModel);
 
-            Func<string, string> makeFileNameFor = fileName => string.Format("{0}/{1}/{2}", id, "ProgramStatus", fileName);
-
-            var specialEducationFileName = makeFileNameFor("specialEducation");
-            Upload(enterProgramStatusModel.SpecialEducationFile, specialEducationFileName);
-            var testingAccomodationFileName = makeFileNameFor("testingAccomodation");
-            Upload(enterProgramStatusModel.TestingAccommodationFile, testingAccomodationFileName);
-            var titleParticipationFileName = makeFileNameFor("titleParticipation");
-            Upload(enterProgramStatusModel.TitleParticipationFile, titleParticipationFileName);
-            var mcKinneyVentoFileName = makeFileNameFor("McKinneyVento");
-            Upload(enterProgramStatusModel.McKinneyVentoFile, mcKinneyVentoFileName);
+            var specialEducationFileName = Upload(enterProgramStatusModel.SpecialEducationFile, id, "ProgramStatus", "specialEducation");
+            var testingAccomodationFileName = Upload(enterProgramStatusModel.TestingAccommodationFile, id, "ProgramStatus", "testingAccomodation");
+            var titleParticipationFileName = Upload(enterProgramStatusModel.TitleParticipationFile, id, "ProgramStatus", "titleParticipation");
+            var mcKinneyVentoFileName = Upload(enterProgramStatusModel.McKinneyVentoFile, id, "ProgramStatus", "mcKinneyVento");
 
             var studentProgramStatus = _programStatusMapper.Build(enterProgramStatusModel,
                 psm =>
@@ -139,10 +131,15 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Student.Index(id));
         }
 
-        private void Upload(HttpPostedFileBase file, string relativePath)
+        private string Upload(HttpPostedFileBase file, int studentUSI, string fileCategory, string fileName)
         {
-            if (file != null)
-               _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
+            if (file == null) return null;
+
+            Func<string, string> makeRelativeFilePathFor = name => string.Format("{0}/{1}/{2}", studentUSI, fileCategory, name);
+            var relativePath = makeRelativeFilePathFor(fileName);
+
+            _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
+            return relativePath;
         }
     }
 }
