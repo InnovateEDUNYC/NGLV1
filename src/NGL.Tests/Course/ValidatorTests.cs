@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.TestHelper;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Course;
 using NSubstitute;
@@ -10,51 +11,40 @@ namespace NGL.Tests.Course
 {
     public class ValidatorTests
     {
+        private IGenericRepository _genericRepository;
+        private CreateModel _courseCreateModel;
+        private CreateModelValidator _validator;
+
         [Fact]
         public void ShouldNotHaveErrorsIfCourseDoesNotExist()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var courseCreateModel = new CreateModel
-            {
-                CourseCode = "Math101",
-                CourseTitle = "Pre-Algebra",
-                NumberOfParts = 1
-            };
+            Setup();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            genericRepository
+            _genericRepository
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.Course, bool>>>())
                 .Returns(null as Web.Data.Entities.Course);
 
-            validator.ShouldNotHaveValidationErrorFor(c => c.CourseCode, courseCreateModel.CourseCode);
+            _validator.ShouldNotHaveValidationErrorFor(c => c.CourseCode, _courseCreateModel.CourseCode);
         }
 
         [Fact]
         public void ShouldHaveErrorsIfCourseExists()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var courseCreateModel = new CreateModel
-            {
-                CourseCode = "Math101",
-                CourseTitle = "Pre-Algebra",
-                NumberOfParts = 1
-            };
+            Setup();
+            var courseEntity = new CourseBuilder().Build();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            var courseEntity = new Web.Data.Entities.Course
-            {
-                CourseCode = "Math101",
-                CourseTitle = "Pre-Algebra",
-                NumberOfParts = 1
-            };
-
-            genericRepository
+            _genericRepository
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.Course, bool>>>())
                 .Returns(courseEntity);
 
-            validator.ShouldHaveValidationErrorFor(c => c.CourseCode, courseCreateModel.CourseCode);
+            _validator.ShouldHaveValidationErrorFor(c => c.CourseCode, _courseCreateModel.CourseCode);
+        }
+
+        private void Setup()
+        {
+            _genericRepository = Substitute.For<IGenericRepository>();
+            _courseCreateModel = new CreateCourseModelBuilder().Build();
+            _validator = new CreateModelValidator(_genericRepository);
         }
     }
 }

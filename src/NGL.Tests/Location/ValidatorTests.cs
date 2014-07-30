@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.TestHelper;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Location;
 using NSubstitute;
@@ -10,47 +11,40 @@ namespace NGL.Tests.Location
 {
     public class ValidatorTests
     {
+        private IGenericRepository _genericRepository;
+        private CreateModel _locationCreateModel;
+        private CreateModelValidator _validator;
+
         [Fact]
         public void ShouldNotHaveErrorsWhenLocationDoesNotExist()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var locationCreateModel = new CreateModel()
-            {
-                ClassroomIdentificationCode = "BKL200"
-            };
+            Setup();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            genericRepository
+            _genericRepository
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.Location, bool>>>())
                 .Returns(null as Web.Data.Entities.Location);
 
-            validator.ShouldNotHaveValidationErrorFor(m => m.ClassroomIdentificationCode, locationCreateModel.ClassroomIdentificationCode);
-            
+            _validator.ShouldNotHaveValidationErrorFor(m => m.ClassroomIdentificationCode, _locationCreateModel.ClassroomIdentificationCode);
         }
 
         [Fact]
         public void ShouldHaveErrorsWhenLocationExists()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var locationCreateModel = new CreateModel()
-            {
-                ClassroomIdentificationCode = "BKL200"
-            };
+            Setup();
+            var locationEntity = new LocationBuilder().Build();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            var locationEntity = new Web.Data.Entities.Location
-            {
-                ClassroomIdentificationCode = "BKL200"
-            };
-
-            genericRepository
+            _genericRepository
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.Location, bool>>>())
                 .Returns(locationEntity);
 
-            validator.ShouldHaveValidationErrorFor(m => m.ClassroomIdentificationCode, locationCreateModel.ClassroomIdentificationCode);
-            
+            _validator.ShouldHaveValidationErrorFor(m => m.ClassroomIdentificationCode, _locationCreateModel.ClassroomIdentificationCode);
+        }
+
+        private void Setup()
+        {
+            _genericRepository = Substitute.For<IGenericRepository>();
+            _locationCreateModel = new CreateLocationModelBuilder().Build();
+            _validator = new CreateModelValidator(_genericRepository);
         }
        
     }

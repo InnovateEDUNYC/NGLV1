@@ -4,7 +4,7 @@ using NGL.Web.Models.Session;
 
 namespace NGL.Tests.Session
 {
-    public class CreateModelBuilder
+    public class CreateSessionModelBuilder
     {
         private const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2014;
         private const TermTypeEnum Term = TermTypeEnum.FallSemester;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.TestHelper;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.ClassPeriod;
 using NSubstitute;
@@ -10,45 +11,40 @@ namespace NGL.Tests.ClassPeriod
 {
     public class ValidatorTests
     {
+        private IGenericRepository _genericRepository;
+        private CreateModel _classPeriodCreateModel;
+        private CreateModelValidator _validator;
+
         [Fact]
         public void ShouldNotHaveErrorsIfClassPeriodDoesNotExist()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var classPeriodCreateModel = new CreateModel
-            {
-                ClassPeriodName = "Period 1"
-            };
+            Setup();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            genericRepository
+            _genericRepository
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.ClassPeriod, bool>>>())
                 .Returns(null as Web.Data.Entities.ClassPeriod);
 
-            validator.ShouldNotHaveValidationErrorFor(m => m.ClassPeriodName, classPeriodCreateModel.ClassPeriodName);
+            _validator.ShouldNotHaveValidationErrorFor(m => m.ClassPeriodName, _classPeriodCreateModel.ClassPeriodName);
         }
 
         [Fact]
         public void ShouldHaveErrorsIfClassPeriodExists()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var classPeriodCreateModel = new CreateModel
-            {
-                ClassPeriodName = "Period 1"
-            };
+            Setup();
+            var classPeriodEntity = new ClassPeriodBuilder().Build();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            var classPeriodEntity = new Web.Data.Entities.ClassPeriod
-            {
-                ClassPeriodName = "Period 1"
-            };
-
-            genericRepository
+            _genericRepository
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.ClassPeriod, bool>>>())
                 .Returns(classPeriodEntity);
 
-            validator.ShouldHaveValidationErrorFor(m => m.ClassPeriodName, classPeriodCreateModel.ClassPeriodName);
+            _validator.ShouldHaveValidationErrorFor(m => m.ClassPeriodName, _classPeriodCreateModel.ClassPeriodName);
+        }
+
+        private void Setup()
+        {
+            _genericRepository = Substitute.For<IGenericRepository>();
+            _classPeriodCreateModel = new CreateClassPeriodModelBuilder().Build();
+            _validator = new CreateModelValidator(_genericRepository);   
         }
     }
 }
