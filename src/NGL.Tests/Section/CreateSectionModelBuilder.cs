@@ -21,7 +21,6 @@ namespace NGL.Tests.Section
                 Term = TermType,
                 Period = ClassPeriodName,
                 Classroom = ClassroomIdentificationCode,
-                LocalCourseCode = LocalCourseCode,
                 UniqueSectionCode = UniqueSectionCode,
                 SequenceOfCourse = SequenceOfCourse
             };

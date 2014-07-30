@@ -38,10 +38,6 @@ namespace NGL.Web.Models.Section
         public string Course { get; set; }
 
         [Required]
-        [StringLength(20)]
-        public string LocalCourseCode { get; set; }
-
-        [Required]
         [StringLength(255)]
         public string UniqueSectionCode { get; set; }
 
