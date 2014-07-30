@@ -9,7 +9,7 @@ INSERT INTO [edfi].[Session]
 	([SchoolId], [TermTypeId] ,[SchoolYear], [SessionName],
      [BeginDate] ,[EndDate] ,[TotalInstructionalDays])
 	 VALUES
-	 (1, 2, 2014, 'Winter 2014',
+	 (1, 2, 2014, 'Spring 2015',
 	 '01/22/2015', '06/20/2015', 100)
 
 INSERT INTO [edfi].[Location]
