@@ -37,8 +37,9 @@ namespace NGL.Web.Controllers
         // GET: /Section
         public virtual ActionResult Index()
         {
-            IEnumerable<Section> sections = _genericRepository.GetAll<Section>();
+            var sections = _genericRepository.GetAll<Section>();
             var indexModels = new List<IndexModel>();
+
             foreach (var section in sections)
             {
                 var indexModel = new IndexModel();
@@ -48,6 +49,7 @@ namespace NGL.Web.Controllers
 
             return View(indexModels);
         }
+
         //
         // GET: /Section/Create
         public virtual ActionResult Create()
@@ -83,9 +85,8 @@ namespace NGL.Web.Controllers
         private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
         {
             var classPeriods = _genericRepository.GetAll<ClassPeriod>();
-            var classPeriodModels = classPeriods.Select(classPeriod =>
+            return classPeriods.Select(classPeriod =>
                 _classPeriodToClassPeriodNameModelMapper.Build(classPeriod)).ToList();
-            return classPeriodModels;
         }
 
         private List<LocationListItemModel> GetClassRoomModels()
