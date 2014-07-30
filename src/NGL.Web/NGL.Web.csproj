@@ -273,6 +273,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\SchemaVersion.cs">
@@ -1650,6 +1651,8 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Schedule\SessionListItemModel.cs" />
+    <Compile Include="Models\Schedule\SetModel.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />
     <Compile Include="Models\RepositoryReader.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
@@ -1742,6 +1745,9 @@
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentModelForStudentSectionAttendanceEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC\LocationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC\ScheduleController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\SchoolController.generated.cs">
@@ -1897,6 +1903,7 @@
     <Content Include="Views\Enrollment\EnterAcademicDetails.cshtml" />
     <Content Include="Views\Section\Create.cshtml" />
     <Content Include="Views\Section\Index.cshtml" />
+    <Content Include="Views\Schedule\Set.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

@@ -1,0 +1,25 @@
+﻿@model NGL.Web.Models.Schedule.SetModel
+
+@{
+    ViewBag.Title = "Set Schedule";
+}
+
+<h2>Set Schedule</h2>
+
+<div class="profile-photo-container">
+    <img src="@Model.ProfilePhotoUrl"></img>
+</div>
+
+<div class="student-name-and-usi">
+    @Html.DisplayTextFor(m => m.Name)
+    @Html.DisplayNameFor(m => m.StudentUSI): 
+    @Html.DisplayTextFor(m => m.StudentUSI)
+</div>
+
+@using (var f = Html.BeginNglForm())
+{
+    using (var s = f.BeginSection("Info"))
+    {
+        @s.FieldFor(m => m.Session)
+    }
+}
