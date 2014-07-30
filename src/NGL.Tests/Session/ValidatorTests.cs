@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.TestHelper;
-using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NSubstitute;
 using Xunit;
 using CreateModel = NGL.Web.Models.Session.CreateModel;
@@ -22,7 +22,7 @@ namespace NGL.Tests.Session
             Setup();
 
             _genericRepository
-                .Get(Arg.Any<Expression<Func<Web.Data.Entities.Session, bool>>>())
+                .Get(Arg.Any<SessionByTermTypeAndSchoolYearQuery>())
                 .Returns(null as Web.Data.Entities.Session);
 
             _validator.ShouldNotHaveValidationErrorFor(s => s.Term, _sessionCreateModel);
@@ -37,7 +37,7 @@ namespace NGL.Tests.Session
             var sessionEntity = new SessionBuilder().Build();
 
             _genericRepository
-                .Get(Arg.Any<Web.Data.Queries.SessionByTermTypeAndSchoolYearQuery>())
+                .Get(Arg.Any<SessionByTermTypeAndSchoolYearQuery>())
                 .Returns(sessionEntity);
 
             _validator.ShouldHaveValidationErrorFor(s => s.Term, _sessionCreateModel);
