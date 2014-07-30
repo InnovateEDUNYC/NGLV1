@@ -1,12 +1,9 @@
-﻿using System;
-using NGL.Tests.Enrollment;
+﻿using NGL.Tests.Enrollment;
 using NGL.UiTests.Shared;
 using NGL.UiTests.Student;
 using NGL.Web.Models.Enrollment;
 using Shouldly;
 using TestStack.BDDfy;
-using TestStack.Seleno.Configuration;
-using TestStack.Seleno.PageObjects.Actions;
 using Xunit;
 
 namespace NGL.UiTests.Enrollment

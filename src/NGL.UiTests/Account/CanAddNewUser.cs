@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Humanizer;
+using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
@@ -17,17 +18,7 @@ namespace NGL.UiTests.Account
     {
         private HomePage _homePage;
         private UsersPage _usersPage;
-        private readonly AddUserModel _newUser = new AddUserModel
-            {
-                Username = "NewUser",
-                Password = "NewPassword",
-                ConfirmPassword = "NewPassword",
-                Role = ApplicationRole.Admin,
-                FirstName = "McKinney ;)",
-                LastName = "Vento",
-                HispanicLatino = false,
-                StaffUSI = 1232
-            };
+        private readonly AddUserModel _newUser = new AddUserModelBuilder().WithStaffUSI(1234).Build();
 
         void GivenIHaveLoggedInAsAMasterAdmin()
         {
@@ -58,11 +49,10 @@ namespace NGL.UiTests.Account
             _homePage.TopMenu.IsLoggedOn.ShouldBe(true);
         }
 
-// Aman - Commented out for the time being so that changed create user page changed could be pushed 
-//        [Fact]
-//        public void Verify()
-//        {
-//            this.BDDfy();
-//        }
+        [Fact]
+        public void Verify()
+        {
+            this.BDDfy();
+        }
     }
 }
