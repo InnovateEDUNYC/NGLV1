@@ -4,7 +4,7 @@ using NGL.Web.Models.Account;
 
 namespace NGL.Tests.Builders
 {
-    class AddUserModelBuilder
+    public class AddUserModelBuilder
     {
         private string Username = "asmith";
         private string Password = "secret";
@@ -12,6 +12,7 @@ namespace NGL.Tests.Builders
         private ApplicationRole Role = ApplicationRole.Admin;
         private string FirstName = "Adam";
         private string LastName = "Smith";
+        private string PersonalEmail = "asmith@school.com";
         private string PersonalTitlePrefix = "Dr";
         private int StaffUSI = 1;
         private int TeacherUSI = 2;
@@ -31,6 +32,8 @@ namespace NGL.Tests.Builders
         private string Certificate2 = "certificate 2";
         private string Certificate3 = "certificate 3";
         private string Certificate4 = "certificate 4";
+        private bool CriminalBackgroundCheck = true;
+        private bool FingerPrinted = true;
 
         public AddUserModel Build()
         {
@@ -42,6 +45,7 @@ namespace NGL.Tests.Builders
                 Role = Role,
                 FirstName = FirstName,
                 LastName = LastName,
+                PersonalEmail = PersonalEmail,
                 PeronalTitlePrefix = PersonalTitlePrefix,
                 StaffUSI = StaffUSI,
                 TeacherUSI = TeacherUSI,
@@ -61,7 +65,15 @@ namespace NGL.Tests.Builders
                 Certificate2 = Certificate2,
                 Certificate3 = Certificate3,
                 Certificate4 = Certificate4,
+                CriminalBackgroundCheck = CriminalBackgroundCheck,
+                FingerPrinted = FingerPrinted
             };
+        }
+
+        public AddUserModelBuilder WithStaffUSI(int staffUSI)
+        {
+            StaffUSI = staffUSI;
+            return this;
         }
     }
 }
