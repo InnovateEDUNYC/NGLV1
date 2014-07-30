@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ChameleonForms.Attributes;
+using Microsoft.Ajax.Utilities;
 
 namespace NGL.Web.Models.Schedule
 {
@@ -20,6 +21,15 @@ namespace NGL.Web.Models.Schedule
 
         [ExistsIn("Sessions", "SessionId", "SessionName")]
         public string Session { get; set; }
+
+        public static SetModel CreateNewWith(NGL.Web.Data.Entities.Student student)
+        {
+            return new SetModel
+            {
+                Name = String.Join(" ", student.FirstName, student.LastSurname),
+                StudentUsi = student.StudentUSI
+            };
+        }
     }
 
 }

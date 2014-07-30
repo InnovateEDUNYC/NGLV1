@@ -11,6 +11,8 @@ namespace NGL.Web.Controllers
         // GET: /Set/5
         public virtual ActionResult Set(int id)
         {
+            var student = new Student();
+//            var prof = 
 //            var setModel = SetModel.CreateNewWith(student, sessionList);
             return View(new SetModel());
         }

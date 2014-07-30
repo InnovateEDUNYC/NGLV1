@@ -11,22 +11,21 @@ namespace NGL.Web.Models.Student
     {
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
-        private readonly IFileDownloader _fileDownloader;
-        private string _defaultFileUrl = "/Assets/Images/placeholder.png";
+        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
         public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper,
-                    StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, IFileDownloader fileDownloader)
+                    StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
-            _fileDownloader = fileDownloader;
+            _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
         {
             MapBasicStudentInfo(source, target);
             MapHomeLanguage(source, target);
-            SetProfilePhotoUrlOrDefault(source, target);
+            target.ProfilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(source);
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
 
@@ -51,15 +50,6 @@ namespace NGL.Web.Models.Student
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
         }
             
-        private void SetProfilePhotoUrlOrDefault(Data.Entities.Student source, ProfileModel target)
-        {
-            var profilePhotoUrl = _fileDownloader.DownloadPath("student", source.StudentUSI + "/profilePhoto");
-            if (profilePhotoUrl.IsNullOrEmpty())
-                target.ProfilePhotoUrl = _defaultFileUrl;
-            else
-                target.ProfilePhotoUrl = profilePhotoUrl;
-        }
-
         private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)
         {
             return source.StudentLanguages.Where(
