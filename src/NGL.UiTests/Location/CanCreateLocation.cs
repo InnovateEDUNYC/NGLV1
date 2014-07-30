@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Shared;
+﻿using NGL.Tests.Location;
+using NGL.UiTests.Shared;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -14,7 +15,7 @@ namespace NGL.UiTests.Location
     public class CanCreateLocation
     {
         private HomePage _homePage;
-        private SchedulingPage _schedulingPage;
+        private CourseGenerationPage _courseGenerationPage;
         private LocationCreatePage _locationCreatePage;
         private CreateModel _locationCreateModel;
         private LocationIndexPage _locationIndexPage;
@@ -28,25 +29,19 @@ namespace NGL.UiTests.Location
 
         public void AndGivenIAmOnTheCreateLocationPage()
         {
-            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
-            _locationCreatePage = _schedulingPage.GoToLocationIndexPage().GoToCreatePage();
+            _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
+            _locationCreatePage = _courseGenerationPage.GoToLocationIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _locationCreateModel = new CreateModel
-            {
-                ClassroomIdentificationCode = ObjectMother.RoomA101.ClassRoomIdentificationCode,
-                MaximumNumberOfSeats = ObjectMother.RoomA101.MaximumNumberOfSeats,
-                OptimalNumberOfSeats = ObjectMother.RoomA101.OptimalNumberOfSeats
-            };
-
+            _locationCreateModel = new CreateLocationModelBuilder().Build();
             _locationIndexPage = _locationCreatePage.CreateLocation(_locationCreateModel);
         }
 
         public void ThenANewLocationShouldBeDisplayedOnTheLocationIndexPage()
         {
-            bool locationExists = _locationIndexPage.LocationExists(_locationCreateModel);
+            var locationExists = _locationIndexPage.LocationExists(_locationCreateModel);
             locationExists.ShouldBe(true);
         }
 

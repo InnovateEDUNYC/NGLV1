@@ -13,7 +13,7 @@ namespace NGL.UiTests.Session
     public class CanCreateSession
     {
         private HomePage _homePage;
-        private SchedulingPage _schedulingPage;
+        private CourseGenerationPage _courseGenerationPage;
         private CreateModel _createSessionModel;
         private SessionIndexPage _sessionIndexPage;
         private SessionCreatePage _sessionCreatePage;
@@ -27,8 +27,8 @@ namespace NGL.UiTests.Session
 
         public void AndGivenIAmOnTheCreateSessionPage()
         {
-            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
-            _sessionCreatePage = _schedulingPage.GoToSessionIndexPage().GoToCreatePage();
+            _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
+            _sessionCreatePage = _courseGenerationPage.GoToSessionIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()

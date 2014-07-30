@@ -1,0 +1,31 @@
+﻿@model IEnumerable<NGL.Web.Models.Section.IndexModel>
+
+@{
+    ViewBag.Title = "Sections";
+}
+
+<h2>Sections</h2>
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Create New Section", "Create")</li>
+</ul>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UniqueSectionCode)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="section-code">
+                    @Html.DisplayFor(modelItem => item.UniqueSectionCode)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

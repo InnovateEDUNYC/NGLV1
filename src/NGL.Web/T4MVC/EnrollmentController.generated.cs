@@ -56,15 +56,15 @@ namespace NGL.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EnterProgramStatus()
+        public virtual System.Web.Mvc.ActionResult EnterAcademicDetails()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterProgramStatus);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterAcademicDetails);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EnterAcademicDetails()
+        public virtual System.Web.Mvc.ActionResult EnterProgramStatus()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterAcademicHistory);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterProgramStatus);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -83,16 +83,16 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string CreateStudent = "CreateStudent";
+            public readonly string EnterAcademicDetails = "EnterAcademicDetails";
             public readonly string EnterProgramStatus = "EnterProgramStatus";
-            public readonly string EnterAcademicHistory = "EnterAcademicDetails";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string CreateStudent = "CreateStudent";
+            public const string EnterAcademicDetails = "EnterAcademicDetails";
             public const string EnterProgramStatus = "EnterProgramStatus";
-            public const string EnterAcademicHistory = "EnterAcademicDetails";
         }
 
 
@@ -104,6 +104,15 @@ namespace NGL.Web.Controllers
         {
             public readonly string createStudentModel = "createStudentModel";
         }
+        static readonly ActionParamsClass_EnterAcademicDetails s_params_EnterAcademicDetails = new ActionParamsClass_EnterAcademicDetails();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EnterAcademicDetails EnterAcademicDetailsParams { get { return s_params_EnterAcademicDetails; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EnterAcademicDetails
+        {
+            public readonly string id = "id";
+            public readonly string academicDetailModel = "academicDetailModel";
+        }
         static readonly ActionParamsClass_EnterProgramStatus s_params_EnterProgramStatus = new ActionParamsClass_EnterProgramStatus();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_EnterProgramStatus EnterProgramStatusParams { get { return s_params_EnterProgramStatus; } }
@@ -112,15 +121,6 @@ namespace NGL.Web.Controllers
         {
             public readonly string id = "id";
             public readonly string enterProgramStatusModel = "enterProgramStatusModel";
-        }
-        static readonly ActionParamsClass_EnterAcademicHistory s_params_EnterAcademicHistory = new ActionParamsClass_EnterAcademicHistory();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EnterAcademicHistory EnterAcademicHistoryParams { get { return s_params_EnterAcademicHistory; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EnterAcademicHistory
-        {
-            public readonly string id = "id";
-            public readonly string academicDetailModel = "academicDetailModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -133,11 +133,11 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string CreateStudent = "CreateStudent";
-                public readonly string EnterAcademicHistory = "EnterAcademicDetails";
+                public readonly string EnterAcademicDetails = "EnterAcademicDetails";
                 public readonly string EnterProgramStatus = "EnterProgramStatus";
             }
             public readonly string CreateStudent = "~/Views/Enrollment/CreateStudent.cshtml";
-            public readonly string EnterAcademicHistory = "~/Views/Enrollment/EnterAcademicDetails.cshtml";
+            public readonly string EnterAcademicDetails = "~/Views/Enrollment/EnterAcademicDetails.cshtml";
             public readonly string EnterProgramStatus = "~/Views/Enrollment/EnterProgramStatus.cshtml";
         }
     }
@@ -171,6 +171,31 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
+        partial void EnterAcademicDetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EnterAcademicDetails(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterAcademicDetails);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EnterAcademicDetailsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EnterAcademicDetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Enrollment.AcademicDetailModel academicDetailModel, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EnterAcademicDetails(NGL.Web.Models.Enrollment.AcademicDetailModel academicDetailModel, int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterAcademicDetails);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "academicDetailModel", academicDetailModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EnterAcademicDetailsOverride(callInfo, academicDetailModel, id);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void EnterProgramStatusOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
@@ -192,31 +217,6 @@ namespace NGL.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enterProgramStatusModel", enterProgramStatusModel);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EnterProgramStatusOverride(callInfo, enterProgramStatusModel, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EnterAcademicHistoryOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult EnterAcademicDetails(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterAcademicHistory);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            EnterAcademicHistoryOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EnterAcademicHistoryOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Enrollment.AcademicDetailModel academicDetailModel, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult EnterAcademicDetails(NGL.Web.Models.Enrollment.AcademicDetailModel academicDetailModel, int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterAcademicHistory);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "academicDetailModel", academicDetailModel);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            EnterAcademicHistoryOverride(callInfo, academicDetailModel, id);
             return callInfo;
         }
 

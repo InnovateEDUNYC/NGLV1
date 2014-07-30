@@ -15,7 +15,7 @@ namespace NGL.Web.Models.StudentSectionAttendanceEvent
         public string AttendanceEventReason { get; set; }
 
         public virtual AttendanceEventCategoryDescriptor AttendanceEventCategoryDescriptor { get; set; }
-        public SectionModel Section { get; set; }
+        public Section.CreateModel Section { get; set; }
         public StudentModelForStudentSectionAttendanceEvent Student { get; set; }
 
     }

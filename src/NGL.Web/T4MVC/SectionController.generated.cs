@@ -23,10 +23,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace NGL.Web.Controllers
 {
-    public partial class StudentController
+    public partial class SectionController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected StudentController(Dummy d) { }
+        protected SectionController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -54,27 +54,15 @@ namespace NGL.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Index()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UploadPhoto()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPhoto);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public StudentController Actions { get { return MVC.Student; } }
+        public SectionController Actions { get { return MVC.Section; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Student";
+        public readonly string Name = "Section";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Student";
+        public const string NameConst = "Section";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,36 +70,25 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string All = "All";
             public readonly string Index = "Index";
-            public readonly string UploadPhoto = "UploadPhoto";
+            public readonly string Create = "Create";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string All = "All";
             public const string Index = "Index";
-            public const string UploadPhoto = "UploadPhoto";
+            public const string Create = "Create";
         }
 
 
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
+        public class ActionParamsClass_Create
         {
-            public readonly string usi = "usi";
-        }
-        static readonly ActionParamsClass_UploadPhoto s_params_UploadPhoto = new ActionParamsClass_UploadPhoto();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UploadPhoto UploadPhotoParams { get { return s_params_UploadPhoto; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UploadPhoto
-        {
-            public readonly string profilePhoto = "profilePhoto";
-            public readonly string usi = "usi";
+            public readonly string createModel = "createModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -123,56 +100,50 @@ namespace NGL.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string All = "All";
-                public readonly string Delete = "Delete";
-                public readonly string Edit = "Edit";
+                public readonly string Create = "Create";
                 public readonly string Index = "Index";
             }
-            public readonly string All = "~/Views/Student/All.cshtml";
-            public readonly string Delete = "~/Views/Student/Delete.cshtml";
-            public readonly string Edit = "~/Views/Student/Edit.cshtml";
-            public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string Create = "~/Views/Section/Create.cshtml";
+            public readonly string Index = "~/Views/Section/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_StudentController : NGL.Web.Controllers.StudentController
+    public partial class T4MVC_SectionController : NGL.Web.Controllers.SectionController
     {
-        public T4MVC_StudentController() : base(Dummy.Instance) { }
+        public T4MVC_SectionController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void AllOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult All()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.All);
-            AllOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int usi);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Index(int usi)
+        public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usi", usi);
-            IndexOverride(callInfo, usi);
+            IndexOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void UploadPhotoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase profilePhoto, int usi);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UploadPhoto(System.Web.HttpPostedFileBase profilePhoto, int usi)
+        public override System.Web.Mvc.ActionResult Create()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPhoto);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "profilePhoto", profilePhoto);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usi", usi);
-            UploadPhotoOverride(callInfo, profilePhoto, usi);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            CreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Section.CreateModel createModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Section.CreateModel createModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
+            CreateOverride(callInfo, createModel);
             return callInfo;
         }
 

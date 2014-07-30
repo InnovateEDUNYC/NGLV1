@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Shared;
+﻿using NGL.Tests.Course;
+using NGL.UiTests.Shared;
 using NGL.Web.Models.Course;
 using Shouldly;
 using TestStack.BDDfy;
@@ -13,7 +14,7 @@ namespace NGL.UiTests.Course
     public class CanCreateCourse
     {
         private HomePage _homePage;
-        private SchedulingPage _schedulingPage;
+        private CourseGenerationPage _courseGenerationPage;
         private CreateModel _createCourseModel;
         private CourseIndexPage _courseIndexPage;
         private CourseCreatePage _courseCreatePage;
@@ -27,26 +28,19 @@ namespace NGL.UiTests.Course
 
         public void AndGivenIAmOnTheCreateCoursePage()
         {
-            _schedulingPage = _homePage.TopMenu.GoToSchedulingPage();
-            _courseCreatePage = _schedulingPage.GoToCourseIndexPage().GoToCreatePage();
+            _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
+            _courseCreatePage = _courseGenerationPage.GoToCourseIndexPage().GoToCreatePage();
         }
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _createCourseModel = new CreateModel
-            {
-                CourseCode = ObjectMother.Math101.CourseCode,
-                CourseTitle = ObjectMother.Math101.CourseTitle,
-                NumberOfParts = ObjectMother.Math101.NumberOfParts,
-                CourseDescription = ObjectMother.Math101.CourseDescription
-            };
-
+            _createCourseModel = new CreateCourseModelBuilder().Build();
             _courseIndexPage = _courseCreatePage.CreateCourse(_createCourseModel);
         }
 
         public void ThenANewCourseShouldBeDisplayedOnTheCourseIndexPage()
         {
-            bool courseExists = _courseIndexPage.CourseExists(_createCourseModel);
+            var courseExists = _courseIndexPage.CourseExists(_createCourseModel);
             courseExists.ShouldBe(true);
         }
 

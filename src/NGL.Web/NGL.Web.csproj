@@ -273,6 +273,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\SchemaVersion.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
@@ -1649,12 +1650,22 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Section\LocationListItemModel.cs" />
     <Compile Include="Models\RepositoryReader.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
     <Compile Include="Models\Location\CreateModelValidator.cs" />
     <Compile Include="Models\Location\IndexModel.cs" />
     <Compile Include="Models\Location\LocationToIndexModelMapper.cs" />
     <Compile Include="Models\MapperBase.cs" />
+    <Compile Include="Models\Section\ClassPeriodListItemModel.cs" />
+    <Compile Include="Models\Section\ClassPeriodToClassPeriodListItemModelMapper.cs" />
+    <Compile Include="Models\Section\CourseListItemModel.cs" />
+    <Compile Include="Models\Section\CourseToCourseListItemModelMapper.cs" />
+    <Compile Include="Models\Section\CreateModelToCourseOfferingMapper.cs" />
+    <Compile Include="Models\Section\CreateModelToSectionMapper.cs" />
+    <Compile Include="Models\Section\IndexModel.cs" />
+    <Compile Include="Models\Section\LocationToLocationListItemModelMapper.cs" />
+    <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
@@ -1724,7 +1735,7 @@
     <Compile Include="Models\CourseOffering\CourseOfferingModel.cs" />
     <Compile Include="Models\Course\CreateModel.cs" />
     <Compile Include="Models\Location\CreateModel.cs" />
-    <Compile Include="Models\Section\SectionModel.cs" />
+    <Compile Include="Models\Section\CreateModel.cs" />
     <Compile Include="Models\Session\CreateModel.cs" />
     <Compile Include="Models\Staff\StaffModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
@@ -1734,6 +1745,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\SchoolController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC\SectionController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\SessionController.generated.cs">
@@ -1881,6 +1895,8 @@
     <Content Include="Views\CourseGeneration\Index.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Enrollment\EnterAcademicDetails.cshtml" />
+    <Content Include="Views\Section\Create.cshtml" />
+    <Content Include="Views\Section\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
