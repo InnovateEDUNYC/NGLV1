@@ -7,6 +7,13 @@ namespace NGL.Web.Models.Section
 {
     public class CreateModel
     {
+        public CreateModel()
+        {
+            Periods = new List<ClassPeriodListItemModel>();
+            Classrooms = new List<LocationListItemModel>();
+            Courses = new List<CourseListItemModel>();
+        }
+
         [Required]
         public SchoolYearTypeEnum SchoolYear { get; set; }
 
@@ -18,7 +25,7 @@ namespace NGL.Web.Models.Section
         [Required]
         [ExistsIn("Periods", "ClassPeriodName", "ClassPeriodName")]
         public string Period { get; set; }
-        
+
         public List<LocationListItemModel> Classrooms { get; set; }
 
         [Required]
@@ -29,7 +36,7 @@ namespace NGL.Web.Models.Section
 
         [ExistsIn("Courses", "CourseCode", "CourseTitle")]
         public string Course { get; set; }
-            
+
         [Required]
         [StringLength(20)]
         public string LocalCourseCode { get; set; }
@@ -41,13 +48,6 @@ namespace NGL.Web.Models.Section
         [Required]
         public int SequenceOfCourse { get; set; }
 
-
-        public CreateModel()
-        {
-            Periods = new List<ClassPeriodListItemModel>();
-            Classrooms = new List<LocationListItemModel>();
-            Courses = new List<CourseListItemModel>();
-        }
 
         public static CreateModel CreateNewWith(List<ClassPeriodListItemModel> classPeriods, List<LocationListItemModel> classRoomModels, List<CourseListItemModel> courses)
         {
