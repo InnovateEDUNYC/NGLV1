@@ -13,11 +13,14 @@ namespace NGL.Web.Models.Student
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
-        public StudentToProfileModelMapper(IMapper<Parent, ProfileParentModel> parentToProfileParentModelMapper,
-                    StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
+        public StudentToProfileModelMapper(
+                    StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
+            StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
+            StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
+            _studentProgramStatusToProfileProgramStatusModelMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
@@ -31,6 +34,18 @@ namespace NGL.Web.Models.Student
 
 			if (!source.StudentAcademicDetails.IsNullOrEmpty())
                 target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
+
+            MapProgramStatus(source, target);
+        }
+
+        private void MapProgramStatus(Data.Entities.Student source, ProfileModel target)
+        {
+            var studentProgramStatus = source.StudentProgramStatus;
+
+            if(studentProgramStatus != null)
+            {
+                target.ProgramStatus = _studentProgramStatusToProfileProgramStatusModelMapper.Build(studentProgramStatus);
+            }
         }
 
         private static void MapHomeLanguage(Data.Entities.Student source, ProfileModel target)

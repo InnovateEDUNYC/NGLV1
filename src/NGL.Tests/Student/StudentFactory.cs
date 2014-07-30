@@ -1,4 +1,5 @@
 ﻿using System;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Student
@@ -70,6 +71,7 @@ namespace NGL.Tests.Student
             student.StudentAddresses.Add(StudentAddressFactory.CreateStudentAddress());
             student.StudentLanguages.Add(StudentLanguageFactory.CreateStudentLanguageWithHomeUse());
             student.StudentAcademicDetails.Add(new StudentAcademicDetailBuilder().Build());
+            student.StudentProgramStatus = new StudentProgramStatusBuilder().Build();
             return student;
         }
 
