@@ -34,7 +34,7 @@ namespace NGL.UiTests.ClassPeriod
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _classPeriodCreateModel = new CreateClassPeriodModelBuilder().Build();
+            _classPeriodCreateModel = new CreateClassPeriodModelBuilder().WithName("Period X").Build();
             _classPeriodIndexPage = _classPeriodCreatePage.CreateClassPeriod(_classPeriodCreateModel);
         }
 

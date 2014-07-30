@@ -6,7 +6,7 @@ namespace NGL.Tests.Course
 {
     public class CreateCourseModelBuilder
     {
-        private const string CourseCode = "MATH101";
+        private const string CourseCode = "ZMATH101";
         private const string CourseTitle = "Pre Algebra";
         private const int NumberOfParts = 1;
         private const AcademicSubjectDescriptorEnum AcademicSubject = AcademicSubjectDescriptorEnum.Mathematics;

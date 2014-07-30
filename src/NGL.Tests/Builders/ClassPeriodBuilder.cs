@@ -2,7 +2,7 @@
 {
     public class ClassPeriodBuilder
     {
-        private string _classPeriodName = "Period 1";
+        private string _classPeriodName = "Period Z";
 
         public ClassPeriodBuilder WithName(string name)
         {

@@ -4,7 +4,7 @@ namespace NGL.Tests.Location
 {
     public class CreateLocationModelBuilder
     {
-        private const string ClassRoomIdentificationCode = "A101";
+        private const string ClassRoomIdentificationCode = "XA101";
         private const int MaximumNumberOfSeats = 40;
         private const int OptimalNumberOfSeats = 30;
 

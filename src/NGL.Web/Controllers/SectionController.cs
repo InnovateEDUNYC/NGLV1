@@ -66,7 +66,7 @@ namespace NGL.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                createModel.ClassPeriodNames = GetClassPeriodNameModels();
+                createModel.Periods = GetClassPeriodNameModels();
                 createModel.Classrooms = GetClassRoomModels();
                 createModel.Courses = GetAllCourses();
 
