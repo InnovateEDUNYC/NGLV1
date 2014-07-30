@@ -19,8 +19,8 @@ namespace NGL.Tests.Section
             {
                 SchoolYear = SchoolYear,
                 Term = TermType,
-                ClassPeriodName = ClassPeriodName,
-                ClassRoom = ClassroomIdentificationCode,
+                Period = ClassPeriodName,
+                Classroom = ClassroomIdentificationCode,
                 LocalCourseCode = LocalCourseCode,
                 UniqueSectionCode = UniqueSectionCode,
                 SequenceOfCourse = SequenceOfCourse

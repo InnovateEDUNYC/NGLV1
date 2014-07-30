@@ -55,9 +55,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(createModel);
 
-            var course = new Course();
-            _createModelToCourseMapper.Map(createModel, course);
-
+            var course = _createModelToCourseMapper.Build(createModel);
             _genericRepository.Add(course);
             _genericRepository.Save();
 

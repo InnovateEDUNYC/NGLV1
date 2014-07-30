@@ -1,6 +1,6 @@
 ﻿using NGL.Web.Data.Entities;
 
-namespace NGL.Tests.Section
+namespace NGL.Tests.Builders
 {
     public class SectionBuilder
     {

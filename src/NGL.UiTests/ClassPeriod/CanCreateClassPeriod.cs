@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Shared;
+﻿using NGL.Tests.ClassPeriod;
+using NGL.UiTests.Shared;
 using NGL.Web.Models.ClassPeriod;
 using Shouldly;
 using TestStack.BDDfy;
@@ -33,17 +34,13 @@ namespace NGL.UiTests.ClassPeriod
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _classPeriodCreateModel = new CreateModel
-            {
-                ClassPeriodName = ObjectMother.PeriodOne.ClassPeriodName
-            };
-
+            _classPeriodCreateModel = new CreateClassPeriodModelBuilder().Build();
             _classPeriodIndexPage = _classPeriodCreatePage.CreateClassPeriod(_classPeriodCreateModel);
         }
 
         public void ThenANewClassPeriodShouldBeDisplayedOnTheClassPeriodIndexPage()
         {
-            bool classPeriodExists = _classPeriodIndexPage.ClassPeriodExists(_classPeriodCreateModel);
+            var classPeriodExists = _classPeriodIndexPage.ClassPeriodExists(_classPeriodCreateModel);
             classPeriodExists.ShouldBe(true);
         }
 

@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Shared;
+﻿using NGL.Tests.Course;
+using NGL.UiTests.Shared;
 using NGL.Web.Models.Course;
 using Shouldly;
 using TestStack.BDDfy;
@@ -33,20 +34,13 @@ namespace NGL.UiTests.Course
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _createCourseModel = new CreateModel
-            {
-                CourseCode = ObjectMother.Math101.CourseCode,
-                CourseTitle = ObjectMother.Math101.CourseTitle,
-                NumberOfParts = ObjectMother.Math101.NumberOfParts,
-                CourseDescription = ObjectMother.Math101.CourseDescription
-            };
-
+            _createCourseModel = new CreateCourseModelBuilder().Build();
             _courseIndexPage = _courseCreatePage.CreateCourse(_createCourseModel);
         }
 
         public void ThenANewCourseShouldBeDisplayedOnTheCourseIndexPage()
         {
-            bool courseExists = _courseIndexPage.CourseExists(_createCourseModel);
+            var courseExists = _courseIndexPage.CourseExists(_createCourseModel);
             courseExists.ShouldBe(true);
         }
 

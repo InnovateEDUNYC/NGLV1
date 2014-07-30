@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Shared;
+﻿using NGL.Tests.Location;
+using NGL.UiTests.Shared;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -34,19 +35,13 @@ namespace NGL.UiTests.Location
 
         public void WhenIHaveEnteredValidInputForAllFields()
         {
-            _locationCreateModel = new CreateModel
-            {
-                ClassroomIdentificationCode = ObjectMother.RoomA101.ClassRoomIdentificationCode,
-                MaximumNumberOfSeats = ObjectMother.RoomA101.MaximumNumberOfSeats,
-                OptimalNumberOfSeats = ObjectMother.RoomA101.OptimalNumberOfSeats
-            };
-
+            _locationCreateModel = new CreateLocationModelBuilder().Build();
             _locationIndexPage = _locationCreatePage.CreateLocation(_locationCreateModel);
         }
 
         public void ThenANewLocationShouldBeDisplayedOnTheLocationIndexPage()
         {
-            bool locationExists = _locationIndexPage.LocationExists(_locationCreateModel);
+            var locationExists = _locationIndexPage.LocationExists(_locationCreateModel);
             locationExists.ShouldBe(true);
         }
 

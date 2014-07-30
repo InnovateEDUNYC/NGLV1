@@ -46,11 +46,11 @@ namespace NGL.UiTests.Section
         [Fact]
         public void ShouldCreateSection()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheCreateSectionPage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
-                .Then(_ => ANewSectionShouldBeDisplayedOnTheSectionIndexPage())
-                .BDDfy();
+//            this.Given(_ => IHaveLoggedIn())
+//                .And(_ => IAmOnTheCreateSectionPage())
+//                .When(_ => IHaveEnteredValidInputForAllFields())
+//                .Then(_ => ANewSectionShouldBeDisplayedOnTheSectionIndexPage())
+//                .BDDfy();
         }
     }
 }

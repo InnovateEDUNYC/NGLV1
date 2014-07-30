@@ -13,18 +13,23 @@ namespace NGL.Web.Models.Section
         [Required]
         public TermTypeEnum Term { get; set; }
 
-        public List<ClassPeriodNameModel> ClassPeriodNames { get; set; }
+        public List<ClassPeriodListItemModel> Periods { get; set; }
 
         [Required]
-        [ExistsIn("ClassPeriodNames", "ClassPeriodName", "ClassPeriodName")]
-        public string ClassPeriodName { get; set; }
+        [ExistsIn("Periods", "ClassPeriodName", "ClassPeriodName")]
+        public string Period { get; set; }
         
-        public List<ClassRoomModel> ClassRooms { get; set; }
+        public List<LocationListItemModel> Classrooms { get; set; }
 
         [Required]
-        [ExistsIn("ClassRooms", "ClassRoom", "ClassRoom")]
-        public string ClassRoom { get; set; }
+        [ExistsIn("Classrooms", "Classroom", "Classroom")]
+        public string Classroom { get; set; }
 
+        public List<CourseListItemModel> Courses { get; set; }
+
+        [ExistsIn("Courses", "CourseCode", "CourseTitle")]
+        public string Course { get; set; }
+            
         [Required]
         [StringLength(20)]
         public string LocalCourseCode { get; set; }
@@ -39,17 +44,18 @@ namespace NGL.Web.Models.Section
 
         public CreateModel()
         {
-            ClassPeriodNames = new List<ClassPeriodNameModel>();
-            ClassRooms = new List<ClassRoomModel>();
+            Periods = new List<ClassPeriodListItemModel>();
+            Classrooms = new List<LocationListItemModel>();
+            Courses = new List<CourseListItemModel>();
         }
 
-        public static CreateModel CreateNewWith(List<ClassPeriodNameModel> classPeriods, 
-            List<ClassRoomModel> classRoomModels)
+        public static CreateModel CreateNewWith(List<ClassPeriodListItemModel> classPeriods, List<LocationListItemModel> classRoomModels, List<CourseListItemModel> courses)
         {
             return new CreateModel
             {
-                ClassPeriodNames = classPeriods,
-                ClassRooms = classRoomModels
+                Periods = classPeriods,
+                Classrooms = classRoomModels,
+                Courses = courses
             };
         }
     }

@@ -14,18 +14,24 @@ namespace NGL.Web.Controllers
     {
         private readonly IGenericRepository _genericRepository;
         private readonly IMapper<Section, IndexModel> _sectionToIndexModelMapper;
-        private readonly IMapper<ClassPeriod, ClassPeriodNameModel> _classPeriodToClassPeriodNameModelMapper;
-        private readonly IMapper<Location, ClassRoomModel> _locationToClassRoomModelMapper;
+        private readonly IMapper<ClassPeriod, ClassPeriodListItemModel> _classPeriodToClassPeriodNameModelMapper;
+        private readonly IMapper<Location, LocationListItemModel> _locationToClassRoomModelMapper;
+        private readonly IMapper<Course, CourseListItemModel> _courseToCourseListItemModelMapper;
+        private readonly IMapper<CreateModel, Section> _createModelToSectionMapper;
 
         public SectionController(IGenericRepository genericRepository, 
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
-            IMapper<ClassPeriod, ClassPeriodNameModel> classPeriodToClassPeriodNameModelMapper, 
-            IMapper<Location, ClassRoomModel> locationToClassRoomModelMapper)
+            IMapper<ClassPeriod, ClassPeriodListItemModel> classPeriodToClassPeriodNameModelMapper, 
+            IMapper<Location, LocationListItemModel> locationToClassRoomModelMapper, 
+            IMapper<Course, CourseListItemModel> courseToCourseListItemModelMapper, 
+            IMapper<CreateModel, Section> createModelToSectionMapper)
         {
             _genericRepository = genericRepository;
+            _createModelToSectionMapper = createModelToSectionMapper;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
+            _courseToCourseListItemModelMapper = courseToCourseListItemModelMapper;
         }
 
         // GET: /Section
@@ -48,28 +54,33 @@ namespace NGL.Web.Controllers
         {
             var classPeriodModels = GetClassPeriodNameModels();
             var classRoomModels = GetClassRoomModels();
+            var courses = GetAllCourses();
 
-            var createModel = CreateModel.CreateNewWith(classPeriodModels, classRoomModels);
+            var createModel = CreateModel.CreateNewWith(classPeriodModels, classRoomModels, courses);
             return View(createModel);
         }
 
         // POST: /Section/Create
-
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
             {
                 createModel.ClassPeriodNames = GetClassPeriodNameModels();
-                createModel.ClassRooms = GetClassRoomModels();
+                createModel.Classrooms = GetClassRoomModels();
+                createModel.Courses = GetAllCourses();
+
                 return View(createModel);
             }
 
+            var section = _createModelToSectionMapper.Build(createModel);
+            _genericRepository.Add(section);
+            _genericRepository.Save();
 
             return RedirectToAction(Actions.Index());
         }
 
-        private List<ClassPeriodNameModel> GetClassPeriodNameModels()
+        private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
         {
             var classPeriods = _genericRepository.GetAll<ClassPeriod>();
             var classPeriodModels = classPeriods.Select(classPeriod =>
@@ -77,10 +88,16 @@ namespace NGL.Web.Controllers
             return classPeriodModels;
         }
 
-        private List<ClassRoomModel> GetClassRoomModels()
+        private List<LocationListItemModel> GetClassRoomModels()
         {
             var locations = _genericRepository.GetAll<Location>();
             return locations.Select(location => _locationToClassRoomModelMapper.Build(location)).ToList();
         }
+
+        private List<CourseListItemModel> GetAllCourses()
+        {
+            var courses = _genericRepository.GetAll<Course>();
+            return courses.Select(course => _courseToCourseListItemModelMapper.Build(course)).ToList();
+        } 
     }
 }
