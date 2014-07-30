@@ -4,6 +4,8 @@ using NGL.Web.Models.Location;
 using NSubstitute;
 using Shouldly;
 using Xunit;
+using CreateModel = NGL.Web.Models.Location.CreateModel;
+using IndexModel = NGL.Web.Models.Location.IndexModel;
 
 namespace NGL.Tests.Location
 {

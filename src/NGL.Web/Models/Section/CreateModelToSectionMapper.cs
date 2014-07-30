@@ -17,7 +17,7 @@ namespace NGL.Web.Models.Section
             target.SchoolYear = (short) source.SchoolYear;
             target.TermTypeId = (int) source.Term;
             target.ClassPeriodName = source.ClassPeriodName;
-            target.ClassroomIdentificationCode = source.ClassroomIdentificationCode;
+            target.ClassroomIdentificationCode = source.ClassRoom;
             target.LocalCourseCode = source.LocalCourseCode;
             target.UniqueSectionCode = source.UniqueSectionCode;
             target.SequenceOfCourse = source.SequenceOfCourse;

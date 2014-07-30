@@ -18,10 +18,12 @@ namespace NGL.Web.Models.Section
         [Required]
         [ExistsIn("ClassPeriodNames", "ClassPeriodName", "ClassPeriodName")]
         public string ClassPeriodName { get; set; }
-
+        
+        public List<ClassRoomModel> ClassRooms { get; set; }
 
         [Required]
-        public string ClassroomIdentificationCode { get; set; }
+        [ExistsIn("ClassRooms", "ClassRoom", "ClassRoom")]
+        public string ClassRoom { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -38,13 +40,16 @@ namespace NGL.Web.Models.Section
         public CreateModel()
         {
             ClassPeriodNames = new List<ClassPeriodNameModel>();
+            ClassRooms = new List<ClassRoomModel>();
         }
 
-        public static CreateModel CreateNewWith(List<ClassPeriodNameModel> classPeriods)
+        public static CreateModel CreateNewWith(List<ClassPeriodNameModel> classPeriods, 
+            List<ClassRoomModel> classRoomModels)
         {
             return new CreateModel
             {
-                ClassPeriodNames = classPeriods
+                ClassPeriodNames = classPeriods,
+                ClassRooms = classRoomModels
             };
         }
     }

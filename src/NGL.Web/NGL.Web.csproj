@@ -1650,6 +1650,7 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Section\ClassRoomModel.cs" />
     <Compile Include="Models\RepositoryReader.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
     <Compile Include="Models\Location\CreateModelValidator.cs" />
@@ -1660,6 +1661,7 @@
     <Compile Include="Models\Section\ClassPeriodToClassPeriodNameModelMapper.cs" />
     <Compile Include="Models\Section\CreateModelToSectionMapper.cs" />
     <Compile Include="Models\Section\IndexModel.cs" />
+    <Compile Include="Models\Section\LocationToClassRoomModelMapper.cs" />
     <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />

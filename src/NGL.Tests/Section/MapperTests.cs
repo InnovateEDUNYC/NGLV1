@@ -24,7 +24,7 @@ namespace NGL.Tests.Section
             sectionEntity.SchoolYear.ShouldBe((short)sectionCreateModel.SchoolYear);
             sectionEntity.TermTypeId.ShouldBe((int)sectionCreateModel.Term);
             sectionEntity.ClassPeriodName.ShouldBe(sectionCreateModel.ClassPeriodName);
-            sectionEntity.ClassroomIdentificationCode.ShouldBe(sectionCreateModel.ClassroomIdentificationCode);
+            sectionEntity.ClassroomIdentificationCode.ShouldBe(sectionCreateModel.ClassRoom);
             sectionEntity.LocalCourseCode.ShouldBe(sectionCreateModel.LocalCourseCode);
             sectionEntity.UniqueSectionCode.ShouldBe(sectionCreateModel.UniqueSectionCode);
             sectionEntity.SequenceOfCourse.ShouldBe(sectionCreateModel.SequenceOfCourse);
@@ -46,12 +46,21 @@ namespace NGL.Tests.Section
         }
 
         [Fact]
-        public void ShouldMapClassPeriodToClassPeriodModel()
+        public void ShouldMapClassPeriodToClassPeriodNameModel()
         {
             var classPeriodEntity = new ClassPeriodBuilder().Build();
-            var classPeriodModel = new ClassPeriodToClassPeriodNameModelMapper().Build(classPeriodEntity);
+            var classPeriodNameModel = new ClassPeriodToClassPeriodNameModelMapper().Build(classPeriodEntity);
 
-            classPeriodModel.ClassPeriodName.ShouldBe(classPeriodEntity.ClassPeriodName);
+            classPeriodNameModel.ClassPeriodName.ShouldBe(classPeriodEntity.ClassPeriodName);
+        }
+
+        [Fact]
+        public void ShouldMapLocationToClassRoom()
+        {
+            var locationEntity = new LocationBuilder().Build();
+            var classRoomModel = new LocationToClassRoomModelMapper().Build(locationEntity);
+
+            classRoomModel.ClassRoom.ShouldBe(locationEntity.ClassroomIdentificationCode);
         }
     }
 }

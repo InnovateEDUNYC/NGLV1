@@ -73,6 +73,7 @@
     <Compile Include="Builders\AddUserModelBuilder.cs" />
     <Compile Include="Builders\ClassPeriodBuilder.cs" />
     <Compile Include="Builders\CreateParentModelBuilder.cs" />
+    <Compile Include="Builders\LocationBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />
     <Compile Include="ClassPeriod\ValidatorTests.cs" />

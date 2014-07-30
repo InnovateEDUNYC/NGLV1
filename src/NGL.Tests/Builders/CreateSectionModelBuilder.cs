@@ -20,7 +20,7 @@ namespace NGL.Tests.Section
                 SchoolYear = SchoolYear,
                 Term = TermType,
                 ClassPeriodName = ClassPeriodName,
-                ClassroomIdentificationCode = ClassroomIdentificationCode,
+                ClassRoom = ClassroomIdentificationCode,
                 LocalCourseCode = LocalCourseCode,
                 UniqueSectionCode = UniqueSectionCode,
                 SequenceOfCourse = SequenceOfCourse
