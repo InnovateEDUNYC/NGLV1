@@ -35,6 +35,13 @@ namespace NGL.Web.Controllers
             return View(setModel);
         }
 
+        [HttpPost]
+        public virtual JsonResult GetSections(string searchString)
+        {
+            var sections = _genericRepository.GetAll<Section>();
+            return Json(sections, JsonRequestBehavior.AllowGet);
+        }
+
         private List<SessionListItemModel> GetAllSessions()
         {
             var sessions = _genericRepository.GetAll<Session>();

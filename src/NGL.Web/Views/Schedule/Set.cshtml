@@ -23,3 +23,10 @@
         @s.FieldFor(m => m.Session)
     }
 }
+
+Section @Html.TextBox("Section")
+<input type="submit" id="get-sections" value="Submit" />
+
+@section Scripts {
+    Ngl.schedule.getSchedule.init();
+}
