@@ -1810,7 +1810,6 @@
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_ef8c08_256x240.png" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\index.html" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.css" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.js" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.min.css" />
