@@ -25,12 +25,12 @@ namespace NGL.Web.Models.Student
             	target.ReadingScore = studentAcademicDetail.ReadingScore;
             	target.WritingScore = studentAcademicDetail.WritingScore;
             	target.MathScore = studentAcademicDetail.MathScore;
-            	target.PerformanceHistoryFileUrl = CreateSignitureUri(studentAcademicDetail.PerformanceHistoryFile);
+            	target.PerformanceHistoryFileUrl = CreateSignatureUri(studentAcademicDetail.PerformanceHistoryFile);
             	target.PerformanceHistory = studentAcademicDetail.PerfomanceHistory;
             }
         }
 
-        private string CreateSignitureUri(string filename)
+        private string CreateSignatureUri(string filename)
         {
             if (filename.IsNullOrEmpty()) return null;
             var fileDownloader = _azureStorageDownloader;

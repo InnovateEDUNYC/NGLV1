@@ -99,6 +99,6 @@ namespace NGL.Web.Controllers
         {
             var courses = _genericRepository.GetAll<Course>();
             return courses.Select(course => _courseToCourseListItemModelMapper.Build(course)).ToList();
-        } 
+        }
     }
 }

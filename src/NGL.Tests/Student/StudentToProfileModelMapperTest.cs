@@ -13,20 +13,20 @@ namespace NGL.Tests.Student
     {
         private StudentToProfileModelMapper _mapper;
 
-        private void Setup()
+        private void SetupWithDownloaderReturning(string downloaderReturns)
         {
             var downloader = Substitute.For<IFileDownloader>();
-            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns("");
+            downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns(downloaderReturns);
 
             _mapper = new StudentToProfileModelMapper(
                 new ParentToProfileParentModelMapper(),
-                new StudentToAcademicDetailsMapper(downloader), downloader);
+                new StudentToAcademicDetailsMapper(downloader), new ProfilePhotoUrlFetcher(downloader));
         }
 
         [Fact]
         public void ShouldMapStudentToProfileModel()
         {
-            Setup();
+            SetupWithDownloaderReturning("");
 
             var student = StudentFactory.CreateStudentWithOneParent();
             var parent = student.StudentParentAssociations.First().Parent;
@@ -42,7 +42,7 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMapStudentToProfileModelWithDifferentParentAddress()
         {
-            Setup();
+            SetupWithDownloaderReturning("");
 
             var parent = ParentFactory.CreateParentWithAddress();
             var student = StudentFactory.CreateStudentWithOneParent(parent, false);
@@ -59,7 +59,7 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMapStudentToProfileModelWithMultipleParents()
         {
-            Setup();
+            SetupWithDownloaderReturning("");
 
             var student = StudentFactory.CreateStudentWithTwoParents();
             var firstParent = student.StudentParentAssociations.First().Parent;
@@ -78,16 +78,13 @@ namespace NGL.Tests.Student
         public void ShouldMapStudentToProfileModelWithAcademicDetails()
         {
             var student = StudentFactory.CreateStudentWithOneParent();
-            var profileModel = new ProfileModel();
 
             var fileName = student.StudentAcademicDetails.First().PerformanceHistoryFile;
             var filePath = "https://ngl.blob.core.windows.net/" + fileName;
 
-            var downloader = Substitute.For<IFileDownloader>();
-            downloader.DownloadPath("student", fileName).Returns(filePath);
-
-            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader), downloader);
-            _mapper.Map(student, profileModel);
+            SetupWithDownloaderReturning(filePath);
+            
+            var profileModel = _mapper.Build(student);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
 
@@ -104,12 +101,10 @@ namespace NGL.Tests.Student
         public void ShouldMapStudentToProfileModelWithoutAcademicDetails()
         {
             var student = StudentFactory.CreateStudentWithOneParentWithoutAcademicDetails();
-            var profileModel = new ProfileModel();
 
-            var downloader = Substitute.For<IFileDownloader>();
+            SetupWithDownloaderReturning(null);
 
-            _mapper = new StudentToProfileModelMapper(new ParentToProfileParentModelMapper(), new StudentToAcademicDetailsMapper(downloader), downloader);
-            _mapper.Map(student, profileModel);
+            var profileModel = _mapper.Build(student);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             profileModel.AcademicDetail.ShouldBe(null);
@@ -118,7 +113,7 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMapWithDefaultValueIfNoProfilePhotoExists()
         {
-            Setup();
+            SetupWithDownloaderReturning("");
             var student = StudentFactory.CreateStudentWithOneParent();
             var profileModel = _mapper.Build(student);
 

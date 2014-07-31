@@ -14,6 +14,9 @@ namespace NGL.Web
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Assets/Scripts/lib/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                        "~/Assets/Scripts/lib/jquery-ui-1.11.0/jquery-ui.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -26,7 +29,10 @@ namespace NGL.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Assets/Content/bootstrap.css",
                       "~/Assets/Content/site.css",
-                      "~/Assets/Content/datepicker.css"));
+                      "~/Assets/Content/datepicker.css",
+                      "~/Assets/Scripts/lib/jquery-ui-1.11.0/jquery-ui.css",
+                      "~/Assets/Scripts/lib/jquery-ui-1.11.0/jquery-ui.structure.css",
+                      "~/Assets/Scripts/lib/jquery-ui-1.11.0/jquery-ui.theme.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                  "~/Assets/Scripts/createNamespace.js",
@@ -37,7 +43,8 @@ namespace NGL.Web
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
                 "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",
                 "~/Assets/Scripts/Views/Enrollment/createStudent.js",
-                "~/Assets/Scripts/Views/Student/index.js"
+                "~/Assets/Scripts/Views/Student/index.js",
+                "~/Assets/Scripts/Views/Schedule/getSchedule.js"
                 ));
         }
     }

@@ -273,6 +273,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\SchemaVersion.cs">
@@ -1650,6 +1651,9 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Schedule\SessionListItemModel.cs" />
+    <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
+    <Compile Include="Models\Schedule\SetModel.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />
     <Compile Include="Models\RepositoryReader.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
@@ -1671,6 +1675,7 @@
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\ProfileParentAddressModel.cs" />
     <Compile Include="Models\Student\ProfileParentModel.cs" />
+    <Compile Include="Infrastructure\Azure\ProfilePhotoUrlFetcher.cs" />
     <Compile Include="Models\Student\StudentToAcademicDetailsMapper.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
@@ -1744,6 +1749,9 @@
     <Compile Include="T4MVC\LocationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC\ScheduleController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\SchoolController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1783,10 +1791,36 @@
     <Content Include="Assets\Scripts\forms.js" />
     <EmbeddedResource Include="Data\Scripts\005 - Users and Roles.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\006 - Schema - StudentProgramStatus.sql" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\external\jquery\jquery.js" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\animated-overlay.gif" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_222222_256x240.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\index.html" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.css" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.js" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.min.css" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.min.js" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.structure.css" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.structure.min.css" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.theme.css" />
+    <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.theme.min.css" />
     <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
     <EmbeddedResource Include="Data\Scripts\009 - Schema - StaffCertificate.sql" />
+    <Content Include="Assets\Scripts\Views\Schedule\getSchedule.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <Content Include="favicon.ico" />
@@ -1897,6 +1931,7 @@
     <Content Include="Views\Enrollment\EnterAcademicDetails.cshtml" />
     <Content Include="Views\Section\Create.cshtml" />
     <Content Include="Views\Section\Index.cshtml" />
+    <Content Include="Views\Schedule\Set.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

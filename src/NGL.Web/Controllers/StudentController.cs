@@ -20,17 +20,17 @@ namespace NGL.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IGenericRepository _repository;
-        private readonly IMapper<Student, ProfileModel> _studentToDetailsModelMapper;
+        private readonly IMapper<Student, ProfileModel> _studentToProfileModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
         private readonly AzureStorageDownloader _fileDownloader;
 
-        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToDetailsModelMapper,
+        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
                                                 IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
                                                 AzureStorageUploader fileUploader, AzureStorageDownloader fileDownloader)
         {
             _repository = repository;
-            _studentToDetailsModelMapper = studentToDetailsModelMapper;
+            _studentToProfileModelMapper = studentToProfileModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
             _fileUploader = fileUploader;
             _fileDownloader = fileDownloader;
@@ -72,7 +72,7 @@ namespace NGL.Web.Controllers
             if (student == null)
                 return HttpNotFound();
 
-            var profileModel = _studentToDetailsModelMapper.Build(student);
+            var profileModel = _studentToProfileModelMapper.Build(student);
             return View(profileModel);
         }
 
