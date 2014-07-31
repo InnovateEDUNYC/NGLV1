@@ -21,6 +21,8 @@
     using (var s = f.BeginSection("Info"))
     {
         @s.FieldFor(m => m.Session)
+        @s.FieldFor(m => m.BeginDate)
+        @s.FieldFor(m => m.EndDate)
     }
 }
 

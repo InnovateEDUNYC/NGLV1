@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models;
 using NGL.Web.Models.Schedule;
@@ -31,7 +33,8 @@ namespace NGL.Web.Controllers
             var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(student);
             var sessions = GetAllSessions();
 
-            var setModel = SetModel.CreateNewWith(student, profilePhotoUrl, sessions);
+            var defaultSessionListModel = _sessionToSessionListItemModelMapper.Build(new SessionFilter(_genericRepository).FindSession(DateTime.Now));
+            var setModel = SetModel.CreateNewWith(student, profilePhotoUrl, sessions, defaultSessionListModel);
             return View(setModel);
         }
 

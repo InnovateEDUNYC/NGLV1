@@ -1,36 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using ChameleonForms.Attributes;
 using Microsoft.Ajax.Utilities;
+using NGL.Web.Data.Filters;
 
 namespace NGL.Web.Models.Schedule
 {
     public class SetModel
     {
-        public SetModel()
-        {
-            this.Sessions = new List<SessionListItemModel>();
-        }
+        
         public string Name { get; set; }
         public int StudentUsi { get; set; }
         public string ProfilePhotoUrl { get; set; }
-//        public int SectionId { get; set; }
-//        public DateTime BeginDate { get; set; }
-//        public DateTime EndDate { get; set; }
         public List<SessionListItemModel> Sessions { get; set; }
-
-        [ExistsIn("Sessions", "SessionId", "SessionName")]
+        [ExistsIn("Sessions", "SessionId", "SessionName", false)]
         public string Session { get; set; }
+        [Required]
+        public DateTime BeginDate { get; set; }
+        [Required]
+        public DateTime EndDate { get; set; }
 
-        public static SetModel CreateNewWith(Data.Entities.Student student, string profilePhotoUrl, List<SessionListItemModel> sessions)
+        public static SetModel CreateNewWith(Data.Entities.Student student, string profilePhotoUrl, List<SessionListItemModel> sessions, SessionListItemModel session)
         {
-            return new SetModel
+            var sessionIndex = sessions.FindIndex(s => s.SessionName == session.SessionName);
+            var setModel = new SetModel
             {
                 Name = String.Join(" ", student.FirstName, student.LastSurname),
                 StudentUsi = student.StudentUSI,
                 ProfilePhotoUrl = profilePhotoUrl,
-                Sessions = sessions
+                Sessions = sessions,
+                Session = GetChameleonFormsIndexValue(sessionIndex),
+                BeginDate = session.BeginDate,
+                EndDate = session.EndDate
             };
+
+            return setModel;
+        }
+
+        private static string GetChameleonFormsIndexValue(int sessionIndex)
+        {
+            return (sessionIndex + 1).ToString();
         }
     }
 
