@@ -108,3 +108,11 @@ form .inline input {
 .profile-photo-container {
     margin-bottom: 45px;
 }
+
+.dl-horizontal dd {
+    margin-left: 230px;
+}
+
+.dl-horizontal dt {
+    width: 210px;
+}

@@ -1,5 +1,6 @@
 ﻿using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Extensions;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models.Student;
 using NSubstitute;
@@ -22,13 +23,13 @@ namespace NGL.Tests.Student
 
             var model = new StudentProgramStatusToProfileProgramStatusModelMapper(downloader).Build(studentProgramStatus);
 
-            model.TestingAccommodation.ShouldBe(studentProgramStatus.TestingAccommodation);
-            model.BilingualProgram.ShouldBe(studentProgramStatus.BilingualProgram);
-            model.EnglishAsSecondLanguage.ShouldBe(studentProgramStatus.EnglishAsSecondLanguage);
-            model.Gifted.ShouldBe(studentProgramStatus.Gifted);
-            model.SpecialEducation.ShouldBe(studentProgramStatus.SpecialEducation);
-            model.TitleParticipation.ShouldBe(studentProgramStatus.TitleParticipation);
-            model.McKinneyVento.ShouldBe(studentProgramStatus.McKinneyVento);
+            model.TestingAccommodation.ShouldBe(studentProgramStatus.TestingAccommodation.ToYesNoString());
+            model.BilingualProgram.ShouldBe(studentProgramStatus.BilingualProgram.ToYesNoString());
+            model.EnglishAsSecondLanguage.ShouldBe(studentProgramStatus.EnglishAsSecondLanguage.ToYesNoString());
+            model.Gifted.ShouldBe(studentProgramStatus.Gifted.ToYesNoString());
+            model.SpecialEducation.ShouldBe(studentProgramStatus.SpecialEducation.ToYesNoString());
+            model.TitleParticipation.ShouldBe(studentProgramStatus.TitleParticipation.ToYesNoString());
+            model.McKinneyVento.ShouldBe(studentProgramStatus.McKinneyVento.ToYesNoString());
 
             model.FoodServiceEligibilityStatus.ShouldBe("Full Price");
 

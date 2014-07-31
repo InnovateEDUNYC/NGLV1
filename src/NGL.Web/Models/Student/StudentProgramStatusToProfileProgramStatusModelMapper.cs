@@ -1,5 +1,6 @@
 ﻿using Humanizer;
 using NGL.Web.Data.Entities;
+using NGL.Web.Extensions;
 using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Student
@@ -15,13 +16,13 @@ namespace NGL.Web.Models.Student
 
         public override void Map(StudentProgramStatus source, ProfileProgramStatusModel target)
         {
-            target.TestingAccommodation = source.TestingAccommodation;
-            target.BilingualProgram = source.BilingualProgram;
-            target.EnglishAsSecondLanguage = source.EnglishAsSecondLanguage;
-            target.Gifted = source.Gifted;
-            target.SpecialEducation = source.SpecialEducation;
-            target.TitleParticipation = source.TitleParticipation;
-            target.McKinneyVento = source.McKinneyVento;
+            target.TestingAccommodation = source.TestingAccommodation.ToYesNoString();
+            target.BilingualProgram = source.BilingualProgram.ToYesNoString();
+            target.EnglishAsSecondLanguage = source.EnglishAsSecondLanguage.ToYesNoString();
+            target.Gifted = source.Gifted.ToYesNoString();
+            target.SpecialEducation = source.SpecialEducation.ToYesNoString();
+            target.TitleParticipation = source.TitleParticipation.ToYesNoString();
+            target.McKinneyVento = source.McKinneyVento.ToYesNoString();
 
             target.FoodServiceEligibilityStatus = ((SchoolFoodServicesEligibilityTypeEnum)source.SchoolFoodServicesEligibilityTypeId).Humanize(LetterCasing.Title);
 
