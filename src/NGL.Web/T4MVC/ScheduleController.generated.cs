@@ -26,9 +26,6 @@ namespace NGL.Web.Controllers
     public partial class ScheduleController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ScheduleController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ScheduleController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
