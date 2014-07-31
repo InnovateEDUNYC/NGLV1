@@ -1652,6 +1652,7 @@
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
+    <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />
     <Compile Include="Models\RepositoryReader.cs" />

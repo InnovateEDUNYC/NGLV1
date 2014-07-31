@@ -22,13 +22,14 @@ namespace NGL.Web.Models.Schedule
         [ExistsIn("Sessions", "SessionId", "SessionName")]
         public string Session { get; set; }
 
-        public static SetModel CreateNewWith(Data.Entities.Student student, string profilePhotoUrl)
+        public static SetModel CreateNewWith(Data.Entities.Student student, string profilePhotoUrl, List<SessionListItemModel> sessions)
         {
             return new SetModel
             {
                 Name = String.Join(" ", student.FirstName, student.LastSurname),
                 StudentUsi = student.StudentUSI,
                 ProfilePhotoUrl = profilePhotoUrl,
+                Sessions = sessions
             };
         }
     }
