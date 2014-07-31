@@ -122,10 +122,15 @@
                 }
             </dd>
         </dl>
-        @if (Model.ProgramStatus != null)
+        
+        <h4>Program Status Information</h4>
+        <hr />
+        @if (Model.ProgramStatus == null)
         {
-            <h4>Program Status Information</h4>
-            <hr />
+            <dl class="dl-horizontal">No Information Entered</dl>
+        }
+        else
+        {
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.TestingAccommodation)
@@ -198,7 +203,7 @@
                     @Html.DisplayTextFor(model => model.ProgramStatus.FoodServiceEligibilityStatus)<br />
                 </dd>
             </dl>
-        }
+        }        
         <h4>Home Address</h4>
         <hr />
         <dl class="dl-horizontal">
