@@ -18,11 +18,10 @@ namespace NGL.Tests.Student
             var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns(downloaderReturns);
 
-            _mapper = new StudentToProfileModelMapper(
+            _mapper = new StudentToProfileModelMapper(new StudentToAcademicDetailsMapper(downloader),
                 new ParentToProfileParentModelMapper(),
-                new StudentToAcademicDetailsMapper(downloader), new ProfilePhotoUrlFetcher(downloader));
-                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader), 
-                downloader);
+                 new ProfilePhotoUrlFetcher(downloader),
+                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader));
         }
 
         [Fact]
@@ -45,7 +44,7 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldNotMapStudentProgramStatusIfItDoesNotExist()
         {
-            Setup();
+            SetupWithDownloaderReturning("");
 
             var student = StudentFactory.CreateStudentWithOneParent();
             student.StudentProgramStatus = null;
@@ -102,10 +101,6 @@ namespace NGL.Tests.Student
             SetupWithDownloaderReturning(filePath);
             
             var profileModel = _mapper.Build(student);
-                new ParentToProfileParentModelMapper(), 
-                new StudentToAcademicDetailsMapper(downloader), 
-                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader), 
-                downloader);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
 
