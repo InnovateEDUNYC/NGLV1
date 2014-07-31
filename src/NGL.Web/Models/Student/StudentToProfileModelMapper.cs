@@ -42,10 +42,9 @@ namespace NGL.Web.Models.Student
         {
             var studentProgramStatus = source.StudentProgramStatus;
 
-            if(studentProgramStatus != null)
-            {
+            if (studentProgramStatus != null)
                 target.ProgramStatus = _studentProgramStatusToProfileProgramStatusModelMapper.Build(studentProgramStatus);
-            }
+            
         }
 
         private static void MapHomeLanguage(Data.Entities.Student source, ProfileModel target)
