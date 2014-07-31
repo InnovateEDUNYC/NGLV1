@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Profile";
+    string downloadFileText = "Download File";
 }
 
 <h2>Profile</h2>
@@ -94,33 +95,110 @@
                 @Html.DisplayNameFor(model => model.AcademicDetail.WritingScore)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AcademicDetail.WritingScore)<br/>
+                @Html.DisplayFor(model => model.AcademicDetail.WritingScore)<br />
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.AcademicDetail.ReadingScore)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AcademicDetail.ReadingScore)<br/>
+                @Html.DisplayFor(model => model.AcademicDetail.ReadingScore)<br />
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.AcademicDetail.MathScore)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AcademicDetail.MathScore)<br/>
+                @Html.DisplayFor(model => model.AcademicDetail.MathScore)<br />
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AcademicDetail.PerformanceHistory)<br/>
+                @Html.DisplayFor(model => model.AcademicDetail.PerformanceHistory)<br />
             </dd>
             <dd>
                 @if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistoryFileUrl != null)
                 {
-                    <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">Download</a><br/>
+                    <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">@downloadFileText</a><br />
                 }
             </dd>
         </dl>
+        @if (Model.ProgramStatus != null)
+        {
+            <h4>Program Status Information</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.TestingAccommodation)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.TestingAccommodation)
+                    @if (Model.ProgramStatus.TestingAccommodationFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.TestingAccommodationFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dd>
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.BilingualProgram)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.BilingualProgram)<br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.EnglishAsSecondLanguage)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.EnglishAsSecondLanguage)<br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.Gifted)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.Gifted)<br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.SpecialEducation)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.SpecialEducation)
+                    @if (Model.ProgramStatus.SpecialEducationFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.SpecialEducationFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.TitleParticipation)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.TitleParticipation)
+                    @if (Model.ProgramStatus.TitleParticipationFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.TitleParticipationFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.McKinneyVento)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.McKinneyVento)
+                    @if (Model.ProgramStatus.McKinneyVentoFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.McKinneyVentoFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.FoodServiceEligibilityStatus)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.ProgramStatus.FoodServiceEligibilityStatus)<br />
+                </dd>
+            </dl>
+        }
         <h4>Home Address</h4>
         <hr />
         <dl class="dl-horizontal">
@@ -200,7 +278,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayTextFor(model => model.ProfileParentModel.EmailAddress)<br/>
+                @Html.DisplayTextFor(model => model.ProfileParentModel.EmailAddress)<br />
             </dd>
         </dl>
         <h4>Parent Address</h4>
@@ -243,7 +321,7 @@
         }
         else
         {
-            <p>Same as student</p><br/>
+            <p>Same as student</p><br />
         }
 
         @if (Model.SecondProfileParentModel != null)
@@ -294,12 +372,12 @@
                     @Html.DisplayTextFor(model => model.SecondProfileParentModel.EmailAddress)<br />
                 </dd>
             </dl>
-            
+
             <h4>Second Parent Address</h4>
             <hr />
             if (Model.SecondProfileParentModel.SameAddressAsStudent == false)
             {
-                
+
                 <dl class="dl-horizontal">
                     <dt>
                         @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
@@ -335,14 +413,14 @@
             }
             else
             {
-                <p>Same as student</p><br/>
+                <p>Same as student</p><br />
             }
 
         }
+    </div>
 
-        </div>
-</div>
+    </div>
 
-@section Scripts {
-    Ngl.student.index.init();
-}
+    @section Scripts {
+        Ngl.student.index.init();
+    }

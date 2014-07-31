@@ -77,6 +77,7 @@
     <Compile Include="Builders\LocationBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
     <Compile Include="ClassPeriod\CreateClassPeriodModelBuilder.cs" />
+    <Compile Include="Builders\StudentProgramStatusBuilder.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />
     <Compile Include="ClassPeriod\ValidatorTests.cs" />
     <Compile Include="Constants.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Student\StudentFactory.cs" />
     <Compile Include="Student\StudentLanguageFactory.cs" />
     <Compile Include="Student\StudentToProfileModelMapperTest.cs" />
+    <Compile Include="Student\StudentProgramStatusToProfileProgramStatusModelMapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

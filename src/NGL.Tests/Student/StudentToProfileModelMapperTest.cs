@@ -18,9 +18,10 @@ namespace NGL.Tests.Student
             var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns(downloaderReturns);
 
-            _mapper = new StudentToProfileModelMapper(
+            _mapper = new StudentToProfileModelMapper(new StudentToAcademicDetailsMapper(downloader),
                 new ParentToProfileParentModelMapper(),
-                new StudentToAcademicDetailsMapper(downloader), new ProfilePhotoUrlFetcher(downloader));
+                 new ProfilePhotoUrlFetcher(downloader),
+                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader));
         }
 
         [Fact]
@@ -37,6 +38,21 @@ namespace NGL.Tests.Student
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
+            profileModel.ProgramStatus.ShouldNotBe(null);
+        }
+
+        [Fact]
+        public void ShouldNotMapStudentProgramStatusIfItDoesNotExist()
+        {
+            SetupWithDownloaderReturning("");
+
+            var student = StudentFactory.CreateStudentWithOneParent();
+            student.StudentProgramStatus = null;
+            var profileModel = new ProfileModel();
+
+            _mapper.Map(student, profileModel);
+
+            profileModel.ProgramStatus.ShouldBe(null);
         }
 
         [Fact]
@@ -105,6 +121,7 @@ namespace NGL.Tests.Student
             SetupWithDownloaderReturning(null);
 
             var profileModel = _mapper.Build(student);
+                
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             profileModel.AcademicDetail.ShouldBe(null);

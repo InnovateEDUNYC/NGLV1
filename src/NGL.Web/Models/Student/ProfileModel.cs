@@ -28,5 +28,6 @@ namespace NGL.Web.Models.Student
         public ProfileParentModel ProfileParentModel { get; set; }
         public ProfileParentModel SecondProfileParentModel { get; set; }
         public ProfileAcademicDetailModel AcademicDetail { get; set; }
+        public ProfileProgramStatusModel ProgramStatus { get; set; }
     }
 }

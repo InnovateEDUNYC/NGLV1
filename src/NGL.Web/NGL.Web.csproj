@@ -286,6 +286,7 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
+    <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
@@ -1676,6 +1677,8 @@
     <Compile Include="Models\Student\ProfileParentAddressModel.cs" />
     <Compile Include="Models\Student\ProfileParentModel.cs" />
     <Compile Include="Infrastructure\Azure\ProfilePhotoUrlFetcher.cs" />
+    <Compile Include="Models\Student\ProfileProgramStatusModel.cs" />
+    <Compile Include="Models\Student\StudentProgramStatusToProfileProgramStatusModelMapper.cs" />
     <Compile Include="Models\Student\StudentToAcademicDetailsMapper.cs" />
     <Compile Include="Models\Student\StudentToProfileModelMapper.cs" />
     <Compile Include="Models\Student\StudentToIndexModelMapper.cs" />
