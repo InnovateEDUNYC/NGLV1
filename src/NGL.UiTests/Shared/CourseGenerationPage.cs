@@ -33,7 +33,7 @@ namespace NGL.UiTests.Shared
 
         public SectionCreatePage GoToSectionCreatePage()
         {
-            return Navigate.To<SectionCreatePage>(By.LinkText("Sections"));
+            return Navigate.To<SectionCreatePage>(By.LinkText("Create Section"));
         }
     }
 }
