@@ -19,17 +19,17 @@ namespace NGL.Web.Models.Section
 
         public List<ClassPeriodListItemModel> Periods { get; set; }
 
-        [ExistsIn("Periods", "ClassPeriodName", "ClassPeriodName")]
+        [ExistsIn("Periods", "ClassPeriodName", "ClassPeriodName", false)]
         public string Period { get; set; }
 
         public List<LocationListItemModel> Classrooms { get; set; }
 
-        [ExistsIn("Classrooms", "Classroom", "Classroom")]
+        [ExistsIn("Classrooms", "Classroom", "Classroom", false)]
         public string Classroom { get; set; }
 
         public List<CourseListItemModel> Courses { get; set; }
 
-        [ExistsIn("Courses", "CourseCode", "CourseTitle")]
+        [ExistsIn("Courses", "CourseCode", "CourseTitle", false)]
         public string Course { get; set; }
 
         public string UniqueSectionCode { get; set; }

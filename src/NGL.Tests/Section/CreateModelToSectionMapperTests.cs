@@ -15,47 +15,44 @@ namespace NGL.Tests.Section
     {
         private ISchoolRepository _schoolRepository;
         private IGenericRepository _genericRepository;
+        private IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
 
         [Fact]
         public void ShouldMapCreateModelToSection()
         {
             Setup();
-            var createModelToCourseOfferingMapper = Substitute.For<IMapper<CreateModel, CourseOffering>>();
             var model = new CreateSectionModelBuilder().Build();
-
             _genericRepository.Get(Arg.Any<Expression<Func<CourseOffering, bool>>>())
                 .Returns(null as CourseOffering);
 
+            var newCourseOffering = new CourseOffering();
+            _createModelToCourseOfferingMapper.Build(model)
+                .Returns(newCourseOffering);
 
             var entity = new CreateModelToSectionMapper(_genericRepository, _schoolRepository, 
-                createModelToCourseOfferingMapper).Build(model);
+                _createModelToCourseOfferingMapper).Build(model);
+
 
             entity.SchoolId.ShouldBe(Constants.SchoolId);
-            entity.SchoolYear.ShouldBe((short) model.SchoolYear);
-            entity.TermTypeId.ShouldBe((int) model.Term);
+            entity.CourseOffering.ShouldBe(newCourseOffering);
             entity.ClassPeriodName.ShouldBe(model.Period);
             entity.ClassroomIdentificationCode.ShouldBe(model.Classroom);
-            entity.LocalCourseCode.ShouldBe(model.Course);
             entity.UniqueSectionCode.ShouldBe(model.UniqueSectionCode);
             entity.SequenceOfCourse.ShouldBe(model.SequenceOfCourse);
-
-            createModelToCourseOfferingMapper.Received().Build(model);
         }
 
         [Fact]
         public void ShouldMapCreateModelToSectionWithoutCreatingNewCourseOffering()
         {
             Setup();
-            var createModelToCourseOfferingMapper = Substitute.For<IMapper<CreateModel, CourseOffering>>();
             var model = new CreateSectionModelBuilder().Build();
 
             _genericRepository.Get(Arg.Any<Expression<Func<CourseOffering, bool>>>())
                 .Returns(new CourseOffering());
 
+            new CreateModelToSectionMapper(_genericRepository, _schoolRepository, _createModelToCourseOfferingMapper).Build(model);
 
-            new CreateModelToSectionMapper(_genericRepository, _schoolRepository, createModelToCourseOfferingMapper).Build(model);
-
-            createModelToCourseOfferingMapper.DidNotReceive().Build(model);
+            _createModelToCourseOfferingMapper.DidNotReceive().Build(model);
         }
 
         private void Setup()
@@ -68,6 +65,8 @@ namespace NGL.Tests.Section
                 SchoolId = Constants.SchoolId,
                 EducationOrganization = new EducationOrganization {EducationOrganizationId = 1}
             });
+
+            _createModelToCourseOfferingMapper = Substitute.For<IMapper<CreateModel, CourseOffering>>();
         }
     }
 }

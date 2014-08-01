@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using FluentValidation;
 using FluentValidation.Results;
 using NGL.Web.Data.Infrastructure;
@@ -10,6 +8,7 @@ using NGL.Web.Infrastructure;
 
 namespace NGL.Web.Models.Section
 {
+
     public class CreateModelValidator : AbstractValidator<CreateModel>
     {
         private readonly IGenericRepository _genericRepository;
@@ -18,13 +17,13 @@ namespace NGL.Web.Models.Section
         {
             _genericRepository = genericRepository;
 
-            RuleFor(model => model.SchoolYear).NotNull().NotEmpty();
-            RuleFor(model => model.Term).NotNull().NotEmpty();
-            RuleFor(model => model.Period).NotNull().NotEmpty();
-            RuleFor(model => model.Classroom).NotNull().NotEmpty();
-            RuleFor(model => model.Course).NotNull().NotEmpty();
-            RuleFor(model => model.UniqueSectionCode).NotNull().NotEmpty().Length(1, 255);
-            RuleFor(model => model.SequenceOfCourse).NotNull().NotEmpty();
+            RuleFor(model => model.SchoolYear).NotEmpty();
+            RuleFor(model => model.Term).NotEmpty();
+            RuleFor(model => model.Period).NotEmpty();
+            RuleFor(model => model.Classroom).NotEmpty();
+            RuleFor(model => model.Course).NotEmpty();
+            RuleFor(model => model.UniqueSectionCode).NotEmpty().Length(1, 255);
+            RuleFor(model => model.SequenceOfCourse).NotEmpty();
         }
 
         public override ValidationResult Validate(ValidationContext<CreateModel> context)
@@ -35,8 +34,8 @@ namespace NGL.Web.Models.Section
 
         private IEnumerable<ValidationFailure> ValidateExistence(CreateModel createModel)
         {
-            if (createModel.Term == null || createModel.Period == null || createModel.Classroom == null ||
-                createModel.Course == null || createModel.SchoolYear == null) yield break;
+            if (createModel.Period == null || createModel.Classroom == null ||
+                createModel.Course == null) yield break;
 
             var query = new SectionByPrimaryKeysQuery(
                 (short) createModel.SchoolYear,
