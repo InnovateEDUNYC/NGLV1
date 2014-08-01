@@ -25,6 +25,7 @@
         @s.FieldFor(m => m.EndDate)
         <div class="hidden">
             @s.FieldFor(m => m.sectionId).AddClass("hidden")
+            @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
         </div>
     }
 }
