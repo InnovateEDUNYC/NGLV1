@@ -17,7 +17,7 @@ namespace NGL.Tests.Session
             var schoolRepository = Substitute.For<ISchoolRepository>();
             schoolRepository.GetSchool().Returns(new School { SchoolId = Constants.SchoolId });
 
-            var sessionCreateModel = new CreateModelBuilder().Build();
+            var sessionCreateModel = new CreateSessionModelBuilder().Build();
             var sessionEntity = new CreateModelToSessionMapper(schoolRepository).Build(sessionCreateModel);
 
             sessionEntity.SchoolId.ShouldBe(Constants.SchoolId);

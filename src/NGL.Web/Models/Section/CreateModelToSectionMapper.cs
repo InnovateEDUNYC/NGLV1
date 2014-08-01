@@ -21,12 +21,9 @@ namespace NGL.Web.Models.Section
         public override void Map(CreateModel source, Data.Entities.Section target)
         {
             var courseOffering = _genericRepository.Get<Data.Entities.CourseOffering>(
-                c => c.LocalCourseCode == source.Course) ??
-                                 _createModelToCourseOfferingMapper.Build(source);
+                c => c.LocalCourseCode == source.Course) ?? _createModelToCourseOfferingMapper.Build(source);
 
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
-            target.SchoolYear = (short) source.SchoolYear;
-            target.TermTypeId = (int) source.Term;
             target.ClassPeriodName = source.Period;
             target.ClassroomIdentificationCode = source.Classroom;
             target.CourseOffering = courseOffering;

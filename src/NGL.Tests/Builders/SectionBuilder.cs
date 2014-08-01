@@ -6,11 +6,11 @@ namespace NGL.Tests.Builders
     {
         private const int SchoolYear = (int) SchoolYearTypeEnum.Year2014;
         private const int TermTypeId = (int) TermTypeEnum.FallSemester;
-        private const string ClassPeriodName = "4";
-        private const string ClassroomIdentificationCode = "BKL200";
-        private const string LocalCourseCode = "PHYS200";
-        private const string UniqueSectionCode = "PHYS200 - 301";
-        private const int SequenceOfCourse = 13;
+        private const string ClassPeriodName = "Period 3";
+        private const string ClassroomIdentificationCode = "BKL 200";
+        private const string LocalCourseCode = "CHEM2090";
+        private const string UniqueSectionCode = "CHEM2090 - 200";
+        private const int SequenceOfCourse = 1;
 
         public Web.Data.Entities.Section Build()
         {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.TestHelper;
-using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NSubstitute;
 using Xunit;
 using CreateModel = NGL.Web.Models.Session.CreateModel;
@@ -12,63 +12,44 @@ namespace NGL.Tests.Session
 {
     public class ValidatorTests
     {
+        private IGenericRepository _genericRepository;
+        private CreateModel _sessionCreateModel;
+        private CreateModelValidator _validator;
 
         [Fact]
         public void ShouldNotHaveErrorsIfSessionDoesNotExist()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var sessionCreateModel = new CreateModel
-            {
-                Term = TermTypeEnum.FallSemester,
-                SchoolYear = SchoolYearTypeEnum.Year2014,
-                BeginDate = DateTime.Today,
-                EndDate = DateTime.Today,
-                TotalInstructionalDays = 100
-            };
+            Setup();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            genericRepository
-                .Get(Arg.Any<Expression<Func<Web.Data.Entities.Session, bool>>>())
+            _genericRepository
+                .Get(Arg.Any<SessionByTermTypeAndSchoolYearQuery>())
                 .Returns(null as Web.Data.Entities.Session);
 
-            validator.ShouldNotHaveValidationErrorFor(s => s.Term, sessionCreateModel);
-            validator.ShouldNotHaveValidationErrorFor(s => s.SchoolYear, sessionCreateModel);
+            _validator.ShouldNotHaveValidationErrorFor(s => s.Term, _sessionCreateModel);
+            _validator.ShouldNotHaveValidationErrorFor(s => s.SchoolYear, _sessionCreateModel);
         }
 
 
         [Fact]
         public void ShouldHaveErrorsIfSessionExists()
         {
-            var genericRepository = Substitute.For<IGenericRepository>();
-            var sessionCreateModel = new CreateModel
-            {
-                Term = TermTypeEnum.FallSemester,
-                SchoolYear = SchoolYearTypeEnum.Year2014,
-                BeginDate = DateTime.Today,
-                EndDate = DateTime.Today,
-                TotalInstructionalDays = 100
-            };
+            Setup();
+            var sessionEntity = new SessionBuilder().Build();
 
-            var validator = new CreateModelValidator(genericRepository);
-
-            var sessionEntity = new Web.Data.Entities.Session
-            {
-                TermTypeId = (int) TermTypeEnum.FallSemester,
-                SchoolYear = (short) SchoolYearTypeEnum.Year2014,
-                BeginDate = DateTime.Today,
-                EndDate = DateTime.Today,
-                TotalInstructionalDays = 100
-            };
-
-            genericRepository
-                .Get(Arg.Any<Web.Data.Queries.SessionByTermTypeAndSchoolYearQuery>())
+            _genericRepository
+                .Get(Arg.Any<SessionByTermTypeAndSchoolYearQuery>())
                 .Returns(sessionEntity);
 
-            validator.ShouldHaveValidationErrorFor(s => s.Term, sessionCreateModel);
-            validator.ShouldHaveValidationErrorFor(s => s.SchoolYear, sessionCreateModel);
+            _validator.ShouldHaveValidationErrorFor(s => s.Term, _sessionCreateModel);
+            _validator.ShouldHaveValidationErrorFor(s => s.SchoolYear, _sessionCreateModel);
         }
 
+        private void Setup()
+        {
+            _genericRepository = Substitute.For<IGenericRepository>();
+            _sessionCreateModel = new CreateSessionModelBuilder().Build();
+            _validator = new CreateModelValidator(_genericRepository);
+        }
 
     }
 }

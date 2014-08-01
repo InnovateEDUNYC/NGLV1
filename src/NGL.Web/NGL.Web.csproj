@@ -285,6 +285,7 @@
     <Compile Include="Data\Entities\VersionLevel.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Queries\SectionByPrimaryKeysQuery.cs" />
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
@@ -1655,6 +1656,7 @@
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
+    <Compile Include="Models\Section\CreateModelValidator.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />
     <Compile Include="Models\RepositoryReader.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
