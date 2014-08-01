@@ -1673,6 +1673,8 @@
     <Compile Include="Models\Section\CreateModelToSectionMapper.cs" />
     <Compile Include="Models\Section\IndexModel.cs" />
     <Compile Include="Models\Section\LocationToLocationListItemModelMapper.cs" />
+    <Compile Include="Models\Section\AutocompleteModel.cs" />
+    <Compile Include="Models\Section\SectionToAutocompleteModelMapper.cs" />
     <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models;
 using NGL.Web.Models.Schedule;
+using NGL.Web.Models.Section;
 using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
@@ -17,12 +17,17 @@ namespace NGL.Web.Controllers
         private readonly IGenericRepository _genericRepository;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly IMapper<Session, SessionListItemModel> _sessionToSessionListItemModelMapper;
+        private readonly IMapper<Section, AutocompleteModel> _sectionToAutocompleteModelMapper;
 
-        public ScheduleController(IGenericRepository genericRepository, ProfilePhotoUrlFetcher profilePhotoUrlFetcher, IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper)
+        public ScheduleController(IGenericRepository genericRepository, 
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, 
+            IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper,
+            IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper )
         {
             _genericRepository = genericRepository;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
             _sessionToSessionListItemModelMapper = sessionToSessionListItemModelMapper;
+            _sectionToAutocompleteModelMapper = sectionToAutocompleteModelMapper;
         }
 
         //
@@ -38,11 +43,21 @@ namespace NGL.Web.Controllers
             return View(setModel);
         }
 
+        //
+        // AJAX POST: /GetSections/SCI4
         [HttpPost]
         public virtual JsonResult GetSections(string searchString)
         {
+            var autoCompleteModels = GetAllSectionAutocompleteModelsWith(searchString);
+            return Json(autoCompleteModels, JsonRequestBehavior.AllowGet);
+        }
+
+        private IEnumerable<Models.Section.AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString)
+        {
             var sections = _genericRepository.GetAll<Section>();
-            return Json(sections, JsonRequestBehavior.AllowGet);
+            var autocompleteModels = sections.Select(section => _sectionToAutocompleteModelMapper.Build(section)).ToList();
+
+            return autocompleteModels;
         }
 
         private List<SessionListItemModel> GetAllSessions()

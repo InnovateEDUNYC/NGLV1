@@ -7,7 +7,7 @@
 <h2>Set Schedule</h2>
 
 <div class="profile-photo-container">
-    <img src="@Model.ProfilePhotoUrl"></img>
+    <img src="@Model.ProfilePhotoUrl" />
 </div>
 
 <div class="student-name-and-usi">
@@ -16,18 +16,21 @@
     @Html.DisplayTextFor(m => m.StudentUsi)
 </div>
 
-@using (var f = Html.BeginNglForm())
+@using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new {id = "schedule-student-form"})))
 {
     using (var s = f.BeginSection("Info"))
     {
         @s.FieldFor(m => m.Session)
         @s.FieldFor(m => m.BeginDate)
         @s.FieldFor(m => m.EndDate)
+        <div class="hidden">
+            @s.FieldFor(m => m.sectionId).AddClass("hidden")
+        </div>
     }
 }
 
 Section @Html.TextBox("Section")
-<input type="submit" id="get-sections" value="Submit" />
+<button id="schedule-student-button">Save</button>
 
 @section Scripts {
     Ngl.schedule.getSchedule.init();

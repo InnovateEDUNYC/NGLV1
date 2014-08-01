@@ -22,6 +22,8 @@ namespace NGL.Web.Models.Schedule
         [Required]
         public DateTime EndDate { get; set; }
 
+        public int sectionId { get; set; }
+
         public static SetModel CreateNewWith(Data.Entities.Student student, string profilePhotoUrl, List<SessionListItemModel> sessions, SessionListItemModel session)
         {
             var sessionIndex = sessions.FindIndex(s => s.SessionName == session.SessionName);
