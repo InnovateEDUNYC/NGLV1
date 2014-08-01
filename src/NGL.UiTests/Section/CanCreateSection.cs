@@ -33,7 +33,7 @@ namespace NGL.UiTests.Section
 
         public void IHaveEnteredValidInputForAllFields()
         {
-            _createSectionModel = new CreateSectionModelBuilder().Build();
+            _createSectionModel = new CreateSectionModelBuilder().WithCourse("Creative Writing II").Build();
             _sectionIndexPage = _sectionCreatePage.CreateSection(_createSectionModel);
         }
 
@@ -46,11 +46,11 @@ namespace NGL.UiTests.Section
         [Fact]
         public void ShouldCreateSection()
         {
-//            this.Given(_ => IHaveLoggedIn())
-//                .And(_ => IAmOnTheCreateSectionPage())
-//                .When(_ => IHaveEnteredValidInputForAllFields())
-//                .Then(_ => ANewSectionShouldBeDisplayedOnTheSectionIndexPage())
-//                .BDDfy();
+            this.Given(_ => IHaveLoggedIn())
+                .And(_ => IAmOnTheCreateSectionPage())
+                .When(_ => IHaveEnteredValidInputForAllFields())
+                .Then(_ => ANewSectionShouldBeDisplayedOnTheSectionIndexPage())
+                .BDDfy();
         }
     }
 }
