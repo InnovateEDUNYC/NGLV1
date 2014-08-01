@@ -82,6 +82,13 @@ namespace NGL.Web.Controllers
             return RedirectToAction(Actions.Index());
         }
 
+        [HttpPost]
+        public virtual JsonResult GetSessions(string searchString)
+        {
+            var sessions = _genericRepository.GetAll<Session>();
+            return Json(sessions, JsonRequestBehavior.AllowGet);
+        }
+
         private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
         {
             var classPeriods = _genericRepository.GetAll<ClassPeriod>();

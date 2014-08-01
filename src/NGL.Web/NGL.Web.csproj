@@ -1836,6 +1836,7 @@
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
     <EmbeddedResource Include="Data\Scripts\009 - Schema - StaffCertificate.sql" />
     <Content Include="Assets\Scripts\Views\Schedule\getSchedule.js" />
+    <Content Include="Assets\Scripts\Views\Section\getSession.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <Content Include="favicon.ico" />

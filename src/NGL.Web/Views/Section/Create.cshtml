@@ -11,19 +11,26 @@
 {
     using (var s = f.BeginSection("Info"))
     {
-        @s.FieldFor(m => m.SchoolYear)
-        @s.FieldFor(m => m.Term)
+        <div class="hidden">
+            @s.FieldFor(m => m.SchoolYear)
+            @s.FieldFor(m => m.Term)
+        </div>
+        @Html.Label("Session")
+        @Html.TextBox("Session")        
         @s.FieldFor(m => m.Period)
         @s.FieldFor(m => m.Classroom)
-    
         @s.FieldFor(m => m.Course)
         @s.FieldFor(m => m.UniqueSectionCode)
         @s.FieldFor(m => m.SequenceOfCourse)
     
     }
-
+    
     using (var n = f.BeginNavigation())
     {
         @n.Submit("Create")
     }
+}
+
+@section Scripts {
+    Ngl.section.getSession.init();
 }
