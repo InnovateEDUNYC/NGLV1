@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
@@ -84,7 +85,7 @@ namespace NGL.Web.Controllers
 
         private IEnumerable<Models.Section.AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString)
         {
-            var sections = _genericRepository.GetAll<Section>();
+            var sections = _genericRepository.GetAll<Section>().Where(s => s.UniqueSectionCode.ToLower().Contains(searchString.ToLower()));
             var autocompleteModels = sections.Select(section => _sectionToAutocompleteModelMapper.Build(section)).ToList();
 
             return autocompleteModels;
