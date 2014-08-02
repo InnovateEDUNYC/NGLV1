@@ -24,7 +24,7 @@
         @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
         @s.FieldFor(m => m.EndDate).AddClass("datepicker")
         <div class="hidden">
-            @s.FieldFor(m => m.SectionId).AddClass("hidden")
+            @s.FieldFor(m => m.SectionId)
             @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
         </div>
     }
@@ -42,8 +42,8 @@
         {
             <li class="current-section-list-item">
                 @Html.DisplayFor(modelItem => item.Name)
-                @item.BeginDate.ToString("dd.MM.yyyy") - 
-                @(((DateTime)item.EndDate).ToString("dd.MM.yyyy"))
+                @item.BeginDate - 
+                @item.EndDate
             </li>
         }
     </ul>

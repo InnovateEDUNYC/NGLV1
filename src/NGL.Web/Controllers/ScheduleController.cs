@@ -90,7 +90,9 @@ namespace NGL.Web.Controllers
             _genericRepository.Add(studentSectionAssociation);
             _genericRepository.Save();
 
-            return new JsonResult();
+            var sectionListItem = _studentSectionAssociationToSectionListItemModelMapper.Build(studentSectionAssociation);
+
+            return Json(sectionListItem, JsonRequestBehavior.AllowGet);
         }
 
         //

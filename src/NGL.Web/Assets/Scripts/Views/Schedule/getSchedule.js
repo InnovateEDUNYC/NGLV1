@@ -31,7 +31,7 @@ Ngl.schedule.getSchedule = (function () {
                     });
                 },
                 select: function(event, ui) {
-                    $('#sectionId').val(ui.item.SectionId);
+                    $('#SectionId').val(ui.item.sectionId);
                 },
                 minLength: 2,
             });
@@ -44,7 +44,14 @@ Ngl.schedule.getSchedule = (function () {
                 type: 'POST',
                 dataType: 'json',
                 data: $('form#schedule-student-form').serialize(),
-                success: alert()
+                success: function(data) {
+                    var name = data.Name;
+                    var beginDate = data.BeginDate;
+                    var endDate = data.EndDate;
+                    $('.current-section-list').append("<li class='current-section-list-item'>" +
+                        name + " " + beginDate + " - " + endDate + "</li>"
+                    );
+                }
             });
         });
     };

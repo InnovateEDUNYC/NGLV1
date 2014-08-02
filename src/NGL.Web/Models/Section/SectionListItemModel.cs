@@ -9,7 +9,7 @@ namespace NGL.Web.Models.Section
     public class SectionListItemModel
     {
         public string Name { get; set; }
-        public DateTime BeginDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public string BeginDate { get; set; }
+        public string EndDate { get; set; }
     }
 }

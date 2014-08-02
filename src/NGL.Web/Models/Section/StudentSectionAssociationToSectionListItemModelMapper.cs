@@ -11,8 +11,9 @@ namespace NGL.Web.Models.Section
         public override void Map(StudentSectionAssociation source, SectionListItemModel target)
         {
             target.Name = source.LocalCourseCode;
-            target.BeginDate = source.BeginDate;
-            target.EndDate = source.EndDate;
+            target.BeginDate = source.BeginDate.ToString("dd.MM.yyyy");
+            if (source.EndDate != null) 
+                target.EndDate = ((DateTime)source.EndDate).ToString("dd.MM.yyyy");
         }
     }
 }
