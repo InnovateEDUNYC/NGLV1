@@ -14,15 +14,17 @@ namespace NGL.Web.Models.Schedule
         [ExistsIn("Sessions", "SessionId", "SessionName", false)]
         public string Session { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime BeginDate { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
         public int SectionId { get; set; }
 
-        public List<string> CurrentlyEnrolledSections { get; set; }
+        public List<Section.SectionListItemModel> CurrentlyEnrolledSections { get; set; }
 
 
-        public static SetModel CreateNewWith(Data.Entities.Student student, string profilePhotoUrl, List<SessionListItemModel> sessions, SessionListItemModel session, List<string> currentlyEnrolledSections)
+        public static SetModel CreateNewWith(Data.Entities.Student student, string profilePhotoUrl, List<SessionListItemModel> sessions, SessionListItemModel session, List<Section.SectionListItemModel> currentlyEnrolledSections)
         {
             var sessionIndex = sessions.FindIndex(s => s.SessionName == session.SessionName);
             var setModel = new SetModel

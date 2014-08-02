@@ -1658,6 +1658,7 @@
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
     <Compile Include="Models\Section\CreateModelValidator.cs" />
+    <Compile Include="Models\Section\SectionListItemModel.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />
     <Compile Include="Models\RepositoryReader.cs" />
     <Compile Include="Models\Location\CreateModelToLocationMapper.cs" />
@@ -1676,6 +1677,7 @@
     <Compile Include="Models\Section\AutocompleteModel.cs" />
     <Compile Include="Models\Section\SectionToAutocompleteModelMapper.cs" />
     <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />
+    <Compile Include="Models\Section\StudentSectionAssociationToSectionListItemModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />

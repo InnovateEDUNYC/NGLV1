@@ -21,8 +21,8 @@
     using (var s = f.BeginSection("Info"))
     {
         @s.FieldFor(m => m.Session).AddLabelClass("category-title")
-        @s.FieldFor(m => m.BeginDate)
-        @s.FieldFor(m => m.EndDate)
+        @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
+        @s.FieldFor(m => m.EndDate).AddClass("datepicker")
         <div class="hidden">
             @s.FieldFor(m => m.SectionId).AddClass("hidden")
             @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
@@ -37,11 +37,13 @@
 
 <div class="current-sections-container">
     <span class="category-title">Sections Assigned</span>
-    <ul>
+    <ul class="current-section-list">
         @foreach (var item in Model.CurrentlyEnrolledSections)
         {
-            <li>
-                @Html.DisplayFor(modelItem => item)
+            <li class="current-section-list-item">
+                @Html.DisplayFor(modelItem => item.Name)
+                @item.BeginDate.ToString("dd.MM.yyyy") - 
+                @(((DateTime)item.EndDate).ToString("dd.MM.yyyy"))
             </li>
         }
     </ul>

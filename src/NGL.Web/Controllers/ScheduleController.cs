@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
@@ -21,18 +22,21 @@ namespace NGL.Web.Controllers
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly IMapper<Session, SessionListItemModel> _sessionToSessionListItemModelMapper;
         private readonly IMapper<Section, AutocompleteModel> _sectionToAutocompleteModelMapper;
+        private readonly IMapper<StudentSectionAssociation, SectionListItemModel> _studentSectionAssociationToSectionListItemModelMapper;
 
         public ScheduleController(IGenericRepository genericRepository,
             ISchoolRepository schoolRepository,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, 
             IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper,
-            IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper )
+            IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper,
+            IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper )
         {
             _genericRepository = genericRepository;
             _schoolRepository = schoolRepository;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
             _sessionToSessionListItemModelMapper = sessionToSessionListItemModelMapper;
             _sectionToAutocompleteModelMapper = sectionToAutocompleteModelMapper;
+            _studentSectionAssociationToSectionListItemModelMapper = studentSectionAssociationToSectionListItemModelMapper;
         }
 
         //
@@ -49,15 +53,15 @@ namespace NGL.Web.Controllers
             return View(setModel);
         }
 
-        private List<string> GetCurrentlyEnrolledSectionsFor(int studentUSI)
+        private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUSI)
         {
             var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
                 .Where(ssa => ssa.StudentUSI == studentUSI);
-            var currentlyEnrolledSections = new List<string>();
+            var currentlyEnrolledSections = new List<SectionListItemModel>();
 
             foreach (StudentSectionAssociation ssa in currentlyEnrolledStudentSectionAssociationEntities)
             {
-                currentlyEnrolledSections.Add(ssa.LocalCourseCode);
+                currentlyEnrolledSections.Add(_studentSectionAssociationToSectionListItemModelMapper.Build(ssa));
             }
 
             return currentlyEnrolledSections;
