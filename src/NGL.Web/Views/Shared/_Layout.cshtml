@@ -1,4 +1,5 @@
 ﻿@using StackExchange.Profiling
+@using Microsoft.AspNet.Identity
 <!DOCTYPE html>
 <html>
 @using StackExchange.Profiling;
@@ -38,7 +39,10 @@
                             Planning
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Enrollment", "CreateStudent", "Enrollment")</li>
+                            @if (User.IsInRole("Master Admin") || User.IsInRole("Admin"))
+                            {
+                                <li>@Html.ActionLink("Enrollment", "CreateStudent", "Enrollment")</li>
+                            }
                             <li>@Html.ActionLink("Course Generation", "Index", "CourseGeneration")</li>
                         </ul>
                     </li>

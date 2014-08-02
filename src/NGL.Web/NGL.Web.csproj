@@ -290,6 +290,7 @@
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
+    <Compile Include="Infrastructure\AccessProvideTo.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileDownloader.cs" />
@@ -1941,6 +1942,7 @@
     <Content Include="Views\Section\Create.cshtml" />
     <Content Include="Views\Section\Index.cshtml" />
     <Content Include="Views\Schedule\Set.cshtml" />
+    <Content Include="Views\Shared\Forbidden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

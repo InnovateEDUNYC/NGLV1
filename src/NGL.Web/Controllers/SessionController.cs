@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Infrastructure;
 using NGL.Web.Models;
 using NGL.Web.Models.Session;
 
@@ -37,6 +38,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: Session
+        [AccessProvideTo(Roles = "Teacher")]
         public virtual ActionResult Create()
         {
             return View(new CreateModel());
