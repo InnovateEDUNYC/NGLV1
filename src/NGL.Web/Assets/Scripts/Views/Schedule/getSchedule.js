@@ -31,13 +31,9 @@ Ngl.schedule.getSchedule = (function () {
                     });
                 },
                 select: function(event, ui) {
-                    $('#sectionId').val(ui.item.sectionId);
+                    $('#sectionId').val(ui.item.SectionId);
                 },
                 minLength: 2,
-                messages: {
-                    noResults: "",
-                    results: "results!"
-                }
             });
     }
 

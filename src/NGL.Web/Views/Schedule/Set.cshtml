@@ -20,18 +20,32 @@
 {
     using (var s = f.BeginSection("Info"))
     {
-        @s.FieldFor(m => m.Session)
+        @s.FieldFor(m => m.Session).AddLabelClass("category-title")
         @s.FieldFor(m => m.BeginDate)
         @s.FieldFor(m => m.EndDate)
         <div class="hidden">
-            @s.FieldFor(m => m.sectionId).AddClass("hidden")
+            @s.FieldFor(m => m.SectionId).AddClass("hidden")
             @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
         </div>
     }
 }
 
-Section @Html.TextBox("Section")
+<span class="category-title">
+    Section @Html.TextBox("Section")
+</span>
 <button id="schedule-student-button">Save</button>
+
+<div class="current-sections-container">
+    <span class="category-title">Sections Assigned</span>
+    <ul>
+        @foreach (var item in Model.CurrentlyEnrolledSections)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => item)
+            </li>
+        }
+    </ul>
+</div>
 
 @section Scripts {
     Ngl.schedule.getSchedule.init();

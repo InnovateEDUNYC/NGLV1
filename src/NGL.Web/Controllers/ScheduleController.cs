@@ -41,11 +41,26 @@ namespace NGL.Web.Controllers
         {
             var student = _genericRepository.Get<Student>(s => s.StudentUSI == id);
             var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(student);
-            var sessions = GetAllSessions();
+            var sessionModels = GetAllSessionModels();
+            var currentlyEnrolledSections = GetCurrentlyEnrolledSectionsFor(id);
 
             var defaultSessionListModel = _sessionToSessionListItemModelMapper.Build(new SessionFilter(_genericRepository).FindSession(DateTime.Now));
-            var setModel = SetModel.CreateNewWith(student, profilePhotoUrl, sessions, defaultSessionListModel);
+            var setModel = SetModel.CreateNewWith(student, profilePhotoUrl, sessionModels, defaultSessionListModel, currentlyEnrolledSections);
             return View(setModel);
+        }
+
+        private List<string> GetCurrentlyEnrolledSectionsFor(int studentUSI)
+        {
+            var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
+                .Where(ssa => ssa.StudentUSI == studentUSI);
+            var currentlyEnrolledSections = new List<string>();
+
+            foreach (StudentSectionAssociation ssa in currentlyEnrolledStudentSectionAssociationEntities)
+            {
+                currentlyEnrolledSections.Add(ssa.LocalCourseCode);
+            }
+
+            return currentlyEnrolledSections;
         }
 
         //
@@ -53,7 +68,7 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual JsonResult ScheduleStudent(SetModel setModel)
         {
-            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == setModel.sectionId);
+            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == setModel.SectionId);
             var schoolId = _schoolRepository.GetSchool().SchoolId;
             var studentSectionAssociation = new StudentSectionAssociation
             {
@@ -91,7 +106,7 @@ namespace NGL.Web.Controllers
             return autocompleteModels;
         }
 
-        private List<SessionListItemModel> GetAllSessions()
+        private List<SessionListItemModel> GetAllSessionModels()
         {
             var sessions = _genericRepository.GetAll<Session>();
             return sessions.Select(session => _sessionToSessionListItemModelMapper.Build(session)).ToList();
