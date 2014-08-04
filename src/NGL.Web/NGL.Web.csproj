@@ -290,7 +290,6 @@
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
-    <Compile Include="Infrastructure\AccessProvideTo.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
     <Compile Include="Infrastructure\Azure\IFileDownloader.cs" />
@@ -1625,7 +1624,12 @@
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\CustomMetadataProvider.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
+    <Compile Include="Infrastructure\Security\AuthorizeFor.cs" />
     <Compile Include="Infrastructure\Security\INglPrinciple.cs" />
+    <Compile Include="Infrastructure\Security\IResourceService.cs" />
+    <Compile Include="Infrastructure\Security\NglPrincipal.cs" />
+    <Compile Include="Infrastructure\Security\NglPrincipalSerializedModel.cs" />
+    <Compile Include="Infrastructure\Security\ResourceService.cs" />
     <Compile Include="Models\Account\AddUserModel.cs" />
     <Compile Include="Models\Account\AddUserModelToApplicationUserMapper.cs" />
     <Compile Include="Models\Account\AddUserModelToStaffMapper.cs" />

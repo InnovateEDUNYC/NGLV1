@@ -7,8 +7,9 @@
 
 <h2>Sessions</h2>
 <ul class="nav nav-pills">
-    <li>@((User as NglPrincipal).Resources)</li>
-    <li>@Html.ActionLink("Create New Session", "Create")</li>
+    @if((User as NglPrincipal).HasAccessTo("session", "create")){
+        <li>@Html.ActionLink("Create New Session", "Create")</li>
+    }
 </ul>
 
 <table class="table table-striped">

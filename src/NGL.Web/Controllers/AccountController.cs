@@ -7,6 +7,7 @@ using System.Web.Script.Serialization;
 using System.Web.Security;
 using Humanizer;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -20,6 +21,8 @@ namespace NGL.Web.Controllers
     public partial class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IResourceService _resourceService;
         private readonly IGenericRepository _genericRepository;
         private readonly IStaffRepository _staffRepository;
         private readonly IMapper<Staff, UserModel> _staffToUserModelMapper;
@@ -28,6 +31,8 @@ namespace NGL.Web.Controllers
 
         public AccountController(
             UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager,
+            IResourceService resourceService,
             IGenericRepository genericRepository, 
             IStaffRepository staffRepository,
             IMapper<Staff, UserModel> staffToUserModelMapper,
@@ -35,6 +40,8 @@ namespace NGL.Web.Controllers
             IMapper<AddUserModel, ApplicationUser> addUserModelToApplicationUserMapper)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
+            _resourceService = resourceService;
             _genericRepository = genericRepository;
             _staffRepository = staffRepository;
             _staffToUserModelMapper = staffToUserModelMapper;
@@ -65,7 +72,7 @@ namespace NGL.Web.Controllers
             if (user != null)
             {
                 await SignInAsync(user, model.RememberMe);
-                CreateAuthenticationTicket(model.Username);
+                CreateAuthenticationTicket(user);
                 return RedirectToLocal(returnUrl);
             }
                 
@@ -106,7 +113,6 @@ namespace NGL.Web.Controllers
             if (result.Succeeded)
             {
                 _userManager.AddToRole(user.Id, model.Role.Humanize());
-                CreateAuthenticationTicket(model.Username);
                 return RedirectToAction("Users");
             }
 
@@ -189,7 +195,6 @@ namespace NGL.Web.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -225,18 +230,19 @@ namespace NGL.Web.Controllers
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
         }
 
-        public void CreateAuthenticationTicket(string username)
+        public void CreateAuthenticationTicket(ApplicationUser user)
         {
+            var roleId = user.Roles.First().RoleId;
+            var role = _roleManager.FindById(roleId).Name.DehumanizeTo<ApplicationRole>();
 
-            NglPrincipalSerializedModel serializeModel = new NglPrincipalSerializedModel {Resources = "Session.Create"};
+            var serializeModel = new NglPrincipalSerializedModel {Resources = _resourceService.GetResourcesFor(role)};
 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string userData = serializer.Serialize(serializeModel);
+            var serializer = new JavaScriptSerializer();
+            var userData = serializer.Serialize(serializeModel);
 
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
-              1, username, DateTime.Now, DateTime.Now.AddHours(8), false, userData);
-            string encTicket = FormsAuthentication.Encrypt(authTicket);
-            HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+            var authTicket = new FormsAuthenticationTicket(1, user.UserName, DateTime.Now, DateTime.Now.AddHours(8), false, userData);
+            var encTicket = FormsAuthentication.Encrypt(authTicket);
+            var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
             Response.Cookies.Add(faCookie);
         }
 
