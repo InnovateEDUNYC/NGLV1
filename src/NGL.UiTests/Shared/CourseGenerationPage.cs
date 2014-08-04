@@ -1,7 +1,6 @@
 ﻿using NGL.UiTests.ClassPeriod;
 using NGL.UiTests.Course;
 using NGL.UiTests.Location;
-using NGL.UiTests.Section;
 using NGL.UiTests.Session;
 using OpenQA.Selenium;
 using Page = TestStack.Seleno.PageObjects.Page;
@@ -31,9 +30,9 @@ namespace NGL.UiTests.Shared
             return Navigate.To<LocationIndexPage>(By.LinkText("Classrooms"));
         }
 
-        public SectionCreatePage GoToSectionCreatePage()
-        {
-            return Navigate.To<SectionCreatePage>(By.LinkText("Create Section"));
-        }
+//        public SectionCreatePage GoToSectionCreatePage()
+//        {
+//            return Navigate.To<SectionCreatePage>(By.LinkText("Create Section"));
+//        }
     }
 }

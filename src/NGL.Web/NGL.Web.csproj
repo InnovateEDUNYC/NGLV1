@@ -1677,8 +1677,6 @@
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Section\ClassPeriodListItemModel.cs" />
     <Compile Include="Models\Section\ClassPeriodToClassPeriodListItemModelMapper.cs" />
-    <Compile Include="Models\Section\CourseListItemModel.cs" />
-    <Compile Include="Models\Section\CourseToCourseListItemModelMapper.cs" />
     <Compile Include="Models\Section\CreateModelToCourseOfferingMapper.cs" />
     <Compile Include="Models\Section\CreateModelToSectionMapper.cs" />
     <Compile Include="Models\Section\IndexModel.cs" />
