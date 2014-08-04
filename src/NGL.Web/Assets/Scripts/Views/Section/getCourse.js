@@ -18,19 +18,13 @@ Ngl.section.getCourse = (function () {
                     success: function (data) {
                         response($.map(data, function (course) {
                             return {
-                                label: course.CourseTitle,
+                                label: course.CourseCode + ": " + course.CourseTitle,
                                 value: course.CourseCode
                             };
                         }));
                     }
                 });
             },
-//            select: function (event, ui) {
-//                console.log(ui);
-//                var selectedSession = ui.item;
-//                $("#SchoolYear").val(selectedSession.school);
-//                $("#Term").val(selectedSession.term);
-//            },
             minLength: 2,
         });
     }

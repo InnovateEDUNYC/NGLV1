@@ -103,9 +103,22 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual JsonResult GetCourses(string searchString)
         {
-            var courses = _genericRepository.GetAll<Course>();
+            var courses = _genericRepository.GetAll<Course>()
+                .Where(c => ContainsCourseTitle(searchString, c) 
+                    || ContainsCourseCode(searchString, c));
+
             var courseModels = courses.Select(c => _courseToCourseJsonModelMapper.Build(c));
             return Json(courseModels, JsonRequestBehavior.AllowGet);
+        }
+
+        private static bool ContainsCourseCode(string searchString, Course course)
+        {
+            return course.CourseCode.ToLower().Contains(searchString.ToLower());
+        }
+
+        private static bool ContainsCourseTitle(string searchString, Course course)
+        {
+            return course.CourseTitle.ToLower().Contains(searchString.ToLower());
         }
 
         private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
