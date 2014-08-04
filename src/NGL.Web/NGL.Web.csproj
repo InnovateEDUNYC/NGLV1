@@ -288,7 +288,9 @@
     <Compile Include="Data\Queries\CourseOfferingByPrimaryKeysQuery.cs" />
     <Compile Include="Data\Queries\SectionByPrimaryKeysQuery.cs" />
     <Compile Include="Data\Filters\SessionFilter.cs" />
+    <Compile Include="Data\Queries\SectionsBySectionNameAndSessionQuery.cs" />
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
+    <Compile Include="Data\Queries\StudentSectionAssociationByPrimaryKeysQuery.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
@@ -1666,6 +1668,8 @@
     <Compile Include="Models\Schedule\SetModel.cs" />
     <Compile Include="Models\Section\CourseJsonModel.cs" />
     <Compile Include="Models\Section\CourseToCourseJsonModelMapper.cs" />
+    <Compile Include="Models\Schedule\SetModelToStudentSectionAssociationMapper.cs" />
+    <Compile Include="Models\Schedule\SetModelValidator.cs" />
     <Compile Include="Models\Section\CreateModelValidator.cs" />
     <Compile Include="Models\Section\SectionListItemModel.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />
@@ -1841,6 +1845,7 @@
     <Content Include="Assets\Scripts\Views\Schedule\getSchedule.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Section\getSession.js" />
+    <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <Content Include="favicon.ico" />

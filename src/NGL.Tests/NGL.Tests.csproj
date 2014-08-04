@@ -81,6 +81,8 @@
     <Compile Include="Builders\CourseBuilder.cs" />
     <Compile Include="Builders\CreateParentModelBuilder.cs" />
     <Compile Include="Builders\LocationBuilder.cs" />
+    <Compile Include="Builders\SchoolBuilder.cs" />
+    <Compile Include="Builders\SetScheduleModelBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
     <Compile Include="ClassPeriod\CreateClassPeriodModelBuilder.cs" />
     <Compile Include="Builders\StudentProgramStatusBuilder.cs" />
@@ -104,6 +106,8 @@
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />
     <Compile Include="Section\CourseToCourseJsonModelMapperTests.cs" />
+    <Compile Include="Schedule\SessionToSessionListItemModelMapperTests.cs" />
+    <Compile Include="Schedule\SetModelToStudentSectionAssociationMapperTests.cs" />
     <Compile Include="Section\CreateSectionModelBuilder.cs" />
     <Compile Include="Section\CreateModelToCourseOfferingMapperTests.cs" />
     <Compile Include="Section\EntityToListItemModelMapperTests.cs" />

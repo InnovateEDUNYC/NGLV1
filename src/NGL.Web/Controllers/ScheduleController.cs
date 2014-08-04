@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
@@ -22,13 +23,14 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Session, SessionListItemModel> _sessionToSessionListItemModelMapper;
         private readonly IMapper<Section, AutocompleteModel> _sectionToAutocompleteModelMapper;
         private readonly IMapper<StudentSectionAssociation, SectionListItemModel> _studentSectionAssociationToSectionListItemModelMapper;
+        private readonly IMapper<SetModel, StudentSectionAssociation> _setModelToStudentSectionAssociationMapper;
 
         public ScheduleController(IGenericRepository genericRepository,
             ISchoolRepository schoolRepository,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, 
             IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper,
             IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper,
-            IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper )
+            IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper, IMapper<SetModel, StudentSectionAssociation> setModelToStudentSectionAssociationMapper)
         {
             _genericRepository = genericRepository;
             _schoolRepository = schoolRepository;
@@ -36,6 +38,7 @@ namespace NGL.Web.Controllers
             _sessionToSessionListItemModelMapper = sessionToSessionListItemModelMapper;
             _sectionToAutocompleteModelMapper = sectionToAutocompleteModelMapper;
             _studentSectionAssociationToSectionListItemModelMapper = studentSectionAssociationToSectionListItemModelMapper;
+            _setModelToStudentSectionAssociationMapper = setModelToStudentSectionAssociationMapper;
         }
 
         // GET: /Set/5
@@ -71,20 +74,12 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "scheduleStudents", Operation = "create")]
         public virtual JsonResult ScheduleStudent(SetModel setModel)
         {
-            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == setModel.SectionId);
-            var schoolId = _schoolRepository.GetSchool().SchoolId;
-            var studentSectionAssociation = new StudentSectionAssociation
+            if (!ModelState.IsValid)
             {
-                SchoolId = schoolId,
-                StudentUSI = setModel.StudentUsi,
-                BeginDate = setModel.BeginDate,
-                EndDate = setModel.EndDate,
-                SchoolYear = section.SchoolYear,
-                TermTypeId = section.TermTypeId,
-                LocalCourseCode = section.LocalCourseCode,
-                ClassPeriodName = section.ClassPeriodName,
-                ClassroomIdentificationCode = section.ClassroomIdentificationCode
-            };
+                var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
+                return Json(new {errors=errors}, JsonRequestBehavior.AllowGet);
+            }
+            var studentSectionAssociation = _setModelToStudentSectionAssociationMapper.Build(setModel);
 
             _genericRepository.Add(studentSectionAssociation);
             _genericRepository.Save();
@@ -97,15 +92,17 @@ namespace NGL.Web.Controllers
         // AJAX POST: /GetSections/SCI4
         [HttpPost]
         [AuthorizeFor(Resource = "scheduleStudents", Operation = "create")]
-        public virtual JsonResult GetSections(string searchString)
+        public virtual JsonResult GetSections(string searchString, int sessionId)
         {
-            var autoCompleteModels = GetAllSectionAutocompleteModelsWith(searchString);
+            var autoCompleteModels = GetAllSectionAutocompleteModelsWith(searchString, sessionId);
             return Json(autoCompleteModels, JsonRequestBehavior.AllowGet);
         }
 
-        private IEnumerable<Models.Section.AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString)
+        private IEnumerable<Models.Section.AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString, int sessionId)
         {
-            var sections = _genericRepository.GetAll<Section>().Where(s => s.UniqueSectionCode.ToLower().Contains(searchString.ToLower()));
+            var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
+            var query = new SectionsBySectionNameAndSessionQuery(searchString, session);
+            var sections = _genericRepository.GetAll(query);
             var autocompleteModels = sections.Select(section => _sectionToAutocompleteModelMapper.Build(section)).ToList();
 
             return autocompleteModels;

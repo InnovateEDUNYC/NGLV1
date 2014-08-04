@@ -23,7 +23,7 @@ namespace NGL.Web.Models.Schedule
             RuleFor(model => model.EndDate).NotEmpty();
             RuleFor(model => model.Session).NotEmpty();
             RuleFor(model => model.StudentUsi).NotEmpty();
-            RuleFor(model => model.SectionId).NotEmpty();
+            RuleFor(model => model.SectionId).NotEmpty().WithMessage("Please select a section from the search box");
         }
 
         public override ValidationResult Validate(ValidationContext<SetModel> context)
