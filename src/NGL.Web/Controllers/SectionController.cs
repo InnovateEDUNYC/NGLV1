@@ -17,7 +17,6 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Section, IndexModel> _sectionToIndexModelMapper;
         private readonly IMapper<ClassPeriod, ClassPeriodListItemModel> _classPeriodToClassPeriodNameModelMapper;
         private readonly IMapper<Location, LocationListItemModel> _locationToClassRoomModelMapper;
-        private readonly IMapper<Course, CourseListItemModel> _courseToCourseListItemModelMapper;
         private readonly IMapper<CreateModel, Section> _createModelToSectionMapper;
         private readonly IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
         private readonly IMapper<Session, SessionJSONModel> _sessionToSessionJSONModel;
@@ -27,7 +26,6 @@ namespace NGL.Web.Controllers
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
             IMapper<ClassPeriod, ClassPeriodListItemModel> classPeriodToClassPeriodNameModelMapper, 
             IMapper<Location, LocationListItemModel> locationToClassRoomModelMapper, 
-            IMapper<Course, CourseListItemModel> courseToCourseListItemModelMapper, 
             IMapper<CreateModel, Section> createModelToSectionMapper, 
             IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
             IMapper<Session, SessionJSONModel> sessionToSessionJsonModel, 
@@ -41,7 +39,6 @@ namespace NGL.Web.Controllers
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
-            _courseToCourseListItemModelMapper = courseToCourseListItemModelMapper;
         }
 
         // GET: /Section
@@ -66,9 +63,8 @@ namespace NGL.Web.Controllers
         {
             var classPeriodModels = GetClassPeriodNameModels();
             var classRoomModels = GetClassRoomModels();
-            var courses = GetAllCourses();
 
-            var createModel = CreateModel.CreateNewWith(classPeriodModels, classRoomModels, courses);
+            var createModel = CreateModel.CreateNewWith(classPeriodModels, classRoomModels);
             return View(createModel);
         }
 
@@ -80,7 +76,6 @@ namespace NGL.Web.Controllers
             {
                 createModel.Periods = GetClassPeriodNameModels();
                 createModel.Classrooms = GetClassRoomModels();
-                createModel.Courses = GetAllCourses();
 
                 return View(createModel);
             }
@@ -132,12 +127,6 @@ namespace NGL.Web.Controllers
         {
             var locations = _genericRepository.GetAll<Location>();
             return locations.Select(location => _locationToClassRoomModelMapper.Build(location)).ToList();
-        }
-
-        private List<CourseListItemModel> GetAllCourses()
-        {
-            var courses = _genericRepository.GetAll<Course>();
-            return courses.Select(course => _courseToCourseListItemModelMapper.Build(course)).ToList();
         }
 
         private void createSection(CreateModel createModel)

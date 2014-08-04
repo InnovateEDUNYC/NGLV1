@@ -15,16 +15,13 @@
         @s.FieldFor(m => m.SchoolYear)
         @s.FieldFor(m => m.Term)
         </div>
+
         @s.FieldFor(m => m.Session)        
         @s.FieldFor(m => m.Period)
         @s.FieldFor(m => m.Classroom)
-        
-        @Html.Label("Course")
-        @Html.TextBox("Course") 
-    
+        @s.FieldFor(m => m.Course)
         @s.FieldFor(m => m.UniqueSectionCode)
         @s.FieldFor(m => m.SequenceOfCourse)
-    
     }
     
     using (var n = f.BeginNavigation())
