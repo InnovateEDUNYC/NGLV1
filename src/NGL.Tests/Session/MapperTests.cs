@@ -26,6 +26,7 @@ namespace NGL.Tests.Session
             sessionEntity.BeginDate.ShouldBe((DateTime) sessionCreateModel.BeginDate);
             sessionEntity.EndDate.ShouldBe((DateTime) sessionCreateModel.EndDate);
             sessionEntity.TotalInstructionalDays.ShouldBe((int) sessionCreateModel.TotalInstructionalDays);
+            sessionEntity.SessionName.ShouldBe("Fall Semester 2014");
         }
 
         [Fact]

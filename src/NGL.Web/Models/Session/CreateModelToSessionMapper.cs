@@ -1,4 +1,6 @@
 ﻿using System;
+using Humanizer;
+using NGL.Web.Data.Entities;
 using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.Session
@@ -17,10 +19,11 @@ namespace NGL.Web.Models.Session
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
             target.TermTypeId = (int) source.Term.GetValueOrDefault();
             target.SchoolYear = (short) source.SchoolYear;
-            target.BeginDate = (DateTime) source.BeginDate.GetValueOrDefault();
-            target.EndDate = (DateTime) source.EndDate.GetValueOrDefault();
-            target.SessionName = string.Empty;
+            target.BeginDate = source.BeginDate.GetValueOrDefault();
+            target.EndDate = source.EndDate.GetValueOrDefault();
+            target.SessionName = source.Term.Humanize() + " " + ((int) source.SchoolYear);
             target.TotalInstructionalDays = (int) source.TotalInstructionalDays;
+            
         }
     }
 }

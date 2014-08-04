@@ -93,7 +93,9 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual JsonResult GetSessions(string searchString)
         {
-            var sessions = _genericRepository.GetAll<Session>();
+            var sessions = _genericRepository.GetAll<Session>()
+                .Where(s => s.SessionName.ToLower().Contains(searchString.ToLower()));
+            
             var sessionModels = sessions.Select(s => _sessionToSessionJSONModel.Build(s));
             return Json(sessionModels, JsonRequestBehavior.AllowGet);
         }
