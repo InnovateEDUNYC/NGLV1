@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Section;
@@ -82,15 +85,7 @@ namespace NGL.Web.Controllers
                 return View(createModel);
             }
 
-            var section = _createModelToSectionMapper.Build(createModel);
-            var courseOffering = _genericRepository.Get<CourseOffering>(
-                c => c.LocalCourseCode == createModel.Course 
-                    && c.SchoolYear == createModel.SchoolYear 
-                    && c.TermTypeId == createModel.Term) ?? _createModelToCourseOfferingMapper.Build(createModel);
-
-            _genericRepository.Add(courseOffering);
-            _genericRepository.Add(section);
-            _genericRepository.Save();
+            createSection(createModel);
 
             return RedirectToAction(Actions.Index());
         }
@@ -120,6 +115,22 @@ namespace NGL.Web.Controllers
         {
             var courses = _genericRepository.GetAll<Course>();
             return courses.Select(course => _courseToCourseListItemModelMapper.Build(course)).ToList();
+        }
+
+        private void createSection(CreateModel createModel)
+        {
+            var section = _createModelToSectionMapper.Build(createModel);
+            var courseOfferingByPrimaryKeysQuery = new CourseOfferingByPrimaryKeysQuery(createModel.Course,
+                createModel.SchoolYear, createModel.Term);
+
+            if (_genericRepository.Get(courseOfferingByPrimaryKeysQuery) == null)
+            {
+                var courseOffering = _createModelToCourseOfferingMapper.Build(createModel);
+                _genericRepository.Add(courseOffering);
+            }
+
+            _genericRepository.Add(section);
+            _genericRepository.Save();
         }
     }
 }
