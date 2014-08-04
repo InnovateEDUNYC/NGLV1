@@ -1,6 +1,4 @@
-﻿using System;
-using Humanizer;
-using NGL.Web.Data.Entities;
+﻿using Humanizer;
 using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.Session

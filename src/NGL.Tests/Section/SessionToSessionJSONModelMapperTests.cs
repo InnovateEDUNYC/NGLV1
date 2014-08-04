@@ -17,7 +17,7 @@ namespace NGL.Tests.Section
 
             model.Term.ShouldBe(entity.TermTypeId);
             model.SchoolYear.ShouldBe(entity.SchoolYear);
-            model.SessionName.ShouldBe("Fall Semester 2014");
+            model.SessionName.ShouldBe(entity.SessionName);
         }
     }
 }

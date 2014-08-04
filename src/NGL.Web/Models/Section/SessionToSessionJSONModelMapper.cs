@@ -9,7 +9,7 @@ namespace NGL.Web.Models.Section
         {
             target.SchoolYear = source.SchoolYear;
             target.Term = source.TermTypeId;
-            target.SessionName = ((TermTypeEnum) source.TermTypeId).Humanize() + " " + source.SchoolYear;
+            target.SessionName = source.SessionName;
         }
     }
 }

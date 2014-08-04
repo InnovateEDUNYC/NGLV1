@@ -10,6 +10,7 @@ namespace NGL.Tests.Session
         private static readonly DateTime BeginDate = new DateTime(2014, 6, 26);
         private static readonly DateTime EndDate = new DateTime(2014, 9, 26);
         private const int TotalInstructionalDays = 92;
+        private const string SessionName = "Fall Semester 2014";
 
         public Web.Data.Entities.Session Build()
         {
@@ -18,6 +19,7 @@ namespace NGL.Tests.Session
                 SchoolId = Constants.SchoolId,
                 TermTypeId = TermType,
                 SchoolYear = SchoolYear,
+                SessionName = SessionName,
                 BeginDate = BeginDate,
                 EndDate = EndDate,
                 TotalInstructionalDays = TotalInstructionalDays
