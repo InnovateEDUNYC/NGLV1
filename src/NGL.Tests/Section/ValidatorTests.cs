@@ -25,8 +25,7 @@ namespace NGL.Tests.Section
                 .Get(Arg.Any<SectionByPrimaryKeysQuery>())
                 .Returns(null as Web.Data.Entities.Section);
 
-            _validator.ShouldNotHaveValidationErrorFor(s => s.SchoolYear, _sectionCreateModel);
-            _validator.ShouldNotHaveValidationErrorFor(s => s.Term, _sectionCreateModel);
+            _validator.ShouldNotHaveValidationErrorFor(s => s.Session, _sectionCreateModel);
             _validator.ShouldNotHaveValidationErrorFor(s => s.Period, _sectionCreateModel);
             _validator.ShouldNotHaveValidationErrorFor(s => s.Classroom, _sectionCreateModel);
             _validator.ShouldNotHaveValidationErrorFor(s => s.Course, _sectionCreateModel);
@@ -43,8 +42,7 @@ namespace NGL.Tests.Section
                 .Get(Arg.Any<SectionByPrimaryKeysQuery>())
                 .Returns(sectionEntity);
 
-            _validator.ShouldHaveValidationErrorFor(s => s.SchoolYear, _sectionCreateModel);
-            _validator.ShouldHaveValidationErrorFor(s => s.Term, _sectionCreateModel);
+            _validator.ShouldHaveValidationErrorFor(s => s.Session, _sectionCreateModel);
             _validator.ShouldHaveValidationErrorFor(s => s.Period, _sectionCreateModel);
             _validator.ShouldHaveValidationErrorFor(s => s.Classroom, _sectionCreateModel);
             _validator.ShouldHaveValidationErrorFor(s => s.Course, _sectionCreateModel);
