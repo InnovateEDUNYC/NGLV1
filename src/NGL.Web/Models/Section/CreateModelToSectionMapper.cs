@@ -20,15 +20,21 @@ namespace NGL.Web.Models.Section
 
         public override void Map(CreateModel source, Data.Entities.Section target)
         {
-            var courseOffering = _genericRepository.Get<Data.Entities.CourseOffering>(
-                c => c.LocalCourseCode == source.Course) ?? _createModelToCourseOfferingMapper.Build(source);
+//            var courseOffering = _genericRepository.Get<Data.Entities.CourseOffering>(
+//                c => c.LocalCourseCode == source.Course 
+//                    && c.SchoolYear == source.SchoolYear 
+//                    && c.TermTypeId == source.Term) ?? _createModelToCourseOfferingMapper.Build(source);
 
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
             target.ClassPeriodName = source.Period;
             target.ClassroomIdentificationCode = source.Classroom;
-            target.CourseOffering = courseOffering;
+            target.LocalCourseCode = source.Course;
+            target.TermTypeId = source.Term;
+            target.SchoolYear = source.SchoolYear;
             target.UniqueSectionCode = source.UniqueSectionCode;
             target.SequenceOfCourse = source.SequenceOfCourse;
+//            courseOffering.Sections.Add(target);
+//            target.CourseOffering = courseOffering;
         }
     }
 }

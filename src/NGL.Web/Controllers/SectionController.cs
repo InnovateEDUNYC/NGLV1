@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Section;
 using CreateModel = NGL.Web.Models.Section.CreateModel;
@@ -18,16 +19,18 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Location, LocationListItemModel> _locationToClassRoomModelMapper;
         private readonly IMapper<Course, CourseListItemModel> _courseToCourseListItemModelMapper;
         private readonly IMapper<CreateModel, Section> _createModelToSectionMapper;
+        private readonly IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
 
         public SectionController(IGenericRepository genericRepository, 
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
             IMapper<ClassPeriod, ClassPeriodListItemModel> classPeriodToClassPeriodNameModelMapper, 
             IMapper<Location, LocationListItemModel> locationToClassRoomModelMapper, 
             IMapper<Course, CourseListItemModel> courseToCourseListItemModelMapper, 
-            IMapper<CreateModel, Section> createModelToSectionMapper)
+            IMapper<CreateModel, Section> createModelToSectionMapper, IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper)
         {
             _genericRepository = genericRepository;
             _createModelToSectionMapper = createModelToSectionMapper;
+            _createModelToCourseOfferingMapper = createModelToCourseOfferingMapper;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
@@ -76,6 +79,8 @@ namespace NGL.Web.Controllers
             }
 
             var section = _createModelToSectionMapper.Build(createModel);
+            var courseOffering = _createModelToCourseOfferingMapper.Build(createModel);
+            _genericRepository.Add(courseOffering);
             _genericRepository.Add(section);
             _genericRepository.Save();
 

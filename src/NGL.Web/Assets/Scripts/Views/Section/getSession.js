@@ -3,6 +3,15 @@
 Ngl.section.getSession = (function () {
     var getSession = function () {
         $("#Session").autocomplete({
+            select: function(e, ui) {
+                console.log("Selected");
+                console.log("Term Type Id:");
+                console.log(ui.item.value.termTypeId);
+                console.log("School Year:");
+                console.log(ui.item.value.schoolYear);
+                $("#Term").val(ui.item.value.termTypeId);
+                $("#SchoolYear").val(ui.item.value.schoolYear);
+            },
             source: function (request, response) {
                 $.ajax({
                     url: "/section/GetSessions",
@@ -15,12 +24,11 @@ Ngl.section.getSession = (function () {
                         searchString: request.term
                     },
                     success: function (data) {
-                        console.log(data);
                         response($.map(data, function (session) {
-                            console.log(session.SessionName);
+                            console.log(session);
                             return {
                                 label: session.SessionName,
-                                value: session.SessionName
+                                value: {termTypeId: session.TermTypeId, schoolYear: session.SchoolYear}
                             };
                         }));
                     }

@@ -13,9 +13,9 @@ namespace NGL.Web.Models.Section
             Courses = new List<CourseListItemModel>();
         }
 
-        public SchoolYearTypeEnum SchoolYear { get; set; }
+        public short SchoolYear { get; set; }
 
-        public TermTypeEnum Term { get; set; }
+        public int Term { get; set; }
 
         public List<ClassPeriodListItemModel> Periods { get; set; }
 

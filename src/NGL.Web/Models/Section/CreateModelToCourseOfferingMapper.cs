@@ -22,12 +22,17 @@ namespace NGL.Web.Models.Section
 
             target.LocalCourseCode = source.Course;
 
-            target.Course = _genericRepository.Get<Data.Entities.Course>(
-                c => c.CourseCode == source.Course);
-
-            target.Session = _genericRepository.Get<Data.Entities.Session>(
-                s => s.TermTypeId == (int) source.Term && 
-                    s.SchoolYear == (short) source.SchoolYear);
+//            target.Course = _genericRepository.Get<Data.Entities.Course>(
+//                c => c.CourseCode == source.Course);
+//
+//            target.Session = _genericRepository.Get<Data.Entities.Session>(
+//                s => s.TermTypeId == (int) source.Term && 
+//                    s.SchoolYear == (short) source.SchoolYear);
+            target.CourseCode = source.Course;
+            target.TermTypeId = source.Term;
+            target.SchoolYear = source.SchoolYear;
+                
+//            target.Sections.Add(section);
         }
 
     }
