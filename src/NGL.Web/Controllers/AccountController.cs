@@ -1,13 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Web.Security;
 using Humanizer;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Account;
 
@@ -61,6 +65,7 @@ namespace NGL.Web.Controllers
             if (user != null)
             {
                 await SignInAsync(user, model.RememberMe);
+                CreateAuthenticationTicket(model.Username);
                 return RedirectToLocal(returnUrl);
             }
                 
@@ -101,6 +106,7 @@ namespace NGL.Web.Controllers
             if (result.Succeeded)
             {
                 _userManager.AddToRole(user.Id, model.Role.Humanize());
+                CreateAuthenticationTicket(model.Username);
                 return RedirectToAction("Users");
             }
 
@@ -190,6 +196,8 @@ namespace NGL.Web.Controllers
         public virtual ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddDays(-1);    
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -215,6 +223,21 @@ namespace NGL.Web.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
+        }
+
+        public void CreateAuthenticationTicket(string username)
+        {
+
+            NglPrincipalSerializedModel serializeModel = new NglPrincipalSerializedModel {Resources = "Session.Create"};
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string userData = serializer.Serialize(serializeModel);
+
+            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+              1, username, DateTime.Now, DateTime.Now.AddHours(8), false, userData);
+            string encTicket = FormsAuthentication.Encrypt(authTicket);
+            HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+            Response.Cookies.Add(faCookie);
         }
 
         private void AddErrors(IdentityResult result)

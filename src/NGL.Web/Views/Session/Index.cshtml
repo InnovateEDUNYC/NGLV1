@@ -1,4 +1,5 @@
-﻿@model IEnumerable<NGL.Web.Models.Session.IndexModel>
+﻿@using NGL.Web.Infrastructure.Security
+@model IEnumerable<NGL.Web.Models.Session.IndexModel>
 
 @{
     ViewBag.Title = "Sessions";
@@ -6,6 +7,7 @@
 
 <h2>Sessions</h2>
 <ul class="nav nav-pills">
+    <li>@((User as NglPrincipal).Resources)</li>
     <li>@Html.ActionLink("Create New Session", "Create")</li>
 </ul>
 

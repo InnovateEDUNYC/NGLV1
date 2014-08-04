@@ -1625,6 +1625,7 @@
     <Compile Include="Infrastructure\ChameleonForms\NglFieldGenerator.cs" />
     <Compile Include="Infrastructure\CustomMetadataProvider.cs" />
     <Compile Include="Infrastructure\PropertyNameExtensions.cs" />
+    <Compile Include="Infrastructure\Security\INglPrinciple.cs" />
     <Compile Include="Models\Account\AddUserModel.cs" />
     <Compile Include="Models\Account\AddUserModelToApplicationUserMapper.cs" />
     <Compile Include="Models\Account\AddUserModelToStaffMapper.cs" />

@@ -3,10 +3,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Script.Serialization;
+using System.Web.Security;
 using FluentValidation.Mvc;
 using NGL.Web.App_Start;
 using NGL.Web.Controllers;
 using NGL.Web.Infrastructure;
+using NGL.Web.Infrastructure.Security;
 using StackExchange.Profiling;
 
 namespace NGL.Web
@@ -49,6 +52,21 @@ namespace NGL.Web
             if (Request.IsLocal)
             {
                 MiniProfiler.Stop();
+            }
+        }
+
+        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        {
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                if (authTicket.UserData == "OAuth") return;
+                NglPrincipalSerializedModel serializeModel = serializer.Deserialize<NglPrincipalSerializedModel>(authTicket.UserData);
+                NglPrincipal newUser = new NglPrincipal(authTicket.Name);
+                newUser.Resources = serializeModel.Resources;
+                HttpContext.Current.User = newUser;
             }
         }
 

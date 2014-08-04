@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 
 namespace NGL.Web.Infrastructure
 {
+    [AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
     public class AccessProvideTo : AuthorizeAttribute
     {
+        public string Resource { get; set; }
+        public string Operation { get; set; }
+
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+            base.Roles = ResourceService.GetAuthorizedRolesFor(Resource, Operation);
             base.OnAuthorization(filterContext);
             CheckIfUserIsAuthenticated(filterContext);
         }
@@ -23,6 +29,14 @@ namespace NGL.Web.Infrastructure
                 var result = new ViewResult { ViewName = "Forbidden", MasterName = String.Empty };
                 filterContext.Result = result;
             }
+        }
+    }
+
+    public static class ResourceService
+    {
+        public static string GetAuthorizedRolesFor(string resource, string operation)
+        {
+            return "Master Admin";
         }
     }
 }

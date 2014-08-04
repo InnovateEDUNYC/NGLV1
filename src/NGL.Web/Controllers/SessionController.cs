@@ -38,7 +38,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: Session
-        [AccessProvideTo(Roles = "Teacher")]
+        [AccessProvideTo(Resource = "Session", Operation = "Create")]
         public virtual ActionResult Create()
         {
             return View(new CreateModel());
