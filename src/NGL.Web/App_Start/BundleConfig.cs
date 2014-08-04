@@ -45,7 +45,8 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Enrollment/createStudent.js",
                 "~/Assets/Scripts/Views/Student/index.js",
                 "~/Assets/Scripts/Views/Schedule/getSchedule.js",
-                "~/Assets/Scripts/Views/Section/getSession.js"
+                "~/Assets/Scripts/Views/Section/getSession.js",
+                "~/Assets/Scripts/Views/Section/getCourse.js"
                 ));
         }
     }

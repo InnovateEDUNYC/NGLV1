@@ -18,7 +18,12 @@
         @s.FieldFor(m => m.Session)        
         @s.FieldFor(m => m.Period)
         @s.FieldFor(m => m.Classroom)
-        @s.FieldFor(m => m.Course)
+        
+@*        @s.FieldFor(m => m.Course)*@
+        
+        @Html.Label("Course")
+        @Html.TextBox("Course") 
+    
         @s.FieldFor(m => m.UniqueSectionCode)
         @s.FieldFor(m => m.SequenceOfCourse)
     
@@ -32,4 +37,5 @@
 
 @section Scripts {
     Ngl.section.getSession.init();
+    Ngl.section.getCourse.init();
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
-using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Section;
 using CreateModel = NGL.Web.Models.Section.CreateModel;
@@ -24,6 +21,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<CreateModel, Section> _createModelToSectionMapper;
         private readonly IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
         private readonly IMapper<Session, SessionJSONModel> _sessionToSessionJSONModel;
+        private readonly IMapper<Course, CourseJsonModel> _courseToCourseJsonModelMapper;
 
         public SectionController(IGenericRepository genericRepository, 
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
@@ -32,12 +30,14 @@ namespace NGL.Web.Controllers
             IMapper<Course, CourseListItemModel> courseToCourseListItemModelMapper, 
             IMapper<CreateModel, Section> createModelToSectionMapper, 
             IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
-            IMapper<Session, SessionJSONModel> sessionToSessionJsonModel)
+            IMapper<Session, SessionJSONModel> sessionToSessionJsonModel, 
+            IMapper<Course, CourseJsonModel> courseToCourseJsonModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToSectionMapper = createModelToSectionMapper;
             _createModelToCourseOfferingMapper = createModelToCourseOfferingMapper;
             _sessionToSessionJSONModel = sessionToSessionJsonModel;
+            _courseToCourseJsonModelMapper = courseToCourseJsonModelMapper;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
@@ -104,7 +104,8 @@ namespace NGL.Web.Controllers
         public virtual JsonResult GetCourses(string searchString)
         {
             var courses = _genericRepository.GetAll<Course>();
-            return null;
+            var courseModels = courses.Select(c => _courseToCourseJsonModelMapper.Build(c));
+            return Json(courseModels, JsonRequestBehavior.AllowGet);
         }
 
         private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
