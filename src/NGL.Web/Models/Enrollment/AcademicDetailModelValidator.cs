@@ -20,7 +20,6 @@ namespace NGL.Web.Models.Enrollment
         {
             _genericRepository = genericRepository;
 
-
             RuleFor(adm => adm.Reading).GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
             RuleFor(adm => adm.Math).GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));
             RuleFor(adm => adm.Writing).GreaterThanOrEqualTo(0).SetValidator(new ScalePrecisionValidator(2,7));

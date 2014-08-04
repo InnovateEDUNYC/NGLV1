@@ -7,7 +7,7 @@
 <h2>Set Schedule</h2>
 
 <div class="profile-photo-container">
-    <img src="@Model.ProfilePhotoUrl"></img>
+    <img src="@Model.ProfilePhotoUrl" />
 </div>
 
 <div class="student-name-and-usi">
@@ -16,16 +16,38 @@
     @Html.DisplayTextFor(m => m.StudentUsi)
 </div>
 
-@using (var f = Html.BeginNglForm())
+@using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new {id = "schedule-student-form"})))
 {
     using (var s = f.BeginSection("Info"))
     {
-        @s.FieldFor(m => m.Session)
+        @s.FieldFor(m => m.Session).AddLabelClass("category-title")
+        @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
+        @s.FieldFor(m => m.EndDate).AddClass("datepicker")
+        <div class="hidden">
+            @s.FieldFor(m => m.SectionId)
+            @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
+        </div>
     }
 }
 
-Section @Html.TextBox("Section")
-<input type="submit" id="get-sections" value="Submit" />
+<span class="category-title">
+    Section @Html.TextBox("Section")
+</span>
+<button id="schedule-student-button">Save</button>
+
+<div class="current-sections-container">
+    <span class="category-title">Sections Assigned</span>
+    <ul class="current-section-list">
+        @foreach (var item in Model.CurrentlyEnrolledSections)
+        {
+            <li class="current-section-list-item">
+                @Html.DisplayFor(modelItem => item.Name)
+                @item.BeginDate - 
+                @item.EndDate
+            </li>
+        }
+    </ul>
+</div>
 
 @section Scripts {
     Ngl.schedule.getSchedule.init();
