@@ -161,7 +161,8 @@ namespace NGL.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.CurrentPassword, model.NewPassword);
+                    var userId = _userManager.FindByName(User.Identity.Name).Id;
+                    IdentityResult result = await _userManager.ChangePasswordAsync(userId, model.CurrentPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -181,7 +182,8 @@ namespace NGL.Web.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await _userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                    var userId = _userManager.FindByName(User.Identity.Name).Id;
+                    IdentityResult result = await _userManager.AddPasswordAsync(userId, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ChangePassword", new { Message = ManageMessageId.SetPasswordSuccess });
@@ -256,7 +258,7 @@ namespace NGL.Web.Controllers
 
         private bool HasPassword()
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
+            var user = _userManager.FindByName(User.Identity.Name);
             if (user != null)
             {
                 return user.PasswordHash != null;

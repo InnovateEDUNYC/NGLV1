@@ -22,7 +22,7 @@ namespace NGL.UiTests.Session
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(ObjectMother.UserJohnSmith.ViewModel);
+                .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
 
         public void AndGivenIAmOnTheCreateSessionPage()
