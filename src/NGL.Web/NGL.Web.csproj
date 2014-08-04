@@ -1664,6 +1664,8 @@
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
+    <Compile Include="Models\Section\CourseJsonModel.cs" />
+    <Compile Include="Models\Section\CourseToCourseJsonModelMapper.cs" />
     <Compile Include="Models\Section\CreateModelValidator.cs" />
     <Compile Include="Models\Section\SectionListItemModel.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />

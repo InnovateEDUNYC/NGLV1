@@ -100,6 +100,13 @@ namespace NGL.Web.Controllers
             return Json(sessionModels, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public virtual JsonResult GetCourses(string searchString)
+        {
+            var courses = _genericRepository.GetAll<Course>();
+            return null;
+        }
+
         private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
         {
             var classPeriods = _genericRepository.GetAll<ClassPeriod>();

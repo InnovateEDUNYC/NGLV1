@@ -103,6 +103,7 @@
     <Compile Include="Location\CreateLocationModelBuilder.cs" />
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />
+    <Compile Include="Section\CourseToCourseJsonModelMapperTests.cs" />
     <Compile Include="Section\CreateSectionModelBuilder.cs" />
     <Compile Include="Section\CreateModelToCourseOfferingMapperTests.cs" />
     <Compile Include="Section\EntityToListItemModelMapperTests.cs" />
