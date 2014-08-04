@@ -60,6 +60,18 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Set);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult ScheduleStudent()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ScheduleStudent);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetSections()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSections);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ScheduleController Actions { get { return MVC.Schedule; } }
@@ -77,12 +89,16 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Set = "Set";
+            public readonly string ScheduleStudent = "ScheduleStudent";
+            public readonly string GetSections = "GetSections";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Set = "Set";
+            public const string ScheduleStudent = "ScheduleStudent";
+            public const string GetSections = "GetSections";
         }
 
 
@@ -93,6 +109,22 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Set
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_ScheduleStudent s_params_ScheduleStudent = new ActionParamsClass_ScheduleStudent();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ScheduleStudent ScheduleStudentParams { get { return s_params_ScheduleStudent; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ScheduleStudent
+        {
+            public readonly string setModel = "setModel";
+        }
+        static readonly ActionParamsClass_GetSections s_params_GetSections = new ActionParamsClass_GetSections();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetSections GetSectionsParams { get { return s_params_GetSections; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetSections
+        {
+            public readonly string searchString = "searchString";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -124,6 +156,30 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Set);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             SetOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ScheduleStudentOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Schedule.SetModel setModel);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ScheduleStudent(NGL.Web.Models.Schedule.SetModel setModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ScheduleStudent);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "setModel", setModel);
+            ScheduleStudentOverride(callInfo, setModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetSectionsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string searchString);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetSections(string searchString)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSections);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchString", searchString);
+            GetSectionsOverride(callInfo, searchString);
             return callInfo;
         }
 

@@ -1683,6 +1683,8 @@
     <Compile Include="Models\Section\AutocompleteModel.cs" />
     <Compile Include="Models\Section\SectionToAutocompleteModelMapper.cs" />
     <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />
+    <Compile Include="Models\Section\SessionJSONModel.cs" />
+    <Compile Include="Models\Section\SessionToSessionJSONModelMapper.cs" />
     <Compile Include="Models\Section\StudentSectionAssociationToSectionListItemModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />

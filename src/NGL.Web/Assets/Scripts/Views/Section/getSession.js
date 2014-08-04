@@ -1,17 +1,9 @@
 ﻿Ngl.createNS('Ngl.section.getSession');
 
 Ngl.section.getSession = (function () {
-    var getSession = function () {
-        $("#Session").autocomplete({
-            select: function(e, ui) {
-                console.log("Selected");
-                console.log("Term Type Id:");
-                console.log(ui.item.value.termTypeId);
-                console.log("School Year:");
-                console.log(ui.item.value.schoolYear);
-                $("#Term").val(ui.item.value.termTypeId);
-                $("#SchoolYear").val(ui.item.value.schoolYear);
-            },
+
+    var getSchedule = function () {
+        $('#Session').autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/section/GetSessions",
@@ -24,25 +16,30 @@ Ngl.section.getSession = (function () {
                         searchString: request.term
                     },
                     success: function (data) {
-                        response($.map(data, function (session) {
-                            console.log(session);
+                        console.log(data);
+                        response($.map(data, function (section) {
+                            console.log(section);
                             return {
-                                label: session.SessionName,
-                                value: {termTypeId: session.TermTypeId, schoolYear: session.SchoolYear}
+                                label: section.SessionName,
+                                value: section.SessionName,
+                                term: section.Term,
+                                school: section.SchoolYear,
                             };
                         }));
                     }
                 });
             },
+            select: function (event, ui) {
+                console.log(ui);
+                var selectedSession = ui.item;
+                $("#SchoolYear").val(selectedSession.school);
+                $("#Term").val(selectedSession.term);
+            },
             minLength: 2,
-            messages: {
-                noResults: "",
-                results: ""
-            }
         });
     }
 
     return {
-        init: getSession
+        init: getSchedule
     }
 })();

@@ -20,17 +20,21 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Course, CourseListItemModel> _courseToCourseListItemModelMapper;
         private readonly IMapper<CreateModel, Section> _createModelToSectionMapper;
         private readonly IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
+        private readonly IMapper<Session, SessionJSONModel> _sessionToSessionJSONModel;
 
         public SectionController(IGenericRepository genericRepository, 
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
             IMapper<ClassPeriod, ClassPeriodListItemModel> classPeriodToClassPeriodNameModelMapper, 
             IMapper<Location, LocationListItemModel> locationToClassRoomModelMapper, 
             IMapper<Course, CourseListItemModel> courseToCourseListItemModelMapper, 
-            IMapper<CreateModel, Section> createModelToSectionMapper, IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper)
+            IMapper<CreateModel, Section> createModelToSectionMapper, 
+            IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
+            IMapper<Session, SessionJSONModel> sessionToSessionJsonModel)
         {
             _genericRepository = genericRepository;
             _createModelToSectionMapper = createModelToSectionMapper;
             _createModelToCourseOfferingMapper = createModelToCourseOfferingMapper;
+            _sessionToSessionJSONModel = sessionToSessionJsonModel;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
@@ -91,7 +95,8 @@ namespace NGL.Web.Controllers
         public virtual JsonResult GetSessions(string searchString)
         {
             var sessions = _genericRepository.GetAll<Session>();
-            return Json(sessions, JsonRequestBehavior.AllowGet);
+            var sessionModels = sessions.Select(s => _sessionToSessionJSONModel.Build(s));
+            return Json(sessionModels, JsonRequestBehavior.AllowGet);
         }
 
         private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
