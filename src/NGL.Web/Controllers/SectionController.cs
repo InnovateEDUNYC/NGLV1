@@ -83,7 +83,11 @@ namespace NGL.Web.Controllers
             }
 
             var section = _createModelToSectionMapper.Build(createModel);
-            var courseOffering = _createModelToCourseOfferingMapper.Build(createModel);
+            var courseOffering = _genericRepository.Get<CourseOffering>(
+                c => c.LocalCourseCode == createModel.Course 
+                    && c.SchoolYear == createModel.SchoolYear 
+                    && c.TermTypeId == createModel.Term) ?? _createModelToCourseOfferingMapper.Build(createModel);
+
             _genericRepository.Add(courseOffering);
             _genericRepository.Add(section);
             _genericRepository.Save();
