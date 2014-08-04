@@ -11,9 +11,10 @@
 {
     using (var s = f.BeginSection("Info"))
     {
-
-            @s.FieldFor(m => m.SchoolYear)
-            @s.FieldFor(m => m.Term)
+        <div class="hidden">
+        @s.FieldFor(m => m.SchoolYear)
+        @s.FieldFor(m => m.Term)
+        </div>
         @Html.Label("Session")
         @Html.TextBox("Session")        
         @s.FieldFor(m => m.Period)
