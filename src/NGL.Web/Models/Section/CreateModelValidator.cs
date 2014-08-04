@@ -19,6 +19,7 @@ namespace NGL.Web.Models.Section
 
             RuleFor(model => model.SchoolYear).NotEmpty();
             RuleFor(model => model.Term).NotEmpty();
+//            RuleFor(model => model.Session).NotEmpty();
             RuleFor(model => model.Period).NotEmpty();
             RuleFor(model => model.Classroom).NotEmpty();
             RuleFor(model => model.Course).NotEmpty();

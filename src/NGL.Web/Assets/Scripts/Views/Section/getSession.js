@@ -16,9 +16,7 @@ Ngl.section.getSession = (function () {
                         searchString: request.term
                     },
                     success: function (data) {
-                        console.log(data);
                         response($.map(data, function (section) {
-                            console.log(section);
                             return {
                                 label: section.SessionName,
                                 value: section.SessionName,
@@ -30,7 +28,6 @@ Ngl.section.getSession = (function () {
                 });
             },
             select: function (event, ui) {
-                console.log(ui);
                 var selectedSession = ui.item;
                 $("#SchoolYear").val(selectedSession.school);
                 $("#Term").val(selectedSession.term);
