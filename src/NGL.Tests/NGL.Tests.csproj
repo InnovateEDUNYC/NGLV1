@@ -109,6 +109,7 @@
     <Compile Include="Section\CreateModelToSectionMapperTests.cs" />
     <Compile Include="Builders\SectionBuilder.cs" />
     <Compile Include="Section\SectionToIndexModelMapperTests.cs" />
+    <Compile Include="Section\SessionToSessionJSONModelMapperTests.cs" />
     <Compile Include="Section\ValidatorTests.cs" />
     <Compile Include="Session\CreateSessionModelBuilder.cs" />
     <Compile Include="Session\SessionBuilder.cs" />

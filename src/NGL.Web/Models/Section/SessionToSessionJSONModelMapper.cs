@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Humanizer;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Section
 {
@@ -10,8 +8,8 @@ namespace NGL.Web.Models.Section
         public override void Map(Data.Entities.Session source, SessionJSONModel target)
         {
             target.SchoolYear = source.SchoolYear;
-            target.SessionName = source.SessionName;
             target.Term = source.TermTypeId;
+            target.SessionName = ((TermTypeEnum) source.TermTypeId).Humanize() + " " + source.SchoolYear;
         }
     }
 }
