@@ -47,8 +47,7 @@ namespace NGL.Web.Models.Section
 
             if (_genericRepository.Get(query) != null)
             {
-                yield return new ValidationFailure(createModel.GetNameFor(s => s.SchoolYear), " ");
-                yield return new ValidationFailure(createModel.GetNameFor(s => s.Term), " ");
+                yield return new ValidationFailure(createModel.GetNameFor(s => s.Session), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Period), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Classroom), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Course), "This section already exists.");

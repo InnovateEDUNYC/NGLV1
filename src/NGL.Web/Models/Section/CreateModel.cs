@@ -17,6 +17,8 @@ namespace NGL.Web.Models.Section
 
         public int Term { get; set; }
 
+        public string Session { get; set; }
+
         public List<ClassPeriodListItemModel> Periods { get; set; }
 
         [ExistsIn("Periods", "ClassPeriodName", "ClassPeriodName", false)]
