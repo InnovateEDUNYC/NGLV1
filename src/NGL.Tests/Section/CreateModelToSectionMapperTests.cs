@@ -30,7 +30,7 @@ namespace NGL.Tests.Section
             entity.TermTypeId.ShouldBe(model.Term);
             entity.SchoolYear.ShouldBe(model.SchoolYear);
             entity.UniqueSectionCode.ShouldBe(model.UniqueSectionCode);
-            entity.SequenceOfCourse.ShouldBe(model.SequenceOfCourse);
+            entity.SequenceOfCourse.ShouldBe(model.SequenceOfCourse.GetValueOrDefault());
         }
 
         private void Setup()

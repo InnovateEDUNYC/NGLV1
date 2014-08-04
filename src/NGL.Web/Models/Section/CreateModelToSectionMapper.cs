@@ -20,7 +20,7 @@ namespace NGL.Web.Models.Section
             target.TermTypeId = source.Term;
             target.SchoolYear = source.SchoolYear;
             target.UniqueSectionCode = source.UniqueSectionCode;
-            target.SequenceOfCourse = source.SequenceOfCourse;
+            target.SequenceOfCourse = source.SequenceOfCourse.GetValueOrDefault();
         }
     }
 }
