@@ -16,7 +16,7 @@ namespace NGL.Tests.Data.Filters
         private NGL.Web.Data.Entities.Session _summer2010;
         private Web.Data.Entities.Session _fall2010;
 
-        public void SetUp()
+        private void SetUp()
         {
             SetUpGenericRepositoryStub();
             _filter = new SessionFilter(_genericRepository);
@@ -55,12 +55,5 @@ namespace NGL.Tests.Data.Filters
             var actualSession = _filter.FindSession(new DateTime(2010, 07, 07));
             actualSession.SessionName.ShouldBe(_summer2010.SessionName);
         }
-
-//        [Fact]
-//        public void ShouldGiveNoSessionIfNoSessionsIncludeTheGivenDate()
-//        {
-//            SetUp();
-//            var sessionFound = _genericRepository
-//        }
     }
 }

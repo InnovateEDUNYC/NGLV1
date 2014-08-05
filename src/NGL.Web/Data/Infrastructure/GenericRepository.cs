@@ -19,6 +19,12 @@ namespace NGL.Web.Data.Infrastructure
             return Query(query, associations).SingleOrDefault();
         }
 
+        public IEnumerable<TEntity> GetAll<TEntity>(IQuery<TEntity> query) 
+            where TEntity : class
+        {
+            return Query(query);
+        }
+
         public TOutput Get<TEntity, TOutput>(IQuery<TEntity, TOutput> query)
             where TEntity : class
             where TOutput : class
@@ -100,6 +106,5 @@ namespace NGL.Web.Data.Infrastructure
             var existing = DbContext.Set<TEntity>().Find(id);
             DbContext.Set<TEntity>().Remove(existing);
         }
-
     }
 }

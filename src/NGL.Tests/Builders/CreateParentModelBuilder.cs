@@ -19,7 +19,6 @@ namespace NGL.Tests.Builders
         private const StateAbbreviationTypeEnum State = StateAbbreviationTypeEnum.NM;
         private const string PostalCode = "27890";
 
-
         public CreateParentModelBuilder WithEmailAddress(string emailAddress = "leroy@jenk.net")
         {
             _emailAddress = emailAddress;

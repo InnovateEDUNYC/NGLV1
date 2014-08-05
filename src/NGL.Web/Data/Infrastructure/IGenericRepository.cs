@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using NGL.Web.Data.Queries;
 
 namespace NGL.Web.Data.Infrastructure
 {
@@ -30,5 +31,6 @@ namespace NGL.Web.Data.Infrastructure
 
         void Add<TEntity>(TEntity entity) where TEntity : class;
         void Delete<TEntity>(int id) where TEntity : class, IEntityWithId;
+        IEnumerable<TEntity> GetAll<TEntity>(IQuery<TEntity> query) where TEntity : class;
     } 
 }

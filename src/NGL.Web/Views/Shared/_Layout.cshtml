@@ -86,10 +86,12 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Next Generation Learning Platform</p>
-        </footer>
+        <div class="footer-with-hr">
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Next Generation Learning Platform</p>
+            </footer>
+        </div>
     </div>
     
     @Scripts.Render("~/bundles/jquery")

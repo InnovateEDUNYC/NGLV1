@@ -107,6 +107,13 @@ INSERT INTO [edfi].[CourseOffering]
 	VALUES
 	 (1, 1, 2014, 1,
 	  'ENGL400 - CW', 'Creative Writing II CW Fall 2014', 'ENGL400 - CW')
+
+INSERT INTO [edfi].[CourseOffering]
+	([SchoolId], [TermTypeId], [SchoolYear], [EducationOrganizationId],
+	 [LocalCourseCode], [LocalCourseTitle], [CourseCode])
+	VALUES
+	 (1, 2, 2014, 1,
+	  'ENGL400 - CW', 'Creative Writing II CW Spring 2015', 'ENGL400 - CW')
 	  
 /* MATH123 - SECTION 1 */
 INSERT INTO [edfi].[Section]
@@ -179,6 +186,13 @@ INSERT INTO [edfi].[Section]
 	VALUES
 	 (1, 1, 2014, 'ENGL400 - CW',
 	 'Period 4', 'Room 207', 'ENGL400-Fall2014-001', 1)
+
+INSERT INTO [edfi].[Section]
+	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
+	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
+	VALUES
+	 (1, 2, 2014, 'ENGL400 - CW',
+	 'Period 4', 'Room 207', 'ENGL400-Spring2015-001', 1)
 
 
 INSERT INTO [edfi].[Student]
