@@ -54,6 +54,18 @@ namespace NGL.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetSessions()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSessions);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetCourses()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetCourses);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SectionController Actions { get { return MVC.Section; } }
@@ -72,6 +84,8 @@ namespace NGL.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string GetSessions = "GetSessions";
+            public readonly string GetCourses = "GetCourses";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,6 +93,8 @@ namespace NGL.Web.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string GetSessions = "GetSessions";
+            public const string GetCourses = "GetCourses";
         }
 
 
@@ -89,6 +105,22 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string createModel = "createModel";
+        }
+        static readonly ActionParamsClass_GetSessions s_params_GetSessions = new ActionParamsClass_GetSessions();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetSessions GetSessionsParams { get { return s_params_GetSessions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetSessions
+        {
+            public readonly string searchString = "searchString";
+        }
+        static readonly ActionParamsClass_GetCourses s_params_GetCourses = new ActionParamsClass_GetCourses();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetCourses GetCoursesParams { get { return s_params_GetCourses; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetCourses
+        {
+            public readonly string searchString = "searchString";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -144,6 +176,30 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
             CreateOverride(callInfo, createModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetSessionsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string searchString);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetSessions(string searchString)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSessions);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchString", searchString);
+            GetSessionsOverride(callInfo, searchString);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetCoursesOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string searchString);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetCourses(string searchString)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetCourses);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchString", searchString);
+            GetCoursesOverride(callInfo, searchString);
             return callInfo;
         }
 

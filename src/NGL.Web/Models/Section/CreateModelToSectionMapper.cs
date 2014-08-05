@@ -1,34 +1,26 @@
-﻿using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Repositories;
+﻿using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.Section
 {
     public class CreateModelToSectionMapper : MapperBase<CreateModel, Data.Entities.Section>
     {
-        private readonly IGenericRepository _genericRepository;
         private readonly ISchoolRepository _schoolRepository;
-        private readonly IMapper<CreateModel, Data.Entities.CourseOffering> _createModelToCourseOfferingMapper;
 
-        public CreateModelToSectionMapper(IGenericRepository genericRepository, 
-            ISchoolRepository schoolRepository, IMapper<CreateModel, 
-            Data.Entities.CourseOffering> createModelToCourseOfferingMapper)
+        public CreateModelToSectionMapper(ISchoolRepository schoolRepository)
         {
-            _genericRepository = genericRepository;
             _schoolRepository = schoolRepository;
-            _createModelToCourseOfferingMapper = createModelToCourseOfferingMapper;
         }
 
         public override void Map(CreateModel source, Data.Entities.Section target)
         {
-            var courseOffering = _genericRepository.Get<Data.Entities.CourseOffering>(
-                c => c.LocalCourseCode == source.Course) ?? _createModelToCourseOfferingMapper.Build(source);
-
             target.SchoolId = _schoolRepository.GetSchool().SchoolId;
             target.ClassPeriodName = source.Period;
             target.ClassroomIdentificationCode = source.Classroom;
-            target.CourseOffering = courseOffering;
+            target.LocalCourseCode = source.Course;
+            target.TermTypeId = source.Term;
+            target.SchoolYear = source.SchoolYear;
             target.UniqueSectionCode = source.UniqueSectionCode;
-            target.SequenceOfCourse = source.SequenceOfCourse;
+            target.SequenceOfCourse = source.SequenceOfCourse.GetValueOrDefault();
         }
     }
 }

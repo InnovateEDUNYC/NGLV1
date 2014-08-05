@@ -285,6 +285,7 @@
     <Compile Include="Data\Entities\VersionLevel.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Queries\CourseOfferingByPrimaryKeysQuery.cs" />
     <Compile Include="Data\Queries\SectionByPrimaryKeysQuery.cs" />
     <Compile Include="Data\Filters\SessionFilter.cs" />
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
@@ -1663,6 +1664,8 @@
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
+    <Compile Include="Models\Section\CourseJsonModel.cs" />
+    <Compile Include="Models\Section\CourseToCourseJsonModelMapper.cs" />
     <Compile Include="Models\Section\CreateModelValidator.cs" />
     <Compile Include="Models\Section\SectionListItemModel.cs" />
     <Compile Include="Models\Section\LocationListItemModel.cs" />
@@ -1674,8 +1677,6 @@
     <Compile Include="Models\MapperBase.cs" />
     <Compile Include="Models\Section\ClassPeriodListItemModel.cs" />
     <Compile Include="Models\Section\ClassPeriodToClassPeriodListItemModelMapper.cs" />
-    <Compile Include="Models\Section\CourseListItemModel.cs" />
-    <Compile Include="Models\Section\CourseToCourseListItemModelMapper.cs" />
     <Compile Include="Models\Section\CreateModelToCourseOfferingMapper.cs" />
     <Compile Include="Models\Section\CreateModelToSectionMapper.cs" />
     <Compile Include="Models\Section\IndexModel.cs" />
@@ -1683,6 +1684,8 @@
     <Compile Include="Models\Section\AutocompleteModel.cs" />
     <Compile Include="Models\Section\SectionToAutocompleteModelMapper.cs" />
     <Compile Include="Models\Section\SectionToIndexModelMapper.cs" />
+    <Compile Include="Models\Section\SessionJsonModel.cs" />
+    <Compile Include="Models\Section\SessionToSessionJsonModelMapper.cs" />
     <Compile Include="Models\Section\StudentSectionAssociationToSectionListItemModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
@@ -1836,6 +1839,8 @@
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
     <EmbeddedResource Include="Data\Scripts\009 - Schema - StaffCertificate.sql" />
     <Content Include="Assets\Scripts\Views\Schedule\getSchedule.js" />
+    <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
+    <Content Include="Assets\Scripts\Views\Section\getSession.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <Content Include="favicon.ico" />

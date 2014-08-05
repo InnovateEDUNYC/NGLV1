@@ -17,8 +17,7 @@ namespace NGL.Web.Models.Section
         {
             _genericRepository = genericRepository;
 
-            RuleFor(model => model.SchoolYear).NotEmpty();
-            RuleFor(model => model.Term).NotEmpty();
+            RuleFor(model => model.Session).NotEmpty();
             RuleFor(model => model.Period).NotEmpty();
             RuleFor(model => model.Classroom).NotEmpty();
             RuleFor(model => model.Course).NotEmpty();
@@ -38,8 +37,8 @@ namespace NGL.Web.Models.Section
                 createModel.Course == null) yield break;
 
             var query = new SectionByPrimaryKeysQuery(
-                (short) createModel.SchoolYear,
-                (int) createModel.Term,
+                createModel.SchoolYear,
+                createModel.Term,
                 createModel.Period,
                 createModel.Classroom,
                 createModel.Course
@@ -47,8 +46,7 @@ namespace NGL.Web.Models.Section
 
             if (_genericRepository.Get(query) != null)
             {
-                yield return new ValidationFailure(createModel.GetNameFor(s => s.SchoolYear), " ");
-                yield return new ValidationFailure(createModel.GetNameFor(s => s.Term), " ");
+                yield return new ValidationFailure(createModel.GetNameFor(s => s.Session), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Period), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Classroom), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Course), "This section already exists.");

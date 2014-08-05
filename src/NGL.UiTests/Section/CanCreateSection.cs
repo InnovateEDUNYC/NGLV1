@@ -33,13 +33,13 @@ namespace NGL.UiTests.Section
 
         public void IHaveEnteredValidInputForAllFields()
         {
-            _createSectionModel = new CreateSectionModelBuilder().WithCourse("Creative Writing II").Build();
+            _createSectionModel = new CreateSectionModelBuilder().Build();
             _sectionIndexPage = _sectionCreatePage.CreateSection(_createSectionModel);
         }
 
         public void ANewSectionShouldBeDisplayedOnTheSectionIndexPage()
         {
-            bool sectionExists = _sectionIndexPage.SectionExists(_createSectionModel);
+            var sectionExists = _sectionIndexPage.SectionExists(_createSectionModel);
             sectionExists.ShouldBe(true);
         }
 

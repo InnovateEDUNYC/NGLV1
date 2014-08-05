@@ -25,15 +25,5 @@ namespace NGL.Tests.Section
             model.Classroom.ShouldBe(entity.ClassroomIdentificationCode);
         }
 
-        [Fact]
-        public void ShouldMapCourseToCourseListItemModel()
-        {
-            var entity = new CourseBuilder().Build();
-            var model = new CourseToCourseListItemModelMapper().Build(entity);
-
-            model.CourseCode.ShouldBe(entity.CourseCode);
-            model.CourseTitle.ShouldBe(entity.CourseTitle);
-        }
-
     }
 }
