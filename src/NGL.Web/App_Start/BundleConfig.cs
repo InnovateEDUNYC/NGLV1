@@ -29,10 +29,11 @@ namespace NGL.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Assets/Content/bootstrap.css",
                       "~/Assets/Content/site.css",
-                      "~/Assets/Content/datepicker.css",
-                      "~/Assets/Scripts/lib/jquery-ui-1.11.0/jquery-ui.css",
-                      "~/Assets/Scripts/lib/jquery-ui-1.11.0/jquery-ui.structure.css",
-                      "~/Assets/Scripts/lib/jquery-ui-1.11.0/jquery-ui.theme.css"));
+                      "~/Assets/Content/datepicker.css"));
+
+
+           bundles.Add(new StyleBundle("~/Assets/Scripts/lib/jquery-ui-1.11.0/bundle").Include(
+                          "~/Assets/Scripts/lib/jquery-ui-1.11.0/*.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                  "~/Assets/Scripts/createNamespace.js",
