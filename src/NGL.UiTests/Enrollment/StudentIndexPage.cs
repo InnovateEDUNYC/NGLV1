@@ -12,9 +12,11 @@ namespace NGL.UiTests.Enrollment
             return Navigate.To<EnrollmentPage>(By.LinkText("Enroll a Student"));
         }
 
-        public ProfilePage GoToProfilePage(string studentUsi)
+        public ProfilePage GoToProfilePage()
         {
-            return Navigate.To<ProfilePage>(By.LinkText(studentUsi));
+            var profileLink = Find.Element(By.LinkText("Profile"));
+            profileLink.Click();
+            return Navigate.To<ProfilePage>("/Student/999");
         }
     }
 }

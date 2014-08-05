@@ -11,7 +11,7 @@ namespace NGL.Tests.Builders
 {
     public class StudentBuilder
     {
-        private const int StudentUsi = 1789;
+        private const int StudentUsi = 999;
         private const string FirstName = "Bob";
         private const string LastName = "Jenkins";
         private const string Parent1FirstName = "Leroy";

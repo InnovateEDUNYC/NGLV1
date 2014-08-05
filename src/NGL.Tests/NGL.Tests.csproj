@@ -127,7 +127,6 @@
     <Compile Include="Student\ParentFactory.cs" />
     <Compile Include="Student\StudentAcademicDetailBuilder.cs" />
     <Compile Include="Student\StudentAddressFactory.cs" />
-    <Compile Include="Student\StudentFactory.cs" />
     <Compile Include="Student\StudentLanguageFactory.cs" />
     <Compile Include="Student\StudentToProfileModelMapperTest.cs" />
     <Compile Include="Student\StudentProgramStatusToProfileProgramStatusModelMapperTests.cs" />
