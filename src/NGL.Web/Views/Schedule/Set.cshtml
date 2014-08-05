@@ -1,4 +1,5 @@
-﻿@model NGL.Web.Models.Schedule.SetModel
+﻿@using Humanizer
+@model NGL.Web.Models.Schedule.SetModel
 
 @{
     ViewBag.Title = "Set Schedule";
@@ -16,11 +17,32 @@
     @Html.DisplayTextFor(m => m.StudentUsi)
 </div>
 
-@using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new {id = "schedule-student-form"})))
+
+@using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new { id = "schedule-student-form" })))
 {
     using (var s = f.BeginSection("Info"))
     {
-        @s.FieldFor(m => m.Session).AddLabelClass("category-title")
+        <div class="form-group">
+            <label class="category-title control-label">Session</label>
+            <div class="input-group">
+                <select class="form-control" data-val="true" id="session-dropdown" name="session-dropdown">
+                    @foreach (var session in Model.Sessions)
+                    {
+                        if (session.SessionId == Model.Session)
+                        {
+                            <option selected="selected" class="session" beginDate="@session.BeginDate.ToShortDateString()" endDate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
+                        }
+                        else
+                        {
+                            <option class="session" beginDate="@session.BeginDate.ToShortDateString()" endDate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
+                        }
+                    }
+                </select>
+                <div class="input-group-addon required">
+                    <em class="required" title="Required">∗</em>
+                </div>
+            </div>
+        </div>
         @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
         @s.FieldFor(m => m.EndDate).AddClass("datepicker")
         <div class="hidden">
