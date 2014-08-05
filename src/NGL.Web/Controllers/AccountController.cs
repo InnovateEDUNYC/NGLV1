@@ -81,6 +81,7 @@ namespace NGL.Web.Controllers
             return View(model);
         }
 
+        [AuthorizeFor(Resource = "user", Operation = "view")]
         public virtual ActionResult Users()
         {
             var users = _staffRepository.GetStaffWithUsers();
@@ -88,8 +89,8 @@ namespace NGL.Web.Controllers
             return View(userModels);
         }
 
-        //
         // GET: /Account/AddUser
+        [AuthorizeFor(Resource = "user", Operation = "create")]
         public virtual ActionResult AddUser()
         {
             return View();
@@ -99,6 +100,7 @@ namespace NGL.Web.Controllers
         // POST: /Account/AddUser
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeFor(Resource = "user", Operation = "create")]
         public virtual ActionResult AddUser(AddUserModel model)
         {
             if (!ModelState.IsValid)
@@ -119,10 +121,8 @@ namespace NGL.Web.Controllers
             AddErrors(result);
 
             return View(model);
-
         }
 
-        //
         // POST: /Account/Disassociate
         [HttpPost]
         [ValidateAntiForgeryToken]

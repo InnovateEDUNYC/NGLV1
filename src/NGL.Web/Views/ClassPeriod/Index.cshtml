@@ -1,16 +1,19 @@
-﻿@model IEnumerable<NGL.Web.Models.ClassPeriod.IndexModel>
+﻿@using NGL.Web.Infrastructure.Security
+@model IEnumerable<NGL.Web.Models.ClassPeriod.IndexModel>
 
 @{
     ViewBag.Title = "Class Periods";
 }
 
 <h2>Class Periods</h2>
-<ul class="nav nav-pills">
-    <li>
-        @Html.ActionLink("Add Period", "Create")
-    </li>
-</ul>
-
+@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+{
+    <ul class="nav nav-pills">
+        <li>
+            @Html.ActionLink("Add Period", "Create")
+        </li>
+    </ul>
+}
 <table class="table table-striped">
     <thead>
         <tr>

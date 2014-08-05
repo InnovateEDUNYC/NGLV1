@@ -5,6 +5,7 @@ using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure.Azure;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
 
@@ -35,6 +36,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: /Enrollment/CreateStudent
+        [AuthorizeFor(Resource = "enrollment", Operation = "create")]
         public virtual ActionResult CreateStudent()
         {
             return View(CreateStudentModel.New());
@@ -42,6 +44,7 @@ namespace NGL.Web.Controllers
 
         // POST: /Enrollment/CreateStudent
         [HttpPost]
+        [AuthorizeFor(Resource = "enrollment", Operation = "create")]
         public virtual ActionResult CreateStudent(CreateStudentModel createStudentModel)
         {
             if (!ModelState.IsValid)
@@ -56,6 +59,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: /Enrollment/EnterAcademicDetails/id
+        [AuthorizeFor(Resource = "enrollment", Operation = "create")]
         public virtual ActionResult EnterAcademicDetails(int id)
         {
             var model = new AcademicDetailModel{StudentUsi = id};
@@ -73,6 +77,7 @@ namespace NGL.Web.Controllers
 
         // POST: /Enrollment/EnterAcademicDetails/id
         [HttpPost]
+        [AuthorizeFor(Resource = "enrollment", Operation = "create")]
         public virtual ActionResult EnterAcademicDetails(AcademicDetailModel academicDetailModel, int id)
         {
             if (!ModelState.IsValid)
@@ -97,6 +102,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: /Enrollment/EnterProgramStatus/id
+        [AuthorizeFor(Resource = "enrollment", Operation = "create")]
         public virtual ActionResult EnterProgramStatus(int id)
         {
             if (StudentDoesNotExist(id))
@@ -106,6 +112,7 @@ namespace NGL.Web.Controllers
 
         // POST: /Enrollment/EnterProgramStatus/id
         [HttpPost]
+        [AuthorizeFor(Resource = "enrollment", Operation = "create")]
         public virtual ActionResult EnterProgramStatus(EnterProgramStatusModel enterProgramStatusModel, int id)
         {
             if (!ModelState.IsValid)

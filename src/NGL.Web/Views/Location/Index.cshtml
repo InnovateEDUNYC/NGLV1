@@ -1,13 +1,17 @@
-﻿@model IEnumerable<NGL.Web.Models.Location.IndexModel>
+﻿@using NGL.Web.Infrastructure.Security
+@model IEnumerable<NGL.Web.Models.Location.IndexModel>
 
 @{
     ViewBag.Title = "Classrooms";
 }
 
 <h2>Classrooms</h2>
-<ul class="nav nav-pills">
-    <li>@Html.ActionLink("Add Classroom", "Create")</li>
-</ul>
+@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+{
+    <ul class="nav nav-pills">
+        <li>@Html.ActionLink("Add Classroom", "Create")</li>
+    </ul>
+}
 
 <table class="table table-striped">
     <thead>
