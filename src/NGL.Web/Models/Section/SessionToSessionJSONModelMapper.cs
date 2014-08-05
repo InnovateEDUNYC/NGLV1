@@ -1,11 +1,8 @@
-﻿using Humanizer;
-using NGL.Web.Data.Entities;
-
-namespace NGL.Web.Models.Section
+﻿namespace NGL.Web.Models.Section
 {
-    public class SessionToSessionJSONModelMapper : MapperBase<Data.Entities.Session, SessionJSONModel>
+    public class SessionToSessionJsonModelMapper : MapperBase<Data.Entities.Session, SessionJsonModel>
     {
-        public override void Map(Data.Entities.Session source, SessionJSONModel target)
+        public override void Map(Data.Entities.Session source, SessionJsonModel target)
         {
             target.SchoolYear = source.SchoolYear;
             target.Term = source.TermTypeId;

@@ -1,6 +1,6 @@
 ﻿namespace NGL.Web.Models.Section
 {
-    public class SessionJSONModel
+    public class SessionJsonModel
     {
         public int Term { get; set; }
         public short SchoolYear { get; set; }

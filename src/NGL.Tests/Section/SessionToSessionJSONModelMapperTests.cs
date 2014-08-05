@@ -5,13 +5,13 @@ using Xunit;
 
 namespace NGL.Tests.Section
 {
-    public class SessionToSessionJSONModelMapperTests
+    public class SessionToSessionJsonModelMapperTests
     {
         [Fact]
         public void ShouldMap()
         {
             var entity = new SessionBuilder().Build();
-            var mapper = new SessionToSessionJSONModelMapper();
+            var mapper = new SessionToSessionJsonModelMapper();
 
             var model = mapper.Build(entity);
 

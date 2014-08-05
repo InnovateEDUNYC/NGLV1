@@ -19,7 +19,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Location, LocationListItemModel> _locationToClassRoomModelMapper;
         private readonly IMapper<CreateModel, Section> _createModelToSectionMapper;
         private readonly IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
-        private readonly IMapper<Session, SessionJSONModel> _sessionToSessionJSONModel;
+        private readonly IMapper<Session, SessionJsonModel> _sessionToSessionJSONModel;
         private readonly IMapper<Course, CourseJsonModel> _courseToCourseJsonModelMapper;
 
         public SectionController(IGenericRepository genericRepository, 
@@ -28,7 +28,7 @@ namespace NGL.Web.Controllers
             IMapper<Location, LocationListItemModel> locationToClassRoomModelMapper, 
             IMapper<CreateModel, Section> createModelToSectionMapper, 
             IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
-            IMapper<Session, SessionJSONModel> sessionToSessionJsonModel, 
+            IMapper<Session, SessionJsonModel> sessionToSessionJsonModel, 
             IMapper<Course, CourseJsonModel> courseToCourseJsonModelMapper)
         {
             _genericRepository = genericRepository;
