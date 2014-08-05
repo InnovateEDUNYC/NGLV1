@@ -141,5 +141,18 @@ form .inline input {
 
 .profile-column {
     margin-left: -30px;
-    margin-right: 100px;
+    margin-right: 60px;
+}
+
+.form {
+    margin-top: 50px;
+}
+
+.category-title {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.current-sections-container {
+    margin-top: 30px;
 }

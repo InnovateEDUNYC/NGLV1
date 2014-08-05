@@ -4,8 +4,9 @@
     ViewBag.Title = "Set Schedule";
 }
 
-<h2>Set Schedule</h2>
+
 <div class="container">
+    <h2>Set Schedule</h2>
     <div class="col-md-2 profile-column">
         <div class="profile-photo-container">
             <img src="@Model.ProfilePhotoUrl" />
@@ -15,47 +16,48 @@
 
     <div class="col-md-8">
         <div class="student-name-and-usi">
-            <span class="student-name-title h2">@Html.DisplayTextFor(m => m.StudentName)</span>
+            <span class="student-name-title h3">@Html.DisplayTextFor(m => m.StudentName)</span>
             <div class="student-usi">
-                @Html.DisplayNameFor(m => m.StudentUsi):
+                USI: 
                 @Html.DisplayTextFor(m => m.StudentUsi)
             </div>
         </div>
 
-
-        @using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new { id = "schedule-student-form" })))
-        {
-            using (var s = f.BeginSection("Info"))
+        <div class="form">
+            @using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new { id = "schedule-student-form" })))
             {
-                <div class="form-group">
-                    <label class="category-title control-label">Session</label>
-                    <div class="input-group">
-                        <select class="form-control" data-val="true" id="session-dropdown" name="session-dropdown">
-                            @foreach (var session in Model.Sessions)
-                            {
-                                if (session.SessionId == Model.Session)
+                using (var s = f.BeginSection(" "))
+                {
+                    <div class="form-group">
+                        <label class="category-title control-label">Session</label>
+                        <div class="input-group">
+                            <select class="form-control" data-val="true" id="session-dropdown" name="session-dropdown">
+                                @foreach (var session in Model.Sessions)
                                 {
-                                    <option selected="selected" class="session" begindate="@session.BeginDate.ToShortDateString()" enddate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
+                                    if (session.SessionId == Model.Session)
+                                    {
+                                        <option selected="selected" class="session" begindate="@session.BeginDate.ToShortDateString()" enddate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
+                                    }
+                                    else
+                                    {
+                                        <option class="session" begindate="@session.BeginDate.ToShortDateString()" enddate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
+                                    }
                                 }
-                                else
-                                {
-                                    <option class="session" begindate="@session.BeginDate.ToShortDateString()" enddate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
-                                }
-                            }
-                        </select>
-                        <div class="input-group-addon required">
-                            <em class="required" title="Required">∗</em>
+                            </select>
+                            <div class="input-group-addon required">
+                                <em class="required" title="Required">∗</em>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
-                @s.FieldFor(m => m.EndDate).AddClass("datepicker")
-                <div class="hidden">
-                    @s.FieldFor(m => m.SectionId)
-                    @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
-                </div>
+                    @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
+                    @s.FieldFor(m => m.EndDate).AddClass("datepicker")
+                    <div class="hidden">
+                        @s.FieldFor(m => m.SectionId)
+                        @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
+                    </div>
+                }
             }
-        }
+        </div>
 
         <span class="category-title">
             Section @Html.TextBox("Section")
