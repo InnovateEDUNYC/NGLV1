@@ -58,7 +58,7 @@ Ngl.schedule.setSchedule = (function () {
                         var beginDate = sectionListItem.BeginDate;
                         var endDate = sectionListItem.EndDate;
                         $('.current-section-list').append("<li class='current-section-list-item'>" +
-                            name + " " + beginDate + " - " + endDate + "<div class='section-id' id='section-id'>"+sectionListItem.SectionId+"</div></li>");
+                            name + " " + beginDate + " - " + endDate + "<div class='hidden section-id'>" + sectionListItem.SectionId + "</div></li>");
                     }
                 }
             });
