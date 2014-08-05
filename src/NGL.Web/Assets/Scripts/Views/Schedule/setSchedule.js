@@ -60,7 +60,7 @@ Ngl.schedule.setSchedule = (function () {
                         $('.current-section-list').append('<div class="current-section-list-item">' +
                            '<span class="scheduled-section-name">' + name + '</span>' +
                            '<span class="scheduled-section-begin-date">' + beginDate + '</span> - ' +
-                           '<span class="scheduled-section-begin-date">' + endDate + '</span>' +
+                           '<span class="scheduled-section-end-date">' + endDate + '</span>' +
                            '<span class="hidden section-id">' + sectionListItem.SectionId + "</span></div>");
                     }
                 }

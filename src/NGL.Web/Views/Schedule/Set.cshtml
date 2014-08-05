@@ -41,17 +41,19 @@
 
 <div class="current-sections-container">
     <span class="category-title">Sections Assigned</span>
-    <ul class="current-section-list">
+    <table class="table table-condensed current-section-list">
         @foreach (var item in Model.CurrentlyEnrolledSections)
         {
-            <li class="current-section-list-item">
-                @Html.DisplayFor(modelItem => item.Name)
-                @item.BeginDate - 
-                @item.EndDate
-                <div class="hidden section-id">@item.SectionId</div>
-            </li>
+            <tr class="current-section-list-item">
+                <td class="scheduled-section-name">@Html.DisplayFor(modelItem => item.Name)</td>
+                <td class="scheduled-section-dates">
+                    <span class="scheduled-section-begin-date">@item.BeginDate</span> -
+                    <span class="scheduled-section-end-date">@item.EndDate</span>
+                </td>
+                <td class="hidden section-id">@item.SectionId</td>
+            </tr>
         }
-    </ul>
+    </table>
 </div>
 
 @section Scripts {

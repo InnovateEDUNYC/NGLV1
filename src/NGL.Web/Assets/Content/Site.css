@@ -116,3 +116,15 @@ form .inline input {
 .dl-horizontal dt {
     width: 210px;
 }
+
+/* Current section list in schedule student page */
+.current-section-list-item {
+    border: solid 1px lightgrey;
+    margin: 5px;
+    padding: 3px 0 3px 8px;
+    width: 100%;
+}
+
+.scheduled-section-dates {
+    float: right;
+}
