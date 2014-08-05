@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Location;
 
@@ -22,8 +23,8 @@ namespace NGL.Web.Controllers
             _locationToIndexModelMapper = locationToIndexModelMapper;
         }
 
-        //
         // GET: /Location/
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "view")]
         public virtual ActionResult Index()
         {
             var locations = _genericRepository.GetAll<Location>();
@@ -39,16 +40,16 @@ namespace NGL.Web.Controllers
             return View(indexModels);
         }
 
-        //
         // GET: /Location/Create/
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create()
         {
             return View();
         }
 
-        //
         // POST: /Location/Create/
         [HttpPost]
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
@@ -62,6 +63,5 @@ namespace NGL.Web.Controllers
 
             return RedirectToAction("Index");
         }
-
 	}
 }

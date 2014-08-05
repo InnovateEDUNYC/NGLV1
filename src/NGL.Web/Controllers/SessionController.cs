@@ -23,6 +23,7 @@ namespace NGL.Web.Controllers
             _entityToIndexModelMapper = entityToIndexModelMapper;
         }
 
+        [AuthorizeFor(Resource = "session", Operation = "view")]
         public virtual ActionResult Index()
         {
             IEnumerable<Session> sessions = _genericRepository.GetAll<Session>();
@@ -45,6 +46,7 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeFor(Resource = "session", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)

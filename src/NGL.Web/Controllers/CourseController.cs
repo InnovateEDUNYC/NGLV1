@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Antlr.Runtime.Misc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Course;
 
@@ -26,9 +25,9 @@ namespace NGL.Web.Controllers
 
 
         // GET: /Course
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "view")]
         public virtual ActionResult Index()
         {
-
             IEnumerable<Course> courses = _genericRepository.GetAll<Course>();
             var indexModels = new List<IndexModel>();
 
@@ -43,6 +42,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: /Course/Create
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create()
         {
             return View();
@@ -50,6 +50,7 @@ namespace NGL.Web.Controllers
 
         //POST: /Course/Create
         [HttpPost]
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)

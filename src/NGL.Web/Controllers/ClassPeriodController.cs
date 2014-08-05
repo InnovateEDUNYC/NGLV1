@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.ClassPeriod;
 
@@ -23,6 +24,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: /ClassPeriod
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "view")]
         public virtual ActionResult Index()
         {
             IEnumerable<ClassPeriod> classPeriods = _genericRepository.GetAll<ClassPeriod>();
@@ -39,6 +41,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: /ClassPeriod/Create
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace NGL.Web.Controllers
 
         //POST: /ClassPeriod/Create
         [HttpPost]
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
@@ -59,6 +63,5 @@ namespace NGL.Web.Controllers
 
             return RedirectToAction("Index");
         }
-
 	}
 }
