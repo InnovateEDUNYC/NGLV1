@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Schedule;
 using NGL.Web.Models.Section;
@@ -39,8 +38,8 @@ namespace NGL.Web.Controllers
             _studentSectionAssociationToSectionListItemModelMapper = studentSectionAssociationToSectionListItemModelMapper;
         }
 
-        //
         // GET: /Set/5
+        [AuthorizeFor(Resource = "scheduleStudents", Operation = "create")]
         public virtual ActionResult Set(int id)
         {
             var student = _genericRepository.Get<Student>(s => s.StudentUSI == id);
@@ -67,9 +66,9 @@ namespace NGL.Web.Controllers
             return currentlyEnrolledSections;
         }
 
-        //
         // AJAX POST: /ScheduleStudent/
         [HttpPost]
+        [AuthorizeFor(Resource = "scheduleStudents", Operation = "create")]
         public virtual JsonResult ScheduleStudent(SetModel setModel)
         {
             var section = _genericRepository.Get<Section>(s => s.SectionIdentity == setModel.SectionId);
@@ -95,9 +94,9 @@ namespace NGL.Web.Controllers
             return Json(sectionListItem, JsonRequestBehavior.AllowGet);
         }
 
-        //
         // AJAX POST: /GetSections/SCI4
         [HttpPost]
+        [AuthorizeFor(Resource = "scheduleStudents", Operation = "create")]
         public virtual JsonResult GetSections(string searchString)
         {
             var autoCompleteModels = GetAllSectionAutocompleteModelsWith(searchString);

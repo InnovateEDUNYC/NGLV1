@@ -1,12 +1,16 @@
-﻿@model IEnumerable<NGL.Web.Models.Account.UserModel>
+﻿@using NGL.Web.Infrastructure.Security
+@model IEnumerable<NGL.Web.Models.Account.UserModel>
 @{
     ViewBag.Title = "Users";
 }
 
 <h2>Users</h2>
-<ul class="nav nav-pills">
-    <li>@Html.ActionLink("Add User", "AddUser")</li>
-</ul>
+@if ((User as NglPrincipal).HasAccessTo("user", "create"))
+{
+    <ul class="nav nav-pills">
+        <li>@Html.ActionLink("Add User", "AddUser")</li>
+    </ul>
+}
 
 <table class="table table-striped" id="users">
     <thead>

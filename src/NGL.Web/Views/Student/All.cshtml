@@ -1,4 +1,5 @@
-﻿@model IEnumerable<NGL.Web.Models.Student.IndexModel>
+﻿@using NGL.Web.Infrastructure.Security
+@model IEnumerable<NGL.Web.Models.Student.IndexModel>
 
 @{
     ViewBag.Title = "Students";
@@ -6,9 +7,12 @@
 
 <h2>Students</h2>
 
-<ul class="nav nav-pills">
-    <li>@Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent())</li>
-</ul>
+@if ((User as NglPrincipal).HasAccessTo("enrollment", "create"))
+{
+    <ul class="nav nav-pills">
+        <li>@Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent())</li>
+    </ul>
+}
 
 <table class="table table-striped" id="student-table">
     <thead>

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Section;
 using CreateModel = NGL.Web.Models.Section.CreateModel;
@@ -42,6 +43,7 @@ namespace NGL.Web.Controllers
         }
 
         // GET: /Section
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "view")]
         public virtual ActionResult Index()
         {
             var sections = _genericRepository.GetAll<Section>();
@@ -57,8 +59,8 @@ namespace NGL.Web.Controllers
             return View(indexModels);
         }
 
-        //
         // GET: /Section/Create
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create()
         {
             var classPeriodModels = GetClassPeriodNameModels();
@@ -70,6 +72,7 @@ namespace NGL.Web.Controllers
 
         // POST: /Section/Create
         [HttpPost]
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)

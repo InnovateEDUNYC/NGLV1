@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -12,6 +10,7 @@ using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.ImageTools;
 using NGL.Web.Infrastructure.Azure;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Student;
 
@@ -23,20 +22,19 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Student, ProfileModel> _studentToProfileModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
-        private readonly AzureStorageDownloader _fileDownloader;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
                                                 IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                                AzureStorageUploader fileUploader, AzureStorageDownloader fileDownloader)
+                                                AzureStorageUploader fileUploader)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
             _fileUploader = fileUploader;
-            _fileDownloader = fileDownloader;
         }
 
         // GET: /Student/All
+        [AuthorizeFor(Resource = "enrollment", Operation = "view")]
         public virtual ActionResult All()
         {
             IEnumerable<Student> students = _repository.GetAll<Student>();
@@ -52,8 +50,8 @@ namespace NGL.Web.Controllers
             return View(models);
         }
 
-        //
         // GET: /Student/5
+        [AuthorizeFor(Resource = "enrollment", Operation = "view")]
         public virtual ActionResult Index(int usi)
         {
             var student = _repository.Get(
@@ -77,8 +75,8 @@ namespace NGL.Web.Controllers
             return View(profileModel);
         }
 
-        //
         // POST: /Student/UploadPhoto/5
+        [AuthorizeFor(Resource = "enrollment", Operation = "edit")]
         public virtual ActionResult UploadPhoto(HttpPostedFileBase profilePhoto, int usi)
         {
             try
@@ -89,7 +87,7 @@ namespace NGL.Web.Controllers
                 Upload(photoStream, usi + "/profilePhoto");
                 Upload(thumbNailStream, usi + "/profileThumbnail");
             }
-            catch (System.ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
             }

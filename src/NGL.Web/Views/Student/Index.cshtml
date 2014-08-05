@@ -1,4 +1,5 @@
 ﻿@using Microsoft.Ajax.Utilities
+@using NGL.Web.Infrastructure.Security
 @model NGL.Web.Models.Student.ProfileModel
 
 @{
@@ -11,20 +12,26 @@
     <div class="col-md-4">
         <div class="profile-photo-container">
             <img src="@Model.ProfilePhotoUrl"></img>
-            @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+
+            @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
             {
-                <div class="upload-profile-photo">
-                    <button class="click-button btn btn-default">New photo</button>
-                    <input type="file" class="ghost-button" name="profilePhoto" accept="image/*" />
-                </div>
+                using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+                {
+                    <div class="upload-profile-photo">
+                        <button class="click-button btn btn-default">New photo</button>
+                        <input type="file" class="ghost-button" name="profilePhoto" accept="image/*" />
+                    </div>
+                }
             }
         </div>
-        
+
+        @if ((User as NglPrincipal).HasAccessTo("scheduleStudents", "create"))
+        {
 @*        <div class="scheduling">*@
 @*            @Html.ActionLink("Scheduling", MVC.Schedule.Set(Model.StudentUsi))*@
 @*        </div>*@
+        }
     </div>
-    
 
     <div class="col-md-6">
         <h4>Biographical Information</h4>
