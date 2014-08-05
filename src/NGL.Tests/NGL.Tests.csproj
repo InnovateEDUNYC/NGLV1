@@ -84,6 +84,7 @@
     <Compile Include="Builders\SchoolBuilder.cs" />
     <Compile Include="Builders\SetScheduleModelBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
+    <Compile Include="Builders\StudentBuilder.cs" />
     <Compile Include="ClassPeriod\CreateClassPeriodModelBuilder.cs" />
     <Compile Include="Builders\StudentProgramStatusBuilder.cs" />
     <Compile Include="ClassPeriod\MapperTests.cs" />

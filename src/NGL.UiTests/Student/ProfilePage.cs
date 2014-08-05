@@ -1,6 +1,8 @@
 ﻿using Humanizer;
+using NGL.UiTests.Schedule;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
+using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Student
@@ -48,5 +50,9 @@ namespace NGL.UiTests.Student
             return studentFields && parentOneFields && parentTwoFields;
         }
 
+        public SchedulePage GoToSchedulePage()
+        {
+            return Navigate.To<SchedulePage>(By.LinkText("Scheduling"));
+        }
     }
 }
