@@ -1,4 +1,5 @@
 ﻿using System;
+using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
@@ -16,10 +17,10 @@ namespace NGL.Web.Models.Section
 
         public override void Map(StudentSectionAssociation source, SectionListItemModel target)
         {
-            target.Name = source.LocalCourseCode;
-            target.BeginDate = source.BeginDate.ToString("dd.MM.yyyy");
+            target.Name = source.LocalCourseCode + " (" + source.ClassPeriodName + ", " + ((TermTypeEnum)source.TermTypeId).Humanize() + ")";
+            target.BeginDate = source.BeginDate.ToString("MM/dd/yyyy");
             if (source.EndDate != null) 
-                target.EndDate = ((DateTime)source.EndDate).ToString("dd.MM.yyyy");
+                target.EndDate = ((DateTime)source.EndDate).ToString("MM/dd/yyyy");
 
             var query = new SectionByPrimaryKeysQuery(
                 source.SchoolYear, source.TermTypeId, source.ClassPeriodName,

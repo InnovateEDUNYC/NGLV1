@@ -11,8 +11,7 @@ namespace NGL.Web.Models.Schedule
         public int StudentUsi { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public List<SessionListItemModel> Sessions { get; set; }
-        [ExistsIn("Sessions", "SessionId", "SessionName", false)]
-        public string Session { get; set; }
+        public int Session { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime BeginDate { get; set; }
@@ -33,7 +32,7 @@ namespace NGL.Web.Models.Schedule
                 StudentUsi = student.StudentUSI,
                 ProfilePhotoUrl = profilePhotoUrl,
                 Sessions = sessions,
-                Session = session.SessionId.ToString(),
+                Session = session.SessionId,
                 BeginDate = session.BeginDate,
                 EndDate = session.EndDate,
                 CurrentlyEnrolledSections = currentlyEnrolledSections

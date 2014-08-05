@@ -6,7 +6,7 @@ namespace NGL.Tests.Builders
 {
     public class SetScheduleModelBuilder
     {
-        private readonly DateTime _beginDate = new DateTime(2004, 2, 2);
+        private DateTime _beginDate = new DateTime(2004, 2, 2);
         private readonly DateTime _endDate = new DateTime(2004, 8, 8);
         private string _studentName = "Jack Conway";
         private const string _profilePhotoUrl = "example.com";
@@ -37,6 +37,12 @@ namespace NGL.Tests.Builders
         {
             _studentName = String.Join(" ", student.FirstName, student.LastSurname);
             _studentUsi = student.StudentUSI;
+            return this;
+        }
+
+        public SetScheduleModelBuilder WithBeginDate(DateTime dateTime)
+        {
+            _beginDate = dateTime;
             return this;
         }
     }

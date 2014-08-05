@@ -2,12 +2,20 @@
 
 Ngl.schedule.setSchedule = (function () {
     var setupView = function() {
-        setSchedule();
+        setScheduleAutocomplete();
         configureSaveButton();
         configureSessionDropdown();
+        setupUpdateDates();
+        clearHiddenFieldsOnError();
     }
 
-    var setSchedule = function () {
+    var clearHiddenFieldsOnError = function () {
+        $('#Section').on('change', function () {
+            $('#SectionId').val("");
+        });
+    }
+
+    var setScheduleAutocomplete = function () {
             $('#Section').autocomplete({
                 source: function(request, response) {
                     $.ajax({
@@ -19,7 +27,7 @@ Ngl.schedule.setSchedule = (function () {
                             style: "full",
                             maxRows: 12,
                             searchString: request.term,
-                            sessionId: $('#Session :selected').val()
+                            sessionId: $('#session-dropdown :selected').val()
                         },
                         success: function (data) {
                             response($.map(data, function(section) {
@@ -57,8 +65,16 @@ Ngl.schedule.setSchedule = (function () {
                         var name = sectionListItem.Name;
                         var beginDate = sectionListItem.BeginDate;
                         var endDate = sectionListItem.EndDate;
-                        $('.current-section-list').append("<li class='current-section-list-item'>" +
-                            name + " " + beginDate + " - " + endDate + "<div class='hidden section-id'>" + sectionListItem.SectionId + "</div></li>");
+                        $('.current-section-list').append(
+                            '<tr class="current-section-list-item new-item">' +
+                                '<td class="scheduled-section-name">' + name + '</td>' +
+                                '<td class="scheduled-section-dates">' +
+                                    '<span class="scheduled-section-begin-date">' + beginDate + '</span> - ' +
+                                    '<span class="scheduled-section-end-date">' + endDate + '</span>' +
+                                '</td>' +
+                                '<td class="hidden section-id">' + sectionListItem.SectionId + '</td>' +
+                            '</tr>' +
+                           '<tr class="spacer"></tr>');
                     }
                 }
             });
@@ -67,14 +83,30 @@ Ngl.schedule.setSchedule = (function () {
         });
     };
 
+    var setupUpdateDates = function () {
+        $('#session-dropdown').on('change', function () {
+            var selectedSession = $(this).find(':selected')[0];
+
+            var beginDate = selectedSession.getAttribute('beginDate');
+            var endDate = selectedSession.getAttribute('endDate');
+            updateDates(beginDate, endDate);
+
+        });
+    }
+
+    var updateDates = function(beginDate, endDate) {
+        $('#BeginDate').val(beginDate);
+        $('#BeginDate').datepicker('update');
+        $('#EndDate').val(endDate);
+        $('#EndDate').datepicker('update');
+    };
+
     var configureSessionDropdown = function() {
         $('#Session').on('change', function() {
             clearSection();
 
         });
     };
-
-
 
     var clearSection = function () {
         $('#Section').val("");

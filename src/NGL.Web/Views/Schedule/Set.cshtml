@@ -4,54 +4,91 @@
     ViewBag.Title = "Set Schedule";
 }
 
-<h2>Set Schedule</h2>
 
-<div class="profile-photo-container">
-    <img src="@Model.ProfilePhotoUrl" />
-</div>
-
-<div class="student-name-and-usi">
-    @Html.DisplayTextFor(m => m.StudentName)
-    @Html.DisplayNameFor(m => m.StudentUsi): 
-    @Html.DisplayTextFor(m => m.StudentUsi)
-</div>
-
-@using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new {id = "schedule-student-form"})))
-{
-    using (var s = f.BeginSection("Info"))
-    {
-        @s.FieldFor(m => m.Session).AddLabelClass("category-title")
-        @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
-        @s.FieldFor(m => m.EndDate).AddClass("datepicker")
-        <div class="hidden">
-            @s.FieldFor(m => m.SectionId)
-            @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
+<div class="container">
+    <h2>Set Schedule</h2>
+    <div class="col-md-2 profile-column">
+        <div class="profile-photo-container">
+            <img src="@Model.ProfilePhotoUrl" />
         </div>
-    }
-}
+    </div>
+    
 
-<span class="category-title">
-    Section @Html.TextBox("Section")
-</span>
-<button id="schedule-student-button">Save</button>
+    <div class="col-md-8">
+        <div class="student-name-and-usi">
+            <span class="student-name-title h3">@Html.DisplayTextFor(m => m.StudentName)</span>
+            <div class="student-usi">
+                USI: 
+                @Html.DisplayTextFor(m => m.StudentUsi)
+            </div>
+        </div>
 
-<div class="field-validation-error">
-    @Html.DisplayTextFor(m => m.ErrorMessage)
-</div>
+        <div class="form">
+            @using (var f = Html.BeginChameleonForm(htmlAttributes: new HtmlAttributes(new { id = "schedule-student-form" })))
+            {
+                using (var s = f.BeginSection(" "))
+                {
+                    <div class="form-group">
+                        <label class="category-title control-label">Session</label>
+                        <div class="input-group">
+                            <select class="form-control" data-val="true" id="session-dropdown" name="session-dropdown">
+                                @foreach (var session in Model.Sessions)
+                                {
+                                    if (session.SessionId == Model.Session)
+                                    {
+                                        <option selected="selected" class="session" begindate="@session.BeginDate.ToShortDateString()" enddate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
+                                    }
+                                    else
+                                    {
+                                        <option class="session" begindate="@session.BeginDate.ToShortDateString()" enddate="@session.EndDate.ToShortDateString()" value="@session.SessionId">@session.SessionName</option>
+                                    }
+                                }
+                            </select>
+                            <div class="input-group-addon required">
+                                <em class="required" title="Required">∗</em>
+                            </div>
+                        </div>
+                    </div>
+                    @s.FieldFor(m => m.BeginDate).AddClass("datepicker")
+                    @s.FieldFor(m => m.EndDate).AddClass("datepicker")
+                    <div class="hidden">
+                        @s.FieldFor(m => m.SectionId)
+                        @s.FieldFor(m => m.StudentUsi).Attr("value", @Model.StudentUsi)
+                    </div>
+                }
+            }
+        </div>
 
-<div class="current-sections-container">
-    <span class="category-title">Sections Assigned</span>
-    <ul class="current-section-list">
-        @foreach (var item in Model.CurrentlyEnrolledSections)
-        {
-            <li class="current-section-list-item">
-                @Html.DisplayFor(modelItem => item.Name)
-                @item.BeginDate - 
-                @item.EndDate
-                <div class="hidden section-id">@item.SectionId</div>
-            </li>
-        }
-    </ul>
+        <div class="category-title">
+            Section 
+        </div>
+        <div class="section-searchbox-container">
+            <input class="form-control" type="text" data-val="true" id="Section" />
+        </div>
+        <button id="schedule-student-button" class="btn btn-default">Save</button>
+
+        <div class="field-validation-error">
+            @Html.DisplayTextFor(m => m.ErrorMessage)
+        </div>
+
+        <div class="current-sections-container">
+            <span class="category-title">Sections Assigned</span>
+            <table class="table table-condensed current-section-list">
+                @foreach (var item in Model.CurrentlyEnrolledSections)
+                {
+                    <tr class="current-section-list-item">
+                        <td class="scheduled-section-name">@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td class="scheduled-section-dates">
+                            <span class="scheduled-section-begin-date">@item.BeginDate</span> -
+                            <span class="scheduled-section-end-date">@item.EndDate</span>
+                        </td>
+                        <td class="hidden section-id">@item.SectionId</td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                }
+            </table>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

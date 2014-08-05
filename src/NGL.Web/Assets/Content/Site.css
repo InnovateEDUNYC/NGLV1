@@ -109,10 +109,79 @@ form .inline input {
     margin-bottom: 45px;
 }
 
+.scheduling {
+    display: inline-block;
+    width: 92px;
+    height: 32px;
+    border: solid grey 1px;
+    border-radius: 3px;
+    background: lightgrey;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.scheduling a {
+    text-align: center;
+    color: black;
+}
+
 .dl-horizontal dd {
     margin-left: 230px;
 }
 
 .dl-horizontal dt {
     width: 210px;
+}
+
+/* Schedule student page */
+.current-section-list-item > td {
+    margin-bottom: 100px;
+}
+.current-section-list-item {
+    border: solid 1px lightgrey;
+    border-left: turquoise 4px solid;
+    padding: 3px 0 3px 8px;
+    width: 100%;
+}
+
+.scheduled-section-dates {
+    width: 30%;
+    margin-right: 20px;
+    border-top: 0;
+}
+
+.spacer {
+    width: 100%;
+    height: 5px;
+}
+
+.profile-column {
+    margin-left: -30px;
+    margin-right: 60px;
+}
+
+.form {
+    margin-top: 50px;
+}
+
+.field-validation-error {
+    margin-top: 15px;  
+}
+
+.category-title {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.current-sections-container {
+    margin-top: 30px;
+}
+
+.section-searchbox-container {
+    display: inline-block;
+    width: 40%;
+}
+
+.section-searchbox-container > input {
+    width: 100%;
 }

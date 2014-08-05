@@ -41,7 +41,7 @@ namespace NGL.Web.Controllers
             _setModelToStudentSectionAssociationMapper = setModelToStudentSectionAssociationMapper;
         }
 
-        // GET: /Set/5
+        // GET: /Get/5
         [AuthorizeFor(Resource = "scheduleStudents", Operation = "create")]
         public virtual ActionResult Set(int id)
         {

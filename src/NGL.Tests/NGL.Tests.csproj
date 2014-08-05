@@ -106,6 +106,7 @@
     <Compile Include="Location\CreateLocationModelBuilder.cs" />
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />
+    <Compile Include="Schedule\SetModelValidatorTest.cs" />
     <Compile Include="Section\CourseToCourseJsonModelMapperTests.cs" />
     <Compile Include="Schedule\SessionToSessionListItemModelMapperTests.cs" />
     <Compile Include="Schedule\SetModelToStudentSectionAssociationMapperTests.cs" />
