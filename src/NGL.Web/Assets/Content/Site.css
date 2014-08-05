@@ -109,6 +109,24 @@ form .inline input {
     margin-bottom: 45px;
 }
 
+.scheduling {
+    display: inline-block;
+    width: 92px;
+    height: 32px;
+    border: solid grey 1px;
+    border-radius: 3px;
+    background: lightgrey;
+    padding-top: 4px;
+    text-align: center;
+    
+    
+}
+
+.scheduling a {
+    text-align: center;
+    color: black;
+}
+
 .dl-horizontal dd {
     margin-left: 230px;
 }
