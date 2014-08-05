@@ -39,7 +39,7 @@ namespace NGL.Web.Models.Schedule
             {
                 yield return
                     new ValidationFailure(setModel.GetNameFor(s => s.ErrorMessage),
-                        "This section could not be found in the database");
+                        "This section could not be found");
             }
             else
             {
@@ -57,7 +57,7 @@ namespace NGL.Web.Models.Schedule
                 {
                     yield return
                         new ValidationFailure(setModel.GetNameFor(s => s.ErrorMessage),
-                            "This student has already been scheduled for this section for this begin date.");
+                            "This student has already been scheduled for this section for this begin date");
                 }
             }
         }

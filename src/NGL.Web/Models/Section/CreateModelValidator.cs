@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Castle.Core.Internal;
 using FluentValidation;
 using FluentValidation.Results;
 using NGL.Web.Data.Infrastructure;
@@ -33,8 +34,7 @@ namespace NGL.Web.Models.Section
 
         private IEnumerable<ValidationFailure> ValidateExistence(CreateModel createModel)
         {
-            if (createModel.Period == null || createModel.Classroom == null ||
-                createModel.Course == null) yield break;
+            foreach (var validationFailure in CheckForNulls(createModel)) { yield return validationFailure; }
 
             var query = new SectionByPrimaryKeysQuery(
                 createModel.SchoolYear,
@@ -49,8 +49,43 @@ namespace NGL.Web.Models.Section
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Session), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Period), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Classroom), " ");
-                yield return new ValidationFailure(createModel.GetNameFor(s => s.Course), "This section already exists.");
-                    
+                yield return new ValidationFailure(createModel.GetNameFor(s => s.Course), "This section already exists");
+            }
+        }
+
+        private IEnumerable<ValidationFailure> CheckForNulls(CreateModel createModel)
+        {
+            var period =
+                _genericRepository.Get<Data.Entities.ClassPeriod>(cp => cp.ClassPeriodName == createModel.Period);
+
+            var classroom =
+                _genericRepository.Get<Data.Entities.Location>(l => l.ClassroomIdentificationCode == createModel.Classroom);
+            
+            var session =
+                _genericRepository.Get<Data.Entities.Session>(
+                    s => s.SchoolYear == createModel.SchoolYear && s.TermTypeId == createModel.Term);
+            
+            var course = _genericRepository.Get<Data.Entities.Course>(c => c.CourseCode == createModel.Course);
+
+
+            if (period == null)
+            {
+                yield return new ValidationFailure(createModel.GetNameFor(s => s.Period), "This period could not be found");
+            }
+
+            if (classroom == null)
+            {
+                yield return new ValidationFailure(createModel.GetNameFor(s => s.Classroom), "This classroom could not be found");
+            }
+
+            if (session == null)
+            {
+                yield return new ValidationFailure(createModel.GetNameFor(s => s.Session), "This session could not be found");
+            }
+
+            if (course == null)
+            {
+                yield return new ValidationFailure(createModel.GetNameFor(s => s.Course), "This course could not be found");
             }
         }
     }
