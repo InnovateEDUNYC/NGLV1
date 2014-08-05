@@ -118,8 +118,6 @@ form .inline input {
     background: lightgrey;
     padding-top: 4px;
     text-align: center;
-    
-    
 }
 
 .scheduling a {
@@ -166,6 +164,10 @@ form .inline input {
     margin-top: 50px;
 }
 
+.field-validation-error {
+    margin-top: 15px;  
+}
+
 .category-title {
     font-size: 1.3em;
     font-weight: bold;
@@ -173,4 +175,13 @@ form .inline input {
 
 .current-sections-container {
     margin-top: 30px;
+}
+
+.section-searchbox-container {
+    display: inline-block;
+    width: 40%;
+}
+
+.section-searchbox-container > input {
+    width: 100%;
 }

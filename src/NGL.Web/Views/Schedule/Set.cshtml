@@ -59,10 +59,13 @@
             }
         </div>
 
-        <span class="category-title">
-            Section @Html.TextBox("Section")
-        </span>
-        <button id="schedule-student-button">Save</button>
+        <div class="category-title">
+            Section 
+        </div>
+        <div class="section-searchbox-container">
+            <input class="form-control" type="text" data-val="true" id="Section" />
+        </div>
+        <button id="schedule-student-button" class="btn btn-default">Save</button>
 
         <div class="field-validation-error">
             @Html.DisplayTextFor(m => m.ErrorMessage)
