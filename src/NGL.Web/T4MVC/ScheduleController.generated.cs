@@ -125,6 +125,7 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_GetSections
         {
             public readonly string searchString = "searchString";
+            public readonly string sessionId = "sessionId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -172,14 +173,15 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void GetSectionsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string searchString);
+        partial void GetSectionsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string searchString, int sessionId);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult GetSections(string searchString)
+        public override System.Web.Mvc.JsonResult GetSections(string searchString, int sessionId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSections);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchString", searchString);
-            GetSectionsOverride(callInfo, searchString);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
+            GetSectionsOverride(callInfo, searchString, sessionId);
             return callInfo;
         }
 
