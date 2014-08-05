@@ -118,14 +118,23 @@ form .inline input {
 }
 
 /* Current section list in schedule student page */
+.current-section-list-item > td {
+    margin-bottom: 100px;
+}
 .current-section-list-item {
     border: solid 1px lightgrey;
-    margin: 5px;
+    border-left: turquoise 4px solid;
     padding: 3px 0 3px 8px;
     width: 100%;
 }
 
 .scheduled-section-dates {
-    float: right;
+    width: 20%;
     margin-right: 20px;
+    border-top: 0;
+}
+
+.spacer {
+    width: 100%;
+    height: 5px;
 }

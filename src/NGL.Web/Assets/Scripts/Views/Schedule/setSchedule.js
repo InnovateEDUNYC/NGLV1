@@ -58,11 +58,16 @@ Ngl.schedule.setSchedule = (function () {
                         var name = sectionListItem.Name;
                         var beginDate = sectionListItem.BeginDate;
                         var endDate = sectionListItem.EndDate;
-                        $('.current-section-list').append('<div class="current-section-list-item">' +
-                           '<span class="scheduled-section-name">' + name + '</span>' +
-                           '<span class="scheduled-section-begin-date">' + beginDate + '</span> - ' +
-                           '<span class="scheduled-section-end-date">' + endDate + '</span>' +
-                           '<span class="hidden section-id">' + sectionListItem.SectionId + "</span></div>");
+                        $('.current-section-list').append(
+                            '<tr class="current-section-list-item new-item">' +
+                                '<td class="scheduled-section-name">' + name + '</td>' +
+                                '<td class="scheduled-section-dates">' +
+                                    '<span class="scheduled-section-begin-date">' + beginDate + '</span> - ' +
+                                    '<span class="scheduled-section-end-date">' + endDate + '</span>' +
+                                '</td>' +
+                                '<td class="hidden section-id">' + sectionListItem.SectionId + '</td>' +
+                            '</tr>' +
+                           '<tr class="spacer"></tr>');
                     }
                 }
             });
@@ -73,7 +78,7 @@ Ngl.schedule.setSchedule = (function () {
 
     var setupUpdateDates = function () {
         $('#session-dropdown').on('change', function () {
-            var selectedSession = $('#session-dropdown :selected')[0];
+            var selectedSession = $(this).find(':selected')[0];
 
             var beginDate = selectedSession.getAttribute('beginDate');
             var endDate = selectedSession.getAttribute('endDate');

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using FluentValidation;
 using FluentValidation.Results;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure;
-using NGL.Web.Models.Section;
 
 namespace NGL.Web.Models.Schedule
 {
@@ -21,7 +18,6 @@ namespace NGL.Web.Models.Schedule
 
             RuleFor(model => model.BeginDate).NotEmpty();
             RuleFor(model => model.EndDate).NotEmpty();
-            RuleFor(model => model.Session).NotEmpty();
             RuleFor(model => model.StudentUsi).NotEmpty();
             RuleFor(model => model.SectionId).NotEmpty().WithMessage("Please select a section from the search box");
         }
