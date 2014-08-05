@@ -1,9 +1,13 @@
-﻿using FluentValidation.TestHelper;
+﻿using System;
+using System.Linq.Expressions;
+using FluentValidation.TestHelper;
 using NGL.Tests.Builders;
+using NGL.Tests.Session;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Models.Section;
 using NSubstitute;
+using NSubstitute.Core.Arguments;
 using Xunit;
 
 namespace NGL.Tests.Section
@@ -51,6 +55,18 @@ namespace NGL.Tests.Section
             _genericRepository = Substitute.For<IGenericRepository>();
             _sectionCreateModel = new CreateSectionModelBuilder().Build();
             _validator = new CreateModelValidator(_genericRepository);
+
+            _genericRepository.Get(Arg.Any<Expression<Func<Web.Data.Entities.Session, bool>>>())
+                .Returns(new SessionBuilder().Build());
+
+            _genericRepository.Get(Arg.Any<Expression<Func<Web.Data.Entities.ClassPeriod, bool>>>())
+                .Returns(new ClassPeriodBuilder().Build());
+
+            _genericRepository.Get(Arg.Any<Expression<Func<Web.Data.Entities.Location, bool>>>())
+                .Returns(new LocationBuilder().Build());
+
+            _genericRepository.Get(Arg.Any<Expression<Func<Web.Data.Entities.Course, bool>>>())
+                .Returns(new CourseBuilder().Build());
         }
     }
 }
