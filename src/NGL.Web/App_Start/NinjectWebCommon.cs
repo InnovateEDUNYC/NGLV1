@@ -1,19 +1,14 @@
-using System.Data.Entity;
 using System.Web;
-using System.Web.Mvc;
 using FluentValidation;
-using FluentValidation.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using NGL.Web;
-using NGL.Web.App_Start;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Repositories;
-using NGL.Web.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using Ninject;
 using Ninject.Extensions.Conventions;
@@ -79,12 +74,17 @@ namespace NGL.Web
             kernel.Bind<ApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
             kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
             kernel.Bind<IFileDownloader>().To<AzureStorageDownloader>().InSingletonScope();
+            kernel.Bind<IResourceService>().To<ResourceService>().InSingletonScope();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()
                 .ToMethod<UserManager<ApplicationUser>>(c =>
                     new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(c.Kernel.Get<ApplicationDbContext>())));
-
+            kernel
+                .Bind<RoleManager<IdentityRole>>()
+                .ToMethod<RoleManager<IdentityRole>>(c =>
+                    new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(c.Kernel.Get<ApplicationDbContext>())));
+            
             kernel.Bind(x => x
                 .FromThisAssembly()
                 .SelectAllTypes()

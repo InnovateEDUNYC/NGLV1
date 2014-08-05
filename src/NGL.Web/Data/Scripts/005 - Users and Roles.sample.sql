@@ -1,4 +1,11 @@
-﻿INSERT INTO [edfi].[Staff]([StaffUSI],[FirstName],[LastSurname],[HispanicLatinoEthnicity])
+﻿/* John Smith - Admin */
+declare @AdminRoleId nvarchar(256),
+		@JohnSmithUserId nvarchar(256)
+
+select @AdminRoleId = Id From [dbo].[AspNetRoles] Where Name = 'Admin'
+select @JohnSmithUserId = CAST(newid() AS nvarchar(256))
+
+INSERT INTO [edfi].[Staff]([StaffUSI],[FirstName],[LastSurname],[HispanicLatinoEthnicity])
      VALUES (2, 'John', 'Smith', 0)
 
 INSERT INTO [dbo].[AspNetUsers]
@@ -13,7 +20,7 @@ INSERT INTO [dbo].[AspNetUsers]
            ,[AccessFailedCount]
            ,[UserName])
      VALUES
-           (CAST(newid() AS nvarchar(256))
+           (@JohnSmithUserId
 		   ,2
            ,0
            ,'ACERoeZ2ERgdwprCeqjS23zfO9mgbwStQi0VUzaqf/t0H3QNltp69K6zaqqkuBlL3A=='
@@ -24,6 +31,15 @@ INSERT INTO [dbo].[AspNetUsers]
            ,0
            ,'JohnSmith')
 
+INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId])
+     VALUES (@JohnSmithUserId, @AdminRoleId)
+
+/* Hellen Smith - Admin */
+declare @TeacherRoleId nvarchar(256),
+		@HellenSmithUserId nvarchar(256)
+
+select @TeacherRoleId = Id From [dbo].[AspNetRoles] Where Name = 'Teacher'
+select @HellenSmithUserId = CAST(newid() AS nvarchar(256))
 
 INSERT INTO [edfi].[Staff]([StaffUSI],[FirstName],[LastSurname],[HispanicLatinoEthnicity])
      VALUES (3, 'Hellen', 'Smith', 0)
@@ -40,7 +56,7 @@ INSERT INTO [dbo].[AspNetUsers]
            ,[AccessFailedCount]
            ,[UserName])
      VALUES
-           (CAST(newid() AS nvarchar(256))
+           (@HellenSmithUserId
 		   ,3
 		   ,0
            ,'ACERoeZ2ERgdwprCeqjS23zfO9mgbwStQi0VUzaqf/t0H3QNltp69K6zaqqkuBlL3A=='
@@ -50,3 +66,6 @@ INSERT INTO [dbo].[AspNetUsers]
            ,0
            ,0
            ,'HellenSmith')
+
+INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId])
+     VALUES (@HellenSmithUserId, @TeacherRoleId)

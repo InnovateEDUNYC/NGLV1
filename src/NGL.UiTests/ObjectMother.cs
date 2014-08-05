@@ -25,6 +25,25 @@ namespace NGL.UiTests
                 }
             }
         }
+        public static class UserMasterAdmin
+        {
+            private const string Username = "MasterAdmin";
+            private const string Password = "123123";
+
+            public static LoginModel ViewModel
+            {
+                get
+                {
+                    return
+
+                        new LoginModel
+                        {
+                            Username = Username,
+                            Password = Password
+                        };
+                }
+            }
+        }
 
         public static class Spring2038Semester
         {

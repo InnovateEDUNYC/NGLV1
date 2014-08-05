@@ -1,13 +1,18 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Web.Security;
 using Humanizer;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Account;
 
@@ -16,6 +21,8 @@ namespace NGL.Web.Controllers
     public partial class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IResourceService _resourceService;
         private readonly IGenericRepository _genericRepository;
         private readonly IStaffRepository _staffRepository;
         private readonly IMapper<Staff, UserModel> _staffToUserModelMapper;
@@ -24,6 +31,8 @@ namespace NGL.Web.Controllers
 
         public AccountController(
             UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager,
+            IResourceService resourceService,
             IGenericRepository genericRepository, 
             IStaffRepository staffRepository,
             IMapper<Staff, UserModel> staffToUserModelMapper,
@@ -31,6 +40,8 @@ namespace NGL.Web.Controllers
             IMapper<AddUserModel, ApplicationUser> addUserModelToApplicationUserMapper)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
+            _resourceService = resourceService;
             _genericRepository = genericRepository;
             _staffRepository = staffRepository;
             _staffToUserModelMapper = staffToUserModelMapper;
@@ -61,6 +72,7 @@ namespace NGL.Web.Controllers
             if (user != null)
             {
                 await SignInAsync(user, model.RememberMe);
+                CreateAuthenticationTicket(user);
                 return RedirectToLocal(returnUrl);
             }
                 
@@ -149,7 +161,8 @@ namespace NGL.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.CurrentPassword, model.NewPassword);
+                    var userId = _userManager.FindByName(User.Identity.Name).Id;
+                    IdentityResult result = await _userManager.ChangePasswordAsync(userId, model.CurrentPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -169,7 +182,8 @@ namespace NGL.Web.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    IdentityResult result = await _userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                    var userId = _userManager.FindByName(User.Identity.Name).Id;
+                    IdentityResult result = await _userManager.AddPasswordAsync(userId, model.NewPassword);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("ChangePassword", new { Message = ManageMessageId.SetPasswordSuccess });
@@ -183,13 +197,14 @@ namespace NGL.Web.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddDays(-1);    
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -217,6 +232,22 @@ namespace NGL.Web.Controllers
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
         }
 
+        public void CreateAuthenticationTicket(ApplicationUser user)
+        {
+            var roleId = user.Roles.First().RoleId;
+            var role = _roleManager.FindById(roleId).Name.DehumanizeTo<ApplicationRole>();
+
+            var serializeModel = new NglPrincipalSerializedModel {Resources = _resourceService.GetResourcesFor(role)};
+
+            var serializer = new JavaScriptSerializer();
+            var userData = serializer.Serialize(serializeModel);
+
+            var authTicket = new FormsAuthenticationTicket(1, user.UserName, DateTime.Now, DateTime.Now.AddHours(8), false, userData);
+            var encTicket = FormsAuthentication.Encrypt(authTicket);
+            var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+            Response.Cookies.Add(faCookie);
+        }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -227,7 +258,7 @@ namespace NGL.Web.Controllers
 
         private bool HasPassword()
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
+            var user = _userManager.FindByName(User.Identity.Name);
             if (user != null)
             {
                 return user.PasswordHash != null;
