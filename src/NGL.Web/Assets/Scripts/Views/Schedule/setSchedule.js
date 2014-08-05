@@ -6,6 +6,13 @@ Ngl.schedule.setSchedule = (function () {
         configureSaveButton();
         configureSessionDropdown();
         setupUpdateDates();
+        clearHiddenFieldsOnError();
+    }
+
+    var clearHiddenFieldsOnError = function () {
+        $('#Section').on('change', function () {
+            $('#SectionId').val("");
+        });
     }
 
     var setScheduleAutocomplete = function () {
