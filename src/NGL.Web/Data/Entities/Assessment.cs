@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
             this.AssessmentSections = new HashSet<AssessmentSection>();
             this.ObjectiveAssessments = new HashSet<ObjectiveAssessment>();
             this.StudentAssessments = new HashSet<StudentAssessment>();
+            this.AssessmentLearningStandards = new HashSet<AssessmentLearningStandard>();
         }
     
         public string AssessmentTitle { get; set; }
@@ -63,5 +64,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<AssessmentSection> AssessmentSections { get; set; }
         public virtual ICollection<ObjectiveAssessment> ObjectiveAssessments { get; set; }
         public virtual ICollection<StudentAssessment> StudentAssessments { get; set; }
+        public virtual ICollection<AssessmentLearningStandard> AssessmentLearningStandards { get; set; }
     }
 }

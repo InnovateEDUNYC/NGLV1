@@ -1163,6 +1163,9 @@
         <AssociationConnector Association="NGLModel.FK_dbo_AspNetUsers_edfi_Staff_StaffUSI" />
         <EntityTypeShape EntityType="NGLModel.StaffCertificate" Width="1.5" PointX="28.5" PointY="433" />
         <AssociationConnector Association="NGLModel.FK_StaffCertificate_Staff" />
+        <EntityTypeShape EntityType="NGLModel.AssessmentLearningStandard" Width="1.5" PointX="52.5" PointY="398.625" />
+        <AssociationConnector Association="NGLModel.FK_AssessmentLearningStandard_Assessment_AssessmentTitle" />
+        <AssociationConnector Association="NGLModel.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

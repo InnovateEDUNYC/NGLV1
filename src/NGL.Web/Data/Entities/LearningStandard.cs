@@ -30,6 +30,7 @@ namespace NGL.Web.Data.Entities
             this.LearningStandardPrerequisiteLearningStandards1 = new HashSet<LearningStandardPrerequisiteLearningStandard>();
             this.ObjectiveAssessmentLearningStandards = new HashSet<ObjectiveAssessmentLearningStandard>();
             this.ProgramLearningStandards = new HashSet<ProgramLearningStandard>();
+            this.AssessmentLearningStandards = new HashSet<AssessmentLearningStandard>();
         }
     
         public string LearningStandardId { get; set; }
@@ -61,5 +62,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<LearningStandardPrerequisiteLearningStandard> LearningStandardPrerequisiteLearningStandards1 { get; set; }
         public virtual ICollection<ObjectiveAssessmentLearningStandard> ObjectiveAssessmentLearningStandards { get; set; }
         public virtual ICollection<ProgramLearningStandard> ProgramLearningStandards { get; set; }
+        public virtual ICollection<AssessmentLearningStandard> AssessmentLearningStandards { get; set; }
     }
 }
