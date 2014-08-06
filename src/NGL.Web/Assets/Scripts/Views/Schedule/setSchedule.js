@@ -4,7 +4,6 @@ Ngl.schedule.setSchedule = (function () {
     var setupView = function() {
         setScheduleAutocomplete();
         configureSaveButton();
-        configureSessionDropdown();
         setupUpdateDates();
         clearHiddenFieldsOnError();
     }
@@ -85,6 +84,7 @@ Ngl.schedule.setSchedule = (function () {
 
     var setupUpdateDates = function () {
         $('#session-dropdown').on('change', function () {
+            clearSection();
             var selectedSession = $(this).find(':selected')[0];
 
             var beginDate = selectedSession.getAttribute('beginDate');
@@ -99,13 +99,6 @@ Ngl.schedule.setSchedule = (function () {
         $('#BeginDate').datepicker('update');
         $('#EndDate').val(endDate);
         $('#EndDate').datepicker('update');
-    };
-
-    var configureSessionDropdown = function() {
-        $('#Session').on('change', function() {
-            clearSection();
-
-        });
     };
 
     var clearSection = function () {
