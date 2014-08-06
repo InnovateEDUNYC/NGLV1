@@ -32,18 +32,7 @@ INSERT INTO [edfi].[AssessmentPerformanceLevel]
 		  ,[MinimumScore]
 		  ,[ResultDatatypeTypeId])
 	VALUES
-	('Motor Skills Formative Assessment', 1, 119, 1, @masteryDescriptorId, 16, 90, 3)
-	
-INSERT INTO [edfi].[AssessmentPerformanceLevel]
-           ([AssessmentTitle]
-		  ,[AcademicSubjectDescriptorId]
-		  ,[AssessedGradeLevelDescriptorId]
-		  ,[Version]
-		  ,[PerformanceLevelDescriptorId]
-		  ,[AssessmentReportingMethodTypeId]
-		  ,[MinimumScore]
-		  ,[ResultDatatypeTypeId])
-	VALUES
+	('Motor Skills Formative Assessment', 1, 119, 1, @masteryDescriptorId, 16, 90, 3),
 	('Motor Skills Formative Assessment', 1, 119, 1, @nearMasteryDescriptorId, 16, 70, 3)
 
 INSERT INTO [edfi].[AssessmentSection]
