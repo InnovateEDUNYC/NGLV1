@@ -2,48 +2,8 @@
 
 Ngl.schedule.setSchedule = (function () {
     var setupView = function() {
-        setScheduleAutocomplete();
         configureSaveButton();
         setupUpdateDates();
-        clearHiddenFieldsOnError();
-    }
-
-    var clearHiddenFieldsOnError = function () {
-        $('#Section').on('change', function () {
-            $('#SectionId').val("");
-        });
-    }
-
-    var setScheduleAutocomplete = function () {
-            $('#Section').autocomplete({
-                source: function(request, response) {
-                    $.ajax({
-                        url: "/schedule/GetSections",
-                        type: "POST",
-                        dataType: "json",
-                        data: {
-                            featureClass: "P",
-                            style: "full",
-                            maxRows: 12,
-                            searchString: request.term,
-                            sessionId: $('#session-dropdown :selected').val()
-                        },
-                        success: function (data) {
-                            response($.map(data, function(section) {
-                                return {
-                                    label: section.LabelName,
-                                    value: section.ValueName,
-                                    sectionId: section.Id
-                                };
-                            }));
-                        }
-                    });
-                },
-                select: function(event, ui) {
-                    $('#SectionId').val(ui.item.sectionId);
-                },
-                minLength: 2,
-            });
     }
 
     var configureSaveButton = function() {

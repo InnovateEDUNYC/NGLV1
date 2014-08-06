@@ -1,0 +1,31 @@
+﻿@model NGL.Web.Models.Assessment.CreateModel
+
+
+@{
+    ViewBag.Title = "Create an Assessment";
+}
+
+<h2>Create Assessment</h2>
+
+@using (var f = Html.BeginNglForm())
+{
+    using (var s = f.BeginSection("Info"))
+    {
+        <div class="hidden">
+            @s.FieldFor(m => m.SchoolYear)
+            @s.FieldFor(m => m.Term)
+        </div>
+
+        @s.FieldFor(m => m.Session)
+        @s.FieldFor(m => m.SectionId)
+    }
+
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Create")
+    }
+}
+
+@section Scripts {
+    Ngl.section.getSession.init();
+}
