@@ -57,6 +57,20 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="AssessmentLearningStandard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AssessmentTitle" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="AcademicSubjectDescriptorId" Type="int" Nullable="false" />
+          <Property Name="AssessedGradeLevelDescriptorId" Type="int" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="LearningStandardId" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LearningStandardIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="ELMAH_Error">
           <Key>
             <PropertyRef Name="ErrorId" />
@@ -379,6 +393,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="AssessmentIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdministeredDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="AssessmentCategoryType">
           <Key>
@@ -6943,6 +6958,36 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Principal>
             <Dependent Role="AssessmentLanguage">
               <PropertyRef Name="LanguageDescriptorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentLearningStandard_Assessment_AssessmentTitle">
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="1" />
+          <End Role="AssessmentLearningStandard" Type="Self.AssessmentLearningStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assessment">
+              <PropertyRef Name="AssessmentTitle" />
+              <PropertyRef Name="AcademicSubjectDescriptorId" />
+              <PropertyRef Name="AssessedGradeLevelDescriptorId" />
+              <PropertyRef Name="Version" />
+            </Principal>
+            <Dependent Role="AssessmentLearningStandard">
+              <PropertyRef Name="AssessmentTitle" />
+              <PropertyRef Name="AcademicSubjectDescriptorId" />
+              <PropertyRef Name="AssessedGradeLevelDescriptorId" />
+              <PropertyRef Name="Version" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentLearningStandard_LearningStandard_LearningStandardId">
+          <End Role="LearningStandard" Type="Self.LearningStandard" Multiplicity="1" />
+          <End Role="AssessmentLearningStandard" Type="Self.AssessmentLearningStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LearningStandard">
+              <PropertyRef Name="LearningStandardId" />
+            </Principal>
+            <Dependent Role="AssessmentLearningStandard">
+              <PropertyRef Name="LearningStandardId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16018,6 +16063,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentLearningStandard" EntityType="Self.AssessmentLearningStandard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SchemaVersions" EntityType="Self.SchemaVersions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffCertificate" EntityType="Self.StaffCertificate" Schema="dbo" store:Type="Tables" />
@@ -16654,6 +16700,14 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <AssociationSet Name="FK_AssessmentLanguages_LanguageDescriptor_LanguageDescriptorId" Association="Self.FK_AssessmentLanguages_LanguageDescriptor_LanguageDescriptorId">
             <End Role="LanguageDescriptor" EntitySet="LanguageDescriptor" />
             <End Role="AssessmentLanguage" EntitySet="AssessmentLanguage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentLearningStandard_Assessment_AssessmentTitle" Association="Self.FK_AssessmentLearningStandard_Assessment_AssessmentTitle">
+            <End Role="Assessment" EntitySet="Assessment" />
+            <End Role="AssessmentLearningStandard" EntitySet="AssessmentLearningStandard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" Association="Self.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId">
+            <End Role="LearningStandard" EntitySet="LearningStandard" />
+            <End Role="AssessmentLearningStandard" EntitySet="AssessmentLearningStandard" />
           </AssociationSet>
           <AssociationSet Name="FK_AssessmentPerformanceLevel_Assessment_AssessmentTitle" Association="Self.FK_AssessmentPerformanceLevel_Assessment_AssessmentTitle">
             <End Role="Assessment" EntitySet="Assessment" />
@@ -19673,6 +19727,8 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="AssessmentSections" Relationship="Self.FK_AssessmentSection_Assessment_AssessmentTitle" FromRole="Assessment" ToRole="AssessmentSection" />
           <NavigationProperty Name="ObjectiveAssessments" Relationship="Self.FK_ObjectiveAssessment_Assessment_AssessmentTitle" FromRole="Assessment" ToRole="ObjectiveAssessment" />
           <NavigationProperty Name="StudentAssessments" Relationship="Self.FK_StudentAssessment_Assessment_AssessmentTitle" FromRole="Assessment" ToRole="StudentAssessment" />
+          <NavigationProperty Name="AssessmentLearningStandards" Relationship="NGLModel.FK_AssessmentLearningStandard_Assessment_AssessmentTitle" FromRole="Assessment" ToRole="AssessmentLearningStandard" />
+          <Property Name="AdministeredDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="AssessmentCategoryType">
           <Key>
@@ -22933,6 +22989,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="LearningStandardPrerequisiteLearningStandards1" Relationship="Self.FK_LearningStandardPrerequisiteLearningStandard_LearningStandard_Prerequisite" FromRole="LearningStandard" ToRole="LearningStandardPrerequisiteLearningStandard" />
           <NavigationProperty Name="ObjectiveAssessmentLearningStandards" Relationship="Self.FK_ObjectiveAssessmentLearningStandard_LearningStandard_LearningStandardId" FromRole="LearningStandard" ToRole="ObjectiveAssessmentLearningStandard" />
           <NavigationProperty Name="ProgramLearningStandards" Relationship="Self.FK_ProgramLearningObjective_LearningStandard_LearningStandardId" FromRole="LearningStandard" ToRole="ProgramLearningStandard" />
+          <NavigationProperty Name="AssessmentLearningStandards" Relationship="NGLModel.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" FromRole="LearningStandard" ToRole="AssessmentLearningStandard" />
         </EntityType>
         <EntityType Name="LearningStandardContentStandard">
           <Key>
@@ -39830,6 +39887,15 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="StaffCertificate" EntitySet="StaffCertificates" />
           </AssociationSet>
+          <EntitySet Name="AssessmentLearningStandards" EntityType="NGLModel.AssessmentLearningStandard" />
+          <AssociationSet Name="FK_AssessmentLearningStandard_Assessment_AssessmentTitle" Association="NGLModel.FK_AssessmentLearningStandard_Assessment_AssessmentTitle">
+            <End Role="Assessment" EntitySet="Assessments" />
+            <End Role="AssessmentLearningStandard" EntitySet="AssessmentLearningStandards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" Association="NGLModel.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId">
+            <End Role="LearningStandard" EntitySet="LearningStandards" />
+            <End Role="AssessmentLearningStandard" EntitySet="AssessmentLearningStandards" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentProgramStatus">
           <Key>
@@ -40090,6 +40156,52 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AssessmentLearningStandard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AssessmentTitle" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="AcademicSubjectDescriptorId" Type="Int32" Nullable="false" />
+          <Property Name="AssessedGradeLevelDescriptorId" Type="Int32" Nullable="false" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <Property Name="LearningStandardId" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LearningStandardIdentity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Assessment" Relationship="NGLModel.FK_AssessmentLearningStandard_Assessment_AssessmentTitle" FromRole="AssessmentLearningStandard" ToRole="Assessment" />
+          <NavigationProperty Name="LearningStandard" Relationship="NGLModel.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" FromRole="AssessmentLearningStandard" ToRole="LearningStandard" />
+        </EntityType>
+        <Association Name="FK_AssessmentLearningStandard_Assessment_AssessmentTitle">
+          <End Type="NGLModel.Assessment" Role="Assessment" Multiplicity="1" />
+          <End Type="NGLModel.AssessmentLearningStandard" Role="AssessmentLearningStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assessment">
+              <PropertyRef Name="AssessmentTitle" />
+              <PropertyRef Name="AcademicSubjectDescriptorId" />
+              <PropertyRef Name="AssessedGradeLevelDescriptorId" />
+              <PropertyRef Name="Version" />
+            </Principal>
+            <Dependent Role="AssessmentLearningStandard">
+              <PropertyRef Name="AssessmentTitle" />
+              <PropertyRef Name="AcademicSubjectDescriptorId" />
+              <PropertyRef Name="AssessedGradeLevelDescriptorId" />
+              <PropertyRef Name="Version" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssessmentLearningStandard_LearningStandard_LearningStandardId">
+          <End Type="NGLModel.LearningStandard" Role="LearningStandard" Multiplicity="1" />
+          <End Type="NGLModel.AssessmentLearningStandard" Role="AssessmentLearningStandard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LearningStandard">
+              <PropertyRef Name="LearningStandardId" />
+            </Principal>
+            <Dependent Role="AssessmentLearningStandard">
+              <PropertyRef Name="LearningStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -40317,6 +40429,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySetMapping Name="Assessments">
             <EntityTypeMapping TypeName="NGLModel.Assessment">
               <MappingFragment StoreEntitySet="Assessment">
+                <ScalarProperty Name="AdministeredDate" ColumnName="AdministeredDate" />
                 <ScalarProperty Name="AssessmentTitle" ColumnName="AssessmentTitle" />
                 <ScalarProperty Name="AcademicSubjectDescriptorId" ColumnName="AcademicSubjectDescriptorId" />
                 <ScalarProperty Name="AssessedGradeLevelDescriptorId" ColumnName="AssessedGradeLevelDescriptorId" />
@@ -46097,6 +46210,21 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="StaffUSI" ColumnName="StaffUSI" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentLearningStandards">
+            <EntityTypeMapping TypeName="NGLModel.AssessmentLearningStandard">
+              <MappingFragment StoreEntitySet="AssessmentLearningStandard">
+                <ScalarProperty Name="LearningStandardIdentity" ColumnName="LearningStandardIdentity" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LearningStandardId" ColumnName="LearningStandardId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="AssessedGradeLevelDescriptorId" ColumnName="AssessedGradeLevelDescriptorId" />
+                <ScalarProperty Name="AcademicSubjectDescriptorId" ColumnName="AcademicSubjectDescriptorId" />
+                <ScalarProperty Name="AssessmentTitle" ColumnName="AssessmentTitle" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -28,6 +28,7 @@ namespace NGL.Web.Data.Entities
             this.AssessmentSections = new HashSet<AssessmentSection>();
             this.ObjectiveAssessments = new HashSet<ObjectiveAssessment>();
             this.StudentAssessments = new HashSet<StudentAssessment>();
+            this.AssessmentLearningStandards = new HashSet<AssessmentLearningStandard>();
         }
     
         public string AssessmentTitle { get; set; }
@@ -46,6 +47,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int AssessmentIdentity { get; set; }
+        public System.DateTime AdministeredDate { get; set; }
     
         public virtual AcademicSubjectDescriptor AcademicSubjectDescriptor { get; set; }
         public virtual GradeLevelDescriptor GradeLevelDescriptor { get; set; }
@@ -63,5 +65,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<AssessmentSection> AssessmentSections { get; set; }
         public virtual ICollection<ObjectiveAssessment> ObjectiveAssessments { get; set; }
         public virtual ICollection<StudentAssessment> StudentAssessments { get; set; }
+        public virtual ICollection<AssessmentLearningStandard> AssessmentLearningStandards { get; set; }
     }
 }

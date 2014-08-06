@@ -276,6 +276,7 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
+    <Compile Include="Data\Entities\AssessmentLearningStandard.cs" />
     <Compile Include="Data\Entities\SchemaVersion.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1848,6 +1849,7 @@
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
+    <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
