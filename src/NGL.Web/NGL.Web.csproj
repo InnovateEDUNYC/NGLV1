@@ -1850,8 +1850,8 @@
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
-    <EmbeddedResource Include="Data\Scripts\012 - Add Performance Level Descriptors.sql" />
-    <EmbeddedResource Include="Data\Scripts\012.1 - Add Assessment Sample Data.sample.sql" />
+    <EmbeddedResource Include="Data\Scripts\013 - Add Performance Level Descriptors.sql" />
+    <EmbeddedResource Include="Data\Scripts\013.1 - Add Assessment Sample Data.sample.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

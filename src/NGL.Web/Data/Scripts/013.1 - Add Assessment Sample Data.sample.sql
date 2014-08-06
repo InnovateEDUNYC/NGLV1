@@ -3,9 +3,10 @@
       ,[AcademicSubjectDescriptorId]
       ,[AssessedGradeLevelDescriptorId]
       ,[Version]
-      ,[AssessmentCategoryTypeId])
+      ,[AssessmentCategoryTypeId]
+	  ,[AdministeredDate])
 	VALUES
-	('Motor Skills Formative Assessment', 1, 119, 1, 17)
+	('Motor Skills Formative Assessment', 1, 119, 1, 17, '2014-08-06')
 
 
 declare @masteryTypeId int
