@@ -1863,6 +1863,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Types.cs</LastGenOutput>
     </Content>
+    <EmbeddedResource Include="Data\Scripts\013 - Add Performance Level Descriptors.sql" />
+    <EmbeddedResource Include="Data\Scripts\013.1 - Add Assessment Sample Data.sample.sql" />
     <None Include="Data\Entities\ConfigurationAccessor.ttinclude">
       <LastGenOutput>ConfigurationAccessor1.cs</LastGenOutput>
     </None>
