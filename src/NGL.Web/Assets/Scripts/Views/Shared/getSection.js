@@ -1,7 +1,7 @@
-﻿Ngl.createNS('Ngl.shared.getSection');
+﻿Ngl.createNS('Ngl.shared.sectionAutoComplete');
 
-Ngl.shared.getSection = (function () {
-    var getSection = function () {
+Ngl.shared.sectionAutocomplete = (function () {
+    var setupSectionAutocomplete = function () {
         sectionAutocomplete();
         clearHiddenFieldsOnError();
     }
@@ -24,7 +24,7 @@ Ngl.shared.getSection = (function () {
                         style: "full",
                         maxRows: 12,
                         searchString: request.term,
-                        sessionId: $('#session-dropdown :selected').val()
+                        sessionId: $('#SessionId').val()
                     },
                     success: function (data) {
                         response($.map(data, function (section) {
@@ -47,6 +47,6 @@ Ngl.shared.getSection = (function () {
 
 
     return {
-        init: getSection
+        init: setupSectionAutocomplete
     }
 })();

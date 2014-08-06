@@ -9,8 +9,7 @@ Ngl.section.getSession = (function () {
     var clearHiddenFieldsOnError = function ()
     {
         $('#Session').on('change', function() {
-                $('#SchoolYear').val("");
-                $('#Term').val("");
+                $('#SessionId').val("");
         });
     }
 
@@ -28,12 +27,11 @@ Ngl.section.getSession = (function () {
                             searchString: request.term
                         },
                         success: function(data) {
-                            response($.map(data, function(section) {
+                            response($.map(data, function (session) {
                                 return {
-                                    label: section.SessionName,
-                                    value: section.SessionName,
-                                    term: section.Term,
-                                    school: section.SchoolYear,
+                                    label: session.SessionName,
+                                    value: session.SessionName,
+                                    sessionId: session.SessionId
                                 };
                             }));
                         }
@@ -41,8 +39,8 @@ Ngl.section.getSession = (function () {
                 },
                 select: function(event, ui) {
                     var selectedSession = ui.item;
-                    $("#SchoolYear").val(selectedSession.school);
-                    $("#Term").val(selectedSession.term);
+                    console.log(selectedSession);
+                    $("#SessionId").val(selectedSession.sessionId);
                 },
                 minLength: 2,
             });

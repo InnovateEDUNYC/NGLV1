@@ -20,7 +20,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Location, LocationListItemModel> _locationToClassRoomModelMapper;
         private readonly IMapper<CreateModel, Section> _createModelToSectionMapper;
         private readonly IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
-        private readonly IMapper<Session, SessionJsonModel> _sessionToSessionJSONModel;
+        private readonly IMapper<Session, SessionJsonModel> _sessionToSessionJsonModelMapper;
         private readonly IMapper<Course, CourseJsonModel> _courseToCourseJsonModelMapper;
 
         public SectionController(IGenericRepository genericRepository, 
@@ -29,13 +29,13 @@ namespace NGL.Web.Controllers
             IMapper<Location, LocationListItemModel> locationToClassRoomModelMapper, 
             IMapper<CreateModel, Section> createModelToSectionMapper, 
             IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
-            IMapper<Session, SessionJsonModel> sessionToSessionJsonModel, 
+            IMapper<Session, SessionJsonModel> sessionToSessionJsonModelMapper, 
             IMapper<Course, CourseJsonModel> courseToCourseJsonModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToSectionMapper = createModelToSectionMapper;
             _createModelToCourseOfferingMapper = createModelToCourseOfferingMapper;
-            _sessionToSessionJSONModel = sessionToSessionJsonModel;
+            _sessionToSessionJsonModelMapper = sessionToSessionJsonModelMapper;
             _courseToCourseJsonModelMapper = courseToCourseJsonModelMapper;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
@@ -83,7 +83,7 @@ namespace NGL.Web.Controllers
                 return View(createModel);
             }
 
-            createSection(createModel);
+            CreateSection(createModel);
 
             return RedirectToAction(Actions.Index());
         }
@@ -94,7 +94,7 @@ namespace NGL.Web.Controllers
             var sessions = _genericRepository.GetAll<Session>()
                 .Where(s => s.SessionName.ToLower().Contains(searchString.ToLower()));
             
-            var sessionModels = sessions.Select(s => _sessionToSessionJSONModel.Build(s));
+            var sessionModels = sessions.Select(s => _sessionToSessionJsonModelMapper.Build(s));
             return Json(sessionModels, JsonRequestBehavior.AllowGet);
         }
 
@@ -132,11 +132,13 @@ namespace NGL.Web.Controllers
             return locations.Select(location => _locationToClassRoomModelMapper.Build(location)).ToList();
         }
 
-        private void createSection(CreateModel createModel)
+        private void CreateSection(CreateModel createModel)
         {
             var section = _createModelToSectionMapper.Build(createModel);
+            var session = _genericRepository.Get<Session>(s => s.SessionIdentity == createModel.SessionId);
+
             var courseOfferingByPrimaryKeysQuery = new CourseOfferingByPrimaryKeysQuery(createModel.Course,
-                createModel.SchoolYear, createModel.Term);
+                session.SchoolYear, session.TermTypeId);
 
             if (_genericRepository.Get(courseOfferingByPrimaryKeysQuery) == null)
             {

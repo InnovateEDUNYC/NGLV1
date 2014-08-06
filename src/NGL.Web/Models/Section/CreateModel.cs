@@ -11,10 +11,7 @@ namespace NGL.Web.Models.Section
             Classrooms = new List<LocationListItemModel>();
         }
 
-        public short SchoolYear { get; set; }
-
-        public int Term { get; set; }
-
+        public int? SessionId { get; set; }
         public string Session { get; set; }
 
         public List<ClassPeriodListItemModel> Periods { get; set; }

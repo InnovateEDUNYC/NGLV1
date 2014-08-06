@@ -4,8 +4,7 @@
     {
         public override void Map(Data.Entities.Session source, SessionJsonModel target)
         {
-            target.SchoolYear = source.SchoolYear;
-            target.Term = source.TermTypeId;
+            target.SessionId = source.SessionIdentity;
             target.SessionName = source.SessionName;
         }
     }
