@@ -45,3 +45,17 @@ INSERT INTO [edfi].[AssessmentPerformanceLevel]
 		  ,[ResultDatatypeTypeId])
 	VALUES
 	('Motor Skills Formative Assessment', 1, 119, 1, @nearMasteryDescriptorId, 16, 70, 3)
+
+INSERT INTO [edfi].[AssessmentSection]
+           ([AssessmentTitle]
+           ,[AcademicSubjectDescriptorId]
+           ,[AssessedGradeLevelDescriptorId]
+           ,[Version]
+           ,[SchoolId]
+           ,[ClassPeriodName]
+           ,[ClassroomIdentificationCode]
+           ,[LocalCourseCode]
+           ,[TermTypeId]
+           ,[SchoolYear])
+     VALUES
+	 ('Motor Skills Formative Assessment', 1, 119, 1, 1, 'Period 3', 'Room 207', 'ENGL400 - DI', 1, 2014);
