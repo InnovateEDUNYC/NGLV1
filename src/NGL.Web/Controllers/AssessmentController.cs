@@ -1,7 +1,12 @@
 ﻿using System.Web.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Data.Queries;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
 
@@ -48,8 +53,20 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
-        public virtual ActionResult Result(int studentUsi, int? sessionId, int week = 1)
+        public virtual ActionResult EnterResults(int assessmentId)
         {
+            var assessment = _genericRepository.Get<Assessment>(
+                a => a.AssessmentIdentity == assessmentId,
+                a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)));
+
+            var studentSectionAssociations = assessment.AssessmentSections.First().Section.StudentSectionAssociations;
+            var students = studentSectionAssociations.Select(s => s.Student);
+            return View();
+        }
+
+
+        public virtual ActionResult Result(int studentUsi, int? sessionId, int week = 1)
+		{
             var assessmentResultModel = new AssessmentResultModel { StudentUsi = studentUsi};
 
             if (sessionId == null)
@@ -69,6 +86,6 @@ namespace NGL.Web.Controllers
             assessmentResultModel.Week = week;
 
             return View(assessmentResultModel);
-        }
+		}
 	}
 }
