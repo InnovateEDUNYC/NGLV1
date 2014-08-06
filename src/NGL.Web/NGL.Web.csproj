@@ -1971,6 +1971,7 @@
     <Content Include="Views\Schedule\Set.cshtml" />
     <Content Include="Views\Shared\Forbidden.cshtml" />
     <Content Include="Views\Assessment\Create.cshtml" />
+    <Content Include="Views\Assessment\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

@@ -1,0 +1,17 @@
+﻿@model NGL.Web.Controllers.AssessmentResultModel
+
+@{
+    ViewBag.Title = "View Assessment Results";
+}
+
+<h2>View Assessment Results</h2>
+
+@using (Html.BeginForm("Result", "Assessment", FormMethod.Post))
+{
+    @Html.TextBoxFor(m => m.SessionId)
+    @Html.HiddenFor(m => m.StudentUsi)
+    @Html.HiddenFor(m => m.Week)
+    
+    <button type="submit" value="Search">Search</button>
+}
+
