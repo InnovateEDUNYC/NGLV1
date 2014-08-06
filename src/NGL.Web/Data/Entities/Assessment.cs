@@ -47,6 +47,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int AssessmentIdentity { get; set; }
+        public System.DateTime AdministeredDate { get; set; }
     
         public virtual AcademicSubjectDescriptor AcademicSubjectDescriptor { get; set; }
         public virtual GradeLevelDescriptor GradeLevelDescriptor { get; set; }

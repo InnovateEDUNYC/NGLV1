@@ -1,4 +1,8 @@
-﻿CREATE TABLE [dbo].[AssessmentLearningStandard](
+﻿ALTER TABLE [edfi].[Assessment]
+	ADD [AdministeredDate] date not null
+
+
+CREATE TABLE [dbo].[AssessmentLearningStandard](
 	[Id] [uniqueidentifier] NOT NULL,
 	[AssessmentTitle] [nvarchar](60) NOT NULL,
 	[AcademicSubjectDescriptorId] [int] NOT NULL,

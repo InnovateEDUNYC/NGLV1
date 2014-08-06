@@ -393,6 +393,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="AssessmentIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdministeredDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="AssessmentCategoryType">
           <Key>
@@ -19727,6 +19728,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="ObjectiveAssessments" Relationship="Self.FK_ObjectiveAssessment_Assessment_AssessmentTitle" FromRole="Assessment" ToRole="ObjectiveAssessment" />
           <NavigationProperty Name="StudentAssessments" Relationship="Self.FK_StudentAssessment_Assessment_AssessmentTitle" FromRole="Assessment" ToRole="StudentAssessment" />
           <NavigationProperty Name="AssessmentLearningStandards" Relationship="NGLModel.FK_AssessmentLearningStandard_Assessment_AssessmentTitle" FromRole="Assessment" ToRole="AssessmentLearningStandard" />
+          <Property Name="AdministeredDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="AssessmentCategoryType">
           <Key>
@@ -40427,6 +40429,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySetMapping Name="Assessments">
             <EntityTypeMapping TypeName="NGLModel.Assessment">
               <MappingFragment StoreEntitySet="Assessment">
+                <ScalarProperty Name="AdministeredDate" ColumnName="AdministeredDate" />
                 <ScalarProperty Name="AssessmentTitle" ColumnName="AssessmentTitle" />
                 <ScalarProperty Name="AcademicSubjectDescriptorId" ColumnName="AcademicSubjectDescriptorId" />
                 <ScalarProperty Name="AssessedGradeLevelDescriptorId" ColumnName="AssessedGradeLevelDescriptorId" />
