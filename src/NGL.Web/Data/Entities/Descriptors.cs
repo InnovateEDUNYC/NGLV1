@@ -573,9 +573,7 @@ namespace NGL.Web.Data.Entities
 	}
 
 	public enum GradeLevelDescriptorEnum
-	{
-		[Description("Adult Education")]
-		AdultEducation = 119,                               
+	{                   
 		[Description("Early Education")]
 		EarlyEducation = 120,                               
 		[Description("8th Grade")]
@@ -615,7 +613,9 @@ namespace NGL.Web.Data.Entities
 		[Description("12th Grade")]
 		_12thGrade = 138,                               
 		[Description("Ungraded")]
-		Ungraded = 139,                               
+		Ungraded = 139,
+        [Description("Adult Education")]
+        AdultEducation = 119                                   
 	}
 
 	public enum CalendarEventDescriptorEnum

@@ -12,8 +12,7 @@
     using (var s = f.BeginSection("Info"))
     {
         <div class="hidden">
-        @s.FieldFor(m => m.SchoolYear)
-        @s.FieldFor(m => m.Term)
+            @s.FieldFor(m => m.SessionId)
         </div>
 
         @s.FieldFor(m => m.Session)        

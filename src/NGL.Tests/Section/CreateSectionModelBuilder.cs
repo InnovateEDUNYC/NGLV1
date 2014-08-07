@@ -15,6 +15,7 @@ namespace NGL.Tests.Section
         private const string ClassPeriodName = "Period 5";
         private const string ClassroomIdentificationCode = "Room 108";
         private string _localCourseCode = "ENGL400 - DI";
+        private const int SessionId = 1;
         private const string UniqueSectionCode = "Creative Writing";
         private const int SequenceOfCourse = 1;
 
@@ -22,8 +23,7 @@ namespace NGL.Tests.Section
         {
             return new CreateModel
             {
-                SchoolYear = SchoolYear,
-                Term = TermType,
+                SessionId = SessionId,
                 Session = Session,
                 Period = ClassPeriodName,
                 Classroom = ClassroomIdentificationCode,

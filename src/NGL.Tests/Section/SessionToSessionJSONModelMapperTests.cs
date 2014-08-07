@@ -15,8 +15,7 @@ namespace NGL.Tests.Section
 
             var model = mapper.Build(entity);
 
-            model.Term.ShouldBe(entity.TermTypeId);
-            model.SchoolYear.ShouldBe(entity.SchoolYear);
+            model.SessionId.ShouldBe(entity.SessionIdentity);
             model.SessionName.ShouldBe(entity.SessionName);
         }
     }

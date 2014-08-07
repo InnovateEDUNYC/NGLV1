@@ -16,6 +16,7 @@ namespace NGL.Web.Models.Course
 
         [Required]
         public int NumberOfParts { get; set; }
+        [Required]
         public AcademicSubjectDescriptorEnum? AcademicSubject { get; set; }
 
         [StringLength(20)]

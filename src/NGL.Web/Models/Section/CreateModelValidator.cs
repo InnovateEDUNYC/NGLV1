@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Castle.Core.Internal;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure;
@@ -34,22 +36,35 @@ namespace NGL.Web.Models.Section
 
         private IEnumerable<ValidationFailure> ValidateExistence(CreateModel createModel)
         {
-            foreach (var validationFailure in CheckForNulls(createModel)) { yield return validationFailure; }
+            var validationFailures = new List<ValidationFailure>();
+            foreach (var validationFailure in CheckForNulls(createModel))
+            {
+                validationFailures.Add(validationFailure);
+                yield return validationFailure;
+            }
+            if (!validationFailures.IsNullOrEmpty())
+            {
+                yield break;
+            }
 
+            var session = _genericRepository.Get<Data.Entities.Session>(s => s.SessionIdentity == createModel.SessionId);
+          
             var query = new SectionByPrimaryKeysQuery(
-                createModel.SchoolYear,
-                createModel.Term,
+                session.SchoolYear,
+                session.TermTypeId,
                 createModel.Period,
                 createModel.Classroom,
                 createModel.Course
                 );
 
-            if (_genericRepository.Get(query) != null)
+            var section = _genericRepository.Get(query);
+            if (section != null)
             {
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Session), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Period), " ");
                 yield return new ValidationFailure(createModel.GetNameFor(s => s.Classroom), " ");
-                yield return new ValidationFailure(createModel.GetNameFor(s => s.Course), "This section already exists");
+                yield return
+                    new ValidationFailure(createModel.GetNameFor(s => s.Course), "This section already exists");
             }
         }
 
@@ -63,7 +78,7 @@ namespace NGL.Web.Models.Section
             
             var session =
                 _genericRepository.Get<Data.Entities.Session>(
-                    s => s.SchoolYear == createModel.SchoolYear && s.TermTypeId == createModel.Term);
+                    s => s.SessionIdentity == createModel.SessionId);
             
             var course = _genericRepository.Get<Data.Entities.Course>(c => c.CourseCode == createModel.Course);
 

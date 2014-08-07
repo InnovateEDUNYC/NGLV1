@@ -2,8 +2,7 @@
 {
     public class SessionJsonModel
     {
-        public int Term { get; set; }
-        public short SchoolYear { get; set; }
+        public int SessionId { get; set; }
         public string SessionName { get; set; }
     }
 }

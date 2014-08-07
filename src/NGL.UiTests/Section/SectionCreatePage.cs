@@ -16,8 +16,8 @@ namespace NGL.UiTests.Section
             Input.SelectByOptionTextInDropDown(m => m.Period, createSectionModel.Period);
             Input.SelectByOptionTextInDropDown(m => m.Classroom, createSectionModel.Classroom);
 
-            Input.ReplaceInputValueWith(m => m.Term, createSectionModel.Term);
-            Input.ReplaceInputValueWith(m => m.SchoolYear, createSectionModel.SchoolYear);
+            Input.ReplaceInputValueWith(m => m.SessionId, createSectionModel.SessionId);
+
             return Navigate.To<SectionIndexPage>(By.ClassName("btn"));
         }
     }
