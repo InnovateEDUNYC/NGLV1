@@ -1,0 +1,46 @@
+﻿@using Ninject
+@model NGL.Web.Models.Assessment.EnterResultsModel
+
+@{
+    ViewBag.Title = "Enter Assessment Results";
+}
+
+<h2>Enter Assessment Results</h2>
+
+<p>
+    <strong>Session</strong>
+    @Model.Session
+</p>
+
+<p>
+    <strong>Section</strong>
+    @Model.Section
+</p>
+
+<p>
+    <strong>Assessment Title</strong>
+    @Model.AssessmentTitle
+</p>
+
+<p>
+    <strong>CCSS</strong>
+    @Model.LearningStandard
+</p>
+
+<div>
+    <form method="POST" action="">
+        <input class="hidden" value="@Model.AssessmentId"/>
+        <strong>Assessment Result</strong>
+        @for (var i = 0; i < Model.Students.Count; i++)
+        {
+            <p>
+                @Model.Students[i].Name
+                @Html.TextBoxFor(s => Model.Students[i].AssessmentResult)
+                <div class="hidden">
+                    @Html.TextBoxFor(s => Model.Students[i].StudentUsi)
+                </div>
+            </p>
+        }
+        <button type="submit">Save Results</button>
+    </form>
+</div>

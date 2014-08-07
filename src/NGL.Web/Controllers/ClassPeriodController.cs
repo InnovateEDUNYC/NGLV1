@@ -61,7 +61,7 @@ namespace NGL.Web.Controllers
             _genericRepository.Add(classPeriod);
             _genericRepository.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction(MVC.ClassPeriod.Index());
         }
 	}
 }

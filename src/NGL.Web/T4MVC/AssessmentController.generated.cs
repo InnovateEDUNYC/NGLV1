@@ -119,6 +119,7 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_EnterResults
         {
             public readonly string assessmentId = "assessmentId";
+            public readonly string enterResultsModel = "enterResultsModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -132,9 +133,11 @@ namespace NGL.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string Result = "Result";
+                public readonly string EnterResults = "EnterResults";
             }
             public readonly string Create = "~/Views/Assessment/Create.cshtml";
             public readonly string Result = "~/Views/Assessment/Result.cshtml";
+            public readonly string EnterResults = "~/Views/Assessment/EnterResults.cshtml";
         }
     }
 
@@ -199,6 +202,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "assessmentId", assessmentId);
             EnterResultsOverride(callInfo, assessmentId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EnterResultsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Assessment.EnterResultsModel enterResultsModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EnterResults(NGL.Web.Models.Assessment.EnterResultsModel enterResultsModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enterResultsModel", enterResultsModel);
+            EnterResultsOverride(callInfo, enterResultsModel);
             return callInfo;
         }
 
