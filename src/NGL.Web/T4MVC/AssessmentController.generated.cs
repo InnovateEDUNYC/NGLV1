@@ -54,6 +54,12 @@ namespace NGL.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Result()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AssessmentController Actions { get { return MVC.Assessment; } }
@@ -71,12 +77,14 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Create = "Create";
+            public readonly string Result = "Result";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Create = "Create";
+            public const string Result = "Result";
         }
 
 
@@ -87,6 +95,14 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string createModel = "createModel";
+        }
+        static readonly ActionParamsClass_Result s_params_Result = new ActionParamsClass_Result();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Result ResultParams { get { return s_params_Result; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Result
+        {
+            public readonly string studentUsi = "studentUsi";
             public readonly string sessionId = "sessionId";
             public readonly string week = "week";
         }
@@ -101,8 +117,10 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string Result = "Result";
             }
             public readonly string Create = "~/Views/Assessment/Create.cshtml";
+            public readonly string Result = "~/Views/Assessment/Result.cshtml";
         }
     }
 
@@ -112,13 +130,36 @@ namespace NGL.Web.Controllers
         public T4MVC_AssessmentController() : base(Dummy.Instance) { }
 
         [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            CreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Assessment.CreateModel createModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Assessment.CreateModel createModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
+            CreateOverride(callInfo, createModel);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int week);
 
         [NonAction]
         public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int week)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "week", week);
             ResultOverride(callInfo, studentUsi, sessionId, week);

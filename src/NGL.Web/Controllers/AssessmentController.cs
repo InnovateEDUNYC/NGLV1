@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
 
@@ -14,6 +15,10 @@ namespace NGL.Web.Controllers
         private readonly StudentAssessmentsToAssessmentResultModelMapper _studentAssessmentsToAssessmentResultModelMapper;
 
         public AssessmentController(
+            IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
+            IGenericRepository genericRepository,
+            IAssessmentRepository assessmentRepository,
+            StudentAssessmentsToAssessmentResultModelMapper studentAssessmentsToAssessmentResultModelMapper)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
