@@ -1,9 +1,9 @@
-﻿Ngl.createNS('Ngl.section.getSession');
+﻿Ngl.createNS('Ngl.shared.sessionAutocomplete');
 
-Ngl.section.getSession = (function () {
+Ngl.shared.sessionAutocomplete = (function () {
     var init = function() {
         clearHiddenFieldsOnPressingAnyKeyButEnter();
-        getSession();
+        sessionAutocomplete();
     }
 
     var clearHiddenFieldsOnPressingAnyKeyButEnter = function ()
@@ -19,7 +19,8 @@ Ngl.section.getSession = (function () {
 
     }
 
-        var getSession = function() {
+    var sessionAutocomplete = function () {
+        var noResultsLabel = "No results";
             $('#Session').autocomplete({
                 source: function(request, response) {
                     $.ajax({
@@ -32,7 +33,18 @@ Ngl.section.getSession = (function () {
                             maxRows: 12,
                             searchString: request.term
                         },
-                        success: function(data) {
+
+                        error: function () {
+                            // errorPlaceholder's value does not matter
+                            var errorPlaceholder = ['1'];
+                            response($.map(errorPlaceholder, function () {
+                                return {
+                                    label: noResultsLabel,
+                                };
+                            }));
+                        },
+
+                        success: function (data) {
                             response($.map(data, function (session) {
                                 return {
                                     label: session.SessionName,
@@ -43,9 +55,17 @@ Ngl.section.getSession = (function () {
                         }
                     });
                 },
-                select: function(event, ui) {
+                select: function (event, ui) {
+                    if (ui.item.label === noResultsLabel) {
+                        event.preventDefault();
+                    }
                     var selectedSession = ui.item;
                     $("#SessionId").val(selectedSession.sessionId);
+                },
+                focus: function (event, ui) {
+                    if (ui.item.label === noResultsLabel) {
+                        event.preventDefault();
+                    }
                 },
                 minLength: 2,
             });

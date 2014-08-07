@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
@@ -94,7 +95,13 @@ namespace NGL.Web.Controllers
             var sessions = _genericRepository.GetAll<Session>()
                 .Where(s => s.SessionName.ToLower().Contains(searchString.ToLower()));
             
-            var sessionModels = sessions.Select(s => _sessionToSessionJsonModelMapper.Build(s));
+            var sessionModels = sessions.Select(s => _sessionToSessionJsonModelMapper.Build(s)).ToList();
+
+            if (sessionModels.IsNullOrEmpty())
+            {
+                sessionModels.Add(new SessionJsonModel{SessionName = "No results"});
+            }
+
             return Json(sessionModels, JsonRequestBehavior.AllowGet);
         }
 
