@@ -48,3 +48,40 @@ INSERT INTO [edfi].[AssessmentSection]
            ,[SchoolYear])
      VALUES
 	 ('Motor Skills Formative Assessment', 1, 119, 1, 1, 'Period 3', 'Room 207', 'ENGL400 - DI', 1, 2014);
+
+INSERT INTO [dbo].[AssessmentLearningStandard]
+           ([AssessmentTitle]
+           ,[AcademicSubjectDescriptorId]
+           ,[AssessedGradeLevelDescriptorId]
+           ,[Version]
+           ,[LearningStandardId])
+     VALUES 
+	 ('Motor Skills Formative Assessment', 1, 119, 1, '0577C84400AC4c478DE39F9D0C81416B')
+
+/* Assessment Results */
+
+INSERT INTO [edfi].[StudentAssessment]
+           ([StudentUSI]
+           ,[AssessmentTitle]
+           ,[AcademicSubjectDescriptorId]
+           ,[AssessedGradeLevelDescriptorId]
+           ,[Version]
+           ,[AdministrationDate])
+     VALUES 
+	 (999 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06'),
+	 (1000 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06')
+
+
+INSERT INTO [edfi].[StudentAssessmentScoreResult]
+           ([StudentUSI]
+           ,[AssessmentTitle]
+           ,[AcademicSubjectDescriptorId]
+           ,[AssessedGradeLevelDescriptorId]
+           ,[Version]
+           ,[AdministrationDate]
+           ,[AssessmentReportingMethodTypeId]
+           ,[Result]
+           ,[ResultDatatypeTypeId])
+     VALUES
+	(999 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06', 16, 83, 3),
+    (1000 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06', 16, 61, 3)

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
 
@@ -10,11 +11,19 @@ namespace NGL.Web.Controllers
     {
         private readonly IMapper<CreateModel, Assessment> _createModelToAssessmentMapper;
         private readonly IGenericRepository _genericRepository;
+        private readonly IAssessmentRepository _assessmentRepository;
+        private readonly StudentAssessmentsToAssessmentResultModelMapper _studentAssessmentsToAssessmentResultModelMapper;
 
-        public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper, IGenericRepository genericRepository)
+        public AssessmentController(
+            IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
+            IGenericRepository genericRepository,
+            IAssessmentRepository assessmentRepository,
+            StudentAssessmentsToAssessmentResultModelMapper studentAssessmentsToAssessmentResultModelMapper)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
+            _assessmentRepository = assessmentRepository;
+            _studentAssessmentsToAssessmentResultModelMapper = studentAssessmentsToAssessmentResultModelMapper;
         }
 
         //
@@ -39,5 +48,27 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
-    }
+        public virtual ActionResult Result(int studentUsi, int? sessionId, int week = 1)
+        {
+            var assessmentResultModel = new AssessmentResultModel { StudentUsi = studentUsi};
+
+            if (sessionId == null)
+            {
+                return View(assessmentResultModel);
+            }
+
+            // todo - handle months
+            var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
+            var startDate = session.BeginDate.AddDays((week - 1) * 7);
+            var endDate = startDate.AddDays(7);
+
+            var studentAssessments = _assessmentRepository.GetAssessmentResults(assessmentResultModel.StudentUsi, startDate, endDate);
+            assessmentResultModel = _studentAssessmentsToAssessmentResultModelMapper.Map(studentAssessments, startDate, endDate);
+            assessmentResultModel.StudentUsi = studentUsi;
+            assessmentResultModel.SessionId = sessionId;
+            assessmentResultModel.Week = week;
+
+            return View(assessmentResultModel);
+        }
+	}
 }

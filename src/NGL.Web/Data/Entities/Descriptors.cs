@@ -426,6 +426,12 @@ namespace NGL.Web.Data.Entities
 		Proficient = 204,                               
 		[Description("Well Below Basic")]
 		WellBelowBasic = 205,                               
+		[Description("Mastery")]
+		Mastery = 361,                               
+		[Description("Near Mastery")]
+		NearMastery = 362,                               
+		[Description("Not Mastered")]
+		NotMastered = 363,                               
 	}
 
 	public enum DisabilityDescriptorEnum

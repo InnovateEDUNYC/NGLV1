@@ -277,7 +277,9 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
-    <Compile Include="Data\Entities\AssessmentLearningStandard.cs" />
+    <Compile Include="Data\Entities\AssessmentLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\SchemaVersion.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -293,6 +295,8 @@
     <Compile Include="Data\Queries\SectionsBySectionNameAndSessionQuery.cs" />
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
     <Compile Include="Data\Queries\StudentSectionAssociationByPrimaryKeysQuery.cs" />
+    <Compile Include="Data\Repositories\AssessmentRepository.cs" />
+    <Compile Include="Data\Repositories\IAssessmentRepository.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
@@ -1645,6 +1649,9 @@
     <Compile Include="Models\Assessment\CreateModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentMapper.cs" />
     <Compile Include="Models\Assessment\CreateModelValidator.cs" />
+    <Compile Include="Models\Assessment\AssessmentResultModel.cs" />
+    <Compile Include="Models\Assessment\AssessmentResultRowModel.cs" />
+    <Compile Include="Models\Assessment\StudentAssessmentsToAssessmentResultModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />
@@ -1971,6 +1978,7 @@
     <Content Include="Views\Schedule\Set.cshtml" />
     <Content Include="Views\Shared\Forbidden.cshtml" />
     <Content Include="Views\Assessment\Create.cshtml" />
+    <Content Include="Views\Assessment\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
