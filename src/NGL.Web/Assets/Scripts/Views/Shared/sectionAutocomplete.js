@@ -7,8 +7,10 @@ Ngl.shared.sectionAutocomplete = (function () {
     }
 
     var clearHiddenFieldsOnError = function () {
-        $('#Section').on('change', function () {
-            $('#SectionId').val("");
+        $('#Section').on('keypress', function (e) {
+            if (e.keyCode != 13) {
+                $('#SectionId').val("");
+            }
         });
     }
 

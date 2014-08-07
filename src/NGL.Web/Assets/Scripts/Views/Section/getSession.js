@@ -8,9 +8,12 @@ Ngl.section.getSession = (function () {
 
     var clearHiddenFieldsOnError = function ()
     {
-        $('#Session').on('change', function() {
-                $('#SessionId').val("");
+        $('#Session').on('keypress', function(e) {
+         if(e.keyCode != 13) {
+            $('#SessionId').val("");
+        }
         });
+
     }
 
         var getSession = function() {
