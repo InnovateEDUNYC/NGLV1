@@ -4,6 +4,7 @@ Ngl.schedule.setSchedule = (function () {
     var setupView = function() {
         configureSaveButton();
         setupUpdateDates();
+        setHiddenSessionId();
     }
 
     var configureSaveButton = function() {
@@ -45,13 +46,22 @@ Ngl.schedule.setSchedule = (function () {
     var setupUpdateDates = function () {
         $('#session-dropdown').on('change', function () {
             clearSection();
+
             var selectedSession = $(this).find(':selected')[0];
+
+            setHiddenSessionId();
 
             var beginDate = selectedSession.getAttribute('beginDate');
             var endDate = selectedSession.getAttribute('endDate');
             updateDates(beginDate, endDate);
 
         });
+    }
+
+    var setHiddenSessionId = function () {
+        var selectedSession = $('#session-dropdown').find(':selected')[0];
+        var sessionId = $('#SessionId');
+        sessionId.val(selectedSession.getAttribute('value'));
     }
 
     var updateDates = function(beginDate, endDate) {

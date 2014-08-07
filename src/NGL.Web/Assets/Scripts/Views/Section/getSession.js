@@ -39,7 +39,6 @@ Ngl.section.getSession = (function () {
                 },
                 select: function(event, ui) {
                     var selectedSession = ui.item;
-                    console.log(selectedSession);
                     $("#SessionId").val(selectedSession.sessionId);
                 },
                 minLength: 2,

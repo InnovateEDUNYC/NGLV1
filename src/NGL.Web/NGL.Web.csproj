@@ -1851,7 +1851,7 @@
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Section\getSession.js" />
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
-    <Content Include="Assets\Scripts\Views\Shared\getSection.js" />
+    <Content Include="Assets\Scripts\Views\Shared\sectionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
