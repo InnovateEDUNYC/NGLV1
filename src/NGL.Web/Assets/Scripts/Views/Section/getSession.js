@@ -2,13 +2,14 @@
 
 Ngl.section.getSession = (function () {
     var init = function() {
-        clearHiddenFieldsOnError();
+        clearHiddenFieldsOnPressingAnyKeyButEnter();
         getSession();
     }
 
-    var clearHiddenFieldsOnError = function ()
+    var clearHiddenFieldsOnPressingAnyKeyButEnter = function ()
     {
         $('#Session').on('keypress', function(e) {
+        // 13 is the keycode for enter
          if(e.keyCode != 13) {
             $('#SessionId').val("");
         }
