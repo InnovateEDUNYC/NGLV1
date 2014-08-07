@@ -183,16 +183,6 @@ namespace NGL.Web.Controllers
             return callInfo;
         }
 
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Assessment.CreateModel createModel)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
-            CreateOverride(callInfo, createModel);
-            return callInfo;
-        }
-
         [NonAction]
         partial void EnterResultsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int assessmentId);
 
