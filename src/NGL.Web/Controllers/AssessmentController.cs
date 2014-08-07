@@ -8,6 +8,7 @@ using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Data.Queries;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
 
@@ -51,6 +52,7 @@ namespace NGL.Web.Controllers
 
         //
         // GET: /Assessment/Create
+        [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create()
         {
             return View();
@@ -59,6 +61,7 @@ namespace NGL.Web.Controllers
         //
         // POST: /Assessment/Create
         [HttpPost]
+        [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
@@ -144,7 +147,7 @@ namespace NGL.Web.Controllers
                 }));
         }
 
-
+	[AuthorizeFor(Resource = "assessment", Operation = "view")]
         public virtual ActionResult Result(int studentUsi, int? sessionId, int week = 1)
 		{
             var assessmentResultModel = new AssessmentResultModel { StudentUsi = studentUsi};

@@ -14,7 +14,8 @@ namespace NGL.Web.Infrastructure.Security
                            + " enrollment.create enrollment.edit enrollment.view"
                            + " courseGeneration.create courseGeneration.edit courseGeneration.view"
                            + " user.create user.edit user.view"
-                           + " scheduleStudents.create scheduleStudents.edit scheduleStudents.view";
+                           + " scheduleStudents.create scheduleStudents.edit scheduleStudents.view"
+                           + " assessment.create assessment.edit assessment.view";
 
                 case ApplicationRole.Admin:
                     return "session.edit session.view"
@@ -22,7 +23,8 @@ namespace NGL.Web.Infrastructure.Security
                            + " enrollment.create enrollment.edit enrollment.view"
                            + " courseGeneration.create courseGeneration.edit courseGeneration.view"
                            + " user.create user.edit user.view"
-                           + " scheduleStudents.create scheduleStudents.edit scheduleStudents.view";
+                           + " scheduleStudents.create scheduleStudents.edit scheduleStudents.view"
+                           + " assessment.create assessment.edit assessment.view";
 
                 case ApplicationRole.Teacher:
                     return "session.view"
@@ -30,7 +32,8 @@ namespace NGL.Web.Infrastructure.Security
                            + " enrollment.view"
                            + " courseGeneration.view"
                            + " user.view"
-                           + " scheduleStudents.view";
+                           + " scheduleStudents.view"
+                           + " assessment.create assessment.edit assessment.view";
             }
 
             return string.Empty;
