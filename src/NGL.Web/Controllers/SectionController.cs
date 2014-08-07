@@ -99,7 +99,7 @@ namespace NGL.Web.Controllers
 
             if (sessionModels.IsNullOrEmpty())
             {
-                sessionModels.Add(new SessionJsonModel{SessionName = "No Results"});
+                sessionModels.Add(new SessionJsonModel{SessionName = "No results"});
             }
 
             return Json(sessionModels, JsonRequestBehavior.AllowGet);
