@@ -9,13 +9,29 @@
 @Html.TextBoxFor(m => m.SessionId)
 @Html.HiddenFor(m => m.StudentUsi)
 @Html.HiddenFor(m => m.Week)
-<ul>
-    @foreach (var row in Model.AssessmentResultRows)
-    {
-    <li>@row.CommonCodeStandard</li>}
-</ul>
+@Html.ActionLink("Search", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId }, new { @class = "btn btn-primary" })
 
-@Html.ActionLink("Search", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId}, null)
+<table class="table table-bordered">
+    <tr>
+        <th class ="col-sm-2"></th>
+        @for (var i = 1; i <= 7; i++)
+        {
+            <th class="col-sm-1">@i</th>
+        }
+    </tr>
+    <tr>
+        @foreach (var row in Model.AssessmentResultRows)
+        {
+            <td>@row.CommonCoreStandard</td>
+            foreach (var result in @row.Results)
+            {
+                <td>@result</td>
+            }
+        }
+    </tr>
+</table>
+
+
 
 @Html.ActionLink("Next", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week + 1}, null)
 @Html.ActionLink("Previous", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week - 1 }, null)

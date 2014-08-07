@@ -37,21 +37,28 @@ namespace NGL.Web.Models.Assessment
 
             return new AssessmentResultRowModel
             {
-                CommonCodeStandard = studentAssessment.Assessment.AssessmentLearningStandards.First().LearningStandard.Description,
+                CommonCoreStandard = studentAssessment.Assessment.AssessmentLearningStandards.First().LearningStandard.Description,
                 Results = results
             };
         }
 
         private string GetPerformanceLevel(StudentAssessment studentAssessment)
         {
-            var studentScore = Convert.ToInt32(studentAssessment.StudentAssessmentScoreResults.First().Result);
+            var studentScore = Convert.ToDecimal(studentAssessment.StudentAssessmentScoreResults.First().Result);
 
             var assessmentPerformanceLevels = studentAssessment.Assessment.AssessmentPerformanceLevels.ToList();
-            var sortedPerformanceLevels = assessmentPerformanceLevels.OrderByDescending(apl => Convert.ToInt32(apl.MinimumScore));
+            var sortedPerformanceLevels = assessmentPerformanceLevels.OrderByDescending(apl => Convert.ToDecimal(apl.MinimumScore));
 
-            var studentPerformanceLevel = sortedPerformanceLevels.First(pl => studentScore >= Convert.ToInt32(pl.MinimumScore));
+            var studentPerformanceLevel = sortedPerformanceLevels.FirstOrDefault(pl => studentScore >= Convert.ToDecimal(pl.MinimumScore));
 
-            return ((PerformanceLevelDescriptorEnum) studentPerformanceLevel.PerformanceLevelDescriptorId).Humanize();
+            var result = PerformanceLevelDescriptorEnum.NotMastered;
+
+            if (studentPerformanceLevel != null)
+            {
+                result = ((PerformanceLevelDescriptorEnum) studentPerformanceLevel.PerformanceLevelDescriptorId);
+            }
+
+            return result.Humanize();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Builders
@@ -12,6 +13,12 @@ namespace NGL.Tests.Builders
             {
                 Result = _result        
             };
+        }
+
+        public StudentAssessmentScoreResultBuilder WithResult(String result)
+        {
+            _result = result;
+            return this;
         }
     }
 }

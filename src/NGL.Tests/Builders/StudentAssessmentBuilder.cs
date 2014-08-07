@@ -10,10 +10,10 @@ namespace NGL.Tests.Builders
         private const string AssessmentTitle = "English Reading";
         private const int AcademicSubjectDescriptorId = (int) AcademicSubjectDescriptorEnum.EnglishLanguageArts;
         private const int AssessedGradeLevelDescriptorId = (int) GradeLevelDescriptorEnum._5thGrade;
-        private const int Version = 1;
-        private readonly DateTime _administrationDate = new DateTime(2014, 6, 27);
+        private const int Version = 0;
+        private DateTime _administrationDate = new DateTime(2014, 6, 27);
         private Web.Data.Entities.Assessment _assessment = null;
-        private readonly IList<StudentAssessmentScoreResult> _studentAssessmentScoreResults = new[] { new StudentAssessmentScoreResultBuilder().Build() }; 
+        private IList<StudentAssessmentScoreResult> _studentAssessmentScoreResults = new[] { new StudentAssessmentScoreResultBuilder().Build() }; 
 
         public StudentAssessment Build()
         {
@@ -33,6 +33,18 @@ namespace NGL.Tests.Builders
         public StudentAssessmentBuilder WithAssessment(Web.Data.Entities.Assessment assessment)
         {
             _assessment = assessment;
+            return this;
+        }
+
+        public StudentAssessmentBuilder WithStudentAssessmentScoreResult(StudentAssessmentScoreResult studentAssessmentScoreResult)
+        {
+            _studentAssessmentScoreResults = new[] {studentAssessmentScoreResult};
+            return this;
+        }
+
+        public StudentAssessmentBuilder WithAdministrationDate(DateTime administrationDate)
+        {
+            _administrationDate = administrationDate;
             return this;
         }
     }
