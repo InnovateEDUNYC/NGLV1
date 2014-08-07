@@ -16,7 +16,7 @@ namespace NGL.Web.Models.Assessment
 
         public DateTime AdministeredDate { get; set; }
 
-        public AssessmentCategoryTypeEnum QuestionType { get; set; }
-        public GradeLevelTypeEnum GradeLevel { get; set; }
+        public AssessmentCategoryTypeEnum? QuestionType { get; set; }
+        public GradeLevelTypeEnum? GradeLevel { get; set; }
     }
 }
