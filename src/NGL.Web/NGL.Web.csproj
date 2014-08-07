@@ -1644,6 +1644,7 @@
     <Compile Include="Models\Account\UserModel.cs" />
     <Compile Include="Models\Assessment\CreateModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentMapper.cs" />
+    <Compile Include="Models\Assessment\CreateModelValidator.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />

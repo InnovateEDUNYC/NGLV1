@@ -8,9 +8,11 @@ Ngl.section.getSession = (function () {
 
     var clearHiddenFieldsOnPressingAnyKeyButEnter = function ()
     {
-        $('#Session').on('keypress', function(e) {
-        // 13 is the keycode for enter
-         if(e.keyCode != 13) {
+        $('#Session').on('keydown', function(e) {
+            var enter = 13;
+            var tab = 9;
+
+            if(e.keyCode != enter && e.keyCode != tab) {
             $('#SessionId').val("");
         }
         });
