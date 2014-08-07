@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
@@ -98,12 +99,17 @@ namespace NGL.Web.Controllers
             return Json(autoCompleteModels, JsonRequestBehavior.AllowGet);
         }
 
-        private IEnumerable<Models.Section.AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString, int sessionId)
+        private IEnumerable<AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString, int sessionId)
         {
             var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
             var query = new SectionsBySectionNameAndSessionQuery(searchString, session);
             var sections = _genericRepository.GetAll(query);
             var autocompleteModels = sections.Select(section => _sectionToAutocompleteModelMapper.Build(section)).ToList();
+
+            if (autocompleteModels.IsNullOrEmpty())
+            {
+                autocompleteModels.Add(new AutocompleteModel{LabelName = "No results"});
+            }
 
             return autocompleteModels;
         }
