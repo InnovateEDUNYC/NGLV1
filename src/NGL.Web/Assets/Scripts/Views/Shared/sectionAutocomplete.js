@@ -18,6 +18,7 @@ Ngl.shared.sectionAutocomplete = (function () {
     }
 
     var sectionAutocomplete = function () {
+        var noResultsLabel = "No results";
         $('#Section').autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -31,6 +32,17 @@ Ngl.shared.sectionAutocomplete = (function () {
                         searchString: request.term,
                         sessionId: $('#SessionId').val()
                     },
+
+                    error: function () {
+                        // errorPlaceholder's value does not matter
+                        var errorPlaceholder = ['1'];
+                        response($.map(errorPlaceholder, function () {
+                            return {
+                                label: noResultsLabel,
+                            };
+                        }));
+                    },
+
                     success: function (data) {
                         response($.map(data, function (section) {
                             return {
@@ -43,7 +55,15 @@ Ngl.shared.sectionAutocomplete = (function () {
                 });
             },
             select: function (event, ui) {
+                if (ui.item.label === noResultsLabel) {
+                    event.preventDefault();
+                }
                 $('#SectionId').val(ui.item.sectionId);
+            },
+            focus: function (event, ui) {
+                if (ui.item.label === noResultsLabel) {
+                    event.preventDefault();
+                }
             },
             minLength: 2,
         });
