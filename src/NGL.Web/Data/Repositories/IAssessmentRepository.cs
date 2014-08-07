@@ -6,6 +6,6 @@ namespace NGL.Web.Data.Repositories
 {
     public interface IAssessmentRepository
     {
-        IEnumerable<Assessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate);
+        IEnumerable<StudentAssessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate);
     }
 }

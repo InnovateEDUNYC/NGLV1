@@ -277,7 +277,9 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
-    <Compile Include="Data\Entities\AssessmentLearningStandard.cs" />
+    <Compile Include="Data\Entities\AssessmentLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\SchemaVersion.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1647,6 +1649,9 @@
     <Compile Include="Models\Assessment\CreateModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentMapper.cs" />
     <Compile Include="Models\Assessment\CreateModelValidator.cs" />
+    <Compile Include="Models\Assessment\AssessmentResultModel.cs" />
+    <Compile Include="Models\Assessment\AssessmentResultRowModel.cs" />
+    <Compile Include="Models\Assessment\StudentAssessmentsToAssessmentResultModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />

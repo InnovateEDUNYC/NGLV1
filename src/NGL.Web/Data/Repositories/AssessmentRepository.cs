@@ -11,13 +11,18 @@ namespace NGL.Web.Data.Repositories
     {
         public AssessmentRepository(INglDbContext dbContext) : base(dbContext) { }
 
-        public IEnumerable<Assessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate)
+        public IEnumerable<StudentAssessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate)
         {
-            return DbContext.Set<Assessment>()
-                .Where(a => a.AdministeredDate >= startDate && a.AdministeredDate <= endDate)
-                .Include(a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults))
-                .Include(a => a.AssessmentPerformanceLevels)
-                .Include(a => a.AssessmentLearningStandards.Select(als => als.LearningStandard)).ToList();
+            return DbContext.Set<StudentAssessment>()
+                .Where(
+                    sa =>
+                        sa.StudentUSI == studentUsi && sa.AdministrationDate >= startDate &&
+                        sa.AdministrationDate <= endDate)
+                .Include(sa => sa.Assessment)
+                .Include(sa => sa.Assessment.AssessmentPerformanceLevels)
+                .Include(sa => sa.Assessment.AssessmentLearningStandards.Select(als => als.LearningStandard))
+                .Include(sa => sa.StudentAssessmentScoreResults)
+                .ToList();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model NGL.Web.Controllers.AssessmentResultModel
+﻿@model NGL.Web.Models.Assessment.AssessmentResultModel
 
 @{
     ViewBag.Title = "View Assessment Results";
@@ -6,12 +6,17 @@
 
 <h2>View Assessment Results</h2>
 
-@using (Html.BeginForm("Result", "Assessment", FormMethod.Post))
-{
-    @Html.TextBoxFor(m => m.SessionId)
-    @Html.HiddenFor(m => m.StudentUsi)
-    @Html.HiddenFor(m => m.Week)
-    
-    <button type="submit" value="Search">Search</button>
-}
+@Html.TextBoxFor(m => m.SessionId)
+@Html.HiddenFor(m => m.StudentUsi)
+@Html.HiddenFor(m => m.Week)
+<ul>
+    @foreach (var row in Model.AssessmentResultRows)
+    {
+    <li>@row.CommonCodeStandard</li>}
+</ul>
+
+@Html.ActionLink("Search", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId}, null)
+
+@Html.ActionLink("Next", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week + 1}, null)
+@Html.ActionLink("Previous", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week - 1 }, null)
 
