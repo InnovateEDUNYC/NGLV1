@@ -48,29 +48,29 @@ INSERT INTO [edfi].[ClassPeriod]
 	 (1, 'Period 5')
 
 INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts])
+	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
 	VALUES
-	 (1, 'MATH123 - DI', 'Algebra I', 1)
+	 (1, 'MATH123 - DI', 'Algebra I', 1, 1)
 	 
 INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts])
+	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
 	VALUES
-	 (1, 'MATH123 - CW', 'Algebra I', 1)
+	 (1, 'MATH123 - CW', 'Algebra I', 1, 2)
 	  
 INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts])
+	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
 	VALUES
-	 (1, 'MATH123 - TU', 'Algebra I', 1)
+	 (1, 'MATH123 - TU', 'Algebra I', 1, 3)
 	 
 INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts])
+	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
 	VALUES
-	 (1, 'ENGL400 - DI', 'Creative Writing II', 1)
+	 (1, 'ENGL400 - DI', 'Creative Writing II', 1, 4)
 	 
 INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts])
+	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
 	VALUES
-	 (1, 'ENGL400 - CW', 'Creative Writing II', 1)
+	 (1, 'ENGL400 - CW', 'Creative Writing II', 1, 4)
 
 
 INSERT INTO [edfi].[CourseOffering]
