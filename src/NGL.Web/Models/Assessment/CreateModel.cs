@@ -8,14 +8,10 @@ namespace NGL.Web.Models.Assessment
     {
         public int SessionId { get; set; }
         public string Session { get; set; }
-
         public int SectionId { get; set; }
-
-        [StringLength(60)]
+        public string Section { get; set; }
         public string AssessmentTitle { get; set; }
-
-        public DateTime AdministeredDate { get; set; }
-
+        public DateTime? AdministeredDate { get; set; }
         public AssessmentCategoryTypeEnum? QuestionType { get; set; }
         public GradeLevelTypeEnum? GradeLevel { get; set; }
     }

@@ -78,6 +78,7 @@
     <Compile Include="Account\StaffToUserModelMapperTests.cs" />
     <Compile Include="Assessment\CreateModelBuilder.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentMapperTests.cs" />
+    <Compile Include="Assessment\CreateModelValidatorTests.cs" />
     <Compile Include="Builders\AddUserModelBuilder.cs" />
     <Compile Include="Builders\ClassPeriodBuilder.cs" />
     <Compile Include="Builders\CourseBuilder.cs" />

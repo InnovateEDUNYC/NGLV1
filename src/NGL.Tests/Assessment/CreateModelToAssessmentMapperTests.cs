@@ -26,7 +26,7 @@ namespace NGL.Tests.Assessment
             var entity = new CreateModelToAssessmentMapper(_genericRepositoryStub).Build(model);
 
             entity.AssessmentTitle.ShouldBe(model.AssessmentTitle);
-            entity.AdministeredDate.ShouldBe(model.AdministeredDate);
+            entity.AdministeredDate.ShouldBe(model.AdministeredDate.GetValueOrDefault());
             entity.AssessmentCategoryTypeId.ShouldBe((int) model.QuestionType.GetValueOrDefault());
 
             entity.AssessedGradeLevelDescriptorId.ShouldBe(_4ThGradeLevelDescriptor.GradeLevelDescriptorId);

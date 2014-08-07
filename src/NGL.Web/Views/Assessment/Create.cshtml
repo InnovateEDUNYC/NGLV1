@@ -16,15 +16,18 @@
         </div>
 
         @s.FieldFor(m => m.Session)
-        <div class="form-group">
-            <label class="control-label">
-                Section
-            </label>
-            <input class="form-control" type="text" data-val="true" id="Section" />
+    
+    
+        @s.FieldFor(m => m.Section)
+@*        <div class="form-group">*@
+@*            <label class="control-label">*@
+//                Section
+//            </label>
+@*            <input class="form-control" type="text" data-val="true" id="Section" />*@
             <div class="hidden">
                 @s.FieldFor(m => m.SectionId)
             </div>
-        </div>
+//        </div>
     @s.FieldFor(m => m.AssessmentTitle)
     @s.FieldFor(m => m.AdministeredDate)
     @s.FieldFor(m => m.QuestionType)

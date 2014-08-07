@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System;
+using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Models.Assessment
@@ -15,7 +16,7 @@ namespace NGL.Web.Models.Assessment
         public override void Map(CreateModel source, Data.Entities.Assessment target)
         {
             target.AssessmentTitle = source.AssessmentTitle;
-            target.AdministeredDate = source.AdministeredDate;
+            target.AdministeredDate = source.AdministeredDate.GetValueOrDefault();
             target.AssessmentCategoryTypeId = (int) source.QuestionType.GetValueOrDefault();
             GetAcademicSubjectFromCourse(source, target);
             GetGradeLevelDescriptorFromType(source, target);

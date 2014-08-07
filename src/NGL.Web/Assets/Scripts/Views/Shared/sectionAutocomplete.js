@@ -3,12 +3,15 @@
 Ngl.shared.sectionAutocomplete = (function () {
     var setupSectionAutocomplete = function () {
         sectionAutocomplete();
-        clearHiddenFieldsOnPressingAnyKeyButEnter();
+        clearHiddenFieldsOnPressingAnyKeyButEnterOrTab();
     }
 
-    var clearHiddenFieldsOnPressingAnyKeyButEnter = function () {
-        $('#Section').on('keypress', function (e) {
-            if (e.keyCode != 13) {
+    var clearHiddenFieldsOnPressingAnyKeyButEnterOrTab = function () {
+        $('#Section').on('keydown', function (e) {
+            var enter = 13;
+            var tab = 9;
+
+            if (e.keyCode != enter && e.keyCode != tab) {
                 $('#SectionId').val("");
             }
         });
