@@ -36,7 +36,6 @@ Ngl.shared.sectionAutocomplete = (function () {
                     error: function () {
                         // errorPlaceholder's value does not matter
                         var errorPlaceholder = ['1'];
-                        console.log("error");
                         response($.map(errorPlaceholder, function () {
                             return {
                                 label: noResultsLabel,
