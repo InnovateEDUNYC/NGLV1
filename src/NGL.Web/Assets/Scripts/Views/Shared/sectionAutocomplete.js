@@ -3,10 +3,10 @@
 Ngl.shared.sectionAutocomplete = (function () {
     var setupSectionAutocomplete = function () {
         sectionAutocomplete();
-        clearHiddenFieldsOnError();
+        clearHiddenFieldsOnPressingAnyKeyButEnter();
     }
 
-    var clearHiddenFieldsOnError = function () {
+    var clearHiddenFieldsOnPressingAnyKeyButEnter = function () {
         $('#Section').on('keypress', function (e) {
             if (e.keyCode != 13) {
                 $('#SectionId').val("");
