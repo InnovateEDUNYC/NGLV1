@@ -185,3 +185,19 @@ form .inline input {
 .section-searchbox-container > input {
     width: 100%;
 }
+
+/* Assessment Page */
+
+.enter-mastery {
+    max-width: 400px;
+}
+
+.enter-mastery .form-control {
+    max-width: 100px;
+}
+
+.custom-box {
+    display: inline-block;
+    margin-left: 12px;
+    margin-right: 5px;
+}
