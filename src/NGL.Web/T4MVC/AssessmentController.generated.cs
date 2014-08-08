@@ -56,13 +56,15 @@ namespace NGL.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Result()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
-        }
         public virtual System.Web.Mvc.ActionResult EnterResults()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Result()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,16 +83,16 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Create = "Create";
-            public readonly string Result = "Result";
             public readonly string EnterResults = "EnterResults";
+            public readonly string Result = "Result";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Create = "Create";
-            public const string Result = "Result";
             public const string EnterResults = "EnterResults";
+            public const string Result = "Result";
         }
 
 
@@ -102,6 +104,15 @@ namespace NGL.Web.Controllers
         {
             public readonly string createModel = "createModel";
         }
+        static readonly ActionParamsClass_EnterResults s_params_EnterResults = new ActionParamsClass_EnterResults();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EnterResults EnterResultsParams { get { return s_params_EnterResults; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EnterResults
+        {
+            public readonly string assessmentId = "assessmentId";
+            public readonly string enterResultsModel = "enterResultsModel";
+        }
         static readonly ActionParamsClass_Result s_params_Result = new ActionParamsClass_Result();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Result ResultParams { get { return s_params_Result; } }
@@ -111,15 +122,6 @@ namespace NGL.Web.Controllers
             public readonly string studentUsi = "studentUsi";
             public readonly string sessionId = "sessionId";
             public readonly string week = "week";
-        }
-        static readonly ActionParamsClass_EnterResults s_params_EnterResults = new ActionParamsClass_EnterResults();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EnterResults EnterResultsParams { get { return s_params_EnterResults; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EnterResults
-        {
-            public readonly string assessmentId = "assessmentId";
-            public readonly string enterResultsModel = "enterResultsModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -132,12 +134,12 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
-                public readonly string Result = "Result";
                 public readonly string EnterResults = "EnterResults";
+                public readonly string Result = "Result";
             }
             public readonly string Create = "~/Views/Assessment/Create.cshtml";
-            public readonly string Result = "~/Views/Assessment/Result.cshtml";
             public readonly string EnterResults = "~/Views/Assessment/EnterResults.cshtml";
+            public readonly string Result = "~/Views/Assessment/Result.cshtml";
         }
     }
 
@@ -170,20 +172,6 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int week);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int week)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "week", week);
-            ResultOverride(callInfo, studentUsi, sessionId, week);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void EnterResultsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int assessmentId);
 
         [NonAction]
@@ -204,6 +192,20 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enterResultsModel", enterResultsModel);
             EnterResultsOverride(callInfo, enterResultsModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int week);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int week)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "week", week);
+            ResultOverride(callInfo, studentUsi, sessionId, week);
             return callInfo;
         }
 
