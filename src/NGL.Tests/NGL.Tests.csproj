@@ -76,6 +76,7 @@
     <Compile Include="Account\AddUserModelToApplicationUserMapperTests.cs" />
     <Compile Include="Account\AddUserModelToStaffMapperTests.cs" />
     <Compile Include="Account\StaffToUserModelMapperTests.cs" />
+    <Compile Include="Assessment\AssessmentToEnterResultsModelMapperTests.cs" />
     <Compile Include="Assessment\CreateModelBuilder.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentMapperTests.cs" />
     <Compile Include="Assessment\CreateModelValidatorTests.cs" />
@@ -86,10 +87,14 @@
     <Compile Include="Builders\StudentAssessmentBuilder.cs" />
     <Compile Include="Builders\StudentAssessmentScoreResultBuilder.cs" />
     <Compile Include="Assessment\StudentAssessmentsToAssessmentResultModelMapperTests.cs" />
+    <Compile Include="Assessment\EnterResultsStudentModelToStudentAssessmentMapperTests.cs" />
+    <Compile Include="Assessment\EnterResultsStudentModelToStudentAssessmentScoreResultMapperTests.cs" />
+    <Compile Include="Assessment\StudentToEnterResultsStudentModelMapperTests.cs" />
     <Compile Include="Builders\AddUserModelBuilder.cs" />
     <Compile Include="Builders\ClassPeriodBuilder.cs" />
     <Compile Include="Builders\CourseBuilder.cs" />
     <Compile Include="Builders\CreateParentModelBuilder.cs" />
+    <Compile Include="Builders\EnterResultsStudentModelBuilder.cs" />
     <Compile Include="Builders\LocationBuilder.cs" />
     <Compile Include="Builders\SchoolBuilder.cs" />
     <Compile Include="Builders\SetScheduleModelBuilder.cs" />

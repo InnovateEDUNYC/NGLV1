@@ -56,6 +56,12 @@ namespace NGL.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EnterResults()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Result()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
@@ -77,6 +83,7 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Create = "Create";
+            public readonly string EnterResults = "EnterResults";
             public readonly string Result = "Result";
         }
 
@@ -84,6 +91,7 @@ namespace NGL.Web.Controllers
         public class ActionNameConstants
         {
             public const string Create = "Create";
+            public const string EnterResults = "EnterResults";
             public const string Result = "Result";
         }
 
@@ -95,6 +103,15 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string createModel = "createModel";
+        }
+        static readonly ActionParamsClass_EnterResults s_params_EnterResults = new ActionParamsClass_EnterResults();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EnterResults EnterResultsParams { get { return s_params_EnterResults; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EnterResults
+        {
+            public readonly string assessmentId = "assessmentId";
+            public readonly string enterResultsModel = "enterResultsModel";
         }
         static readonly ActionParamsClass_Result s_params_Result = new ActionParamsClass_Result();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -117,9 +134,11 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string EnterResults = "EnterResults";
                 public readonly string Result = "Result";
             }
             public readonly string Create = "~/Views/Assessment/Create.cshtml";
+            public readonly string EnterResults = "~/Views/Assessment/EnterResults.cshtml";
             public readonly string Result = "~/Views/Assessment/Result.cshtml";
         }
     }
@@ -149,6 +168,30 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
             CreateOverride(callInfo, createModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EnterResultsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int assessmentId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EnterResults(int assessmentId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "assessmentId", assessmentId);
+            EnterResultsOverride(callInfo, assessmentId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EnterResultsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Assessment.EnterResultsModel enterResultsModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EnterResults(NGL.Web.Models.Assessment.EnterResultsModel enterResultsModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enterResultsModel", enterResultsModel);
+            EnterResultsOverride(callInfo, enterResultsModel);
             return callInfo;
         }
 
