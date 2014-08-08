@@ -13,7 +13,8 @@ namespace NGL.Tests.Builders
         private const int Version = 0;
         private DateTime _administrationDate = new DateTime(2014, 6, 27);
         private Web.Data.Entities.Assessment _assessment = null;
-        private IList<StudentAssessmentScoreResult> _studentAssessmentScoreResults = new[] { new StudentAssessmentScoreResultBuilder().Build() }; 
+        private IList<StudentAssessmentScoreResult> _studentAssessmentScoreResults = new[] { new StudentAssessmentScoreResultBuilder().Build() };
+        private Web.Data.Entities.Student _student;
 
         public StudentAssessment Build()
         {
@@ -26,7 +27,8 @@ namespace NGL.Tests.Builders
                 Version = Version,
                 AdministrationDate = _administrationDate,
                 Assessment = _assessment,
-                StudentAssessmentScoreResults = _studentAssessmentScoreResults
+                StudentAssessmentScoreResults = _studentAssessmentScoreResults,
+                Student = _student
             };
         }
 
@@ -45,6 +47,12 @@ namespace NGL.Tests.Builders
         public StudentAssessmentBuilder WithAdministrationDate(DateTime administrationDate)
         {
             _administrationDate = administrationDate;
+            return this;
+        }
+
+        public StudentAssessmentBuilder WithStudent(Web.Data.Entities.Student student)
+        {
+            _student = student;
             return this;
         }
     }
