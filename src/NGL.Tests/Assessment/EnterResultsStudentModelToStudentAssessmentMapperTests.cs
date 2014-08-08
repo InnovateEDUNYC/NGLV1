@@ -13,7 +13,7 @@ namespace NGL.Tests.Assessment
     public class EnterResultsStudentModelToStudentAssessmentMapperTests
     {
         [Fact]
-        public void ShouldMapEnterResultsStudentModelToStudentAssessmentMapper()
+        public void ShouldMapEnterResultsStudentModelToStudentAssessment()
         {
             var mapper = new EnterResultsStudentModelToStudentAssessmentMapper();
             var model = new EnterResultsStudentModel();

@@ -74,8 +74,9 @@ namespace NGL.Web.Controllers
                 a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)),
                 a => a.AssessmentSections.Select(asa => asa.Section.Session));
 
-            var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
+            if (assessment == null) return View();
 
+            var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
             return View(enterResultsModel);
         }
 
@@ -91,38 +92,46 @@ namespace NGL.Web.Controllers
             var studentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
             foreach (var enterResultsStudentModel in enterResultsStudentModels)
             {
-                studentAssessments.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(
-                    enterResultsStudentModel,
-                    sa =>
-                    {
-                        sa.AssessmentTitle = assessment.AssessmentTitle;
-                        sa.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                        sa.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                        sa.Version = assessment.Version;
-                        sa.AdministrationDate = assessment.AdministeredDate;
-                    }));
-                studentAssessmentScoreResults.Add(
-                    _enterResultsStudentModelToStudentAssessmentScoreResultMapper.Build(enterResultsStudentModel, asr =>
-                    {
-                        asr.AssessmentTitle = assessment.AssessmentTitle;
-                        asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                        asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                        asr.Version = assessment.Version;
-                        asr.AdministrationDate = assessment.AdministeredDate;
-                    }));
+                AddToStudentAssements(studentAssessments, enterResultsStudentModel, assessment);
+                AddToStudentAssessmentScoreResults(studentAssessmentScoreResults, enterResultsStudentModel, assessment);
             }
+
             foreach (var studentAssessmentScoreResult in studentAssessmentScoreResults)
-                {
-                    _genericRepository.Add(studentAssessmentScoreResult);
-                }
-                foreach (var studentAssessment in studentAssessments)
-                {
-                    _genericRepository.Add(studentAssessment);
-                }
-                
-                _genericRepository.Save();
+                _genericRepository.Add(studentAssessmentScoreResult);
+            foreach (var studentAssessment in studentAssessments)
+                _genericRepository.Add(studentAssessment);
+            _genericRepository.Save();
+
             return RedirectToAction(MVC.Home.Index());
-            
+        }
+
+        private void AddToStudentAssessmentScoreResults(List<StudentAssessmentScoreResult> studentAssessmentScoreResults,
+            EnterResultsStudentModel enterResultsStudentModel, Assessment assessment)
+        {
+            studentAssessmentScoreResults.Add(
+                _enterResultsStudentModelToStudentAssessmentScoreResultMapper.Build(enterResultsStudentModel, asr =>
+                {
+                    asr.AssessmentTitle = assessment.AssessmentTitle;
+                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
+                    asr.Version = assessment.Version;
+                    asr.AdministrationDate = assessment.AdministeredDate;
+                }));
+        }
+
+        private void AddToStudentAssements(ICollection<StudentAssessment> studentAssessments, EnterResultsStudentModel enterResultsStudentModel,
+            Assessment assessment)
+        {
+            studentAssessments.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(
+                enterResultsStudentModel,
+                sa =>
+                {
+                    sa.AssessmentTitle = assessment.AssessmentTitle;
+                    sa.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+                    sa.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
+                    sa.Version = assessment.Version;
+                    sa.AdministrationDate = assessment.AdministeredDate;
+                }));
         }
 
 

@@ -14,5 +14,4 @@ namespace NGL.Web.Models.Assessment
         public string AssessmentTitle { get; set; }
         public string LearningStandard { get; set; }
     }
-
 }
