@@ -168,6 +168,7 @@ namespace NGL.Web.Controllers
                 .Map(studentAssessments, startDate, endDate);
             assessmentResultModel.StudentUsi = studentUsi;
             assessmentResultModel.SessionId = sessionId;
+            assessmentResultModel.Session = session.SessionName;
             assessmentResultModel.Week = week;
 
             return View(assessmentResultModel);

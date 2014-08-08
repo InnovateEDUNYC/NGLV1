@@ -6,10 +6,13 @@
 
 <h2>View Assessment Results</h2>
 
-@Html.TextBoxFor(m => m.SessionId)
+@Html.TextBoxFor(m => m.Session)
+@Html.HiddenFor(m => m.SessionId)
 @Html.HiddenFor(m => m.StudentUsi)
 @Html.HiddenFor(m => m.Week)
-@Html.ActionLink("Search", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId }, new { @class = "btn btn-primary" })
+
+<a id="GetResultsButton" class="btn btn-primary">Get Results</a>
+<a href="/">sample</a>
 
 <table class="table table-bordered">
     <tr>
@@ -33,6 +36,10 @@
 
 
 
-@Html.ActionLink("Next", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week + 1}, null)
 @Html.ActionLink("Previous", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week - 1 }, null)
+@Html.ActionLink("Next", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week + 1}, null)
 
+@section Scripts {
+    Ngl.shared.sessionAutocomplete.init();
+    Ngl.assessment.result.init();
+}
