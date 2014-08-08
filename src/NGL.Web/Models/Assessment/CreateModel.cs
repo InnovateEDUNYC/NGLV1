@@ -14,9 +14,7 @@ namespace NGL.Web.Models.Assessment
         public DateTime? AdministeredDate { get; set; }
         public AssessmentCategoryTypeEnum? QuestionType { get; set; }
         public GradeLevelTypeEnum? GradeLevel { get; set; }
-
         public string CommonCoreStandard { get; set; }
-
         public AssessmentReportingMethodTypeEnum ReportingMethod { get; set; }
         public decimal? Mastery { get; set; }
         public decimal? NearMastery { get; set; }

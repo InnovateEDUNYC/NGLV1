@@ -25,6 +25,62 @@
         @s.FieldFor(m => m.AdministeredDate)
         @s.FieldFor(m => m.QuestionType)
         @s.FieldFor(m => m.GradeLevel)
+
+
+        using (var t = f.BeginSection("Set Assessment"))
+        {
+            <div class="enter-mastery">
+@*                <div class="pull-left">Green = </div>@t.FieldFor(m => m.Mastery).AddClass("custom-box").AddLabelClass("pull-right").OverrideFieldHtml(Html.Raw("<div class='pull-right'>THIS IS THE TEST</div>"))*@
+                
+                
+                @t.FieldFor(m => m.Mastery).Label("").OverrideFieldHtml(Html.Raw("" 
+                + "<div class='form-group'>"
+                + "<div class='pull-left label-margin-top'>Green = </div>"
+                + "<input class='form-control custom-box border-radius' data-val='true' data-val-number='The field Mastery must be a number.' id='Mastery' name='Mastery' type='text' value=''>"
+                + "<label class='control-label pull-right label-margin-top' for='Mastery'>Mastery</label>"
+                + "<span class='field-validation-valid help-block' data-valmsg-for='Mastery' data-valmsg-replace='true'></span>"
+                + "</div>"
+                + ""))
+                
+                @t.FieldFor(m => m.NearMastery).Label("").OverrideFieldHtml(Html.Raw("" 
+                + "<div class='form-group'>"
+                  + "<div class='pull-left label-margin-top'>Yellow = </div>"
+                + "<input class='form-control custom-box border-radius' data-val='true' data-val-number='The field NearMastery must be a number.' id='NearMastery' name='NearMastery' type='text' value=''>"
+                 + "<label class='control-label pull-right label-margin-top' for='NearMastery'>Near Mastery</label>"
+                + "<span class='field-validation-valid help-block' data-valmsg-for='NearMastery' data-valmsg-replace='true'></span>"
+                + "</div>"
+                + ""))
+                
+                
+
+@*                <div class="pull-left">Yellow = </div>@t.FieldFor(m => m.NearMastery).AddClass("custom-box").AddLabelClass("pull-right")*@
+            </div>
+        }
+@*        <legend>Set Assessment</legend>*@
+@*        <div class="form-group">*@
+@*            <label class="control-label" for="ReportingMethod">Reporting method</label>            *@
+@*            <select class="form-control" id="ReportingMethod" name="ReportingMethod">*@
+@*                <option selected="selected" value="Percentile">Percentile</option>*@
+@*            </select>*@
+@*            <span class="field-validation-valid help-block" data-valmsg-for="ReportingMethod" data-valmsg-replace="true"></span>*@
+@*        </div>*@
+@*    *@
+@*        <div class="enter-mastery">*@
+@*            <div class="form-group">*@
+@*                <span>Green = </span>*@
+@*                <input class="form-control custom-box" data-val="true" data-val-number="The field Mastery must be a number." id="Mastery" name="Mastery" type="text" value="">*@
+@*                <label class="control-label" for="Mastery">Mastery</label>*@
+@*                <span class="field-validation-valid help-block" data-valmsg-for="Mastery" data-valmsg-replace="true"></span>*@
+@*            </div>            *@
+@*            *@
+@*            <div class="form-group">*@
+@*                <span>Yellow = </span>*@
+@*                <input class="form-control custom-box" data-val="true" data-val-number="The field Near Mastery must be a number." id="NearMastery" name="NearMastery" type="text" value="">*@
+@*                <label class="control-label" for="NearMastery">Near Mastery</label>*@
+@*                <span class="field-validation-valid help-block" data-valmsg-for="NearMastery" data-valmsg-replace="true"></span>*@
+@*            </div>*@
+@*        </div>*@
+    
     }
 
     using (var s = f.BeginSection("Learning Standards"))
@@ -49,32 +105,7 @@
         @s.FieldFor(m => m.CommonCoreStandard)
     }
 
-    using (var s = f.BeginSection("Set Assessment"))
-    {
-        <div class="form-group">
-            <label class="control-label" for="ReportingMethod">Reporting method</label>            
-            <select class="form-control" id="ReportingMethod" name="ReportingMethod">
-                <option selected="selected" value="Percentile">Percentile</option>
-            </select>
-            <span class="field-validation-valid help-block" data-valmsg-for="ReportingMethod" data-valmsg-replace="true"></span>
-        </div>
     
-        <div class="enter-mastery">
-            <div class="form-group">
-                <span>Green = </span>
-                <input class="form-control custom-box" data-val="true" data-val-number="The field Mastery must be a number." id="Mastery" name="Mastery" type="text" value="">
-                <label class="control-label" for="Mastery">Mastery</label>
-                <span class="field-validation-valid help-block" data-valmsg-for="Mastery" data-valmsg-replace="true"></span>
-            </div>            
-            
-            <div class="form-group">
-                <span>Yellow = </span>
-                <input class="form-control custom-box" data-val="true" data-val-number="The field Near Mastery must be a number." id="NearMastery" name="NearMastery" type="text" value="">
-                <label class="control-label" for="NearMastery">Near Mastery</label>
-                <span class="field-validation-valid help-block" data-valmsg-for="NearMastery" data-valmsg-replace="true"></span>
-            </div>
-        </div>
-    }
 
     using (var n = f.BeginNavigation())
     {

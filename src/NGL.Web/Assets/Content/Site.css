@@ -189,7 +189,7 @@ form .inline input {
 /* Assessment Page */
 
 .enter-mastery {
-    max-width: 400px;
+    max-width: 330px;
 }
 
 .enter-mastery .form-control {
@@ -199,5 +199,12 @@ form .inline input {
 .custom-box {
     display: inline-block;
     margin-left: 12px;
-    margin-right: 5px;
+}
+
+.label-margin-top {
+    margin-top: 7px;
+}
+
+.border-radius {
+    border-radius: 4px !important;
 }

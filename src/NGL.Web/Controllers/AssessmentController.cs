@@ -119,7 +119,8 @@ namespace NGL.Web.Controllers
                 }));
         }
 
-        private void AddToStudentAssements(ICollection<StudentAssessment> studentAssessments, EnterResultsStudentModel enterResultsStudentModel,
+        private void AddToStudentAssements(ICollection<StudentAssessment> studentAssessments,
+            EnterResultsStudentModel enterResultsStudentModel,
             Assessment assessment)
         {
             studentAssessments.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(
@@ -149,8 +150,10 @@ namespace NGL.Web.Controllers
             var startDate = session.BeginDate.AddDays((week - 1) * 7);
             var endDate = startDate.AddDays(7);
 
-            var studentAssessments = _assessmentRepository.GetAssessmentResults(assessmentResultModel.StudentUsi, startDate, endDate);
-            assessmentResultModel = _studentAssessmentsToAssessmentResultModelMapper.Map(studentAssessments, startDate, endDate);
+            var studentAssessments = _assessmentRepository
+                .GetAssessmentResults(assessmentResultModel.StudentUsi, startDate, endDate);
+            assessmentResultModel = _studentAssessmentsToAssessmentResultModelMapper
+                .Map(studentAssessments, startDate, endDate);
             assessmentResultModel.StudentUsi = studentUsi;
             assessmentResultModel.SessionId = sessionId;
             assessmentResultModel.Week = week;
