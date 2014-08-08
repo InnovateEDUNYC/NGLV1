@@ -11,7 +11,6 @@ CREATE TABLE [dbo].[AssessmentLearningStandard](
 	[LearningStandardId] [nvarchar](60) NOT NULL,
 	[LastModifiedDate] [datetime] NOT NULL,
 	[CreateDate] [datetime] NOT NULL,
-	[LearningStandardIdentity] [int] IDENTITY(1,1) NOT NULL,
  CONSTRAINT [PK_AssessmentLearningStandard] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
