@@ -1659,7 +1659,7 @@
     <Compile Include="Models\Assessment\EnterResultsModel.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModel.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentScoreResultMapper.cs" />
-    <Compile Include="Models\Assessment\StudentToEnterResultsStudentModelMapper.cs" />
+    <Compile Include="Models\Assessment\StudentAssessmentToEnterResultsStudentModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />

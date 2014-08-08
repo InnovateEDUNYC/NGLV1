@@ -84,20 +84,22 @@ namespace NGL.Web.Controllers
             var assessment = _genericRepository.Get<Assessment>(
                 a => a.AssessmentIdentity == assessmentId,
                 a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)),
-                a => a.AssessmentSections.Select(asa => asa.Section.Session));
+                a => a.AssessmentSections.Select(asa => asa.Section.Session),
+                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults));
 
             if (assessment == null) return View();
 
             var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
+
             return View(enterResultsModel);
         }
 
         [HttpPost]
         public virtual ActionResult EnterResults(EnterResultsModel enterResultsModel)
         {
-            var enterResultsStudentModels = enterResultsModel.Students;
+            var enterResultsStudentModels = enterResultsModel.StudentResults;
             var assessmentId = enterResultsModel.AssessmentId;
-            var assessment = _genericRepository.Get<Data.Entities.Assessment>(
+            var assessment = _genericRepository.Get<Assessment>(
                 a => a.AssessmentIdentity == assessmentId,
                 a => a.StudentAssessments);
             var studentAssessments = assessment.StudentAssessments;

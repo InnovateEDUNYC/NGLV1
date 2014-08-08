@@ -91,7 +91,7 @@
     <Compile Include="Assessment\StudentAssessmentsToAssessmentResultModelMapperTests.cs" />
     <Compile Include="Assessment\EnterResultsStudentModelToStudentAssessmentMapperTests.cs" />
     <Compile Include="Assessment\EnterResultsStudentModelToStudentAssessmentScoreResultMapperTests.cs" />
-    <Compile Include="Assessment\StudentToEnterResultsStudentModelMapperTests.cs" />
+    <Compile Include="Assessment\StudentAssessmentToEnterResultsStudentModelMapperTests.cs" />
     <Compile Include="Builders\AddUserModelBuilder.cs" />
     <Compile Include="Builders\ClassPeriodBuilder.cs" />
     <Compile Include="Builders\CourseBuilder.cs" />
