@@ -9,14 +9,14 @@
 @Html.TextBoxFor(m => m.Session)
 @Html.HiddenFor(m => m.SessionId)
 @Html.HiddenFor(m => m.StudentUsi)
-@Html.HiddenFor(m => m.Week)
+@Html.HiddenFor(m => m.DayFrom)
 
 <a id="GetResultsButton" class="btn btn-info">Get Results</a>
 @if (Model.Session != null)
 {
     <table class="table table-bordered">
         <tr>
-            <th class ="col-sm-2"></th>
+            <th class ="col-sm-4"></th>
             @for (var i = 1; i <= 7; i++)
             {
                 <th class="col-sm-1">@i</th>
@@ -25,7 +25,10 @@
         <tr>
             @foreach (var row in Model.AssessmentResultRows)
             {
-                <td>@row.CommonCoreStandard</td>
+                <td>
+                    CCSS: @row.CommonCoreStandard<br/>
+                    Section Code: @row.SectionCode
+                </td>
                 foreach (var result in @row.Results)
                 {
                     <td>@result</td>
@@ -34,10 +37,10 @@
         </tr>
     </table>
 
-
-
-    @Html.ActionLink("Previous", "Result", "Assessment", new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week - 1}, null)
-    @Html.ActionLink("Next", "Result", "Assessment", new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @week = @Model.Week + 1}, null)
+    @Html.ActionLink("Previous", "Result", "Assessment", 
+            new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom - 7, @dayTo = @Model.DayTo - 7 }, null)
+    @Html.ActionLink("Next", "Result", "Assessment", 
+            new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom + 7, @dayTo = @Model.DayTo + 7 }, null)
 }
 
 @section Scripts {

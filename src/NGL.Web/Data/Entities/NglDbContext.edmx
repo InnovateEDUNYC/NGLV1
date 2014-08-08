@@ -69,7 +69,6 @@
           <Property Name="LearningStandardId" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="LearningStandardIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="ELMAH_Error">
           <Key>
@@ -40168,7 +40167,6 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="LearningStandardId" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LearningStandardIdentity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Assessment" Relationship="NGLModel.FK_AssessmentLearningStandard_Assessment_AssessmentTitle" FromRole="AssessmentLearningStandard" ToRole="Assessment" />
           <NavigationProperty Name="LearningStandard" Relationship="NGLModel.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" FromRole="AssessmentLearningStandard" ToRole="LearningStandard" />
         </EntityType>
@@ -46217,7 +46215,6 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySetMapping Name="AssessmentLearningStandards">
             <EntityTypeMapping TypeName="NGLModel.AssessmentLearningStandard">
               <MappingFragment StoreEntitySet="AssessmentLearningStandard">
-                <ScalarProperty Name="LearningStandardIdentity" ColumnName="LearningStandardIdentity" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
                 <ScalarProperty Name="LearningStandardId" ColumnName="LearningStandardId" />

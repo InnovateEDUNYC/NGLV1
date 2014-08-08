@@ -148,7 +148,7 @@ namespace NGL.Web.Controllers
         }
 
 	[AuthorizeFor(Resource = "assessment", Operation = "view")]
-        public virtual ActionResult Result(int studentUsi, int? sessionId, int week = 1)
+        public virtual ActionResult Result(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 7)
 		{
             var assessmentResultModel = new AssessmentResultModel { StudentUsi = studentUsi};
 
@@ -157,10 +157,9 @@ namespace NGL.Web.Controllers
                 return View(assessmentResultModel);
             }
 
-            // todo - handle months
             var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
-            var startDate = session.BeginDate.AddDays((week - 1) * 7);
-            var endDate = startDate.AddDays(7);
+            var startDate = session.BeginDate.AddDays(dayFrom - 1);
+            var endDate = session.BeginDate.AddDays(dayTo - 1);
 
             var studentAssessments = _assessmentRepository
                 .GetAssessmentResults(assessmentResultModel.StudentUsi, startDate, endDate);
@@ -169,7 +168,8 @@ namespace NGL.Web.Controllers
             assessmentResultModel.StudentUsi = studentUsi;
             assessmentResultModel.SessionId = sessionId;
             assessmentResultModel.Session = session.SessionName;
-            assessmentResultModel.Week = week;
+            assessmentResultModel.DayFrom = dayFrom;
+            assessmentResultModel.DayTo = dayTo;
 
             return View(assessmentResultModel);
 		}
