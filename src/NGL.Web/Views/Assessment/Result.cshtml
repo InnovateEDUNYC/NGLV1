@@ -11,6 +11,12 @@
 @Html.HiddenFor(m => m.StudentUsi)
 @Html.HiddenFor(m => m.DayFrom)
 
+<div class="col-md-2 profile-column">
+    <div class="profile-photo-container">
+        <img src="@Model.ProfilePhotoUrl" />
+    </div>
+</div>
+
 <a id="GetResultsButton" class="btn btn-info">Get Results</a>
 @if (Model.Session != null)
 {

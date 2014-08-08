@@ -1,16 +1,14 @@
 ﻿using System.Web.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
-using NGL.Web.Data.Queries;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
+using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -21,12 +19,11 @@ namespace NGL.Web.Controllers
         private readonly IAssessmentRepository _assessmentRepository;
         private readonly StudentAssessmentsToAssessmentResultModelMapper _studentAssessmentsToAssessmentResultModelMapper;
         private readonly IMapper<Assessment, EnterResultsModel> _assessmentToEnterResultsModelMapper;
-
         private readonly IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
             _enterResultsStudentModelToStudentAssessmentScoreResultMapper;
-
         private readonly IMapper<EnterResultsStudentModel, StudentAssessment>
             _enterResultsStudentModelToStudentAssessmentMapper;
+        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
         private readonly IMapper<CreateModel, AssessmentPerformanceLevel> _createModelToAssessmentPerformanceLevelMapper;
 
@@ -37,7 +34,9 @@ namespace NGL.Web.Controllers
             IMapper<Assessment, EnterResultsModel> assessmentToEnterResultsModelMapper,
             IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper,
-            IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper)
+            IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
+            IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper)
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -48,6 +47,7 @@ namespace NGL.Web.Controllers
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper;
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
+            _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
         //
@@ -147,27 +147,27 @@ namespace NGL.Web.Controllers
                 }));
         }
 
-	[AuthorizeFor(Resource = "assessment", Operation = "view")]
+	    [AuthorizeFor(Resource = "assessment", Operation = "view")]
         public virtual ActionResult Result(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 7)
-		{
-            var assessmentResultModel = new AssessmentResultModel { StudentUsi = studentUsi};
+        {
+            var assessmentResultModel = new AssessmentResultModel();
 
-            if (sessionId == null)
+            if (sessionId != null)
             {
-                return View(assessmentResultModel);
+                var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
+                var startDate = session.BeginDate.AddDays(dayFrom - 1);
+                var endDate = session.BeginDate.AddDays(dayTo - 1);
+
+                var studentAssessments = _assessmentRepository.GetAssessmentResults(studentUsi, startDate, endDate);
+                assessmentResultModel = _studentAssessmentsToAssessmentResultModelMapper.Map(studentAssessments, startDate, endDate);
+                assessmentResultModel.Session = session.SessionName;
             }
 
-            var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
-            var startDate = session.BeginDate.AddDays(dayFrom - 1);
-            var endDate = session.BeginDate.AddDays(dayTo - 1);
+            var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(studentUsi);
 
-            var studentAssessments = _assessmentRepository
-                .GetAssessmentResults(assessmentResultModel.StudentUsi, startDate, endDate);
-            assessmentResultModel = _studentAssessmentsToAssessmentResultModelMapper
-                .Map(studentAssessments, startDate, endDate);
             assessmentResultModel.StudentUsi = studentUsi;
+            assessmentResultModel.ProfilePhotoUrl = profilePhotoUrl;
             assessmentResultModel.SessionId = sessionId;
-            assessmentResultModel.Session = session.SessionName;
             assessmentResultModel.DayFrom = dayFrom;
             assessmentResultModel.DayTo = dayTo;
 
