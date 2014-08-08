@@ -1,5 +1,4 @@
-﻿using System;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Models.Assessment
@@ -18,15 +17,9 @@ namespace NGL.Web.Models.Assessment
             target.AssessmentTitle = source.AssessmentTitle;
             target.AdministeredDate = source.AdministeredDate.GetValueOrDefault();
             target.AssessmentCategoryTypeId = (int) source.QuestionType.GetValueOrDefault();
+            
             GetAcademicSubjectFromCourse(source, target);
             GetGradeLevelDescriptorFromType(source, target);
-        }
-
-        private void GetGradeLevelDescriptorFromType(CreateModel source, Data.Entities.Assessment target)
-        {
-            var gradeLevelDescriptor =
-                _genericRepository.Get<GradeLevelDescriptor>(m => m.GradeLevelTypeId == (int) source.GradeLevel);
-            target.AssessedGradeLevelDescriptorId = gradeLevelDescriptor.GradeLevelDescriptorId;
         }
 
         private void GetAcademicSubjectFromCourse(CreateModel source, Data.Entities.Assessment target)
@@ -35,6 +28,13 @@ namespace NGL.Web.Models.Assessment
             var course = _genericRepository.Get<Data.Entities.Course>(c => c.CourseCode == section.LocalCourseCode);
 
             target.AcademicSubjectDescriptorId = course.AcademicSubjectDescriptorId.GetValueOrDefault();
+        }
+
+        private void GetGradeLevelDescriptorFromType(CreateModel source, Data.Entities.Assessment target)
+        {
+            var gradeLevelDescriptor =
+                _genericRepository.Get<GradeLevelDescriptor>(m => m.GradeLevelTypeId == (int) source.GradeLevel);
+            target.AssessedGradeLevelDescriptorId = gradeLevelDescriptor.GradeLevelDescriptorId;
         }
     }
 }

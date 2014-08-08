@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Data.Queries;
@@ -26,6 +27,8 @@ namespace NGL.Web.Controllers
         private readonly IMapper<EnterResultsStudentModel, StudentAssessment>
             _enterResultsStudentModelToStudentAssessmentMapper;
 
+        private readonly IMapper<CreateModel, AssessmentPerformanceLevel> _createModelToAssessmentPerformanceLevelMapper;
+
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
             IAssessmentRepository assessmentRepository,
@@ -33,7 +36,7 @@ namespace NGL.Web.Controllers
             IMapper<Assessment, EnterResultsModel> assessmentToEnterResultsModelMapper,
             IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper,
-            IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper)
+            IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -43,6 +46,7 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentScoreResultMapper =
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper;
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
+            _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
         }
 
         //
@@ -61,7 +65,12 @@ namespace NGL.Web.Controllers
                 return View(createModel);
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
+            var nearMastery = GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
+            var mastery = GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery); ;
+
             _genericRepository.Add(assessment);
+            _genericRepository.Add(nearMastery);
+            _genericRepository.Add(mastery);
             _genericRepository.Save();
 
             return RedirectToAction(MVC.Home.Index());
@@ -160,5 +169,12 @@ namespace NGL.Web.Controllers
 
             return View(assessmentResultModel);
 		}
-	}
+
+        private AssessmentPerformanceLevel GetPerformanceLevel(CreateModel createModel, Assessment assessment, 
+            PerformanceLevelDescriptorEnum performanceLevelDescriptor)
+        {
+            var expression = new PerformanceLevelMapperExpression(assessment, performanceLevelDescriptor);
+            return _createModelToAssessmentPerformanceLevelMapper.Build(createModel, expression.Expression);
+        }
+    }
 }
