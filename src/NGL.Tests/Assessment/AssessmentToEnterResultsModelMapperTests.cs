@@ -18,7 +18,7 @@ namespace NGL.Tests.Assessment
         [Fact]
         public void ShouldMapAssessmentToEnterResultsModel()
         {
-            IMapper<Web.Data.Entities.Student, EnterResultsStudentModel> studentToEnterResultsStudentModelMapper =
+            var studentToEnterResultsStudentModelMapper =
                 Substitute.For<IMapper<Web.Data.Entities.Student, EnterResultsStudentModel>>();
             studentToEnterResultsStudentModelMapper.Build(Arg.Any<Web.Data.Entities.Student>()).Returns(new EnterResultsStudentModel());
 
@@ -58,10 +58,9 @@ namespace NGL.Tests.Assessment
 
             model.Students.Count.ShouldBe(2);
             model.AssessmentId.ShouldBe(entity.AssessmentIdentity);
-            model.Session.ShouldBe("session name");
-            model.Section.ShouldBe("section name");
-            model.AssessmentTitle.ShouldBe("My Assessment");
+            model.Session.ShouldBe(assessmentSection.Section.Session.SessionName);
+            model.Section.ShouldBe(assessmentSection.Section.UniqueSectionCode);
+            model.AssessmentTitle.ShouldBe(entity.AssessmentTitle);
         }
-
     }
 }
