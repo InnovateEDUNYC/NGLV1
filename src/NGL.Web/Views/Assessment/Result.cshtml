@@ -1,53 +1,86 @@
 ﻿@model NGL.Web.Models.Assessment.AssessmentResultModel
 
 @{
-    ViewBag.Title = "View Assessment Results";
+    ViewBag.Title = "Student Report";
 }
+<div class="panel panel-gray">
+    <div class="panel-body">
+        <h2>Student Report</h2>
 
-<h2>View Assessment Results</h2>
-
-@Html.TextBoxFor(m => m.Session)
-@Html.HiddenFor(m => m.SessionId)
-@Html.HiddenFor(m => m.StudentUsi)
-@Html.HiddenFor(m => m.DayFrom)
-
-<div class="col-md-2 profile-column">
-    <div class="profile-photo-container">
-        <img src="@Model.ProfilePhotoUrl" />
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="@Model.ProfilePhotoUrl" />
+                        <h3 class="text-center">@Model.StudentName</h3>
+                        <h4 class="text-center">USI: @Model.StudentUsi</h4>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    @Html.LabelFor(m => m.Session)
+                    @Html.TextBoxFor(m => m.Session)
+                    <a id="GetResultsButton" class="btn btn-info">Get Results</a>
+                    @Html.HiddenFor(m => m.SessionId)
+                    @Html.HiddenFor(m => m.StudentUsi)
+                    @Html.HiddenFor(m => m.DayFrom)
+                </div>
+            </div>
+        </div>
+        @if (@Model.Session != null)
+        {
+            <div class="row">
+                <ul class="pager">
+                    <li class="previous">
+                        @Html.ActionLink("Previous", "Result", "Assessment",
+                            new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom - 7, @dayTo = @Model.DayTo - 7}, null)
+                    </li>
+                    <li class="next">
+                        @Html.ActionLink("Next", "Result", "Assessment",
+                            new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom + 7, @dayTo = @Model.DayTo + 7}, null)
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                @if (Model.AssessmentResultRows != null && Model.AssessmentResultRows.Count > 0)
+                {
+                    <table class="table table-report">
+                        <tr>
+                            <th class="col-sm-4"></th>
+                            @for (var i = 1; i <= 7; i++)
+                            {
+                                <th class="col-sm-1">@i</th>
+                            }
+                        </tr>
+                        <tr>
+                            @foreach (var row in Model.AssessmentResultRows)
+                            {
+                                <td>
+                                    CCSS: @row.CommonCoreStandard<br />
+                                    Section Code: @row.SectionCode
+                                </td>
+                                foreach (var result in @row.Results)
+                                {
+                                    <td>@result</td>
+                                }
+                            }
+                        </tr>
+                    </table>
+                }
+                else
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4 class="text-center">No data available for this time period.</h4>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
     </div>
 </div>
-
-<a id="GetResultsButton" class="btn btn-info">Get Results</a>
-@if (Model.Session != null)
-{
-    <table class="table table-bordered">
-        <tr>
-            <th class ="col-sm-4"></th>
-            @for (var i = 1; i <= 7; i++)
-            {
-                <th class="col-sm-1">@i</th>
-            }
-        </tr>
-        <tr>
-            @foreach (var row in Model.AssessmentResultRows)
-            {
-                <td>
-                    CCSS: @row.CommonCoreStandard<br/>
-                    Section Code: @row.SectionCode
-                </td>
-                foreach (var result in @row.Results)
-                {
-                    <td>@result</td>
-                }
-            }
-        </tr>
-    </table>
-
-    @Html.ActionLink("Previous", "Result", "Assessment", 
-            new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom - 7, @dayTo = @Model.DayTo - 7 }, null)
-    @Html.ActionLink("Next", "Result", "Assessment", 
-            new { @studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom + 7, @dayTo = @Model.DayTo + 7 }, null)
-}
 
 @section Scripts {
     Ngl.shared.sessionAutocomplete.init();

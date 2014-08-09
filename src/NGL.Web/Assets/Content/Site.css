@@ -196,3 +196,22 @@ form .inline input {
 .enter-mastery .form-control {
     max-width: 100px;
 }
+
+.panel-gray {
+    background-color: #f7f7f9;
+    padding: 10px;
+}
+
+.table-report > tbody> tr > td {
+    border-top: 10px solid #f7f7f9;
+    border-right: 2px solid #f7f7f9;
+    background-color: white;
+}
+
+.table-report > tbody > tr > th {
+    border-top: 10px solid #f7f7f9;
+    border-right: 2px solid #f7f7f9;
+    background-color: #46b8da;
+    color: white
+}
+
