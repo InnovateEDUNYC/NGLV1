@@ -11,6 +11,7 @@ namespace NGL.Web.Models.Assessment
         public int? SessionId { get; set; }
         public int? DayTo { get; set; }
         public int? DayFrom { get; set; }
+        public string DateRange { get; set; }
         public string ProfilePhotoUrl { get; set; }
 
         public IList<AssessmentResultRowModel> AssessmentResultRows { get; set; }

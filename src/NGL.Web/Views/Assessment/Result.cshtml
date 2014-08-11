@@ -22,7 +22,7 @@
                 <div class="row">
                     @Html.LabelFor(m => m.Session)
                     @Html.TextBoxFor(m => m.Session)
-                    <a id="GetResultsButton" class="btn btn-info">Get Results</a>
+                    <a id="GetResultsButton" class="btn btn-primary">Get Results</a>
                     @Html.HiddenFor(m => m.SessionId)
                     @Html.HiddenFor(m => m.StudentUsi)
                     @Html.HiddenFor(m => m.DayFrom)
@@ -37,6 +37,7 @@
                         @Html.ActionLink("Previous", "Result", "Assessment",
                             new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom - 7, @dayTo = @Model.DayTo - 7}, null)
                     </li>
+                    <li>@Model.DateRange</li>
                     <li class="next">
                         @Html.ActionLink("Next", "Result", "Assessment",
                             new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom + 7, @dayTo = @Model.DayTo + 7}, null)

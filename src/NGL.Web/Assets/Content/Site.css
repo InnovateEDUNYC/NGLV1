@@ -211,7 +211,21 @@ form .inline input {
 .table-report > tbody > tr > th {
     border-top: 10px solid #f7f7f9;
     border-right: 2px solid #f7f7f9;
-    background-color: #46b8da;
+    background-color: #2DBCBB;
     color: white
 }
 
+.btn-primary {
+    background-color: #2DBCBB;
+    border-color: #2DBCBB;
+}
+
+.btn-primary:hover {
+    background-color: #249695;
+    border-color: #249695;
+}
+
+.btn-primary[disabled], .btn-primary:disabled {
+    background-color: #5CB4B4;
+    border-color: #5CB4B4;
+}

@@ -12,6 +12,7 @@ namespace NGL.Web.Models.Assessment
         {
             var assessmentResultModel = new AssessmentResultModel();
 
+            assessmentResultModel.DateRange = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
             assessmentResultModel.AssessmentResultRows = studentAssessments.Select(sa => CreateAssessmentResultRow(sa, startDate, endDate)).ToList();
 
             return assessmentResultModel;
