@@ -35,7 +35,7 @@ namespace NGL.Web.Controllers
             IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper,
             IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
-            IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper)
+            IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
