@@ -55,19 +55,19 @@
                                 <th class="col-sm-1">@i</th>
                             }
                         </tr>
-                        <tr>
                             @foreach (var row in Model.AssessmentResultRows)
                             {
-                                <td>
-                                    CCSS: @row.CommonCoreStandard<br />
-                                    Section Code: @row.SectionCode
-                                </td>
-                                foreach (var result in @row.Results)
-                                {
+                                <tr>
+                                    <td>
+                                        CCSS: @row.CommonCoreStandard<br />
+                                        Section Code: @row.SectionCode
+                                    </td>
+                                    @foreach (var result in @row.Results)
+                                    {
                                     <td>@result</td>
-                                }
+                                    }
+                                </tr>
                             }
-                        </tr>
                     </table>
                 }
                 else
