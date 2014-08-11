@@ -1,5 +1,6 @@
-﻿using NGL.Web.Data.Entities;
+﻿using Microsoft.WindowsAzure.Storage.Table;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 
 namespace NGL.Web.Models.Assessment
 {
@@ -19,7 +20,10 @@ namespace NGL.Web.Models.Assessment
             target.AssessmentCategoryTypeId = (int) source.QuestionType.GetValueOrDefault();
             
             GetAcademicSubjectFromCourse(source, target);
-            GetGradeLevelDescriptorFromType(source, target);
+
+            var query = new GradeLevelTypeDescriptorQuery((int) source.GradeLevel.GetValueOrDefault());
+
+            target.AssessedGradeLevelDescriptorId = _genericRepository.Get(query).GradeLevelDescriptorId;
         }
 
         private void GetAcademicSubjectFromCourse(CreateModel source, Data.Entities.Assessment target)
@@ -28,13 +32,6 @@ namespace NGL.Web.Models.Assessment
             var course = _genericRepository.Get<Data.Entities.Course>(c => c.CourseCode == section.LocalCourseCode);
 
             target.AcademicSubjectDescriptorId = course.AcademicSubjectDescriptorId.GetValueOrDefault();
-        }
-
-        private void GetGradeLevelDescriptorFromType(CreateModel source, Data.Entities.Assessment target)
-        {
-            var gradeLevelDescriptor =
-                _genericRepository.Get<GradeLevelDescriptor>(m => m.GradeLevelTypeId == (int) source.GradeLevel);
-            target.AssessedGradeLevelDescriptorId = gradeLevelDescriptor.GradeLevelDescriptorId;
         }
     }
 }

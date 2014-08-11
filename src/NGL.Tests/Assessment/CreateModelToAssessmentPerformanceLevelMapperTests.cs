@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-using NGL.Tests.Builders;
+﻿using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Models.Assessment;
 using NSubstitute;
 using Shouldly;
@@ -24,14 +22,12 @@ namespace NGL.Tests.Assessment
         {
             SetUp();
 
-            var performanceLevelMapperExpression = new PerformanceLevelMapperExpression(_assessment, MasteryPerformanceLevelDescriptor);
-            var assessmentPerformanceLevel = new CreateModelToAssessmentPerformanceLevelMapper(_genericRepositoryStub).Build(_createModel, performanceLevelMapperExpression.Expression);
-
+            var assessmentPerformanceLevel = new CreateModelToAssessmentPerformanceLevelMapper(_genericRepositoryStub).GetPerformanceLevel(_createModel, _assessment, MasteryPerformanceLevelDescriptor);
 
             assessmentPerformanceLevel.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
             assessmentPerformanceLevel.Version.ShouldBe(_assessment.Version);
 
-//            assessmentPerformanceLevel.MinimumScore.ShouldBe(_createModel.Mastery.ToString());
+            assessmentPerformanceLevel.MinimumScore.ShouldBe(_createModel.Mastery.ToString());
             assessmentPerformanceLevel.AssessmentTitle.ShouldBe(_createModel.AssessmentTitle);
             assessmentPerformanceLevel.AssessedGradeLevelDescriptorId.ShouldBe(_4ThGradeLevelDescriptor.GradeLevelDescriptorId);
             assessmentPerformanceLevel.AssessmentReportingMethodTypeId.ShouldBe((int) _createModel.ReportingMethod);
@@ -50,8 +46,8 @@ namespace NGL.Tests.Assessment
                 GradeLevelTypeId = 100
             };
 
-            _genericRepositoryStub.Get(Arg.Any<Expression<Func<GradeLevelDescriptor, bool>>>())
-                .Returns(_4ThGradeLevelDescriptor);
+            _genericRepositoryStub.Get(Arg.Any<GradeLevelTypeDescriptorQuery>())
+                                .Returns(_4ThGradeLevelDescriptor);
         }
     }
 }

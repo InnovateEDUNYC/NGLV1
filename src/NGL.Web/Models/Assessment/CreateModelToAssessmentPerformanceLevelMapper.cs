@@ -1,6 +1,7 @@
-﻿using Castle.DynamicProxy.Generators;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
+using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 
 namespace NGL.Web.Models.Assessment
 {
@@ -16,15 +17,29 @@ namespace NGL.Web.Models.Assessment
         public override void Map(CreateModel source, AssessmentPerformanceLevel target)
         {
             target.AssessmentTitle = source.AssessmentTitle;
-            target.AssessedGradeLevelDescriptorId = GetGradeLevelDescriptorFromType(source);
             target.AssessmentReportingMethodTypeId = (int) source.ReportingMethod;
+
+            var query = new GradeLevelTypeDescriptorQuery((int)source.GradeLevel.GetValueOrDefault());
+
+            var assessedGradeLevelDescriptor = _genericRepository.Get(query);
+            target.AssessedGradeLevelDescriptorId = assessedGradeLevelDescriptor.GradeLevelDescriptorId;
         }
 
-        private int GetGradeLevelDescriptorFromType(CreateModel source)
+        public AssessmentPerformanceLevel GetPerformanceLevel(CreateModel createModel, 
+            Data.Entities.Assessment assessment,
+            PerformanceLevelDescriptorEnum performanceLevelDescriptor)
         {
-            var gradeLevelDescriptor =
-                _genericRepository.Get<GradeLevelDescriptor>(m => m.GradeLevelTypeId == (int)source.GradeLevel);
-            return gradeLevelDescriptor.GradeLevelDescriptorId;
+            var expression = new PerformanceLevelMapperExpression(assessment, performanceLevelDescriptor);
+            var assessmentPerformanceLevel = Build(createModel, expression.Expression);
+
+            if (performanceLevelDescriptor == PerformanceLevelDescriptorEnum.Mastery)
+                assessmentPerformanceLevel.MinimumScore = createModel.Mastery.ToString();
+
+            else if (performanceLevelDescriptor == PerformanceLevelDescriptorEnum.NearMastery)
+                assessmentPerformanceLevel.MinimumScore = createModel.NearMastery.ToString();
+
+            return assessmentPerformanceLevel;
         }
     }
+
 }
