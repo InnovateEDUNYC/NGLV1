@@ -81,7 +81,7 @@ namespace NGL.Web.Controllers
         {
             try
             {
-                var photoStream = Resizer.ScaleImage(profilePhoto.InputStream, 200, 250);
+                var photoStream = Resizer.ScaleImage(profilePhoto.InputStream, 200, 200);
                 var thumbNailStream = Resizer.ScaleImage(profilePhoto.InputStream, 50, 50);
 
                 Upload(photoStream, usi + "/profilePhoto");
