@@ -35,5 +35,13 @@ namespace NGL.Web.Data.Repositories
                 .Include(a => a.AssessmentSections.Select(assessmentSection => assessmentSection.Section.Session))
                 .ToList();
         } 
+
+        public void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
+        {
+            DbContext.Set<Assessment>().Add(assessment);
+            DbContext.Set<AssessmentPerformanceLevel>().Add(nearMastery);
+            DbContext.Set<AssessmentPerformanceLevel>().Add(mastery);
+            DbContext.Save();
+        }
     }
 }

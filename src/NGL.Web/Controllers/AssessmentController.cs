@@ -88,12 +88,16 @@ namespace NGL.Web.Controllers
             var mastery = _createModelToAssessmentPerformanceLevelMapper
                 .GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
+            Save(assessment, nearMastery, mastery);
+            return RedirectToAction(MVC.Home.Index());
+        }
+
+        private void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
+        {
             _genericRepository.Add(assessment);
             _genericRepository.Add(nearMastery);
             _genericRepository.Add(mastery);
             _genericRepository.Save();
-
-            return RedirectToAction(MVC.Home.Index());
         }
 
         //
