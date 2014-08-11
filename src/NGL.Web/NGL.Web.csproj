@@ -277,6 +277,9 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\ApplicationRole.cs" />
+    <Compile Include="Data\Entities\AssessmentItemLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\AssessmentLearningStandard.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -411,9 +414,6 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\AssessmentItemCategoryType.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\AssessmentItemLearningStandard.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\AssessmentItemResultType.cs">
@@ -1863,6 +1863,7 @@
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.structure.min.css" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.theme.css" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.theme.min.css" />
+    <Content Include="Assets\Scripts\Views\Assessment\result.js" />
     <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />

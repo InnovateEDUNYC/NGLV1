@@ -84,6 +84,7 @@
     <Compile Include="Builders\AssessmentBuilder.cs" />
     <Compile Include="Builders\AssessmentLearningStandardBuilder.cs" />
     <Compile Include="Builders\AssessmentPerformanceLevelBuilder.cs" />
+    <Compile Include="Builders\AssessmentSectionBuilder.cs" />
     <Compile Include="Builders\LearningStandardBuilder.cs" />
     <Compile Include="Builders\StudentAssessmentBuilder.cs" />
     <Compile Include="Builders\StudentAssessmentScoreResultBuilder.cs" />

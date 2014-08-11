@@ -49,7 +49,8 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Schedule/setSchedule.js",
                 "~/Assets/Scripts/Views/Section/getCourse.js",
                 "~/Assets/Scripts/Views/shared/sessionAutocomplete.js",
-                "~/Assets/Scripts/Views/Shared/sectionAutocomplete.js"
+                "~/Assets/Scripts/Views/Shared/sectionAutocomplete.js",
+                "~/Assets/Scripts/Views/Assessment/result.js"
                 ));
         }
     }

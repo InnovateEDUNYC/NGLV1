@@ -21,6 +21,7 @@ namespace NGL.Web.Data.Repositories
                 .Include(sa => sa.Assessment)
                 .Include(sa => sa.Assessment.AssessmentPerformanceLevels)
                 .Include(sa => sa.Assessment.AssessmentLearningStandards.Select(als => als.LearningStandard))
+                .Include(sa => sa.Assessment.AssessmentSections.Select(a => a.Section))
                 .Include(sa => sa.StudentAssessmentScoreResults)
                 .ToList();
         }

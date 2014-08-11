@@ -24,13 +24,18 @@
                 }
             }
         </div>
-
-        @if ((User as NglPrincipal).HasAccessTo("scheduleStudents", "create"))
-        {
-            <div class="scheduling">
-                @Html.ActionLink("Scheduling", MVC.Schedule.Set(Model.StudentUsi))
-            </div>
-        }
+        
+        <div class="btn-group-horizontal">
+            @if ((User as NglPrincipal).HasAccessTo("scheduleStudents", "create"))
+            {
+                @Html.ActionLink("Scheduling", MVC.Schedule.Set(Model.StudentUsi), new {@class = "btn btn-primary"})
+            }
+            @if ((User as NglPrincipal).HasAccessTo("assessment", "view"))
+            {
+                @Html.ActionLink("Reports", "Result", "Assessment", new {@studentUsi = @Model.StudentUsi}, new {@class = "btn btn-primary"})
+            }
+        </div>
+            
     </div>
 
     <div class="col-md-6">

@@ -13,7 +13,7 @@ Ngl.shared.sessionAutocomplete = (function () {
             var tab = 9;
 
             if(e.keyCode != enter && e.keyCode != tab) {
-            $('#SessionId').val("");
+                $('#SessionId').val("").trigger('cleared');
         }
         });
 
@@ -56,11 +56,14 @@ Ngl.shared.sessionAutocomplete = (function () {
                     });
                 },
                 select: function (event, ui) {
-                    if (ui.item.label === noResultsLabel) {
-                        event.preventDefault();
-                    }
                     var selectedSession = ui.item;
                     $("#SessionId").val(selectedSession.sessionId);
+
+                    if (ui.item.label === noResultsLabel) {
+                        event.preventDefault();
+                    } else {
+                        $("#SessionId").trigger('change');
+                    }
                 },
                 focus: function (event, ui) {
                     if (ui.item.label === noResultsLabel) {

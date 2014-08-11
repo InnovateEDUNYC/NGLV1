@@ -14,11 +14,16 @@ namespace NGL.Tests.Assessment
         {
             var studentAssessment = BuildFirstStudentAssessment();
 
-            var assessmentResultModel = new StudentAssessmentsToAssessmentResultModelMapper().Map(new[] {studentAssessment}, new DateTime(2014, 6, 22), new DateTime(2014, 6, 29));
+            var startDate = new DateTime(2014, 6, 22);
+            var endDate = new DateTime(2014, 6, 28);
+            var assessmentResultModel = new StudentAssessmentsToAssessmentResultModelMapper().Map(new[] {studentAssessment}, startDate, endDate);
+
             assessmentResultModel.ShouldNotBe(null);
-            
+            assessmentResultModel.DateRange.ShouldBe("6/22/2014 - 6/28/2014");
+
             var firstRowModel = assessmentResultModel.AssessmentResultRows[0];
             firstRowModel.CommonCoreStandard.ShouldBe("English - Reading Comprehension");
+            firstRowModel.SectionCode.ShouldBe("CHEM2090 - 200");
 
             firstRowModel.Results.ShouldBe(new []{"", "", "", "", "", "Mastery", ""});
         }
@@ -37,7 +42,7 @@ namespace NGL.Tests.Assessment
 
             var studentAssessmentTwo = BuildStudentAssessmentTwo();
 
-            var assessmentResultModel = new StudentAssessmentsToAssessmentResultModelMapper().Map(new[] { studentAssessment, studentAssessmentTwo }, new DateTime(2014, 6, 22), new DateTime(2014, 6, 29));
+            var assessmentResultModel = new StudentAssessmentsToAssessmentResultModelMapper().Map(new[] { studentAssessment, studentAssessmentTwo }, new DateTime(2014, 6, 22), new DateTime(2014, 6, 28));
             assessmentResultModel.ShouldNotBe(null);
             var firstRowModel = assessmentResultModel.AssessmentResultRows[0];
             firstRowModel.CommonCoreStandard.ShouldBe("English - Reading Comprehension");

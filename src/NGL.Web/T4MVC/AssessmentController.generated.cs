@@ -121,7 +121,8 @@ namespace NGL.Web.Controllers
         {
             public readonly string studentUsi = "studentUsi";
             public readonly string sessionId = "sessionId";
-            public readonly string week = "week";
+            public readonly string dayFrom = "dayFrom";
+            public readonly string dayTo = "dayTo";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -196,16 +197,17 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int week);
+        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int dayFrom, int dayTo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int week)
+        public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int dayFrom, int dayTo)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "week", week);
-            ResultOverride(callInfo, studentUsi, sessionId, week);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayFrom", dayFrom);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayTo", dayTo);
+            ResultOverride(callInfo, studentUsi, sessionId, dayFrom, dayTo);
             return callInfo;
         }
 
