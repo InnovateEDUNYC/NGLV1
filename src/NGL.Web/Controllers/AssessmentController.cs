@@ -1,6 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
+using Castle.Core.Internal;
+using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
@@ -101,19 +104,41 @@ namespace NGL.Web.Controllers
             var assessmentId = enterResultsModel.AssessmentId;
             var assessment = _genericRepository.Get<Assessment>(
                 a => a.AssessmentIdentity == assessmentId,
-                a => a.StudentAssessments);
+                a => a.StudentAssessments,
+                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults)
+            );
             var studentAssessments = assessment.StudentAssessments;
-            var studentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
+            var newStudentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
             foreach (var enterResultsStudentModel in enterResultsStudentModels)
             {
-                AddToStudentAssements(studentAssessments, enterResultsStudentModel, assessment);
-                AddToStudentAssessmentScoreResults(studentAssessmentScoreResults, enterResultsStudentModel, assessment);
+                AddToStudentAssessmentScoreResults(newStudentAssessmentScoreResults, enterResultsStudentModel, assessment);
             }
 
-            foreach (var studentAssessmentScoreResult in studentAssessmentScoreResults)
-                _genericRepository.Add(studentAssessmentScoreResult);
-            foreach (var studentAssessment in studentAssessments)
-                _genericRepository.Add(studentAssessment);
+            if (studentAssessments.IsNullOrEmpty())
+            {
+                foreach (var enterResultsStudentModel in enterResultsStudentModels)
+                {
+                    AddToStudentAssements(studentAssessments, enterResultsStudentModel, assessment);
+                }
+                foreach (var studentAssessment in studentAssessments)
+                    _genericRepository.Add(studentAssessment);
+                foreach (var studentAssessmentScoreResult in newStudentAssessmentScoreResults)
+                {
+                    _genericRepository.Add(studentAssessmentScoreResult);
+                }
+            }
+            else
+            {
+                var oldScoreResults = assessment.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults.First());
+                foreach (var oldScoreResult in oldScoreResults)
+                {
+                    var newScoreResult =
+                        newStudentAssessmentScoreResults.First(
+                            studentScoreResult => studentScoreResult.StudentUSI == oldScoreResult.StudentUSI);
+                    oldScoreResult.Result = newScoreResult.Result;
+                }
+            }
+           
             _genericRepository.Save();
 
             return RedirectToAction(MVC.Home.Index());
