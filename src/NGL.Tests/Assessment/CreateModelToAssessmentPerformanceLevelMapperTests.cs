@@ -1,7 +1,11 @@
-﻿using NGL.Tests.Builders;
+﻿using System;
+using System.Linq.Expressions;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Expressions;
+using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Assessment;
+using NSubstitute;
 using Shouldly;
 using Xunit;
 
@@ -9,25 +13,45 @@ namespace NGL.Tests.Assessment
 {
     public class CreateModelToAssessmentPerformanceLevelMapperTests
     {
+        private IGenericRepository _genericRepositoryStub;
+        private GradeLevelDescriptor _4ThGradeLevelDescriptor;
+        private const PerformanceLevelDescriptorEnum MasteryPerformanceLevelDescriptor = PerformanceLevelDescriptorEnum.Mastery;
+        private Web.Data.Entities.Assessment _assessment;
+        private CreateModel _createModel;
+
         [Fact]
         public void ShouldMap()
         {
-            const PerformanceLevelDescriptorEnum performanceLevelDescriptor = PerformanceLevelDescriptorEnum.Mastery;
-            var createModel = new CreateModelBuilder().Build();
-            var assessment = new AssessmentBuilder().Build();
+            SetUp();
 
-            var performanceLevelMapperExpression = new PerformanceLevelMapperExpression(assessment, performanceLevelDescriptor);
-            var entity = new CreateModelToAssessmentPerformanceLevelMapper().Build(createModel, performanceLevelMapperExpression.Expression);
+            var performanceLevelMapperExpression = new PerformanceLevelMapperExpression(_assessment, MasteryPerformanceLevelDescriptor);
+            var assessmentPerformanceLevel = new CreateModelToAssessmentPerformanceLevelMapper(_genericRepositoryStub).Build(_createModel, performanceLevelMapperExpression.Expression);
 
 
-            entity.AcademicSubjectDescriptorId.ShouldBe(assessment.AcademicSubjectDescriptorId);
-            entity.Version.ShouldBe(assessment.Version);
+            assessmentPerformanceLevel.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
+            assessmentPerformanceLevel.Version.ShouldBe(_assessment.Version);
 
-            entity.AssessmentTitle.ShouldBe(createModel.AssessmentTitle);
-            entity.AssessedGradeLevelDescriptorId.ShouldBe((int) createModel.GradeLevel.GetValueOrDefault());
-            entity.AssessmentReportingMethodTypeId.ShouldBe((int) createModel.ReportingMethod);
-            entity.PerformanceLevelDescriptorId.ShouldBe((int) performanceLevelDescriptor);
+//            assessmentPerformanceLevel.MinimumScore.ShouldBe(_createModel.Mastery.ToString());
+            assessmentPerformanceLevel.AssessmentTitle.ShouldBe(_createModel.AssessmentTitle);
+            assessmentPerformanceLevel.AssessedGradeLevelDescriptorId.ShouldBe(_4ThGradeLevelDescriptor.GradeLevelDescriptorId);
+            assessmentPerformanceLevel.AssessmentReportingMethodTypeId.ShouldBe((int) _createModel.ReportingMethod);
+            assessmentPerformanceLevel.PerformanceLevelDescriptorId.ShouldBe((int) MasteryPerformanceLevelDescriptor);
         }
 
+        private void SetUp()
+        {
+            _createModel = new CreateModelBuilder().Build();
+            _assessment = new AssessmentBuilder().Build();
+            _genericRepositoryStub = Substitute.For<IGenericRepository>();
+
+            _4ThGradeLevelDescriptor = new GradeLevelDescriptor
+            {
+                GradeLevelDescriptorId = 99,
+                GradeLevelTypeId = 100
+            };
+
+            _genericRepositoryStub.Get(Arg.Any<Expression<Func<GradeLevelDescriptor, bool>>>())
+                .Returns(_4ThGradeLevelDescriptor);
+        }
     }
 }

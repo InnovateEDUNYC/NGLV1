@@ -87,12 +87,12 @@ namespace NGL.Web.Controllers
                 return View(createModel);
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
-            var nearMastery = GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
-            var mastery = GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery); ;
+//            var nearMastery = _createModelToAssessmentPerformanceLevelMapper.GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
+//            var mastery = GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
             _genericRepository.Add(assessment);
-            _genericRepository.Add(nearMastery);
-            _genericRepository.Add(mastery);
+//            _genericRepository.Add(nearMastery);
+//            _genericRepository.Add(mastery);
             _genericRepository.Save();
 
             return RedirectToAction(MVC.Home.Index());
@@ -218,7 +218,13 @@ namespace NGL.Web.Controllers
             PerformanceLevelDescriptorEnum performanceLevelDescriptor)
         {
             var expression = new PerformanceLevelMapperExpression(assessment, performanceLevelDescriptor);
-            return _createModelToAssessmentPerformanceLevelMapper.Build(createModel, expression.Expression);
+            var assessment2 =  _createModelToAssessmentPerformanceLevelMapper.Build(createModel, expression.Expression);
+            if (performanceLevelDescriptor == PerformanceLevelDescriptorEnum.Mastery)
+                assessment2.MinimumScore = createModel.Mastery.ToString();
+            else if (performanceLevelDescriptor == PerformanceLevelDescriptorEnum.NearMastery)
+                assessment2.MinimumScore = createModel.NearMastery.ToString();
+
+            return assessment2;
         }
     }
 }
