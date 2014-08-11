@@ -15,55 +15,52 @@ namespace NGL.Tests.Assessment
 {
     public class AssessmentToEnterResultsModelMapperTests
     {
-        private AssessmentSection _assessmentSection;
-        private Web.Data.Entities.Section _section;
-        private Web.Data.Entities.Assessment _entity;
-        private AssessmentToEnterResultsModelMapper _mapper;
-
         [Fact]
         public void ShouldMapAssessmentToEnterResultsModel()
         {
-            Setup();
+            var studentToEnterResultsStudentModelMapper =
+                Substitute.For<IMapper<Web.Data.Entities.Student, EnterResultsStudentModel>>();
+            studentToEnterResultsStudentModelMapper.Build(Arg.Any<Web.Data.Entities.Student>()).Returns(new EnterResultsStudentModel());
 
-            var model = _mapper.Build(_entity);
+            var mapper = new AssessmentToEnterResultsModelMapper(studentToEnterResultsStudentModelMapper);
+            var studentSectionAssociations = new List<StudentSectionAssociation>
+            {
+                new StudentSectionAssociation(),
+                new StudentSectionAssociation()
+            };
+            var assessmentSections = new List<AssessmentSection>();
+            var assessmentSection = new AssessmentSection()
+            {
+                Section = new Web.Data.Entities.Section()
+                {
+                    UniqueSectionCode = "section name",
+                    StudentSectionAssociations = studentSectionAssociations,
+                    Session = new Web.Data.Entities.Session()
+                    {
+                        SessionName = "session name"
+                    }
+                }
+            };
+            assessmentSections.Add(assessmentSection);
+            
 
-            model.StudentResults.Count.ShouldBe(2);
-            model.AssessmentId.ShouldBe(_entity.AssessmentIdentity);
-            model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
-            model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
-            model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
-        }
+            var entity = new Web.Data.Entities.Assessment
+            {
+                AssessmentIdentity = 1,
+                AssessmentTitle = "My Assessment",
+                AcademicSubjectDescriptorId = 1,
+                AssessedGradeLevelDescriptorId = 1,
+                Version = 1,
+                AssessmentSections = assessmentSections
+            };
 
-        [Fact]
-        public void ShouldNotFailWhenNoStudentAssessmentsExist()
-        {
-            Setup();
-            _assessmentSection.Section.StudentSectionAssociations.Select(s => s.Student).First().StudentAssessments = null;
+            var model = mapper.Build(entity);
 
-            var model = _mapper.Build(_entity);
-
-            model.StudentResults.Count.ShouldBe(2);
-            model.AssessmentId.ShouldBe(_entity.AssessmentIdentity);
-            model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
-            model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
-            model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
-        }
-
-        private void Setup()
-        {
-            var studentAssessmentToEnterResultsStudentModelMapper =
-                Substitute.For<IMapper<StudentAssessment, EnterResultsStudentModel>>();
-            studentAssessmentToEnterResultsStudentModelMapper.Build(Arg.Any<StudentAssessment>())
-                .Returns(new EnterResultsStudentModel());
-
-            _mapper = new AssessmentToEnterResultsModelMapper(studentAssessmentToEnterResultsStudentModelMapper);
-
-            _entity = new AssessmentBuilder().Build();
-            Web.Data.Entities.Student student1 = new StudentBuilder().Build();
-            Web.Data.Entities.Student student2 = new StudentBuilder().Build();
-
-            _section = new SectionBuilder().WithStudent(student1).WithStudent(student2).WithAssessment(_entity).Build();
-            _assessmentSection = _section.AssessmentSections.First();
+            model.Students.Count.ShouldBe(2);
+            model.AssessmentId.ShouldBe(entity.AssessmentIdentity);
+            model.Session.ShouldBe(assessmentSection.Section.Session.SessionName);
+            model.Section.ShouldBe(assessmentSection.Section.UniqueSectionCode);
+            model.AssessmentTitle.ShouldBe(entity.AssessmentTitle);
         }
     }
 }

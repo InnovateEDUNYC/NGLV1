@@ -1647,7 +1647,6 @@
     <Compile Include="Models\Account\StaffToUserModelMapper.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
     <Compile Include="Models\Account\UserModel.cs" />
-    <Compile Include="Models\Assessment\AssessmentToAssessmentIndexModelMapper.cs" />
     <Compile Include="Models\Assessment\AssessmentToEnterResultsModelMapper.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentPerformanceLevelMapper.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentMapper.cs" />
@@ -1656,12 +1655,11 @@
     <Compile Include="Models\Assessment\CreateModelValidator.cs" />
     <Compile Include="Models\Assessment\AssessmentResultModel.cs" />
     <Compile Include="Models\Assessment\AssessmentResultRowModel.cs" />
-    <Compile Include="Models\Assessment\IndexModel.cs" />
     <Compile Include="Models\Assessment\StudentAssessmentsToAssessmentResultModelMapper.cs" />
     <Compile Include="Models\Assessment\EnterResultsModel.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModel.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentScoreResultMapper.cs" />
-    <Compile Include="Models\Assessment\StudentAssessmentToEnterResultsStudentModelMapper.cs" />
+    <Compile Include="Models\Assessment\StudentToEnterResultsStudentModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />
@@ -1993,7 +1991,6 @@
     <Content Include="Views\Assessment\Create.cshtml" />
     <Content Include="Views\Assessment\Result.cshtml" />
     <Content Include="Views\Assessment\EnterResults.cshtml" />
-    <Content Include="Views\Assessment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

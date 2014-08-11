@@ -12,13 +12,14 @@ namespace NGL.Tests.Builders
     {
         private int _studentUsi = 123;
         private DateTime _administrationDate = new DateTime(2014, 8, 8);
-        private string _assessmentResult = "80";
+        private decimal _assessmentResult = 80;
         private string _name = "Jenny";
         private StudentAssessment _studentAssessment = new StudentAssessment();
         private string _assessmentTitle = "My assessment";
         private int _academicSubjectDescriptorId = 1;
         private int _assessedGradeLevelDescriptorId = 1;
         private int _version = 1;
+        private ResultDatatypeTypeEnum _resultDatatypeType = ResultDatatypeTypeEnum.Percentile;
 
         public EnterResultsStudentModel Build()
         {
@@ -32,7 +33,8 @@ namespace NGL.Tests.Builders
             {
                 StudentUsi = _studentUsi,
                 Name = _name,
-                AssessmentResult = _assessmentResult
+                AssessmentResult = _assessmentResult,
+                ResultDatatypeType = _resultDatatypeType
             };
         }
     }
