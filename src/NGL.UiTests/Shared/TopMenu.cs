@@ -10,7 +10,7 @@ namespace NGL.UiTests.Shared
     {
         public SchoolPage GoToSchoolPage()
         {
-            return Navigate.To<SchoolPage>(By.LinkText("NGL Platform"));
+            return Navigate.To<SchoolPage>(By.ClassName("navbar-brand"));
         }
 
         public LoginPage GoToLoginPage()
