@@ -26,13 +26,13 @@ namespace NGL.Tests.Assessment
 
             mapper.Map(model, entity, 
                 asr =>
-                    {
-                        asr.AssessmentTitle = assessment.AssessmentTitle;
-                        asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                        asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                        asr.Version = assessment.Version;
-                        asr.AdministrationDate = assessment.AdministeredDate;
-                    });
+                {
+                    asr.AssessmentTitle = assessment.AssessmentTitle;
+                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
+                    asr.Version = assessment.Version;
+                    asr.AdministrationDate = assessment.AdministeredDate;
+                });
 
             entity.StudentUSI.ShouldBe(model.StudentUsi);
             entity.Result.ShouldBe(model.AssessmentResult.ToString());

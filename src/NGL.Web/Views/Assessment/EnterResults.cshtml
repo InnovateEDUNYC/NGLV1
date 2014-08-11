@@ -29,17 +29,17 @@
 
 <div>
     <form method="POST" action="">
-        <input class="hidden" value="@Model.AssessmentId"/>
+        <input class="hidden" name="AssessmentId" value="@Model.AssessmentId"/>
         <strong>Assessment Result</strong>
-        @for (var i = 0; i < Model.Students.Count; i++)
+        @for (var i = 0; i < Model.StudentResults.Count; i++)
         {
             <p>
-                @Model.Students[i].Name
-                @Html.TextBoxFor(s => Model.Students[i].AssessmentResult)
-                <div class="hidden">
-                    @Html.TextBoxFor(s => Model.Students[i].StudentUsi)
-                </div>
-            </p>
+                @Model.StudentResults[i].Name
+                @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult)
+                    <div class="hidden">
+                        @Html.TextBoxFor(s => Model.StudentResults[i].StudentUsi)
+                    </div>
+</p>
         }
         <button type="submit">Save Results</button>
     </form>

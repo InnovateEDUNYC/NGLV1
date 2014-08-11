@@ -22,6 +22,7 @@ namespace NGL.Tests.Builders
         private StudentProgramStatus _studentProgramStatus;
         private Web.Data.Entities.Student _student;
         private ICollection<StudentParentAssociation> _studentParentAssociations;
+        private List<StudentAssessment> _studentAssessments;
         private const bool HispanicLatinoEthnicity = true;
         private const int Race = (int)RaceTypeEnum.NativeHawaiianPacificIslander;
         private const int PrimaryParentRelationType = (int)RelationTypeEnum.Father;
@@ -47,6 +48,7 @@ namespace NGL.Tests.Builders
             _student.StudentAcademicDetails = _studentAcademicDetails;
             _student.StudentProgramStatus = _studentProgramStatus;
             _student.StudentParentAssociations = _studentParentAssociations;
+            _student.StudentAssessments = _studentAssessments;
             return _student;
         }
 
@@ -81,10 +83,17 @@ namespace NGL.Tests.Builders
             return this;
         }
 
+        public StudentBuilder WithStudentAssessments(List<StudentAssessment> studentAssessments)
+        {
+            _studentAssessments = studentAssessments;
+            return this;
+        }
+
         private static StudentRace CreateStudentRace()
         {
             return new StudentRace { RaceTypeId = Race };
         }
+
 
     }
 }
