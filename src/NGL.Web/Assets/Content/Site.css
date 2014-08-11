@@ -186,3 +186,13 @@ form .inline input {
 .section-searchbox-container > input {
     width: 100%;
 }
+
+/* Assessment Page */
+
+.enter-mastery {
+    max-width: 330px;
+}
+
+.enter-mastery .form-control {
+    max-width: 100px;
+}
