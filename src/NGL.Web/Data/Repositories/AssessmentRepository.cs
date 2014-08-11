@@ -25,5 +25,15 @@ namespace NGL.Web.Data.Repositories
                 .Include(sa => sa.StudentAssessmentScoreResults)
                 .ToList();
         }
+
+        public IEnumerable<Assessment> GetAssessments()
+        {
+            return DbContext.Set<Assessment>()
+                .Where(
+                    a =>
+                        a.Id != null)
+                .Include(a => a.AssessmentSections.Select(assessmentSection => assessmentSection.Section.Session))
+                .ToList();
+        } 
     }
 }
