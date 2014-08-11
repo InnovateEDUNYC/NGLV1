@@ -107,41 +107,50 @@ namespace NGL.Web.Controllers
                 a => a.StudentAssessments,
                 a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults)
             );
-            var studentAssessments = assessment.StudentAssessments;
+            var currentStudentAssessments = assessment.StudentAssessments;
             var newStudentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
             foreach (var enterResultsStudentModel in enterResultsStudentModels)
             {
                 AddToStudentAssessmentScoreResults(newStudentAssessmentScoreResults, enterResultsStudentModel, assessment);
+                AddToStudentAssessments(currentStudentAssessments.ToList(), enterResultsStudentModel, assessment);
             }
 
-            if (studentAssessments.IsNullOrEmpty())
-            {
-                foreach (var enterResultsStudentModel in enterResultsStudentModels)
-                {
-                    AddToStudentAssements(studentAssessments, enterResultsStudentModel, assessment);
-                }
-                foreach (var studentAssessment in studentAssessments)
-                    _genericRepository.Add(studentAssessment);
-                foreach (var studentAssessmentScoreResult in newStudentAssessmentScoreResults)
-                {
-                    _genericRepository.Add(studentAssessmentScoreResult);
-                }
-            }
+            if (currentStudentAssessments.IsNullOrEmpty())
+                AddStudentAssessmentScoreResults(currentStudentAssessments, newStudentAssessmentScoreResults);
             else
             {
-                var oldScoreResults = assessment.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults.First());
-                foreach (var oldScoreResult in oldScoreResults)
-                {
-                    var newScoreResult =
-                        newStudentAssessmentScoreResults.First(
-                            studentScoreResult => studentScoreResult.StudentUSI == oldScoreResult.StudentUSI);
-                    oldScoreResult.Result = newScoreResult.Result;
-                }
+                var oldScoreResults =
+                    assessment.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults.First());
+                UpdateStudentAssessmentScoreResults(oldScoreResults, newStudentAssessmentScoreResults);
             }
-           
+
             _genericRepository.Save();
 
             return RedirectToAction(MVC.Home.Index());
+        }
+
+        private void UpdateStudentAssessmentScoreResults(IEnumerable<StudentAssessmentScoreResult> oldScoreResults, List<StudentAssessmentScoreResult> newStudentAssessmentScoreResults)
+        {
+            foreach (var oldScoreResult in oldScoreResults)
+            {
+                var newScoreResult =
+                    newStudentAssessmentScoreResults.First(
+                        studentScoreResult => studentScoreResult.StudentUSI == oldScoreResult.StudentUSI);
+                oldScoreResult.Result = newScoreResult.Result;
+            }
+        }
+
+        private void AddStudentAssessmentScoreResults(ICollection<StudentAssessment> currentStudentAssessments,
+            List<StudentAssessmentScoreResult> newStudentAssessmentScoreResults)
+        {
+            foreach (var studentAssessment in currentStudentAssessments)
+            {
+                _genericRepository.Add(studentAssessment);
+            }
+            foreach (var studentAssessmentScoreResult in newStudentAssessmentScoreResults)
+            {
+                _genericRepository.Add(studentAssessmentScoreResult);
+            }
         }
 
         private void AddToStudentAssessmentScoreResults(List<StudentAssessmentScoreResult> studentAssessmentScoreResults,
@@ -158,8 +167,7 @@ namespace NGL.Web.Controllers
                 }));
         }
 
-        private void AddToStudentAssements(ICollection<StudentAssessment> studentAssessments,
-            EnterResultsStudentModel enterResultsStudentModel,
+        private void AddToStudentAssessments(List<StudentAssessment> studentAssessments, EnterResultsStudentModel enterResultsStudentModel,
             Assessment assessment)
         {
             studentAssessments.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(

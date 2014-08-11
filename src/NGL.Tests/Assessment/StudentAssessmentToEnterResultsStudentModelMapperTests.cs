@@ -27,7 +27,7 @@ namespace NGL.Tests.Assessment
         }
 
         [Fact]
-        public void ShouldHandleWhenStudentAssessmentScoreResultsDontExist()
+        public void ShouldNotFailWhenStudentAssessmentScoreResultsDontExist()
         {
             var mapper = new StudentAssessmentToEnterResultsStudentModelMapper();
             var entity = new StudentAssessmentBuilder().WithStudent(new Web.Data.Entities.Student()).Build();

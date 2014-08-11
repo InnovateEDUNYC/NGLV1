@@ -16,13 +16,14 @@ namespace NGL.Tests.Assessment
     public class AssessmentToEnterResultsModelMapperTests
     {
         private AssessmentSection _assessmentSection;
+        private Web.Data.Entities.Section _section;
         private Web.Data.Entities.Assessment _entity;
         private AssessmentToEnterResultsModelMapper _mapper;
 
         [Fact]
         public void ShouldMapAssessmentToEnterResultsModel()
         {
-            _mapper = Setup(out _assessmentSection, out _entity);
+            Setup();
 
             var model = _mapper.Build(_entity);
 
@@ -34,9 +35,9 @@ namespace NGL.Tests.Assessment
         }
 
         [Fact]
-        public void ShouldHandleWhenNoStudentAssessmentsExists()
+        public void ShouldNotFailWhenNoStudentAssessmentsExist()
         {
-            _mapper = Setup(out _assessmentSection, out _entity);
+            Setup();
             _assessmentSection.Section.StudentSectionAssociations.Select(s => s.Student).First().StudentAssessments = null;
 
             var model = _mapper.Build(_entity);
@@ -48,60 +49,21 @@ namespace NGL.Tests.Assessment
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
         }
 
-        private static AssessmentToEnterResultsModelMapper Setup(out AssessmentSection assessmentSection, out Web.Data.Entities.Assessment entity)
+        private void Setup()
         {
             var studentAssessmentToEnterResultsStudentModelMapper =
                 Substitute.For<IMapper<StudentAssessment, EnterResultsStudentModel>>();
             studentAssessmentToEnterResultsStudentModelMapper.Build(Arg.Any<StudentAssessment>())
                 .Returns(new EnterResultsStudentModel());
 
-            var mapper = new AssessmentToEnterResultsModelMapper(studentAssessmentToEnterResultsStudentModelMapper);
-            var assessmentSections = new List<AssessmentSection>();
-            entity = new Web.Data.Entities.Assessment
-            {
-                AssessmentIdentity = 1,
-                AssessmentTitle = "My Assessment",
-                AcademicSubjectDescriptorId = 1,
-                AssessedGradeLevelDescriptorId = 1,
-                Version = 1,
-                AssessmentSections = assessmentSections
-            };
-            
-            var studentSectionAssociations = new List<StudentSectionAssociation>
-            {
-                new StudentSectionAssociation
-                {
-                    Student = new StudentBuilder().WithStudentAssessments(new List<StudentAssessment>()
-                    {
-                        new StudentAssessmentBuilder().WithAssessment(entity).Build()
-                    }).Build()
-                },
-                new StudentSectionAssociation
-                {
-                    Student = new StudentBuilder().WithStudentAssessments(new List<StudentAssessment>()
-                    {
-                        new StudentAssessmentBuilder().WithAssessment(entity).Build()
-                    }).Build()
-                }
-            };
-            
-            assessmentSection = new AssessmentSection()
-            {
-                Section = new Web.Data.Entities.Section()
-                {
-                    UniqueSectionCode = "section name",
-                    StudentSectionAssociations = studentSectionAssociations,
-                    Session = new Web.Data.Entities.Session()
-                    {
-                        SessionName = "session name"
-                    }
-                }
-            };
-            assessmentSections.Add(assessmentSection);
+            _mapper = new AssessmentToEnterResultsModelMapper(studentAssessmentToEnterResultsStudentModelMapper);
 
+            _entity = new AssessmentBuilder().Build();
+            Web.Data.Entities.Student student1 = new StudentBuilder().Build();
+            Web.Data.Entities.Student student2 = new StudentBuilder().Build();
 
-            
-            return mapper;
+            _section = new SectionBuilder().WithStudent(student1).WithStudent(student2).WithAssessment(_entity).Build();
+            _assessmentSection = _section.AssessmentSections.First();
         }
     }
 }
