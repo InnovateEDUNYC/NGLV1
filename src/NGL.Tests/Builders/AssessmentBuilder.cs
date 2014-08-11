@@ -10,10 +10,10 @@ namespace NGL.Tests.Builders
         private const int _academicSubjectDescriptorId = 1;
         private const int _assessedGradeLevelDescriptorId = 1;
         private const int _version = 1;
-        private ICollection<AssessmentSection> _assessmentSections = new List<AssessmentSection>();
+        private readonly ICollection<AssessmentSection> _assessmentSections = new List<AssessmentSection>();
 
         private readonly IList<AssessmentLearningStandard> _assessmentLearningStandards = new[] {new AssessmentLearningStandardBuilder().Build()};
-        private readonly IList<AssessmentSection> _assessmentSections = new[] {new AssessmentSectionBuilder().Build()};
+//        private readonly IList<AssessmentSection> _assessmentSections = new[] {new AssessmentSectionBuilder().Build()};
 
         private readonly IList<AssessmentPerformanceLevel> _assessmentPerformanceLevels = new[]
         {

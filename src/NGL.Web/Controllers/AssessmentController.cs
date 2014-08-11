@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using Castle.Core.Internal;
+using Glimpse.Core.Extensions;
 using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Expressions;
@@ -29,6 +30,7 @@ namespace NGL.Web.Controllers
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
         private readonly IMapper<CreateModel, AssessmentPerformanceLevel> _createModelToAssessmentPerformanceLevelMapper;
+        private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -39,7 +41,9 @@ namespace NGL.Web.Controllers
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper,
             IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
             IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper,
-            ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
+			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher
+            )
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -51,6 +55,18 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
+            _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
+        }
+
+        //
+        // GET: /Assessment/
+        public virtual ActionResult Index()
+        {
+            var assessments = _assessmentRepository.GetAssessments();
+
+            var assessmentIndexModels = assessments.Select(a => _assessmentToAssessmentIndexModelMapper.Build(a));
+
+            return View(assessmentIndexModels);
         }
 
         //

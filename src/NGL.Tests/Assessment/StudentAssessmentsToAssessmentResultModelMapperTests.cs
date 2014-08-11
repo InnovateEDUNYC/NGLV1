@@ -28,18 +28,10 @@ namespace NGL.Tests.Assessment
             firstRowModel.Results.ShouldBe(new []{"", "", "", "", "", "Mastery", ""});
         }
 
-        private static StudentAssessment BuildFirstStudentAssessment()
-        {
-            var assessment = new AssessmentBuilder().Build();
-            var studentAssessment = new StudentAssessmentBuilder().WithAssessment(assessment).Build();
-            return studentAssessment;
-        }
-
         [Fact]
         public void ShouldMapMultipleAssessments()
         {
             var studentAssessment = BuildFirstStudentAssessment();
-
             var studentAssessmentTwo = BuildStudentAssessmentTwo();
 
             var assessmentResultModel = new StudentAssessmentsToAssessmentResultModelMapper().Map(new[] { studentAssessment, studentAssessmentTwo }, new DateTime(2014, 6, 22), new DateTime(2014, 6, 28));
@@ -55,9 +47,18 @@ namespace NGL.Tests.Assessment
             secondRowModel.Results.ShouldBe(new[] { "", "Not Mastered", "", "", "", "", "" });
         }
 
+        private static StudentAssessment BuildFirstStudentAssessment()
+        {
+            var assessment = new AssessmentBuilder().Build();
+            var section = new SectionBuilder().WithAssessment(assessment).Build();
+            var studentAssessment = new StudentAssessmentBuilder().WithAssessment(assessment).Build();
+            return studentAssessment;
+        }
+
         private static StudentAssessment BuildStudentAssessmentTwo()
         {
             var assessmentTwo = new AssessmentBuilder().Build();
+            var section = new SectionBuilder().WithAssessment(assessmentTwo).Build();
             var studentAssessmentScoreResult = new StudentAssessmentScoreResultBuilder().WithResult("69.5").Build();
             var studentAssessmentTwo = new StudentAssessmentBuilder()
                 .WithAssessment(assessmentTwo)
