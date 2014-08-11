@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Castle.Core.Internal;
-using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Assessment
 {
     public class AssessmentToEnterResultsModelMapper : MapperBase<Data.Entities.Assessment, EnterResultsModel>
     {
-        private readonly IMapper<StudentAssessment, EnterResultsStudentModel> _studentAssessmentToEnterResultsStudentModelMapper;
+        private IMapper<Data.Entities.Student, EnterResultsStudentModel> _studentToEnterResultsStudentModelMapper;
 
-        public AssessmentToEnterResultsModelMapper(IMapper<StudentAssessment, EnterResultsStudentModel> studentAssessmentToEnterResultsStudentModelMapper)
+        public AssessmentToEnterResultsModelMapper(IMapper<Data.Entities.Student, EnterResultsStudentModel> studentToEnterResultsStudentModelMapper)
         {
-            _studentAssessmentToEnterResultsStudentModelMapper = studentAssessmentToEnterResultsStudentModelMapper;
+            _studentToEnterResultsStudentModelMapper = studentToEnterResultsStudentModelMapper;
         }
 
         public override void Map(Data.Entities.Assessment source, EnterResultsModel target)
@@ -29,15 +27,10 @@ namespace NGL.Web.Models.Assessment
             target.Section = section.UniqueSectionCode;
             target.AssessmentTitle = source.AssessmentTitle;
             target.Session = session.SessionName;
-            target.StudentResults = new List<EnterResultsStudentModel>();
-            foreach (var student in students)      
+            target.Students = new List<EnterResultsStudentModel>();
+            foreach (var student in students)
             {
-                var studentAssessment = new StudentAssessment();
-                if (!student.StudentAssessments.IsNullOrEmpty())
-                    studentAssessment = student.StudentAssessments.FirstOrDefault(a => a.Assessment.AssessmentIdentity == source.AssessmentIdentity);
-                else
-                    studentAssessment.Student = student;
-                target.StudentResults.Add(_studentAssessmentToEnterResultsStudentModelMapper.Build(studentAssessment));
+                target.Students.Add(_studentToEnterResultsStudentModelMapper.Build(student));
             }
         }
     }

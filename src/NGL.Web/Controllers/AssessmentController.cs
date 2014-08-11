@@ -1,10 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI;
-using Castle.Core.Internal;
-using Glimpse.Core.Extensions;
-using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
@@ -30,7 +26,6 @@ namespace NGL.Web.Controllers
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
         private readonly IMapper<CreateModel, AssessmentPerformanceLevel> _createModelToAssessmentPerformanceLevelMapper;
-        private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -41,9 +36,7 @@ namespace NGL.Web.Controllers
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper,
             IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
             IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper,
-			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
-            ProfilePhotoUrlFetcher profilePhotoUrlFetcher
-            )
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -55,18 +48,6 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
-            _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
-        }
-
-        //
-        // GET: /Assessment/
-        public virtual ActionResult Index()
-        {
-            var assessments = _assessmentRepository.GetAssessments();
-
-            var assessmentIndexModels = assessments.Select(a => _assessmentToAssessmentIndexModelMapper.Build(a));
-
-            return View(assessmentIndexModels);
         }
 
         //
@@ -98,75 +79,42 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
-        public virtual ActionResult EnterResults(int id)
+        public virtual ActionResult EnterResults(int assessmentId)
         {
             var assessment = _genericRepository.Get<Assessment>(
-                a => a.AssessmentIdentity == id,
+                a => a.AssessmentIdentity == assessmentId,
                 a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)),
-                a => a.AssessmentSections.Select(asa => asa.Section.Session),
-                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults));
+                a => a.AssessmentSections.Select(asa => asa.Section.Session));
 
             if (assessment == null) return View();
 
             var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
-
             return View(enterResultsModel);
         }
 
         [HttpPost]
         public virtual ActionResult EnterResults(EnterResultsModel enterResultsModel)
         {
-            var enterResultsStudentModels = enterResultsModel.StudentResults;
+            var enterResultsStudentModels = enterResultsModel.Students;
             var assessmentId = enterResultsModel.AssessmentId;
-            var assessment = _genericRepository.Get<Assessment>(
+            var assessment = _genericRepository.Get<Data.Entities.Assessment>(
                 a => a.AssessmentIdentity == assessmentId,
-                a => a.StudentAssessments,
-                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults)
-            );
-            var currentStudentAssessments = assessment.StudentAssessments;
-            var newStudentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
+                a => a.StudentAssessments);
+            var studentAssessments = assessment.StudentAssessments;
+            var studentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
             foreach (var enterResultsStudentModel in enterResultsStudentModels)
             {
-                AddToStudentAssessmentScoreResults(newStudentAssessmentScoreResults, enterResultsStudentModel, assessment);
-                AddToStudentAssessments(currentStudentAssessments.ToList(), enterResultsStudentModel, assessment);
+                AddToStudentAssements(studentAssessments, enterResultsStudentModel, assessment);
+                AddToStudentAssessmentScoreResults(studentAssessmentScoreResults, enterResultsStudentModel, assessment);
             }
 
-            if (currentStudentAssessments.IsNullOrEmpty())
-                AddStudentAssessmentScoreResults(currentStudentAssessments, newStudentAssessmentScoreResults);
-            else
-            {
-                var oldScoreResults =
-                    assessment.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults.First());
-                UpdateStudentAssessmentScoreResults(oldScoreResults, newStudentAssessmentScoreResults);
-            }
-
+            foreach (var studentAssessmentScoreResult in studentAssessmentScoreResults)
+                _genericRepository.Add(studentAssessmentScoreResult);
+            foreach (var studentAssessment in studentAssessments)
+                _genericRepository.Add(studentAssessment);
             _genericRepository.Save();
 
             return RedirectToAction(MVC.Home.Index());
-        }
-
-        private void UpdateStudentAssessmentScoreResults(IEnumerable<StudentAssessmentScoreResult> oldScoreResults, List<StudentAssessmentScoreResult> newStudentAssessmentScoreResults)
-        {
-            foreach (var oldScoreResult in oldScoreResults)
-            {
-                var newScoreResult =
-                    newStudentAssessmentScoreResults.First(
-                        studentScoreResult => studentScoreResult.StudentUSI == oldScoreResult.StudentUSI);
-                oldScoreResult.Result = newScoreResult.Result;
-            }
-        }
-
-        private void AddStudentAssessmentScoreResults(ICollection<StudentAssessment> currentStudentAssessments,
-            List<StudentAssessmentScoreResult> newStudentAssessmentScoreResults)
-        {
-            foreach (var studentAssessment in currentStudentAssessments)
-            {
-                _genericRepository.Add(studentAssessment);
-            }
-            foreach (var studentAssessmentScoreResult in newStudentAssessmentScoreResults)
-            {
-                _genericRepository.Add(studentAssessmentScoreResult);
-            }
         }
 
         private void AddToStudentAssessmentScoreResults(List<StudentAssessmentScoreResult> studentAssessmentScoreResults,
@@ -183,7 +131,8 @@ namespace NGL.Web.Controllers
                 }));
         }
 
-        private void AddToStudentAssessments(List<StudentAssessment> studentAssessments, EnterResultsStudentModel enterResultsStudentModel,
+        private void AddToStudentAssements(ICollection<StudentAssessment> studentAssessments,
+            EnterResultsStudentModel enterResultsStudentModel,
             Assessment assessment)
         {
             studentAssessments.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(
