@@ -82,10 +82,10 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
-        public virtual ActionResult EnterResults(int assessmentId)
+        public virtual ActionResult EnterResults(int id)
         {
             var assessment = _genericRepository.Get<Assessment>(
-                a => a.AssessmentIdentity == assessmentId,
+                a => a.AssessmentIdentity == id,
                 a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)),
                 a => a.AssessmentSections.Select(asa => asa.Section.Session),
                 a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults));
