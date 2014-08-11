@@ -10,7 +10,7 @@ namespace NGL.Web.Models.Assessment
     {
         public string Name { get; set; }
         public int StudentUsi { get; set; }
-        public decimal AssessmentResult { get; set; }
-        public ResultDatatypeTypeEnum ResultDatatypeType { get; set; }
+        public string AssessmentResult { get; set; }
+        public int AssessmentIdentity { get; set; }
     }
 }

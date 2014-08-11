@@ -5,8 +5,14 @@ namespace NGL.Tests.Builders
 {
     public class AssessmentBuilder
     {
+        private const int _assessmentIdentity = 1;
+        private const string _assessmentTitle = "My Assessment";
+        private const int _academicSubjectDescriptorId = 1;
+        private const int _assessedGradeLevelDescriptorId = 1;
+        private const int _version = 1;
+        private readonly ICollection<AssessmentSection> _assessmentSections = new List<AssessmentSection>();
+
         private readonly IList<AssessmentLearningStandard> _assessmentLearningStandards = new[] {new AssessmentLearningStandardBuilder().Build()};
-        private readonly IList<AssessmentSection> _assessmentSections = new[] {new AssessmentSectionBuilder().Build()};
 
         private readonly IList<AssessmentPerformanceLevel> _assessmentPerformanceLevels = new[]
         {
@@ -22,6 +28,11 @@ namespace NGL.Tests.Builders
             {
                 AssessmentLearningStandards = _assessmentLearningStandards,
                 AssessmentPerformanceLevels = _assessmentPerformanceLevels,
+                AssessmentIdentity = _assessmentIdentity,
+                AssessmentTitle = _assessmentTitle,
+                AcademicSubjectDescriptorId = _academicSubjectDescriptorId,
+                AssessedGradeLevelDescriptorId = _assessedGradeLevelDescriptorId,
+                Version = _version,
                 AssessmentSections = _assessmentSections
             };
         }
