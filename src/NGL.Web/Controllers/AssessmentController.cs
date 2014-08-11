@@ -163,8 +163,8 @@ namespace NGL.Web.Controllers
                 assessmentResultModel.Session = session.SessionName;
             }
 
-            var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(studentUsi);
-            var student = _genericRepository.Get<Student>(s => s.StudentUSI == studentUsi);
+	        var student = _genericRepository.Get<Student>(s => s.StudentUSI == studentUsi);
+	        var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(student);
 
 	        assessmentResultModel.Update(student, profilePhotoUrl, sessionId, dayFrom, dayTo);
 

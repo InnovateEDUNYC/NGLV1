@@ -18,12 +18,11 @@ namespace NGL.Tests.Student
         private void SetupWithDownloaderReturning(string downloaderReturns)
         {
             var downloader = Substitute.For<IFileDownloader>();
-            var genericRepository = Substitute.For<IGenericRepository>();
             downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns(downloaderReturns);
 
             _mapper = new StudentToProfileModelMapper(new StudentToAcademicDetailsMapper(downloader),
                 new ParentToProfileParentModelMapper(),
-                 new ProfilePhotoUrlFetcher(downloader, genericRepository),
+                 new ProfilePhotoUrlFetcher(downloader),
                 new StudentProgramStatusToProfileProgramStatusModelMapper(downloader));
         }
 

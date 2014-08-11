@@ -1,5 +1,4 @@
 using Castle.Core.Internal;
-using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Student
@@ -7,13 +6,11 @@ namespace NGL.Web.Models.Student
     public class ProfilePhotoUrlFetcher
     {
         private readonly IFileDownloader _downloader;
-        private readonly IGenericRepository _genericRepository;
         private const string DefaultProfilePhotoUrl = "/Assets/Images/placeholder.png";
 
-        public ProfilePhotoUrlFetcher(IFileDownloader downloader, IGenericRepository genericRepository)
+        public ProfilePhotoUrlFetcher(IFileDownloader downloader)
         {
             _downloader = downloader;
-            _genericRepository = genericRepository;
         }
 
         public string GetProfilePhotoUrlOrDefault(Data.Entities.Student student)
@@ -23,12 +20,6 @@ namespace NGL.Web.Models.Student
                 return DefaultProfilePhotoUrl;
             else
                 return profilePhotoUrl;
-        }
-
-        public string GetProfilePhotoUrlOrDefault(int studentUsi)
-        {
-            var student = _genericRepository.Get<Data.Entities.Student>(s => s.StudentUSI == studentUsi);
-            return GetProfilePhotoUrlOrDefault(student);
         }
     }
 }
