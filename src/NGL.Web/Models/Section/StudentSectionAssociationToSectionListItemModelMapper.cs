@@ -26,6 +26,8 @@ namespace NGL.Web.Models.Section
                 source.SchoolYear, source.TermTypeId, source.ClassPeriodName,
                 source.ClassroomIdentificationCode, source.LocalCourseCode);
             target.SectionId = _genericRepository.Get(query).SectionIdentity;
+
+            target.StudentSectionId = source.StudentSectionAssociationIdentity;
         }
     }
 }

@@ -47,6 +47,7 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Enrollment/createStudent.js",
                 "~/Assets/Scripts/Views/Student/index.js",
                 "~/Assets/Scripts/Views/Schedule/setSchedule.js",
+                "~/Assets/Scripts/Views/Schedule/removeStudent.js",
                 "~/Assets/Scripts/Views/Section/getCourse.js",
                 "~/Assets/Scripts/Views/shared/sessionAutocomplete.js",
                 "~/Assets/Scripts/Views/Shared/sectionAutocomplete.js",

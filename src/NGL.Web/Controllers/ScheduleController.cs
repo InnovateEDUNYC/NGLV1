@@ -19,7 +19,7 @@ namespace NGL.Web.Controllers
     public partial class ScheduleController : Controller
     {
         private readonly IGenericRepository _genericRepository;
-        private readonly ISchoolRepository _schoolRepository;
+        private readonly IStudentSectionRepository _studentSectionRepository;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly IMapper<Session, SessionListItemModel> _sessionToSessionListItemModelMapper;
         private readonly IMapper<Section, AutocompleteModel> _sectionToAutocompleteModelMapper;
@@ -27,14 +27,15 @@ namespace NGL.Web.Controllers
         private readonly IMapper<SetModel, StudentSectionAssociation> _setModelToStudentSectionAssociationMapper;
 
         public ScheduleController(IGenericRepository genericRepository,
-            ISchoolRepository schoolRepository,
+            IStudentSectionRepository studentSectionRepository,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, 
             IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper,
             IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper,
-            IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper, IMapper<SetModel, StudentSectionAssociation> setModelToStudentSectionAssociationMapper)
+            IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper, 
+            IMapper<SetModel, StudentSectionAssociation> setModelToStudentSectionAssociationMapper)
         {
             _genericRepository = genericRepository;
-            _schoolRepository = schoolRepository;
+            _studentSectionRepository = studentSectionRepository;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
             _sessionToSessionListItemModelMapper = sessionToSessionListItemModelMapper;
             _sectionToAutocompleteModelMapper = sectionToAutocompleteModelMapper;
@@ -56,18 +57,11 @@ namespace NGL.Web.Controllers
             return View(setModel);
         }
 
-        private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUSI)
+        [HttpPost]
+        public virtual JsonResult RemoveStudent(int studentSectionId)
         {
-            var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
-                .Where(ssa => ssa.StudentUSI == studentUSI);
-            var currentlyEnrolledSections = new List<SectionListItemModel>();
-
-            foreach (StudentSectionAssociation ssa in currentlyEnrolledStudentSectionAssociationEntities)
-            {
-                currentlyEnrolledSections.Add(_studentSectionAssociationToSectionListItemModelMapper.Build(ssa));
-            }
-
-            return currentlyEnrolledSections;
+            _studentSectionRepository.DeleteByIdentity(studentSectionId);
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
         // AJAX POST: /ScheduleStudent/
@@ -97,6 +91,20 @@ namespace NGL.Web.Controllers
         {
             var autoCompleteModels = GetAllSectionAutocompleteModelsWith(searchString, sessionId);
             return Json(autoCompleteModels, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUSI)
+        {
+            var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
+                .Where(ssa => ssa.StudentUSI == studentUSI);
+            var currentlyEnrolledSections = new List<SectionListItemModel>();
+
+            foreach (StudentSectionAssociation ssa in currentlyEnrolledStudentSectionAssociationEntities)
+            {
+                currentlyEnrolledSections.Add(_studentSectionAssociationToSectionListItemModelMapper.Build(ssa));
+            }
+
+            return currentlyEnrolledSections;
         }
 
         private IEnumerable<AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString, int sessionId)
