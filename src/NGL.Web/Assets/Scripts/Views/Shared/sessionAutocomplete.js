@@ -56,11 +56,14 @@ Ngl.shared.sessionAutocomplete = (function () {
                     });
                 },
                 select: function (event, ui) {
+                    var selectedSession = ui.item;
+                    $("#SessionId").val(selectedSession.sessionId);
+
                     if (ui.item.label === noResultsLabel) {
                         event.preventDefault();
+                    } else {
+                        $("#SessionId").trigger('change');
                     }
-                    var selectedSession = ui.item;
-                    $("#SessionId").val(selectedSession.sessionId).trigger('change');
                 },
                 focus: function (event, ui) {
                     if (ui.item.label === noResultsLabel) {
