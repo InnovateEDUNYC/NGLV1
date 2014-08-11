@@ -1830,6 +1830,8 @@
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
     <Content Include="Assets\Content\datepicker.css" />
+    <Content Include="Assets\Content\Image.css" />
+    <Content Include="Assets\Images\brooklyn_lab_logo.png" />
     <Content Include="Assets\Images\placeholder.png" />
     <Content Include="Assets\Scripts\createNamespace.js" />
     <Content Include="Assets\Scripts\forms.js" />

@@ -29,6 +29,7 @@ namespace NGL.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Assets/Content/bootstrap.css",
                       "~/Assets/Content/site.css",
+                      "~/Assets/Content/image.css",
                       "~/Assets/Content/datepicker.css"));
 
 

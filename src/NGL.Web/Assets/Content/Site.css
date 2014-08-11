@@ -3,10 +3,11 @@
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
+/* Set padding to keep content from hitting the edges and top */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 80px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -126,11 +127,11 @@ form .inline input {
 }
 
 .dl-horizontal dd {
-    margin-left: 230px;
+    margin-left: 100px;
 }
 
 .dl-horizontal dt {
-    width: 210px;
+    width: 90px;
 }
 
 /* Schedule student page */
@@ -179,7 +180,7 @@ form .inline input {
 
 .section-searchbox-container {
     display: inline-block;
-    width: 40%;
+    width: 140%;
 }
 
 .section-searchbox-container > input {

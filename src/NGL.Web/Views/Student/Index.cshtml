@@ -8,10 +8,10 @@
 }
 
 <h2>Profile</h2>
-<div class="container">
+<div class="row">
     <div class="col-md-4">
         <div class="profile-photo-container">
-            <img src="@Model.ProfilePhotoUrl"></img>
+            <img class="profile-image" src="@Model.ProfilePhotoUrl"></img>
 
             @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
             {

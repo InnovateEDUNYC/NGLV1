@@ -1,0 +1,24 @@
+﻿.navbar-brand {
+    background: url("../Images/brooklyn_lab_logo.png") no-repeat;
+    background-size: 100%;
+    width: 260px;
+    height: 100px;
+    margin-top: 18px;
+    margin-right: 65px;
+}
+
+.nav .fa {
+    margin-top: 20px;
+}
+
+.profile-image {
+    width: 200px;
+	height: 200px;
+    border-radius:50% 50% 50% 50%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.media-list .fa {
+    margin-right: 25px;
+}
