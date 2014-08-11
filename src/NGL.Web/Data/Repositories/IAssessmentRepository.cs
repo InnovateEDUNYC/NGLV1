@@ -8,5 +8,6 @@ namespace NGL.Web.Data.Repositories
     {
         IEnumerable<StudentAssessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate);
         IEnumerable<Assessment> GetAssessments();
+        void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery);
     }
 }

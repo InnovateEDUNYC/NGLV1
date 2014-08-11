@@ -23,10 +23,9 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentScoreResultMapper;
         private readonly IMapper<EnterResultsStudentModel, StudentAssessment>
             _enterResultsStudentModelToStudentAssessmentMapper;
-        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
-
         private readonly CreateModelToAssessmentPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
         private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
+        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -88,7 +87,7 @@ namespace NGL.Web.Controllers
             var mastery = _createModelToAssessmentPerformanceLevelMapper
                 .GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
-            Save(assessment, nearMastery, mastery);
+            _assessmentRepository.Save(assessment, nearMastery, mastery);
             return RedirectToAction(MVC.Home.Index());
         }
 
