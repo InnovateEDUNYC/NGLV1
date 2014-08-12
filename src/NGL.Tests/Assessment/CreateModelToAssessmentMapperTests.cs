@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Queries;
 using NGL.Web.Models.Assessment;
 using NSubstitute;
 using Shouldly;
@@ -45,9 +46,12 @@ namespace NGL.Tests.Assessment
                 GradeLevelTypeId = 100
             };
 
-            _genericRepositoryStub.Get(Arg.Any<Expression<Func<GradeLevelDescriptor, bool>>>()).Returns(_4ThGradeLevelDescriptor);
-            _genericRepositoryStub.Get(Arg.Any<Expression<Func<Web.Data.Entities.Section, bool>>>()).Returns(_section);
-            _genericRepositoryStub.Get(Arg.Any<Expression<Func<Web.Data.Entities.Course, bool>>>()).Returns(_course);
+            _genericRepositoryStub.Get(Arg.Any<GradeLevelTypeDescriptorQuery>())
+                                .Returns(_4ThGradeLevelDescriptor);
+            _genericRepositoryStub.Get(Arg.Any<Expression<Func<Web.Data.Entities.Section, bool>>>())
+                                .Returns(_section);
+            _genericRepositoryStub.Get(Arg.Any<Expression<Func<Web.Data.Entities.Course, bool>>>())
+                                .Returns(_course);
         }
     }
 }

@@ -300,6 +300,7 @@
     <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
     <Compile Include="Data\Queries\StudentSectionAssociationByPrimaryKeysQuery.cs" />
     <Compile Include="Data\Repositories\AssessmentRepository.cs" />
+    <Compile Include="Data\Queries\GradeLevelTypeDescriptorQuery.cs" />
     <Compile Include="Data\Repositories\IAssessmentRepository.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />

@@ -1,12 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI;
 using Castle.Core.Internal;
-using Glimpse.Core.Extensions;
-using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Security;
@@ -27,10 +23,9 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentScoreResultMapper;
         private readonly IMapper<EnterResultsStudentModel, StudentAssessment>
             _enterResultsStudentModelToStudentAssessmentMapper;
-        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
-
-        private readonly IMapper<CreateModel, AssessmentPerformanceLevel> _createModelToAssessmentPerformanceLevelMapper;
+        private readonly CreateModelToAssessmentPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
         private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
+        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -40,7 +35,7 @@ namespace NGL.Web.Controllers
             IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper,
             IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
-            IMapper<CreateModel, AssessmentPerformanceLevel> createModelToAssessmentPerformanceLevelMapper,
+            CreateModelToAssessmentPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper,
 			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher
             )
@@ -87,15 +82,21 @@ namespace NGL.Web.Controllers
                 return View(createModel);
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
-            var nearMastery = GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
-            var mastery = GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery); ;
+            var nearMastery = _createModelToAssessmentPerformanceLevelMapper
+                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
+            var mastery = _createModelToAssessmentPerformanceLevelMapper
+                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
+            _assessmentRepository.Save(assessment, nearMastery, mastery);
+            return RedirectToAction(MVC.Home.Index());
+        }
+
+        private void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
+        {
             _genericRepository.Add(assessment);
             _genericRepository.Add(nearMastery);
             _genericRepository.Add(mastery);
             _genericRepository.Save();
-
-            return RedirectToAction(MVC.Home.Index());
         }
 
         //
@@ -214,11 +215,5 @@ namespace NGL.Web.Controllers
             return View(assessmentResultModel);
 		}
 
-        private AssessmentPerformanceLevel GetPerformanceLevel(CreateModel createModel, Assessment assessment, 
-            PerformanceLevelDescriptorEnum performanceLevelDescriptor)
-        {
-            var expression = new PerformanceLevelMapperExpression(assessment, performanceLevelDescriptor);
-            return _createModelToAssessmentPerformanceLevelMapper.Build(createModel, expression.Expression);
-        }
     }
 }
