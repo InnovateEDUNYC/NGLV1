@@ -2,9 +2,9 @@
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Assessment;
 
-namespace NGL.Tests.Assessment
+namespace NGL.Tests.Builders
 {
-    public class CreateModelBuilder
+    public class CreateAssessmentModelBuilder
     {
         private const string AssessmentTitle = "MATH 2090 Pop Quiz";
         private static DateTime _adminsteredDate = new DateTime(2003, 9, 9);
@@ -13,9 +13,9 @@ namespace NGL.Tests.Assessment
         private readonly decimal? _nearMastery = 60;
         private readonly decimal? _mastery = 90;
 
-        public CreateModel Build()
+        public CreateAssessmentModel Build()
         {
-            return new CreateModel
+            return new CreateAssessmentModel
             {
                 AssessmentTitle = AssessmentTitle,
                 AdministeredDate = _adminsteredDate,
@@ -26,7 +26,7 @@ namespace NGL.Tests.Assessment
             };
         }
 
-        public CreateModelBuilder WithGradeLevelTypeId(int gradeLevelTypeId)
+        public CreateAssessmentModelBuilder WithGradeLevelTypeId(int gradeLevelTypeId)
         {
             _gradeLevel = (GradeLevelTypeEnum) gradeLevelTypeId;
             return this;

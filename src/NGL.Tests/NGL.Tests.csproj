@@ -80,6 +80,7 @@
     <Compile Include="Assessment\AssessmentToEnterResultsModelMapperTests.cs" />
     <Compile Include="Assessment\CreateModelBuilder.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentLearningStandardMapperTests.cs" />
+    <Compile Include="Builders\CreateAssessmentModelBuilder.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentMapperTests.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentPerformanceLevelMapperTests.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentSectionMapperTests.cs" />

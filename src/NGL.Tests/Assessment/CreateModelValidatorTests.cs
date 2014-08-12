@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.TestHelper;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Assessment;
@@ -13,7 +14,7 @@ namespace NGL.Tests.Assessment
     {
         private IGenericRepository _genericRepository;
         private CreateModelValidator _validator;
-        private CreateModel _createModel;
+        private CreateAssessmentModel _createAssessmentModel;
         private Web.Data.Entities.Assessment _assessmentEntity;
 
         [Fact]
@@ -25,7 +26,7 @@ namespace NGL.Tests.Assessment
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.Assessment, bool>>>())
                 .Returns(null as Web.Data.Entities.Assessment);
 
-            _validator.ShouldNotHaveValidationErrorFor(a => a.AssessmentTitle, _createModel);
+            _validator.ShouldNotHaveValidationErrorFor(a => a.AssessmentTitle, _createAssessmentModel);
         }
 
         [Fact]
@@ -37,7 +38,7 @@ namespace NGL.Tests.Assessment
                 .Get(Arg.Any<Expression<Func<Web.Data.Entities.Assessment, bool>>>())
                 .Returns(_assessmentEntity);
 
-            _validator.ShouldHaveValidationErrorFor(a => a.AssessmentTitle, _createModel);
+            _validator.ShouldHaveValidationErrorFor(a => a.AssessmentTitle, _createAssessmentModel);
         }
 
         private void SetUp()
@@ -45,11 +46,11 @@ namespace NGL.Tests.Assessment
             _genericRepository = Substitute.For<IGenericRepository>();
             _validator = new CreateModelValidator(_genericRepository);
 
-            _createModel = new CreateModelBuilder().Build();
+            _createAssessmentModel = new CreateAssessmentModelBuilder().Build();
 
             _assessmentEntity = new Web.Data.Entities.Assessment()
             {
-                AssessmentTitle = _createModel.AssessmentTitle,
+                AssessmentTitle = _createAssessmentModel.AssessmentTitle,
                 AcademicSubjectDescriptorId = (int)AcademicSubjectDescriptorEnum.SocialStudies,
                 AssessedGradeLevelDescriptorId = (int)GradeLevelDescriptorEnum._3rdGrade,
                 AdministeredDate = new DateTime(2000, 2, 2),

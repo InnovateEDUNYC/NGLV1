@@ -1,4 +1,5 @@
 ﻿using NGL.UiTests.Account;
+using NGL.UiTests.Assessment;
 using NGL.UiTests.Enrollment;
 using NGL.UiTests.School;
 using OpenQA.Selenium;
@@ -53,6 +54,11 @@ namespace NGL.UiTests.Shared
         public UsersPage GoToUsersPage()
         {
             return Navigate.To<UsersPage>(By.LinkText("Users"));
+        }
+
+        public AssessmentCreatePage GoToAssessmentCreatePage()
+        {
+            return Navigate.To<AssessmentCreatePage>(By.LinkText("Assessment"));
         }
     }
 }

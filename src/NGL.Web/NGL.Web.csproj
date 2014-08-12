@@ -1665,7 +1665,7 @@
     <Compile Include="Models\Assessment\CreateModelToAssessmentPerformanceLevelMapper.cs" />
     <Compile Include="Models\Assessment\CreateModelToCreateModelToAssessmentSectionMapper.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentMapper.cs" />
-    <Compile Include="Models\Assessment\CreateModel.cs" />
+    <Compile Include="Models\Assessment\CreateAssessmentModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentMapper.cs" />
     <Compile Include="Models\Assessment\CreateModelValidator.cs" />
     <Compile Include="Models\Assessment\AssessmentResultModel.cs" />

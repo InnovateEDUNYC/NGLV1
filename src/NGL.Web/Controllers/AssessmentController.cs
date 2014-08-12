@@ -16,7 +16,7 @@ namespace NGL.Web.Controllers
 {
     public partial class AssessmentController : Controller
     {
-        private readonly IMapper<CreateModel, Assessment> _createModelToAssessmentMapper;
+        private readonly IMapper<CreateAssessmentModel, Assessment> _createModelToAssessmentMapper;
         private readonly IGenericRepository _genericRepository;
         private readonly IAssessmentRepository _assessmentRepository;
         private readonly StudentAssessmentsToAssessmentResultModelMapper _studentAssessmentsToAssessmentResultModelMapper;
@@ -27,7 +27,7 @@ namespace NGL.Web.Controllers
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly ILearningStandardRepository _learningStandardRepository;
 
-        public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
+        public AssessmentController(IMapper<CreateAssessmentModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
             IAssessmentRepository assessmentRepository,
             StudentAssessmentsToAssessmentResultModelMapper studentAssessmentsToAssessmentResultModelMapper,
@@ -74,12 +74,12 @@ namespace NGL.Web.Controllers
 
         [HttpPost]
         [AuthorizeFor(Resource = "assessment", Operation = "create")]
-        public virtual ActionResult Create(CreateModel createModel)
+        public virtual ActionResult Create(CreateAssessmentModel createAssessmentModel)
         {
             if (!ModelState.IsValid)
             {
                 createModel.CommonCoreStandards = _learningStandardRepository.GetAllCommonCoreAnchorStandards();
-                return View(createModel);
+                return View(createAssessmentModel);
             }
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);

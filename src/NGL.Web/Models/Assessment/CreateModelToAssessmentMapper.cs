@@ -4,7 +4,7 @@ using NGL.Web.Data.Queries;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class CreateModelToAssessmentMapper : MapperBase<CreateModel, Data.Entities.Assessment>
+    public class CreateModelToAssessmentMapper : MapperBase<CreateAssessmentModel, Data.Entities.Assessment>
     {
         private readonly IGenericRepository _genericRepository;
         private readonly IPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
@@ -21,7 +21,7 @@ namespace NGL.Web.Models.Assessment
             _createModelToCreateModelToAssessmentLearningStandardMapper = createModelToCreateModelToAssessmentLearningStandardMapper;
         }
 
-        public override void Map(CreateModel source, Data.Entities.Assessment target)
+        public override void Map(CreateAssessmentModel source, Data.Entities.Assessment target)
         {
             target.AssessmentTitle = source.AssessmentTitle;
             target.AdministeredDate = source.AdministeredDate.GetValueOrDefault();

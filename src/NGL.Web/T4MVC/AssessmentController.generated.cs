@@ -4,6 +4,8 @@
 // to the .tt file (i.e. the T4 template) and save it to regenerate this file.
 
 // Make sure the compiler doesn't complain about missing Xml comments
+
+using NGL.Web.Models.Assessment;
 #pragma warning disable 1591
 #region T4MVC
 
@@ -104,7 +106,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string createModel = "createModel";
+            public readonly string createAssessmentModel = "createAssessmentModel";
         }
         static readonly ActionParamsClass_EnterResults s_params_EnterResults = new ActionParamsClass_EnterResults();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -176,14 +178,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Assessment.CreateModel createModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, CreateAssessmentModel createAssessmentModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.Assessment.CreateModel createModel)
+        public override System.Web.Mvc.ActionResult Create(CreateAssessmentModel createAssessmentModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
-            CreateOverride(callInfo, createModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createAssessmentModel", createAssessmentModel);
+            CreateOverride(callInfo, createAssessmentModel);
             return callInfo;
         }
 

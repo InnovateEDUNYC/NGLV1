@@ -14,7 +14,7 @@ namespace NGL.Tests.Assessment
         private IGenericRepository _genericRepositoryStub;
         private const PerformanceLevelDescriptorEnum MasteryPerformanceLevelDescriptor = PerformanceLevelDescriptorEnum.Mastery;
         private Web.Data.Entities.Assessment _assessment;
-        private CreateModel _createModel;
+        private CreateAssessmentModel _createAssessmentModel;
 
         [Fact]
         public void ShouldMap()
@@ -29,7 +29,7 @@ namespace NGL.Tests.Assessment
             assessmentPerformanceLevel.MinimumScore.ShouldBe(_createModel.Mastery.ToString());
             assessmentPerformanceLevel.AssessmentTitle.ShouldBe(_assessment.AssessmentTitle);
             assessmentPerformanceLevel.AssessedGradeLevelDescriptorId.ShouldBe(_assessment.AssessedGradeLevelDescriptorId);
-            assessmentPerformanceLevel.AssessmentReportingMethodTypeId.ShouldBe((int) _createModel.ReportingMethod);
+            assessmentPerformanceLevel.AssessmentReportingMethodTypeId.ShouldBe((int) _createAssessmentModel.ReportingMethod);
             assessmentPerformanceLevel.PerformanceLevelDescriptorId.ShouldBe((int) MasteryPerformanceLevelDescriptor);
 
             _assessment.AssessmentPerformanceLevels.Count.ShouldBe(1);
@@ -37,7 +37,7 @@ namespace NGL.Tests.Assessment
 
         private void SetUp()
         {
-            _createModel = new CreateModelBuilder().Build();
+            _createAssessmentModel = new CreateAssessmentModelBuilder().Build();
             _assessment = new AssessmentBuilder().Build();
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
 

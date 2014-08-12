@@ -5,9 +5,9 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class CreateModel
+    public class CreateAssessmentModel
     {
-        public CreateModel()
+        public CreateAssessmentModel()
         {
             CommonCoreStandards = new List<CommonCoreStandardListItemModel>();
         }
@@ -30,9 +30,9 @@ namespace NGL.Web.Models.Assessment
         public decimal? Mastery { get; set; }
         public decimal? NearMastery { get; set; }
 
-        public static CreateModel CreateNewWith(List<CommonCoreStandardListItemModel> commonCoreStandards)
+        public static CreateAssessmentModel CreateNewWith(List<CommonCoreStandardListItemModel> commonCoreStandards)
         {
-            return new CreateModel
+            return new CreateAssessmentModel
             {
                 CommonCoreStandards = commonCoreStandards
             };
