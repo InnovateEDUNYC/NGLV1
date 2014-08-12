@@ -100,7 +100,7 @@ namespace NGL.Web.Controllers
                         ls.Version = assessment.Version;
                     });
 
-            _assessmentRepository.Save(assessment, nearMastery, mastery);
+            _assessmentRepository.Save(assessment, nearMastery, mastery, learningStandard);
             return RedirectToAction(MVC.Assessment.Index());
         }
 

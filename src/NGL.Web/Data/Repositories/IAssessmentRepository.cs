@@ -8,8 +8,8 @@ namespace NGL.Web.Data.Repositories
     {
         IEnumerable<StudentAssessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate);
         IEnumerable<Assessment> GetAssessments();
-        void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery);
         Assessment GetAssessmentByAssessmentId(int assessmentId);
         void SaveStudentAssessment(StudentAssessment studentAssessment);
+        void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery, AssessmentLearningStandard learningStandard);
     }
 }

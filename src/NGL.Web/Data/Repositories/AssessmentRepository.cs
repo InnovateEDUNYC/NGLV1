@@ -60,11 +60,12 @@ namespace NGL.Web.Data.Repositories
             DbContext.Set<StudentAssessmentScoreResult>().Add(studentAssessment.StudentAssessmentScoreResults.First());
         }
 
-        public void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
+        public void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery, AssessmentLearningStandard learningStandard)
         {
             DbContext.Set<Assessment>().Add(assessment);
             DbContext.Set<AssessmentPerformanceLevel>().Add(nearMastery);
             DbContext.Set<AssessmentPerformanceLevel>().Add(mastery);
+            DbContext.Set<AssessmentLearningStandard>().Add(learningStandard);
             DbContext.Save();
         }
     }
