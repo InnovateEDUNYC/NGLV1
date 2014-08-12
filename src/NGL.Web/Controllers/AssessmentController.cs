@@ -70,7 +70,7 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create()
         {
-            var commonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
+            var commonCoreStandards = _learningStandardRepository.GetAllCommonCoreAnchorStandards();
 
             var createModel = CreateModel.CreateNewWith(commonCoreStandards);
 
@@ -87,7 +87,7 @@ namespace NGL.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                createModel.CommonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
+                createModel.CommonCoreStandards = _learningStandardRepository.GetAllCommonCoreAnchorStandards();
                 return View(createModel);
             }
 
@@ -99,14 +99,6 @@ namespace NGL.Web.Controllers
 
             _assessmentRepository.Save(assessment, nearMastery, mastery);
             return RedirectToAction(MVC.Home.Index());
-        }
-
-        private void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
-        {
-            _genericRepository.Add(assessment);
-            _genericRepository.Add(nearMastery);
-            _genericRepository.Add(mastery);
-            _genericRepository.Save();
         }
 
         //

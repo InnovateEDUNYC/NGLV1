@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Compilation;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models;
@@ -12,43 +14,40 @@ namespace NGL.Web.Data.Repositories
     {
         private const int UngradedGradeLevelDescriptorId = 139;
         private readonly IMapper<LearningStandard, CommonCoreStandardListItemModel> _learningStandardToCommonCoreStandardListItemModelMapper;
+        private readonly IEnumerable<LearningStandard> _commonCoreStandards;
 
         public LearningStandardRepository(INglDbContext dbContext, IMapper<LearningStandard, CommonCoreStandardListItemModel> learningStandardToCommonCoreStandardListItemModelMapper) : base(dbContext)
         {
             _learningStandardToCommonCoreStandardListItemModelMapper = learningStandardToCommonCoreStandardListItemModelMapper;
+            _commonCoreStandards = DbContext.Set<LearningStandard>().ToEnumerable();
         }
-        public List<CommonCoreStandardListItemModel> GetCommonCoreStandards()
+
+
+        public List<CommonCoreStandardListItemModel> GetAllCommonCoreAnchorStandards()
         {
-            return GetCommonCoreStandards(gradeLevelTypeId:null);
+            var commonCoreStandards = _commonCoreStandards.Where(
+                ls => ls.GradeLevelDescriptorId == UngradedGradeLevelDescriptorId);
+
+            return BuildListItemModels(commonCoreStandards);
         }
 
-        public List<CommonCoreStandardListItemModel> GetCommonCoreStandards(int? gradeLevelTypeId)
+
+        public List<CommonCoreStandardListItemModel> FilterCommonCoreStandards(int gradeLevelTypeId, int academicSubjectDescriptorId)
         {
-            var commonCoreStandards = DbContext.Set<LearningStandard>().ToEnumerable();
-
-            if (gradeLevelTypeId == null)
-            {
-                commonCoreStandards = GetCommonCoreStandardsWithoutGrade(commonCoreStandards);
-            }
-            else
-                commonCoreStandards = GetCommonCoreStandardsWithGrade((int) gradeLevelTypeId, commonCoreStandards);
-
-            return BuildCommonCoreStandardListItemModels(commonCoreStandards);
+            var commonCoreStandards = SelectByGradeLevelAndAcademicSubject(
+                gradeLevelTypeId, academicSubjectDescriptorId);
+            commonCoreStandards = commonCoreStandards.Union(_commonCoreStandards.Where(
+                ls => ls.GradeLevelDescriptorId == UngradedGradeLevelDescriptorId));
+            return BuildListItemModels(commonCoreStandards);
         }
 
-        private static IEnumerable<LearningStandard> GetCommonCoreStandardsWithoutGrade(IEnumerable<LearningStandard> commonCoreStandards)
-        {
-            commonCoreStandards = commonCoreStandards.Where(ls => ls.GradeLevelDescriptorId == UngradedGradeLevelDescriptorId);
-            return commonCoreStandards;
-        }
-
-        private IEnumerable<LearningStandard> GetCommonCoreStandardsWithGrade(int gradeLevelTypeId, IEnumerable<LearningStandard> commonCoreStandards)
+        private IEnumerable<LearningStandard> SelectByGradeLevelAndAcademicSubject(int gradeLevelTypeId, int academicSubjectDescriptorId)
         {
             var gradeLevelDescriptorId = GetGradeLevelDescriptorFromGradeType(gradeLevelTypeId);
 
-            commonCoreStandards =
-                commonCoreStandards.Where(ls => ls.GradeLevelDescriptorId == gradeLevelDescriptorId)
-                .Union(GetCommonCoreStandardsWithoutGrade(commonCoreStandards));
+            var commonCoreStandards = _commonCoreStandards.Where(
+                ls => ls.GradeLevelDescriptorId == gradeLevelDescriptorId &&
+                        ls.AcademicSubjectDescriptorId == academicSubjectDescriptorId);
 
             return commonCoreStandards;
         }
@@ -58,12 +57,13 @@ namespace NGL.Web.Data.Repositories
             var gradeLevelDescriptorQueryable =
                 DbContext.Set<GradeLevelDescriptor>().Where(gld => gld.GradeLevelTypeId == gradeLevelTypeId);
             var gradeLevelDescriptor = gradeLevelDescriptorQueryable.Single();
+
             return gradeLevelDescriptor.GradeLevelDescriptorId;
         }
 
-        private List<CommonCoreStandardListItemModel> BuildCommonCoreStandardListItemModels(IEnumerable<LearningStandard> commonCoreStandards)
+        private List<CommonCoreStandardListItemModel> BuildListItemModels(IEnumerable<LearningStandard> commonCoreStandards)
         {
-            return commonCoreStandards.Select(ccss => _learningStandardToCommonCoreStandardListItemModelMapper.Build(ccss)).ToList();
+            return commonCoreStandards.Select(ccss => _learningStandardToCommonCoreStandardListItemModelMapper.Build(ccss)).OrderBy(c => c.Description).ToList();
         }
     }
 }
