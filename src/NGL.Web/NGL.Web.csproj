@@ -1806,6 +1806,9 @@
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
     <Compile Include="Models\StudentSectionAttendanceEvent\StudentModelForStudentSectionAttendanceEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="T4MVC\LearningStandardController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\LocationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1884,6 +1887,7 @@
     <EmbeddedResource Include="Data\Scripts\009 - Schema - StaffCertificate.sql" />
     <Content Include="Assets\Scripts\Views\Schedule\removeStudent.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
+    <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
     <Content Include="Assets\Scripts\Views\Shared\sessionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
     <Content Include="Assets\Scripts\Views\Shared\sectionAutocomplete.js" />
