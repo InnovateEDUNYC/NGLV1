@@ -115,7 +115,7 @@ namespace NGL.Web.Controllers
         {
             var assessment = _assessmentRepository.GetAssessmentForEnterResultsGet(id);
             
-            if (assessment == null) return View();
+            if (assessment == null) return View(MVC.Error.HttpError404());
 
             var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
 
