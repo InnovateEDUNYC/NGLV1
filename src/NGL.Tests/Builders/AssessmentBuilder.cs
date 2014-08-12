@@ -36,7 +36,7 @@ namespace NGL.Tests.Builders
                 AssessedGradeLevelDescriptorId = _assessedGradeLevelDescriptorId,
                 Version = _version,
                 AssessmentSections = _assessmentSections,
-                AdministeredDate = _administeredDate
+                AdministeredDate = _administeredDate,
             };
         }
 

@@ -9,6 +9,7 @@ namespace NGL.Web.Models.Assessment
             target.id = source.AssessmentIdentity;
             target.AssessmentTitle = source.AssessmentTitle;
             target.Date = source.AdministeredDate.ToShortDateString();
+            target.CCSS = source.AssessmentLearningStandards.First().LearningStandard.Description;
             target.SectionName = source.AssessmentSections.First().Section.UniqueSectionCode;
             target.SessionName = source.AssessmentSections.First().Section.Session.SessionName;
         }
