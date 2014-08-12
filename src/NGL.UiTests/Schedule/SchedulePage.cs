@@ -1,11 +1,8 @@
-﻿using System.Web.UI;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NGL.Web.Models.Schedule;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using Shouldly;
-using TestStack.Seleno.Configuration;
 using TestStack.Seleno.PageObjects;
-using TestStack.Seleno.PageObjects.Actions;
 
 namespace NGL.UiTests.Schedule
 {
@@ -22,8 +19,20 @@ namespace NGL.UiTests.Schedule
         public bool SectionIsVisible()
         {
             WaitFor.AjaxCallsToComplete();
-            var sectionIdDiv = Find.Element(By.ClassName("current-section-list-item"));
+            var sectionIdDiv = Find.OptionalElement(By.ClassName("current-section-list-item"));
             return sectionIdDiv != null;
+        }
+
+        public List<string> GetSections()
+        {
+            WaitFor.AjaxCallsToComplete();
+
+            return Find.Elements(By.ClassName("section-id")).Select(we => we.Text).ToList();            
+        }
+
+        public void RemoveSection(int sectionId)
+        {
+            Find.Element(By.CssSelector("[data-section-id='" + sectionId + "']")).Click();
         }
     }
 }

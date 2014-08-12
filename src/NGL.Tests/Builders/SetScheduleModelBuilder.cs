@@ -10,15 +10,8 @@ namespace NGL.Tests.Builders
         private readonly DateTime _endDate = new DateTime(2004, 8, 8);
         private string _studentName = "Jack Conway";
         private const string _profilePhotoUrl = "example.com";
-        private int _studentUsi;
-        private int _sectionId;
-
-        public SetScheduleModelBuilder()
-        {
-            _studentUsi = 443;
-            _sectionId = 11;
-        }
-
+        private int _studentUsi = 443;
+        private int _sectionId = 11;
 
         public SetModel Build()
         {
@@ -40,9 +33,9 @@ namespace NGL.Tests.Builders
             return this;
         }
 
-        public SetScheduleModelBuilder WithBeginDate(DateTime dateTime)
+        public SetScheduleModelBuilder WithSectionId(int sectionId)
         {
-            _beginDate = dateTime;
+            _sectionId = sectionId;
             return this;
         }
     }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI;
-using NGL.Tests.Builders;
+﻿using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
 using NGL.Web.Models.Schedule;
 using Shouldly;
@@ -59,7 +53,5 @@ namespace NGL.UiTests.Schedule
                 .Then(_ => IShouldSeeTheSectionAddedToListOfSections())
                 .BDDfy();
         }
-
-        
     }
 }
