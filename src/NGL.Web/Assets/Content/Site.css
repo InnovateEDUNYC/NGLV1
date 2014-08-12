@@ -132,6 +132,7 @@ form .inline input {
 
 .dl-horizontal dt {
     width: 150px;
+    text-align: left;
 }
 
 /* Schedule student page */
