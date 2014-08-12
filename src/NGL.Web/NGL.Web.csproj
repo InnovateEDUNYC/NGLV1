@@ -272,43 +272,11 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\LearningStandardController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
-    <Compile Include="Data\Entities\ApplicationRole.cs" />
-    <Compile Include="Data\Entities\AssessmentItemLearningStandard.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\AssessmentLearningStandard.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\SchemaVersion.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StaffCertificate.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\VersionLevel.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Expressions\PerformanceLevelMapperExpression.cs" />
-    <Compile Include="Data\Queries\CourseOfferingByPrimaryKeysQuery.cs" />
-    <Compile Include="Data\Queries\SectionByPrimaryKeysQuery.cs" />
-    <Compile Include="Data\Filters\SessionFilter.cs" />
-    <Compile Include="Data\Queries\SectionsBySectionNameAndSessionQuery.cs" />
-    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
-    <Compile Include="Data\Queries\StudentSectionAssociationByPrimaryKeysQuery.cs" />
-    <Compile Include="Data\Repositories\AssessmentRepository.cs" />
-    <Compile Include="Data\Queries\GradeLevelTypeDescriptorQuery.cs" />
-    <Compile Include="Data\Repositories\IAssessmentRepository.cs" />
-    <Compile Include="Extensions\BooleanExtensions.cs" />
-    <Compile Include="ImageTools\Resizer.cs" />
-    <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
-    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
-    <Compile Include="Infrastructure\Azure\IFileDownloader.cs" />
-    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
-    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -363,6 +331,7 @@
     <Compile Include="Data\Entities\AdministrativeFundingControlType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\ApplicationRole.cs" />
     <Compile Include="Data\Entities\AspNetRole.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -417,10 +386,16 @@
     <Compile Include="Data\Entities\AssessmentItemCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\AssessmentItemLearningStandard.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\AssessmentItemResultType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\AssessmentLanguage.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\AssessmentLearningStandard.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\AssessmentPerformanceLevel.cs">
@@ -1212,6 +1187,9 @@
     <Compile Include="Data\Entities\RetestIndicatorType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\SchemaVersion.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\School.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1291,6 +1269,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StaffAddress.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\StaffCertificate.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\StaffClassificationDescriptor.cs">
@@ -1584,6 +1565,9 @@
     <Compile Include="Data\Entities\TitleIPartASchoolDesignationType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\VersionLevel.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\VisaType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1593,6 +1577,25 @@
     <Compile Include="Data\Entities\WeaponType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Expressions\PerformanceLevelMapperExpression.cs" />
+    <Compile Include="Data\Queries\CourseOfferingByPrimaryKeysQuery.cs" />
+    <Compile Include="Data\Queries\SectionByPrimaryKeysQuery.cs" />
+    <Compile Include="Data\Filters\SessionFilter.cs" />
+    <Compile Include="Data\Queries\SectionsBySectionNameAndSessionQuery.cs" />
+    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
+    <Compile Include="Data\Queries\StudentSectionAssociationByPrimaryKeysQuery.cs" />
+    <Compile Include="Data\Repositories\AssessmentRepository.cs" />
+    <Compile Include="Data\Queries\GradeLevelTypeDescriptorQuery.cs" />
+    <Compile Include="Data\Repositories\IAssessmentRepository.cs" />
+    <Compile Include="Data\Repositories\ILearningStandardRepository.cs" />
+    <Compile Include="Data\Repositories\LearningStandardRepository.cs" />
+    <Compile Include="Extensions\BooleanExtensions.cs" />
+    <Compile Include="ImageTools\Resizer.cs" />
+    <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
+    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
+    <Compile Include="Infrastructure\Azure\IFileDownloader.cs" />
+    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Repositories\IStaffRepository.cs" />
     <Compile Include="Data\Repositories\StaffRepository.cs" />
     <Compile Include="Data\Entities\NglDbContext.Context.cs">
@@ -1650,6 +1653,7 @@
     <Compile Include="Models\Account\UserModel.cs" />
     <Compile Include="Models\Assessment\AssessmentToAssessmentIndexModelMapper.cs" />
     <Compile Include="Models\Assessment\AssessmentToEnterResultsModelMapper.cs" />
+    <Compile Include="Models\Assessment\CommonCoreStandardListItemModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentPerformanceLevelMapper.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentMapper.cs" />
     <Compile Include="Models\Assessment\CreateModel.cs" />
@@ -1658,6 +1662,7 @@
     <Compile Include="Models\Assessment\AssessmentResultModel.cs" />
     <Compile Include="Models\Assessment\AssessmentResultRowModel.cs" />
     <Compile Include="Models\Assessment\IndexModel.cs" />
+    <Compile Include="Models\Assessment\LearningStandardToCommonCoreStandardListItemModelMapper.cs" />
     <Compile Include="Models\Assessment\StudentAssessmentsToAssessmentResultModelMapper.cs" />
     <Compile Include="Models\Assessment\EnterResultsModel.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModel.cs" />
@@ -1879,6 +1884,7 @@
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
+    <EmbeddedResource Include="Data\Scripts\014 - Schema - Make Grade Level Nullable In Learning Standard.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

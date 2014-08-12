@@ -26,6 +26,7 @@ namespace NGL.Web.Controllers
         private readonly CreateModelToAssessmentPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
         private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
+        private readonly ILearningStandardRepository _learningStandardRepository;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -37,8 +38,7 @@ namespace NGL.Web.Controllers
             IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
             CreateModelToAssessmentPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper,
 			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
-            ProfilePhotoUrlFetcher profilePhotoUrlFetcher
-            )
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -50,6 +50,7 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
+             _learningStandardRepository = learningStandardRepository;
             _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
         }
 
@@ -69,17 +70,26 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create()
         {
-            return View();
+            var commonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
+
+            var createModel = CreateModel.CreateNewWith(commonCoreStandards);
+
+            return View(createModel);
         }
 
         //
+
         // POST: /Assessment/Create
+
         [HttpPost]
         [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
+            {
+                createModel.CommonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
                 return View(createModel);
+            }
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
             var nearMastery = _createModelToAssessmentPerformanceLevelMapper
@@ -215,5 +225,6 @@ namespace NGL.Web.Controllers
             return View(assessmentResultModel);
 		}
 
+        
     }
 }

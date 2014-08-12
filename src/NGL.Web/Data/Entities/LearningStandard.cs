@@ -38,7 +38,7 @@ namespace NGL.Web.Data.Entities
         public string Description { get; set; }
         public string LearningStandardItemCode { get; set; }
         public string URI { get; set; }
-        public int GradeLevelDescriptorId { get; set; }
+        public Nullable<int> GradeLevelDescriptorId { get; set; }
         public int AcademicSubjectDescriptorId { get; set; }
         public string CourseTitle { get; set; }
         public string SuccessCriteria { get; set; }
