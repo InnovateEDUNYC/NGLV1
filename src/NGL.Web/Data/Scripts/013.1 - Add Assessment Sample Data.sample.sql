@@ -6,7 +6,7 @@
       ,[AssessmentCategoryTypeId]
 	  ,[AdministeredDate])
 	VALUES
-	('Motor Skills Formative Assessment', 1, 119, 1, 17, '2014-08-06')
+	('Motor Skills Formative Assessment', 110, 119, 1, 17, '2014-08-06')
 
 
 declare @masteryTypeId int
@@ -32,8 +32,8 @@ INSERT INTO [edfi].[AssessmentPerformanceLevel]
 		  ,[MinimumScore]
 		  ,[ResultDatatypeTypeId])
 	VALUES
-	('Motor Skills Formative Assessment', 1, 119, 1, @masteryDescriptorId, 16, 90, 3),
-	('Motor Skills Formative Assessment', 1, 119, 1, @nearMasteryDescriptorId, 16, 70, 3)
+	('Motor Skills Formative Assessment', 110, 119, 1, @masteryDescriptorId, 16, 90, 3),
+	('Motor Skills Formative Assessment', 110, 119, 1, @nearMasteryDescriptorId, 16, 70, 3)
 
 INSERT INTO [edfi].[AssessmentSection]
            ([AssessmentTitle]
@@ -47,16 +47,7 @@ INSERT INTO [edfi].[AssessmentSection]
            ,[TermTypeId]
            ,[SchoolYear])
      VALUES
-	 ('Motor Skills Formative Assessment', 1, 119, 1, 1, 'Period 3', 'Room 207', 'ENGL400 - DI', 1, 2014);
-
-INSERT INTO [dbo].[AssessmentLearningStandard]
-           ([AssessmentTitle]
-           ,[AcademicSubjectDescriptorId]
-           ,[AssessedGradeLevelDescriptorId]
-           ,[Version]
-           ,[LearningStandardId])
-     VALUES 
-	 ('Motor Skills Formative Assessment', 1, 119, 1, '0577C84400AC4c478DE39F9D0C81416B')
+	 ('Motor Skills Formative Assessment', 110, 119, 1, 1, 'Period 3', 'Room 207', 'ENGL400 - DI', 1, 2014);
 
 /* Assessment Results */
 
@@ -68,8 +59,8 @@ INSERT INTO [edfi].[StudentAssessment]
            ,[Version]
            ,[AdministrationDate])
      VALUES 
-	 (999 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06'),
-	 (1000 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06')
+	 (999 ,'Motor Skills Formative Assessment', 110, 119, 1,'2014-08-06'),
+	 (1000 ,'Motor Skills Formative Assessment', 110, 119, 1,'2014-08-06')
 
 
 INSERT INTO [edfi].[StudentAssessmentScoreResult]
@@ -83,5 +74,5 @@ INSERT INTO [edfi].[StudentAssessmentScoreResult]
            ,[Result]
            ,[ResultDatatypeTypeId])
      VALUES
-	(999 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06', 16, 83, 3),
-    (1000 ,'Motor Skills Formative Assessment', 1, 119, 1,'2014-08-06', 16, 61, 3)
+	(999 ,'Motor Skills Formative Assessment', 110, 119, 1,'2014-08-06', 16, 83, 3),
+    (1000 ,'Motor Skills Formative Assessment', 110, 119, 1,'2014-08-06', 16, 61, 3)
