@@ -62,6 +62,12 @@ namespace NGL.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult RemoveStudent()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.RemoveStudent);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult ScheduleStudent()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ScheduleStudent);
@@ -89,6 +95,7 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Set = "Set";
+            public readonly string RemoveStudent = "RemoveStudent";
             public readonly string ScheduleStudent = "ScheduleStudent";
             public readonly string GetSections = "GetSections";
         }
@@ -97,6 +104,7 @@ namespace NGL.Web.Controllers
         public class ActionNameConstants
         {
             public const string Set = "Set";
+            public const string RemoveStudent = "RemoveStudent";
             public const string ScheduleStudent = "ScheduleStudent";
             public const string GetSections = "GetSections";
         }
@@ -109,6 +117,14 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Set
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_RemoveStudent s_params_RemoveStudent = new ActionParamsClass_RemoveStudent();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RemoveStudent RemoveStudentParams { get { return s_params_RemoveStudent; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RemoveStudent
+        {
+            public readonly string studentSectionId = "studentSectionId";
         }
         static readonly ActionParamsClass_ScheduleStudent s_params_ScheduleStudent = new ActionParamsClass_ScheduleStudent();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -157,6 +173,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Set);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             SetOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RemoveStudentOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int studentSectionId);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult RemoveStudent(int studentSectionId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.RemoveStudent);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentSectionId", studentSectionId);
+            RemoveStudentOverride(callInfo, studentSectionId);
             return callInfo;
         }
 

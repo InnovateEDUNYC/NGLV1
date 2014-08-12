@@ -91,6 +91,9 @@
                             <span class="scheduled-section-begin-date">@item.BeginDate</span> -
                             <span class="scheduled-section-end-date">@item.EndDate</span>
                         </td>
+                        <td class="delete-row-btn">
+                            <div data-student-section-id="@item.StudentSectionId" class="glyphicon glyphicon-remove remove-student"></div>
+                        </td>
                         <td class="hidden section-id">@item.SectionId</td>
                     </tr>
                     <tr class="spacer"></tr>
@@ -103,4 +106,5 @@
 @section Scripts {
     Ngl.schedule.setSchedule.init();
     Ngl.shared.sectionAutocomplete.init();
+    Ngl.schedule.removeStudent.init();
 }

@@ -19,27 +19,34 @@ namespace NGL.Web.Controllers
     public partial class ScheduleController : Controller
     {
         private readonly IGenericRepository _genericRepository;
-        private readonly ISchoolRepository _schoolRepository;
+        private readonly IStudentSectionRepository _studentSectionRepository;
+        private readonly IAssessmentSectionRepository _assessmentSectionRepository;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly IMapper<Session, SessionListItemModel> _sessionToSessionListItemModelMapper;
         private readonly IMapper<Section, AutocompleteModel> _sectionToAutocompleteModelMapper;
         private readonly IMapper<StudentSectionAssociation, SectionListItemModel> _studentSectionAssociationToSectionListItemModelMapper;
         private readonly IMapper<SetModel, StudentSectionAssociation> _setModelToStudentSectionAssociationMapper;
+        private readonly IStudentSectionAttendanceRepository _studentSectionAttendanceRepositoryRepository;
 
         public ScheduleController(IGenericRepository genericRepository,
-            ISchoolRepository schoolRepository,
+            IStudentSectionRepository studentSectionRepository,
+            IAssessmentSectionRepository assessmentSectionRepository,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, 
             IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper,
             IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper,
-            IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper, IMapper<SetModel, StudentSectionAssociation> setModelToStudentSectionAssociationMapper)
+            IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper, 
+            IMapper<SetModel, StudentSectionAssociation> setModelToStudentSectionAssociationMapper, 
+            IStudentSectionAttendanceRepository studentSectionAttendanceRepositoryRepository)
         {
             _genericRepository = genericRepository;
-            _schoolRepository = schoolRepository;
+            _studentSectionRepository = studentSectionRepository;
+            _assessmentSectionRepository = assessmentSectionRepository;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
             _sessionToSessionListItemModelMapper = sessionToSessionListItemModelMapper;
             _sectionToAutocompleteModelMapper = sectionToAutocompleteModelMapper;
             _studentSectionAssociationToSectionListItemModelMapper = studentSectionAssociationToSectionListItemModelMapper;
             _setModelToStudentSectionAssociationMapper = setModelToStudentSectionAssociationMapper;
+            _studentSectionAttendanceRepositoryRepository = studentSectionAttendanceRepositoryRepository;
         }
 
         // GET: /Get/5
@@ -56,18 +63,29 @@ namespace NGL.Web.Controllers
             return View(setModel);
         }
 
-        private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUSI)
+        [HttpPost]
+        public virtual JsonResult RemoveStudent(int studentSectionId)
         {
-            var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
-                .Where(ssa => ssa.StudentUSI == studentUSI);
-            var currentlyEnrolledSections = new List<SectionListItemModel>();
+            var studentSectionAssociation = _studentSectionRepository.GetByIdentity(studentSectionId);
+            var relatedAssessmentSections = _assessmentSectionRepository.GetByStudentSectionAssociation(studentSectionAssociation);
+            var relatedStudentSectionAttendance = _studentSectionAttendanceRepositoryRepository.GetByStudentSectionAssociation(studentSectionAssociation);
 
-            foreach (StudentSectionAssociation ssa in currentlyEnrolledStudentSectionAssociationEntities)
+            if (relatedAssessmentSections.IsNullOrEmpty() && relatedStudentSectionAttendance.IsNullOrEmpty())
             {
-                currentlyEnrolledSections.Add(_studentSectionAssociationToSectionListItemModelMapper.Build(ssa));
+                _studentSectionRepository.Delete(studentSectionAssociation);
+                return Json(new { DeletedCompletely = true}, JsonRequestBehavior.AllowGet);
             }
+                
+            var endDate = EarliestOf(studentSectionAssociation.EndDate.Value,  DateTime.Now.Date);
+            studentSectionAssociation.EndDate = endDate;
+            _genericRepository.Save();
 
-            return currentlyEnrolledSections;
+            return Json(new {DeletedCompletely = false, EndDate = endDate.ToShortDateString()}, JsonRequestBehavior.AllowGet);
+        }
+
+        private DateTime EarliestOf(DateTime first, DateTime second)
+        {
+            return new DateTime(Math.Min(first.Ticks, second.Ticks));
         }
 
         // AJAX POST: /ScheduleStudent/
@@ -97,6 +115,20 @@ namespace NGL.Web.Controllers
         {
             var autoCompleteModels = GetAllSectionAutocompleteModelsWith(searchString, sessionId);
             return Json(autoCompleteModels, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUSI)
+        {
+            var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
+                .Where(ssa => ssa.StudentUSI == studentUSI);
+            var currentlyEnrolledSections = new List<SectionListItemModel>();
+
+            foreach (StudentSectionAssociation ssa in currentlyEnrolledStudentSectionAssociationEntities)
+            {
+                currentlyEnrolledSections.Add(_studentSectionAssociationToSectionListItemModelMapper.Build(ssa));
+            }
+
+            return currentlyEnrolledSections;
         }
 
         private IEnumerable<AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString, int sessionId)

@@ -229,3 +229,7 @@ form .inline input {
     background-color: #5CB4B4;
     border-color: #5CB4B4;
 }
+
+.delete-row-btn {
+    cursor:pointer
+}

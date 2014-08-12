@@ -277,6 +277,12 @@
     <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
+    <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\StudentSectionAttendanceRepository.cs" />
+    <Compile Include="Data\Repositories\StudentSectionRepository.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
@@ -1876,6 +1882,7 @@
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
     <EmbeddedResource Include="Data\Scripts\009 - Schema - StaffCertificate.sql" />
+    <Content Include="Assets\Scripts\Views\Schedule\removeStudent.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Shared\sessionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
