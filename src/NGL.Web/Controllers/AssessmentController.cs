@@ -98,6 +98,8 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
+        //
+        // GET: /Assessment/EnterResults/1/
         public virtual ActionResult EnterResults(int id)
         {
             var assessment = _genericRepository.Get<Assessment>(
@@ -113,6 +115,8 @@ namespace NGL.Web.Controllers
             return View(enterResultsModel);
         }
 
+        //
+        // POST: /Assessment/EnterResults/1/
         [HttpPost]
         public virtual ActionResult EnterResults(EnterResultsModel enterResultsModel)
         {
@@ -123,21 +127,16 @@ namespace NGL.Web.Controllers
                 a => a.StudentAssessments,
                 a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults)
             );
-            var currentStudentAssessments = assessment.StudentAssessments;
-            var newStudentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
-            foreach (var enterResultsStudentModel in enterResultsStudentModels)
-            {
-                AddToStudentAssessmentScoreResults(newStudentAssessmentScoreResults, enterResultsStudentModel, assessment);
-                AddToStudentAssessments(currentStudentAssessments.ToList(), enterResultsStudentModel, assessment);
-            }
 
+            var currentStudentAssessments = assessment.StudentAssessments;
             if (currentStudentAssessments.IsNullOrEmpty())
-                AddStudentAssessmentScoreResults(currentStudentAssessments, newStudentAssessmentScoreResults);
+            {
+                CreateStudentAssessmentScoreResults(enterResultsStudentModels, assessment);
+            }
             else
             {
-                var oldScoreResults =
-                    assessment.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults.First());
-                UpdateStudentAssessmentScoreResults(oldScoreResults, newStudentAssessmentScoreResults);
+                var currentStudentAssessmentScoreResults = currentStudentAssessments.Select(sa => sa.StudentAssessmentScoreResults.First());
+                UpdateStudentAssessmentScoreResults(currentStudentAssessmentScoreResults, enterResultsStudentModels);
             }
 
             _genericRepository.Save();
@@ -145,49 +144,29 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
-        private void UpdateStudentAssessmentScoreResults(IEnumerable<StudentAssessmentScoreResult> oldScoreResults, List<StudentAssessmentScoreResult> newStudentAssessmentScoreResults)
+        private void UpdateStudentAssessmentScoreResults(IEnumerable<StudentAssessmentScoreResult> currentResultEntities, List<EnterResultsStudentModel> newResultModels)
         {
-            foreach (var oldScoreResult in oldScoreResults)
+            foreach (var currentResultEntity in currentResultEntities)
             {
-                var newScoreResult =
-                    newStudentAssessmentScoreResults.First(
-                        studentScoreResult => studentScoreResult.StudentUSI == oldScoreResult.StudentUSI);
-                oldScoreResult.Result = newScoreResult.Result;
+                var newResultModel =
+                    newResultModels.First(
+                        studentScoreResult => studentScoreResult.StudentUsi == currentResultEntity.StudentUSI);
+                currentResultEntity.Result = newResultModel.AssessmentResult;
             }
         }
 
-        private void AddStudentAssessmentScoreResults(ICollection<StudentAssessment> currentStudentAssessments,
-            List<StudentAssessmentScoreResult> newStudentAssessmentScoreResults)
+        private void CreateStudentAssessmentScoreResults(IEnumerable<EnterResultsStudentModel> enterResultsStudentModels, Assessment assessment)
         {
-            foreach (var studentAssessment in currentStudentAssessments)
+            foreach (EnterResultsStudentModel enterResultsStudentModel in enterResultsStudentModels)
             {
-                _genericRepository.Add(studentAssessment);
-            }
-            foreach (var studentAssessmentScoreResult in newStudentAssessmentScoreResults)
-            {
-                _genericRepository.Add(studentAssessmentScoreResult);
+                AddStudentAssessment(assessment, enterResultsStudentModel);
+                AddStudentAssessmentScoreResult(assessment, enterResultsStudentModel);
             }
         }
 
-        private void AddToStudentAssessmentScoreResults(List<StudentAssessmentScoreResult> studentAssessmentScoreResults,
-            EnterResultsStudentModel enterResultsStudentModel, Assessment assessment)
+        private void AddStudentAssessment(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel)
         {
-            studentAssessmentScoreResults.Add(
-                _enterResultsStudentModelToStudentAssessmentScoreResultMapper.Build(enterResultsStudentModel, asr =>
-                {
-                    asr.AssessmentTitle = assessment.AssessmentTitle;
-                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    asr.Version = assessment.Version;
-                    asr.AdministrationDate = assessment.AdministeredDate;
-                }));
-        }
-
-        private void AddToStudentAssessments(List<StudentAssessment> studentAssessments, EnterResultsStudentModel enterResultsStudentModel,
-            Assessment assessment)
-        {
-            studentAssessments.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(
-                enterResultsStudentModel,
+            _genericRepository.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(enterResultsStudentModel,
                 sa =>
                 {
                     sa.AssessmentTitle = assessment.AssessmentTitle;
@@ -198,7 +177,20 @@ namespace NGL.Web.Controllers
                 }));
         }
 
-	    [AuthorizeFor(Resource = "assessment", Operation = "view")]
+        private void AddStudentAssessmentScoreResult(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel)
+        {
+            _genericRepository.Add(_enterResultsStudentModelToStudentAssessmentScoreResultMapper.Build(enterResultsStudentModel,
+                asr =>
+                {
+                    asr.AssessmentTitle = assessment.AssessmentTitle;
+                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
+                    asr.Version = assessment.Version;
+                    asr.AdministrationDate = assessment.AdministeredDate;
+                }));
+        }
+
+        [AuthorizeFor(Resource = "assessment", Operation = "view")]
         public virtual ActionResult Result(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 7)
         {
             var assessmentResultModel = new AssessmentResultModel();
