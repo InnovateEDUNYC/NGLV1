@@ -7,7 +7,7 @@ namespace NGL.Web.Models.Assessment
 {
     public class EnterResultsModel
     {
-        public List<EnterResultsStudentModel> Students { get; set; }
+        public List<EnterResultsStudentModel> StudentResults { get; set; }
         public int AssessmentId { get; set; }
         public string Session { get; set; }
         public string Section { get; set; }

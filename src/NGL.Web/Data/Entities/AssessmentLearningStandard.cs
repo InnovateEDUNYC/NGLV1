@@ -29,7 +29,6 @@ namespace NGL.Web.Data.Entities
         public string LearningStandardId { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public int LearningStandardIdentity { get; set; }
     
         public virtual Assessment Assessment { get; set; }
         public virtual LearningStandard LearningStandard { get; set; }

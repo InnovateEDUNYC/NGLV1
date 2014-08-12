@@ -186,3 +186,46 @@ form .inline input {
 .section-searchbox-container > input {
     width: 100%;
 }
+
+/* Assessment Page */
+
+.enter-mastery {
+    max-width: 330px;
+}
+
+.enter-mastery .form-control {
+    max-width: 100px;
+}
+
+.panel-gray {
+    background-color: #f7f7f9;
+    padding: 10px;
+}
+
+.table-report > tbody> tr > td {
+    border-top: 10px solid #f7f7f9;
+    border-right: 2px solid #f7f7f9;
+    background-color: white;
+}
+
+.table-report > tbody > tr > th {
+    border-top: 10px solid #f7f7f9;
+    border-right: 2px solid #f7f7f9;
+    background-color: #2DBCBB;
+    color: white
+}
+
+.btn-primary {
+    background-color: #2DBCBB;
+    border-color: #2DBCBB;
+}
+
+.btn-primary:hover {
+    background-color: #249695;
+    border-color: #249695;
+}
+
+.btn-primary[disabled], .btn-primary:disabled {
+    background-color: #5CB4B4;
+    border-color: #5CB4B4;
+}

@@ -7,5 +7,7 @@ namespace NGL.Web.Data.Repositories
     public interface IAssessmentRepository
     {
         IEnumerable<StudentAssessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate);
+        IEnumerable<Assessment> GetAssessments();
+        void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery);
     }
 }

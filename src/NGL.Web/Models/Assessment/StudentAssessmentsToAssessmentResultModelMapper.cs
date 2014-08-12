@@ -12,6 +12,7 @@ namespace NGL.Web.Models.Assessment
         {
             var assessmentResultModel = new AssessmentResultModel();
 
+            assessmentResultModel.DateRange = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
             assessmentResultModel.AssessmentResultRows = studentAssessments.Select(sa => CreateAssessmentResultRow(sa, startDate, endDate)).ToList();
 
             return assessmentResultModel;
@@ -21,7 +22,7 @@ namespace NGL.Web.Models.Assessment
         {
             var results = new List<string>();
 
-            while (startDate < endDate)
+            while (startDate <= endDate)
             {
                 if (studentAssessment.AdministrationDate == startDate)
                 {
@@ -35,9 +36,13 @@ namespace NGL.Web.Models.Assessment
                 startDate = startDate.AddDays(1);
             }
 
+            var commonCoreStandard = studentAssessment.Assessment.AssessmentLearningStandards.First().LearningStandard.Description;
+            var sectionCode = studentAssessment.Assessment.AssessmentSections.First().Section.UniqueSectionCode;
+
             return new AssessmentResultRowModel
             {
-                CommonCoreStandard = studentAssessment.Assessment.AssessmentLearningStandards.First().LearningStandard.Description,
+                CommonCoreStandard = commonCoreStandard,
+                SectionCode = sectionCode,
                 Results = results
             };
         }

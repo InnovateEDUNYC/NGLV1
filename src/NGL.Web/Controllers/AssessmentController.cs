@@ -1,14 +1,14 @@
 ﻿using System.Web.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
-using NGL.Web.Data.Queries;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
+using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -19,12 +19,14 @@ namespace NGL.Web.Controllers
         private readonly IAssessmentRepository _assessmentRepository;
         private readonly StudentAssessmentsToAssessmentResultModelMapper _studentAssessmentsToAssessmentResultModelMapper;
         private readonly IMapper<Assessment, EnterResultsModel> _assessmentToEnterResultsModelMapper;
-
         private readonly IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
             _enterResultsStudentModelToStudentAssessmentScoreResultMapper;
-
         private readonly IMapper<EnterResultsStudentModel, StudentAssessment>
             _enterResultsStudentModelToStudentAssessmentMapper;
+        private readonly CreateModelToAssessmentPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
+        private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
+        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
+        private readonly ILearningStandardRepository _learningStandardRepository;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -33,7 +35,10 @@ namespace NGL.Web.Controllers
             IMapper<Assessment, EnterResultsModel> assessmentToEnterResultsModelMapper,
             IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper,
-            IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper)
+            IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
+            CreateModelToAssessmentPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper,
+			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -43,87 +48,136 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentScoreResultMapper =
                 enterResultsStudentModelToStudentAssessmentScoreResultMapper;
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
+            _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
+            _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
+             _learningStandardRepository = learningStandardRepository;
+            _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
+        }
+
+        //
+        // GET: /Assessment/
+        public virtual ActionResult Index()
+        {
+            var assessments = _assessmentRepository.GetAssessments();
+
+            var assessmentIndexModels = assessments.Select(a => _assessmentToAssessmentIndexModelMapper.Build(a));
+
+            return View(assessmentIndexModels);
         }
 
         //
         // GET: /Assessment/Create
+        [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create()
         {
-            return View();
+            var commonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
+
+            var createModel = CreateModel.CreateNewWith(commonCoreStandards);
+
+            return View(createModel);
         }
 
         //
+
         // POST: /Assessment/Create
+
         [HttpPost]
+        [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
+            {
+                createModel.CommonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
                 return View(createModel);
+            }
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
-            _genericRepository.Add(assessment);
-            _genericRepository.Save();
+            var nearMastery = _createModelToAssessmentPerformanceLevelMapper
+                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
+            var mastery = _createModelToAssessmentPerformanceLevelMapper
+                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
+            _assessmentRepository.Save(assessment, nearMastery, mastery);
             return RedirectToAction(MVC.Home.Index());
         }
 
-        public virtual ActionResult EnterResults(int assessmentId)
+        private void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
+        {
+            _genericRepository.Add(assessment);
+            _genericRepository.Add(nearMastery);
+            _genericRepository.Add(mastery);
+            _genericRepository.Save();
+        }
+
+        //
+        // GET: /Assessment/EnterResults/1/
+        public virtual ActionResult EnterResults(int id)
         {
             var assessment = _genericRepository.Get<Assessment>(
-                a => a.AssessmentIdentity == assessmentId,
+                a => a.AssessmentIdentity == id,
                 a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)),
-                a => a.AssessmentSections.Select(asa => asa.Section.Session));
+                a => a.AssessmentSections.Select(asa => asa.Section.Session),
+                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults));
 
             if (assessment == null) return View();
 
             var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
+
             return View(enterResultsModel);
         }
 
+        //
+        // POST: /Assessment/EnterResults/1/
         [HttpPost]
         public virtual ActionResult EnterResults(EnterResultsModel enterResultsModel)
         {
-            var enterResultsStudentModels = enterResultsModel.Students;
+            var enterResultsStudentModels = enterResultsModel.StudentResults;
             var assessmentId = enterResultsModel.AssessmentId;
-            var assessment = _genericRepository.Get<Data.Entities.Assessment>(
+            var assessment = _genericRepository.Get<Assessment>(
                 a => a.AssessmentIdentity == assessmentId,
-                a => a.StudentAssessments);
-            var studentAssessments = assessment.StudentAssessments;
-            var studentAssessmentScoreResults = new List<StudentAssessmentScoreResult>();
-            foreach (var enterResultsStudentModel in enterResultsStudentModels)
+                a => a.StudentAssessments,
+                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults)
+            );
+
+            var currentStudentAssessments = assessment.StudentAssessments;
+            if (currentStudentAssessments.IsNullOrEmpty())
             {
-                AddToStudentAssements(studentAssessments, enterResultsStudentModel, assessment);
-                AddToStudentAssessmentScoreResults(studentAssessmentScoreResults, enterResultsStudentModel, assessment);
+                CreateStudentAssessmentScoreResults(enterResultsStudentModels, assessment);
+            }
+            else
+            {
+                var currentStudentAssessmentScoreResults = currentStudentAssessments.Select(sa => sa.StudentAssessmentScoreResults.First());
+                UpdateStudentAssessmentScoreResults(currentStudentAssessmentScoreResults, enterResultsStudentModels);
             }
 
-            foreach (var studentAssessmentScoreResult in studentAssessmentScoreResults)
-                _genericRepository.Add(studentAssessmentScoreResult);
-            foreach (var studentAssessment in studentAssessments)
-                _genericRepository.Add(studentAssessment);
             _genericRepository.Save();
 
             return RedirectToAction(MVC.Home.Index());
         }
 
-        private void AddToStudentAssessmentScoreResults(List<StudentAssessmentScoreResult> studentAssessmentScoreResults,
-            EnterResultsStudentModel enterResultsStudentModel, Assessment assessment)
+        private void UpdateStudentAssessmentScoreResults(IEnumerable<StudentAssessmentScoreResult> currentResultEntities, List<EnterResultsStudentModel> newResultModels)
         {
-            studentAssessmentScoreResults.Add(
-                _enterResultsStudentModelToStudentAssessmentScoreResultMapper.Build(enterResultsStudentModel, asr =>
-                {
-                    asr.AssessmentTitle = assessment.AssessmentTitle;
-                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    asr.Version = assessment.Version;
-                    asr.AdministrationDate = assessment.AdministeredDate;
-                }));
+            foreach (var currentResultEntity in currentResultEntities)
+            {
+                var newResultModel =
+                    newResultModels.First(
+                        studentScoreResult => studentScoreResult.StudentUsi == currentResultEntity.StudentUSI);
+                currentResultEntity.Result = newResultModel.AssessmentResult;
+            }
         }
 
-        private void AddToStudentAssements(ICollection<StudentAssessment> studentAssessments, EnterResultsStudentModel enterResultsStudentModel,
-            Assessment assessment)
+        private void CreateStudentAssessmentScoreResults(IEnumerable<EnterResultsStudentModel> enterResultsStudentModels, Assessment assessment)
         {
-            studentAssessments.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(
-                enterResultsStudentModel,
+            foreach (EnterResultsStudentModel enterResultsStudentModel in enterResultsStudentModels)
+            {
+                AddStudentAssessment(assessment, enterResultsStudentModel);
+                AddStudentAssessmentScoreResult(assessment, enterResultsStudentModel);
+            }
+        }
+
+        private void AddStudentAssessment(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel)
+        {
+            _genericRepository.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(enterResultsStudentModel,
                 sa =>
                 {
                     sa.AssessmentTitle = assessment.AssessmentTitle;
@@ -134,28 +188,43 @@ namespace NGL.Web.Controllers
                 }));
         }
 
+        private void AddStudentAssessmentScoreResult(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel)
+        {
+            _genericRepository.Add(_enterResultsStudentModelToStudentAssessmentScoreResultMapper.Build(enterResultsStudentModel,
+                asr =>
+                {
+                    asr.AssessmentTitle = assessment.AssessmentTitle;
+                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
+                    asr.Version = assessment.Version;
+                    asr.AdministrationDate = assessment.AdministeredDate;
+                }));
+        }
 
-        public virtual ActionResult Result(int studentUsi, int? sessionId, int week = 1)
-		{
-            var assessmentResultModel = new AssessmentResultModel { StudentUsi = studentUsi};
+        [AuthorizeFor(Resource = "assessment", Operation = "view")]
+        public virtual ActionResult Result(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 7)
+        {
+            var assessmentResultModel = new AssessmentResultModel();
 
-            if (sessionId == null)
+            if (sessionId != null)
             {
-                return View(assessmentResultModel);
+                var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
+                var startDate = session.BeginDate.AddDays(dayFrom - 1);
+                var endDate = session.BeginDate.AddDays(dayTo - 1);
+
+                var studentAssessments = _assessmentRepository.GetAssessmentResults(studentUsi, startDate, endDate);
+                assessmentResultModel = _studentAssessmentsToAssessmentResultModelMapper.Map(studentAssessments, startDate, endDate);
+                assessmentResultModel.Session = session.SessionName;
             }
 
-            // todo - handle months
-            var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
-            var startDate = session.BeginDate.AddDays((week - 1) * 7);
-            var endDate = startDate.AddDays(7);
+	        var student = _genericRepository.Get<Student>(s => s.StudentUSI == studentUsi);
+	        var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(student);
 
-            var studentAssessments = _assessmentRepository.GetAssessmentResults(assessmentResultModel.StudentUsi, startDate, endDate);
-            assessmentResultModel = _studentAssessmentsToAssessmentResultModelMapper.Map(studentAssessments, startDate, endDate);
-            assessmentResultModel.StudentUsi = studentUsi;
-            assessmentResultModel.SessionId = sessionId;
-            assessmentResultModel.Week = week;
+	        assessmentResultModel.Update(student, profilePhotoUrl, sessionId, dayFrom, dayTo);
 
             return View(assessmentResultModel);
 		}
-	}
+
+        
+    }
 }

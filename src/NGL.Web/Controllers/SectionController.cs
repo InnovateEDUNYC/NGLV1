@@ -147,7 +147,7 @@ namespace NGL.Web.Controllers
             var courseOfferingByPrimaryKeysQuery = new CourseOfferingByPrimaryKeysQuery(createModel.Course,
                 session.SchoolYear, session.TermTypeId);
 
-            if (_genericRepository.Get(courseOfferingByPrimaryKeysQuery) == null)
+            if (CourseOfferingNeedsToBeCreated(courseOfferingByPrimaryKeysQuery))
             {
                 var courseOffering = _createModelToCourseOfferingMapper.Build(createModel);
                 _genericRepository.Add(courseOffering);
@@ -155,6 +155,11 @@ namespace NGL.Web.Controllers
 
             _genericRepository.Add(section);
             _genericRepository.Save();
+        }
+
+        private bool CourseOfferingNeedsToBeCreated(CourseOfferingByPrimaryKeysQuery courseOfferingByPrimaryKeysQuery)
+        {
+            return _genericRepository.Get(courseOfferingByPrimaryKeysQuery) == null;
         }
     }
 }

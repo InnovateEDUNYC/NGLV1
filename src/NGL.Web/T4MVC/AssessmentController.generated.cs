@@ -82,6 +82,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string Index = "Index";
             public readonly string Create = "Create";
             public readonly string EnterResults = "EnterResults";
             public readonly string Result = "Result";
@@ -90,6 +91,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string Index = "Index";
             public const string Create = "Create";
             public const string EnterResults = "EnterResults";
             public const string Result = "Result";
@@ -110,7 +112,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_EnterResults
         {
-            public readonly string assessmentId = "assessmentId";
+            public readonly string id = "id";
             public readonly string enterResultsModel = "enterResultsModel";
         }
         static readonly ActionParamsClass_Result s_params_Result = new ActionParamsClass_Result();
@@ -121,7 +123,8 @@ namespace NGL.Web.Controllers
         {
             public readonly string studentUsi = "studentUsi";
             public readonly string sessionId = "sessionId";
-            public readonly string week = "week";
+            public readonly string dayFrom = "dayFrom";
+            public readonly string dayTo = "dayTo";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -149,6 +152,17 @@ namespace NGL.Web.Controllers
         public T4MVC_AssessmentController() : base(Dummy.Instance) { }
 
         [NonAction]
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Index()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
@@ -172,14 +186,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void EnterResultsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int assessmentId);
+        partial void EnterResultsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult EnterResults(int assessmentId)
+        public override System.Web.Mvc.ActionResult EnterResults(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResults);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "assessmentId", assessmentId);
-            EnterResultsOverride(callInfo, assessmentId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EnterResultsOverride(callInfo, id);
             return callInfo;
         }
 
@@ -196,16 +210,17 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int week);
+        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int dayFrom, int dayTo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int week)
+        public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int dayFrom, int dayTo)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "week", week);
-            ResultOverride(callInfo, studentUsi, sessionId, week);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayFrom", dayFrom);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayTo", dayTo);
+            ResultOverride(callInfo, studentUsi, sessionId, dayFrom, dayTo);
             return callInfo;
         }
 

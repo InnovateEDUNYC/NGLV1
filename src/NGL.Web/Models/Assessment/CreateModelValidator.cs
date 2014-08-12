@@ -21,6 +21,9 @@ namespace NGL.Web.Models.Assessment
             RuleFor(m => m.QuestionType).NotEmpty();
             RuleFor(m => m.GradeLevel).NotEmpty();
             RuleFor(m => m.AdministeredDate).NotNull();
+            RuleFor(m => m.ReportingMethod).NotEmpty();
+            RuleFor(m => m.NearMastery).NotEmpty().LessThan(m => m.Mastery);
+            RuleFor(m => m.Mastery).NotEmpty().GreaterThan(m => m.NearMastery).LessThanOrEqualTo(100m);
         }
 
         public override ValidationResult Validate(ValidationContext<CreateModel> context)
@@ -42,7 +45,6 @@ namespace NGL.Web.Models.Assessment
                     new ValidationFailure(createModel.GetNameFor(s => s.Section),
                         "This section could not be found");
             }
-
 
             if (assessment != null)
             {

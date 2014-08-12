@@ -11,31 +11,62 @@
 {
     using (var s = f.BeginSection(""))
     {
+        @s.FieldFor(m => m.Session)
         <div class="hidden">
             @s.FieldFor(m => m.SessionId)
         </div>
 
-        @s.FieldFor(m => m.Session)
-    
-    
         @s.FieldFor(m => m.Section)
-@*        <div class="form-group">*@
-@*            <label class="control-label">*@
-//                Section
-//            </label>
-@*            <input class="form-control" type="text" data-val="true" id="Section" />*@
-            <div class="hidden">
-                @s.FieldFor(m => m.SectionId)
-            </div>
-//        </div>
-    @s.FieldFor(m => m.AssessmentTitle)
-    @s.FieldFor(m => m.AdministeredDate)
-    @s.FieldFor(m => m.QuestionType)
-    @s.FieldFor(m => m.GradeLevel)
-    
-    
+        <div class="hidden">
+            @s.FieldFor(m => m.SectionId)
+        </div>
+
+        @s.FieldFor(m => m.AssessmentTitle)
+        @s.FieldFor(m => m.AdministeredDate)
+        @s.FieldFor(m => m.QuestionType)
+        @s.FieldFor(m => m.GradeLevel)
+    }
+    using (var s = f.BeginSection("Learning Standards"))
+    {
+        <div class="form-group">
+            <label class="control-label" for="LearningStandard">Learning Standard</label>                     
+            <select class="form-control" id="LearningStandard">
+                <option selected="selected" value=""></option>
+                <optgroup label="ELA-Literacy">
+                    <option value="Reading">Reading</option>
+                    <option value="Writing">Writing</option>
+                    <option value="Speaking + Listening">Speaking + Listening</option>
+                </optgroup>
+                <optgroup label="Math">
+                    <option value="Content">Content</option>
+                    <option value="Practice">Practice</option>
+                </optgroup>
+            </select>
+        </div>
+
+        @s.FieldFor(m => m.CommonCoreStandard)
     }
 
+
+    using (var t = f.BeginSection("Set Assessment"))
+    {
+
+        <div class="form-group">
+            <label class="control-label" for="ReportingMethod">Reporting method</label>
+            <select class="form-control" id="ReportingMethod" name="ReportingMethod">
+                <option selected="selected" value="Percentile">Percentile</option>
+            </select>
+            <span class="field-validation-valid help-block" data-valmsg-for="ReportingMethod" data-valmsg-replace="true"></span>
+        </div>
+    
+        <div class="enter-mastery">          
+            @t.FieldFor(m => m.Mastery)
+            @t.FieldFor(m => m.NearMastery)
+        </div>
+    }
+
+    
+    
     using (var n = f.BeginNavigation())
     {
         @n.Submit("Create")

@@ -2,6 +2,7 @@
 using Humanizer;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models.Student;
 using NSubstitute;
