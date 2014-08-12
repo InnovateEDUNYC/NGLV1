@@ -98,7 +98,7 @@ namespace NGL.Web.Controllers
                 .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
             _assessmentRepository.Save(assessment, nearMastery, mastery);
-            return RedirectToAction(MVC.Home.Index());
+            return RedirectToAction(MVC.Assessment.Index());
         }
 
         //
