@@ -7,15 +7,10 @@ namespace NGL.Web.Data.Repositories
     public class StudentSectionRepository : RepositoryBase, IStudentSectionRepository
     {
         public StudentSectionRepository(INglDbContext dbContext) : base(dbContext) { }
-        public void DeleteByIdentity(int studentSectionIdentity)
+        public void Delete(StudentSectionAssociation studentSectionAssociation)
         {
-            var existing = DbContext.Set<StudentSectionAssociation>().SingleOrDefault(ssa => ssa.StudentSectionAssociationIdentity == studentSectionIdentity);
-
-            if (existing != null)
-            {
-                DbContext.Set<StudentSectionAssociation>().Remove(existing);
+                DbContext.Set<StudentSectionAssociation>().Remove(studentSectionAssociation);
                 DbContext.Save();
-            }
         }
 
         public StudentSectionAssociation GetByIdentity(int studentSectionIdentity)

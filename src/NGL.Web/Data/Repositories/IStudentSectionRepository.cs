@@ -4,7 +4,7 @@ namespace NGL.Web.Data.Repositories
 {
     public interface IStudentSectionRepository
     {
-        void DeleteByIdentity(int studentSectionIdentity);
+        void Delete(StudentSectionAssociation studentSectionAssociation);
         StudentSectionAssociation GetByIdentity(int studentSectionIdentity);
     }
 }

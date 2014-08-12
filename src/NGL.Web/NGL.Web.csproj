@@ -304,7 +304,9 @@
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\StudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionRepository.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />

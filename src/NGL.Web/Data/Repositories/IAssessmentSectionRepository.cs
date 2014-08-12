@@ -5,6 +5,6 @@ namespace NGL.Web.Data.Repositories
 {
     public interface IAssessmentSectionRepository
     {
-        List<AssessmentSection> GetByStudentSectionAssociation(StudentSectionAssociation studentSectionAssociation);
+        IEnumerable<AssessmentSection> GetByStudentSectionAssociation(StudentSectionAssociation studentSectionAssociation);
     }
 }

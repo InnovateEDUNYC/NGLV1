@@ -26,6 +26,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Section, AutocompleteModel> _sectionToAutocompleteModelMapper;
         private readonly IMapper<StudentSectionAssociation, SectionListItemModel> _studentSectionAssociationToSectionListItemModelMapper;
         private readonly IMapper<SetModel, StudentSectionAssociation> _setModelToStudentSectionAssociationMapper;
+        private readonly IStudentSectionAttendanceRepository _studentSectionAttendanceRepositoryRepository;
 
         public ScheduleController(IGenericRepository genericRepository,
             IStudentSectionRepository studentSectionRepository,
@@ -34,7 +35,8 @@ namespace NGL.Web.Controllers
             IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper,
             IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper,
             IMapper<StudentSectionAssociation, SectionListItemModel> studentSectionAssociationToSectionListItemModelMapper, 
-            IMapper<SetModel, StudentSectionAssociation> setModelToStudentSectionAssociationMapper)
+            IMapper<SetModel, StudentSectionAssociation> setModelToStudentSectionAssociationMapper, 
+            IStudentSectionAttendanceRepository studentSectionAttendanceRepositoryRepository)
         {
             _genericRepository = genericRepository;
             _studentSectionRepository = studentSectionRepository;
@@ -44,6 +46,7 @@ namespace NGL.Web.Controllers
             _sectionToAutocompleteModelMapper = sectionToAutocompleteModelMapper;
             _studentSectionAssociationToSectionListItemModelMapper = studentSectionAssociationToSectionListItemModelMapper;
             _setModelToStudentSectionAssociationMapper = setModelToStudentSectionAssociationMapper;
+            _studentSectionAttendanceRepositoryRepository = studentSectionAttendanceRepositoryRepository;
         }
 
         // GET: /Get/5
@@ -64,24 +67,20 @@ namespace NGL.Web.Controllers
         public virtual JsonResult RemoveStudent(int studentSectionId)
         {
             var studentSectionAssociation = _studentSectionRepository.GetByIdentity(studentSectionId);
-            if (studentSectionAssociation != null)
-            {
-                var relatedAssessmentSections = _assessmentSectionRepository.GetByStudentSectionAssociation(studentSectionAssociation);
+            var relatedAssessmentSections = _assessmentSectionRepository.GetByStudentSectionAssociation(studentSectionAssociation);
+            var relatedStudentSectionAttendance = _studentSectionAttendanceRepositoryRepository.GetByStudentSectionAssociation(studentSectionAssociation);
 
-                if (relatedAssessmentSections.IsNullOrEmpty())
-                {
-                    _studentSectionRepository.DeleteByIdentity(studentSectionId);
-                    return Json(new { DeletedCompletely = true}, JsonRequestBehavior.AllowGet);
-                }
-                
-                var endDate = EarliestOf(studentSectionAssociation.EndDate.Value,  DateTime.Now.Date);
-                studentSectionAssociation.EndDate = endDate;
-                _genericRepository.Save();
-                return Json(new {DeletedCompletely = false, EndDate = endDate.ToShortDateString()}, JsonRequestBehavior.AllowGet);
+            if (relatedAssessmentSections.IsNullOrEmpty() && relatedStudentSectionAttendance.IsNullOrEmpty())
+            {
+                _studentSectionRepository.Delete(studentSectionAssociation);
+                return Json(new { DeletedCompletely = true}, JsonRequestBehavior.AllowGet);
             }
-            
-            //error
-            return Json(JsonRequestBehavior.AllowGet);
+                
+            var endDate = EarliestOf(studentSectionAssociation.EndDate.Value,  DateTime.Now.Date);
+            studentSectionAssociation.EndDate = endDate;
+            _genericRepository.Save();
+
+            return Json(new {DeletedCompletely = false, EndDate = endDate.ToShortDateString()}, JsonRequestBehavior.AllowGet);
         }
 
         private DateTime EarliestOf(DateTime first, DateTime second)
