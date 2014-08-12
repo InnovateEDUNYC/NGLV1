@@ -7,13 +7,13 @@ Ngl.shared.learningStandards = (function () {
     var f = function() {
         $('#GradeLevel').on('change', function () {
             resetList();
-
+            var gradeLevelTypeEnum = $(this).val();
             $.ajax({
                 url: "/LearningStandard/GetCommonCoreStandards",
                 type: "POST",
                 dataType: "json",
                 data: {
-                    gradeLevelTypeEnum: $(this).val(),
+                    gradeLevelTypeEnum: gradeLevelTypeEnum,
                 },
 
                 success: function (listOfCommonCoreListItemModels) {
