@@ -25,7 +25,7 @@ namespace NGL.Web.Models.Assessment
             target.AssessedGradeLevelDescriptorId = assessedGradeLevelDescriptor.GradeLevelDescriptorId;
         }
 
-        public AssessmentPerformanceLevel GetPerformanceLevel(CreateModel createModel, 
+        public AssessmentPerformanceLevel BuildWithPerformanceLevel(CreateModel createModel, 
             Data.Entities.Assessment assessment,
             PerformanceLevelDescriptorEnum performanceLevelDescriptor)
         {

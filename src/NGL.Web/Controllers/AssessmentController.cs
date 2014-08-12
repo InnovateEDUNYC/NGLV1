@@ -83,9 +83,9 @@ namespace NGL.Web.Controllers
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
             var nearMastery = _createModelToAssessmentPerformanceLevelMapper
-                .GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
+                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
             var mastery = _createModelToAssessmentPerformanceLevelMapper
-                .GetPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
+                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
             _assessmentRepository.Save(assessment, nearMastery, mastery);
             return RedirectToAction(MVC.Home.Index());

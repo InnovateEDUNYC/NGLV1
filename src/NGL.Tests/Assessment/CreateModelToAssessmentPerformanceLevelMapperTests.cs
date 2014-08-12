@@ -22,7 +22,7 @@ namespace NGL.Tests.Assessment
         {
             SetUp();
 
-            var assessmentPerformanceLevel = new CreateModelToAssessmentPerformanceLevelMapper(_genericRepositoryStub).GetPerformanceLevel(_createModel, _assessment, MasteryPerformanceLevelDescriptor);
+            var assessmentPerformanceLevel = new CreateModelToAssessmentPerformanceLevelMapper(_genericRepositoryStub).BuildWithPerformanceLevel(_createModel, _assessment, MasteryPerformanceLevelDescriptor);
 
             assessmentPerformanceLevel.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
             assessmentPerformanceLevel.Version.ShouldBe(_assessment.Version);
