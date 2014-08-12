@@ -2,8 +2,7 @@
 
 Ngl.schedule.removeStudent = (function () {
     var setUpRemoveStudentLink = function () {
-        console.log("setup removing..");
-        $('.remove-student').click(function () {
+        $('.current-section-list').on("click", '.remove-student', function () {
             var studentSectionId = $(this).data('student-section-id');
 
             var self = $(this);
