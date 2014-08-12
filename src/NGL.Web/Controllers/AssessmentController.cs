@@ -19,9 +19,8 @@ namespace NGL.Web.Controllers
         private readonly IAssessmentRepository _assessmentRepository;
         private readonly StudentAssessmentsToAssessmentResultModelMapper _studentAssessmentsToAssessmentResultModelMapper;
         private readonly IMapper<Assessment, EnterResultsModel> _assessmentToEnterResultsModelMapper;
-        private readonly IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
-            _enterResultsStudentModelToStudentAssessmentScoreResultMapper;
-        private readonly IMapper<EnterResultsStudentModel, StudentAssessment>
+
+        private readonly EnterResultsStudentModelToStudentAssessmentMapper
             _enterResultsStudentModelToStudentAssessmentMapper;
         private readonly CreateModelToAssessmentPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
         private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
@@ -33,9 +32,7 @@ namespace NGL.Web.Controllers
             IAssessmentRepository assessmentRepository,
             StudentAssessmentsToAssessmentResultModelMapper studentAssessmentsToAssessmentResultModelMapper,
             IMapper<Assessment, EnterResultsModel> assessmentToEnterResultsModelMapper,
-            IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult>
-                enterResultsStudentModelToStudentAssessmentScoreResultMapper,
-            IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper, 
+            EnterResultsStudentModelToStudentAssessmentMapper enterResultsStudentModelToStudentAssessmentMapper, 
             CreateModelToAssessmentPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper,
 			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository)
@@ -45,8 +42,6 @@ namespace NGL.Web.Controllers
             _assessmentRepository = assessmentRepository;
             _studentAssessmentsToAssessmentResultModelMapper = studentAssessmentsToAssessmentResultModelMapper;
             _assessmentToEnterResultsModelMapper = assessmentToEnterResultsModelMapper;
-            _enterResultsStudentModelToStudentAssessmentScoreResultMapper =
-                enterResultsStudentModelToStudentAssessmentScoreResultMapper;
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
@@ -113,7 +108,7 @@ namespace NGL.Web.Controllers
         // GET: /Assessment/EnterResults/1/
         public virtual ActionResult EnterResults(int id)
         {
-            var assessment = _assessmentRepository.GetAssessmentForEnterResultsGet(id);
+            var assessment = _assessmentRepository.GetAssessmentByAssessmentId(id);
             
             if (assessment == null) return View(MVC.Error.HttpError404());
 
@@ -129,7 +124,7 @@ namespace NGL.Web.Controllers
         {
             var enterResultsStudentModels = enterResultsModel.StudentResults;
             var assessmentId = enterResultsModel.AssessmentId;
-            var assessment = _assessmentRepository.GetAssessmentForEnterResultsPost(assessmentId);
+            var assessment = _assessmentRepository.GetAssessmentByAssessmentId(assessmentId);
 
             var currentStudentAssessments = assessment.StudentAssessments;
             if (currentStudentAssessments.IsNullOrEmpty())
@@ -162,8 +157,9 @@ namespace NGL.Web.Controllers
         {
             foreach (EnterResultsStudentModel enterResultsStudentModel in enterResultsStudentModels)
             {
-                _assessmentRepository.AddStudentAssessment(assessment, enterResultsStudentModel, _enterResultsStudentModelToStudentAssessmentMapper);
-                _assessmentRepository.AddStudentAssessmentScoreResult(assessment, enterResultsStudentModel, _enterResultsStudentModelToStudentAssessmentScoreResultMapper);
+                var studentAssessment = _enterResultsStudentModelToStudentAssessmentMapper.Build(enterResultsStudentModel, assessment);
+
+                _assessmentRepository.SaveStudentAssessment(studentAssessment);
             }
         }
 

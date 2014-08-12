@@ -39,43 +39,25 @@ namespace NGL.Web.Data.Repositories
                 .ToList();
         }
 
-        public Assessment GetAssessmentForEnterResultsPost(int assessmentId)
-        {
-            return DbContext.Set<Assessment>()
-                .Where(
-                    a =>
-                        a.AssessmentIdentity == assessmentId)
-                .Include(a => a.StudentAssessments)
-                .Include(a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults))
-                .First();
-        }
-
-        public Assessment GetAssessmentForEnterResultsGet(int id)
+        public Assessment GetAssessmentByAssessmentId(int assessmentId)
         {
             var assessment = DbContext.Set<Assessment>()
                 .Where(
                     a =>
-                        a.AssessmentIdentity == id)
+                        a.AssessmentIdentity == assessmentId)
                 .Include(a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)))
                 .Include(a => a.AssessmentSections.Select(asa => asa.Section.Session))
                 .Include(a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults))
                 .Include(a => a.AssessmentLearningStandards.Select(als => als.LearningStandard))
-                .First();
+                .FirstOrDefault();
 
             return assessment;
         }
 
-        public void AddStudentAssessment(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel, IMapper<EnterResultsStudentModel, StudentAssessment> mapper)
+        public void SaveStudentAssessment(StudentAssessment studentAssessment)
         {
-            DbContext.Entry(mapper.Build(enterResultsStudentModel,
-                sa =>
-                {
-                    sa.AssessmentTitle = assessment.AssessmentTitle;
-                    sa.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    sa.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    sa.Version = assessment.Version;
-                    sa.AdministrationDate = assessment.AdministeredDate;
-                }));
+            DbContext.Set<StudentAssessment>().Add(studentAssessment);
+            DbContext.Set<StudentAssessmentScoreResult>().Add(studentAssessment.StudentAssessmentScoreResults.First());
         }
 
         public void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
@@ -84,19 +66,6 @@ namespace NGL.Web.Data.Repositories
             DbContext.Set<AssessmentPerformanceLevel>().Add(nearMastery);
             DbContext.Set<AssessmentPerformanceLevel>().Add(mastery);
             DbContext.Save();
-        }
-
-        public void AddStudentAssessmentScoreResult(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel, IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult> mapper)
-        {
-            DbContext.Entry(mapper.Build(enterResultsStudentModel,
-                asr =>
-                {
-                    asr.AssessmentTitle = assessment.AssessmentTitle;
-                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    asr.Version = assessment.Version;
-                    asr.AdministrationDate = assessment.AdministeredDate;
-                }));
         }
     }
 }
