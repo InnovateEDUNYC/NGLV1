@@ -29,6 +29,8 @@ namespace NGL.Tests.Assessment
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
+            model.CCSS.ShouldBe("English - Reading Comprehension");
+            model.AssessmentDate.ShouldBe("9/9/2014");
         }
 
         [Fact]
@@ -44,6 +46,8 @@ namespace NGL.Tests.Assessment
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
+            model.CCSS.ShouldBe("English - Reading Comprehension");
+            model.AssessmentDate.ShouldBe("9/9/2014");
         }
 
         [Fact]
@@ -60,6 +64,8 @@ namespace NGL.Tests.Assessment
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
+            model.CCSS.ShouldBe("English - Reading Comprehension");
+            model.AssessmentDate.ShouldBe("9/9/2014");
         }
 
         private void Setup()

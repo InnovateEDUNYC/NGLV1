@@ -12,6 +12,7 @@ namespace NGL.Web.Models.Assessment
         public string Session { get; set; }
         public string Section { get; set; }
         public string AssessmentTitle { get; set; }
-        public string LearningStandard { get; set; }
+        public string CCSS { get; set; }
+        public string AssessmentDate { get; set; }
     }
 }

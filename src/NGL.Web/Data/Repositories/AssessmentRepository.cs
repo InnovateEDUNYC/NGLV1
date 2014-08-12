@@ -59,6 +59,7 @@ namespace NGL.Web.Data.Repositories
                 .Include(a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)))
                 .Include(a => a.AssessmentSections.Select(asa => asa.Section.Session))
                 .Include(a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults))
+                .Include(a => a.AssessmentLearningStandards.Select(als => als.LearningStandard))
                 .First();
 
             return assessment;

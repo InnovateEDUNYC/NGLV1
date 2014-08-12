@@ -31,6 +31,8 @@ namespace NGL.Web.Models.Assessment
             target.Section = section.UniqueSectionCode;
             target.AssessmentTitle = source.AssessmentTitle;
             target.Session = session.SessionName;
+            target.CCSS = source.AssessmentLearningStandards.First().LearningStandard.Description;
+            target.AssessmentDate = source.AdministeredDate.ToShortDateString();
             target.StudentResults = new List<EnterResultsStudentModel>();
             foreach (var student in students)      
             {
