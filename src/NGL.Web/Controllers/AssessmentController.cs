@@ -152,7 +152,7 @@ namespace NGL.Web.Controllers
 
             _genericRepository.Save();
 
-            return RedirectToAction(MVC.Home.Index());
+            return RedirectToAction(MVC.Assessment.Index());
         }
 
         private void UpdateStudentAssessmentScoreResults(IEnumerable<StudentAssessmentScoreResult> currentResultEntities, List<EnterResultsStudentModel> newResultModels)
