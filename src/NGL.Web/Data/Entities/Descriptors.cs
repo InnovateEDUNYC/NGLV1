@@ -252,6 +252,12 @@ namespace NGL.Web.Data.Entities
 		MilitaryScience = 14,                               
 		[Description("Other")]
 		Other = 15,                               
+		[Description("Speaking and Listening")]
+		SpeakingandListening = 120,                               
+		[Description("Math Content")]
+		MathContent = 130,                               
+		[Description("Math Practice")]
+		MathPractice = 140,                               
 		[Description("Composite")]
 		Composite = 338,                               
 	}
@@ -579,7 +585,9 @@ namespace NGL.Web.Data.Entities
 	}
 
 	public enum GradeLevelDescriptorEnum
-	{                   
+	{
+		[Description("Adult Education")]
+		AdultEducation = 119,                               
 		[Description("Early Education")]
 		EarlyEducation = 120,                               
 		[Description("8th Grade")]
@@ -619,9 +627,7 @@ namespace NGL.Web.Data.Entities
 		[Description("12th Grade")]
 		_12thGrade = 138,                               
 		[Description("Ungraded")]
-		Ungraded = 139,
-        [Description("Adult Education")]
-        AdultEducation = 119                                   
+		Ungraded = 139,                               
 	}
 
 	public enum CalendarEventDescriptorEnum

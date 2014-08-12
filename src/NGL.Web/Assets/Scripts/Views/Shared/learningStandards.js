@@ -2,9 +2,10 @@
 
 Ngl.shared.learningStandards = (function () {
     var init = function () {
-        f();
+        setUpStandards();
     }
-    var f = function() {
+
+    var setUpStandards = function() {
         $('#GradeLevel').on('change', function () {
             resetList();
             var gradeLevelTypeEnum = $(this).val();

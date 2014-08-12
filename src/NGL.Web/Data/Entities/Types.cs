@@ -756,6 +756,12 @@ namespace NGL.Web.Data.Entities
 		CareerandTechnicalEducation = 32,                               
 		[Description("Composite")]
 		Composite = 33,                               
+		[Description("Speaking and Listening")]
+		SpeakingandListening = 34,                               
+		[Description("Math Content")]
+		MathContent = 35,                               
+		[Description("Math Practice")]
+		MathPractice = 36,                               
 	}
 
 	public enum CohortYearTypeEnum
@@ -1732,6 +1738,12 @@ namespace NGL.Web.Data.Entities
 		Pass = 6,                               
 		[Description("Fail")]
 		Fail = 7,                               
+		[Description("Mastery")]
+		Mastery = 8,                               
+		[Description("Near Mastery")]
+		NearMastery = 9,                               
+		[Description("Not Mastered")]
+		NotMastered = 10,                               
 	}
 
 	public enum CostRateTypeEnum
