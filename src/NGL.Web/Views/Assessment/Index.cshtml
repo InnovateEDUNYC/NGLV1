@@ -11,6 +11,9 @@
                 @Html.DisplayNameFor(model => model.AssessmentTitle)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.CCSS)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.SectionName)
             </th>
             <th>
@@ -26,6 +29,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AssessmentTitle)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.CCSS)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SectionName)

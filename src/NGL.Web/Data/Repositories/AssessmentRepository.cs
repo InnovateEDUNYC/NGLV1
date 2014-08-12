@@ -35,6 +35,7 @@ namespace NGL.Web.Data.Repositories
                     a =>
                         a.Id != null)
                 .Include(a => a.AssessmentSections.Select(assessmentSection => assessmentSection.Section.Session))
+                .Include(a => a.AssessmentLearningStandards.Select(als => als.LearningStandard))
                 .ToList();
         }
 
