@@ -113,12 +113,8 @@ namespace NGL.Web.Controllers
         // GET: /Assessment/EnterResults/1/
         public virtual ActionResult EnterResults(int id)
         {
-            var assessment = _genericRepository.Get<Assessment>(
-                a => a.AssessmentIdentity == id,
-                a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)),
-                a => a.AssessmentSections.Select(asa => asa.Section.Session),
-                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults));
-
+            var assessment = _assessmentRepository.GetAssessmentForEnterResultsGet(id);
+            
             if (assessment == null) return View();
 
             var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
@@ -133,16 +129,13 @@ namespace NGL.Web.Controllers
         {
             var enterResultsStudentModels = enterResultsModel.StudentResults;
             var assessmentId = enterResultsModel.AssessmentId;
-            var assessment = _genericRepository.Get<Assessment>(
-                a => a.AssessmentIdentity == assessmentId,
-                a => a.StudentAssessments,
-                a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults)
-            );
+            
+            var assessment = _assessmentRepository.GetAssessmentForEnterResultPost(assessmentId);
 
             var currentStudentAssessments = assessment.StudentAssessments;
             if (currentStudentAssessments.IsNullOrEmpty())
             {
-                CreateStudentAssessmentScoreResults(enterResultsStudentModels, assessment);
+                CreateStudentAssessmentScoreResults(assessment, enterResultsStudentModels);
             }
             else
             {
@@ -166,39 +159,13 @@ namespace NGL.Web.Controllers
             }
         }
 
-        private void CreateStudentAssessmentScoreResults(IEnumerable<EnterResultsStudentModel> enterResultsStudentModels, Assessment assessment)
+        private void CreateStudentAssessmentScoreResults(Assessment assessment, IEnumerable<EnterResultsStudentModel> enterResultsStudentModels)
         {
             foreach (EnterResultsStudentModel enterResultsStudentModel in enterResultsStudentModels)
             {
-                AddStudentAssessment(assessment, enterResultsStudentModel);
-                AddStudentAssessmentScoreResult(assessment, enterResultsStudentModel);
+                _assessmentRepository.AddStudentAssessment(assessment, enterResultsStudentModel, _enterResultsStudentModelToStudentAssessmentMapper);
+                _assessmentRepository.AddStudentAssessmentScoreResult(assessment, enterResultsStudentModel, _enterResultsStudentModelToStudentAssessmentScoreResultMapper);
             }
-        }
-
-        private void AddStudentAssessment(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel)
-        {
-            _genericRepository.Add(_enterResultsStudentModelToStudentAssessmentMapper.Build(enterResultsStudentModel,
-                sa =>
-                {
-                    sa.AssessmentTitle = assessment.AssessmentTitle;
-                    sa.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    sa.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    sa.Version = assessment.Version;
-                    sa.AdministrationDate = assessment.AdministeredDate;
-                }));
-        }
-
-        private void AddStudentAssessmentScoreResult(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel)
-        {
-            _genericRepository.Add(_enterResultsStudentModelToStudentAssessmentScoreResultMapper.Build(enterResultsStudentModel,
-                asr =>
-                {
-                    asr.AssessmentTitle = assessment.AssessmentTitle;
-                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    asr.Version = assessment.Version;
-                    asr.AdministrationDate = assessment.AdministeredDate;
-                }));
         }
 
         [AuthorizeFor(Resource = "assessment", Operation = "view")]
