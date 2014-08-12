@@ -11,7 +11,7 @@ namespace NGL.Web.Data.Repositories
         IEnumerable<StudentAssessment> GetAssessmentResults(int studentUsi, DateTime startDate, DateTime endDate);
         IEnumerable<Assessment> GetAssessments();
         void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery);
-        Assessment GetAssessmentForEnterResultPost(int assessmentId);
+        Assessment GetAssessmentForEnterResultsPost(int assessmentId);
         Assessment GetAssessmentForEnterResultsGet(int id);
         void AddStudentAssessment(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel, IMapper<EnterResultsStudentModel, StudentAssessment> enterResultsStudentModelToStudentAssessmentMapper);
         void AddStudentAssessmentScoreResult(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel, IMapper<EnterResultsStudentModel, StudentAssessmentScoreResult> enterResultsStudentModelToStudentAssessmentScoreResultMapper);

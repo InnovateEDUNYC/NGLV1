@@ -34,9 +34,13 @@ namespace NGL.Web.Models.Assessment
             {
                 var studentAssessment = new StudentAssessment();
                 if (!student.StudentAssessments.IsNullOrEmpty())
-                    studentAssessment = student.StudentAssessments.FirstOrDefault(a => a.Assessment.AssessmentIdentity == source.AssessmentIdentity);
+                    studentAssessment = student.StudentAssessments.FirstOrDefault(
+                        a => a.Assessment.AssessmentIdentity == source.AssessmentIdentity);
                 else
+                {
                     studentAssessment.Student = student;
+                    studentAssessment.AdministrationDate = source.AdministeredDate;
+                }
                 target.StudentResults.Add(_studentAssessmentToEnterResultsStudentModelMapper.Build(studentAssessment));
             }
         }

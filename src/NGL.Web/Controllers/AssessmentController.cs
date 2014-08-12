@@ -129,8 +129,7 @@ namespace NGL.Web.Controllers
         {
             var enterResultsStudentModels = enterResultsModel.StudentResults;
             var assessmentId = enterResultsModel.AssessmentId;
-            
-            var assessment = _assessmentRepository.GetAssessmentForEnterResultPost(assessmentId);
+            var assessment = _assessmentRepository.GetAssessmentForEnterResultsPost(assessmentId);
 
             var currentStudentAssessments = assessment.StudentAssessments;
             if (currentStudentAssessments.IsNullOrEmpty())

@@ -38,7 +38,7 @@ namespace NGL.Web.Data.Repositories
                 .ToList();
         }
 
-        public Assessment GetAssessmentForEnterResultPost(int assessmentId)
+        public Assessment GetAssessmentForEnterResultsPost(int assessmentId)
         {
             return DbContext.Set<Assessment>()
                 .Where(
@@ -51,7 +51,7 @@ namespace NGL.Web.Data.Repositories
 
         public Assessment GetAssessmentForEnterResultsGet(int id)
         {
-            return DbContext.Set<Assessment>()
+            var assessment = DbContext.Set<Assessment>()
                 .Where(
                     a =>
                         a.AssessmentIdentity == id)
@@ -59,6 +59,9 @@ namespace NGL.Web.Data.Repositories
                 .Include(a => a.AssessmentSections.Select(asa => asa.Section.Session))
                 .Include(a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults))
                 .First();
+
+
+            return assessment;
         }
 
         public void AddStudentAssessment(Assessment assessment, EnterResultsStudentModel enterResultsStudentModel, IMapper<EnterResultsStudentModel, StudentAssessment> mapper)
