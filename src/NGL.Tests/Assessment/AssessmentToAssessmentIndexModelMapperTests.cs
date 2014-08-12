@@ -20,7 +20,7 @@ namespace NGL.Tests.Assessment
             indexModel.SessionName.ShouldBe("Fall 2014");
             indexModel.SectionName.ShouldBe("CHEM2090 - 200");
 //            indexModel.CCSS.ShouldBe("blah"); TODO
-            indexModel.Date.ShouldBe("1/1/0001");
+            indexModel.Date.ShouldBe("9/9/2014");
             indexModel.id.ShouldBe(1);
         }
     }

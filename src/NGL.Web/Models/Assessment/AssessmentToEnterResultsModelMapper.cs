@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
+using NGL.Web.Dates;
 
 namespace NGL.Web.Models.Assessment
 {
@@ -22,7 +22,9 @@ namespace NGL.Web.Models.Assessment
             var assessmentSections = source.AssessmentSections;
             var section = assessmentSections.First().Section;
             var session = section.Session;
-            var studentSectionAssociations = section.StudentSectionAssociations;
+            var administeredDate = source.AdministeredDate;
+            var studentSectionAssociations = section.StudentSectionAssociations
+                .Where(ssa => new DateRange(ssa.BeginDate, (DateTime)ssa.EndDate).Includes(administeredDate));
             var students = studentSectionAssociations.Select(ssa => ssa.Student).ToList();
 
             target.AssessmentId = source.AssessmentIdentity;
@@ -39,7 +41,6 @@ namespace NGL.Web.Models.Assessment
                 else
                 {
                     studentAssessment.Student = student;
-                    studentAssessment.AdministrationDate = source.AdministeredDate;
                 }
                 target.StudentResults.Add(_studentAssessmentToEnterResultsStudentModelMapper.Build(studentAssessment));
             }

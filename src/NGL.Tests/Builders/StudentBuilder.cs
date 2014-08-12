@@ -93,7 +93,5 @@ namespace NGL.Tests.Builders
         {
             return new StudentRace { RaceTypeId = Race };
         }
-
-
     }
 }

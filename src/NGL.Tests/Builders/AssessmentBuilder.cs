@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Builders
@@ -10,6 +11,7 @@ namespace NGL.Tests.Builders
         private const int _academicSubjectDescriptorId = 1;
         private const int _assessedGradeLevelDescriptorId = 1;
         private const int _version = 1;
+        private DateTime _administeredDate = new DateTime(2014, 9, 9);
         private readonly ICollection<AssessmentSection> _assessmentSections = new List<AssessmentSection>();
 
         private readonly IList<AssessmentLearningStandard> _assessmentLearningStandards = new[] {new AssessmentLearningStandardBuilder().Build()};
@@ -33,8 +35,15 @@ namespace NGL.Tests.Builders
                 AcademicSubjectDescriptorId = _academicSubjectDescriptorId,
                 AssessedGradeLevelDescriptorId = _assessedGradeLevelDescriptorId,
                 Version = _version,
-                AssessmentSections = _assessmentSections
+                AssessmentSections = _assessmentSections,
+                AdministeredDate = _administeredDate
             };
+        }
+
+        public AssessmentBuilder WithAdministeredDate(DateTime administeredDate)
+        {
+            _administeredDate = administeredDate;
+            return this;
         }
     }
 }

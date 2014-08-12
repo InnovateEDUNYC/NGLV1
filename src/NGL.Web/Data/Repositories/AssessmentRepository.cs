@@ -60,7 +60,6 @@ namespace NGL.Web.Data.Repositories
                 .Include(a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults))
                 .First();
 
-
             return assessment;
         }
 

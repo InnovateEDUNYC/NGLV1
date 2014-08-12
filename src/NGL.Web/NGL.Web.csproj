@@ -1595,6 +1595,7 @@
     <Compile Include="Data\Repositories\IAssessmentRepository.cs" />
     <Compile Include="Data\Repositories\ILearningStandardRepository.cs" />
     <Compile Include="Data\Repositories\LearningStandardRepository.cs" />
+    <Compile Include="Dates\DateRange.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
