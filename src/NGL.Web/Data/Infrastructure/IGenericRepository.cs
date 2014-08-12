@@ -11,10 +11,12 @@ namespace NGL.Web.Data.Infrastructure
         void Attach<TEntity>(TEntity entity) where TEntity : class;
         IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class;
         TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] associations) where TEntity : class;
+
         TEntity Get<TEntity>(IQuery<TEntity> query, params Expression<Func<TEntity, object>>[] associations) where TEntity : class;
         TOutput Get<TEntity, TOutput>(IQuery<TEntity, TOutput> query)
             where TEntity : class
             where TOutput : class;
+
 
         TEntity Get<TEntity>(int id, params Expression<Func<TEntity, object>>[] associations) where TEntity : class, IEntityWithId;
         IEnumerable<TEntity> Get<TEntity>(IEnumerable<int> ids) where TEntity : class, IEntityWithId;

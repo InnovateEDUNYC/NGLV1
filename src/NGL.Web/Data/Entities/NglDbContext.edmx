@@ -2999,7 +2999,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="Description" Type="nvarchar" MaxLength="1024" Nullable="false" />
           <Property Name="LearningStandardItemCode" Type="nvarchar" MaxLength="60" />
           <Property Name="URI" Type="nvarchar" MaxLength="255" />
-          <Property Name="GradeLevelDescriptorId" Type="int" Nullable="false" />
+          <Property Name="GradeLevelDescriptorId" Type="int" />
           <Property Name="AcademicSubjectDescriptorId" Type="int" Nullable="false" />
           <Property Name="CourseTitle" Type="nvarchar" MaxLength="60" />
           <Property Name="SuccessCriteria" Type="nvarchar" MaxLength="150" />
@@ -10373,7 +10373,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LearningStandard_GradeLevelDescriptorId">
-          <End Role="GradeLevelDescriptor" Type="Self.GradeLevelDescriptor" Multiplicity="1" />
+          <End Role="GradeLevelDescriptor" Type="Self.GradeLevelDescriptor" Multiplicity="0..1" />
           <End Role="LearningStandard" Type="Self.LearningStandard" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GradeLevelDescriptor">
@@ -22965,7 +22965,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LearningStandardItemCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="URI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="GradeLevelDescriptorId" Type="Int32" Nullable="false" />
+          <Property Name="GradeLevelDescriptorId" Type="Int32" />
           <Property Name="AcademicSubjectDescriptorId" Type="Int32" Nullable="false" />
           <Property Name="CourseTitle" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="SuccessCriteria" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
@@ -31734,7 +31734,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LearningStandard_GradeLevelDescriptorId">
-          <End Role="GradeLevelDescriptor" Type="Self.GradeLevelDescriptor" Multiplicity="1" />
+          <End Role="GradeLevelDescriptor" Type="Self.GradeLevelDescriptor" Multiplicity="0..1" />
           <End Role="LearningStandard" Type="Self.LearningStandard" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GradeLevelDescriptor">

@@ -29,20 +29,19 @@
     using (var s = f.BeginSection("Learning Standards"))
     {
         <div class="form-group">
-            <label class="control-label" for="LearningStandard">Learning Standard</label>            <div class="input-group">
-                <select class="form-control" id="LearningStandard">
-                    <option selected="selected" value=""></option>
-                    <optgroup label="ELA-Literacy">
-                        <option>Reading</option>
-                        <option>Writing</option>
-                        <option>Speaking + Listening</option>
-                    </optgroup>
-                    <optgroup label="Math">
-                        <option>Content</option>
-                        <option>Practice</option>
-                    </optgroup>
-                </select>
-            </div>
+            <label class="control-label" for="LearningStandard">Learning Standard</label>                     
+            <select class="form-control" id="LearningStandard">
+                <option selected="selected" value=""></option>
+                <optgroup label="ELA-Literacy">
+                    <option value="Reading">Reading</option>
+                    <option value="Writing">Writing</option>
+                    <option value="Speaking + Listening">Speaking + Listening</option>
+                </optgroup>
+                <optgroup label="Math">
+                    <option value="Content">Content</option>
+                    <option value="Practice">Practice</option>
+                </optgroup>
+            </select>
         </div>
 
         @s.FieldFor(m => m.CommonCoreStandard)
