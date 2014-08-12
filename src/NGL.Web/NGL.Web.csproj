@@ -277,44 +277,12 @@
     <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
-    <Compile Include="Data\Entities\ApplicationRole.cs" />
-    <Compile Include="Data\Entities\AssessmentItemLearningStandard.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\AssessmentLearningStandard.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\SchemaVersion.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\StaffCertificate.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Entities\VersionLevel.cs">
-      <DependentUpon>NglDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Expressions\PerformanceLevelMapperExpression.cs" />
-    <Compile Include="Data\Queries\CourseOfferingByPrimaryKeysQuery.cs" />
-    <Compile Include="Data\Queries\SectionByPrimaryKeysQuery.cs" />
-    <Compile Include="Data\Filters\SessionFilter.cs" />
-    <Compile Include="Data\Queries\SectionsBySectionNameAndSessionQuery.cs" />
-    <Compile Include="Data\Queries\StudentAcademicDetailsByStudentUSIAndSchoolYearQuery.cs" />
-    <Compile Include="Data\Queries\StudentSectionAssociationByPrimaryKeysQuery.cs" />
-    <Compile Include="Data\Repositories\AssessmentRepository.cs" />
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
-    <Compile Include="Data\Repositories\IAssessmentRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionRepository.cs" />
-    <Compile Include="Extensions\BooleanExtensions.cs" />
-    <Compile Include="ImageTools\Resizer.cs" />
-    <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
-    <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
-    <Compile Include="Infrastructure\Azure\IFileDownloader.cs" />
-    <Compile Include="Infrastructure\Azure\IFileUploader.cs" />
-    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
