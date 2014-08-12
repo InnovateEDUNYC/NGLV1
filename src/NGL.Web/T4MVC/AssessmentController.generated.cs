@@ -138,10 +138,12 @@ namespace NGL.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string EnterResults = "EnterResults";
+                public readonly string Index = "Index";
                 public readonly string Result = "Result";
             }
             public readonly string Create = "~/Views/Assessment/Create.cshtml";
             public readonly string EnterResults = "~/Views/Assessment/EnterResults.cshtml";
+            public readonly string Index = "~/Views/Assessment/Index.cshtml";
             public readonly string Result = "~/Views/Assessment/Result.cshtml";
         }
     }

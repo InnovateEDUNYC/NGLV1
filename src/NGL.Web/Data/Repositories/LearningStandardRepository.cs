@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
 using Ninject.Infrastructure.Language;
@@ -14,6 +10,7 @@ namespace NGL.Web.Data.Repositories
 {
     public class LearningStandardRepository : RepositoryBase, ILearningStandardRepository
     {
+        private const int UngradedGradeLevelDescriptorId = 139;
         private readonly IMapper<LearningStandard, CommonCoreStandardListItemModel> _learningStandardToCommonCoreStandardListItemModelMapper;
 
         public LearningStandardRepository(INglDbContext dbContext, IMapper<LearningStandard, CommonCoreStandardListItemModel> learningStandardToCommonCoreStandardListItemModelMapper) : base(dbContext)
@@ -22,10 +19,10 @@ namespace NGL.Web.Data.Repositories
         }
         public List<CommonCoreStandardListItemModel> GetCommonCoreStandards()
         {
-            return GetCommonCoreStandards(null);
+            return GetCommonCoreStandards(gradeLevelTypeId:null);
         }
 
-        private List<CommonCoreStandardListItemModel> GetCommonCoreStandards(int? gradeLevelTypeId)
+        public List<CommonCoreStandardListItemModel> GetCommonCoreStandards(int? gradeLevelTypeId)
         {
             var commonCoreStandards = DbContext.Set<LearningStandard>().ToEnumerable();
 
@@ -41,7 +38,7 @@ namespace NGL.Web.Data.Repositories
 
         private static IEnumerable<LearningStandard> GetCommonCoreStandardsWithoutGrade(IEnumerable<LearningStandard> commonCoreStandards)
         {
-            commonCoreStandards = commonCoreStandards.Where(ls => ls.GradeLevelDescriptorId == null);
+            commonCoreStandards = commonCoreStandards.Where(ls => ls.GradeLevelDescriptorId == UngradedGradeLevelDescriptorId);
             return commonCoreStandards;
         }
 
