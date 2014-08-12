@@ -20,6 +20,7 @@ namespace NGL.Web.Controllers
     {
         private readonly IGenericRepository _genericRepository;
         private readonly IStudentSectionRepository _studentSectionRepository;
+        private readonly IAssessmentSectionRepository _assessmentSectionRepository;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly IMapper<Session, SessionListItemModel> _sessionToSessionListItemModelMapper;
         private readonly IMapper<Section, AutocompleteModel> _sectionToAutocompleteModelMapper;
@@ -28,6 +29,7 @@ namespace NGL.Web.Controllers
 
         public ScheduleController(IGenericRepository genericRepository,
             IStudentSectionRepository studentSectionRepository,
+            IAssessmentSectionRepository assessmentSectionRepository,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, 
             IMapper<Session, SessionListItemModel> sessionToSessionListItemModelMapper,
             IMapper<Section, AutocompleteModel> sectionToAutocompleteModelMapper,
@@ -36,6 +38,7 @@ namespace NGL.Web.Controllers
         {
             _genericRepository = genericRepository;
             _studentSectionRepository = studentSectionRepository;
+            _assessmentSectionRepository = assessmentSectionRepository;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
             _sessionToSessionListItemModelMapper = sessionToSessionListItemModelMapper;
             _sectionToAutocompleteModelMapper = sectionToAutocompleteModelMapper;
@@ -60,8 +63,30 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual JsonResult RemoveStudent(int studentSectionId)
         {
-            _studentSectionRepository.DeleteByIdentity(studentSectionId);
+            var studentSectionAssociation = _studentSectionRepository.GetByIdentity(studentSectionId);
+            if (studentSectionAssociation != null)
+            {
+                var relatedAssessmentSections = _assessmentSectionRepository.GetByStudentSectionAssociation(studentSectionAssociation);
+
+                if (relatedAssessmentSections.IsNullOrEmpty())
+                {
+                    _studentSectionRepository.DeleteByIdentity(studentSectionId);
+                    return Json(new { DeletedCompletely = true}, JsonRequestBehavior.AllowGet);
+                }
+                
+                var endDate = EarliestOf(studentSectionAssociation.EndDate.Value,  DateTime.Now.Date);
+                studentSectionAssociation.EndDate = endDate;
+                _genericRepository.Save();
+                return Json(new {DeletedCompletely = false, EndDate = endDate.ToShortDateString()}, JsonRequestBehavior.AllowGet);
+            }
+            
+            //error
             return Json(JsonRequestBehavior.AllowGet);
+        }
+
+        private DateTime EarliestOf(DateTime first, DateTime second)
+        {
+            return new DateTime(Math.Min(first.Ticks, second.Ticks));
         }
 
         // AJAX POST: /ScheduleStudent/

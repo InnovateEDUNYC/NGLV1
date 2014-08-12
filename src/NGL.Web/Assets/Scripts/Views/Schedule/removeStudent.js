@@ -14,12 +14,20 @@ Ngl.schedule.removeStudent = (function () {
                 data: {
                     studentSectionId: studentSectionId
                 },
-                success: function () {
-                    self.closest("tr").remove();
+                success: function (result) {
+                    if (result.DeletedCompletely) {
+                        self.closest("tr").remove();
+                    } else {
+                        updateEndDate(self, result.EndDate);
+                    }
                 }
             });
         });
     };
+
+    var updateEndDate = function(row, endDate) {
+        row.closest("tr").find(".scheduled-section-end-date").text(endDate);
+    }
 
     return {
         init: setUpRemoveStudentLink

@@ -17,5 +17,11 @@ namespace NGL.Web.Data.Repositories
                 DbContext.Save();
             }
         }
+
+        public StudentSectionAssociation GetByIdentity(int studentSectionIdentity)
+        {
+            return DbContext.Set<StudentSectionAssociation>()
+                .SingleOrDefault(ssa => ssa.StudentSectionAssociationIdentity == studentSectionIdentity);
+        }
     }
 }
