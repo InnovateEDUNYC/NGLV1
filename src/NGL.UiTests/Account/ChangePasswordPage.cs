@@ -5,7 +5,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Account
 {
-    class ChangePasswordPage : Page<ChangePasswordModel>
+    public class ChangePasswordPage : Page<ChangePasswordModel>
     {
         public ChangePasswordPage ChangePassword(ChangePasswordModel model)
         {

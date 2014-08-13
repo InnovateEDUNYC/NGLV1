@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
+using NGL.UiTests.Student;
 using NGL.Web.Models.Assessment;
 using Shouldly;
 using TestStack.BDDfy;
@@ -63,21 +64,6 @@ namespace NGL.UiTests.Assessment
             _resultsPage.ResultsExist().ShouldBe(true);
         }
 
-        public void IGoToTheStudentResultsPage()
-        {
-            _homePage.TopMenu.GoToStudentsPage().GoToProfilePage().GoToResultsPage();
-        }
-
-        public void TheResultShouldBeDisplayed()
-        {
-            
-        }
-
-        public void IChooseTheRightSession()
-        {
-            
-        }
-
         [Fact]
         public void ShouldCreateAssessment()
         {
@@ -88,9 +74,6 @@ namespace NGL.UiTests.Assessment
                 .When(_ => IGoToTheResultsPageAndFillInValidResults())
                 .And(_ => IGoBackToTheResultsPage())
                 .Then(_ => TheNewAssessmentResultsShouldBeSaved())
-//                .When(_ => IGoToTheStudentResultsPage())
-//                .When(_ => IChooseTheRightSession())
-//                .Then(_ => TheResultShouldBeDisplayed())
                 .BDDfy();
         }
     }

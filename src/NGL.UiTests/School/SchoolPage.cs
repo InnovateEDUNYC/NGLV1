@@ -5,7 +5,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.School
 {
-    class SchoolPage : Page<SchoolModel>
+    public class SchoolPage : Page<SchoolModel>
     {
         public HomePage Save(SchoolModel schoolModel)
         {

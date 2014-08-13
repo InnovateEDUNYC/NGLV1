@@ -6,7 +6,7 @@ using TestStack.Seleno.PageObjects.Actions;
 
 namespace NGL.UiTests.Shared
 {
-    class UsersPage: Page
+    public class UsersPage: Page
     {
         public AddUserPage GoToAddUserPage()
         {

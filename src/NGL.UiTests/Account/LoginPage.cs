@@ -5,7 +5,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Account
 {
-    class LoginPage : Page<LoginModel>
+    public class LoginPage : Page<LoginModel>
     {
         public HomePage Login(LoginModel model)
         {

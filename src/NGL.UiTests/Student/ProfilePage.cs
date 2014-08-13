@@ -54,9 +54,6 @@ namespace NGL.UiTests.Student
         {
             return Navigate.To<SchedulePage>(By.LinkText("Scheduling"));
         }
-        public ReportsPage GoToResultsPage()
-        {
-            return Navigate.To<ReportsPage>(By.LinkText("Reports"));
-        }
+
     }
 }
