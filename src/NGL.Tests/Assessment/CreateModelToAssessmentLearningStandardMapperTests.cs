@@ -20,7 +20,7 @@ namespace NGL.Tests.Assessment
         {
             SetUp();
 
-            var entity = new CreateModelToAssessmentLearningStandardMapper().Build(_createModel,
+            var entity = new CreateModelToCreateModelToAssessmentLearningStandardMapper().Build(_createModel,
                             _assessment);
 
             entity.AssessmentTitle.ShouldBe(_assessment.AssessmentTitle);

@@ -26,7 +26,6 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly ILearningStandardRepository _learningStandardRepository;
-        private readonly IAssessmentJoinMapper<AssessmentLearningStandard, Assessment> _createModelToAssessmentLearningStandardMapper;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -35,8 +34,7 @@ namespace NGL.Web.Controllers
             IMapper<Assessment, EnterResultsModel> assessmentToEnterResultsModelMapper,
             EnterResultsStudentModelToStudentAssessmentMapper enterResultsStudentModelToStudentAssessmentMapper,
 			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
-            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository, 
-            IAssessmentJoinMapper<AssessmentLearningStandard, Assessment> createModelToAssessmentLearningStandardMapper)
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -46,7 +44,6 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
              _learningStandardRepository = learningStandardRepository;
-            this._createModelToAssessmentLearningStandardMapper = createModelToAssessmentLearningStandardMapper;
             _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
         }
 
@@ -97,7 +94,7 @@ namespace NGL.Web.Controllers
         {
             var assessment = _assessmentRepository.GetAssessmentByAssessmentId(id);
             
-            if (assessment == null) return View(MVC.Error.HttpError404());
+            if (assessment == null) return View("Error");
 
             var enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
 

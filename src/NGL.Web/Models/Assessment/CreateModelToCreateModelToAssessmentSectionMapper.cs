@@ -5,12 +5,12 @@ using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class CreateModelToAssessmentSectionMapper : IAssessmentJoinMapper<AssessmentSection, Data.Entities.Assessment>
+    public class CreateModelToCreateModelToAssessmentSectionMapper : ICreateModelToAssessmentSectionMapper
     {
         private readonly IGenericRepository _genericRepository;
         private Data.Entities.Assessment _assessment;
 
-        public CreateModelToAssessmentSectionMapper(IGenericRepository genericRepository)
+        public CreateModelToCreateModelToAssessmentSectionMapper(IGenericRepository genericRepository)
         {
             _genericRepository = genericRepository;
         }

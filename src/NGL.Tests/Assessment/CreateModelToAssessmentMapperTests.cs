@@ -18,8 +18,8 @@ namespace NGL.Tests.Assessment
         private Web.Data.Entities.Section _section;
         private Web.Data.Entities.Course _course;
         private IPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapperMock;
-        private IAssessmentJoinMapper<AssessmentSection, Web.Data.Entities.Assessment> _createModelToAssessmentSectionMapperMock;
-        private IAssessmentJoinMapper<AssessmentLearningStandard, Web.Data.Entities.Assessment> _createModelToAssessmentLearningStandardMapperMock;
+        private ICreateModelToAssessmentSectionMapper _createModelToCreateModelToAssessmentSectionMapperMock;
+        private ICreateModelToAssessmentLearningStandardMapper _createModelToCreateModelToAssessmentLearningStandardMapperMock;
 
         [Fact]
         public void ShouldMap()
@@ -28,7 +28,7 @@ namespace NGL.Tests.Assessment
 
             var model = new CreateModelBuilder().WithGradeLevelTypeId(_4ThGradeLevelDescriptor.GradeLevelTypeId).Build();
             var entity = new CreateModelToAssessmentMapper(_genericRepositoryStub, 
-                _createModelToAssessmentPerformanceLevelMapperMock, _createModelToAssessmentSectionMapperMock, _createModelToAssessmentLearningStandardMapperMock).Build(model);
+                _createModelToAssessmentPerformanceLevelMapperMock, _createModelToCreateModelToAssessmentSectionMapperMock, _createModelToCreateModelToAssessmentLearningStandardMapperMock).Build(model);
 
             entity.AssessmentTitle.ShouldBe(model.AssessmentTitle);
             entity.AdministeredDate.ShouldBe(model.AdministeredDate.GetValueOrDefault());
@@ -42,9 +42,9 @@ namespace NGL.Tests.Assessment
         {
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
             _createModelToAssessmentPerformanceLevelMapperMock = Substitute.For<IPerformanceLevelMapper>();
-            _createModelToAssessmentSectionMapperMock = Substitute.For<IAssessmentJoinMapper<AssessmentSection, Web.Data.Entities.Assessment>>();
-            _createModelToAssessmentLearningStandardMapperMock =
-                Substitute.For<IAssessmentJoinMapper<AssessmentLearningStandard, Web.Data.Entities.Assessment>>();
+            _createModelToCreateModelToAssessmentSectionMapperMock = Substitute.For<ICreateModelToAssessmentSectionMapper>();
+            _createModelToCreateModelToAssessmentLearningStandardMapperMock =
+                Substitute.For<ICreateModelToAssessmentLearningStandardMapper>();
 
             _section = new SectionBuilder().Build();
             _course = new CourseBuilder().Build();

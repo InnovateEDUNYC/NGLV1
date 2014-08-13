@@ -24,7 +24,7 @@ namespace NGL.Tests.Assessment
         {
             SetUp();
 
-            var entity = new CreateModelToAssessmentSectionMapper(_genericRepositoryStub).Build(_createModel, _assessment);
+            var entity = new CreateModelToCreateModelToAssessmentSectionMapper(_genericRepositoryStub).Build(_createModel, _assessment);
 
             entity.AssessmentTitle.ShouldBe(_assessment.AssessmentTitle);
             entity.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);

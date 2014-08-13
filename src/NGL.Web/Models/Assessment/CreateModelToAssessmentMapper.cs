@@ -8,17 +8,17 @@ namespace NGL.Web.Models.Assessment
     {
         private readonly IGenericRepository _genericRepository;
         private readonly IPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
-        private readonly IAssessmentJoinMapper<AssessmentSection, Data.Entities.Assessment> _createModelToAssessmentSectionMapper;
-        private readonly IAssessmentJoinMapper<AssessmentLearningStandard, Data.Entities.Assessment> _createModelToAssessmentLearningStandardMapper;
+        private readonly ICreateModelToAssessmentSectionMapper _createModelToCreateModelToAssessmentSectionMapper;
+        private readonly ICreateModelToAssessmentLearningStandardMapper _createModelToCreateModelToAssessmentLearningStandardMapper;
 
         public CreateModelToAssessmentMapper(IGenericRepository genericRepository, 
             IPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper, 
-            IAssessmentJoinMapper<AssessmentSection, Data.Entities.Assessment> createModelToAssessmentSectionMapper, IAssessmentJoinMapper<AssessmentLearningStandard, Data.Entities.Assessment> createModelToAssessmentLearningStandardMapper)
+            ICreateModelToAssessmentSectionMapper createModelToCreateModelToAssessmentSectionMapper, ICreateModelToAssessmentLearningStandardMapper createModelToCreateModelToAssessmentLearningStandardMapper)
         {
             _genericRepository = genericRepository;
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
-            _createModelToAssessmentSectionMapper = createModelToAssessmentSectionMapper;
-            _createModelToAssessmentLearningStandardMapper = createModelToAssessmentLearningStandardMapper;
+            _createModelToCreateModelToAssessmentSectionMapper = createModelToCreateModelToAssessmentSectionMapper;
+            _createModelToCreateModelToAssessmentLearningStandardMapper = createModelToCreateModelToAssessmentLearningStandardMapper;
         }
 
         public override void Map(CreateModel source, Data.Entities.Assessment target)
@@ -59,12 +59,12 @@ namespace NGL.Web.Models.Assessment
 
         private void MapAssessmentSections(CreateModel source, Data.Entities.Assessment target)
         {
-            _createModelToAssessmentSectionMapper.Build(source, target);
+            _createModelToCreateModelToAssessmentSectionMapper.Build(source, target);
         }
 
         private void MapAssessmentLearningStandards(CreateModel source, Data.Entities.Assessment assessment)
         {
-            _createModelToAssessmentLearningStandardMapper.Build(source, assessment);
+            _createModelToCreateModelToAssessmentLearningStandardMapper.Build(source, assessment);
         }
     }
 }

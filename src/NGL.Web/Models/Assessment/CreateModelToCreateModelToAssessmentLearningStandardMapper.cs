@@ -4,7 +4,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class CreateModelToAssessmentLearningStandardMapper : IAssessmentJoinMapper<AssessmentLearningStandard, Data.Entities.Assessment>
+    public class CreateModelToCreateModelToAssessmentLearningStandardMapper : ICreateModelToAssessmentLearningStandardMapper
     {
         private Data.Entities.Assessment _assessment;
 

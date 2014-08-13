@@ -77,6 +77,8 @@ namespace NGL.Web
             kernel.Bind<IFileDownloader>().To<AzureStorageDownloader>().InSingletonScope();
             kernel.Bind<IResourceService>().To<ResourceService>().InSingletonScope();
             kernel.Bind<IPerformanceLevelMapper>().To<CreateModelToAssessmentPerformanceLevelMapper>();
+            kernel.Bind<ICreateModelToAssessmentSectionMapper>().To<CreateModelToCreateModelToAssessmentSectionMapper>();
+            kernel.Bind<ICreateModelToAssessmentLearningStandardMapper>().To<CreateModelToCreateModelToAssessmentLearningStandardMapper>();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()
@@ -86,7 +88,7 @@ namespace NGL.Web
                 .Bind<RoleManager<IdentityRole>>()
                 .ToMethod<RoleManager<IdentityRole>>(c =>
                     new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(c.Kernel.Get<ApplicationDbContext>())));
-            
+
             kernel.Bind(x => x
                 .FromThisAssembly()
                 .SelectAllTypes()
@@ -103,12 +105,6 @@ namespace NGL.Web
                 x => x.FromThisAssembly()
                     .SelectAllTypes()
                     .InheritedFrom(typeof (IMapper<,>))
-                    .BindDefaultInterfaces());
-            
-            kernel.Bind(
-                x => x.FromThisAssembly()
-                    .SelectAllTypes()
-                    .InheritedFrom(typeof (IAssessmentJoinMapper<,>))
                     .BindDefaultInterfaces());
         }        
     }
