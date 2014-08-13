@@ -35,7 +35,7 @@ Ngl.schedule.setSchedule = (function () {
                                 '<td class="delete-row-btn">' + 
                                     '<div data-student-section-id="' + sectionListItem.StudentSectionId
                                             + '" data-section-id="' + sectionListItem.SectionId
-                                            + '" class="glyphicon glyphicon-remove remove-student"></div>' +
+                                            + '" class="fa fa-times-circle remove-student"></div>' +
                                 '</td>' +
                                 '<td class="hidden section-id">' + sectionListItem.SectionId + '</td>' +
                             '</tr>' +
