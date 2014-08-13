@@ -157,7 +157,7 @@ namespace NGL.Web.Controllers
                 var newResultModel =
                     newResultModels.First(
                         studentScoreResult => studentScoreResult.StudentUsi == currentResultEntity.StudentUSI);
-                currentResultEntity.Result = newResultModel.AssessmentResult;
+                currentResultEntity.Result = newResultModel.AssessmentResult ?? "";
             }
         }
 

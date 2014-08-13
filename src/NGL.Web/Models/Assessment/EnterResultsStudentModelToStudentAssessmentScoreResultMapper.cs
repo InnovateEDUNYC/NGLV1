@@ -9,7 +9,7 @@ namespace NGL.Web.Models.Assessment
             return new StudentAssessmentScoreResult
             {
                 StudentUSI = source.StudentUsi,
-                Result = source.AssessmentResult,
+                Result = source.AssessmentResult ?? "",
                 AssessmentReportingMethodTypeId = (int) AssessmentReportingMethodTypeEnum.Percentile,
                 ResultDatatypeTypeId = (int) ResultDatatypeTypeEnum.Percentile,
                 AssessmentTitle = assessment.AssessmentTitle,
