@@ -31,9 +31,9 @@ namespace NGL.UiTests.Shared
             return Navigate.To<LocationIndexPage>(By.LinkText("Classrooms"));
         }
 
-        public SectionCreatePage GoToSectionCreatePage()
+        public SectionIndexPage GoToSectionIndexPage()
         {
-            return Navigate.To<SectionCreatePage>(By.LinkText("Sections"));
+            return Navigate.To<SectionIndexPage>(By.LinkText("Sections"));
         }
     }
 }
