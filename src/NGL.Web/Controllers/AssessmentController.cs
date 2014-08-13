@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Security;
@@ -95,12 +96,10 @@ namespace NGL.Web.Controllers
                 .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
             var mastery = _createModelToAssessmentPerformanceLevelMapper
                 .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
+            var assessmentMapperExpression = new AssessmentMapperExpression(assessment);
 
-            var learningStandard = _createModelToAssessmentLearningStandardMapper.Build(createModel, ls =>
-                    {
-                        ls.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                        ls.Version = assessment.Version;
-                    });
+
+            var learningStandard = _createModelToAssessmentLearningStandardMapper.Build(createModel, assessmentMapperExpression.Expression);
 
             var assessmentSection = _createModelToAssessmentSectionMapper.Build(createModel,
                 a =>
