@@ -26,6 +26,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly ILearningStandardRepository _learningStandardRepository;
+        private readonly IMapper<CreateModel, AssessmentLearningStandard> _createModelToAssessmentLearningStandardMapper;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -35,7 +36,7 @@ namespace NGL.Web.Controllers
             EnterResultsStudentModelToStudentAssessmentMapper enterResultsStudentModelToStudentAssessmentMapper, 
             CreateModelToAssessmentPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper,
 			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
-            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository)
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository, IMapper<CreateModel, AssessmentLearningStandard> createModelToAssessmentLearningStandardMapper)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -46,6 +47,7 @@ namespace NGL.Web.Controllers
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
              _learningStandardRepository = learningStandardRepository;
+            _createModelToAssessmentLearningStandardMapper = createModelToAssessmentLearningStandardMapper;
             _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
         }
 
@@ -65,7 +67,7 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "assessment", Operation = "create")]
         public virtual ActionResult Create()
         {
-            var commonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
+            var commonCoreStandards = _learningStandardRepository.GetAllCommonCoreAnchorStandards();
 
             var createModel = CreateModel.CreateNewWith(commonCoreStandards);
 
@@ -82,7 +84,7 @@ namespace NGL.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                createModel.CommonCoreStandards = _learningStandardRepository.GetCommonCoreStandards();
+                createModel.CommonCoreStandards = _learningStandardRepository.GetAllCommonCoreAnchorStandards();
                 return View(createModel);
             }
 
@@ -92,16 +94,14 @@ namespace NGL.Web.Controllers
             var mastery = _createModelToAssessmentPerformanceLevelMapper
                 .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
 
-            _assessmentRepository.Save(assessment, nearMastery, mastery);
-            return RedirectToAction(MVC.Home.Index());
-        }
+            var learningStandard = _createModelToAssessmentLearningStandardMapper.Build(createModel, ls =>
+                    {
+                        ls.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+                        ls.Version = assessment.Version;
+                    });
 
-        private void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
-        {
-            _genericRepository.Add(assessment);
-            _genericRepository.Add(nearMastery);
-            _genericRepository.Add(mastery);
-            _genericRepository.Save();
+            _assessmentRepository.Save(assessment, nearMastery, mastery);
+            return RedirectToAction(MVC.Assessment.Index());
         }
 
         //

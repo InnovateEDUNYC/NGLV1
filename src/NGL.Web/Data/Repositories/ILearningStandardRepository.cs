@@ -6,7 +6,7 @@ namespace NGL.Web.Data.Repositories
 {
     public interface ILearningStandardRepository : IRepositoryBase
     {
-        List<CommonCoreStandardListItemModel> GetCommonCoreStandards();
-        List<CommonCoreStandardListItemModel> GetCommonCoreStandards(int? gradeLevelTypeId);
+        List<CommonCoreStandardListItemModel> GetAllCommonCoreAnchorStandards();
+        List<CommonCoreStandardListItemModel> FilterCommonCoreStandards(int gradeLevelTypeId, int academicSubjectDescriptorId);
     }
 }
