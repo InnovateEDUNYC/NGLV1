@@ -19,7 +19,7 @@ namespace NGL.UiTests.Assessment
             Input.ReplaceInputValueWith(m => m.SessionId, 1);
             Input.ReplaceInputValueWith(m => m.SectionId, 2);
             Input.ReplaceInputValueWith(m => m.AssessmentTitle, createAssessmentModel.AssessmentTitle);
-            Input.ReplaceInputValueWith(m => m.AdministeredDate, createAssessmentModel.AdministeredDate.Value.ToShortDateString());
+            Input.ReplaceInputValueWith(m => m.AdministeredDate, createAssessmentModel.AdministeredDate);
             Input.SelectByOptionTextInDropDown(m => m.QuestionType, createAssessmentModel.QuestionType.Humanize());
             Input.SelectByOptionTextInDropDown(m => m.GradeLevel, createAssessmentModel.GradeLevel.Humanize());
             Input.ReplaceInputValueWith(m => m.Mastery, createAssessmentModel.Mastery);
