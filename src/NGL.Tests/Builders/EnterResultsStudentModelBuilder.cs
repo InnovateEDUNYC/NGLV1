@@ -12,7 +12,7 @@ namespace NGL.Tests.Builders
     {
         private int _studentUsi = 123;
         private DateTime _administrationDate = new DateTime(2014, 8, 8);
-        private string _assessmentResult = "80";
+        private decimal? _assessmentResult = 80.4m;
         private string _name = "Jenny";
         private StudentAssessment _studentAssessment = new StudentAssessment();
         private string _assessmentTitle = "My assessment";

@@ -34,17 +34,21 @@ namespace NGL.Web.Models.Assessment
             target.CCSS = source.AssessmentLearningStandards.First().LearningStandard.Description;
             target.AssessmentDate = source.AdministeredDate.ToShortDateString();
             target.StudentResults = new List<EnterResultsStudentModel>();
-            foreach (var student in students)      
+
+            if (source.StudentAssessments.IsNullOrEmpty())
             {
-                var studentAssessment = new StudentAssessment();
-                if (!student.StudentAssessments.IsNullOrEmpty())
-                    studentAssessment = student.StudentAssessments.FirstOrDefault(
-                        a => a.Assessment.AssessmentIdentity == source.AssessmentIdentity);
-                else
+                // create new
+                target.StudentResults = students.Select(s => new EnterResultsStudentModel
                 {
-                    studentAssessment.Student = student;
-                }
-                target.StudentResults.Add(_studentAssessmentToEnterResultsStudentModelMapper.Build(studentAssessment));
+                    StudentUsi = s.StudentUSI,
+                    Name = s.FirstName + " " + s.LastSurname
+                }).ToList();
+            }
+            else
+            {
+                target.StudentResults =
+                    source.StudentAssessments.Select(sa => _studentAssessmentToEnterResultsStudentModelMapper.Build(sa))
+                        .ToList();
             }
         }
     }

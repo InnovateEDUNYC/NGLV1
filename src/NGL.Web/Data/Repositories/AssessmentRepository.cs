@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.WebPages;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Models;
-using NGL.Web.Models.Assessment;
 
 namespace NGL.Web.Data.Repositories
 {
@@ -18,8 +17,10 @@ namespace NGL.Web.Data.Repositories
             return DbContext.Set<StudentAssessment>()
                 .Where(
                     sa =>
-                        sa.StudentUSI == studentUsi && sa.AdministrationDate >= startDate &&
-                        sa.AdministrationDate <= endDate)
+                        sa.StudentUSI == studentUsi 
+                        && sa.AdministrationDate >= startDate 
+                        && sa.AdministrationDate <= endDate
+                        && sa.StudentAssessmentScoreResults.Any(sasr => sasr.Result != string.Empty))
                 .Include(sa => sa.Assessment)
                 .Include(sa => sa.Assessment.AssessmentPerformanceLevels)
                 .Include(sa => sa.Assessment.AssessmentLearningStandards.Select(als => als.LearningStandard))

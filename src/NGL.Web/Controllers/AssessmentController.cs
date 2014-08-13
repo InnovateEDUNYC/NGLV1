@@ -130,9 +130,15 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult EnterResults(EnterResultsModel enterResultsModel)
         {
-            var enterResultsStudentModels = enterResultsModel.StudentResults;
             var assessmentId = enterResultsModel.AssessmentId;
             var assessment = _assessmentRepository.GetAssessmentByAssessmentId(assessmentId);
+            if (!ModelState.IsValid)
+            {
+                enterResultsModel = _assessmentToEnterResultsModelMapper.Build(assessment);
+                return View(enterResultsModel);
+            }
+            var enterResultsStudentModels = enterResultsModel.StudentResults;
+            
 
             var currentStudentAssessments = assessment.StudentAssessments;
             if (currentStudentAssessments.IsNullOrEmpty())
@@ -157,7 +163,7 @@ namespace NGL.Web.Controllers
                 var newResultModel =
                     newResultModels.First(
                         studentScoreResult => studentScoreResult.StudentUsi == currentResultEntity.StudentUSI);
-                currentResultEntity.Result = newResultModel.AssessmentResult;
+                currentResultEntity.Result = newResultModel.AssessmentResult.HasValue ? newResultModel.AssessmentResult.Value.ToString() : "";
             }
         }
 

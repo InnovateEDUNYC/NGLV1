@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Castle.Core.Internal;
 
 namespace NGL.Web.Models.Assessment
@@ -14,7 +12,10 @@ namespace NGL.Web.Models.Assessment
             target.Name = source.Student.FirstName + " " + source.Student.LastSurname;
 
             if (!source.StudentAssessmentScoreResults.IsNullOrEmpty())
-                target.AssessmentResult = source.StudentAssessmentScoreResults.First().Result;
+            {
+                var result = source.StudentAssessmentScoreResults.First().Result;
+                target.AssessmentResult = result == string.Empty? (decimal?) null : Convert.ToDecimal(result);
+            }
         }
     }
 }

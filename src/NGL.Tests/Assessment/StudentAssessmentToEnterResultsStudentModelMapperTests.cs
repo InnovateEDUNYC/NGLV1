@@ -23,7 +23,7 @@ namespace NGL.Tests.Assessment
 
             model.StudentUsi.ShouldBe(entity.Student.StudentUSI);
             model.Name.ShouldBe(entity.Student.FirstName + " " + entity.Student.LastSurname);
-            model.AssessmentResult.ShouldBe(entity.StudentAssessmentScoreResults.First().Result);
+            model.AssessmentResult.ShouldBe(Convert.ToDecimal(entity.StudentAssessmentScoreResults.First().Result));
         }
 
         [Fact]
