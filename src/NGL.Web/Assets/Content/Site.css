@@ -102,7 +102,6 @@ form .inline input {
 }
 
 .click-button {
-    position: absolute;
     min-height: 34px;
     min-width: 92px;
 }
@@ -215,6 +214,15 @@ form .inline input {
     border-right: 2px solid #f7f7f9;
     background-color: #2DBCBB;
     color: white
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #2DBCBB;
+    border-color: #2DBCBB;
 }
 
 .btn-primary:hover {
