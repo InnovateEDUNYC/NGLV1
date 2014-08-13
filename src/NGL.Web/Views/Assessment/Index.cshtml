@@ -1,7 +1,15 @@
-﻿@model IEnumerable<NGL.Web.Models.Assessment.IndexModel>
+﻿@using NGL.Web.Infrastructure.Security
+@model IEnumerable<NGL.Web.Models.Assessment.IndexModel>
 
 @{
     ViewBag.Title = "Assessments";
+}
+
+@if ((User as NglPrincipal).HasAccessTo("assessment", "create"))
+{
+    <ul class="nav nav-pills">
+        <li>@Html.ActionLink("Create Assessment", "Create")</li>
+    </ul>
 }
 
 <h2>Assessments</h2>

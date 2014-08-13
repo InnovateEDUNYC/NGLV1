@@ -1,4 +1,5 @@
 ﻿using System;
+using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Assessment;
 
@@ -14,6 +15,10 @@ namespace NGL.Tests.Builders
         private readonly decimal? _mastery = 90;
         private int _sessionId = 1;
         private int _sectionId = 2;
+        private string _session = TermTypeEnum.FallSemester.Humanize() + " "
+            + SchoolYearTypeEnum.Year2014.Humanize();
+        private string _section = "ENGL400 - DI";
+        private string _commonCourseStandard = "Functions";
 
 
         public CreateModel Build()
@@ -26,8 +31,11 @@ namespace NGL.Tests.Builders
                 GradeLevel = _gradeLevel,
                 NearMastery = _nearMastery,
                 Mastery = _mastery,
+                Session = _session,
                 SessionId = _sessionId,
-                SectionId = _sectionId
+                SectionId = _sectionId,
+                Section = _section,
+                CommonCoreStandard = _commonCourseStandard
             };
         }
 

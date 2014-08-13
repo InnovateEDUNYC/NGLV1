@@ -1,6 +1,7 @@
 ﻿using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
 using NGL.Web.Models.Assessment;
+using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
 
@@ -27,7 +28,7 @@ namespace NGL.UiTests.Assessment
 
         public void IAmOnTheCreateAssessmentPage()
         {
-            _assessmentCreatePage = _homePage.TopMenu.GoToAssessmentCreatePage();
+            _assessmentCreatePage = _homePage.TopMenu.GoToAssessmentIndexPage().GoToCreatePage();
         }
 
         public void IHaveEnteredValidInputForAllFields()
@@ -36,14 +37,20 @@ namespace NGL.UiTests.Assessment
             _assessmentIndexPage = _assessmentCreatePage.CreateAssessment(_createAssessmentModel);
         }
 
+        public void ANewAssessmentShouldBeDisplayedOnTheAssessmentIndexPage()
+        {
+            var assessmentExists = _assessmentIndexPage.AssessmentExists(_createAssessmentModel);
+            assessmentExists.ShouldBe(true);
+        }
+
         [Fact]
         public void ShouldCreateAssessment()
         {
             this.Given(_ => IHaveLoggedIn())
                 .And(_ => IAmOnTheCreateAssessmentPage())
                 .When(_ => IHaveEnteredValidInputForAllFields())
+                .Then(_ => ANewAssessmentShouldBeDisplayedOnTheAssessmentIndexPage())
                 .BDDfy();
         }
-
     }
 }

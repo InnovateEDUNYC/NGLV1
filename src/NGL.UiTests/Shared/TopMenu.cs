@@ -56,9 +56,9 @@ namespace NGL.UiTests.Shared
             return Navigate.To<UsersPage>(By.LinkText("Users"));
         }
 
-        public AssessmentCreatePage GoToAssessmentCreatePage()
+        public AssessmentIndexPage GoToAssessmentIndexPage()
         {
-            return Navigate.To<AssessmentCreatePage>(By.LinkText("Assessment"));
+            return Navigate.To<AssessmentIndexPage>(By.LinkText("Assessment"));
         }
     }
 }
