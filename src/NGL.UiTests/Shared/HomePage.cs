@@ -3,7 +3,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Shared
 {
-    class HomePage : Page
+    public class HomePage : Page
     {
         public TopMenu TopMenu
         {

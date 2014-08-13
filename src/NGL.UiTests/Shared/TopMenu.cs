@@ -7,7 +7,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Shared
 {
-    class TopMenu : UiComponent
+    public class TopMenu : UiComponent
     {
         public SchoolPage GoToSchoolPage()
         {
