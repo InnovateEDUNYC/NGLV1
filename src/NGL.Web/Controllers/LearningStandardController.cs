@@ -22,13 +22,24 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
-        public virtual JsonResult GetCommonCoreStandards(string gradeLevelTypeEnum)
+        public virtual JsonResult GetCommonCoreStandards(string gradeLevelTypeEnum, string academicSubjectDescriptorEnum)
         {
+            if (EitherIsNullOrWhitespace(gradeLevelTypeEnum, academicSubjectDescriptorEnum))
+                return Json(new {BadInput = true}, JsonRequestBehavior.AllowGet);
+
             var gradeLevelType = Enum.Parse(typeof (GradeLevelTypeEnum), gradeLevelTypeEnum);
-            var commonCoreStandards = _learningStandardRepository.GetCommonCoreStandards((int) gradeLevelType);
+            var academicSubjectDescriptor = Enum.Parse(typeof (AcademicSubjectDescriptorEnum),
+                academicSubjectDescriptorEnum);
+
+            var commonCoreStandards = _learningStandardRepository.FilterCommonCoreStandards((int) gradeLevelType, (int) academicSubjectDescriptor);
 
             return Json(commonCoreStandards, JsonRequestBehavior.AllowGet);
         }
 
-	}
+        private static bool EitherIsNullOrWhitespace(string gradeLevelTypeEnum, string academicSubjectDescriptorEnum)
+        {
+            return String.IsNullOrWhiteSpace(gradeLevelTypeEnum) ||
+                   String.IsNullOrWhiteSpace(academicSubjectDescriptorEnum);
+        }
+    }
 }

@@ -2,31 +2,44 @@
 
 Ngl.shared.learningStandards = (function () {
     var init = function () {
-        setUpStandards();
+        setUpGradeLevelChangeEvent();
+        setUpLearningStandardChangeEvent();
     }
 
-    var setUpStandards = function() {
-        $('#GradeLevel').on('change', function () {
-            resetList();
-            var gradeLevelTypeEnum = $(this).val();
-            $.ajax({
-                url: "/LearningStandard/GetCommonCoreStandards",
-                type: "POST",
-                dataType: "json",
-                data: {
-                    gradeLevelTypeEnum: gradeLevelTypeEnum,
-                },
+    var setUpGradeLevelChangeEvent = function() {
+        $('#GradeLevel').on('change', setUpStandards);
+    }
 
-                success: function (listOfCommonCoreListItemModels) {
-                    console.log(listOfCommonCoreListItemModels);
-                    listOfCommonCoreListItemModels.forEach(function(e) {
-                            $('#CommonCoreStandard').append('<option value="'+ e.LearningStandardId +'">'+ e.Description +'</option>');
-                        }
-                    );
+    var setUpLearningStandardChangeEvent = function () {
+        console.log("settingUpLearningStandardChangeEvent");
+        $('#LearningStandard').on('change', setUpStandards);
+    }
+
+    var setUpStandards = function () {
+        resetList();
+        var gradeLevelTypeEnum = $('#GradeLevel').val();
+        var academicSubjectDescriptorEnum = $('#LearningStandard').val();
+
+        $.ajax({
+            url: "/LearningStandard/GetCommonCoreStandards",
+            type: "POST",
+            dataType: "json",
+            data: {
+                gradeLevelTypeEnum: gradeLevelTypeEnum,
+                academicSubjectDescriptorEnum: academicSubjectDescriptorEnum
+            },
+
+            success: function (listOfCommonCoreListItemModels) {
+//                console.log(listOfCommonCoreListItemModels);
+                if (!listOfCommonCoreListItemModels.BadInput) {
+                    listOfCommonCoreListItemModels.forEach(function (e) {
+                        console.log(e.Description);
+                        $('#CommonCoreStandard').append('<option value="' + e.LearningStandardId + '">' + e.Description + '</option>');
+                    });
                 }
-            });
+            }
         });
-    }
+    };
 
     var resetList = function() {
         $('#CommonCoreStandard option').remove();

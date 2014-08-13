@@ -93,6 +93,7 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_GetCommonCoreStandards
         {
             public readonly string gradeLevelTypeEnum = "gradeLevelTypeEnum";
+            public readonly string academicSubjectDescriptorEnum = "academicSubjectDescriptorEnum";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -114,14 +115,15 @@ namespace NGL.Web.Controllers
         public T4MVC_LearningStandardController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void GetCommonCoreStandardsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string gradeLevelTypeEnum);
+        partial void GetCommonCoreStandardsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string gradeLevelTypeEnum, string academicSubjectDescriptorEnum);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult GetCommonCoreStandards(string gradeLevelTypeEnum)
+        public override System.Web.Mvc.JsonResult GetCommonCoreStandards(string gradeLevelTypeEnum, string academicSubjectDescriptorEnum)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetCommonCoreStandards);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "gradeLevelTypeEnum", gradeLevelTypeEnum);
-            GetCommonCoreStandardsOverride(callInfo, gradeLevelTypeEnum);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "academicSubjectDescriptorEnum", academicSubjectDescriptorEnum);
+            GetCommonCoreStandardsOverride(callInfo, gradeLevelTypeEnum, academicSubjectDescriptorEnum);
             return callInfo;
         }
 
