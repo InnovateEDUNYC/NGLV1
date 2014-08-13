@@ -15,7 +15,7 @@ namespace NGL.UiTests.Assessment
     {
         private HomePage _homePage;
         private AssessmentCreatePage _assessmentCreatePage;
-        private CreateAssessmentModel _createAssessmentModel;
+        private CreateModel _createAssessmentModel;
         private AssessmentIndexPage _assessmentIndexPage;
 
         public void IHaveLoggedIn()

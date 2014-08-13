@@ -7,7 +7,7 @@ using NGL.Web.Infrastructure;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class CreateModelValidator : AbstractValidator<CreateAssessmentModel>
+    public class CreateModelValidator : AbstractValidator<CreateModel>
     {
         private readonly IGenericRepository _genericRepository;
 
@@ -27,13 +27,13 @@ namespace NGL.Web.Models.Assessment
             RuleFor(m => m.Mastery).NotEmpty().GreaterThan(m => m.NearMastery).LessThanOrEqualTo(100m);
         }
 
-        public override ValidationResult Validate(ValidationContext<CreateAssessmentModel> context)
+        public override ValidationResult Validate(ValidationContext<CreateModel> context)
         {
             var result = base.Validate(context);
             return new ValidationResult(result.Errors.Union(ValidateExistence(context.InstanceToValidate)));
         }
 
-        private IEnumerable<ValidationFailure> ValidateExistence(CreateAssessmentModel createAssessmentModel)
+        private IEnumerable<ValidationFailure> ValidateExistence(CreateModel createAssessmentModel)
         {
             var section = _genericRepository.Get<Data.Entities.Section>(s => s.SectionIdentity == createAssessmentModel.SectionId);
             

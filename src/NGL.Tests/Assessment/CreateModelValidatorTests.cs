@@ -14,7 +14,7 @@ namespace NGL.Tests.Assessment
     {
         private IGenericRepository _genericRepository;
         private CreateModelValidator _validator;
-        private CreateAssessmentModel _createAssessmentModel;
+        private CreateModel _createAssessmentModel;
         private Web.Data.Entities.Assessment _assessmentEntity;
 
         [Fact]

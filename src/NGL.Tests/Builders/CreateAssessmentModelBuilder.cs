@@ -16,9 +16,9 @@ namespace NGL.Tests.Builders
         private int _sectionId = 2;
 
 
-        public CreateAssessmentModel Build()
+        public CreateModel Build()
         {
-            return new CreateAssessmentModel
+            return new CreateModel
             {
                 AssessmentTitle = AssessmentTitle,
                 AdministeredDate = _adminsteredDate,

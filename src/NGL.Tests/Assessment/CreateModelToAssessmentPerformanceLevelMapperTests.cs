@@ -14,7 +14,7 @@ namespace NGL.Tests.Assessment
         private IGenericRepository _genericRepositoryStub;
         private const PerformanceLevelDescriptorEnum MasteryPerformanceLevelDescriptor = PerformanceLevelDescriptorEnum.Mastery;
         private Web.Data.Entities.Assessment _assessment;
-        private CreateAssessmentModel _createAssessmentModel;
+        private CreateModel _createAssessmentModel;
 
         [Fact]
         public void ShouldMap()

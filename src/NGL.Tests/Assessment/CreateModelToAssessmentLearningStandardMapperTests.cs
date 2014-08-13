@@ -33,7 +33,7 @@ namespace NGL.Tests.Assessment
 
         private void SetUp()
         {
-            _createModel = new CreateModelBuilder().Build();
+            _createModel = new CreateAssessmentModelBuilder().Build();
             _assessment = new AssessmentBuilder()
                 .WithAssessmentPerformanceLevels()
                 .Build();

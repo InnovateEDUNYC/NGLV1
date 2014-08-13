@@ -12,9 +12,9 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Assessment
 {
-    public class AssessmentCreatePage : Page<CreateAssessmentModel>
+    public class AssessmentCreatePage : Page<CreateModel>
     {
-        public AssessmentIndexPage CreateAssessment(CreateAssessmentModel createAssessmentModel)
+        public AssessmentIndexPage CreateAssessment(CreateModel createAssessmentModel)
         {
             Input.ReplaceInputValueWith(m => m.SessionId, createAssessmentModel.SessionId);
             Input.ReplaceInputValueWith(m => m.SectionId, createAssessmentModel.SectionId);
