@@ -18,7 +18,7 @@ namespace NGL.Web
 
             string includeSampleScripts = ConfigurationManager.AppSettings["dbup:IncludeSampleScripts"];
             if (includeSampleScripts == null || !bool.Parse(includeSampleScripts))
-                filter = s => scriptsOnly(s) && !s.EndsWith(".sample.sql") && !s.Contains("010") && !s.Contains("011") && !s.Contains("012") && !s.Contains("013");
+                filter = s => scriptsOnly(s) && !s.EndsWith(".sample.sql");
             
             var upgrader =
                 DeployChanges.To
