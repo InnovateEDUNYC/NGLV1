@@ -1,4 +1,5 @@
-﻿using NGL.Tests.Builders;
+﻿using System.Threading.Tasks;
+using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
 using NGL.Web.Models.Assessment;
 using Shouldly;
@@ -19,6 +20,7 @@ namespace NGL.UiTests.Assessment
         private CreateModel _createAssessmentModel;
         private AssessmentIndexPage _assessmentIndexPage;
         private EnterResultsModel _enterResultsModel;
+        private AssessmentResultsPage _resultsPage;
 
         public void IHaveLoggedIn()
         {
@@ -46,9 +48,34 @@ namespace NGL.UiTests.Assessment
 
         public void IGoToTheResultsPageAndFillInValidResults()
         {
-            var resultsPage = _assessmentIndexPage.GoToResultsPage();
+            _resultsPage = _assessmentIndexPage.GoToResultsPage();
             _enterResultsModel = new EnterResultsModelBuilder().Build();
-            resultsPage.EnterResults(_enterResultsModel);
+            _assessmentIndexPage = _resultsPage.EnterResults();
+        }
+
+        public void IGoBackToTheResultsPage()
+        {
+            _resultsPage = _assessmentIndexPage.GoToResultsPage();
+        }
+
+        public void TheNewAssessmentResultsShouldBeSaved()
+        {
+            _resultsPage.ResultsExist().ShouldBe(true);
+        }
+
+        public void IGoToTheStudentResultsPage()
+        {
+            _homePage.TopMenu.GoToStudentsPage().GoToProfilePage().GoToResultsPage();
+        }
+
+        public void TheResultShouldBeDisplayed()
+        {
+            
+        }
+
+        public void IChooseTheRightSession()
+        {
+            
         }
 
         [Fact]
@@ -58,7 +85,12 @@ namespace NGL.UiTests.Assessment
                 .And(_ => IAmOnTheCreateAssessmentPage())
                 .When(_ => IHaveEnteredValidInputForAllFields())
                 .Then(_ => ANewAssessmentShouldBeDisplayedOnTheAssessmentIndexPage())
-                .When(_=> IGoToTheResultsPageAndFillInValidResults())
+                .When(_ => IGoToTheResultsPageAndFillInValidResults())
+                .And(_ => IGoBackToTheResultsPage())
+                .Then(_ => TheNewAssessmentResultsShouldBeSaved())
+//                .When(_ => IGoToTheStudentResultsPage())
+//                .When(_ => IChooseTheRightSession())
+//                .Then(_ => TheResultShouldBeDisplayed())
                 .BDDfy();
         }
     }
