@@ -15,20 +15,12 @@ namespace NGL.Tests.Assessment
         [Fact]
         public void ShouldMapEnterResultsStudentModelToStudentAssessment()
         {
-            var mapper = new EnterResultsStudentModelToStudentAssessmentMapper();
+            var enterResultsStudentModelToStudentAssessmentMapper = new EnterResultsStudentModelToStudentAssessmentMapper(new EnterResultsStudentModelToStudentAssessmentScoreResultMapper());
+            var mapper = enterResultsStudentModelToStudentAssessmentMapper;
             var model = new EnterResultsStudentModel();
-            var entity = new StudentAssessment();
             var assessment = new Web.Data.Entities.Assessment();
 
-            mapper.Map(model, entity, 
-                a =>
-                {
-                    a.AssessmentTitle = assessment.AssessmentTitle;
-                    a.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    a.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    a.Version = assessment.Version;
-                    a.AdministrationDate = assessment.AdministeredDate;
-                });
+            var entity = mapper.Build(model, assessment);
 
             entity.StudentUSI.ShouldBe(model.StudentUsi);
             entity.AssessmentTitle.ShouldBe(assessment.AssessmentTitle);
