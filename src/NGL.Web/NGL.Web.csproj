@@ -1663,6 +1663,7 @@
     <Compile Include="Models\Assessment\CommonCoreStandardListItemModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentLearningStandardMapper.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentPerformanceLevelMapper.cs" />
+    <Compile Include="Models\Assessment\CreateModelToAssessmentSectionMapper.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentMapper.cs" />
     <Compile Include="Models\Assessment\CreateModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentMapper.cs" />

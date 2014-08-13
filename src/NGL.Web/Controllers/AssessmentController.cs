@@ -27,6 +27,7 @@ namespace NGL.Web.Controllers
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly ILearningStandardRepository _learningStandardRepository;
         private readonly IMapper<CreateModel, AssessmentLearningStandard> _createModelToAssessmentLearningStandardMapper;
+        private readonly IMapper<CreateModel, AssessmentSection> _createModelToAssessmentSectionMapper;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -36,7 +37,7 @@ namespace NGL.Web.Controllers
             EnterResultsStudentModelToStudentAssessmentMapper enterResultsStudentModelToStudentAssessmentMapper, 
             CreateModelToAssessmentPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper,
 			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
-            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository, IMapper<CreateModel, AssessmentLearningStandard> createModelToAssessmentLearningStandardMapper)
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository, IMapper<CreateModel, AssessmentLearningStandard> createModelToAssessmentLearningStandardMapper, IMapper<CreateModel, AssessmentSection> createModelToAssessmentSectionMapper)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -48,6 +49,7 @@ namespace NGL.Web.Controllers
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
              _learningStandardRepository = learningStandardRepository;
             _createModelToAssessmentLearningStandardMapper = createModelToAssessmentLearningStandardMapper;
+            _createModelToAssessmentSectionMapper = createModelToAssessmentSectionMapper;
             _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
         }
 
@@ -100,7 +102,14 @@ namespace NGL.Web.Controllers
                         ls.Version = assessment.Version;
                     });
 
-            _assessmentRepository.Save(assessment, nearMastery, mastery, learningStandard);
+            var assessmentSection = _createModelToAssessmentSectionMapper.Build(createModel,
+                a =>
+                {
+                    a.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+                    a.Version = assessment.Version;
+                });
+
+            _assessmentRepository.Save(assessment, nearMastery, mastery, learningStandard, assessmentSection);
             return RedirectToAction(MVC.Assessment.Index());
         }
 
