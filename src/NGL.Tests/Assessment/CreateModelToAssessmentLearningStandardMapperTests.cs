@@ -1,5 +1,6 @@
 ﻿using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Models.Assessment;
@@ -15,6 +16,7 @@ namespace NGL.Tests.Assessment
         private GradeLevelDescriptor _4ThGradeLevelDescriptor;
         private Web.Data.Entities.Assessment _assessment;
         private CreateModel _createModel;
+        private AssessmentMapperExpression _assessmentMapperExpression;
 
         [Fact]
         public void ShouldMap()
@@ -22,11 +24,7 @@ namespace NGL.Tests.Assessment
             SetUp();
 
             var entity = new CreateModelToAssessmentLearningStandardMapper(_genericRepositoryStub).Build(_createModel,
-                cm =>
-                {
-                    cm.AcademicSubjectDescriptorId = _assessment.AcademicSubjectDescriptorId;
-                    cm.Version = _assessment.Version;
-                });
+                            _assessmentMapperExpression.LearningStandardExpression);
 
             entity.AssessmentTitle.ShouldBe(_createModel.AssessmentTitle);
             entity.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
@@ -41,6 +39,7 @@ namespace NGL.Tests.Assessment
             _createModel = new CreateModelBuilder().Build();
             _assessment = new AssessmentBuilder().Build();
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
+            _assessmentMapperExpression = new AssessmentMapperExpression(_assessment);
 
             _4ThGradeLevelDescriptor = new GradeLevelDescriptor
             {

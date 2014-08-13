@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
@@ -96,17 +97,13 @@ namespace NGL.Web.Controllers
                 .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
             var mastery = _createModelToAssessmentPerformanceLevelMapper
                 .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
+            
             var assessmentMapperExpression = new AssessmentMapperExpression(assessment);
 
-
-            var learningStandard = _createModelToAssessmentLearningStandardMapper.Build(createModel, assessmentMapperExpression.Expression);
+            var learningStandard = _createModelToAssessmentLearningStandardMapper.Build(createModel, assessmentMapperExpression.LearningStandardExpression);
 
             var assessmentSection = _createModelToAssessmentSectionMapper.Build(createModel,
-                a =>
-                {
-                    a.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    a.Version = assessment.Version;
-                });
+                assessmentMapperExpression.SectionExpression);
 
             _assessmentRepository.Save(assessment, nearMastery, mastery, learningStandard, assessmentSection);
             return RedirectToAction(MVC.Assessment.Index());

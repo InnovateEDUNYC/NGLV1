@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Models.Assessment;
@@ -18,6 +19,7 @@ namespace NGL.Tests.Assessment
         private Web.Data.Entities.Assessment _assessment;
         private IGenericRepository _genericRepositoryStub;
         private Web.Data.Entities.Section _section;
+        private AssessmentMapperExpression _assessmentMapperExpression;
 
         [Fact]
         public void ShouldMap()
@@ -25,12 +27,7 @@ namespace NGL.Tests.Assessment
             SetUp();
 
             var entity = new CreateModelToAssessmentSectionMapper(_genericRepositoryStub).Build(_createModel,
-               cm =>
-               {
-                   cm.AcademicSubjectDescriptorId = _assessment.AcademicSubjectDescriptorId;
-                   cm.Version = _assessment.Version;
-               });
-
+               _assessmentMapperExpression.SectionExpression);
 
             entity.AssessmentTitle.ShouldBe(_createModel.AssessmentTitle);
             entity.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
@@ -44,7 +41,6 @@ namespace NGL.Tests.Assessment
 
             entity.TermTypeId.ShouldBe(_section.TermTypeId);
             entity.SchoolYear.ShouldBe(_section.SchoolYear);
-
         }
 
         private void SetUp()
@@ -53,6 +49,7 @@ namespace NGL.Tests.Assessment
             _assessment = new AssessmentBuilder().Build();
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
             _section = new SectionBuilder().Build();
+            _assessmentMapperExpression = new AssessmentMapperExpression(_assessment);
 
             _4ThGradeLevelDescriptor = new GradeLevelDescriptor
             {

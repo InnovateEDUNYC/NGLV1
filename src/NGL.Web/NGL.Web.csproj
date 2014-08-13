@@ -277,7 +277,7 @@
     <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
-    <Compile Include="Data\Expressions\AssessmentLearningStandardMapperExpression.cs" />
+    <Compile Include="Data\Expressions\AssessmentMapperExpression.cs" />
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
