@@ -27,8 +27,8 @@ namespace NGL.UiTests.Section
 
         public void IAmOnTheCreateSectionPage()
         {
-            var courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
-            _sectionCreatePage = courseGenerationPage.GoToSectionCreatePage();
+            var sectionIndexPage = _homePage.TopMenu.GoToCourseGenerationPage().GoToSectionIndexPage();
+            _sectionCreatePage = sectionIndexPage.GoToCreatePage();
         }
 
         public void IHaveEnteredValidInputForAllFields()

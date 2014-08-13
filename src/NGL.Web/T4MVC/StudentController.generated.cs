@@ -83,6 +83,7 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string All = "All";
+            public readonly string Reports = "Reports";
             public readonly string Index = "Index";
             public readonly string UploadPhoto = "UploadPhoto";
         }
@@ -91,6 +92,7 @@ namespace NGL.Web.Controllers
         public class ActionNameConstants
         {
             public const string All = "All";
+            public const string Reports = "Reports";
             public const string Index = "Index";
             public const string UploadPhoto = "UploadPhoto";
         }
@@ -127,11 +129,13 @@ namespace NGL.Web.Controllers
                 public readonly string Delete = "Delete";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
+                public readonly string Reports = "Reports";
             }
             public readonly string All = "~/Views/Student/All.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string Reports = "~/Views/Student/Reports.cshtml";
         }
     }
 
@@ -148,6 +152,17 @@ namespace NGL.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.All);
             AllOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ReportsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Reports()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reports);
+            ReportsOverride(callInfo);
             return callInfo;
         }
 

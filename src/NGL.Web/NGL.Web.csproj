@@ -1855,6 +1855,7 @@
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Content\Image.css" />
     <Content Include="Assets\Images\brooklyn_lab_logo.png" />
+    <Content Include="Assets\Images\innovate_edu_logo.png" />
     <Content Include="Assets\Images\placeholder.png" />
     <Content Include="Assets\Scripts\createNamespace.js" />
     <Content Include="Assets\Scripts\forms.js" />
@@ -2015,6 +2016,7 @@
     <Content Include="Views\Assessment\Result.cshtml" />
     <Content Include="Views\Assessment\EnterResults.cshtml" />
     <Content Include="Views\Assessment\Index.cshtml" />
+    <Content Include="Views\Student\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

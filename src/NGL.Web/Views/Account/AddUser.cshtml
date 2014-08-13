@@ -43,7 +43,7 @@
         @s.FieldFor(m => m.Certificate4)    
     }
 
-    using (var s = f.BeginSection("Clearnace"))
+    using (var s = f.BeginSection("Clearance"))
     {
         @s.FieldFor(m => m.CriminalBackgroundCheck)
         @s.FieldFor(m => m.FingerPrinted)
@@ -51,7 +51,7 @@
 
     using (var a = f.BeginNavigation())
     {
-        @a.Submit("Register").Id("registerButton")
+        @a.Submit("Register").Id("registerButton").AddClass("btn btn-primary")
     }
 }
 

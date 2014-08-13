@@ -216,7 +216,7 @@ form .inline input {
     color: white
 }
 
-.btn-primary {
+.btn-primary, .btn:active {
     background-color: #2DBCBB;
     border-color: #2DBCBB;
 }
