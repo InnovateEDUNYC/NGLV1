@@ -216,14 +216,14 @@ form .inline input {
     color: white
 }
 
-.btn-primary, .btn:active {
-    background-color: #2DBCBB;
-    border-color: #2DBCBB;
-}
-
 .btn-primary:hover {
     background-color: #249695;
     border-color: #249695;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:link {
+    background-color: #2DBCBB !important;
+    border-color: #2DBCBB;
 }
 
 .btn-primary[disabled], .btn-primary:disabled {
