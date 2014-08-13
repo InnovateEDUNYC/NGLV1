@@ -76,9 +76,8 @@ namespace NGL.Web.Models.Assessment
             AssessmentPerformanceLevel assessmentPerformanceLevel)
         {
             if (assessment.AssessmentPerformanceLevels.IsNullOrEmpty())
-            {
                 assessment.AssessmentPerformanceLevels = new Collection<AssessmentPerformanceLevel>();
-            }
+
             assessment.AssessmentPerformanceLevels.Add(assessmentPerformanceLevel);
         }
     }

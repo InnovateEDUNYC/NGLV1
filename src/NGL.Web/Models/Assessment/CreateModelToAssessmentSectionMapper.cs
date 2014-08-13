@@ -1,33 +1,46 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.Collections.ObjectModel;
+using Castle.Core.Internal;
+using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class CreateModelToAssessmentSectionMapper : MapperBase<CreateModel, AssessmentSection>
+    public class CreateModelToAssessmentSectionMapper : IAssessmentJoinMapper<AssessmentSection, Data.Entities.Assessment>
     {
         private readonly IGenericRepository _genericRepository;
+        private Data.Entities.Assessment _assessment;
 
         public CreateModelToAssessmentSectionMapper(IGenericRepository genericRepository)
         {
             _genericRepository = genericRepository;
         }
 
-        public override void Map(CreateModel source, AssessmentSection target)
+        public AssessmentSection Build(CreateModel source, Data.Entities.Assessment assessment)
         {
-            MapPartOfAssessment(source, target);
-            MapSection(source, target);
+            _assessment = assessment;
+            if (assessment.AssessmentSections.IsNullOrEmpty())
+                assessment.AssessmentSections = new Collection<AssessmentSection>();
+
+            var assessmentSection = Build(source);
+
+            assessment.AssessmentSections.Add(assessmentSection);
+            return assessmentSection;
         }
 
-        private void MapPartOfAssessment(CreateModel source, AssessmentSection target)
+        private AssessmentSection Build(CreateModel source)
         {
-            target.AssessmentTitle = source.AssessmentTitle;
+            var target = new AssessmentSection();
+            MapAssessment(target);
+            MapSection(source, target);
+            return target;
+        }
 
-            var query = new GradeLevelTypeDescriptorQuery((int) source.GradeLevel.GetValueOrDefault());
-
-            var assessedGradeLevelDescriptor = _genericRepository.Get(query);
-            target.AssessedGradeLevelDescriptorId =
-                assessedGradeLevelDescriptor.GradeLevelDescriptorId;
+        private void MapAssessment(AssessmentSection target)
+        {
+            target.AssessmentTitle = _assessment.AssessmentTitle;
+            target.AssessedGradeLevelDescriptorId = _assessment.AssessedGradeLevelDescriptorId;
+            target.AcademicSubjectDescriptorId = _assessment.AcademicSubjectDescriptorId;
+            target.Version = _assessment.Version;
         }
 
         private void MapSection(CreateModel source, AssessmentSection target)

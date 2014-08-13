@@ -1671,6 +1671,7 @@
     <Compile Include="Models\Assessment\CreateModelValidator.cs" />
     <Compile Include="Models\Assessment\AssessmentResultModel.cs" />
     <Compile Include="Models\Assessment\AssessmentResultRowModel.cs" />
+    <Compile Include="Models\Assessment\IAssessmentJoinMapper.cs" />
     <Compile Include="Models\Assessment\IndexModel.cs" />
     <Compile Include="Models\Assessment\IPerformanceLevelMapper.cs" />
     <Compile Include="Models\Assessment\LearningStandardToCommonCoreStandardListItemModelMapper.cs" />

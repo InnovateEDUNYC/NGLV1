@@ -17,7 +17,8 @@ namespace NGL.Tests.Assessment
         private IGenericRepository _genericRepositoryStub;
         private Web.Data.Entities.Section _section;
         private Web.Data.Entities.Course _course;
-        private IPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapperStub;
+        private IPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapperMock;
+        private IAssessmentJoinMapper<AssessmentSection, Web.Data.Entities.Assessment> _createModelToAssessmentSectionMapperMock;
 
         [Fact]
         public void ShouldMap()
@@ -26,7 +27,7 @@ namespace NGL.Tests.Assessment
 
             var model = new CreateModelBuilder().WithGradeLevelTypeId(_4ThGradeLevelDescriptor.GradeLevelTypeId).Build();
             var entity = new CreateModelToAssessmentMapper(_genericRepositoryStub, 
-                _createModelToAssessmentPerformanceLevelMapperStub).Build(model);
+                _createModelToAssessmentPerformanceLevelMapperMock, _createModelToAssessmentSectionMapperMock).Build(model);
 
             entity.AssessmentTitle.ShouldBe(model.AssessmentTitle);
             entity.AdministeredDate.ShouldBe(model.AdministeredDate.GetValueOrDefault());
@@ -39,7 +40,8 @@ namespace NGL.Tests.Assessment
         private void SetUp()
         {
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
-            _createModelToAssessmentPerformanceLevelMapperStub = Substitute.For<IPerformanceLevelMapper>();
+            _createModelToAssessmentPerformanceLevelMapperMock = Substitute.For<IPerformanceLevelMapper>();
+            _createModelToAssessmentSectionMapperMock = Substitute.For<IAssessmentJoinMapper<AssessmentSection, Web.Data.Entities.Assessment>>();
 
             _section = new SectionBuilder().Build();
             _course = new CourseBuilder().Build();

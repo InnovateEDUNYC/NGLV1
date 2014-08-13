@@ -8,12 +8,15 @@ namespace NGL.Web.Models.Assessment
     {
         private readonly IGenericRepository _genericRepository;
         private readonly IPerformanceLevelMapper _createModelToAssessmentPerformanceLevelMapper;
+        private readonly IAssessmentJoinMapper<AssessmentSection, Data.Entities.Assessment> _createModelToAssessmentSectionMapper;
 
         public CreateModelToAssessmentMapper(IGenericRepository genericRepository, 
-            IPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper)
+            IPerformanceLevelMapper createModelToAssessmentPerformanceLevelMapper, 
+            IAssessmentJoinMapper<AssessmentSection, Data.Entities.Assessment> createModelToAssessmentSectionMapper)
         {
             _genericRepository = genericRepository;
             _createModelToAssessmentPerformanceLevelMapper = createModelToAssessmentPerformanceLevelMapper;
+            _createModelToAssessmentSectionMapper = createModelToAssessmentSectionMapper;
         }
 
         public override void Map(CreateModel source, Data.Entities.Assessment target)
@@ -25,6 +28,7 @@ namespace NGL.Web.Models.Assessment
             MapAcademicSubjectFromCourse(source, target);
             MapGradeLevelTypeFromDescriptor(source, target);
             MapAssessmentPerformanceLevels(source, target);
+            MapAssessmentSections(source, target);
         }
 
         private void MapAcademicSubjectFromCourse(CreateModel source, Data.Entities.Assessment target)
@@ -43,13 +47,15 @@ namespace NGL.Web.Models.Assessment
 
         private void MapAssessmentPerformanceLevels(CreateModel source, Data.Entities.Assessment target)
         {
-            var nearMastery = _createModelToAssessmentPerformanceLevelMapper
+            _createModelToAssessmentPerformanceLevelMapper
                 .BuildWithPerformanceLevel(source, target, PerformanceLevelDescriptorEnum.NearMastery);
-            var mastery = _createModelToAssessmentPerformanceLevelMapper
+            _createModelToAssessmentPerformanceLevelMapper
                 .BuildWithPerformanceLevel(source, target, PerformanceLevelDescriptorEnum.Mastery);
+        }
 
-            target.AssessmentPerformanceLevels.Add(nearMastery);
-            target.AssessmentPerformanceLevels.Add(mastery);
+        private void MapAssessmentSections(CreateModel source, Data.Entities.Assessment target)
+        {
+            _createModelToAssessmentSectionMapper.Build(source, target);
         }
     }
 }
