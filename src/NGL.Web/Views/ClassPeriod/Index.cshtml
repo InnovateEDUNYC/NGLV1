@@ -8,11 +8,7 @@
 <h2>Class Periods</h2>
 @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
 {
-    <ul class="nav nav-pills">
-        <li>
-            @Html.ActionLink("Add Period", "Create")
-        </li>
-    </ul>
+            @Html.ActionLink("Add Period", MVC.ClassPeriod.Create(), new { @class = "btn btn-primary" })
 }
 <table class="table table-striped">
     <thead>

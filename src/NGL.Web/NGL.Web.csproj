@@ -2016,6 +2016,7 @@
     <Content Include="Views\Assessment\Result.cshtml" />
     <Content Include="Views\Assessment\EnterResults.cshtml" />
     <Content Include="Views\Assessment\Index.cshtml" />
+    <Content Include="Views\Student\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

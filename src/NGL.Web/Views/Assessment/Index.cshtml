@@ -5,8 +5,9 @@
 }
 
 <h2>Assessments</h2>
-    @Html.ActionLink("Create Assessment", MVC.Assessment.Create())
-    <table class="table">
+    @Html.ActionLink("Create Assessment", MVC.Assessment.Create(), new { @class = "btn btn-primary" })
+<table class="table table-striped">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.AssessmentTitle)
@@ -25,7 +26,7 @@
             </th>
             <th></th>
         </tr>
-    
+    </thead>
     @foreach (var item in Model) {
         <tr>
             <td>
@@ -44,8 +45,8 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.ActionLink("Results", MVC.Assessment.EnterResults(item.id))
+                @Html.ActionLink("Results", MVC.Assessment.EnterResults(item.id), new { @class = "btn btn-primary" })
             </td>
         </tr>
     }
-    </table>
+</table>

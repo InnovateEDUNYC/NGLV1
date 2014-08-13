@@ -8,9 +8,7 @@
 <h2>Classrooms</h2>
 @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
 {
-    <ul class="nav nav-pills">
-        <li>@Html.ActionLink("Add Classroom", "Create")</li>
-    </ul>
+     @Html.ActionLink("Add Classroom", MVC.Location.Create(), new { @class = "btn btn-primary" })
 }
 
 <table class="table table-striped">

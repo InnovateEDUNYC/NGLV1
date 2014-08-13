@@ -6,11 +6,9 @@
 }
 
 <h2>Sessions</h2>
-<ul class="nav nav-pills">
     @if((User as NglPrincipal).HasAccessTo("session", "create")){
-        <li>@Html.ActionLink("Create New Session", "Create")</li>
+        @Html.ActionLink("Create New Session", MVC.Session.Create(), new { @class = "btn btn-primary"})
     }
-</ul>
 
 <table class="table table-striped">
     <thead>

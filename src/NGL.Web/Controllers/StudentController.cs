@@ -50,6 +50,24 @@ namespace NGL.Web.Controllers
             return View(models);
         }
 
+        //
+        // GET: /Student/Reports
+        [AuthorizeFor(Resource = "assessment", Operation = "view")]
+        public virtual ActionResult Reports()
+        {
+            IEnumerable<Student> students = _repository.GetAll<Student>();
+            var models = new List<IndexModel>();
+
+            foreach (var student in students)
+            {
+                var indexModel = new IndexModel();
+                _studentToStudentIndexModelMapper.Map(student, indexModel);
+                models.Add(indexModel);
+            }
+
+            return View(models);
+        }
+
         // GET: /Student/5
         [AuthorizeFor(Resource = "enrollment", Operation = "view")]
         public virtual ActionResult Index(int usi)

@@ -8,7 +8,7 @@
 
 @using (var f = Html.BeginNglForm())
 {
-    using (var s = f.BeginSection("Info"))
+    using (var s = f.BeginSection(""))
     {
         @s.FieldFor(m => m.ClassroomIdentificationCode)
         @s.FieldFor(m => m.MaximumNumberOfSeats)
@@ -16,7 +16,7 @@
     }
     using (var n = f.BeginNavigation())
     {
-        @n.Submit("Create")
+        @n.Submit("Create").AddClass("btn btn-primary")
     }
 }
 

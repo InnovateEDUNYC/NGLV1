@@ -31,6 +31,6 @@
 
     using (var v = f.BeginNavigation())
     {
-        @v.Submit("Save and Continue").Id("submit-details")
+        @v.Submit("Save and Continue").Id("submit-details").AddClass("btn btn-primary")
     }
 }
