@@ -13,16 +13,8 @@ namespace NGL.Tests.Builders
         private const int _version = 1;
         private DateTime _administeredDate = new DateTime(2014, 9, 9);
         private readonly ICollection<AssessmentSection> _assessmentSections = new List<AssessmentSection>();
-
-        private readonly IList<AssessmentLearningStandard> _assessmentLearningStandards = new[] {new AssessmentLearningStandardBuilder().Build()};
-
-        private readonly IList<AssessmentPerformanceLevel> _assessmentPerformanceLevels = new[]
-        {
-            new AssessmentPerformanceLevelBuilder().Build(),
-            new AssessmentPerformanceLevelBuilder()
-                .WithPerformanceLevelDescriptorId((int) PerformanceLevelDescriptorEnum.NearMastery)
-                .WithMinimumScore("70").Build()
-        };
+        private IList<AssessmentLearningStandard> _assessmentLearningStandards;
+        private IList<AssessmentPerformanceLevel> _assessmentPerformanceLevels;
 
         public Web.Data.Entities.Assessment Build()
         {
@@ -43,6 +35,24 @@ namespace NGL.Tests.Builders
         public AssessmentBuilder WithAdministeredDate(DateTime administeredDate)
         {
             _administeredDate = administeredDate;
+            return this;
+        }
+
+        public AssessmentBuilder WithAssessmentLearningStandards()
+        {
+            _assessmentLearningStandards = new[] { new AssessmentLearningStandardBuilder().Build() };
+            return this;
+        }
+
+        public AssessmentBuilder WithAssessmentPerformanceLevels()
+        {
+            _assessmentPerformanceLevels = new[]
+            {
+                new AssessmentPerformanceLevelBuilder().Build(),
+                new AssessmentPerformanceLevelBuilder()
+                    .WithPerformanceLevelDescriptorId((int) PerformanceLevelDescriptorEnum.NearMastery)
+                    .WithMinimumScore("70").Build()
+            };
             return this;
         }
     }

@@ -10,6 +10,7 @@ using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
+using NGL.Web.Models.Assessment;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
@@ -75,6 +76,7 @@ namespace NGL.Web
             kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
             kernel.Bind<IFileDownloader>().To<AzureStorageDownloader>().InSingletonScope();
             kernel.Bind<IResourceService>().To<ResourceService>().InSingletonScope();
+            kernel.Bind<IPerformanceLevelMapper>().To<CreateModelToAssessmentPerformanceLevelMapper>();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()

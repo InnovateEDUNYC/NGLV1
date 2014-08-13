@@ -37,7 +37,11 @@ namespace NGL.Tests.Assessment
         private void SetUp()
         {
             _createModel = new CreateModelBuilder().Build();
-            _assessment = new AssessmentBuilder().Build();
+            _assessment = new AssessmentBuilder()
+                .WithAssessmentLearningStandards()
+                .WithAssessmentPerformanceLevels()
+                .Build();
+
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
             _assessmentMapperExpression = new AssessmentMapperExpression(_assessment);
 

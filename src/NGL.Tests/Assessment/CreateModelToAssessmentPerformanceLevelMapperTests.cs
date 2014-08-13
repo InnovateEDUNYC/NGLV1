@@ -32,6 +32,8 @@ namespace NGL.Tests.Assessment
             assessmentPerformanceLevel.AssessedGradeLevelDescriptorId.ShouldBe(_4ThGradeLevelDescriptor.GradeLevelDescriptorId);
             assessmentPerformanceLevel.AssessmentReportingMethodTypeId.ShouldBe((int) _createModel.ReportingMethod);
             assessmentPerformanceLevel.PerformanceLevelDescriptorId.ShouldBe((int) MasteryPerformanceLevelDescriptor);
+
+            _assessment.AssessmentPerformanceLevels.Count.ShouldBe(1);
         }
 
         private void SetUp()

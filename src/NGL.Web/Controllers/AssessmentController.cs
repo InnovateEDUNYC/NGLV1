@@ -72,9 +72,7 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Create()
         {
             var commonCoreStandards = _learningStandardRepository.GetAllCommonCoreAnchorStandards();
-
             var createModel = CreateModel.CreateNewWith(commonCoreStandards);
-
             return View(createModel);
         }
 
@@ -93,11 +91,7 @@ namespace NGL.Web.Controllers
             }
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
-            var nearMastery = _createModelToAssessmentPerformanceLevelMapper
-                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.NearMastery);
-            var mastery = _createModelToAssessmentPerformanceLevelMapper
-                .BuildWithPerformanceLevel(createModel, assessment, PerformanceLevelDescriptorEnum.Mastery);
-            
+
             var assessmentMapperExpression = new AssessmentMapperExpression(assessment);
 
             var learningStandard = _createModelToAssessmentLearningStandardMapper.Build(createModel, assessmentMapperExpression.LearningStandardExpression);
@@ -105,7 +99,7 @@ namespace NGL.Web.Controllers
             var assessmentSection = _createModelToAssessmentSectionMapper.Build(createModel,
                 assessmentMapperExpression.SectionExpression);
 
-            _assessmentRepository.Save(assessment, nearMastery, mastery, learningStandard, assessmentSection);
+            _assessmentRepository.Save(assessment, learningStandard, assessmentSection);
             return RedirectToAction(MVC.Assessment.Index());
         }
 

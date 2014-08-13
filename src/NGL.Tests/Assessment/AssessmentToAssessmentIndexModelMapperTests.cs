@@ -11,7 +11,10 @@ namespace NGL.Tests.Assessment
         public void ShouldMapAssessmentToIndexModelMapper()
         {
             var mapper = new AssessmentToAssessmentIndexModelMapper();
-            Web.Data.Entities.Assessment assessment = new AssessmentBuilder().Build();
+            Web.Data.Entities.Assessment assessment = new AssessmentBuilder()
+                .WithAssessmentLearningStandards()
+                .WithAssessmentPerformanceLevels()
+                .Build();
             var section = new SectionBuilder().WithAssessment(assessment).Build();
             
             var indexModel = mapper.Build(assessment);
