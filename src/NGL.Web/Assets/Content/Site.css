@@ -217,7 +217,7 @@ form .inline input {
 }
 
 .btn {
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .btn-primary {
@@ -274,8 +274,9 @@ form .inline input {
 }
 
 .panel {
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 5px;
+    border-color: white;
 }
 
 body h4.panel:first-child {
