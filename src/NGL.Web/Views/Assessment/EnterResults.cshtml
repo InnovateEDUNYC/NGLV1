@@ -45,6 +45,7 @@
                 <p>
                     @Model.StudentResults[i].Name
                     @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult)
+                    @Html.ValidationMessageFor(s => Model.StudentResults[i].AssessmentResult)
                     <div class="hidden">
                         @Html.TextBoxFor(s => Model.StudentResults[i].StudentUsi)
                     </div>
