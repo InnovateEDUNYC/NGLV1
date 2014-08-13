@@ -26,7 +26,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly ILearningStandardRepository _learningStandardRepository;
-        private readonly IMapper<CreateModel, AssessmentLearningStandard> _createModelToAssessmentLearningStandardMapper;
+        private readonly IAssessmentJoinMapper<AssessmentLearningStandard, Assessment> _createModelToAssessmentLearningStandardMapper;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -36,7 +36,7 @@ namespace NGL.Web.Controllers
             EnterResultsStudentModelToStudentAssessmentMapper enterResultsStudentModelToStudentAssessmentMapper,
 			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository, 
-            IMapper<CreateModel, AssessmentLearningStandard> createModelToAssessmentLearningStandardMapper)
+            IAssessmentJoinMapper<AssessmentLearningStandard, Assessment> createModelToAssessmentLearningStandardMapper)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -46,7 +46,7 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
              _learningStandardRepository = learningStandardRepository;
-            _createModelToAssessmentLearningStandardMapper = createModelToAssessmentLearningStandardMapper;
+            this._createModelToAssessmentLearningStandardMapper = createModelToAssessmentLearningStandardMapper;
             _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
         }
 
@@ -87,12 +87,7 @@ namespace NGL.Web.Controllers
 
             var assessment = _createModelToAssessmentMapper.Build(createModel);
 
-            //TODO: use IJoin interface to move these into assessmentmapper
-            var assessmentMapperExpression = new AssessmentMapperExpression(assessment);
-
-            var learningStandard = _createModelToAssessmentLearningStandardMapper.Build(createModel, assessmentMapperExpression.LearningStandardExpression);
-
-            _assessmentRepository.Save(assessment, learningStandard);
+            _assessmentRepository.Save(assessment);
             return RedirectToAction(MVC.Assessment.Index());
         }
 

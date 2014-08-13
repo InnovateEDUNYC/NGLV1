@@ -1,66 +1,55 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Expressions;
-using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
 
 namespace NGL.Web.Models.Assessment
 {
     public class CreateModelToAssessmentPerformanceLevelMapper : IPerformanceLevelMapper
     {
-        private readonly IGenericRepository _genericRepository;
-
-        public CreateModelToAssessmentPerformanceLevelMapper(IGenericRepository genericRepository)
-        {
-            _genericRepository = genericRepository;
-        }
-
-        public void Map(CreateModel source, AssessmentPerformanceLevel target)
-        {
-            target.AssessmentTitle = source.AssessmentTitle;
-            target.AssessmentReportingMethodTypeId = (int) source.ReportingMethod;
-            MapGradeLevelTypeFromDescriptor(source, target);
-        }
+        private Data.Entities.Assessment _assessment;
 
         public AssessmentPerformanceLevel BuildWithPerformanceLevel(CreateModel createModel,
             Data.Entities.Assessment assessment,
             PerformanceLevelDescriptorEnum performanceLevelDescriptor)
         {
-            var expression = new PerformanceLevelMapperExpression(assessment, performanceLevelDescriptor);
-            var assessmentPerformanceLevel = Build(createModel, expression.Expression);
+            _assessment = assessment;
+            if (assessment.AssessmentPerformanceLevels.IsNullOrEmpty())
+                assessment.AssessmentPerformanceLevels = new Collection<AssessmentPerformanceLevel>();
 
+            var assessmentPerformanceLevel = Build();
             MapMinimumScore(createModel, performanceLevelDescriptor, assessmentPerformanceLevel);
-            AddAssessmentPerformanceLevel(assessment, assessmentPerformanceLevel);
 
+            MapPerformanceLevel(createModel, assessmentPerformanceLevel);
+
+            assessment.AssessmentPerformanceLevels.Add(assessmentPerformanceLevel);
             return assessmentPerformanceLevel;
         }
 
-        public AssessmentPerformanceLevel Build(CreateModel source, Action<AssessmentPerformanceLevel> injectProperties)
-        {
-            var target = Build(source);
-            injectProperties(target);
-            return target;
-        }
-
-        public AssessmentPerformanceLevel Build(CreateModel source)
+        private AssessmentPerformanceLevel Build()
         {
             var target = new AssessmentPerformanceLevel();
-            Map(source, target);
+            MapAssessment(target);
+
             return target;
         }
 
-        private void MapGradeLevelTypeFromDescriptor(CreateModel source, AssessmentPerformanceLevel target)
+        private void MapPerformanceLevel(CreateModel source, AssessmentPerformanceLevel target)
         {
-            var query = new GradeLevelTypeDescriptorQuery((int) source.GradeLevel.GetValueOrDefault());
-            var assessedGradeLevelDescriptor = _genericRepository.Get(query);
-            target.AssessedGradeLevelDescriptorId = assessedGradeLevelDescriptor.GradeLevelDescriptorId;
+            target.AssessmentReportingMethodTypeId = (int) source.ReportingMethod;
+        }
+
+        private void MapAssessment(AssessmentPerformanceLevel target)
+        {
+            target.AssessmentTitle = _assessment.AssessmentTitle;
+            target.AssessedGradeLevelDescriptorId = _assessment.AssessedGradeLevelDescriptorId;
+            target.AcademicSubjectDescriptorId = _assessment.AcademicSubjectDescriptorId;
+            target.Version = _assessment.Version;
         }
 
         private void MapMinimumScore(CreateModel createModel, PerformanceLevelDescriptorEnum performanceLevelDescriptor,
             AssessmentPerformanceLevel assessmentPerformanceLevel)
         {
+            assessmentPerformanceLevel.PerformanceLevelDescriptorId = (int) performanceLevelDescriptor;
             switch (performanceLevelDescriptor)
             {
                 case PerformanceLevelDescriptorEnum.Mastery:
@@ -70,15 +59,6 @@ namespace NGL.Web.Models.Assessment
                     assessmentPerformanceLevel.MinimumScore = createModel.NearMastery.ToString();
                     break;
             }
-        }
-
-        private static void AddAssessmentPerformanceLevel(Data.Entities.Assessment assessment,
-            AssessmentPerformanceLevel assessmentPerformanceLevel)
-        {
-            if (assessment.AssessmentPerformanceLevels.IsNullOrEmpty())
-                assessment.AssessmentPerformanceLevels = new Collection<AssessmentPerformanceLevel>();
-
-            assessment.AssessmentPerformanceLevels.Add(assessmentPerformanceLevel);
         }
     }
 }

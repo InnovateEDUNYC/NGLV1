@@ -10,6 +10,6 @@ namespace NGL.Web.Data.Repositories
         IEnumerable<Assessment> GetAssessments();
         Assessment GetAssessmentByAssessmentId(int assessmentId);
         void SaveStudentAssessment(StudentAssessment studentAssessment);
-        void Save(Assessment assessment, AssessmentLearningStandard learningStandard);
+        void Save(Assessment assessment);
     }
 }

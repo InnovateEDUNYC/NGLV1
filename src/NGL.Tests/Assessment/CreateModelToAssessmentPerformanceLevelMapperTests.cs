@@ -12,7 +12,6 @@ namespace NGL.Tests.Assessment
     public class CreateModelToAssessmentPerformanceLevelMapperTests
     {
         private IGenericRepository _genericRepositoryStub;
-        private GradeLevelDescriptor _4ThGradeLevelDescriptor;
         private const PerformanceLevelDescriptorEnum MasteryPerformanceLevelDescriptor = PerformanceLevelDescriptorEnum.Mastery;
         private Web.Data.Entities.Assessment _assessment;
         private CreateModel _createModel;
@@ -22,14 +21,14 @@ namespace NGL.Tests.Assessment
         {
             SetUp();
 
-            var assessmentPerformanceLevel = new CreateModelToAssessmentPerformanceLevelMapper(_genericRepositoryStub).BuildWithPerformanceLevel(_createModel, _assessment, MasteryPerformanceLevelDescriptor);
+            var assessmentPerformanceLevel = new CreateModelToAssessmentPerformanceLevelMapper().BuildWithPerformanceLevel(_createModel, _assessment, MasteryPerformanceLevelDescriptor);
 
             assessmentPerformanceLevel.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
             assessmentPerformanceLevel.Version.ShouldBe(_assessment.Version);
 
             assessmentPerformanceLevel.MinimumScore.ShouldBe(_createModel.Mastery.ToString());
-            assessmentPerformanceLevel.AssessmentTitle.ShouldBe(_createModel.AssessmentTitle);
-            assessmentPerformanceLevel.AssessedGradeLevelDescriptorId.ShouldBe(_4ThGradeLevelDescriptor.GradeLevelDescriptorId);
+            assessmentPerformanceLevel.AssessmentTitle.ShouldBe(_assessment.AssessmentTitle);
+            assessmentPerformanceLevel.AssessedGradeLevelDescriptorId.ShouldBe(_assessment.AssessedGradeLevelDescriptorId);
             assessmentPerformanceLevel.AssessmentReportingMethodTypeId.ShouldBe((int) _createModel.ReportingMethod);
             assessmentPerformanceLevel.PerformanceLevelDescriptorId.ShouldBe((int) MasteryPerformanceLevelDescriptor);
 
@@ -42,14 +41,14 @@ namespace NGL.Tests.Assessment
             _assessment = new AssessmentBuilder().Build();
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
 
-            _4ThGradeLevelDescriptor = new GradeLevelDescriptor
+            var fourthGradeLevelDescriptor = new GradeLevelDescriptor
             {
                 GradeLevelDescriptorId = 99,
                 GradeLevelTypeId = 100
             };
 
             _genericRepositoryStub.Get(Arg.Any<GradeLevelTypeDescriptorQuery>())
-                                .Returns(_4ThGradeLevelDescriptor);
+                                .Returns(fourthGradeLevelDescriptor);
         }
     }
 }

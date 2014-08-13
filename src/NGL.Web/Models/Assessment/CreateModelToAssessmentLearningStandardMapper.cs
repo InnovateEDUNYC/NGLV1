@@ -1,27 +1,43 @@
-﻿using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
+﻿using System.Collections.ObjectModel;
+using Castle.Core.Internal;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class CreateModelToAssessmentLearningStandardMapper : MapperBase<CreateModel, AssessmentLearningStandard>
+    public class CreateModelToAssessmentLearningStandardMapper : IAssessmentJoinMapper<AssessmentLearningStandard, Data.Entities.Assessment>
     {
-        private readonly IGenericRepository _genericRepository;
+        private Data.Entities.Assessment _assessment;
 
-        public CreateModelToAssessmentLearningStandardMapper(IGenericRepository genericRepository)
+        public AssessmentLearningStandard Build(CreateModel source, Data.Entities.Assessment assessment)
         {
-            _genericRepository = genericRepository;
+            _assessment = assessment;
+            if (assessment.AssessmentLearningStandards.IsNullOrEmpty())
+                assessment.AssessmentLearningStandards = new Collection<AssessmentLearningStandard>();
+
+            var assessmentLearningStandard = Build(source);
+
+            assessment.AssessmentLearningStandards.Add(assessmentLearningStandard);
+            return assessmentLearningStandard;
         }
 
-        public override void Map(CreateModel source, AssessmentLearningStandard target)
+        private AssessmentLearningStandard Build(CreateModel source)
         {
-            target.AssessmentTitle = source.AssessmentTitle;
+            var target = new AssessmentLearningStandard();
+            MapAssessment(target);
+            MapLearningStandard(source, target);
+            return target;
+        }
 
-            var query = new GradeLevelTypeDescriptorQuery((int)source.GradeLevel.GetValueOrDefault());
+        private void MapAssessment(AssessmentLearningStandard target)
+        {
+            target.AssessmentTitle = _assessment.AssessmentTitle;
+            target.AssessedGradeLevelDescriptorId = _assessment.AssessedGradeLevelDescriptorId;
+            target.AcademicSubjectDescriptorId = _assessment.AcademicSubjectDescriptorId;
+            target.Version = _assessment.Version;
+        }
 
-            var assessedGradeLevelDescriptor = _genericRepository.Get(query);
-            target.AssessedGradeLevelDescriptorId = assessedGradeLevelDescriptor.GradeLevelDescriptorId;
-
+        private void MapLearningStandard(CreateModel source, AssessmentLearningStandard target)
+        {
             target.LearningStandardId = source.CommonCoreStandard;
         }
     }

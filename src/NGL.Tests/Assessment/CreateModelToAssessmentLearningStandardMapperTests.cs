@@ -1,6 +1,5 @@
 ﻿using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Models.Assessment;
@@ -13,22 +12,20 @@ namespace NGL.Tests.Assessment
     public class CreateModelToAssessmentLearningStandardMapperTests
     {
         private IGenericRepository _genericRepositoryStub;
-        private GradeLevelDescriptor _4ThGradeLevelDescriptor;
         private Web.Data.Entities.Assessment _assessment;
         private CreateModel _createModel;
-        private AssessmentMapperExpression _assessmentMapperExpression;
 
         [Fact]
         public void ShouldMap()
         {
             SetUp();
 
-            var entity = new CreateModelToAssessmentLearningStandardMapper(_genericRepositoryStub).Build(_createModel,
-                            _assessmentMapperExpression.LearningStandardExpression);
+            var entity = new CreateModelToAssessmentLearningStandardMapper().Build(_createModel,
+                            _assessment);
 
-            entity.AssessmentTitle.ShouldBe(_createModel.AssessmentTitle);
+            entity.AssessmentTitle.ShouldBe(_assessment.AssessmentTitle);
             entity.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
-            entity.AssessedGradeLevelDescriptorId.ShouldBe(_4ThGradeLevelDescriptor.GradeLevelDescriptorId);
+            entity.AssessedGradeLevelDescriptorId.ShouldBe(_assessment.AssessedGradeLevelDescriptorId);
             entity.Version.ShouldBe(_assessment.Version);
 
             entity.LearningStandardId.ShouldBe(_createModel.CommonCoreStandard);
@@ -38,20 +35,18 @@ namespace NGL.Tests.Assessment
         {
             _createModel = new CreateModelBuilder().Build();
             _assessment = new AssessmentBuilder()
-                .WithAssessmentLearningStandards()
                 .WithAssessmentPerformanceLevels()
                 .Build();
 
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
-            _assessmentMapperExpression = new AssessmentMapperExpression(_assessment);
 
-            _4ThGradeLevelDescriptor = new GradeLevelDescriptor
+            var fourthGradeLevelDescriptor = new GradeLevelDescriptor
             {
                 GradeLevelDescriptorId = 99,
                 GradeLevelTypeId = 100
             };
 
-            _genericRepositoryStub.Get(Arg.Any<GradeLevelTypeDescriptorQuery>()).Returns(_4ThGradeLevelDescriptor);
+            _genericRepositoryStub.Get(Arg.Any<GradeLevelTypeDescriptorQuery>()).Returns(fourthGradeLevelDescriptor);
         }
     }
 }
