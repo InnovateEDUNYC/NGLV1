@@ -104,6 +104,12 @@ namespace NGL.Web
                     .SelectAllTypes()
                     .InheritedFrom(typeof (IMapper<,>))
                     .BindDefaultInterfaces());
+            
+            kernel.Bind(
+                x => x.FromThisAssembly()
+                    .SelectAllTypes()
+                    .InheritedFrom(typeof (IAssessmentJoinMapper<,>))
+                    .BindDefaultInterfaces());
         }        
     }
 }
