@@ -12,6 +12,7 @@ namespace NGL.Tests.Builders
         private GradeLevelTypeEnum _gradeLevel;
         private readonly decimal? _nearMastery = 60;
         private readonly decimal? _mastery = 90;
+        private int _sessionId = 1;
 
         public CreateAssessmentModel Build()
         {
@@ -22,7 +23,8 @@ namespace NGL.Tests.Builders
                 QuestionType = QuestionType,
                 GradeLevel = _gradeLevel,
                 NearMastery = _nearMastery,
-                Mastery = _mastery
+                Mastery = _mastery,
+                SessionId = _sessionId
             };
         }
 

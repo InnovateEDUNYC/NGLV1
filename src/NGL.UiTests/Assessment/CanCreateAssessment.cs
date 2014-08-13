@@ -16,6 +16,7 @@ namespace NGL.UiTests.Assessment
         private HomePage _homePage;
         private AssessmentCreatePage _assessmentCreatePage;
         private CreateAssessmentModel _createAssessmentModel;
+        private AssessmentIndexPage _assessmentIndexPage;
 
         public void IHaveLoggedIn()
         {
@@ -32,11 +33,11 @@ namespace NGL.UiTests.Assessment
         public void IHaveEnteredValidInputForAllFields()
         {
             _createAssessmentModel = new CreateAssessmentModelBuilder().Build();
-            _assessmentCreatePage.CreateAssessment(_createAssessmentModel);
+            _assessmentIndexPage = _assessmentCreatePage.CreateAssessment(_createAssessmentModel);
         }
 
         [Fact]
-        public void ShouldScheduleStudent()
+        public void ShouldCreateAssessment()
         {
             this.Given(_ => IHaveLoggedIn())
                 .And(_ => IAmOnTheCreateAssessmentPage())
