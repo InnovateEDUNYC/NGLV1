@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 70px;
     padding-bottom: 20px;
+    background-color: #f7f7f9;
 }
 
 /* Set padding to keep content from hitting the edges and top */
@@ -265,5 +266,10 @@ form .inline input {
 }
 
 .panel {
-    padding: 20px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+body h4.panel:first-child {
+    margin-top: 0px;
 }
