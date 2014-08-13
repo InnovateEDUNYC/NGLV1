@@ -18,6 +18,7 @@ namespace NGL.UiTests.Assessment
         private AssessmentCreatePage _assessmentCreatePage;
         private CreateModel _createAssessmentModel;
         private AssessmentIndexPage _assessmentIndexPage;
+        private EnterResultsModel _enterResultsModel;
 
         public void IHaveLoggedIn()
         {
@@ -43,6 +44,13 @@ namespace NGL.UiTests.Assessment
             assessmentExists.ShouldBe(true);
         }
 
+        public void IGoToTheResultsPageAndFillInValidResults()
+        {
+            var resultsPage = _assessmentIndexPage.GoToResultsPage();
+            _enterResultsModel = new EnterResultsModelBuilder().Build();
+            resultsPage.EnterResults(_enterResultsModel);
+        }
+
         [Fact]
         public void ShouldCreateAssessment()
         {
@@ -50,6 +58,7 @@ namespace NGL.UiTests.Assessment
                 .And(_ => IAmOnTheCreateAssessmentPage())
                 .When(_ => IHaveEnteredValidInputForAllFields())
                 .Then(_ => ANewAssessmentShouldBeDisplayedOnTheAssessmentIndexPage())
+                .When(_=> IGoToTheResultsPageAndFillInValidResults())
                 .BDDfy();
         }
     }

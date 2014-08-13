@@ -1,4 +1,4 @@
-﻿INSERT INTO [edfi].[Assessment]
+﻿	INSERT INTO [edfi].[Assessment]
 	  ([AssessmentTitle]
       ,[AcademicSubjectDescriptorId]
       ,[AssessedGradeLevelDescriptorId]

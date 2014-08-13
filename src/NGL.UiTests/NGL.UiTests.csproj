@@ -94,6 +94,7 @@
     <Compile Include="Account\ChangePasswordPage.cs" />
     <Compile Include="Assessment\AssessmentCreatePage.cs" />
     <Compile Include="Assessment\AssessmentIndexPage.cs" />
+    <Compile Include="Assessment\AssessmentResultsPage.cs" />
     <Compile Include="Assessment\CanCreateAssessment.cs" />
     <Compile Include="ClassPeriod\CanCreateClassPeriod.cs" />
     <Compile Include="ClassPeriod\ClassPeriodCreatePage.cs" />
