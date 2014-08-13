@@ -234,3 +234,28 @@ form .inline input {
 .delete-row-btn {
     cursor:pointer
 }
+
+.table-report > tbody> tr > td.profile-result {
+    position: relative;
+    padding: 0;
+}
+
+.result-pill {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    border-radius: 20px;
+}
+.Mastery {
+    background-color: green;
+}
+
+.Near.Mastery {
+    background-color: yellow;
+}
+
+.Not.Mastered {
+    background-color: red;
+}
