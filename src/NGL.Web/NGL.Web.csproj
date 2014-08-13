@@ -277,6 +277,7 @@
     <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Data\Expressions\AssessmentLearningStandardMapperExpression.cs" />
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
@@ -1663,6 +1664,7 @@
     <Compile Include="Models\Assessment\CommonCoreStandardListItemModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentLearningStandardMapper.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentPerformanceLevelMapper.cs" />
+    <Compile Include="Models\Assessment\CreateModelToAssessmentSectionMapper.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentMapper.cs" />
     <Compile Include="Models\Assessment\CreateModel.cs" />
     <Compile Include="Models\Assessment\CreateModelToAssessmentMapper.cs" />
