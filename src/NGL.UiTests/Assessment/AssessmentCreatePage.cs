@@ -16,8 +16,8 @@ namespace NGL.UiTests.Assessment
     {
         public AssessmentIndexPage CreateAssessment(CreateAssessmentModel createAssessmentModel)
         {
-            Input.ReplaceInputValueWith(m => m.SessionId, 1);
-            Input.ReplaceInputValueWith(m => m.SectionId, 2);
+            Input.ReplaceInputValueWith(m => m.SessionId, createAssessmentModel.SessionId);
+            Input.ReplaceInputValueWith(m => m.SectionId, createAssessmentModel.SectionId);
             Input.ReplaceInputValueWith(m => m.AssessmentTitle, createAssessmentModel.AssessmentTitle);
             Input.ReplaceInputValueWith(m => m.AdministeredDate, createAssessmentModel.AdministeredDate);
             Input.SelectByOptionTextInDropDown(m => m.QuestionType, createAssessmentModel.QuestionType.Humanize());
