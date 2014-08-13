@@ -9,9 +9,7 @@
 
 @if ((User as NglPrincipal).HasAccessTo("enrollment", "create"))
 {
-    <ul class="nav nav-pills">
-        <li>@Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent())</li>
-    </ul>
+    @Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent(), new { @class = "btn btn-primary" })
 }
 
 <table class="table table-striped" id="student-table">
