@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Assessment
 {
-    public class EnterResultsStudentModelToStudentAssessmentScoreResultMapper : 
-        MapperBase<EnterResultsStudentModel, StudentAssessmentScoreResult>
+    public class EnterResultsStudentModelToStudentAssessmentScoreResultMapper
     {
-        public override void Map(EnterResultsStudentModel source, StudentAssessmentScoreResult target)
+        public StudentAssessmentScoreResult Build(EnterResultsStudentModel source, Data.Entities.Assessment assessment)
         {
-            target.StudentUSI = source.StudentUsi;
-            target.Result = source.AssessmentResult.ToString();
-            target.AssessmentReportingMethodTypeId = (int) AssessmentReportingMethodTypeEnum.Percentile;
-            target.ResultDatatypeTypeId = (int)ResultDatatypeTypeEnum.Percentile;
+            return new StudentAssessmentScoreResult
+            {
+                StudentUSI = source.StudentUsi,
+                Result = source.AssessmentResult,
+                AssessmentReportingMethodTypeId = (int) AssessmentReportingMethodTypeEnum.Percentile,
+                ResultDatatypeTypeId = (int) ResultDatatypeTypeEnum.Percentile,
+                AssessmentTitle = assessment.AssessmentTitle,
+                AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId,
+                AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId,
+                Version = assessment.Version,
+                AdministrationDate = assessment.AdministeredDate
+            };
         }
     }
 }

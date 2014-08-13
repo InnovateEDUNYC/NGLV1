@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models;
@@ -32,6 +29,8 @@ namespace NGL.Tests.Assessment
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
+            model.CCSS.ShouldBe("English - Reading Comprehension");
+            model.AssessmentDate.ShouldBe("9/9/2014");
         }
 
         [Fact]
@@ -47,6 +46,26 @@ namespace NGL.Tests.Assessment
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
+            model.CCSS.ShouldBe("English - Reading Comprehension");
+            model.AssessmentDate.ShouldBe("9/9/2014");
+        }
+
+        [Fact]
+        public void ShouldNotAddStudentsWhoWereNotInSectionForAssessmentDate()
+        {
+            Setup();
+            _section.StudentSectionAssociations.First().BeginDate = new DateTime(2014, 9, 10);
+            _section.StudentSectionAssociations.First().EndDate = new DateTime(2014, 10, 10);
+
+            var model = _mapper.Build(_entity);
+
+            model.StudentResults.Count.ShouldBe(1);
+            model.AssessmentId.ShouldBe(_entity.AssessmentIdentity);
+            model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
+            model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
+            model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
+            model.CCSS.ShouldBe("English - Reading Comprehension");
+            model.AssessmentDate.ShouldBe("9/9/2014");
         }
 
         private void Setup()

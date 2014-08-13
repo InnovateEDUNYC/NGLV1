@@ -21,18 +21,9 @@ namespace NGL.Tests.Assessment
             var mapper = new EnterResultsStudentModelToStudentAssessmentScoreResultMapper();
 
             var model = new EnterResultsStudentModelBuilder().Build();
-            var entity = new StudentAssessmentScoreResult();
             var assessment = new Web.Data.Entities.Assessment();
 
-            mapper.Map(model, entity, 
-                asr =>
-                {
-                    asr.AssessmentTitle = assessment.AssessmentTitle;
-                    asr.AcademicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
-                    asr.AssessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
-                    asr.Version = assessment.Version;
-                    asr.AdministrationDate = assessment.AdministeredDate;
-                });
+            var entity = mapper.Build(model, assessment);
 
             entity.StudentUSI.ShouldBe(model.StudentUsi);
             entity.Result.ShouldBe(model.AssessmentResult.ToString());

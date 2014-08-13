@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Builders
@@ -19,6 +20,8 @@ namespace NGL.Tests.Builders
 
         private Web.Data.Entities.Section _section;
         private Web.Data.Entities.Session _session = new Web.Data.Entities.Session{ SessionName = "Fall 2014" };
+        private DateTime _beginDate = new DateTime(2014, 9, 8);
+        private DateTime _endDate = new DateTime(2015, 1, 20);
 
         public Web.Data.Entities.Section Build()
         {
@@ -63,9 +66,12 @@ namespace NGL.Tests.Builders
                 var studentSectionAssociation = new StudentSectionAssociation
                 {
                     Student = student,
-                    Section = _section
+                    Section = _section,
+                    BeginDate = _beginDate,
+                    EndDate = _endDate
                 };
                 _studentSectionAssociations.Add(studentSectionAssociation);
+                student.StudentSectionAssociations.Add(studentSectionAssociation);
             }
             _section.StudentSectionAssociations = _studentSectionAssociations;
         }

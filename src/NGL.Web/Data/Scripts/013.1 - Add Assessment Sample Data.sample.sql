@@ -8,6 +8,22 @@
 	VALUES
 	('Motor Skills Formative Assessment', 10, 119, 1, 17, '2014-08-06')
 
+declare @learningStandardId nvarchar(60)
+select @learningStandardId = LearningStandardId from [edfi].[LearningStandard] where LearningStandardIdentity = 1
+
+INSERT INTO [dbo].[AssessmentLearningStandard]
+           ([AssessmentTitle]
+           ,[AcademicSubjectDescriptorId]
+           ,[AssessedGradeLevelDescriptorId]
+           ,[Version]
+           ,[LearningStandardId])
+     VALUES
+           ('Motor Skills Formative Assessment'
+           ,10
+           ,119
+           ,1
+           ,@learningStandardId)
+
 
 declare @masteryTypeId int
 select @masteryTypeId = PerformanceBaseConversionTypeId from [edfi].[PerformanceBaseConversionType] where CodeValue = 'Mastery'

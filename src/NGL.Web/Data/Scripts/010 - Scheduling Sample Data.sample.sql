@@ -334,3 +334,17 @@ INSERT INTO [edfi].[ParentTelephone]
            ,[TelephoneNumber])
 	VALUES
 	(@jillparentusi, 1, '123423421')
+
+INSERT INTO [edfi].[StudentSectionAssociation]
+           ([StudentUSI]
+           ,[SchoolId]
+           ,[ClassPeriodName]
+           ,[ClassroomIdentificationCode]
+           ,[LocalCourseCode]
+           ,[TermTypeId]
+           ,[SchoolYear]
+           ,[BeginDate]
+           ,[EndDate])
+     VALUES
+           (999, 1, 'Period 3', 'Room 207', 'ENGL400 - DI', 1, 2014, '2014-06-09', '2015-01-21'),
+		   (1000, 1, 'Period 3', 'Room 207', 'ENGL400 - DI', 1, 2014, '2014-06-09', '2015-01-21')

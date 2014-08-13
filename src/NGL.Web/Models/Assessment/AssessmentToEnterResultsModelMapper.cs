@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
+using NGL.Web.Dates;
 
 namespace NGL.Web.Models.Assessment
 {
@@ -22,21 +22,28 @@ namespace NGL.Web.Models.Assessment
             var assessmentSections = source.AssessmentSections;
             var section = assessmentSections.First().Section;
             var session = section.Session;
-            var studentSectionAssociations = section.StudentSectionAssociations;
+            var administeredDate = source.AdministeredDate;
+            var studentSectionAssociations = section.StudentSectionAssociations
+                .Where(ssa => new DateRange(ssa.BeginDate, (DateTime)ssa.EndDate).Includes(administeredDate));
             var students = studentSectionAssociations.Select(ssa => ssa.Student).ToList();
 
             target.AssessmentId = source.AssessmentIdentity;
             target.Section = section.UniqueSectionCode;
             target.AssessmentTitle = source.AssessmentTitle;
             target.Session = session.SessionName;
+            target.CCSS = source.AssessmentLearningStandards.First().LearningStandard.Description;
+            target.AssessmentDate = source.AdministeredDate.ToShortDateString();
             target.StudentResults = new List<EnterResultsStudentModel>();
             foreach (var student in students)      
             {
                 var studentAssessment = new StudentAssessment();
                 if (!student.StudentAssessments.IsNullOrEmpty())
-                    studentAssessment = student.StudentAssessments.FirstOrDefault(a => a.Assessment.AssessmentIdentity == source.AssessmentIdentity);
+                    studentAssessment = student.StudentAssessments.FirstOrDefault(
+                        a => a.Assessment.AssessmentIdentity == source.AssessmentIdentity);
                 else
+                {
                     studentAssessment.Student = student;
+                }
                 target.StudentResults.Add(_studentAssessmentToEnterResultsStudentModelMapper.Build(studentAssessment));
             }
         }

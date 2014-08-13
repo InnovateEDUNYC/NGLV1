@@ -1,4 +1,6 @@
-﻿@using Ninject
+﻿@using System.Diagnostics.Eventing.Reader
+@using Castle.Core.Internal
+@using Ninject
 @model NGL.Web.Models.Assessment.EnterResultsModel
 
 @{
@@ -23,24 +25,39 @@
 </p>
 
 <p>
+    <strong>Assessment Date</strong>
+    @Model.AssessmentDate
+</p>
+
+<p>
     <strong>CCSS</strong>
-    @Model.LearningStandard
+    @Model.CCSS
 </p>
 
 <div>
-    <form method="POST" action="">
-        <input class="hidden" name="AssessmentId" value="@Model.AssessmentId"/>
-        <strong>Assessment Result</strong>
-        @for (var i = 0; i < Model.StudentResults.Count; i++)
-        {
-            <p>
-                @Model.StudentResults[i].Name
-                @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult)
+    @if (!Model.StudentResults.IsNullOrEmpty())
+    {
+        <form method="POST" action="">
+            <input class="hidden" name="AssessmentId" value="@Model.AssessmentId"/>
+            <strong>Assessment Result</strong>
+            @for (var i = 0; i < Model.StudentResults.Count; i++)
+            {
+                <p>
+                    @Model.StudentResults[i].Name
+                    @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult)
                     <div class="hidden">
                         @Html.TextBoxFor(s => Model.StudentResults[i].StudentUsi)
                     </div>
-</p>
-        }
-        <button type="submit">Save Results</button>
-    </form>
+                </p>
+            }
+            <div>
+                <button type="submit">Save Results</button>
+            </div>
+        </form>
+
+    }
+    else
+    {
+        <p>No students have been assigned to this section on this assessment date</p>
+    }
 </div>

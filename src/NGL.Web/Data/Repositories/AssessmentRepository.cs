@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
+using NGL.Web.Models.Assessment;
 
 namespace NGL.Web.Data.Repositories
 {
@@ -33,8 +35,30 @@ namespace NGL.Web.Data.Repositories
                     a =>
                         a.Id != null)
                 .Include(a => a.AssessmentSections.Select(assessmentSection => assessmentSection.Section.Session))
+                .Include(a => a.AssessmentLearningStandards.Select(als => als.LearningStandard))
                 .ToList();
-        } 
+        }
+
+        public Assessment GetAssessmentByAssessmentId(int assessmentId)
+        {
+            var assessment = DbContext.Set<Assessment>()
+                .Where(
+                    a =>
+                        a.AssessmentIdentity == assessmentId)
+                .Include(a => a.AssessmentSections.Select(asa => asa.Section.StudentSectionAssociations.Select(s => s.Student)))
+                .Include(a => a.AssessmentSections.Select(asa => asa.Section.Session))
+                .Include(a => a.StudentAssessments.Select(sa => sa.StudentAssessmentScoreResults))
+                .Include(a => a.AssessmentLearningStandards.Select(als => als.LearningStandard))
+                .FirstOrDefault();
+
+            return assessment;
+        }
+
+        public void SaveStudentAssessment(StudentAssessment studentAssessment)
+        {
+            DbContext.Set<StudentAssessment>().Add(studentAssessment);
+            DbContext.Set<StudentAssessmentScoreResult>().Add(studentAssessment.StudentAssessmentScoreResults.First());
+        }
 
         public void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery)
         {
