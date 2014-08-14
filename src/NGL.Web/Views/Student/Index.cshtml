@@ -134,7 +134,7 @@
                 </dd>
             </dl>
             </div>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseProgramStatus"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PROGRAM STATUS</strong></h4>
+            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseProgramStatus"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PROGRAM STATUS</strong><i class="fa fa-caret-down arrow"></i></h4>
             <div id="collapseProgramStatus" class="panel-collapse collapse in">
                 @if (Model.ProgramStatus == null)
                 {
@@ -216,7 +216,7 @@
                     </dl>
                 }
                 </div>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseHomeAddress"><span class="fa fa-file-text-o fa-1x"></span>  <strong>HOME ADDRESS</strong></h4>
+            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseHomeAddress"><span class="fa fa-file-text-o fa-1x"></span>  <strong>HOME ADDRESS</strong><i class="fa fa-caret-down arrow"></i></h4>
             <div id="collapseHomeAddress" class="panel-collapse collapse in">
                 <dl class="dl-horizontal panel panel-default">
                     <dt>
@@ -254,7 +254,7 @@
                     </dd>
                 </dl>
               </div>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PARENT INFO</strong></h4>
+            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PARENT INFO</strong><i class="fa fa-caret-down arrow"></i></h4>
             <div id="collapseParentInfo" class="panel-collapse collapse in">
                 <div class="panel panel-default">
                     <h4>
@@ -294,7 +294,8 @@
                     </dl>
                 </div>
                 </div>
-                <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PARENT ADDRESS</strong></h4>
+            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseParentAddress"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PARENT ADDRESS</strong><i class="fa fa-caret-down arrow"></i></h4>
+            <div id="collapseParentAddress" class="panel-collapse collapse in">
                 <div class="panel panel-default">
                     @if (Model.ProfileParentModel.SameAddressAsStudent == false)
                     {
@@ -336,10 +337,12 @@
                         <p>Same as student</p><br />
                     }
                 </div>
+                </div>
                 @if (Model.SecondProfileParentModel != null)
-                {
+{
 
-                    <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>SECOND PARENT</strong></h4>
+    <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParent"><span class="fa fa-file-text-o fa-1x"></span>  <strong>SECOND PARENT</strong><i class="fa fa-caret-down arrow"></i></h4>
+                    <div id="collapseSecondParent" class="panel-collapse collapse in">
                     <div class="panel panel-default">
                         <h4>
                             <strong>
@@ -376,53 +379,54 @@
                             </dd>
                         </dl>
                     </div>
-
-                    <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>SECOND PARENT ADDRESS</strong></h4>
-                    <div class="panel panel-default">
-                        if (Model.SecondProfileParentModel.SameAddressAsStudent == false)
-                        {
-
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
-                            </dt>
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
-                            </dt>
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
-                            </dt>
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
-                            </dt>
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
-                            </dt>
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
-                            </dd>
-                        </dl>
-                        }
-                        else
-                        {
-                        <p>Same as student</p><br />
-                        }
                     </div>
-                }
-            </div>
+    <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParentAddress"><span class="fa fa-file-text-o fa-1x"></span>  <strong>SECOND PARENT ADDRESS</strong><i class="fa fa-caret-down arrow"></i></h4>
+    <div id="collapseSecondParentAddress" class="panel-collapse collapse in">
+        <div class="panel panel-default">
+            if (Model.SecondProfileParentModel.SameAddressAsStudent == false)
+            {
 
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
+                </dd>
+            </dl>
+            }
+            else
+            {
+            <p>Same as student</p><br />
+            }
+        </div>
+    </div>
+}
+            </div>
 
 
     </div>
