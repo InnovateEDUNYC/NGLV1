@@ -6,12 +6,8 @@ Ngl.assessment.result = (function () {
 
         $("#SessionId").change(function () {
             var sessionId = $(this).val();
-            updateGetResultsUrl(sessionId);
-            $("#GetResultsButton").removeAttr("disabled");
-        });
-
-        $("#SessionId").on("cleared", function () {
-            $("#GetResultsButton").attr("disabled", "disabled");
+            var url = updateGetResultsUrl(sessionId);
+            window.location = url;
         });
 
         var updateGetResultsUrl = function (sessionId) {
@@ -20,7 +16,7 @@ Ngl.assessment.result = (function () {
                 .replace("{sessionId}", sessionId)
                 .replace("{studentUsi}", studentUsi);
 
-            $("#GetResultsButton").attr("href", url);
+            return url;
 
         }
     }
