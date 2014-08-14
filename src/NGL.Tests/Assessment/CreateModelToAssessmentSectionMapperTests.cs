@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Expressions;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Models.Assessment;
@@ -13,7 +14,6 @@ namespace NGL.Tests.Assessment
 {
     public class CreateModelToAssessmentSectionMapperTests
     {
-        private GradeLevelDescriptor _4ThGradeLevelDescriptor;
         private CreateModel _createModel;
         private Web.Data.Entities.Assessment _assessment;
         private IGenericRepository _genericRepositoryStub;
@@ -24,17 +24,11 @@ namespace NGL.Tests.Assessment
         {
             SetUp();
 
-            var entity = new CreateModelToAssessmentSectionMapper(_genericRepositoryStub).Build(_createModel,
-               cm =>
-               {
-                   cm.AcademicSubjectDescriptorId = _assessment.AcademicSubjectDescriptorId;
-                   cm.Version = _assessment.Version;
-               });
+            var entity = new CreateModelToCreateModelToAssessmentSectionMapper(_genericRepositoryStub).Build(_createModel, _assessment);
 
-
-            entity.AssessmentTitle.ShouldBe(_createModel.AssessmentTitle);
+            entity.AssessmentTitle.ShouldBe(_assessment.AssessmentTitle);
             entity.AcademicSubjectDescriptorId.ShouldBe(_assessment.AcademicSubjectDescriptorId);
-            entity.AssessedGradeLevelDescriptorId.ShouldBe(_4ThGradeLevelDescriptor.GradeLevelDescriptorId);
+            entity.AssessedGradeLevelDescriptorId.ShouldBe(_assessment.AssessedGradeLevelDescriptorId);
             entity.Version.ShouldBe(_assessment.Version);
 
             entity.SchoolId.ShouldBe(Constants.SchoolId);
@@ -45,22 +39,27 @@ namespace NGL.Tests.Assessment
             entity.TermTypeId.ShouldBe(_section.TermTypeId);
             entity.SchoolYear.ShouldBe(_section.SchoolYear);
 
+            _assessment.AssessmentSections.Count.ShouldBe(1);
         }
 
         private void SetUp()
         {
             _createModel = new CreateModelBuilder().Build();
-            _assessment = new AssessmentBuilder().Build();
+            _assessment = new AssessmentBuilder()
+                .WithAssessmentLearningStandards()
+                .WithAssessmentPerformanceLevels()
+                .Build();
+
             _genericRepositoryStub = Substitute.For<IGenericRepository>();
             _section = new SectionBuilder().Build();
 
-            _4ThGradeLevelDescriptor = new GradeLevelDescriptor
+            var fourthGradeLevelDescriptor = new GradeLevelDescriptor
             {
                 GradeLevelDescriptorId = 99,
                 GradeLevelTypeId = 100
             };
 
-            _genericRepositoryStub.Get(Arg.Any<GradeLevelTypeDescriptorQuery>()).Returns(_4ThGradeLevelDescriptor);
+            _genericRepositoryStub.Get(Arg.Any<GradeLevelTypeDescriptorQuery>()).Returns( fourthGradeLevelDescriptor);
 
             _genericRepositoryStub.Get(Arg.Any<Expression<Func<Web.Data.Entities.Section, bool>>>())
                                 .Returns(_section);

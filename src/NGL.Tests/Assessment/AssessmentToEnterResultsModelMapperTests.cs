@@ -77,7 +77,11 @@ namespace NGL.Tests.Assessment
 
             _mapper = new AssessmentToEnterResultsModelMapper(studentAssessmentToEnterResultsStudentModelMapper);
 
-            _entity = new AssessmentBuilder().Build();
+            _entity = new AssessmentBuilder()
+                .WithAssessmentLearningStandards()
+                .WithAssessmentPerformanceLevels()
+                .Build();
+
             Web.Data.Entities.Student student1 = new StudentBuilder().Build();
             Web.Data.Entities.Student student2 = new StudentBuilder().Build();
 

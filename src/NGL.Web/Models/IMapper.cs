@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.WindowsAzure.Storage.Table;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models

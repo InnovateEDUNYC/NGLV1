@@ -61,14 +61,17 @@ namespace NGL.Web.Data.Repositories
             DbContext.Set<StudentAssessmentScoreResult>().Add(studentAssessment.StudentAssessmentScoreResults.First());
         }
 
-        public void Save(Assessment assessment, AssessmentPerformanceLevel nearMastery, AssessmentPerformanceLevel mastery, AssessmentLearningStandard learningStandard, AssessmentSection assessmentSection)
+        public void Save(Assessment assessment)
         {
-            assessment.AssessmentSections.Add(assessmentSection);
             DbContext.Set<Assessment>().Add(assessment);
-            DbContext.Set<AssessmentPerformanceLevel>().Add(nearMastery);
-            DbContext.Set<AssessmentPerformanceLevel>().Add(mastery);
-            DbContext.Set<AssessmentLearningStandard>().Add(learningStandard);
-            DbContext.Set<AssessmentSection>().Add(assessmentSection);
+
+            foreach (var performanceLevel in assessment.AssessmentPerformanceLevels)
+                DbContext.Set<AssessmentPerformanceLevel>().Add(performanceLevel);
+            foreach (var assessmentSection in assessment.AssessmentSections)
+                DbContext.Set<AssessmentSection>().Add(assessmentSection);
+            foreach (var assessmentLearningStandard in assessment.AssessmentLearningStandards)
+                DbContext.Set<AssessmentLearningStandard>().Add(assessmentLearningStandard);
+
             DbContext.Save();
         }
     }

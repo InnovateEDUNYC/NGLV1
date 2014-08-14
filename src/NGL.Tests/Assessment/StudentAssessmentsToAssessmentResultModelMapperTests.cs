@@ -49,7 +49,11 @@ namespace NGL.Tests.Assessment
 
         private static StudentAssessment BuildFirstStudentAssessment()
         {
-            var assessment = new AssessmentBuilder().Build();
+            var assessment = new AssessmentBuilder()
+                .WithAssessmentLearningStandards()
+                .WithAssessmentPerformanceLevels()
+                .Build();
+
             var section = new SectionBuilder().WithAssessment(assessment).Build();
             var studentAssessment = new StudentAssessmentBuilder().WithAssessment(assessment).Build();
             return studentAssessment;
@@ -57,7 +61,11 @@ namespace NGL.Tests.Assessment
 
         private static StudentAssessment BuildStudentAssessmentTwo()
         {
-            var assessmentTwo = new AssessmentBuilder().Build();
+            var assessmentTwo = new AssessmentBuilder()
+                .WithAssessmentLearningStandards()
+                .WithAssessmentPerformanceLevels()
+                .Build();
+
             var section = new SectionBuilder().WithAssessment(assessmentTwo).Build();
             var studentAssessmentScoreResult = new StudentAssessmentScoreResultBuilder().WithResult("69.5").Build();
             var studentAssessmentTwo = new StudentAssessmentBuilder()
