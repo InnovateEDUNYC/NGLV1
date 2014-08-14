@@ -37,21 +37,24 @@
                 </div>
 
                 <div class="btn-group-horizontal">
-                    @if ((User as NglPrincipal).HasAccessTo("assessment", "view"))
-                    {
-                        @Html.ActionLink("Reports", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi }, new { @class = "btn btn-primary" })
-                    }
-                    <br /><br />
-                    @if ((User as NglPrincipal).HasAccessTo("scheduleStudents", "create"))
-                    {
-                        @Html.ActionLink("Scheduling", MVC.Schedule.Set(Model.StudentUsi), new { @class = "btn btn-default" })
-                    }
+                    <p>
+                        @if ((User as NglPrincipal).HasAccessTo("assessment", "view"))
+                        {
+                            @Html.ActionLink("Reports", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi }, new { @class = "btn btn-primary" })
+                        }
+                    </p>
+                    <p>
+                        @if ((User as NglPrincipal).HasAccessTo("scheduleStudents", "create"))
+                        {
+                            @Html.ActionLink("Scheduling", MVC.Schedule.Set(Model.StudentUsi), new { @class = "btn btn-default" })
+                        }
+                    </p>
                 </div>
 
             </div>
         </div>
         <div class="col-md-6">
-            <h4 class="panel panel-default"><strong>Biographical Information</strong></h4>
+            <h4 class="panel panel-default"><strong>BIOGRAPHICAL INFORMATION</strong></h4>
             <dl class="dl-horizontal panel panel-default">
                 <dt>
                     Sex
@@ -91,7 +94,7 @@
                     @Html.DisplayFor(model => model.HomeLanguage)
                 </dd>
             </dl>
-            <h4 class="panel panel-default"><strong>@Html.DisplayFor(model => model.AcademicDetail.SchoolYear) Academic Details</strong></h4>
+            <h4 class="panel panel-default"><strong>@Html.DisplayFor(model => model.AcademicDetail.SchoolYear) ACADEMIC DETAILS</strong></h4>
             <dl class="dl-horizontal panel panel-default">
                 <dt>
                     @Html.DisplayNameFor(model => model.AcademicDetail.WritingScore)
@@ -125,7 +128,7 @@
                 </dd>
             </dl>
 
-            <h4 class="panel panel-default"><strong>Program Status Information</strong></h4>
+            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PROGRAM STATUS</strong></h4>
             @if (Model.ProgramStatus == null)
             {
                 <dl class="dl-horizontal panel panel-default">No Information Entered</dl>
@@ -205,7 +208,7 @@
                     </dd>
                 </dl>
             }
-            <h4 class="panel panel-default"><strong>Home Address</strong></h4>
+            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>HOME ADDRESS</strong></h4>
             <dl class="dl-horizontal panel panel-default">
                 <dt>
                     @Html.DisplayNameFor(model => model.Address)
@@ -241,7 +244,7 @@
                     @Html.DisplayTextFor(model => model.PostalCode)
                 </dd>
             </dl>
-            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>Parent Info</strong></h4>
+            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PARENT INFO</strong></h4>
             <div class="panel panel-default">
                 <h4>
                     <strong>
@@ -279,7 +282,7 @@
                     </dd>
                 </dl>
             </div>
-            <h4 class="panel panel-default"><strong>Parent Address</strong></h4>
+            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>PARENT ADDRESS</strong></h4>
             <div class="panel panel-default">
                 @if (Model.ProfileParentModel.SameAddressAsStudent == false)
                 {
@@ -324,7 +327,7 @@
         @if (Model.SecondProfileParentModel != null)
         {
 
-            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>Second Parent</strong></h4>
+            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>SECOND PARENT</strong></h4>
             <div class="panel panel-default">
                 <h4>
                     <strong>
@@ -362,7 +365,7 @@
             </dl>
             </div>
 
-            <h4 class="panel panel-default"><strong>Second Parent Address</strong></h4>
+            <h4 class="panel panel-default"><span class="fa fa-file-text-o fa-1x"></span>  <strong>SECOND PARENT ADDRESS</strong></h4>
     <div class="panel panel-default">
         if (Model.SecondProfileParentModel.SameAddressAsStudent == false)
         {
