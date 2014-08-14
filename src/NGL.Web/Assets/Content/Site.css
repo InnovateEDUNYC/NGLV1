@@ -284,3 +284,7 @@ form .inline input {
 body h4.panel:first-child {
     margin-top: 0px;
 }
+
+.arrow {
+    padding-left: 5px;
+}
