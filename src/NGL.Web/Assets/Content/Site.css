@@ -93,13 +93,20 @@ form .inline input {
 
 .upload-profile-photo {
     padding-top: 5px;
+    margin-bottom: 50px;
+    text-align: left;
 }
 
 .ghost-button {
     opacity: 0;
-    position: absolute;
     height: 34px;
-    width: 92px;
+    width: 100px;
+    
+}
+
+.profile-photo-button {
+    position: absolute;
+    margin-left: 30%;
 }
 
 .click-button {

@@ -16,13 +16,18 @@
 
                     @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                     {
-                        using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
-                        {
+                        <div class="upload-profile-photo-container">
+                            @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+                            {
                             <div class="upload-profile-photo">
-                                <button class="click-button btn btn-default">New photo</button>
-                                <input type="file" class="ghost-button" name="profilePhoto" accept="image/*" />
+                                <button type="button" class="click-button btn btn-default profile-photo-button">
+                                    New photo
+                                </button>
+                                <input type="file" class="ghost-button profile-photo-button" name="profilePhoto" accept="image/*" />
                             </div>
-                        }
+
+                            }
+                        </div>
                     }
                     <h3>
                         <strong>
@@ -94,7 +99,7 @@
                     @Html.DisplayFor(model => model.HomeLanguage)
                 </dd>
             </dl>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseAcademicDetails"><strong>@Html.DisplayFor(model => model.AcademicDetail.SchoolYear) ACADEMIC DETAILS</strong> <i class="fa fa-caret-up arrow"></i></h4>
+            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseAcademicDetails"><strong>@Html.DisplayFor(model => model.AcademicDetail.SchoolYear) ACADEMIC DETAILS</strong> <i class="fa fa-caret-down arrow"></i></h4>
             <div id="collapseAcademicDetails" class="panel-collapse collapse in">
             <dl class="dl-horizontal panel panel-default">
                 <dt>
