@@ -22,7 +22,7 @@
     display: inline-block;
     width: 50%;
     margin: 0 -4px 0 0;
-    padding: 4px 5px;
+    padding: 4px 5px 0;
     text-align: center;
 }
 
@@ -34,10 +34,15 @@
 #week {
     border-right: solid white 2px;
     border-radius: 4px 4px 0 0;
+    border-top: solid #69BD45 1px;
+    border-bottom: solid #69BD45 1px;
 }
 
 #month {
-    border-left: solid white 2px;
+    background-color:white;
+    color:#69BD45;
+    padding: 4px 0px 0px 0px;
+    border: solid #69BD45 1px;
     border-radius: 4px 4px 0 0;
 }
 
