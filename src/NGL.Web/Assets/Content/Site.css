@@ -101,7 +101,7 @@ form .inline input {
     opacity: 0;
     height: 34px;
     width: 100px;
-    
+    cursor: pointer;
 }
 
 .profile-photo-button {
