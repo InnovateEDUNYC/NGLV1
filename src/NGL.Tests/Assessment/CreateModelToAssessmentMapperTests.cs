@@ -26,7 +26,7 @@ namespace NGL.Tests.Assessment
         {
             SetUp();
 
-            var model = new CreateModelBuilder().WithGradeLevelTypeId(_4ThGradeLevelDescriptor.GradeLevelTypeId).Build();
+            var model = new CreateAssessmentModelBuilder().WithGradeLevelTypeId(_4ThGradeLevelDescriptor.GradeLevelTypeId).Build();
             var entity = new CreateModelToAssessmentMapper(_genericRepositoryStub, 
                 _createModelToAssessmentPerformanceLevelMapperMock, _createModelToCreateModelToAssessmentSectionMapperMock, _createModelToCreateModelToAssessmentLearningStandardMapperMock).Build(model);
 

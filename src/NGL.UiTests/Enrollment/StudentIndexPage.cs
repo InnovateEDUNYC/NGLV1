@@ -5,7 +5,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Enrollment
 {
-    class StudentIndexPage : Page<IndexModel>
+    public class StudentIndexPage : Page<IndexModel>
     {
         public EnrollmentPage GoToEnroll()
         {

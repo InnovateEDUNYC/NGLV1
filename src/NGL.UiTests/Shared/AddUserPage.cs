@@ -4,7 +4,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Shared
 {
-    class AddUserPage: Page<AddUserModel>
+    public class AddUserPage: Page<AddUserModel>
     {
         public UsersPage Register(AddUserModel addUserModel)
         {

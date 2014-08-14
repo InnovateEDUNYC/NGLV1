@@ -1,4 +1,5 @@
 ﻿using NGL.UiTests.Account;
+using NGL.UiTests.Assessment;
 using NGL.UiTests.Enrollment;
 using NGL.UiTests.School;
 using OpenQA.Selenium;
@@ -6,7 +7,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Shared
 {
-    class TopMenu : UiComponent
+    public class TopMenu : UiComponent
     {
         public SchoolPage GoToSchoolPage()
         {
@@ -53,6 +54,11 @@ namespace NGL.UiTests.Shared
         public UsersPage GoToUsersPage()
         {
             return Navigate.To<UsersPage>(By.LinkText("Users"));
+        }
+
+        public AssessmentIndexPage GoToAssessmentIndexPage()
+        {
+            return Navigate.To<AssessmentIndexPage>(By.LinkText("Assessment"));
         }
     }
 }

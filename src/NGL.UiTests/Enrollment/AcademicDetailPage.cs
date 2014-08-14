@@ -4,7 +4,7 @@ using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Enrollment
 {
-    class AcademicDetailPage : Page<AcademicDetailModel>
+    public class AcademicDetailPage : Page<AcademicDetailModel>
     {
         private const string AcademicDetailTitle = "Academic Details";
 

@@ -54,5 +54,6 @@ namespace NGL.UiTests.Student
         {
             return Navigate.To<SchedulePage>(By.LinkText("Scheduling"));
         }
+
     }
 }
