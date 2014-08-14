@@ -242,20 +242,25 @@ form .inline input {
 
 .result-pill {
     position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
     top: 5px;
     right: 5px;
     bottom: 5px;
     left: 5px;
+    max-height: 46px;
     border-radius: 20px;
 }
+
 .Mastery {
-    background-color: green;
+    background-color: #69BD45;
 }
 
 .Near.Mastery {
-    background-color: yellow;
+    background-color: #FFD902;
 }
 
 .Not.Mastered {
-    background-color: red;
+    background-color: #EC4B36;
 }
+
