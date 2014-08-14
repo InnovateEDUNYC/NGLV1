@@ -20,7 +20,6 @@ namespace NGL.UiTests.Assessment
         private AssessmentCreatePage _assessmentCreatePage;
         private CreateModel _createAssessmentModel;
         private AssessmentIndexPage _assessmentIndexPage;
-        private EnterResultsModel _enterResultsModel;
         private AssessmentResultsPage _resultsPage;
 
         public void IHaveLoggedIn()
@@ -50,8 +49,7 @@ namespace NGL.UiTests.Assessment
         public void IGoToTheResultsPageAndFillInValidResults()
         {
             _resultsPage = _assessmentIndexPage.GoToResultsPage();
-            _enterResultsModel = new EnterResultsModelBuilder().Build();
-            _assessmentIndexPage = _resultsPage.EnterResults();
+            _assessmentIndexPage = _resultsPage.EnterResultsForFirstStudent("96");
         }
 
         public void IGoBackToTheResultsPage()
@@ -61,7 +59,7 @@ namespace NGL.UiTests.Assessment
 
         public void TheNewAssessmentResultsShouldBeSaved()
         {
-            _resultsPage.ResultsExist().ShouldBe(true);
+            _resultsPage.ResultsExistForFirstStudent("96").ShouldBe(true);
         }
 
         [Fact]

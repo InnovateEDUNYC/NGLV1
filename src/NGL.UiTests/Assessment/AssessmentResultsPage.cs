@@ -10,17 +10,16 @@ namespace NGL.UiTests.Assessment
 {
     public class AssessmentResultsPage : Page<EnterResultsModel>
     {
-        private string _score = "94";
 
-        public AssessmentIndexPage EnterResults()
+        public AssessmentIndexPage EnterResultsForFirstStudent(string score)
         {
-            Find.Element(By.Id("StudentResults_0__AssessmentResult")).SendKeys(_score);
+            Find.Element(By.Id("StudentResults_0__AssessmentResult")).SendKeys(score);
             return Navigate.To<AssessmentIndexPage>(By.ClassName("btn"));
         }
 
-        public bool ResultsExist()
+        public bool ResultsExistForFirstStudent(string score)
         {
-            return Find.Element(By.Id("StudentResults_0__AssessmentResult")).GetAttribute("value").Equals(_score);
+            return Find.Element(By.Id("StudentResults_0__AssessmentResult")).GetAttribute("value").Equals(score);
         }
     }
 }
