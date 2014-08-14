@@ -10,16 +10,21 @@ Ngl.assessment.result = (function () {
             window.location = url;
         });
 
-        var updateGetResultsUrl = function (sessionId) {
+        var updateGetResultsUrl = function(sessionId) {
             var studentUsi = $('#StudentUsi').val();
             var url = getResultsUrlTemplate
                 .replace("{sessionId}", sessionId)
                 .replace("{studentUsi}", studentUsi);
 
             return url;
-
         }
-    }
+
+        $('#week').on('click', function() {
+            $(this).removeClass('selected');
+            $(this).addClass('unselected');
+        });
+
+            };
 
     return {
         init: init
