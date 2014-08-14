@@ -15,6 +15,7 @@
 .green-background {
     background-color: #69BD45;
     border-radius: 0 0 4px 4px;
+    padding: 0 5px;
     color: white;
 }
 
@@ -44,6 +45,22 @@
     padding: 4px 0px 0px 0px;
     border: solid #69BD45 1px;
     border-radius: 4px 4px 0 0;
+}
+
+.fa-arrow-left:hover {
+    color: #69BD45;
+}
+
+.fa-arrow-left {
+    color: #69BD45;
+}
+
+.fa-arrow-right:hover {
+    color: #69BD45;
+}
+
+.fa-arrow-right {
+    color: #69BD45;
 }
 
 h4 {

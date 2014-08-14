@@ -12,8 +12,8 @@ namespace NGL.Web.Models.Assessment
         public string LastName { get; set; }
         public string Session { get; set; }
         public int? SessionId { get; set; }
-        public int? DayTo { get; set; }
-        public int? DayFrom { get; set; }
+        public int DayTo { get; set; }
+        public int DayFrom { get; set; }
         public string DateRange { get; set; }
         public string ProfilePhotoUrl { get; set; }
 

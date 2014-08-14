@@ -51,13 +51,13 @@
         <div class="panel green-background">
             <ul class="pager">
                 <li class="previous">
-                    @Html.ActionLink("Previous", "Result", "Assessment",
-                        new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom - 7, @dayTo = @Model.DayTo - 7}, null)
+                    @Html.ActionLink(" ", MVC.Assessment.Result(
+             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom - 7, @Model.DayTo - 7), new { @class = "fa fa-arrow-left fa-2" })
                 </li>
                 <li>@Model.DateRange</li>
                 <li class="next">
-                    @Html.ActionLink("Next", "Result", "Assessment",
-                        new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom + 7, @dayTo = @Model.DayTo + 7}, null)
+                    @Html.ActionLink(" ", MVC.Assessment.Result(
+             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom + 7, @Model.DayTo + 7), new { @class = "fa fa-arrow-right fa-2" })
                 </li>
             </ul>
         </div>
@@ -71,19 +71,6 @@
     </div>
     @if (@Model.Session != null)
     {
-@*        <div class="row">*@
-@*            <ul class="pager">*@
-@*                <li class="previous">*@
-@*                    @Html.ActionLink("Previous", "Result", "Assessment",*@
-@*                        new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom - 7, @dayTo = @Model.DayTo - 7}, null)*@
-@*                </li>*@
-@*                <li>@Model.DateRange</li>*@
-@*                <li class="next">*@
-@*                    @Html.ActionLink("Next", "Result", "Assessment",*@
-@*                        new {@studentUsi = @Model.StudentUsi, @sessionId = @Model.SessionId, @dayFrom = @Model.DayFrom + 7, @dayTo = @Model.DayTo + 7}, null)*@
-@*                </li>*@
-@*            </ul>*@
-@*        </div>*@
         <div class="row">
             @if (Model.AssessmentResultRows != null && Model.AssessmentResultRows.Count > 0)
             {
