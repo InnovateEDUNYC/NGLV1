@@ -323,8 +323,9 @@ body h4.panel:first-child {
     color: #69BD45;
 }
 
-h4 {
+h4.strong {
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .Mastery {
@@ -372,7 +373,7 @@ h4 {
     padding: 65px;
 }
 
-input#Session {
+.full-input {
     max-width: 100%;
 }
 

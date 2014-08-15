@@ -25,12 +25,12 @@
         </div>
         <div class="col-md-9 clear-right-padding">
             <div class="panel panel-default find-session">
-                <h4><strong>SESSION</strong></h4>
+                <h4 class="strong">Session</h4>
                 
                 <div>
                     
                 </div>
-                @Html.TextBoxFor(m => m.Session, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Session, new { @class = "form-control full-input" })
                 @Html.HiddenFor(m => m.SessionId)
                 @Html.HiddenFor(m => m.StudentUsi)
                 @Html.HiddenFor(m => m.DayFrom)
