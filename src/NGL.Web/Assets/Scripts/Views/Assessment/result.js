@@ -27,21 +27,7 @@ Ngl.assessment.result = (function () {
             return url;
         }
 
-//        $('#month').on('click', function() {
-//            $(this).removeClass('unselected');
-//            $(this).addClass('selected');
-//            $('#week').removeClass('selected');
-//            $('#week').addClass('unselected');
-//        });
-//
-//        $('#week').on('click', function () {
-//            $(this).removeClass('unselected');
-//            $(this).addClass('selected');
-//            $('#month').removeClass('selected');
-//            $('#month').addClass('unselected');
-//        });
-
-            };
+    };
 
     return {
         init: init
