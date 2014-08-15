@@ -14,16 +14,19 @@ namespace NGL.Web.Controllers
     {
         private readonly IGenericRepository _genericRepository;
         private readonly ISectionRepository _sectionRepository;
-        private readonly IMapper<Section, TakeAttendanceModel> _sectionToTakeAttendanceModelMapper;
+        private readonly SectionToTakeAttendanceModelMapper _sectionToTakeAttendanceModelMapper;
         private readonly TakeAttendanceModelToStudentSectionAttendanceEventListMapper _takeAttendanceModelToStudentSectionAttendanceEventListMapper;
+        private IAttendanceRepository _attendanceRepository;
 
         public AttendanceController(IGenericRepository genericRepository,
             ISectionRepository sectionRepository,
-            IMapper<Section, TakeAttendanceModel> sectionToTakeAttendanceModelMapper,
+            IAttendanceRepository attendanceRepository,
+            SectionToTakeAttendanceModelMapper sectionToTakeAttendanceModelMapper,
             TakeAttendanceModelToStudentSectionAttendanceEventListMapper takeAttendanceModelToStudentSectionAttendanceEventListMapper)
         {
             _genericRepository = genericRepository;
             _sectionRepository = sectionRepository;
+            _attendanceRepository = attendanceRepository;
             _sectionToTakeAttendanceModelMapper = sectionToTakeAttendanceModelMapper;
             _takeAttendanceModelToStudentSectionAttendanceEventListMapper = takeAttendanceModelToStudentSectionAttendanceEventListMapper;
         }
@@ -45,8 +48,9 @@ namespace NGL.Web.Controllers
             }
 
             var section = _sectionRepository.GetWithStudentAssociationsForDate(sectionId.Value, dateTime);
-            var takeAttendanceModel = _sectionToTakeAttendanceModelMapper.Build(section);
-            takeAttendanceModel.Date = dateTime;
+            var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, dateTime);
+
+            var takeAttendanceModel = _sectionToTakeAttendanceModelMapper.Build(section, existingAttendanceEvents, dateTime);
             
             return View(MVC.Attendance.Views.Take, takeAttendanceModel);
         }

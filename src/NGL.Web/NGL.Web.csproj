@@ -283,7 +283,9 @@
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\AttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\ISectionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
