@@ -26,28 +26,37 @@
         </div>
         
         <button type="button" id="get-students-btn" class="btn btn-primary">Get Students</button>
-    
+
         if (!Model.StudentRows.IsNullOrEmpty())
         {
-            for (var i = 0; i < Model.StudentRows.Count; i++)
-            {
-                <p>
+            <div class="attendance-list">
+                <div class="attendance-type-container">
+                    <div class="attendance-type">Present</div>
+                    <div class="attendance-type">Excused</div>
+                    <div class="attendance-type">Unexcused</div>
+                    <div class="attendance-type">Tardy</div>
+                    <div class="attendance-type">Early dep.</div>
+                </div>
+                @for (var i = 0; i < Model.StudentRows.Count; i++)
+                {
                     <div class="hidden">
                         @Html.TextBoxFor(tam => tam.StudentRows[i].StudentUsi)
                     </div>
-                    
-                    <div class="attendance-list">
+
+                    <div class="attendance-list-item">
                         <div class="student-name">@Html.DisplayTextFor(tam => tam.StudentRows[i].StudentName)</div>
                         @s.FieldFor(tam => tam.StudentRows[i].AttendanceType).AsRadioList()
                     </div>
-                    
-                </p>
+
+                }
+            </div>
+        }
+        <div class="save-attendance">
+            @using (var n = f.BeginNavigation())
+            {
+                @n.Submit("Save").AddClass("btn btn-primary")
             }
-        }
-        using (var n = f.BeginNavigation())
-        {
-            @n.Submit("Take Attendance").AddClass("btn btn-primary")
-        }
+        </div>
     }
 }
     </div>
