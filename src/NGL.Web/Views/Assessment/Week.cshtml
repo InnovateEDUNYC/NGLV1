@@ -1,14 +1,17 @@
-﻿@model NGL.Web.Models.Assessment.AssessmentResultModel
+﻿@using Castle.DynamicProxy.Generators.Emitters
+@model NGL.Web.Models.Assessment.AssessmentResultModel
 
 @{
     ViewBag.Title = "Student Report";
+
+    const int numberOfDaysInWeek = 7;
 }
 <div class="panel panel-gray">
     <h2>Student Report</h2>
     <div class="row clear-right-margin">
         <div class="col-md-3">
             <div class="panel panel-default text-center">
-                <div class="profile-photo-container">
+                <div>
                     <img class="profile-image" src="@Model.ProfilePhotoUrl" />
                     <h3>
                         <strong>
@@ -42,24 +45,24 @@
         
         <div>
             <div id="week" class="result-view-period green-background selected">
-                <h3>Week</h3>
+                <h3>@Html.ActionLink("Week", MVC.Assessment.Week(@Model.StudentUsi, @Model.SessionId))</h3>
             </div>
         
             <div id="month" class="result-view-period green-background unselected">
-                <h3>Month</h3>
+                <h3>@Html.ActionLink("Month", MVC.Assessment.Month(@Model.StudentUsi, @Model.SessionId), new {@class="bigger"})</h3>
             </div>
         </div>
 
         <div class="panel green-background">
             <ul class="pager">
                 <li class="previous">
-                    @Html.ActionLink(" ", MVC.Assessment.Result(
-             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom - 7, @Model.DayTo - 7), new { @class = "fa fa-arrow-left fa-2" })
+                    @Html.ActionLink(" ", MVC.Assessment.Week(
+             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom - numberOfDaysInWeek, @Model.DayTo - numberOfDaysInWeek), new { @class = "fa fa-arrow-left fa-2" })
                 </li>
                 <li>@Model.DateRange</li>
                 <li class="next">
-                    @Html.ActionLink(" ", MVC.Assessment.Result(
-             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom + 7, @Model.DayTo + 7), new { @class = "fa fa-arrow-right fa-2" })
+                    @Html.ActionLink(" ", MVC.Assessment.Week(
+             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom + numberOfDaysInWeek, @Model.DayTo + numberOfDaysInWeek), new { @class = "fa fa-arrow-right fa-2" })
                 </li>
             </ul>
         </div>
@@ -79,9 +82,9 @@
                 <table class="table table-report">
                     <tr>
                         <th class="col-xs-2 col-sm-2 col-md-2 ccss-header"></th>
-                        @for (var i = 1; i <= 7; i++)
+                        @for (var i = 1; i <= numberOfDaysInWeek; i++)
                         {
-                            <th class="col-sm-1">@i</th>
+                            <th class="col-xs-1">&nbsp;</th>
                         }
                     </tr>
                         @foreach (var row in Model.AssessmentResultRows)

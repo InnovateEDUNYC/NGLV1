@@ -93,6 +93,7 @@ form .inline input {
 
 .upload-profile-photo {
     padding-top: 5px;
+    margin-left: 24%;
 }
 
 .scheduling {
@@ -246,14 +247,20 @@ body h4.panel:first-child {
     padding: 0;
 }
 
-.selected {
+.selected, .selected a {
     border-radius: 4px 4px 0 0;
+    color: white;
+    text-decoration: none;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
-.unselected {
+.unselected, .unselected a {
     background-color:white;
     color:#69BD45;
     border-radius: 4px 4px 0 0;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 .fa-arrow-left:hover {
@@ -333,3 +340,4 @@ h4.strong {
 .ccss-header {
     width: 20%;
 }
+

@@ -59,6 +59,7 @@ namespace NGL.Web.Controllers
             var currentlyEnrolledSections = GetCurrentlyEnrolledSectionsFor(id);
 
             var defaultSessionListModel = _sessionToSessionListItemModelMapper.Build(new SessionFilter(_genericRepository).FindSession(DateTime.Now));
+
             var setModel = SetModel.CreateNewWith(student, profilePhotoUrl, sessionModels, defaultSessionListModel, currentlyEnrolledSections);
             return View(setModel);
         }

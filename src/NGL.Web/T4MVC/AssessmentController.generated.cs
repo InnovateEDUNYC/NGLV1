@@ -62,9 +62,15 @@ namespace NGL.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Result()
+        public virtual System.Web.Mvc.ActionResult Week()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Week);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Month()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,7 +91,8 @@ namespace NGL.Web.Controllers
             public readonly string Index = "Index";
             public readonly string Create = "Create";
             public readonly string EnterResults = "EnterResults";
-            public readonly string Result = "Result";
+            public readonly string Week = "Week";
+            public readonly string Month = "Month";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -94,7 +101,8 @@ namespace NGL.Web.Controllers
             public const string Index = "Index";
             public const string Create = "Create";
             public const string EnterResults = "EnterResults";
-            public const string Result = "Result";
+            public const string Week = "Week";
+            public const string Month = "Month";
         }
 
 
@@ -115,11 +123,22 @@ namespace NGL.Web.Controllers
             public readonly string id = "id";
             public readonly string enterResultsModel = "enterResultsModel";
         }
-        static readonly ActionParamsClass_Result s_params_Result = new ActionParamsClass_Result();
+        static readonly ActionParamsClass_Week s_params_Week = new ActionParamsClass_Week();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Result ResultParams { get { return s_params_Result; } }
+        public ActionParamsClass_Week WeekParams { get { return s_params_Week; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Result
+        public class ActionParamsClass_Week
+        {
+            public readonly string studentUsi = "studentUsi";
+            public readonly string sessionId = "sessionId";
+            public readonly string dayFrom = "dayFrom";
+            public readonly string dayTo = "dayTo";
+        }
+        static readonly ActionParamsClass_Month s_params_Month = new ActionParamsClass_Month();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Month MonthParams { get { return s_params_Month; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Month
         {
             public readonly string studentUsi = "studentUsi";
             public readonly string sessionId = "sessionId";
@@ -139,12 +158,14 @@ namespace NGL.Web.Controllers
                 public readonly string Create = "Create";
                 public readonly string EnterResults = "EnterResults";
                 public readonly string Index = "Index";
-                public readonly string Result = "Result";
+                public readonly string Month = "Month";
+                public readonly string Week = "Week";
             }
             public readonly string Create = "~/Views/Assessment/Create.cshtml";
             public readonly string EnterResults = "~/Views/Assessment/EnterResults.cshtml";
             public readonly string Index = "~/Views/Assessment/Index.cshtml";
-            public readonly string Result = "~/Views/Assessment/Result.cshtml";
+            public readonly string Month = "~/Views/Assessment/Month.cshtml";
+            public readonly string Week = "~/Views/Assessment/Week.cshtml";
         }
     }
 
@@ -212,17 +233,32 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void ResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int dayFrom, int dayTo);
+        partial void WeekOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int dayFrom, int dayTo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Result(int studentUsi, int? sessionId, int dayFrom, int dayTo)
+        public override System.Web.Mvc.ActionResult Week(int studentUsi, int? sessionId, int dayFrom, int dayTo)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Result);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Week);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayFrom", dayFrom);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayTo", dayTo);
-            ResultOverride(callInfo, studentUsi, sessionId, dayFrom, dayTo);
+            WeekOverride(callInfo, studentUsi, sessionId, dayFrom, dayTo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void MonthOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int? sessionId, int dayFrom, int dayTo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Month(int studentUsi, int? sessionId, int dayFrom, int dayTo)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Month);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayFrom", dayFrom);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "dayTo", dayTo);
+            MonthOverride(callInfo, studentUsi, sessionId, dayFrom, dayTo);
             return callInfo;
         }
 

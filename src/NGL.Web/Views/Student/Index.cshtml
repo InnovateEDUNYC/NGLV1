@@ -44,7 +44,7 @@
                     <p>
                         @if ((User as NglPrincipal).HasAccessTo("assessment", "view"))
                         {
-                            @Html.ActionLink("Reports", "Result", "Assessment", new { @studentUsi = @Model.StudentUsi }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Reports", MVC.Assessment.Week(@Model.StudentUsi, null), new { @class = "btn btn-primary" })
                         }
                     </p>
                     <p>
