@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -15,27 +16,42 @@ namespace NGL.Web.Data.Filters
         }
 
 
-        public Session FindSession(DateTime dateTime)
+        public Session FindSession(DateTime dateToCheck)
         {
             var sessions = _genericRepository.GetAll<Session>();
-            foreach (Session session in sessions)
-            {
-               if (dateIsContainedIn(dateTime, session))
-                   return session;
-            }
-            return sessions.FirstOrDefault();
+            var closestSession = GetAnyFutureSession(sessions, dateToCheck);
+            
+            var closestDifference = Difference(dateToCheck, closestSession.EndDate);
 
+            foreach (Session sessionToCheck in sessions)
+            {
+                var differenceToCheck = Difference(dateToCheck, sessionToCheck.EndDate);
+
+                if (0 <= differenceToCheck && differenceToCheck < closestDifference)
+                {
+                    closestSession = sessionToCheck;
+                    closestDifference = differenceToCheck;
+                }
+            }
+            return closestSession;
         }
 
-        private bool dateIsContainedIn(DateTime currentDate, Session session)
+        private Session GetAnyFutureSession(IEnumerable<Session> sessions, DateTime dateToCheck)
         {
-            var dateIsInSession = true;
-            if (currentDate < session.BeginDate)
-                dateIsInSession = false;
-            else if (currentDate > session.EndDate)
-                dateIsInSession = false;
+            foreach (Session session in sessions)
+            {
+                if (Difference(dateToCheck, session.EndDate) > 0)
+                {
+                    return session;
+                }
+            }
+            return sessions.FirstOrDefault();
+        }
 
-            return dateIsInSession;
+        private int Difference(DateTime dateToCheck, DateTime endDate)
+        {
+            return (int) (endDate - dateToCheck).TotalDays;
+
         }
     }
 }

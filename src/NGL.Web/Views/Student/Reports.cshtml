@@ -39,7 +39,7 @@
                     @Html.DisplayFor(modelItem => item.StudentUsi)
                 </td>
                 <td>
-                    @Html.ActionLink("Reports", "Result", "Assessment", new { @studentUsi = item.StudentUsi }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Reports", MVC.Assessment.Week(item.StudentUsi, null), new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }
