@@ -275,6 +275,7 @@
     <Compile Include="Controllers\LearningStandardController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Controllers\ParentCourseController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
@@ -1688,6 +1689,7 @@
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
     <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
+    <Compile Include="Models\ParentCourse\CreateModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModel.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModelToAcademicDetailMapper.cs" />
@@ -1703,6 +1705,7 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
@@ -1818,6 +1821,9 @@
     <Compile Include="T4MVC\LocationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC\ParentCourseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\ScheduleController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1902,6 +1908,7 @@
     <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
+    <EmbeddedResource Include="Data\Scripts\013.1 - Add Assessment Sample Data.sample.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1916,7 +1923,7 @@
       <LastGenOutput>Types.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Data\Scripts\013 - Add Performance Level Descriptors.sql" />
-    <EmbeddedResource Include="Data\Scripts\013.1 - Add Assessment Sample Data.sample.sql" />
+    <EmbeddedResource Include="Data\Scripts\014 - Create Parent Course Table.sql" />
     <None Include="Data\Entities\ConfigurationAccessor.ttinclude">
       <LastGenOutput>ConfigurationAccessor1.cs</LastGenOutput>
     </None>
@@ -2019,6 +2026,8 @@
     <Content Include="Views\Assessment\EnterResults.cshtml" />
     <Content Include="Views\Assessment\Index.cshtml" />
     <Content Include="Views\Student\Reports.cshtml" />
+    <Content Include="Views\ParentCourse\Create.cshtml" />
+    <Content Include="Views\ParentCourse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

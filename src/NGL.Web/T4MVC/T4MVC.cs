@@ -35,6 +35,7 @@ public static partial class MVC
     public static NGL.Web.Controllers.HomeController Home = new NGL.Web.Controllers.T4MVC_HomeController();
     public static NGL.Web.Controllers.LearningStandardController LearningStandard = new NGL.Web.Controllers.T4MVC_LearningStandardController();
     public static NGL.Web.Controllers.LocationController Location = new NGL.Web.Controllers.T4MVC_LocationController();
+    public static NGL.Web.Controllers.ParentCourseController ParentCourse = new NGL.Web.Controllers.T4MVC_ParentCourseController();
     public static NGL.Web.Controllers.ScheduleController Schedule = new NGL.Web.Controllers.T4MVC_ScheduleController();
     public static NGL.Web.Controllers.SchoolController School = new NGL.Web.Controllers.T4MVC_SchoolController();
     public static NGL.Web.Controllers.SectionController Section = new NGL.Web.Controllers.T4MVC_SectionController();

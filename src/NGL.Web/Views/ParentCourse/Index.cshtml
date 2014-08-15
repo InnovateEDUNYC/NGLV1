@@ -1,0 +1,33 @@
+﻿@using NGL.Web.Infrastructure.Security
+@model IEnumerable<NGL.Web.Models.ParentCourse.IndexModel>
+
+@{
+    ViewBag.Title = "Parent Courses";
+}
+
+<h2>Parent Courses</h2>
+@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+{
+    @Html.ActionLink("Add Parent Course", MVC.ParentCourse.Create(), new { @class = "btn btn-primary" })
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="classroom-code">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

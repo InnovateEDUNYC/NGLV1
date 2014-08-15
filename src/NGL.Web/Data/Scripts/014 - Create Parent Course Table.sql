@@ -8,7 +8,7 @@ CREATE TABLE [edfi].[ParentCourse](
 	[Id] [uniqueidentifier] NOT NULL,
 	[LastModifiedDate] [datetime] NOT NULL,
 	[CreateDate] [datetime] NOT NULL,
- CONSTRAINT [PK_Course] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_ParentCourse] PRIMARY KEY CLUSTERED 
 (
 	[EducationOrganizationId] ASC,
 	[ParentCourseCode] ASC
