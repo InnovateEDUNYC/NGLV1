@@ -1,6 +1,8 @@
 ﻿body {
+    font-family: 'Open Sans', sans-serif;
     padding-top: 70px;
     padding-bottom: 20px;
+    background-color: #f7f7f9;
 }
 
 /* Set padding to keep content from hitting the edges and top */
@@ -91,17 +93,23 @@ form .inline input {
 
 .upload-profile-photo {
     padding-top: 5px;
+    margin-bottom: 50px;
+    text-align: left;
 }
 
 .ghost-button {
     opacity: 0;
-    position: absolute;
     height: 34px;
-    width: 92px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.profile-photo-button {
+    position: absolute;
+    margin-left: 30%;
 }
 
 .click-button {
-    position: absolute;
     min-height: 34px;
     min-width: 92px;
 }
@@ -216,6 +224,15 @@ form .inline input {
     color: white
 }
 
+.btn {
+    border-radius: 20px;
+}
+
+.btn-primary {
+    background-color: #2DBCBB;
+    border-color: #2DBCBB;
+}
+
 .btn-primary:hover {
     background-color: #249695;
     border-color: #249695;
@@ -264,3 +281,17 @@ form .inline input {
     background-color: #EC4B36;
 }
 
+.panel {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: none;
+    box-shadow: none;
+}
+
+body h4.panel:first-child {
+    margin-top: 0px;
+}
+
+.arrow {
+    padding-left: 5px;
+}
