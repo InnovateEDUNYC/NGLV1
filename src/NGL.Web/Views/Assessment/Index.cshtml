@@ -5,15 +5,13 @@
     ViewBag.Title = "Assessments";
 }
 
+<h2>Assessments</h2>
+
 @if ((User as NglPrincipal).HasAccessTo("assessment", "create"))
 {
-    <ul class="nav nav-pills">
-        <li>@Html.ActionLink("Create Assessment", "Create")</li>
-    </ul>
+    @Html.ActionLink("Create Assessment", MVC.Assessment.Create(), new { @class = "btn btn-primary" })
 }
 
-<h2>Assessments</h2>
-    @Html.ActionLink("Create Assessment", MVC.Assessment.Create(), new { @class = "btn btn-primary" })
 <table class="table table-striped">
     <thead>
         <tr>

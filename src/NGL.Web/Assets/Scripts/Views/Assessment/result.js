@@ -6,24 +6,34 @@ Ngl.assessment.result = (function () {
 
         $("#SessionId").change(function () {
             var sessionId = $(this).val();
-            updateGetResultsUrl(sessionId);
-            $("#GetResultsButton").removeAttr("disabled");
+            var url = updateGetResultsUrl(sessionId);
+            window.location = url;
         });
 
-        $("#SessionId").on("cleared", function () {
-            $("#GetResultsButton").attr("disabled", "disabled");
-        });
-
-        var updateGetResultsUrl = function (sessionId) {
+        var updateGetResultsUrl = function(sessionId) {
             var studentUsi = $('#StudentUsi').val();
             var url = getResultsUrlTemplate
                 .replace("{sessionId}", sessionId)
                 .replace("{studentUsi}", studentUsi);
 
-            $("#GetResultsButton").attr("href", url);
-
+            return url;
         }
-    }
+
+        $('#month').on('click', function() {
+            $(this).removeClass('unselected');
+            $(this).addClass('selected');
+            $('#week').removeClass('selected');
+            $('#week').addClass('unselected');
+        });
+
+        $('#week').on('click', function () {
+            $(this).removeClass('unselected');
+            $(this).addClass('selected');
+            $('#month').removeClass('selected');
+            $('#month').addClass('unselected');
+        });
+
+            };
 
     return {
         init: init
