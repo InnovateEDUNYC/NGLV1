@@ -2,7 +2,7 @@
     font-family: 'Open Sans', sans-serif;
     padding-top: 70px;
     padding-bottom: 20px;
-    background-color: #f7f7f9;
+    background-color: #E9E9EB;
 }
 
 /* Set padding to keep content from hitting the edges and top */
@@ -207,7 +207,7 @@ form .inline input {
 }
 
 .panel-gray {
-    background-color: #f7f7f9;
+    background-color: #e9e9eb;
     padding: 10px;
 }
 

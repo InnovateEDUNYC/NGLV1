@@ -1903,12 +1903,12 @@
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
     <Content Include="favicon.ico" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Assets\Content\Site.css" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\Content\bootstrap-theme.css.map" />
     <Compile Include="App_Start\Startup.Database.cs" />
     <Content Include="Data\Entities\Types.tt">
