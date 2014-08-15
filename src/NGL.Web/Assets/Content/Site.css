@@ -236,15 +236,10 @@ body h4.panel:first-child {
     margin-bottom: 40px;
     margin-top: 28px;
 
-     /* Safari */
     -webkit-transform: rotate(300deg);
-    /* Firefox */
     -moz-transform: rotate(300deg);
-    /* IE */
     -ms-transform: rotate(300deg);
-    /* Opera */
     -o-transform: rotate(300deg);
-    /* Internet Explorer */
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
@@ -256,14 +251,21 @@ body h4.panel:first-child {
 .attendance-list-item > div.form-group {
     display: inline-block;
     margin-left: 7%;
-    width: 50%
+    width: 50%;
 }
 
 .attendance-list-item > div > div.radio {
     display: inline-block;
     margin-bottom: 0;
     margin-top: 0;
-    margin-right: 5%
+    margin-right: 5%;
+}
+
+.attendance-list-item > div > div.radio > input[type="radio"] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    -ms-appearance: checkbox;     /* not currently supported */
+    -o-appearance: checkbox;      /* not currently supported */
 }
 
 .attendance-list-item > div > span {
