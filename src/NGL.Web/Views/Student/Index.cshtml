@@ -6,7 +6,7 @@
     string downloadFileText = "Download File";
 }
 <div class="panel panel-gray">
-    <h2>Profile</h2>
+    <h2>Student Profile</h2>
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default text-center">
@@ -19,7 +19,7 @@
                             @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
                             {
                             <div class="upload-profile-photo">
-                                <button type="button" class="click-button btn btn-default profile-photo-button">
+                                <button type="button" class="click-button btn btn-default">
                                     New photo
                                 </button>
                                 <input type="file" class="ghost-button profile-photo-button" name="profilePhoto" accept="image/*" />
@@ -57,7 +57,7 @@
 
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-7">
             <h4 class="panel panel-default"><strong>BIOGRAPHICAL INFORMATION</strong></h4>
             <dl class="dl-horizontal panel panel-default">
                 <dt>
