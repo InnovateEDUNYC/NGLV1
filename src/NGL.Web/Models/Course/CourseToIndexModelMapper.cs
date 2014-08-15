@@ -1,6 +1,4 @@
-﻿using NGL.Web.Data.Entities;
-
-namespace NGL.Web.Models.Course
+﻿namespace NGL.Web.Models.Course
 {
     public class CourseToIndexModelMapper : MapperBase<Data.Entities.Course, IndexModel>
     {

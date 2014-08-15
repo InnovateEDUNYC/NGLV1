@@ -18,12 +18,13 @@ namespace NGL.Web.Data.Filters
 
         public Session FindSession(DateTime dateToCheck)
         {
-            var sessions = _genericRepository.GetAll<Session>();
-            var closestSession = GetAnyFutureSession(sessions, dateToCheck);
+            var sessions = _genericRepository.GetAll<Session>().ToList();
+            var sessionToChecks = sessions as IList<Session> ?? sessions.ToList();
+            var closestSession = GetAnyFutureSession(sessionToChecks, dateToCheck);
             
             var closestDifference = Difference(dateToCheck, closestSession.EndDate);
 
-            foreach (Session sessionToCheck in sessions)
+            foreach (Session sessionToCheck in sessionToChecks)
             {
                 var differenceToCheck = Difference(dateToCheck, sessionToCheck.EndDate);
 
@@ -38,14 +39,15 @@ namespace NGL.Web.Data.Filters
 
         private Session GetAnyFutureSession(IEnumerable<Session> sessions, DateTime dateToCheck)
         {
-            foreach (Session session in sessions)
+            var enumerable = sessions as IList<Session> ?? sessions.ToList();
+            foreach (Session session in enumerable)
             {
                 if (Difference(dateToCheck, session.EndDate) > 0)
                 {
                     return session;
                 }
             }
-            return sessions.FirstOrDefault();
+            return enumerable.FirstOrDefault();
         }
 
         private int Difference(DateTime dateToCheck, DateTime endDate)

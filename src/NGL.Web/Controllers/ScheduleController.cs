@@ -8,11 +8,11 @@ using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Schedule;
 using NGL.Web.Models.Section;
-using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -77,7 +77,7 @@ namespace NGL.Web.Controllers
                 return Json(new { DeletedCompletely = true}, JsonRequestBehavior.AllowGet);
             }
                 
-            var endDate = EarliestOf(studentSectionAssociation.EndDate.Value,  DateTime.Now.Date);
+            var endDate = EarliestOf(studentSectionAssociation.EndDate.GetValueOrDefault(),  DateTime.Now.Date);
             studentSectionAssociation.EndDate = endDate;
             _genericRepository.Save();
 
@@ -97,7 +97,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
-                return Json(new {errors=errors}, JsonRequestBehavior.AllowGet);
+                return Json(new {errors}, JsonRequestBehavior.AllowGet);
             }
             var studentSectionAssociation = _setModelToStudentSectionAssociationMapper.Build(setModel);
 
@@ -121,22 +121,16 @@ namespace NGL.Web.Controllers
         private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUSI)
         {
             var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
-                .Where(ssa => ssa.StudentUSI == studentUSI);
-            var currentlyEnrolledSections = new List<SectionListItemModel>();
+                .Where(ssa => ssa.StudentUSI == studentUSI).ToList();
 
-            foreach (StudentSectionAssociation ssa in currentlyEnrolledStudentSectionAssociationEntities)
-            {
-                currentlyEnrolledSections.Add(_studentSectionAssociationToSectionListItemModelMapper.Build(ssa));
-            }
-
-            return currentlyEnrolledSections;
+            return currentlyEnrolledStudentSectionAssociationEntities.Select(ssa => _studentSectionAssociationToSectionListItemModelMapper.Build(ssa)).ToList();
         }
 
         private IEnumerable<AutocompleteModel> GetAllSectionAutocompleteModelsWith(string searchString, int sessionId)
         {
             var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
             var query = new SectionsBySectionNameAndSessionQuery(searchString, session);
-            var sections = _genericRepository.GetAll(query);
+            var sections = _genericRepository.GetAll(query).ToList();
             var autocompleteModels = sections.Select(section => _sectionToAutocompleteModelMapper.Build(section)).ToList();
 
             if (autocompleteModels.IsNullOrEmpty())
@@ -149,7 +143,7 @@ namespace NGL.Web.Controllers
 
         private List<SessionListItemModel> GetAllSessionModels()
         {
-            var sessions = _genericRepository.GetAll<Session>();
+            var sessions = _genericRepository.GetAll<Session>().ToList();
             return sessions.Select(session => _sessionToSessionListItemModelMapper.Build(session)).ToList();
         }
 	}

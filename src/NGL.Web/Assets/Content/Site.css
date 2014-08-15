@@ -80,7 +80,7 @@ form .inline input {
 
 .input-group-addon,
 .input-group-btn {
-    width: 0%;
+    width: 0;
 }
 
 .input-group-addon {
@@ -209,7 +209,7 @@ form .inline input {
 }
 
 body h4.panel:first-child {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .arrow {

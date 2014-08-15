@@ -10,11 +10,10 @@ namespace NGL.Web.Models.Course
         public CreateModelValidator(IGenericRepository genericRepository)
         {
             var repositoryReader = new RepositoryReader<Data.Entities.Course>(genericRepository);
-            Expression<Func<Data.Entities.Course, bool>> expression;
 
             RuleFor(model => model.CourseCode).Must(courseCode =>
             {
-                expression = entity => entity.CourseCode == courseCode;
+                Expression<Func<Data.Entities.Course, bool>> expression = entity => entity.CourseCode == courseCode;
                 return repositoryReader.DoesRepositoryReturnNullFor(courseCode, expression);
             }).WithMessage("This course already exists.");
         }

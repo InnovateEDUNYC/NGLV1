@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -27,7 +28,7 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "courseGeneration", Operation = "view")]
         public virtual ActionResult Index()
         {
-            IEnumerable<ClassPeriod> classPeriods = _genericRepository.GetAll<ClassPeriod>();
+            var classPeriods = _genericRepository.GetAll<ClassPeriod>().ToList();
             var indexModels = new List<IndexModel>();
 
             foreach (var classPeriod in classPeriods)

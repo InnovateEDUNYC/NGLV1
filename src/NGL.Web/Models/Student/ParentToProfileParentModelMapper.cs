@@ -13,13 +13,13 @@ namespace NGL.Web.Models.Student
 
             target.FirstName = source.FirstName;
             target.LastName = source.LastSurname;
-            target.Sex = ((SexTypeEnum) source.SexTypeId).Humanize();
+            target.Sex = ((SexTypeEnum) source.SexTypeId.GetValueOrDefault()).Humanize();
             target.Relationship = ((RelationTypeEnum) studentParentAssociation.RelationTypeId).Humanize();
             target.TelephoneNumber = source.ParentTelephones.First().TelephoneNumber;
             if (!source.ParentElectronicMails.IsNullOrEmpty())
                 target.EmailAddress = source.ParentElectronicMails.First().ElectronicMailAddress; 
 
-            target.SameAddressAsStudent = (bool) studentParentAssociation.LivesWith;
+            target.SameAddressAsStudent = studentParentAssociation.LivesWith.GetValueOrDefault();
 
             if (studentParentAssociation.LivesWith == false)
             {

@@ -14,7 +14,7 @@ namespace NGL.Web.Models.Staff
         public string GenerationCodeSuffix { get; set; }
         public string MaidenName { get; set; }
         public bool HispanicLatinoEthnicity { get; set; }
-        public Nullable<int> TeacherUSI { get; set; }
+        public int? TeacherUSI { get; set; }
         public string LoginId { get; set; }
 
         public virtual ICollection<StaffSectionAssociation> StaffSectionAssociations { get; set; }

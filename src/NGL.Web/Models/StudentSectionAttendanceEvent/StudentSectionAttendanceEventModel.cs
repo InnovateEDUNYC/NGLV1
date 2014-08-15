@@ -1,5 +1,4 @@
 ﻿using NGL.Web.Data.Entities;
-using NGL.Web.Models.Section;
 
 namespace NGL.Web.Models.StudentSectionAttendanceEvent
 {

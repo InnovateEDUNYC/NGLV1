@@ -1,7 +1,6 @@
 using Castle.Core.Internal;
-using NGL.Web.Infrastructure.Azure;
 
-namespace NGL.Web.Models.Student
+namespace NGL.Web.Infrastructure.Azure
 {
     public class ProfilePhotoUrlFetcher
     {
