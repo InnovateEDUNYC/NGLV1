@@ -24,7 +24,7 @@
         <div class="hidden">
             @s.FieldFor(m => m.SectionId)
         </div>
-        
+
         <button type="button" id="get-students-btn" class="btn btn-primary">Get Students</button>
 
         if (!Model.StudentRows.IsNullOrEmpty())
@@ -50,13 +50,14 @@
 
                 }
             </div>
+
+            <div class="save-attendance">
+                @using (var n = f.BeginNavigation())
+                {
+                    @n.Submit("Save").AddClass("btn btn-primary")
+                }
+            </div>
         }
-        <div class="save-attendance">
-            @using (var n = f.BeginNavigation())
-            {
-                @n.Submit("Save").AddClass("btn btn-primary")
-            }
-        </div>
     }
 }
     </div>
