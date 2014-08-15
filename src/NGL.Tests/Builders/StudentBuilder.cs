@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NGL.Tests.Student;
 using NGL.Web.Data.Entities;
 
@@ -11,8 +8,8 @@ namespace NGL.Tests.Builders
 {
     public class StudentBuilder
     {
-        private const int StudentUsi = 999;
-        private const string FirstName = "Bob";
+        private int _studentUsi = 999;
+        private string _firstName = "Bob";
         private const string LastName = "Jenkins";
         private const string Parent1FirstName = "Leroy";
         private const string Parent2FirstName = "Johanna";
@@ -31,8 +28,8 @@ namespace NGL.Tests.Builders
         {
             _student = new Web.Data.Entities.Student
             {
-                StudentUSI = StudentUsi,
-                FirstName = FirstName,
+                StudentUSI = _studentUsi,
+                FirstName = _firstName,
                 LastSurname = LastName,
                 SexTypeId = Sex,
                 BirthDate = BirthDate,
@@ -92,6 +89,18 @@ namespace NGL.Tests.Builders
         private static StudentRace CreateStudentRace()
         {
             return new StudentRace { RaceTypeId = Race };
+        }
+
+        public StudentBuilder WithStudentUsi(int studentUsi)
+        {
+            _studentUsi = studentUsi;
+            return this;
+        }
+
+        public StudentBuilder WithFirstName(string firstName)
+        {
+            _firstName = firstName;
+            return this;
         }
     }
 }

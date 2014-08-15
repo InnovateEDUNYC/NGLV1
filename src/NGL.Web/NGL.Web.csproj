@@ -268,6 +268,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectValidatorFactory.cs" />
     <Compile Include="Controllers\AssessmentController.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\ClassPeriodController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
@@ -283,8 +284,10 @@
     </Compile>
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\ISectionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\SectionRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionRepository.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
@@ -1682,6 +1685,8 @@
     <Compile Include="Models\Assessment\EnterResultsStudentModel.cs" />
     <Compile Include="Models\Assessment\EnterResultsStudentModelToStudentAssessmentScoreResultMapper.cs" />
     <Compile Include="Models\Assessment\StudentAssessmentToEnterResultsStudentModelMapper.cs" />
+    <Compile Include="Models\Attendance\SectionToTakeAttendanceModelMapper.cs" />
+    <Compile Include="Models\Attendance\TakeAttendanceModel.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />
@@ -1780,6 +1785,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\AssessmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC\AttendanceController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\ClassPeriodController.generated.cs">
@@ -1896,6 +1904,7 @@
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.theme.css" />
     <Content Include="Assets\Scripts\lib\jquery-ui-1.11.0\jquery-ui.theme.min.css" />
     <Content Include="Assets\Scripts\Views\Assessment\result.js" />
+    <Content Include="Assets\Scripts\Views\Attendance\take.js" />
     <Content Include="Assets\Scripts\Views\Enrollment\createStudent.js" />
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
@@ -2031,6 +2040,7 @@
     <Content Include="Views\ParentCourse\Create.cshtml" />
     <Content Include="Views\ParentCourse\Index.cshtml" />
     <Content Include="Views\Assessment\Month.cshtml" />
+    <Content Include="Views\Attendance\Take.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

@@ -218,3 +218,35 @@ body h4.panel:first-child {
 
 
 
+
+
+/* Attendance page */
+.attendance-list {
+    display: inline-block;
+}
+
+.attendance-list > div {
+    vertical-align: middle;
+    margin-bottom: 0;
+}
+
+.attendance-list > .form-group {
+    display: inline-block;
+}
+
+.attendance-list > div > span {
+    display: none;
+}
+
+.attendance-list > div > div > label {
+    display: none;
+}
+
+.attendance-list > div > div {
+    display: inline-block;
+}
+
+.student-name {
+    display: inline-block;
+    width: 200px;
+}

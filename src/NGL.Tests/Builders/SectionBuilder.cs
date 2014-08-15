@@ -6,14 +6,15 @@ namespace NGL.Tests.Builders
 {
     public class SectionBuilder
     {
+        private int _sectionIdentity = 1;
         private const int SchoolYear = (int) SchoolYearTypeEnum.Year2014;
         private const int TermTypeId = (int) TermTypeEnum.FallSemester;
-        private const string ClassPeriodName = "Period 3";
+        private string _classPeriodName = "Period 3";
         private const string ClassroomIdentificationCode = "BKL 200";
-        private const string LocalCourseCode = "CHEM2090";
-        private const string UniqueSectionCode = "CHEM2090 - 200";
+        private string _localCourseCode = "CHEM2090";
+        private string _uniqueSectionCode = "CHEM2090 - 200";
         private const int SequenceOfCourse = 1;
-        private readonly List<Web.Data.Entities.Student> _students = new List<Web.Data.Entities.Student>(); 
+        private readonly List<Web.Data.Entities.Student> _students = new List<Web.Data.Entities.Student>();
         private readonly List<Web.Data.Entities.Assessment> _assessments = new List<Web.Data.Entities.Assessment>();
         private readonly ICollection<StudentSectionAssociation> _studentSectionAssociations = new List<StudentSectionAssociation>();
         private readonly ICollection<AssessmentSection> _assessmentSections = new List<AssessmentSection>();
@@ -28,13 +29,14 @@ namespace NGL.Tests.Builders
             
             _section = new Web.Data.Entities.Section
             {
+                SectionIdentity = _sectionIdentity,
                 SchoolId = Constants.SchoolId,
                 SchoolYear = SchoolYear,
                 TermTypeId = TermTypeId,
-                ClassPeriodName = ClassPeriodName,
+                ClassPeriodName = _classPeriodName,
                 ClassroomIdentificationCode = ClassroomIdentificationCode,
-                LocalCourseCode = LocalCourseCode,
-                UniqueSectionCode = UniqueSectionCode,
+                LocalCourseCode = _localCourseCode,
+                UniqueSectionCode = _uniqueSectionCode,
                 SequenceOfCourse = SequenceOfCourse,
                 Session = _session
             };
@@ -85,6 +87,30 @@ namespace NGL.Tests.Builders
         public SectionBuilder WithAssessment(Web.Data.Entities.Assessment assessment)
         {
             _assessments.Add(assessment);
+            return this;
+        }
+
+        public SectionBuilder WithSectionIdentity(int sectionIdentity)
+        {
+            _sectionIdentity = sectionIdentity;
+            return this;
+        }
+
+        public SectionBuilder WithUniqueSectionCode(string uniqueSectionCode)
+        {
+            _uniqueSectionCode = uniqueSectionCode;
+            return this;
+        }
+
+        public SectionBuilder WithLocalCourseCode(string localCourseCode)
+        {
+            _localCourseCode = localCourseCode;
+            return this;
+        }
+
+        public SectionBuilder WithClassPeriodName(string classPeriodName)
+        {
+            _classPeriodName = classPeriodName;
             return this;
         }
     }

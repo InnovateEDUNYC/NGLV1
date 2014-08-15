@@ -1,0 +1,61 @@
+﻿@using Castle.Core.Internal
+@model NGL.Web.Models.Attendance.TakeAttendanceModel
+
+@{
+    ViewBag.Title = "Take Attendance";
+}
+
+<div class="panel panel-gray">
+    <div class="panel-body">
+        <h2>Take Attendance</h2>
+        
+@using (var f = Html.BeginNglForm())
+{
+    using (var s = f.BeginSection(""))
+    {
+
+        @s.FieldFor(m => m.Session)
+        @s.FieldFor(m => m.Section)
+        @s.FieldFor(m => m.Date)
+
+        <div class="hidden">
+            @s.FieldFor(m => m.SessionId)
+        </div>
+        <div class="hidden">
+            @s.FieldFor(m => m.SectionId)
+        </div>
+        
+        <button type="button" id="get-students-btn" class="btn btn-primary">Get Students</button>
+    
+        if (!Model.StudentRows.IsNullOrEmpty())
+        {
+            for (var i = 0; i < Model.StudentRows.Count; i++)
+            {
+                <p>
+                    <div class="hidden">
+                        @Html.TextBoxFor(tam => tam.StudentRows[i].StudentUsi)
+                    </div>
+                    
+                    <div class="attendance-list">
+                        <div class="student-name">@Html.DisplayTextFor(tam => tam.StudentRows[i].StudentName)</div>
+                        @s.FieldFor(tam => tam.StudentRows[i].AttendanceType).AsRadioList()
+                    </div>
+                    
+                </p>
+            }
+        }
+        using (var n = f.BeginNavigation())
+        {
+            @n.Submit("Take Attendance").AddClass("btn btn-primary")
+        }
+    }
+}
+    </div>
+</div>
+
+@section Scripts {
+    Ngl.shared.sessionAutocomplete.init();
+    Ngl.shared.sectionAutocomplete.init();
+    Ngl.attendance.take.init();
+}
+

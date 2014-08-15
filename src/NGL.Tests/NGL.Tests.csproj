@@ -85,6 +85,7 @@
     <Compile Include="Assessment\CreateModelToAssessmentSectionMapperTests.cs" />
     <Compile Include="Assessment\CreateModelValidatorTests.cs" />
     <Compile Include="Assessment\LearningStandardToCommonCoreStandardListItemModelMapperTests.cs" />
+    <Compile Include="Attendance\SectionToTakeAttendanceModelMapperTests.cs" />
     <Compile Include="Builders\AssessmentBuilder.cs" />
     <Compile Include="Builders\AssessmentLearningStandardBuilder.cs" />
     <Compile Include="Builders\AssessmentPerformanceLevelBuilder.cs" />
