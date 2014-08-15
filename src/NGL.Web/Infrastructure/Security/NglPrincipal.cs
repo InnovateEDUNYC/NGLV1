@@ -8,7 +8,7 @@ namespace NGL.Web.Infrastructure.Security
 
         public NglPrincipal(string username)
         {
-            this.Identity = new GenericIdentity(username);
+            Identity = new GenericIdentity(username);
         }
 
         public bool IsInRole(string role)

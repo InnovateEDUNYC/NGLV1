@@ -47,7 +47,7 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "courseGeneration", Operation = "view")]
         public virtual ActionResult Index()
         {
-            var sections = _genericRepository.GetAll<Section>();
+            var sections = _genericRepository.GetAll<Section>().ToList();
             var indexModels = new List<IndexModel>();
 
             foreach (var section in sections)
@@ -93,7 +93,7 @@ namespace NGL.Web.Controllers
         public virtual JsonResult GetSessions(string searchString)
         {
             var sessions = _genericRepository.GetAll<Session>()
-                .Where(s => s.SessionName.ToLower().Contains(searchString.ToLower()));
+                .Where(s => s.SessionName.ToLower().Contains(searchString.ToLower())).ToList();
             
             var sessionModels = sessions.Select(s => _sessionToSessionJsonModelMapper.Build(s)).ToList();
 
@@ -110,7 +110,7 @@ namespace NGL.Web.Controllers
         {
             var courses = _genericRepository.GetAll<Course>()
                 .Where(c => ContainsCourseTitle(searchString, c) 
-                    || ContainsCourseCode(searchString, c));
+                    || ContainsCourseCode(searchString, c)).ToList();
 
             var courseModels = courses.Select(c => _courseToCourseJsonModelMapper.Build(c));
             return Json(courseModels, JsonRequestBehavior.AllowGet);
@@ -128,14 +128,14 @@ namespace NGL.Web.Controllers
 
         private List<ClassPeriodListItemModel> GetClassPeriodNameModels()
         {
-            var classPeriods = _genericRepository.GetAll<ClassPeriod>();
+            var classPeriods = _genericRepository.GetAll<ClassPeriod>().ToList();
             return classPeriods.Select(classPeriod =>
                 _classPeriodToClassPeriodNameModelMapper.Build(classPeriod)).ToList();
         }
 
         private List<LocationListItemModel> GetClassRoomModels()
         {
-            var locations = _genericRepository.GetAll<Location>();
+            var locations = _genericRepository.GetAll<Location>().ToList();
             return locations.Select(location => _locationToClassRoomModelMapper.Build(location)).ToList();
         }
 

@@ -1,5 +1,4 @@
 using System.IO;
-using System.Web;
 
 namespace NGL.Web.Infrastructure.Azure
 {

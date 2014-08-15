@@ -14,7 +14,7 @@ namespace NGL.Web.Data.Repositories
 
         public IEnumerable<Staff> GetStaffWithUsers()
         {
-            return DbContext.Set<Staff>().Include(s => Enumerable.Select<AspNetUser, ICollection<AspNetRole>>(s.Users, u => u.AspNetRoles));
+            return DbContext.Set<Staff>().Include(s => s.Users.Select(u => u.AspNetRoles));
         }
 
         public Staff GetStaffByStaffUSI(int staffUSI)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace NGL.Web.Infrastructure.Azure
+﻿namespace NGL.Web.Infrastructure.Azure
 {
     public interface IFileDownloader
     {

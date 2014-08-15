@@ -3,7 +3,6 @@ using System.Linq;
 using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.Validators;
-using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;

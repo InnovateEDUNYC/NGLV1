@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
@@ -24,7 +23,7 @@ namespace NGL.Web.Models.Assessment
             var session = section.Session;
             var administeredDate = source.AdministeredDate;
             var studentSectionAssociations = section.StudentSectionAssociations
-                .Where(ssa => new DateRange(ssa.BeginDate, (DateTime)ssa.EndDate).Includes(administeredDate));
+                .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(administeredDate));
             var students = studentSectionAssociations.Select(ssa => ssa.Student).ToList();
 
             target.AssessmentId = source.AssessmentIdentity;

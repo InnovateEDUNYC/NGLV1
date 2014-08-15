@@ -1,5 +1,4 @@
 ﻿using NGL.Web.Data.Repositories;
-using NGL.Web.Models;
 
 namespace NGL.Web.Models.Course
 {

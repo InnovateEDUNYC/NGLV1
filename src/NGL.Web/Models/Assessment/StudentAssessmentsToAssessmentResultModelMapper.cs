@@ -10,10 +10,12 @@ namespace NGL.Web.Models.Assessment
     {
         public AssessmentResultModel Map(IEnumerable<StudentAssessment> studentAssessments, DateTime startDate, DateTime endDate)
         {
-            var assessmentResultModel = new AssessmentResultModel();
-
-            assessmentResultModel.DateRange = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
-            assessmentResultModel.AssessmentResultRows = studentAssessments.Select(sa => CreateAssessmentResultRow(sa, startDate, endDate)).ToList();
+            var assessmentResultModel = new AssessmentResultModel
+            {
+                DateRange = startDate.ToShortDateString() + " - " + endDate.ToShortDateString(),
+                AssessmentResultRows =
+                    studentAssessments.Select(sa => CreateAssessmentResultRow(sa, startDate, endDate)).ToList()
+            };
 
             return assessmentResultModel;
         }

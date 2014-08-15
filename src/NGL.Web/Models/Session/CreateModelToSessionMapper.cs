@@ -20,7 +20,7 @@ namespace NGL.Web.Models.Session
             target.BeginDate = source.BeginDate.GetValueOrDefault();
             target.EndDate = source.EndDate.GetValueOrDefault();
             target.SessionName = source.Term.Humanize() + " " + ((int) source.SchoolYear);
-            target.TotalInstructionalDays = (int) source.TotalInstructionalDays;
+            target.TotalInstructionalDays = source.TotalInstructionalDays.GetValueOrDefault();
             
         }
     }
