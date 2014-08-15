@@ -31,7 +31,8 @@ namespace NGL.Web
                       "~/Assets/Content/site.css",
                       "~/Assets/Content/image.css",
                       "~/Assets/Content/button.css",
-                      "~/Assets/Content/datepicker.css"));
+                      "~/Assets/Content/datepicker.css",
+                      "~/Assets/Content/ViewAssessmentResults.css"));
 
 
            bundles.Add(new StyleBundle("~/Assets/Scripts/lib/jquery-ui-1.11.0/bundle").Include(

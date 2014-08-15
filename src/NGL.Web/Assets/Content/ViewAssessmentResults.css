@@ -1,0 +1,109 @@
+﻿h4.strong {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.time-span-chooser {
+    margin-top: 30px;
+}
+
+.result-view-period {
+    background-color: #2DBCBB;
+    border-radius: 4px 4px 0 0;
+    display: inline-block;
+    width: 50%;
+    margin: 0 -4px 0 0;
+    padding: 10px 5px;
+    text-align: center;
+    border: solid #2DBCBB 1px;
+}
+
+.result-view-period > h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.selected, .selected a {
+    color: white;
+    text-decoration: none;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.unselected, .unselected a {
+    background-color: white;
+    color: #2DBCBB;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.date-range-display {
+    background-color: #2DBCBB;
+    border-radius: 0 0 4px 4px;
+    padding: 15px;
+    color: white;
+}
+
+.date-range-display > .pager {
+    padding-left: 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+}
+
+.fa-arrow-left, .fa-arrow-left:hover, .fa-arrow-right, .fa-arrow-right:hover {
+    color: #2DBCBB;
+}
+
+.Mastery {
+    background-color: #69BD45;
+}
+
+.Near.Mastery {
+    background-color: #FFD902;
+}
+
+.Not.Mastered {
+    background-color: #EC4B36;
+}
+
+.table-report > tbody> tr > td.profile-result {
+    position: relative;
+    padding: 0;
+}
+
+.result-pill {
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    max-height: 46px;
+    border-radius: 20px;
+}
+
+.clear-right-margin {
+    margin-right: 0;
+}
+
+.clear-right-padding {
+    padding-right: 0;
+}
+
+.find-session {
+    padding: 65px;
+}
+
+.full-input {
+    max-width: 100%;
+}
+
+.table {
+    margin-top: 15px;
+}
+
+.ccss-header {
+    width: 20%;
+}
