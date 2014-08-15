@@ -19,9 +19,18 @@ Ngl.assessment.result = (function () {
             return url;
         }
 
-        $('#week').on('click', function() {
-            $(this).removeClass('selected');
-            $(this).addClass('unselected');
+        $('#month').on('click', function() {
+            $(this).removeClass('unselected');
+            $(this).addClass('selected');
+            $('#week').removeClass('selected');
+            $('#week').addClass('unselected');
+        });
+
+        $('#week').on('click', function () {
+            $(this).removeClass('unselected');
+            $(this).addClass('selected');
+            $('#month').removeClass('selected');
+            $('#month').addClass('unselected');
         });
 
             };

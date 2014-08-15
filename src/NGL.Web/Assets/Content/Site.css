@@ -12,60 +12,6 @@
     margin-top: 80px;
 }
 
-.green-background {
-    background-color: #69BD45;
-    border-radius: 0 0 4px 4px;
-    padding: 0 5px;
-    color: white;
-}
-
-.result-view-period {
-    display: inline-block;
-    width: 50%;
-    margin: 0 -4px 0 0;
-    padding: 4px 5px 0;
-    text-align: center;
-}
-
-.result-view-period > h3 {
-    margin: 0;
-    padding: 0;
-}
-
-.selected {
-    border-right: solid white 2px;
-    border-radius: 4px 4px 0 0;
-    border: solid #69BD45 1px;
-}
-
-.unselected {
-    background-color:white;
-    color:#69BD45;
-    padding: 4px 0 0 0;
-    border: solid #69BD45 1px;
-    border-radius: 4px 4px 0 0;
-}
-
-.fa-arrow-left:hover {
-    color: #69BD45;
-}
-
-.fa-arrow-left {
-    color: #69BD45;
-}
-
-.fa-arrow-right:hover {
-    color: #69BD45;
-}
-
-.fa-arrow-right {
-    color: #69BD45;
-}
-
-h4 {
-    text-transform: uppercase;
-}
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -169,7 +115,7 @@ form .inline input {
 }
 
 .profile-photo-container {
-    margin-bottom: 45px;
+   /* margin-bottom: 45px;*/
 }
 
 .scheduling {
@@ -306,6 +252,93 @@ form .inline input {
     cursor:pointer
 }
 
+.panel {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: none;
+    box-shadow: none;
+}
+
+body h4.panel:first-child {
+    margin-top: 0px;
+}
+
+.arrow {
+    padding-left: 5px;
+}
+
+/* # View results page */
+
+.green-background > .pager {
+    padding-left: 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+}
+
+.green-background {
+    background-color: #69BD45;
+    border-radius: 0 0 4px 4px;
+    padding: 15px;
+    color: white;
+}
+
+.result-view-period {
+    display: inline-block;
+    width: 50%;
+    margin: 0 -4px 0 0;
+    padding: 10px 5px;
+    text-align: center;
+    border: solid #69BD45 1px;
+}
+
+.result-view-period > h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.selected {
+    border-radius: 4px 4px 0 0;
+}
+
+.unselected {
+    background-color:white;
+    color:#69BD45;
+    border-radius: 4px 4px 0 0;
+}
+
+.fa-arrow-left:hover {
+    color: #69BD45;
+}
+
+.fa-arrow-left {
+    color: #69BD45;
+}
+
+.fa-arrow-right:hover {
+    color: #69BD45;
+}
+
+.fa-arrow-right {
+    color: #69BD45;
+}
+
+h4 {
+    text-transform: uppercase;
+}
+
+.Mastery {
+    background-color: #69BD45;
+}
+
+.Near.Mastery {
+    background-color: #FFD902;
+}
+
+.Not.Mastered {
+    background-color: #EC4B36;
+}
+
 .table-report > tbody> tr > td.profile-result {
     position: relative;
     padding: 0;
@@ -323,29 +356,30 @@ form .inline input {
     border-radius: 20px;
 }
 
-.Mastery {
-    background-color: #69BD45;
+.clear-right-margin {
+    margin-right: 0;
 }
 
-.Near.Mastery {
-    background-color: #FFD902;
+.clear-right-padding {
+    padding-right: 0;
 }
 
-.Not.Mastered {
-    background-color: #EC4B36;
+.time-span-chooser {
+    margin-top: 30px;
 }
 
-.panel {
-    padding: 10px;
-    margin-bottom: 5px;
-    border: none;
-    box-shadow: none;
+.find-session {
+    padding: 65px;
 }
 
-body h4.panel:first-child {
-    margin-top: 0px;
+input#Session {
+    max-width: 100%;
 }
 
-.arrow {
-    padding-left: 5px;
+.table {
+    margin-top: 15px;
+}
+
+.ccss-header {
+    width: 20%;
 }

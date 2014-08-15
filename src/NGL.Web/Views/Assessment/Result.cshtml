@@ -5,8 +5,8 @@
 }
 <div class="panel panel-gray">
     <h2>Student Report</h2>
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row clear-right-margin">
+        <div class="col-md-3">
             <div class="panel panel-default text-center">
                 <div class="profile-photo-container">
                     <img class="profile-image" src="@Model.ProfilePhotoUrl" />
@@ -23,11 +23,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
+        <div class="col-md-9 clear-right-padding">
+            <div class="panel panel-default find-session">
                 <h4><strong>SESSION</strong></h4>
-
-                @Html.TextBoxFor(m => m.Session)
+                
+                <div>
+                    
+                </div>
+                @Html.TextBoxFor(m => m.Session, new { @class = "form-control" })
                 @Html.HiddenFor(m => m.SessionId)
                 @Html.HiddenFor(m => m.StudentUsi)
                 @Html.HiddenFor(m => m.DayFrom)
@@ -35,7 +38,7 @@
             
 @if (@Model.Session != null)
 {
-    <div>
+    <div class="time-span-chooser">
         
         <div>
             <div id="week" class="result-view-period green-background selected">
@@ -70,12 +73,12 @@
     </div>
     @if (@Model.Session != null)
     {
-        <div class="row">
+        <div>
             @if (Model.AssessmentResultRows != null && Model.AssessmentResultRows.Count > 0)
             {
                 <table class="table table-report">
                     <tr>
-                        <th class=" col-xs-4 col-sm-3 col-md-3"></th>
+                        <th class="col-xs-2 col-sm-2 col-md-2 ccss-header"></th>
                         @for (var i = 1; i <= 7; i++)
                         {
                             <th class="col-sm-1">@i</th>
