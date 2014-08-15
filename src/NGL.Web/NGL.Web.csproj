@@ -1850,6 +1850,7 @@
     <Content Include="Assets\Content\bootstrap.css" />
     <EmbeddedResource Include="Data\Scripts\001 - Schema - Create ODS.sql" />
     <EmbeddedResource Include="Data\Scripts\002 - Schema - Setup ASP.Net Identity.sql" />
+    <Content Include="Assets\Content\Button.css" />
     <Content Include="Assets\Content\chameleonforms-twitterbootstrap.css" />
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />

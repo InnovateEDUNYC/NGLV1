@@ -19,10 +19,10 @@
                             @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
                             {
                             <div class="upload-profile-photo">
-                                <button type="button" class="click-button btn btn-default">
+                                <button type="button" class="btn btn-default">
                                     New photo
                                 </button>
-                                <input type="file" class="ghost-button profile-photo-button" name="profilePhoto" accept="image/*" />
+                                <input type="file" class="ghost-btn center-block" name="profilePhoto" accept="image/*" />
                             </div>
 
                             }
