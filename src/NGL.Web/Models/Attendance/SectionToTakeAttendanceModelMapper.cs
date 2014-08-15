@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
+using NGL.Web.Models.Student;
 
 namespace NGL.Web.Models.Attendance
 {
     public class SectionToTakeAttendanceModelMapper
     {
+        private ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
+
+        public SectionToTakeAttendanceModelMapper(ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
+        {
+            _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
+        }
+
         public TakeAttendanceModel Build(Data.Entities.Section section, List<Data.Entities.StudentSectionAttendanceEvent> existingStudentSectionAttendanceEvents, DateTime date)
         {
             var target = new TakeAttendanceModel();
@@ -22,6 +30,7 @@ namespace NGL.Web.Models.Attendance
                 {
                     StudentUsi = s.StudentUSI,
                     StudentName = s.FirstName + " " + s.LastSurname,
+                    ProfileThumbnailUrl = _profilePhotoUrlFetcher.GetProfilePhotoThumnailUrlOrDefault(s.StudentUSI),
                     AttendanceType = AttendanceEventCategoryDescriptorEnum.InAttendance
                 }).ToList();
 

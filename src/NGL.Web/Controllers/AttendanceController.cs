@@ -7,6 +7,7 @@ using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Attendance;
+using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {

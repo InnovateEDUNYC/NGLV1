@@ -37,18 +37,20 @@
                     <div class="attendance-type">Tardy</div>
                     <div class="attendance-type">Early dep.</div>
                 </div>
-                @for (var i = 0; i < Model.StudentRows.Count; i++)
-                {
-                    <div class="hidden">
-                        @Html.TextBoxFor(tam => tam.StudentRows[i].StudentUsi)
-                    </div>
+                <div class="student-list">
+                    @for (var i = 0; i < Model.StudentRows.Count; i++)
+                    {
+                        <div class="hidden">
+                            @Html.TextBoxFor(tam => tam.StudentRows[i].StudentUsi)
+                        </div>
 
-                    <div class="attendance-list-item">
-                        <div class="student-name">@Html.DisplayTextFor(tam => tam.StudentRows[i].StudentName)</div>
-                        @s.FieldFor(tam => tam.StudentRows[i].AttendanceType).AsRadioList()
-                    </div>
-
-                }
+                        <div class="attendance-list-item attendance-list-item-@(i%2)">
+                            <img class="profile-photo-thumbnail" src="@Model.StudentRows[i].ProfileThumbnailUrl"/>
+                            <div class="student-name">@Html.DisplayTextFor(tam => tam.StudentRows[i].StudentName)</div>
+                            @s.FieldFor(tam => tam.StudentRows[i].AttendanceType).AsRadioList()
+                        </div>
+                    }
+                </div>
             </div>
 
             <div class="save-attendance">

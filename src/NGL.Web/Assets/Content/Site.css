@@ -222,19 +222,20 @@ body h4.panel:first-child {
 
 /* Attendance page */
 .attendance-list {
+    width: 54%;
     margin-bottom: 20px;
 }
 
 .attendance-type-container {
-    margin-left: 25%;
+    text-align: right;
 }
 
 .attendance-type {
     display: inline-block;
-    width: 6%;
-    height: 6%;
-    margin-bottom: 40px;
-    margin-top: 28px;
+    width: 7%;
+    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-right: 0.3%;
 
     -webkit-transform: rotate(300deg);
     -moz-transform: rotate(300deg);
@@ -243,14 +244,37 @@ body h4.panel:first-child {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
+.student-list {
+    border-top: 1px solid lightgrey;
+}
+
+.attendance-list-item {
+    border-top: 1px solid lightgrey;
+}
+
+.attendance-list-item-0 {
+    background-color: white;
+}
+
 .attendance-list-item > div {
     vertical-align: middle;
     margin-bottom: 0;
 }
 
+.profile-photo-thumbnail {
+    height: 45px;
+    width: 45px;
+    margin: 3px;
+}
+
+.student-name {
+    display: inline-block;
+    width: 39%
+}
+
 .attendance-list-item > div.form-group {
     display: inline-block;
-    margin-left: 7%;
+    text-align: right;
     width: 50%;
 }
 
@@ -258,14 +282,14 @@ body h4.panel:first-child {
     display: inline-block;
     margin-bottom: 0;
     margin-top: 0;
-    margin-right: 5%;
+    margin-right: 7%;
 }
 
 .attendance-list-item > div > div.radio > input[type="radio"] {
     -webkit-appearance: checkbox;
     -moz-appearance: checkbox;
-    -ms-appearance: checkbox;     /* not currently supported */
-    -o-appearance: checkbox;      /* not currently supported */
+    -ms-appearance: checkbox;
+    -o-appearance: checkbox;
 }
 
 .attendance-list-item > div > span {
@@ -274,11 +298,6 @@ body h4.panel:first-child {
 
 .attendance-list-item > div > div > label {
     display: none;
-}
-
-.student-name {
-    display: inline-block;
-    width: 200px;
 }
 
 .save-attendance {

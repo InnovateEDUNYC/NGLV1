@@ -28,5 +28,6 @@ namespace NGL.Web.Models.Attendance
         public int StudentUsi { get; set; }
         public string StudentName { get; set; }
         public AttendanceEventCategoryDescriptorEnum AttendanceType { get; set; }
+        public string ProfileThumbnailUrl { get; set; }
     }
 }
