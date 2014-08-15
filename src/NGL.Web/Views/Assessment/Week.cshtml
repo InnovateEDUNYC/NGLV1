@@ -44,16 +44,16 @@
     <div class="time-span-chooser">
         
         <div>
-            <div id="week" class="result-view-period green-background selected">
+            <div id="week" class="result-view-period selected">
                 <h3>@Html.ActionLink("Week", MVC.Assessment.Week(@Model.StudentUsi, @Model.SessionId))</h3>
             </div>
         
-            <div id="month" class="result-view-period green-background unselected">
+            <div id="month" class="result-view-period unselected">
                 <h3>@Html.ActionLink("Month", MVC.Assessment.Month(@Model.StudentUsi, @Model.SessionId), new {@class="bigger"})</h3>
             </div>
         </div>
 
-        <div class="panel green-background">
+        <div class="panel date-range-display">
             <ul class="pager">
                 <li class="previous">
                     @Html.ActionLink(" ", MVC.Assessment.Week(
