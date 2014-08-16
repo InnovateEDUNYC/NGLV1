@@ -24,6 +24,7 @@ namespace NGL.Web.Models.Attendance
             target.Section = section.UniqueSectionCode + " (" + section.LocalCourseCode + ", " + section.ClassPeriodName + ")";
             target.SessionId = section.Session.SessionIdentity;
             target.Session = section.Session.SessionName;
+            target.Date = date;
 
             target.StudentRows = section.StudentSectionAssociations.Select(ssa => ssa.Student)
                 .Select(s => new StudentAttendanceRowModel

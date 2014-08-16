@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
@@ -60,16 +61,24 @@ namespace NGL.Web.Controllers
         public virtual ActionResult GetStudents(TakeAttendanceModel takeAttendanceModel)
         {
             var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId);
-            var studentSectionAttendanceEventList =
-                _takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
+            var currentAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, takeAttendanceModel.Date);
 
-            foreach (var ssae in studentSectionAttendanceEventList)
-            {
-                _genericRepository.Add(ssae);
-            }
+            if (!currentAttendanceEvents.IsNullOrEmpty())
+                _attendanceRepository.Delete(currentAttendanceEvents);
+
+            CreateAttendanceEvents(takeAttendanceModel, section);
+            
             _genericRepository.Save();
 
             return RedirectToAction(MVC.Attendance.Take());
+        }
+
+        private void CreateAttendanceEvents(TakeAttendanceModel takeAttendanceModel, Section section)
+        {
+            var studentSectionAttendanceEventList =
+                _takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
+
+            _attendanceRepository.AddStudentSectionAttendanceEventList(studentSectionAttendanceEventList);
         }
     }
 }

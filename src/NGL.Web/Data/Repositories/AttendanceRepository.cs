@@ -25,5 +25,19 @@ namespace NGL.Web.Data.Repositories
                 ).ToList();
 
         }
+
+        public void AddStudentSectionAttendanceEventList(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
+        {
+            foreach (var ssae in studentSectionAttendanceEventList)
+            {
+                DbContext.Set<StudentSectionAttendanceEvent>().Add(ssae);
+            }
+        }
+
+        public void Delete(List<StudentSectionAttendanceEvent> studentSectionAttendanceEvents)
+        {
+            foreach (var ssae in studentSectionAttendanceEvents)
+                DbContext.Set<StudentSectionAttendanceEvent>().Remove(ssae);
+        }
     }
 }
