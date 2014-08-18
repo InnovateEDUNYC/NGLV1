@@ -1,4 +1,5 @@
-﻿@model NGL.Web.Models.Assessment.AssessmentResultModel
+﻿@using Microsoft.Ajax.Utilities
+@model NGL.Web.Models.Assessment.AssessmentResultModel
 
 @{
     ViewBag.Title = "Student Report";
@@ -94,18 +95,28 @@
                                 <button type="button" class="btn btn-link popover-dismiss" data-container="body" data-toggle="popover" data-placement="top" title="@row.AssessmentTitle" data-contentwrapper="#@row.AssessmentTitle.Replace(' ', '-')" data-html="true">
                                     @row.CommonCoreStandard
                                 </button>
-
                                 <div id="@row.AssessmentTitle.Replace(' ', '-')" class="assessment-info-placeholder">
-                                    Date: @row.Date.ToShortDateString()<br />
-                                    Question Type: @row.AssessmentTypeDescription<br />
-                                    @row.SectionCode<br />
-                                    Grade: @row.Grade
+                                    <strong>@row.SectionCode</strong><br />
+                                    <strong>Date:</strong> @row.Date.ToShortDateString()<br />
+                                    <strong>Question Type:</strong> @row.AssessmentTypeDescription<br />
+                                    <strong>Grade:</strong> @row.Grade
                                 </div>
-
                             </td>
                             @foreach (var result in @row.Results)
                             {
-                                <td class="profile-result"><div class="result-pill @result"></div></td>
+                                if (result.IsNullOrWhiteSpace())
+                                {
+                                    <td class ="profile-result">
+                                        <div class="@result"></div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="profile-result">
+                                        <button class="month-result-pill popover-dismiss @result" title="@row.AssessmentTitle" data-container="body" data-toggle="popover" data-placement="top" data-contentwrapper="#@row.AssessmentTitle.Replace(' ', '-')" data-html="true">
+                                        </button>
+                                    </td>
+                                }
                             }
                         </tr>
                     }
