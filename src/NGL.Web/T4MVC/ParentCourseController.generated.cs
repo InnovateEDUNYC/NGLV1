@@ -26,9 +26,6 @@ namespace NGL.Web.Controllers
     public partial class ParentCourseController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ParentCourseController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ParentCourseController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

@@ -1715,6 +1715,7 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
@@ -1939,7 +1940,7 @@
       <LastGenOutput>Types.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Data\Scripts\013 - Add Performance Level Descriptors.sql" />
-    <EmbeddedResource Include="Data\Scripts\014 - Create Parent Course Table.sql" />
+    <EmbeddedResource Include="Data\Scripts\014 - Schema - Create Parent Course Table.sql" />
     <None Include="Data\Entities\ConfigurationAccessor.ttinclude">
       <LastGenOutput>ConfigurationAccessor1.cs</LastGenOutput>
     </None>
