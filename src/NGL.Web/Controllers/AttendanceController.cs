@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
-using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Attendance;
+using NGL.Web.Service;
 
 namespace NGL.Web.Controllers
 {
@@ -14,18 +14,21 @@ namespace NGL.Web.Controllers
         private readonly SectionToTakeAttendanceModelMapper _sectionToTakeAttendanceModelMapper;
         private readonly TakeAttendanceModelToStudentSectionAttendanceEventListMapper _takeAttendanceModelToStudentSectionAttendanceEventListMapper;
         private readonly IAttendanceRepository _attendanceRepository;
+        private readonly IAttendanceService _attendanceService;
 
         public AttendanceController(IGenericRepository genericRepository,
             ISectionRepository sectionRepository,
             IAttendanceRepository attendanceRepository,
             SectionToTakeAttendanceModelMapper sectionToTakeAttendanceModelMapper,
-            TakeAttendanceModelToStudentSectionAttendanceEventListMapper takeAttendanceModelToStudentSectionAttendanceEventListMapper)
+            TakeAttendanceModelToStudentSectionAttendanceEventListMapper takeAttendanceModelToStudentSectionAttendanceEventListMapper, 
+            IAttendanceService attendanceService)
         {
             _genericRepository = genericRepository;
             _sectionRepository = sectionRepository;
             _attendanceRepository = attendanceRepository;
             _sectionToTakeAttendanceModelMapper = sectionToTakeAttendanceModelMapper;
             _takeAttendanceModelToStudentSectionAttendanceEventListMapper = takeAttendanceModelToStudentSectionAttendanceEventListMapper;
+            _attendanceService = attendanceService;
         }
 
         [HttpGet]
@@ -55,24 +58,13 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Save(TakeAttendanceModel takeAttendanceModel)
         {
             var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId);
-            var currentAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, takeAttendanceModel.Date);
+            var studentSectionAttendanceEventList =_takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
 
-            if (!currentAttendanceEvents.IsNullOrEmpty())
-                _attendanceRepository.Delete(currentAttendanceEvents);
+            _attendanceService.RecordAttendanceFor(section, takeAttendanceModel.Date, studentSectionAttendanceEventList);
 
-            CreateAttendanceEvents(takeAttendanceModel, section);
-            
             _genericRepository.Save();
 
             return RedirectToAction("GetStudents", takeAttendanceModel.Clone());
-        }
-
-        private void CreateAttendanceEvents(TakeAttendanceModel takeAttendanceModel, Section section)
-        {
-            var studentSectionAttendanceEventList =
-                _takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
-
-            _attendanceRepository.AddStudentSectionAttendanceEventList(studentSectionAttendanceEventList);
         }
     }
 }
