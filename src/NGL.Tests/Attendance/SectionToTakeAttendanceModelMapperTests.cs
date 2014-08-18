@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using NGL.Tests.Builders;
-using NGL.Web.Controllers;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models.Attendance;
-using NGL.Web.Models.Student;
 using NSubstitute;
 using Shouldly;
 using Xunit;
@@ -21,13 +18,12 @@ namespace NGL.Tests.Attendance
             var student2 = new StudentBuilder().WithStudentUsi(1234).WithFirstName("Mike").Build();
             var section = new SectionBuilder().WithStudent(student1).WithStudent(student2).Build();
 
-            var existingStudentSectionAttendanceEvents = new List<StudentSectionAttendanceEvent>();
             var date = new DateTime();
 
             var downloader = Substitute.For<IFileDownloader>();
             var profilePhotoUrlFetcher = Substitute.For<ProfilePhotoUrlFetcher>(downloader);
 
-            var takeAttendanceModel = new SectionToTakeAttendanceModelMapper(profilePhotoUrlFetcher).Build(section, existingStudentSectionAttendanceEvents, date);
+            var takeAttendanceModel = new SectionToTakeAttendanceModelMapper(profilePhotoUrlFetcher).Build(section, date);
 
             takeAttendanceModel.SectionId.ShouldBe(section.SectionIdentity);
             takeAttendanceModel.Section.ShouldBe(section.UniqueSectionCode + " (" + section.LocalCourseCode + ", " + section.ClassPeriodName + ")");

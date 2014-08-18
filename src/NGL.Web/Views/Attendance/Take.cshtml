@@ -16,7 +16,7 @@
 
         @s.FieldFor(m => m.Session)
         @s.FieldFor(m => m.Section)
-        @s.FieldFor(m => m.Date)
+        @s.FieldFor(m => m.Date).AddClass("datepicker")
 
         <div class="hidden">
             @s.FieldFor(m => m.SessionId)

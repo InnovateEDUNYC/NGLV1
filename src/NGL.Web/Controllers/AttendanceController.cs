@@ -14,19 +14,16 @@ namespace NGL.Web.Controllers
         private readonly ISectionRepository _sectionRepository;
         private readonly SectionToTakeAttendanceModelMapper _sectionToTakeAttendanceModelMapper;
         private readonly TakeAttendanceModelToStudentSectionAttendanceEventListMapper _takeAttendanceModelToStudentSectionAttendanceEventListMapper;
-        private readonly IAttendanceRepository _attendanceRepository;
         private readonly IAttendanceService _attendanceService;
 
         public AttendanceController(IGenericRepository genericRepository,
             ISectionRepository sectionRepository,
-            IAttendanceRepository attendanceRepository,
             SectionToTakeAttendanceModelMapper sectionToTakeAttendanceModelMapper,
             TakeAttendanceModelToStudentSectionAttendanceEventListMapper takeAttendanceModelToStudentSectionAttendanceEventListMapper, 
             IAttendanceService attendanceService)
         {
             _genericRepository = genericRepository;
             _sectionRepository = sectionRepository;
-            _attendanceRepository = attendanceRepository;
             _sectionToTakeAttendanceModelMapper = sectionToTakeAttendanceModelMapper;
             _takeAttendanceModelToStudentSectionAttendanceEventListMapper = takeAttendanceModelToStudentSectionAttendanceEventListMapper;
             _attendanceService = attendanceService;
@@ -46,12 +43,10 @@ namespace NGL.Web.Controllers
                 return View(MVC.Attendance.Views.Take, takeAttendanceModel);
             }
 
-            //todo - make them a single call to sectionRepo
             var date = DateTime.Parse(takeAttendanceModel.Date);
-            var section = _sectionRepository.GetWithStudentAssociationsForDate(takeAttendanceModel.SectionId.Value, date);
-            var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, date);
+            var section = _sectionRepository.GetWithStudentAttendanceForDate(takeAttendanceModel.SectionId.Value, date);
 
-            var takeAttendanceModelWithStudents = _sectionToTakeAttendanceModelMapper.Build(section, existingAttendanceEvents, date);
+            var takeAttendanceModelWithStudents = _sectionToTakeAttendanceModelMapper.Build(section, date);
             
             return View(MVC.Attendance.Views.Take, takeAttendanceModelWithStudents);
         }
