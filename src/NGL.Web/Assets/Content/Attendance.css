@@ -1,6 +1,5 @@
 ﻿.attendance-list {
-    width: 54%;
-    margin-bottom: 20px;
+    width: 600px;
 }
 
 .attendance-type-container {
@@ -12,7 +11,7 @@
     width: 7%;
     margin-bottom: 3%;
     margin-top: 2%;
-    margin-right: 0.3%;
+    white-space: nowrap;
 
     -webkit-transform: rotate(300deg);
     -moz-transform: rotate(300deg);
@@ -23,6 +22,7 @@
 
 .student-list {
     border-top: 1px solid lightgrey;
+    margin-bottom: 10px;
 }
 
 .attendance-list-item {
@@ -46,13 +46,13 @@
 
 .student-name {
     display: inline-block;
-    width: 39%
+    width: 240px;
 }
 
 .attendance-list-item > div.form-group {
     display: inline-block;
     text-align: right;
-    width: 50%;
+    width: 300px;
 }
 
 .attendance-list-item > div > div.radio {
@@ -78,6 +78,6 @@
 }
 
 .save-attendance {
-    width: 50%;
+    width: 100%;
     text-align: right;
 }

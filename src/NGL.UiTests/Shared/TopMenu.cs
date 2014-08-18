@@ -1,5 +1,6 @@
 ﻿using NGL.UiTests.Account;
 using NGL.UiTests.Assessment;
+using NGL.UiTests.Attendance;
 using NGL.UiTests.Enrollment;
 using NGL.UiTests.School;
 using OpenQA.Selenium;
@@ -61,5 +62,9 @@ namespace NGL.UiTests.Shared
             return Navigate.To<AssessmentIndexPage>(By.LinkText("Assessment"));
         }
 
+        public TakeAttendancePage GoToTakeAttendancePage()
+        {
+            return Navigate.To<TakeAttendancePage>(By.LinkText("Attendance"));
+        }
     }
 }

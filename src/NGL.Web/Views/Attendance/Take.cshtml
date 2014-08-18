@@ -51,14 +51,16 @@
                         </div>
                     }
                 </div>
+                
+                <div class="save-attendance">
+                    @using (var n = f.BeginNavigation())
+                    {
+                        @n.Submit("Save").AddClass("btn btn-primary save-button")
+                    }
+                </div>
             </div>
 
-            <div class="save-attendance">
-                @using (var n = f.BeginNavigation())
-                {
-                    @n.Submit("Save").AddClass("btn btn-primary")
-                }
-            </div>
+            
         }
     }
 }
