@@ -1166,6 +1166,7 @@
         <EntityTypeShape EntityType="NGLModel.AssessmentLearningStandard" Width="1.5" PointX="52.5" PointY="398.625" />
         <AssociationConnector Association="NGLModel.FK_AssessmentLearningStandard_Assessment_AssessmentTitle" />
         <AssociationConnector Association="NGLModel.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" />
+        <EntityTypeShape EntityType="NGLModel.ParentCourse" Width="1.5" PointX="0.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
