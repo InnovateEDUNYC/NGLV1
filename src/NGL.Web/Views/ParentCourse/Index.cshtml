@@ -15,7 +15,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.ParentCourseCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentCourseTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentCourseDescription)
             </th>
         </tr>
     </thead>
@@ -24,9 +30,15 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="classroom-code">
-                    @Html.DisplayFor(modelItem => item.Name)
+                <td class="parent-course-code">
+                    @Html.DisplayFor(modelItem => item.ParentCourseCode)
                 </td>
+                <td class="parent-course-title">
+                    @Html.DisplayFor(modelItem => item.ParentCourseTitle)
+                </td>
+                <td class="parent-course-description">
+                    @Html.DisplayFor(modelItem => item.ParentCourseDescription)
+                 </td>
             </tr>
         }
     </tbody>
