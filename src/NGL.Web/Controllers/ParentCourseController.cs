@@ -13,8 +13,8 @@ namespace NGL.Web.Controllers
     public partial class ParentCourseController : Controller
     {
         
-//        private readonly IGenericRepository _genericRepository;
-//        private IMapper<CreateModel, ParentCourse> _createModelToParentCourseMapper;
+        private readonly IGenericRepository _genericRepository;
+        private IMapper<CreateModel, ParentCourse> _createModelToParentCourseMapper;
         //
         // GET: /ParentCourse/
         public virtual ActionResult Index()
@@ -42,9 +42,9 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
-//            var parentCourse = _createModelToParentCourseMapper.Build(createModel);
-//            _genericRepository.Add(parentCourse);
-//            _genericRepository.Save();
+            var parentCourse = _createModelToParentCourseMapper.Build(createModel);
+            _genericRepository.Add(parentCourse);
+            _genericRepository.Save();
 
             return RedirectToAction(Actions.Index());
         }
