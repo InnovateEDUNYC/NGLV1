@@ -24,24 +24,31 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Production|Any CPU = Production|Any CPU
 		Release|Any CPU = Release|Any CPU
 		Verify|Any CPU = Verify|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Production|Any CPU.ActiveCfg = Production|Any CPU
+		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Production|Any CPU.Build.0 = Production|Any CPU
 		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Verify|Any CPU.ActiveCfg = Release|Any CPU
 		{F035A15E-9F41-4907-A370-B8F2EB8C4010}.Verify|Any CPU.Build.0 = Release|Any CPU
 		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Production|Any CPU.ActiveCfg = Release|Any CPU
+		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Production|Any CPU.Build.0 = Release|Any CPU
 		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Verify|Any CPU.ActiveCfg = Release|Any CPU
 		{11C8D7A0-CCBE-44FE-B183-63A2D81CF2F9}.Verify|Any CPU.Build.0 = Release|Any CPU
 		{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}.Production|Any CPU.ActiveCfg = Release|Any CPU
+		{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}.Production|Any CPU.Build.0 = Release|Any CPU
 		{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE8508BC-3C13-4851-8BFF-2D9806B7DB6C}.Verify|Any CPU.ActiveCfg = Release|Any CPU

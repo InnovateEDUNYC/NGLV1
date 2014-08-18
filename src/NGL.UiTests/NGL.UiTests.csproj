@@ -105,6 +105,7 @@
     <Compile Include="Location\CanCreateLocation.cs" />
     <Compile Include="Location\LocationCreatePage.cs" />
     <Compile Include="Location\LocationIndexPage.cs" />
+    <Compile Include="ParentCourse\CanCreateAParentCourse.cs" />
     <Compile Include="Schedule\CanRemoveStudentFromSection.cs" />
     <Compile Include="Schedule\CanScheduleStudent.cs" />
     <Compile Include="Schedule\SchedulePage.cs" />
