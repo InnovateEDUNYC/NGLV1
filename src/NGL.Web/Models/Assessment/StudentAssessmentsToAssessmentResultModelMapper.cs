@@ -76,8 +76,6 @@ namespace NGL.Web.Models.Assessment
             var assessmentPerformanceLevels = studentAssessment.Assessment.AssessmentPerformanceLevels.ToList();
             var sortedPerformanceLevels = assessmentPerformanceLevels.OrderByDescending(apl => Convert.ToDecimal(apl.MinimumScore));
 
-            System.Diagnostics.Debug.WriteLine(assessmentPerformanceLevels);
-
             var studentPerformanceLevel = sortedPerformanceLevels.FirstOrDefault(pl => studentScore >= Convert.ToDecimal(pl.MinimumScore));
 
             var result = PerformanceLevelDescriptorEnum.NotMastered;
