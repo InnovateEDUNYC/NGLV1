@@ -14,7 +14,7 @@ Ngl.shared.sessionAutocomplete = (function () {
 
             if(e.keyCode != enter && e.keyCode != tab) {
                 $('#SessionId').val("").trigger('cleared');
-        }
+            }
         });
 
     }

@@ -1690,6 +1690,7 @@
     <Compile Include="Models\Attendance\SectionToTakeAttendanceModelMapper.cs" />
     <Compile Include="Models\Attendance\TakeAttendanceModel.cs" />
     <Compile Include="Models\Attendance\TakeAttendanceModelToStudentSectionAttendanceEventListMapper.cs" />
+    <Compile Include="Models\Attendance\TakeAttendanceModelValidator.cs" />
     <Compile Include="Models\ClassPeriod\ClassPeriodToIndexModelMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelToClassPeriodMapper.cs" />
     <Compile Include="Models\ClassPeriod\CreateModelValidator.cs" />

@@ -69,7 +69,10 @@ Ngl.shared.sectionAutocomplete = (function () {
         });
     }
 
-
+    $("#SessionId").on('change cleared',function () {
+        $('#Section').val("");
+        $('#SectionId').val("");
+    });
 
     return {
         init: setupSectionAutocomplete

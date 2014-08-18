@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
-using NGL.Web.Models;
 using NGL.Web.Models.Attendance;
-using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -18,7 +13,7 @@ namespace NGL.Web.Controllers
         private readonly ISectionRepository _sectionRepository;
         private readonly SectionToTakeAttendanceModelMapper _sectionToTakeAttendanceModelMapper;
         private readonly TakeAttendanceModelToStudentSectionAttendanceEventListMapper _takeAttendanceModelToStudentSectionAttendanceEventListMapper;
-        private IAttendanceRepository _attendanceRepository;
+        private readonly IAttendanceRepository _attendanceRepository;
 
         public AttendanceController(IGenericRepository genericRepository,
             ISectionRepository sectionRepository,
@@ -40,25 +35,24 @@ namespace NGL.Web.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult GetStudents(int? sectionId, string date)
+        public virtual ActionResult GetStudents(TakeAttendanceModel takeAttendanceModel)
         {
-            DateTime dateTime;
-            var isValidDate = DateTime.TryParse(date, out dateTime);
-            if (!sectionId.HasValue || !isValidDate)
+            if (! ModelState.IsValid)
             {
-                return View(MVC.Attendance.Views.Take, new TakeAttendanceModel {SectionId = sectionId, Date = dateTime});
+                return View(MVC.Attendance.Views.Take, takeAttendanceModel);
             }
 
-            var section = _sectionRepository.GetWithStudentAssociationsForDate(sectionId.Value, dateTime);
-            var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, dateTime);
+            //todo - make them a single call to sectionRepo
+            var section = _sectionRepository.GetWithStudentAssociationsForDate(takeAttendanceModel.SectionId.Value, takeAttendanceModel.Date);
+            var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, takeAttendanceModel.Date);
 
-            var takeAttendanceModel = _sectionToTakeAttendanceModelMapper.Build(section, existingAttendanceEvents, dateTime);
+            var takeAttendanceModelWithStudents = _sectionToTakeAttendanceModelMapper.Build(section, existingAttendanceEvents, takeAttendanceModel.Date);
             
-            return View(MVC.Attendance.Views.Take, takeAttendanceModel);
+            return View(MVC.Attendance.Views.Take, takeAttendanceModelWithStudents);
         }
 
         [HttpPost]
-        public virtual ActionResult GetStudents(TakeAttendanceModel takeAttendanceModel)
+        public virtual ActionResult Save(TakeAttendanceModel takeAttendanceModel)
         {
             var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId);
             var currentAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, takeAttendanceModel.Date);
@@ -70,7 +64,7 @@ namespace NGL.Web.Controllers
             
             _genericRepository.Save();
 
-            return RedirectToAction(MVC.Attendance.Take());
+            return RedirectToAction("GetStudents", takeAttendanceModel.Clone());
         }
 
         private void CreateAttendanceEvents(TakeAttendanceModel takeAttendanceModel, Section section)

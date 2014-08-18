@@ -60,6 +60,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetStudents);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Save()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Save);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AttendanceController Actions { get { return MVC.Attendance; } }
@@ -78,6 +84,7 @@ namespace NGL.Web.Controllers
         {
             public readonly string Take = "Take";
             public readonly string GetStudents = "GetStudents";
+            public readonly string Save = "Save";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,6 +92,7 @@ namespace NGL.Web.Controllers
         {
             public const string Take = "Take";
             public const string GetStudents = "GetStudents";
+            public const string Save = "Save";
         }
 
 
@@ -94,8 +102,14 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_GetStudents
         {
-            public readonly string sectionId = "sectionId";
-            public readonly string date = "date";
+            public readonly string takeAttendanceModel = "takeAttendanceModel";
+        }
+        static readonly ActionParamsClass_Save s_params_Save = new ActionParamsClass_Save();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Save SaveParams { get { return s_params_Save; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Save
+        {
             public readonly string takeAttendanceModel = "takeAttendanceModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
@@ -131,19 +145,6 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void GetStudentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sectionId, string date);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult GetStudents(int? sectionId, string date)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetStudents);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sectionId", sectionId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "date", date);
-            GetStudentsOverride(callInfo, sectionId, date);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void GetStudentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Attendance.TakeAttendanceModel takeAttendanceModel);
 
         [NonAction]
@@ -152,6 +153,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetStudents);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "takeAttendanceModel", takeAttendanceModel);
             GetStudentsOverride(callInfo, takeAttendanceModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SaveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Attendance.TakeAttendanceModel takeAttendanceModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Save(NGL.Web.Models.Attendance.TakeAttendanceModel takeAttendanceModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Save);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "takeAttendanceModel", takeAttendanceModel);
+            SaveOverride(callInfo, takeAttendanceModel);
             return callInfo;
         }
 

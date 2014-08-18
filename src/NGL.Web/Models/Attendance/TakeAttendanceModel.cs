@@ -11,7 +11,7 @@ namespace NGL.Web.Models.Attendance
         public int? SessionId { get; set; }
         public string Section { get; set; }
         public int? SectionId { get; set; }
-
+        
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -20,6 +20,18 @@ namespace NGL.Web.Models.Attendance
         public static TakeAttendanceModel CreateNew()
         {
             return new TakeAttendanceModel {Date = DateTime.Now.Date};
+        }
+
+        public TakeAttendanceModel Clone()
+        {
+            return new TakeAttendanceModel
+            {
+                Section = Section,
+                Session = Session,
+                SectionId = SectionId,
+                SessionId = SessionId,
+                Date = Date
+            };
         }
     }
 
