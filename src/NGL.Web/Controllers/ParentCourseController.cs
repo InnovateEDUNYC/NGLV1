@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
 using NGL.Web.Models.ParentCourse;
 
 namespace NGL.Web.Controllers
 {
     public partial class ParentCourseController : Controller
     {
+        
+//        private readonly IGenericRepository _genericRepository;
+//        private IMapper<CreateModel, ParentCourse> _createModelToParentCourseMapper;
         //
         // GET: /ParentCourse/
         public virtual ActionResult Index()
@@ -34,18 +40,13 @@ namespace NGL.Web.Controllers
         //
         // POST: /ParentCourse/Create
         [HttpPost]
-        public virtual ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(CreateModel createModel)
         {
-            try
-            {
-                // TODO: Add insert logic here
+//            var parentCourse = _createModelToParentCourseMapper.Build(createModel);
+//            _genericRepository.Add(parentCourse);
+//            _genericRepository.Save();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction(Actions.Index());
         }
     }
 }

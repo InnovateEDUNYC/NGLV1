@@ -60,5 +60,6 @@ namespace NGL.UiTests.Shared
         {
             return Navigate.To<AssessmentIndexPage>(By.LinkText("Assessment"));
         }
+
     }
 }

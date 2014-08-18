@@ -33,7 +33,10 @@ namespace NGL.Web.Data.Entities
 
         public static string BlobConnectionString
         {
-            get { return CloudConfigurationManager.GetSetting("BlobConnectionString"); }
+            get
+            {
+                return  CloudConfigurationManager.GetSetting("BlobConnectionString");
+            }
         }
     }
 }

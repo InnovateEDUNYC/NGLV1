@@ -1,6 +1,6 @@
-﻿IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[edfi].[ParentCourse]') AND type in (N'U'))
+﻿IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ParentCourse]') AND type in (N'U'))
 BEGIN
-CREATE TABLE [edfi].[ParentCourse](
+CREATE TABLE [dbo].[ParentCourse](
 	[EducationOrganizationId] [int] NOT NULL,
 	[ParentCourseCode] [nvarchar](60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	[ParentCourseTitle] [nvarchar](60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -10,8 +10,7 @@ CREATE TABLE [edfi].[ParentCourse](
 	[CreateDate] [datetime] NOT NULL,
  CONSTRAINT [PK_ParentCourse] PRIMARY KEY CLUSTERED 
 (
-	[EducationOrganizationId] ASC,
-	[ParentCourseCode] ASC
+	[Id]
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF)
 )
 END

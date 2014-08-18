@@ -1,6 +1,7 @@
 ﻿using NGL.UiTests.ClassPeriod;
 using NGL.UiTests.Course;
 using NGL.UiTests.Location;
+using NGL.UiTests.ParentCourse;
 using NGL.UiTests.Section;
 using NGL.UiTests.Session;
 using OpenQA.Selenium;
@@ -34,6 +35,11 @@ namespace NGL.UiTests.Shared
         public SectionIndexPage GoToSectionIndexPage()
         {
             return Navigate.To<SectionIndexPage>(By.LinkText("Sections"));
+        }
+
+        public ParentCourseIndexPage GoToParentCourseIndexPage()
+        {
+            return Navigate.To<ParentCourseIndexPage>(By.LinkText("Parent Courses"));
         }
     }
 }
