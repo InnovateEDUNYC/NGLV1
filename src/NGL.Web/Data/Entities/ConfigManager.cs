@@ -35,9 +35,7 @@ namespace NGL.Web.Data.Entities
         {
             get
             {
-                var injectedBlobConnectionString = Environment.GetEnvironmentVariable("BlobConnectionString");
-
-                return injectedBlobConnectionString ?? CloudConfigurationManager.GetSetting("BlobConnectionString");
+                return  CloudConfigurationManager.GetSetting("BlobConnectionString");
             }
         }
     }
