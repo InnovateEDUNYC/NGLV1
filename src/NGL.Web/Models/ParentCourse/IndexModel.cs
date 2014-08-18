@@ -2,6 +2,8 @@
 {
     public class IndexModel
     {
-        public string Name { get; set; }
+        public string ParentCourseCode { get; set; }
+        public string ParentCourseTitle { get; set; }
+        public string ParentCourseDescription { get; set; }
     }
 }

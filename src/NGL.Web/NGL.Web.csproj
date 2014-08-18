@@ -286,9 +286,11 @@
     <Compile Include="Data\Repositories\AttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
+    <Compile Include="Data\Repositories\IParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\ISectionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\ParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\SectionRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionRepository.cs" />
@@ -1719,6 +1721,7 @@
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
+    <Compile Include="Models\ParentCourse\ParentCourseToIndexModelMapper.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
