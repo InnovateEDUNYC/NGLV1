@@ -57,14 +57,17 @@
 
 .Mastery {
     background-color: #69BD45;
+    border: 2px solid #69BD45;
 }
 
 .Near.Mastery {
     background-color: #FFD902;
+    border: 2px solid #FFD902;
 }
 
 .Not.Mastered {
     background-color: #EC4B36;
+        border: 2px solid #EC4B36;
 }
 
 .table-report > tbody> tr > td.profile-result {
@@ -72,16 +75,32 @@
     padding: 0;
 }
 
-.result-pill {
+.week-result-pill {
     position: absolute;
-    margin-top: auto;
-    margin-bottom: auto;
-    top: 5px;
-    right: 5px;
-    bottom: 5px;
-    left: 5px;
-    max-height: 40px;
+    margin: auto 5px;
+    width: 90%;
+    top: 8px;
+    bottom: 8px;
+    height: 40px;
     border-radius: 20px;
+}
+
+.month-result-pill {
+    position: absolute;
+    margin: auto 5px;
+    top: 8px;
+    bottom: 8px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+@media (max-width: 1200px) {
+  .month-result-pill {
+      margin: auto 2px;
+  }
+  .week-result-pill {
+      margin: auto 3px;
+  }
 }
 
 .clear-right-margin {

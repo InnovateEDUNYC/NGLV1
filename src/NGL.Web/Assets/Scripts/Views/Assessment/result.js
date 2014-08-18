@@ -13,7 +13,7 @@ Ngl.assessment.result = (function () {
         });
 
         $('.popover-dismiss').popover({
-            trigger: 'focus',
+            trigger: 'focus, hover',
             content: function () {
                 var assessmentInfo = $(this).data('contentwrapper');
                 return $(assessmentInfo).html();
