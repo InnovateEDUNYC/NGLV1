@@ -3,7 +3,6 @@
 
 @{
     ViewBag.Title = "Student Report";
-
     const int numberOfDaysInWeek = 7;
 }
 <div class="panel panel-gray">
@@ -15,8 +14,7 @@
                     <img class="profile-image" src="@Model.ProfilePhotoUrl" />
                     <h3>
                         <strong>
-                            @Html.DisplayFor(model => model.FirstName)
-                            @Html.DisplayFor(model => model.LastName)
+                            @Html.ActionLink(Model.FirstName + " " + Model.LastName, MVC.Student.Index(Model.StudentUsi), new {@class="black-text"})
                         </strong>
                     </h3>
                     <p>
@@ -81,7 +79,9 @@
             {
                 <table class="table table-report">
                     <tr>
-                        <th class="col-xs-2 col-sm-2 col-md-2 ccss-header"></th>
+                        <th class="col-xs-2 col-sm-2 col-md-2 ccss-header">
+                            Assessment
+                        </th>
                         @for (var i = 1; i <= numberOfDaysInWeek; i++)
                         {
                             <th class="col-xs-1">&nbsp;</th>
@@ -91,9 +91,19 @@
                         {
                             <tr>
                                 <td>
-                                    CCSS: @row.CommonCoreStandard<br />
-                                    Section Code: @row.SectionCode
+                                    <button type="button" class="btn btn-link popover-dismiss" data-container="body" data-toggle="popover" data-placement="top" title="@row.AssessmentTitle" data-contentwrapper="#@row.AssessmentTitle.Replace(' ', '-')" data-html="true">
+                                        @row.CommonCoreStandard
+                                    </button>
+                                    
+                                    <div id="@row.AssessmentTitle.Replace(' ', '-')" class="assessment-info-placeholder">
+                                        Date: @row.Date.ToShortDateString()<br />
+                                        Question Type: @row.AssessmentTypeDescription<br />
+                                        @row.SectionCode<br />
+                                        Grade: @row.Grade
+                                    </div>
+
                                 </td>
+                                
                                 @foreach (var result in @row.Results)
                                 {
                                 <td class ="profile-result"><div class="result-pill @result"></div></td>

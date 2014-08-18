@@ -12,6 +12,14 @@ Ngl.assessment.result = (function () {
             window.location = url;
         });
 
+        $('.popover-dismiss').popover({
+            trigger: 'focus',
+            content: function () {
+                var assessmentInfo = $(this).data('contentwrapper');
+                return $(assessmentInfo).html();
+            }
+        });
+
         var updateGetResultsUrl = function(sessionId) {
             var studentUsi = $('#StudentUsi').val();
             var url = weekUrl;
@@ -26,7 +34,6 @@ Ngl.assessment.result = (function () {
 
             return url;
         }
-
     };
 
     return {
