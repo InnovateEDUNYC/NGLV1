@@ -80,7 +80,7 @@
     right: 5px;
     bottom: 5px;
     left: 5px;
-    max-height: 46px;
+    max-height: 40px;
     border-radius: 20px;
 }
 
@@ -106,4 +106,22 @@
 
 .ccss-header {
     width: 20%;
+    text-align: center;
+}
+
+.btn.btn-link.popover-dismiss {
+    white-space: normal;
+    text-align: left;
+}
+
+.btn.btn-link.popover-dismiss:focus {
+    border: 0;
+ }
+
+.assessment-info-placeholder {
+    display: none;
+}
+
+.black-text {
+    color: black;
 }

@@ -7,10 +7,10 @@ namespace NGL.Tests.Builders
     public class StudentAssessmentBuilder
     {
         private const int StudentUSI = 123;
-        private const string AssessmentTitle = "English Reading";
-        private const int AcademicSubjectDescriptorId = (int) AcademicSubjectDescriptorEnum.EnglishLanguageArts;
-        private const int AssessedGradeLevelDescriptorId = (int) GradeLevelDescriptorEnum._5thGrade;
-        private const int Version = 0;
+        private string _assessmentTitle = "English Reading";
+        private int _academicSubjectDescriptorId = (int) AcademicSubjectDescriptorEnum.EnglishLanguageArts;
+        private int _assessedGradeLevelDescriptorId = (int) GradeLevelDescriptorEnum._5thGrade;
+        private int _version = 0;
         private DateTime _administrationDate = new DateTime(2014, 6, 27);
         private Web.Data.Entities.Assessment _assessment = null;
         private IList<StudentAssessmentScoreResult> _studentAssessmentScoreResults = new[] { new StudentAssessmentScoreResultBuilder().Build() };
@@ -21,10 +21,10 @@ namespace NGL.Tests.Builders
             return new StudentAssessment
             {
                 StudentUSI = StudentUSI,
-                AssessmentTitle = AssessmentTitle,
-                AcademicSubjectDescriptorId = AcademicSubjectDescriptorId,
-                AssessedGradeLevelDescriptorId = AssessedGradeLevelDescriptorId,
-                Version = Version,
+                AssessmentTitle = _assessmentTitle,
+                AcademicSubjectDescriptorId = _academicSubjectDescriptorId,
+                AssessedGradeLevelDescriptorId = _assessedGradeLevelDescriptorId,
+                Version = _version,
                 AdministrationDate = _administrationDate,
                 Assessment = _assessment,
                 StudentAssessmentScoreResults = _studentAssessmentScoreResults,
@@ -35,18 +35,17 @@ namespace NGL.Tests.Builders
         public StudentAssessmentBuilder WithAssessment(Web.Data.Entities.Assessment assessment)
         {
             _assessment = assessment;
+            _administrationDate = assessment.AdministeredDate;
+            _assessmentTitle = assessment.AssessmentTitle;
+            _academicSubjectDescriptorId = assessment.AcademicSubjectDescriptorId;
+            _assessedGradeLevelDescriptorId = assessment.AssessedGradeLevelDescriptorId;
+            _version = assessment.Version;
             return this;
         }
 
         public StudentAssessmentBuilder WithStudentAssessmentScoreResult(StudentAssessmentScoreResult studentAssessmentScoreResult)
         {
             _studentAssessmentScoreResults = new[] {studentAssessmentScoreResult};
-            return this;
-        }
-
-        public StudentAssessmentBuilder WithAdministrationDate(DateTime administrationDate)
-        {
-            _administrationDate = administrationDate;
             return this;
         }
 

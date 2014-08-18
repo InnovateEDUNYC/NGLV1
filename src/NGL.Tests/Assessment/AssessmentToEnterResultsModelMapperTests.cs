@@ -2,6 +2,7 @@
 using System.Linq;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Dates;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
 using NSubstitute;
@@ -24,13 +25,14 @@ namespace NGL.Tests.Assessment
 
             var model = _mapper.Build(_entity);
 
-            model.StudentResults.Count.ShouldBe(2);
+            model.StudentResults.Count.ShouldBe(_entity.AssessmentSections.First().Section.StudentSectionAssociations.Count(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(_entity.AdministeredDate)));
+
             model.AssessmentId.ShouldBe(_entity.AssessmentIdentity);
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
-            model.CCSS.ShouldBe("English - Reading Comprehension");
-            model.AssessmentDate.ShouldBe("9/9/2014");
+            model.CCSS.ShouldBe(_entity.AssessmentLearningStandards.First().LearningStandard.Description);
+            model.AssessmentDate.ShouldBe(_entity.AdministeredDate.ToShortDateString());
         }
 
         [Fact]
@@ -41,13 +43,14 @@ namespace NGL.Tests.Assessment
 
             var model = _mapper.Build(_entity);
 
-            model.StudentResults.Count.ShouldBe(2);
+            model.StudentResults.Count.ShouldBe(_entity.AssessmentSections.First().Section.StudentSectionAssociations.Count(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(_entity.AdministeredDate)));
+
             model.AssessmentId.ShouldBe(_entity.AssessmentIdentity);
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
-            model.CCSS.ShouldBe("English - Reading Comprehension");
-            model.AssessmentDate.ShouldBe("9/9/2014");
+            model.CCSS.ShouldBe(_entity.AssessmentLearningStandards.First().LearningStandard.Description);
+            model.AssessmentDate.ShouldBe(_entity.AdministeredDate.ToShortDateString());
         }
 
         [Fact]
@@ -59,13 +62,14 @@ namespace NGL.Tests.Assessment
 
             var model = _mapper.Build(_entity);
 
-            model.StudentResults.Count.ShouldBe(1);
+            model.StudentResults.Count.ShouldBe(_entity.AssessmentSections.First().Section.StudentSectionAssociations.Count(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(_entity.AdministeredDate)));
+
             model.AssessmentId.ShouldBe(_entity.AssessmentIdentity);
             model.Session.ShouldBe(_assessmentSection.Section.Session.SessionName);
             model.Section.ShouldBe(_assessmentSection.Section.UniqueSectionCode);
             model.AssessmentTitle.ShouldBe(_entity.AssessmentTitle);
-            model.CCSS.ShouldBe("English - Reading Comprehension");
-            model.AssessmentDate.ShouldBe("9/9/2014");
+            model.CCSS.ShouldBe(_entity.AssessmentLearningStandards.First().LearningStandard.Description);
+            model.AssessmentDate.ShouldBe(_entity.AdministeredDate.ToShortDateString());
         }
 
         private void Setup()

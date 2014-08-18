@@ -20,7 +20,7 @@ namespace NGL.Tests.Builders
 
         private Web.Data.Entities.Section _section;
         private Web.Data.Entities.Session _session = new Web.Data.Entities.Session{ SessionName = "Fall 2014" };
-        private DateTime _beginDate = new DateTime(2014, 9, 8);
+        private DateTime _beginDate = new DateTime(2014, 6, 1);
         private DateTime _endDate = new DateTime(2015, 1, 20);
 
         public Web.Data.Entities.Section Build()
