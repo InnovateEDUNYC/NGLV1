@@ -10,7 +10,9 @@
 {
     using (var s = f.BeginSection(""))
     {
-        @s.FieldFor(m => m.Name)
+        @s.FieldFor(m => m.ParentCourseCode)
+        @s.FieldFor(m => m.ParentCourseTitle)
+        @s.FieldFor(m => m.ParentCourseDescription)
     }
     using (var n = f.BeginNavigation())
     {

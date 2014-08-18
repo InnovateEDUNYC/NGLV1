@@ -1715,6 +1715,7 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />

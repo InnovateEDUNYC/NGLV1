@@ -92,6 +92,7 @@
     <Compile Include="Builders\AssessmentSectionBuilder.cs" />
     <Compile Include="Builders\CreateParentCourseModelBuilder.cs" />
     <Compile Include="Builders\LearningStandardBuilder.cs" />
+    <Compile Include="Builders\ParentCourseBuilder.cs" />
     <Compile Include="Builders\StudentAssessmentBuilder.cs" />
     <Compile Include="Builders\StudentAssessmentScoreResultBuilder.cs" />
     <Compile Include="Assessment\StudentAssessmentsToAssessmentResultModelMapperTests.cs" />
