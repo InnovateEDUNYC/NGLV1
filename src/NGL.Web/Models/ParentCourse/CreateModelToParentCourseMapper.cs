@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NGL.Web.Data.Repositories;
+﻿using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.ParentCourse
 {
