@@ -80,7 +80,7 @@ form .inline input {
 
 .input-group-addon,
 .input-group-btn {
-    width: 0%;
+    width: 0;
 }
 
 .input-group-addon {
@@ -93,25 +93,6 @@ form .inline input {
 
 .upload-profile-photo {
     padding-top: 5px;
-    margin-bottom: 50px;
-    text-align: left;
-}
-
-.ghost-button {
-    opacity: 0;
-    height: 34px;
-    width: 100px;
-    cursor: pointer;
-}
-
-.profile-photo-button {
-    position: absolute;
-    margin-left: 30%;
-}
-
-.click-button {
-    min-height: 34px;
-    min-width: 92px;
 }
 
 .scheduling {
@@ -220,34 +201,6 @@ form .inline input {
     color: white
 }
 
-.btn {
-    border-radius: 20px;
-}
-
-.btn-primary {
-    background-color: #2DBCBB;
-    border-color: #2DBCBB;
-}
-
-.btn-primary:hover {
-    background-color: #249695;
-    border-color: #249695;
-}
-
-.btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:link {
-    background-color: #2DBCBB !important;
-    border-color: #2DBCBB;
-}
-
-.btn-primary[disabled], .btn-primary:disabled {
-    background-color: #5CB4B4;
-    border-color: #5CB4B4;
-}
-
-.delete-row-btn {
-    cursor:pointer
-}
-
 .panel {
     padding: 10px;
     margin-bottom: 5px;
@@ -256,127 +209,12 @@ form .inline input {
 }
 
 body h4.panel:first-child {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .arrow {
     padding-left: 5px;
 }
 
-/* # View results page */
 
-.green-background > .pager {
-    padding-left: 0;
-    margin: 0;
-    text-align: center;
-    list-style: none;
-}
 
-.green-background {
-    background-color: #69BD45;
-    border-radius: 0 0 4px 4px;
-    padding: 15px;
-    color: white;
-}
-
-.result-view-period {
-    display: inline-block;
-    width: 50%;
-    margin: 0 -4px 0 0;
-    padding: 10px 5px;
-    text-align: center;
-    border: solid #69BD45 1px;
-}
-
-.result-view-period > h3 {
-    margin: 0;
-    padding: 0;
-}
-
-.selected {
-    border-radius: 4px 4px 0 0;
-}
-
-.unselected {
-    background-color:white;
-    color:#69BD45;
-    border-radius: 4px 4px 0 0;
-}
-
-.fa-arrow-left:hover {
-    color: #69BD45;
-}
-
-.fa-arrow-left {
-    color: #69BD45;
-}
-
-.fa-arrow-right:hover {
-    color: #69BD45;
-}
-
-.fa-arrow-right {
-    color: #69BD45;
-}
-
-h4.strong {
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.Mastery {
-    background-color: #69BD45;
-}
-
-.Near.Mastery {
-    background-color: #FFD902;
-}
-
-.Not.Mastered {
-    background-color: #EC4B36;
-}
-
-.table-report > tbody> tr > td.profile-result {
-    position: relative;
-    padding: 0;
-}
-
-.result-pill {
-    position: absolute;
-    margin-top: auto;
-    margin-bottom: auto;
-    top: 5px;
-    right: 5px;
-    bottom: 5px;
-    left: 5px;
-    max-height: 46px;
-    border-radius: 20px;
-}
-
-.clear-right-margin {
-    margin-right: 0;
-}
-
-.clear-right-padding {
-    padding-right: 0;
-}
-
-.time-span-chooser {
-    margin-top: 30px;
-}
-
-.find-session {
-    padding: 65px;
-}
-
-.full-input {
-    max-width: 100%;
-}
-
-.table {
-    margin-top: 15px;
-}
-
-.ccss-header {
-    width: 20%;
-}

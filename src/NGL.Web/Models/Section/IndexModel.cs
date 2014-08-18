@@ -1,6 +1,4 @@
-﻿using NGL.Web.Data.Entities;
-
-namespace NGL.Web.Models.Section
+﻿namespace NGL.Web.Models.Section
 {
     public class IndexModel
     {

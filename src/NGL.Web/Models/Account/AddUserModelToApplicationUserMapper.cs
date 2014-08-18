@@ -7,7 +7,7 @@ namespace NGL.Web.Models.Account
         public override void Map(AddUserModel source, ApplicationUser target)
         {
             target.UserName = source.Username;
-            target.StaffUSI = source.StaffUSI.Value;
+            target.StaffUSI = source.StaffUSI.GetValueOrDefault();
             target.Email = source.PersonalEmail;
         }
     }

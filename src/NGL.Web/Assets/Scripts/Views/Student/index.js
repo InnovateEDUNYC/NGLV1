@@ -6,7 +6,7 @@ Ngl.student.index = (function () {
         accordianArrows();
     }
     var profilePhotoButtons = function () {
-        $('.ghost-button').change(function() {
+        $('.ghost-btn').change(function() {
              $('form').submit();
         });
     }

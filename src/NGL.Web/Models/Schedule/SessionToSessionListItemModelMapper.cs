@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace NGL.Web.Models.Schedule
+﻿namespace NGL.Web.Models.Schedule
 {
     public class SessionToSessionListItemModelMapper : MapperBase<Data.Entities.Session, SessionListItemModel>
     {

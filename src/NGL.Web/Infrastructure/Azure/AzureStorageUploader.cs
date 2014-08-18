@@ -1,6 +1,4 @@
 using System.IO;
-using System.Web;
-using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using NGL.Web.Data.Entities;
 

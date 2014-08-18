@@ -1,4 +1,5 @@
-﻿using NGL.Tests.Builders;
+﻿using System.Linq;
+using NGL.Tests.Builders;
 using NGL.Web.Models.Assessment;
 using Shouldly;
 using Xunit;
@@ -19,11 +20,11 @@ namespace NGL.Tests.Assessment
             
             var indexModel = mapper.Build(assessment);
 
-            indexModel.AssessmentTitle.ShouldBe("My Assessment");
-            indexModel.SessionName.ShouldBe("Fall 2014");
-            indexModel.SectionName.ShouldBe("CHEM2090 - 200");
-            indexModel.CCSS.ShouldBe("English - Reading Comprehension");
-            indexModel.Date.ShouldBe("9/9/2014");
+            indexModel.AssessmentTitle.ShouldBe(assessment.AssessmentTitle);
+            indexModel.SessionName.ShouldBe(section.Session.SessionName);
+            indexModel.SectionName.ShouldBe(section.UniqueSectionCode);
+            indexModel.CCSS.ShouldBe(assessment.AssessmentLearningStandards.First().LearningStandard.Description);
+            indexModel.Date.ShouldBe(assessment.AdministeredDate.ToShortDateString());
             indexModel.id.ShouldBe(1);
         }
     }

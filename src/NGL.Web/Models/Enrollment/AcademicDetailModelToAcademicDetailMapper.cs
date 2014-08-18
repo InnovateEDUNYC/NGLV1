@@ -10,7 +10,7 @@ namespace NGL.Web.Models.Enrollment
             target.WritingScore = source.Writing;
             target.MathScore = source.Math;
             target.SchoolYear = (short)source.SchoolYear;
-            target.GradeLevelTypeId = (int) source.AnticipatedGrade;
+            target.GradeLevelTypeId = (int) source.AnticipatedGrade.GetValueOrDefault();
             target.PerfomanceHistory = source.PerformanceHistory;
         }
     }

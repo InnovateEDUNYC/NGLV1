@@ -2,18 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Humanizer;
+using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Models.Assessment
 {
     public class StudentAssessmentsToAssessmentResultModelMapper
     {
+        private readonly IGenericRepository _genericRepository;
+
+        public StudentAssessmentsToAssessmentResultModelMapper(IGenericRepository genericRepository)
+        {
+            _genericRepository = genericRepository;
+        }
+
         public AssessmentResultModel Map(IEnumerable<StudentAssessment> studentAssessments, DateTime startDate, DateTime endDate)
         {
-            var assessmentResultModel = new AssessmentResultModel();
-
-            assessmentResultModel.DateRange = startDate.ToShortDateString() + " - " + endDate.ToShortDateString();
-            assessmentResultModel.AssessmentResultRows = studentAssessments.Select(sa => CreateAssessmentResultRow(sa, startDate, endDate)).ToList();
+            var assessmentResultModel = new AssessmentResultModel
+            {
+                DateRange = startDate.ToShortDateString() + " - " + endDate.ToShortDateString(),
+                AssessmentResultRows =
+                    studentAssessments.Select(sa => CreateAssessmentResultRow(sa, startDate, endDate)).ToList()
+            };
 
             return assessmentResultModel;
         }
@@ -36,14 +47,25 @@ namespace NGL.Web.Models.Assessment
                 startDate = startDate.AddDays(1);
             }
 
-            var commonCoreStandard = studentAssessment.Assessment.AssessmentLearningStandards.First().LearningStandard.Description;
-            var sectionCode = studentAssessment.Assessment.AssessmentSections.First().Section.UniqueSectionCode;
+            var assessment = studentAssessment.Assessment;
+
+            var commonCoreStandard = assessment.AssessmentLearningStandards.First().LearningStandard.Description;
+            var sectionCode = assessment.AssessmentSections.First().Section.UniqueSectionCode;
+            var grade = studentAssessment.StudentAssessmentScoreResults.First().Result;
+            var assessmentTitle = assessment.AssessmentTitle;
+            var date = studentAssessment.AdministrationDate;
+
+            var assessmentCategoryType = _genericRepository.Get<AssessmentCategoryType>(act => act.AssessmentCategoryTypeId == assessment.AssessmentCategoryTypeId);
 
             return new AssessmentResultRowModel
             {
                 CommonCoreStandard = commonCoreStandard,
                 SectionCode = sectionCode,
-                Results = results
+                Results = results,
+                Grade = grade,
+                AssessmentTitle = assessmentTitle,
+                Date = date,
+                AssessmentTypeDescription = assessmentCategoryType.ShortDescription
             };
         }
 

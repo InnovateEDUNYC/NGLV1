@@ -2,7 +2,9 @@
 
 Ngl.assessment.result = (function () {
     var init = function () {
-        var getResultsUrlTemplate = "/Assessment/Result?studentUsi={studentUsi}&sessionId={sessionId}";
+        var weekUrl = "/Assessment/Week";
+        var monthUrl = "/Assessment/Month";
+        var getResultsUrlTemplate = "?studentUsi={studentUsi}&sessionId={sessionId}";
 
         $("#SessionId").change(function () {
             var sessionId = $(this).val();
@@ -10,30 +12,29 @@ Ngl.assessment.result = (function () {
             window.location = url;
         });
 
+        $('.popover-dismiss').popover({
+            trigger: 'focus, hover',
+            content: function () {
+                var assessmentInfo = $(this).data('contentwrapper');
+                return $(assessmentInfo).html();
+            }
+        });
+
         var updateGetResultsUrl = function(sessionId) {
             var studentUsi = $('#StudentUsi').val();
-            var url = getResultsUrlTemplate
+            var url = weekUrl;
+
+            if ($('#month').hasClass('selected')) {
+                url = monthUrl;
+            }
+
+            url = url + getResultsUrlTemplate
                 .replace("{sessionId}", sessionId)
                 .replace("{studentUsi}", studentUsi);
 
             return url;
         }
-
-        $('#month').on('click', function() {
-            $(this).removeClass('unselected');
-            $(this).addClass('selected');
-            $('#week').removeClass('selected');
-            $('#week').addClass('unselected');
-        });
-
-        $('#week').on('click', function () {
-            $(this).removeClass('unselected');
-            $(this).addClass('selected');
-            $('#month').removeClass('selected');
-            $('#month').addClass('unselected');
-        });
-
-            };
+    };
 
     return {
         init: init

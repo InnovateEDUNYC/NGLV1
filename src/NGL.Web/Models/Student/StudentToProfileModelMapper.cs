@@ -12,7 +12,7 @@ namespace NGL.Web.Models.Student
         private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
-        private StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
+        private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
 
         public StudentToProfileModelMapper(StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, ParentToProfileParentModelMapper parentToProfileParentModelMapper,
                                                                 ProfilePhotoUrlFetcher profilePhotoUrlFetcher,

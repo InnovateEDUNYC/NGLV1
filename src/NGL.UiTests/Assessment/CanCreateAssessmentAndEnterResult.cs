@@ -1,7 +1,5 @@
-﻿using System.Threading.Tasks;
-using NGL.Tests.Builders;
+﻿using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
-using NGL.UiTests.Student;
 using NGL.Web.Models.Assessment;
 using Shouldly;
 using TestStack.BDDfy;
@@ -14,7 +12,7 @@ namespace NGL.UiTests.Assessment
         IWant = "I want to create a formative assessment for a specific section",
         SoThat = "So that I can track student's progress over time"
         )]
-    public class CanCreateAssessment
+    public class CanCreateAssessmentAndEnterResult
     {
         private HomePage _homePage;
         private AssessmentCreatePage _assessmentCreatePage;

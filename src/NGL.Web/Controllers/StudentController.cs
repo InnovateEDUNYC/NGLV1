@@ -37,7 +37,7 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "enrollment", Operation = "view")]
         public virtual ActionResult All()
         {
-            IEnumerable<Student> students = _repository.GetAll<Student>();
+            var students = _repository.GetAll<Student>().ToList();
             var models = new List<IndexModel>();
 
             foreach (var student in students)
@@ -55,7 +55,7 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "assessment", Operation = "view")]
         public virtual ActionResult Reports()
         {
-            IEnumerable<Student> students = _repository.GetAll<Student>();
+            IEnumerable<Student> students = _repository.GetAll<Student>().ToList();
             var models = new List<IndexModel>();
 
             foreach (var student in students)

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Expressions;
+using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
-using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -23,7 +23,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Assessment, EnterResultsModel> _assessmentToEnterResultsModelMapper;
         private readonly EnterResultsStudentModelToStudentAssessmentMapper
             _enterResultsStudentModelToStudentAssessmentMapper;
-        private readonly IMapper<Assessment, Models.Assessment.IndexModel> _assessmentToAssessmentIndexModelMapper;
+        private readonly IMapper<Assessment, IndexModel> _assessmentToAssessmentIndexModelMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly ILearningStandardRepository _learningStandardRepository;
 
@@ -33,7 +33,7 @@ namespace NGL.Web.Controllers
             StudentAssessmentsToAssessmentResultModelMapper studentAssessmentsToAssessmentResultModelMapper,
             IMapper<Assessment, EnterResultsModel> assessmentToEnterResultsModelMapper,
             EnterResultsStudentModelToStudentAssessmentMapper enterResultsStudentModelToStudentAssessmentMapper,
-			IMapper<Assessment, Models.Assessment.IndexModel> assessmentToAssessmentIndexModelMapper,
+			IMapper<Assessment, IndexModel> assessmentToAssessmentIndexModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
@@ -134,7 +134,7 @@ namespace NGL.Web.Controllers
 
         private void UpdateStudentAssessmentScoreResults(IEnumerable<StudentAssessmentScoreResult> currentResultEntities, List<EnterResultsStudentModel> newResultModels)
         {
-            foreach (var currentResultEntity in currentResultEntities)
+            foreach (var currentResultEntity in currentResultEntities.ToList())
             {
                 var newResultModel =
                     newResultModels.First(
@@ -145,7 +145,7 @@ namespace NGL.Web.Controllers
 
         private void CreateStudentAssessmentScoreResults(Assessment assessment, IEnumerable<EnterResultsStudentModel> enterResultsStudentModels)
         {
-            foreach (EnterResultsStudentModel enterResultsStudentModel in enterResultsStudentModels)
+            foreach (EnterResultsStudentModel enterResultsStudentModel in enterResultsStudentModels.ToList())
             {
                 var studentAssessment = _enterResultsStudentModelToStudentAssessmentMapper.Build(enterResultsStudentModel, assessment);
 
@@ -154,10 +154,29 @@ namespace NGL.Web.Controllers
         }
 
         [AuthorizeFor(Resource = "assessment", Operation = "view")]
-        public virtual ActionResult Result(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 7)
+        public virtual ActionResult Week(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 7)
         {
-            var assessmentResultModel = new AssessmentResultModel();
+            if (sessionId == null)
+            {
+                var currentSession = new SessionFilter(_genericRepository).FindSession(DateTime.Now);
+                sessionId = currentSession.SessionIdentity;
+            }
 
+            var assessmentResultModel = Result(studentUsi, sessionId, dayFrom, dayTo);
+            return View(assessmentResultModel);
+        }
+
+        [AuthorizeFor(Resource = "assessment", Operation = "view")]
+        public virtual ActionResult Month(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 30)
+        {
+            var assessmentResultModel = Result(studentUsi, sessionId, dayFrom, dayTo);
+            return View(assessmentResultModel);
+        }
+
+        private AssessmentResultModel Result(int studentUsi, int? sessionId, int dayFrom = 1, int dayTo = 7)
+        {
+
+            var assessmentResultModel = new AssessmentResultModel();
             if (sessionId != null)
             {
                 var session = _genericRepository.Get<Session>(s => s.SessionIdentity == sessionId);
@@ -169,14 +188,13 @@ namespace NGL.Web.Controllers
                 assessmentResultModel.Session = session.SessionName;
             }
 
-	        var student = _genericRepository.Get<Student>(s => s.StudentUSI == studentUsi);
-	        var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(student);
+            var student = _genericRepository.Get<Student>(s => s.StudentUSI == studentUsi);
+            var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(student);
 
-	        assessmentResultModel.Update(student, profilePhotoUrl, sessionId, dayFrom, dayTo);
+            assessmentResultModel.Update(student, profilePhotoUrl, sessionId, dayFrom, dayTo);
 
-            return View(assessmentResultModel);
-		}
+            return assessmentResultModel;
+        }
 
-        
     }
 }

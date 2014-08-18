@@ -2,7 +2,7 @@
 
 namespace NGL.Web.Models.Assessment
 {
-    public class AssessmentToAssessmentIndexModelMapper : MapperBase<Web.Data.Entities.Assessment, IndexModel>
+    public class AssessmentToAssessmentIndexModelMapper : MapperBase<Data.Entities.Assessment, IndexModel>
     {
         public override void Map(Data.Entities.Assessment source, IndexModel target)
         {

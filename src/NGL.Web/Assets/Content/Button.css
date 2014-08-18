@@ -1,0 +1,30 @@
+﻿.btn {
+    border-radius: 20px;
+}
+
+.ghost-btn {
+    opacity: 0;
+    height: 34px;
+    width: 100px;
+    cursor: pointer;
+    margin-top: -34px;
+}
+
+.btn-primary:hover {
+    background-color: #249695;
+    border-color: #249695;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:link {
+    background-color: #2DBCBB !important;
+    border-color: #2DBCBB;
+}
+
+.btn-primary[disabled], .btn-primary:disabled {
+    background-color: #5CB4B4;
+    border-color: #5CB4B4;
+}
+
+.delete-row-btn {
+    cursor:pointer
+}

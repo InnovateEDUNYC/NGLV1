@@ -11,8 +11,8 @@ namespace NGL.Web.Models.Account
             target.LastSurname = source.LastName;
             target.LastSurname = source.LastName;
             target.PersonalTitlePrefix = source.PeronalTitlePrefix;
-            target.StaffUSI = source.StaffUSI.Value;
-            target.TeacherUSI = source.TeacherUSI.Value;
+            target.StaffUSI = source.StaffUSI.GetValueOrDefault();
+            target.TeacherUSI = source.TeacherUSI.GetValueOrDefault();
             target.HispanicLatinoEthnicity = source.HispanicLatino;
             target.OldEthnicityTypeId = (int?)source.OldEthnicityType;
             target.GenerationCodeSuffix = source.GenerationCodeSuffix;
