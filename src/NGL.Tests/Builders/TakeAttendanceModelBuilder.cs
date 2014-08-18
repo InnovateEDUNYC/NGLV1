@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NGL.Web.Models.Attendance;
 
 namespace NGL.Tests.Builders
 {
     public class TakeAttendanceModelBuilder
     {
-        private DateTime _date = new DateTime(2014, 9, 9);
+        private string _date = "09/09/2014";
         private int? _sectionId = 7;
         private int? _sessionId = 1;
         private string _section = "Math 123";

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Attendance
@@ -11,15 +10,13 @@ namespace NGL.Web.Models.Attendance
         public int? SessionId { get; set; }
         public string Section { get; set; }
         public int? SectionId { get; set; }
-        
-        [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         public IList<StudentAttendanceRowModel> StudentRows { get; set; }
 
         public static TakeAttendanceModel CreateNew()
         {
-            return new TakeAttendanceModel {Date = DateTime.Now.Date};
+            return new TakeAttendanceModel {Date = DateTime.Now.Date.ToShortDateString()};
         }
 
         public TakeAttendanceModel Clone()

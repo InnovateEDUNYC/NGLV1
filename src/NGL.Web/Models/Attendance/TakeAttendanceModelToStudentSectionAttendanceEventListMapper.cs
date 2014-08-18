@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NGL.Web.Models.Attendance
@@ -11,7 +12,7 @@ namespace NGL.Web.Models.Attendance
             {
                 StudentUSI = sr.StudentUsi, 
                 AttendanceEventCategoryDescriptorId = (int) sr.AttendanceType, 
-                EventDate = takeAttendanceModel.Date,
+                EventDate = DateTime.Parse(takeAttendanceModel.Date),
                 SchoolId = section.SchoolId, 
                 ClassPeriodName = section.ClassPeriodName, 
                 ClassroomIdentificationCode = section.ClassroomIdentificationCode, 

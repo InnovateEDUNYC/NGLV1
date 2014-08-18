@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
@@ -46,10 +47,11 @@ namespace NGL.Web.Controllers
             }
 
             //todo - make them a single call to sectionRepo
-            var section = _sectionRepository.GetWithStudentAssociationsForDate(takeAttendanceModel.SectionId.Value, takeAttendanceModel.Date);
-            var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, takeAttendanceModel.Date);
+            var date = DateTime.Parse(takeAttendanceModel.Date);
+            var section = _sectionRepository.GetWithStudentAssociationsForDate(takeAttendanceModel.SectionId.Value, date);
+            var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, date);
 
-            var takeAttendanceModelWithStudents = _sectionToTakeAttendanceModelMapper.Build(section, existingAttendanceEvents, takeAttendanceModel.Date);
+            var takeAttendanceModelWithStudents = _sectionToTakeAttendanceModelMapper.Build(section, existingAttendanceEvents, date);
             
             return View(MVC.Attendance.Views.Take, takeAttendanceModelWithStudents);
         }
@@ -60,7 +62,7 @@ namespace NGL.Web.Controllers
             var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId);
             var studentSectionAttendanceEventList =_takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
 
-            _attendanceService.RecordAttendanceFor(section, takeAttendanceModel.Date, studentSectionAttendanceEventList);
+            _attendanceService.RecordAttendanceFor(section, DateTime.Parse(takeAttendanceModel.Date), studentSectionAttendanceEventList);
 
             _genericRepository.Save();
 
