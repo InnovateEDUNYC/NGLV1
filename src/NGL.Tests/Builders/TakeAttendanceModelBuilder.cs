@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NGL.Web.Data.Entities;
 using NGL.Web.Models.Attendance;
 
 namespace NGL.Tests.Builders
@@ -25,20 +24,6 @@ namespace NGL.Tests.Builders
                 Session = _session,
                 StudentRows = _studentRows
             };
-        }
-
-        public TakeAttendanceModelBuilder WithStudentRows(int numberOfRows)
-        {
-            _studentRows = new List<StudentAttendanceRowModel>();
-            for (int i = 0; i < numberOfRows; i++)
-            {
-                _studentRows.Add(new StudentAttendanceRowModel
-                {
-                    AttendanceType = AttendanceEventCategoryDescriptorEnum.Tardy
-                });
-            }
-
-            return this;
         }
     }
 }
