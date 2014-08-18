@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NGL.Tests.ParentCourse
 {
-    class Class1
+    public class CreateModelToParentCourseMapperTests
     {
     }
 }

@@ -50,7 +50,7 @@ namespace NGL.UiTests.ParentCourse
             parentCourseExists.ShouldBe(true);
         }
 
-        [Fact]
+        [Fact(Skip = "not yet implemented")]
         public void ShouldCreateCourse()
         {
             this.BDDfy();
