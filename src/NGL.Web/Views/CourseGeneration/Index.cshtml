@@ -10,7 +10,7 @@
         </div>
 
         <div class="media-body">
-            <h4 class="media-heading">@Html.ActionLink("Sessions", "Index", "Session")</h4>
+            <h4 class="media-heading">@Html.ActionLink("Sessions", MVC.Session.Index())</h4>
             Prescribed spans of time when an education institution is open, instruction is provided and
             students are under the direction and guidance of teachers and/or education institution administration.
             A session may be interrupted by one or more vacations.
@@ -22,8 +22,8 @@
         </div>
 
         <div class="media-body">
-            <h4 class="media-heading">@Html.ActionLink("Parent Courses", "Index", "ParentCourse")</h4>
-            The organization of organizations of subject matter and related learning experiences provided for the instruction of students.
+            <h4 class="media-heading">@Html.ActionLink("Parent Courses", MVC.ParentCourse.Index())</h4>
+            Used to link all the related sub-courses with different methods of instruction into one "umbrella" Parent course in order to report student grades to the state.
         </div>
     </li>
 
@@ -32,8 +32,8 @@
         </div>
 
         <div class="media-body">
-            <h4 class="media-heading">@Html.ActionLink("Courses", "Index", "Course")</h4>
-            The organization of subject matter and related learning experiences provided for the instruction of students.
+            <h4 class="media-heading">@Html.ActionLink("Courses", MVC.Course.Index())</h4>
+            The organization of subject matter and related learning experiences provided for the instruction of students.  Should include the method of instruction in course code.
         </div>
     </li>
 
@@ -42,7 +42,7 @@
         </div>
 
         <div class="media-body">
-            <h4 class="media-heading">@Html.ActionLink("Periods", "Index", "ClassPeriod")</h4>
+            <h4 class="media-heading">@Html.ActionLink("Periods", MVC.ClassPeriod.Index())</h4>
             The designation of a regularly scheduled series of class meetings.
         </div>
     </li>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="media-body">
-            <h4 class="media-heading">@Html.ActionLink("Classrooms", "Index", "Location")</h4>
+            <h4 class="media-heading">@Html.ActionLink("Classrooms", MVC.Location.Index())</h4>
             Physical spaces where students gather for a particular class/section. The classroom may be an indoor or outdoor
             area designated for meeting the educational needs of students.
         </div>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="media-body">
-            <h4 class="media-heading">@Html.ActionLink("Sections", "Index", "Section")</h4>
+            <h4 class="media-heading">@Html.ActionLink("Sections", MVC.Section.Index())</h4>
             A setting in which organized instruction of course content is provided to one or more students for a given period. 
             A course may be offered to more than one class/section. Instruction, provided by one or more teachers or other staff
             members, may be delivered in person or via a different medium.

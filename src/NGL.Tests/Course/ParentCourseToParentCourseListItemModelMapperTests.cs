@@ -14,7 +14,7 @@ namespace NGL.Tests.Course
             var model = new ParentCourseToParentCourseListItemModelMapper().Build(entity);
 
             model.ParentCourseId.ShouldBe(entity.Id);
-            model.ParentCourseTitle.ShouldBe(entity.ParentCourseTitle);
+            model.ParentCourseTitle.ShouldBe(entity.ParentCourseCode + " - " + entity.ParentCourseTitle);
         }
     }
 }

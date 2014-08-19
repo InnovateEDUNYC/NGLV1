@@ -5,7 +5,7 @@
         public override void Map(Data.Entities.ParentCourse source, ParentCourseListItemModel target)
         {
             target.ParentCourseId = source.Id;
-            target.ParentCourseTitle = source.ParentCourseTitle;
+            target.ParentCourseTitle = source.ParentCourseCode + " - " + source.ParentCourseTitle;
         }
     }
 }
