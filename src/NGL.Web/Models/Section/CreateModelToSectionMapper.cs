@@ -25,7 +25,7 @@ namespace NGL.Web.Models.Section
             target.TermTypeId = session.TermTypeId;
             target.SchoolYear = session.SchoolYear;
             target.UniqueSectionCode = source.UniqueSectionCode;
-            target.SequenceOfCourse = source.SequenceOfCourse.GetValueOrDefault();
+            target.SequenceOfCourse = 1;
         }
     }
 }

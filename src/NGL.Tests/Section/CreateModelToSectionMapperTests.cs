@@ -35,7 +35,7 @@ namespace NGL.Tests.Section
             entity.SchoolYear.ShouldBe(_session.SchoolYear);
 
             entity.UniqueSectionCode.ShouldBe(model.UniqueSectionCode);
-            entity.SequenceOfCourse.ShouldBe(model.SequenceOfCourse.GetValueOrDefault());
+            entity.SequenceOfCourse.ShouldBe(1);
         }
 
         private void Setup()

@@ -8,6 +8,5 @@
         public string Classroom { get; set; }
         public string LocalCourseCode { get; set; }
         public string UniqueSectionCode { get; set; }
-        public int SequenceOfCourse { get; set; }
     }
 }

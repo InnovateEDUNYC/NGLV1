@@ -21,7 +21,6 @@ namespace NGL.Tests.Section
             model.Classroom.ShouldBe(entity.ClassroomIdentificationCode);
             model.LocalCourseCode.ShouldBe(entity.LocalCourseCode);
             model.UniqueSectionCode.ShouldBe(entity.UniqueSectionCode);
-            model.SequenceOfCourse.ShouldBe(entity.SequenceOfCourse);
         }
     }
 }

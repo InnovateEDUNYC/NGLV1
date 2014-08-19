@@ -10,7 +10,6 @@ namespace NGL.UiTests.Section
         {
             Input.ReplaceInputValueWith(m => m.Session, createSectionModel.Session);
             Input.ReplaceInputValueWith(m => m.Course, createSectionModel.Course);
-            Input.ReplaceInputValueWith(m => m.SequenceOfCourse, createSectionModel.SequenceOfCourse);
             Input.ReplaceInputValueWith(m => m.UniqueSectionCode, createSectionModel.UniqueSectionCode);
             
             Input.SelectByOptionTextInDropDown(m => m.Period, createSectionModel.Period);

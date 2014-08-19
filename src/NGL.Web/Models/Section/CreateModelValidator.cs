@@ -23,7 +23,6 @@ namespace NGL.Web.Models.Section
             RuleFor(model => model.Classroom).NotEmpty();
             RuleFor(model => model.Course).NotEmpty();
             RuleFor(model => model.UniqueSectionCode).NotEmpty().Length(1, 255);
-            RuleFor(model => model.SequenceOfCourse).NotEmpty();
         }
 
         public override ValidationResult Validate(ValidationContext<CreateModel> context)

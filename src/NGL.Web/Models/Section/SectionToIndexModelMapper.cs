@@ -13,7 +13,6 @@ namespace NGL.Web.Models.Section
             target.Classroom = source.ClassroomIdentificationCode;
             target.LocalCourseCode = source.LocalCourseCode;
             target.UniqueSectionCode = source.UniqueSectionCode;
-            target.SequenceOfCourse = source.SequenceOfCourse;
         }
     }
 }

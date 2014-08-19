@@ -28,9 +28,6 @@ namespace NGL.Web.Models.Section
 
         public string UniqueSectionCode { get; set; }
 
-        public int? SequenceOfCourse { get; set; }
-
-
         public static CreateModel CreateNewWith(List<ClassPeriodListItemModel> classPeriods, List<LocationListItemModel> classRoomModels)
         {
             return new CreateModel

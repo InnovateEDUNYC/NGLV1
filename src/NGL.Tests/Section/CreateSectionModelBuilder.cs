@@ -29,7 +29,6 @@ namespace NGL.Tests.Section
                 Classroom = ClassroomIdentificationCode,
                 Course = _localCourseCode,
                 UniqueSectionCode = UniqueSectionCode,
-                SequenceOfCourse = SequenceOfCourse
             };
         }
 
