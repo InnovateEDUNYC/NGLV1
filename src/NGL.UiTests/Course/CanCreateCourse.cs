@@ -44,7 +44,7 @@ namespace NGL.UiTests.Course
             courseExists.ShouldBe(true);
         }
 
-        [Fact(Skip = "in middle of being changed to have parent course")]
+        [Fact]
         public void ShouldCreateCourse()
         {
             this.BDDfy();
