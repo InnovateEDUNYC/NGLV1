@@ -1762,6 +1762,8 @@
     <Compile Include="Models\Session\CreateModelToSessionMapper.cs" />
     <Compile Include="Models\Student\ParentToProfileParentAddressModelMapper.cs" />
     <Compile Include="Models\Student\ParentToProfileParentModelMapper.cs" />
+    <Compile Include="Service\AttendanceService.cs" />
+    <Compile Include="Service\IAttendanceService.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
@@ -16,7 +17,7 @@ namespace NGL.Web.Models.Attendance
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
-        public TakeAttendanceModel Build(Data.Entities.Section section, List<Data.Entities.StudentSectionAttendanceEvent> existingStudentSectionAttendanceEvents, DateTime date)
+        public TakeAttendanceModel Build(Data.Entities.Section section, DateTime date)
         {
             var target = new TakeAttendanceModel();
 
@@ -24,7 +25,7 @@ namespace NGL.Web.Models.Attendance
             target.Section = section.UniqueSectionCode + " (" + section.LocalCourseCode + ", " + section.ClassPeriodName + ")";
             target.SessionId = section.Session.SessionIdentity;
             target.Session = section.Session.SessionName;
-            target.Date = date;
+            target.Date = date.ToShortDateString();
 
             target.StudentRows = section.StudentSectionAssociations.Select(ssa => ssa.Student)
                 .Select(s => new StudentAttendanceRowModel
@@ -35,6 +36,7 @@ namespace NGL.Web.Models.Attendance
                     AttendanceType = AttendanceEventCategoryDescriptorEnum.InAttendance
                 }).ToList();
 
+            var existingStudentSectionAttendanceEvents = section.StudentSectionAttendanceEvents;
             if (!existingStudentSectionAttendanceEvents.IsNullOrEmpty())
             {
                 foreach (var ssae in existingStudentSectionAttendanceEvents)

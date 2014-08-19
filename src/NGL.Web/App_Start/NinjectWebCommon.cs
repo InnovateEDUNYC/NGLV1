@@ -11,6 +11,7 @@ using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
+using NGL.Web.Service;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
@@ -79,6 +80,7 @@ namespace NGL.Web
             kernel.Bind<IPerformanceLevelMapper>().To<CreateModelToAssessmentPerformanceLevelMapper>();
             kernel.Bind<ICreateModelToAssessmentSectionMapper>().To<CreateModelToCreateModelToAssessmentSectionMapper>();
             kernel.Bind<ICreateModelToAssessmentLearningStandardMapper>().To<CreateModelToCreateModelToAssessmentLearningStandardMapper>();
+            kernel.Bind<IAttendanceService>().To<AttendanceService>();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()
