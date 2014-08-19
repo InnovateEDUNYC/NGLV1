@@ -34,10 +34,6 @@ namespace NGL.Web.Controllers
             IEnumerable<Course> courses = _genericRepository.GetAll<Course>().ToList();
             var indexModels = new List<IndexModel>();
 
-
-
-
-
             foreach (var course in courses)
             {
                 var indexModel = new IndexModel();

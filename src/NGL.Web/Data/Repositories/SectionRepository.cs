@@ -17,7 +17,7 @@ namespace NGL.Web.Data.Repositories
                 .Include(s => s.Session)
                 .Include(s => s.StudentSectionAssociations.Select(ssa => ssa.Student))
                 .Include(s => s.StudentSectionAttendanceEvents)
-                .FirstOrDefault();
+                .ToList().FirstOrDefault();
 
             var studentSectionAssociationsOnDate = section.StudentSectionAssociations
                 .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.Value).Includes(date)).ToList();

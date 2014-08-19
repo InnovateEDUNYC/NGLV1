@@ -50,13 +50,16 @@
                                 <li>@Html.ActionLink("Course Generation", "Index", "CourseGeneration")</li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="text-center" href="@Url.Action(MVC.Attendance.Take())">
-                                <span class="fa fa-file-text-o fa-2x"></span>
-                                <br />
-                                Attendance
-                            </a>
-                        </li>
+                        if ((User as NglPrincipal).HasAccessTo("attendance", "create"))
+                        {
+                            <li>
+                                <a class="text-center" href="@Url.Action(MVC.Attendance.Take())">
+                                    <span class="fa fa-file-text-o fa-2x"></span>
+                                    <br />
+                                    Attendance
+                                </a>
+                            </li>
+                        }
                         <li>
                             <a class="text-center" href="@Url.Action(MVC.Assessment.Index())">
                                 <span class="fa fa-child fa-2x"></span>

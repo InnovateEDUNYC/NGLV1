@@ -19,7 +19,7 @@ namespace NGL.UiTests.Attendance
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(ObjectMother.UserJohnSmith.ViewModel);
+                .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
 
         public void IAmOnTheTakeAttendancePage()

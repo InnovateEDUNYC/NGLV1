@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models.Attendance;
 using NGL.Web.Service;
 
@@ -30,12 +31,14 @@ namespace NGL.Web.Controllers
         }
 
         [HttpGet]
+        [AuthorizeFor(Resource = "attendance", Operation = "create")]
         public virtual ActionResult Take()
         {
             return View(TakeAttendanceModel.CreateNew());
         }
 
         [HttpGet]
+        [AuthorizeFor(Resource = "attendance", Operation = "create")]
         public virtual ActionResult GetStudents(TakeAttendanceModel takeAttendanceModel)
         {
             if (! ModelState.IsValid)
@@ -52,6 +55,7 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
+        [AuthorizeFor(Resource = "attendance", Operation = "create")]
         public virtual ActionResult Save(TakeAttendanceModel takeAttendanceModel)
         {
             var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId);
