@@ -14,7 +14,10 @@ Unlike the monopolistic organizations like Power School and Jupiter,
 Our project follows the Design Principles.
 
 ##Developer Setup
-To run the website, clone the repository, run the `resetdb.bat` command found on the root of the repository, open the solution and run the NGL.Web project. On initiation the website looks for the database migration scripts and runs the delta. Since this is your first time running the website, it might take a while as it's building the database schema and inserting the required reference data.
+To run the website, 
+ - Change your system variables to have a 'BlobConnectionString' system variable set to: 'DefaultEndpointsProtocol=https;AccountName=\<YOUR ACCOUNT NAME\>;AccountKey=\<YOUR AZURE ACCOUNT KEY\>'
+ - Clone the repository, run the `resetdb.bat` command found on the root of the repository
+ - Open the solution and run the NGL.Web project. On initiation the website looks for the database migration scripts and runs the delta. Since this is your first time running the website, it might take a while as it's building the database schema and inserting the required reference data.
 
 ##Definition of Done
 If you want to contribute to the codebase, please fork the repository and submit a GitHub Pull Request. Your code should comply with our Definition of Done before it's accepted:
