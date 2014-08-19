@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using ChameleonForms.Attributes;
 using NGL.Web.Data.Entities;
 
@@ -15,7 +16,8 @@ namespace NGL.Web.Models.Course
         public List<ParentCourseListItemModel> ParentCourseList { get; set; }
 
         [ExistsIn("ParentCourseList", "ParentCourseId", "ParentCourseTitle", false)]
-        public Guid ParentCourseId { get; set; }
+        [Display(Name="Parent Course")]
+        public Guid? ParentCourseId { get; set; }
 
         public string CourseCode { get; set; }
         public string CourseTitle { get; set; }

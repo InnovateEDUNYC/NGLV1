@@ -36,7 +36,7 @@ namespace NGL.Web.Models.Course
             target.CareerPathwayTypeId = (int?) source.CareerPathway;
             target.TimeRequiredForCompletion = source.TimeRequiredForCompletion;
 
-            target.ParentCourseId = source.ParentCourseId;
+            target.ParentCourseId = source.ParentCourseId.GetValueOrDefault();
             target.ParentCourse = _genericRepository
                 .Get<Data.Entities.ParentCourse>(pc => pc.Id == source.ParentCourseId);
         }
