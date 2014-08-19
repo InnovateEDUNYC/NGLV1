@@ -51,6 +51,7 @@ namespace NGL.Web.Data.Entities
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
         public int CourseIdentity { get; set; }
+        public System.Guid ParentCourseId { get; set; }
     
         public virtual AcademicSubjectDescriptor AcademicSubjectDescriptor { get; set; }
         public virtual CareerPathwayType CareerPathwayType { get; set; }
@@ -67,5 +68,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<CourseLevelCharacteristic> CourseLevelCharacteristics { get; set; }
         public virtual ICollection<CourseOffering> CourseOfferings { get; set; }
         public virtual ICollection<GraduationPlanCreditsByCourseCourse> GraduationPlanCreditsByCourseCourses { get; set; }
+        public virtual ParentCourse ParentCourse { get; set; }
     }
 }

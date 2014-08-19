@@ -1,5 +1,4 @@
 ﻿IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ParentCourse]') AND type in (N'U'))
-BEGIN
 CREATE TABLE [dbo].[ParentCourse](
 	[EducationOrganizationId] [int] NOT NULL,
 	[ParentCourseCode] [nvarchar](60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -13,5 +12,9 @@ CREATE TABLE [dbo].[ParentCourse](
 	[Id]
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF)
 )
-END
-GO
+
+ALTER TABLE [dbo].[ParentCourse] ADD  CONSTRAINT [DF_ParentCourse_Id]  DEFAULT (newid()) FOR [Id]
+
+ALTER TABLE [dbo].[ParentCourse] ADD  DEFAULT (getdate()) FOR [LastModifiedDate]
+
+ALTER TABLE [dbo].[ParentCourse] ADD  DEFAULT (getdate()) FOR [CreateDate]

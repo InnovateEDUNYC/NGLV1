@@ -1922,10 +1922,11 @@
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
     <Content Include="Assets\Scripts\Views\Shared\sectionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
-    <EmbeddedResource Include="Data\Scripts\010 - Scheduling Sample Data.sample.sql" />
+    <EmbeddedResource Include="Data\Scripts\016 - Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
-    <EmbeddedResource Include="Data\Scripts\013.1 - Add Assessment Sample Data.sample.sql" />
+    <EmbeddedResource Include="Data\Scripts\016.1 - Add Assessment Sample Data.sample.sql" />
+    <EmbeddedResource Include="Data\Scripts\015 - Schema - Add Parent Course To Course Table.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
