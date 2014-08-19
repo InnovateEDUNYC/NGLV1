@@ -18,7 +18,7 @@ namespace NGL.UiTests.ParentCourse
 
         public bool ParentCourseExists(CreateModel createParentCourseModel)
         {
-            return Find.Element(By.CssSelector("tr:last-of-type td.parent-course-code")).Text.Equals(createParentCourseModel.ParentCourseCode);
+            return Find.Element(By.CssSelector("td.parent-course-code")).Text.Contains(createParentCourseModel.ParentCourseCode);
         }
     }
 }
