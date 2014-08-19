@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.ParentCourse;
 
@@ -28,6 +29,7 @@ namespace NGL.Web.Controllers
         }
         //
         // GET: /ParentCourse/
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "view")]
         public virtual ActionResult Index()
         {
             var parentCourses = _parentCourseRepository.GetParentCourses();
@@ -39,6 +41,7 @@ namespace NGL.Web.Controllers
 
         //
         // GET: /ParentCourse/Create
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create()
         {
             return View();
@@ -47,6 +50,7 @@ namespace NGL.Web.Controllers
         //
         // POST: /ParentCourse/Create
         [HttpPost]
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
