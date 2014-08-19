@@ -35,7 +35,7 @@ namespace NGL.Web.Data.Entities
         {
             get
             {
-                var blobConnectionString = "DefaultEndpointsProtocol=https;AccountName=brooklynlab;AccountKey=E7C2o22p41NI3aXNJENunnWKigqJ5uCJPq5r/PDWGgxkFdFpIEcqTIu0U+4Yb9zB+CG314tSP+iwtEGp8m3rcg==";
+                var blobConnectionString = Environment.GetEnvironmentVariable("BlobConnectionString");
                 return  blobConnectionString ?? CloudConfigurationManager.GetSetting("BlobConnectionString");
             }
         }
