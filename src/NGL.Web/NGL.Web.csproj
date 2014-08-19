@@ -2088,6 +2088,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>set BlobConnectionString=DefaultEndpointsProtocol=https;AccountName=ngl;AccountKey=ARQ1RvwcsqGyrA6u5f1KGC5pMQDIHE2rnrV6uWlG88k+N+T7FvswF9RFngi1S+amTViNZUO7BCukoQNkSdn61Q==
+</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
