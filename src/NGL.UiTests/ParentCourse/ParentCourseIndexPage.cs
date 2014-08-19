@@ -13,12 +13,12 @@ namespace NGL.UiTests.ParentCourse
     {
         public ParentCourseCreatePage GoToCreatePage()
         {
-            return Navigate.To<ParentCourseCreatePage>(By.LinkText("Create New Parent Course"));
+            return Navigate.To<ParentCourseCreatePage>(By.LinkText("Add Parent Course"));
         }
 
         public bool ParentCourseExists(CreateModel createParentCourseModel)
         {
-            return Find.Element(By.CssSelector("tr:last-of-type td.course-code")).Text.Equals(createParentCourseModel.ParentCourseCode);
+            return Find.Element(By.CssSelector("tr:last-of-type td.parent-course-code")).Text.Equals(createParentCourseModel.ParentCourseCode);
         }
     }
 }

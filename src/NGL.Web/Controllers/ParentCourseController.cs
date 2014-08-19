@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.ParentCourse;
 
@@ -14,26 +15,26 @@ namespace NGL.Web.Controllers
     {
         private readonly IMapper<CreateModel, ParentCourse> _createModelToParentCourseMapper;
         private readonly IGenericRepository _genericRepository;
+        private readonly IMapper<ParentCourse, IndexModel> _parentCourseToIndexModelMapper;
+        private IParentCourseRepository _parentCourseRepository;
 
         public ParentCourseController(IGenericRepository genericRepository,
-            IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper)
+            IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository)
         {
             _genericRepository = genericRepository;
             _createModelToParentCourseMapper = createModelToParentCourseMapper;
+            _parentCourseToIndexModelMapper = parentCourseToIndexModelMapper;
+            _parentCourseRepository = parentCourseRepository;
         }
         //
         // GET: /ParentCourse/
         public virtual ActionResult Index()
         {
-            var parentCourses = new List<IndexModel>();
-            return View(parentCourses);
-        }
+            var parentCourses = _parentCourseRepository.GetParentCourses();
 
-        //
-        // GET: /ParentCourse/Details/5
-        public virtual ActionResult Details(int id)
-        {
-            return View();
+            var indexModels = parentCourses.Select(pc => _parentCourseToIndexModelMapper.Build(pc));
+
+            return View(indexModels);
         }
 
         //
@@ -48,6 +49,9 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
+            if (!ModelState.IsValid)
+                return View(createModel);
+
             var parentCourse = _createModelToParentCourseMapper.Build(createModel);
             _genericRepository.Add(parentCourse);
             _genericRepository.Save();
