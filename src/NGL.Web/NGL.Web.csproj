@@ -1701,9 +1701,9 @@
     <Compile Include="Models\Course\CourseToIndexModelMapper.cs" />
     <Compile Include="Models\Course\CreateModelValidator.cs" />
     <Compile Include="Models\Course\IndexModel.cs" />
-    <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
     <Compile Include="Models\ParentCourse\CreateModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
     <Compile Include="Models\Enrollment\AcademicDetailModel.cs" />
