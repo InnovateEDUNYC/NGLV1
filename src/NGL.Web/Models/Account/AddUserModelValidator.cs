@@ -68,7 +68,7 @@ namespace NGL.Web.Models.Account
                 .NotNull()
                 .Length(1, 60);
             RuleFor(m => m.CriminalBackgroundCheck).Equal(true).WithMessage("Criminal Background Check is required for staff");
-            RuleFor(m => m.FingerPrinted).Equal(true).WithMessage("Finger printing is required for staff");
+            RuleFor(m => m.Fingerprinted).Equal(true).WithMessage("Finger printing is required for staff");
         }
 
         private Func<int?, bool> NotAlreadyExistAStaffWithSameStaffUSI(IStaffRepository staffRepository)

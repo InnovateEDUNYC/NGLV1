@@ -13,9 +13,9 @@ namespace NGL.UiTests.Shared
             {
                 Input.TickCheckbox(m => m.CriminalBackgroundCheck, true);
             }
-            if (addUserModel.FingerPrinted)
+            if (addUserModel.Fingerprinted)
             {
-                Input.TickCheckbox(m => m.FingerPrinted, true);
+                Input.TickCheckbox(m => m.Fingerprinted, true);
             }
 
             return Navigate.To<UsersPage>(By.Id("registerButton"));

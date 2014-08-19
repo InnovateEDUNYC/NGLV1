@@ -33,7 +33,7 @@ namespace NGL.Tests.Builders
         private string Certificate3 = "certificate 3";
         private string Certificate4 = "certificate 4";
         private bool CriminalBackgroundCheck = true;
-        private bool FingerPrinted = true;
+        private bool Fingerprinted = true;
 
         public AddUserModel Build()
         {
@@ -66,7 +66,7 @@ namespace NGL.Tests.Builders
                 Certificate3 = Certificate3,
                 Certificate4 = Certificate4,
                 CriminalBackgroundCheck = CriminalBackgroundCheck,
-                FingerPrinted = FingerPrinted
+                Fingerprinted = Fingerprinted
             };
         }
 

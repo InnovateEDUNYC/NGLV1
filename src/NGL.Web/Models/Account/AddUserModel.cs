@@ -40,6 +40,6 @@ namespace NGL.Web.Models.Account
         public string Certificate3 { get; set; }
         public string Certificate4 { get; set; }
         public bool CriminalBackgroundCheck { get; set; }
-        public bool FingerPrinted { get; set; }
+        public bool Fingerprinted { get; set; }
     }
 }
