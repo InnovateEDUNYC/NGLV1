@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NGL.Web.Models.Course;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
@@ -37,8 +38,8 @@ namespace NGL.UiTests.Course
         private Guid GetParentCourseId()
         {
             var parentCourseDropdown = Browser.FindElement(By.Id("ParentCourseId"));
-            var parentCourseFirstOption = parentCourseDropdown.FindElement(By.TagName("option"));
-            var parentCourseId = parentCourseFirstOption.GetAttribute("value");
+            var parentCourseLastOption = parentCourseDropdown.FindElements(By.TagName("option")).Last();
+            var parentCourseId = parentCourseLastOption.GetAttribute("value");
             return Guid.Parse(parentCourseId);
         }
     }
