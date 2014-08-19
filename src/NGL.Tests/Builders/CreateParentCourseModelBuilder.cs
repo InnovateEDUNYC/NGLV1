@@ -10,7 +10,7 @@ namespace NGL.Tests.Builders
 
         public CreateModel Build()
         {
-            _parentCourseCode = "Drama 101";
+            _parentCourseCode = "ZDrama 101";
             _parentCourseTitle = "Drama and Comedy";
             _parentCourseDescription = "Laugh and Cry";
             return new CreateModel
