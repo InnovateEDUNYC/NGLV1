@@ -8,7 +8,7 @@ namespace NGL.Web.Models.Student
         public decimal? WritingScore { get; set; }
         public decimal? MathScore { get; set; }
 
-        [Display(Name="Performance History")]
+        [Display(Name="Performance History File")]
         public string PerformanceHistoryFileUrl { get; set; }
 
         public string PerformanceHistory { get; set; }
