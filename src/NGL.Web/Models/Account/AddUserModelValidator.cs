@@ -51,7 +51,7 @@ namespace NGL.Web.Models.Account
             RuleFor(m => m.HighestCompletedLevelOfEducation).NotNull();
             RuleFor(m => m.CitizenshipStatus).NotNull();
             RuleFor(m => m.YearsOfPriorProfessionalExperience).NotNull();
-            RuleFor(m => m.YearsOfPriorTeachingExperience).NotNull();
+            RuleFor(m => m.YearsOfPriorTeachingExperience);
             RuleFor(m => m.SSN)
                 .NotNull()
                 .Length(8, 11);
@@ -59,13 +59,10 @@ namespace NGL.Web.Models.Account
                 .NotNull()
                 .Length(1, 60);
             RuleFor(m => m.Certificate2)
-                .NotNull()
                 .Length(1, 60);
             RuleFor(m => m.Certificate3)
-                .NotNull()
                 .Length(1, 60);
             RuleFor(m => m.Certificate4)
-                .NotNull()
                 .Length(1, 60);
             RuleFor(m => m.CriminalBackgroundCheck).Equal(true).WithMessage("Criminal Background Check is required for staff");
             RuleFor(m => m.Fingerprinted).Equal(true).WithMessage("Finger printing is required for staff");
