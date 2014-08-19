@@ -14,14 +14,16 @@ namespace NGL.Web.Controllers
         private readonly IGenericRepository _genericRepository;
         private readonly IMapper<Course, IndexModel> _courseToIndexModelMapper;
         private readonly IMapper<CreateModel, Course> _createModelToCourseMapper;
+        private readonly IMapper<ParentCourse, ParentCourseListItemModel> _parentCourseToParentCourseListItemModelMapper;
 
         public CourseController(IGenericRepository genericRepository, 
             IMapper<Course, IndexModel> courseToIndexModelMapper, 
-            IMapper<CreateModel, Course> createModelToCourseMapper)
+            IMapper<CreateModel, Course> createModelToCourseMapper, IMapper<ParentCourse, ParentCourseListItemModel> parentCourseToParentCourseListItemModelMapper)
         {
             _genericRepository = genericRepository;
             _courseToIndexModelMapper = courseToIndexModelMapper;
             _createModelToCourseMapper = createModelToCourseMapper;
+            _parentCourseToParentCourseListItemModelMapper = parentCourseToParentCourseListItemModelMapper;
         }
 
 
@@ -46,7 +48,10 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create()
         {
-            return View();
+            var parentCourseList = GetParentCourseList();
+            var createModel = CreateModel.CreateNewWith(parentCourseList);
+
+            return View(createModel);
         }
 
         //POST: /Course/Create
@@ -55,13 +60,22 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Create(CreateModel createModel)
         {
             if (!ModelState.IsValid)
+            {
+                createModel.ParentCourseList = GetParentCourseList();
                 return View(createModel);
+            }
 
             var course = _createModelToCourseMapper.Build(createModel);
             _genericRepository.Add(course);
             _genericRepository.Save();
 
             return RedirectToAction(Actions.Index());
+        }
+
+        private List<ParentCourseListItemModel> GetParentCourseList()
+        {
+            var parentCourseList = _genericRepository.GetAll<ParentCourse>().ToList();
+            return parentCourseList.Select(parentCourse => _parentCourseToParentCourseListItemModelMapper.Build(parentCourse)).ToList();
         }
     }
 }

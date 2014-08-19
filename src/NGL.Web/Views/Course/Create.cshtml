@@ -10,6 +10,7 @@
 {
    using (var s = f.BeginSection(""))
     {
+        @s.FieldFor(m => m.ParentCourseId)
         @s.FieldFor(m => m.CourseCode)
         @s.FieldFor(m => m.CourseTitle)
         @s.FieldFor(m => m.NumberOfParts)

@@ -116,6 +116,7 @@
     <Compile Include="ClassPeriod\ValidatorTests.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Course\CreateCourseModelBuilder.cs" />
+    <Compile Include="Course\ParentCourseToParentCourseListItemModelMapperTests.cs" />
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
     <Compile Include="Data\Filters\SessionFiltersTests.cs" />

@@ -9,6 +9,13 @@ namespace NGL.Web.Models.Course
     {
         public CreateModelValidator(IGenericRepository genericRepository)
         {
+            RuleFor(model => model.ParentCourseId).NotEmpty();
+            RuleFor(model => model.CourseCode).NotEmpty().Length(1, 60);
+            RuleFor(model => model.CourseTitle).NotEmpty().Length(1, 60);
+            RuleFor(model => model.NumberOfParts).NotEmpty();
+            RuleFor(model => model.AcademicSubject).NotEmpty();
+            RuleFor(model => model.CourseDescription).Length(0, 20);
+
             var repositoryReader = new RepositoryReader<Data.Entities.Course>(genericRepository);
 
             RuleFor(model => model.CourseCode).Must(courseCode =>

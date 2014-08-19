@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq.Expressions;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Course;
 using NSubstitute;
@@ -54,7 +57,8 @@ namespace NGL.Tests.Course
                     EducationOrganization = new EducationOrganization { EducationOrganizationId = 1 }
                 });
 
-            var courseEntity = new Web.Data.Entities.Course();
+            var parentCourse = new ParentCourseBuilder().Build();
+
             var courseCreateModel = new CreateModel
             {
                 CourseCode = "CSC101",
@@ -74,10 +78,15 @@ namespace NGL.Tests.Course
                 MaximumAvailableCredit = 3m,
                 CareerPathway = CareerPathwayTypeEnum.AgricultureFoodandNaturalResources,
                 TimeRequiredForCompletion = 10,
+                ParentCourseId = parentCourse.Id
             };
 
-            var createModelToCourseMapper = new CreateModelToCourseMapper(schoolRepository);
-            createModelToCourseMapper.Map(courseCreateModel, courseEntity);
+            var genericRepository = Substitute.For<IGenericRepository>();
+            genericRepository.Get(Arg.Any<Expression<Func<Web.Data.Entities.ParentCourse, bool>>>())
+                .Returns(parentCourse);
+
+            var createModelToCourseMapper = new CreateModelToCourseMapper(genericRepository, schoolRepository);
+            var courseEntity = createModelToCourseMapper.Build(courseCreateModel);
 
             courseEntity.CourseCode.ShouldBe("CSC101");
             courseEntity.CourseTitle.ShouldBe("Intro to Programming");
@@ -96,6 +105,9 @@ namespace NGL.Tests.Course
             courseEntity.MaximumAvailableCredit.ShouldBe(3m);
             courseEntity.CareerPathwayTypeId.ShouldBe((int)CareerPathwayTypeEnum.AgricultureFoodandNaturalResources);
             courseEntity.TimeRequiredForCompletion.ShouldBe(10);
+
+            courseEntity.ParentCourseId.ShouldBe(parentCourse.Id);
+            courseEntity.ParentCourse.ShouldBe(parentCourse);
         }
     }
 }
