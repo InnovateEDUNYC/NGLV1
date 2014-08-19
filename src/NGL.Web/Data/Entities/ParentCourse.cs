@@ -19,6 +19,7 @@ namespace NGL.Web.Data.Entities
     		this.Id = System.Guid.NewGuid();
     		this.LastModifiedDate = System.DateTime.Now;
     		this.CreateDate = System.DateTime.Now;
+            this.Courses = new HashSet<Course>();
         }
     
         public int EducationOrganizationId { get; set; }
@@ -28,5 +29,7 @@ namespace NGL.Web.Data.Entities
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+    
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

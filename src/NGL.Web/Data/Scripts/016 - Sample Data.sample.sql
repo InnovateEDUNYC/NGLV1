@@ -47,30 +47,28 @@ INSERT INTO [edfi].[ClassPeriod]
 	VALUES
 	 (1, 'Period 5')
 
+INSERT INTO [dbo].[ParentCourse]
+	(	[EducationOrganizationId],
+	[ParentCourseCode],
+	[ParentCourseTitle])
+	VALUES 
+	(1, 'MATH123', 'Algebra I'),
+	(1, 'ENGL400', 'Creative Writing II')
+
+declare @math123parentCourseid uniqueidentifier
+declare @engl400parentCourseId uniqueidentifier
+
+select @math123parentCourseid = Id from [dbo].[ParentCourse] where ParentCourseCode like 'MATH123'
+select @engl400parentCourseid = Id from [dbo].[ParentCourse] where ParentCourseCode like 'ENGL400'
+
 INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
+	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId], [ParentCourseId])
 	VALUES
-	 (1, 'MATH123 - DI', 'Algebra I', 1, 1)
-	 
-INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
-	VALUES
-	 (1, 'MATH123 - CW', 'Algebra I', 1, 2)
-	  
-INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
-	VALUES
-	 (1, 'MATH123 - TU', 'Algebra I', 1, 3)
-	 
-INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
-	VALUES
-	 (1, 'ENGL400 - DI', 'Creative Writing II', 1, 4)
-	 
-INSERT INTO [edfi].[Course]
-	([EducationOrganizationId], [CourseCode], [CourseTitle], [NumberOfParts], [AcademicSubjectDescriptorId])
-	VALUES
-	 (1, 'ENGL400 - CW', 'Creative Writing II', 1, 4)
+	 (1, 'MATH123 - DI', 'Algebra I', 1, 1, @math123parentCourseid),
+	 (1, 'MATH123 - CW', 'Algebra I', 1, 2, @math123parentCourseid),
+	 (1, 'MATH123 - TU', 'Algebra I', 1, 3, @math123parentCourseid),
+	 (1, 'ENGL400 - DI', 'Creative Writing II', 1, 4, @engl400parentCourseid),
+	 (1, 'ENGL400 - CW', 'Creative Writing II', 1, 4, @engl400parentCourseid)
 
 
 INSERT INTO [edfi].[CourseOffering]

@@ -1159,6 +1159,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="CourseIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentCourseId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseAttemptResultType">
           <Key>
@@ -7663,6 +7664,18 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Principal>
             <Dependent Role="Course">
               <PropertyRef Name="EducationOrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_ParentCourse_ParentCourseId">
+          <End Role="ParentCourse" Type="Self.ParentCourse" Multiplicity="1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="ParentCourseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16921,6 +16934,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="EducationOrganization" EntitySet="EducationOrganization" />
             <End Role="Course" EntitySet="Course" />
           </AssociationSet>
+          <AssociationSet Name="FK_Course_ParentCourse_ParentCourseId" Association="Self.FK_Course_ParentCourse_ParentCourseId">
+            <End Role="ParentCourse" EntitySet="ParentCourse" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
           <AssociationSet Name="FK_CourseCompetencyLevel_CompetencyLevelDescriptor_CompetencyLevelDescriptorId" Association="Self.FK_CourseCompetencyLevel_CompetencyLevelDescriptor_CompetencyLevelDescriptorId">
             <End Role="CompetencyLevelDescriptor" EntitySet="CompetencyLevelDescriptor" />
             <End Role="CourseCompetencyLevel" EntitySet="CourseCompetencyLevel" />
@@ -20658,6 +20675,8 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="CourseLevelCharacteristics" Relationship="Self.FK_CourseLevelCharacteristics_Course_EducationOrganizationId" FromRole="Course" ToRole="CourseLevelCharacteristic" />
           <NavigationProperty Name="CourseOfferings" Relationship="Self.FK_CourseOffering_Course_SchoolId" FromRole="Course" ToRole="CourseOffering" />
           <NavigationProperty Name="GraduationPlanCreditsByCourseCourses" Relationship="Self.FK_GraduationPlanCreditsByCourseCourse_Course" FromRole="Course" ToRole="GraduationPlanCreditsByCourseCourse" />
+          <Property Name="ParentCourseId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="ParentCourse" Relationship="NGLModel.FK_Course_ParentCourse_ParentCourseId" FromRole="Course" ToRole="ParentCourse" />
         </EntityType>
         <EntityType Name="CourseAttemptResultType">
           <Key>
@@ -39909,6 +39928,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="AssessmentLearningStandard" EntitySet="AssessmentLearningStandards" />
           </AssociationSet>
           <EntitySet Name="ParentCourses" EntityType="NGLModel.ParentCourse" />
+          <AssociationSet Name="FK_Course_ParentCourse_ParentCourseId" Association="NGLModel.FK_Course_ParentCourse_ParentCourseId">
+            <End Role="ParentCourse" EntitySet="ParentCourses" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentProgramStatus">
           <Key>
@@ -40225,7 +40248,20 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Courses" Relationship="NGLModel.FK_Course_ParentCourse_ParentCourseId" FromRole="ParentCourse" ToRole="Course" />
         </EntityType>
+        <Association Name="FK_Course_ParentCourse_ParentCourseId">
+          <End Type="NGLModel.ParentCourse" Role="ParentCourse" Multiplicity="1" />
+          <End Type="NGLModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="ParentCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -41177,6 +41213,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="NGLModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="ParentCourseId" ColumnName="ParentCourseId" />
                 <ScalarProperty Name="EducationOrganizationId" ColumnName="EducationOrganizationId" />
                 <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
                 <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
