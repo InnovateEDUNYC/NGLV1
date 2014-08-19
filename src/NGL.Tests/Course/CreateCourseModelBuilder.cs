@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Course;
 
 namespace NGL.Tests.Course
@@ -27,7 +31,6 @@ namespace NGL.Tests.Course
         private const CareerPathwayTypeEnum CareerPathway = CareerPathwayTypeEnum.HospitalityandTourism;
         private const int TimeRequiredForCompletion = 2000;
 
-
         public CreateModel Build()
         {
             return new CreateModel
@@ -48,7 +51,7 @@ namespace NGL.Tests.Course
                 MaximumAvailableCreditConversion = MaximumAvailableCreditConversion,
                 MaximumAvailableCredit = MaximumAvailableCredit,
                 CareerPathway = CareerPathway,
-                TimeRequiredForCompletion = TimeRequiredForCompletion 
+                TimeRequiredForCompletion = TimeRequiredForCompletion
             };
         }
     }
