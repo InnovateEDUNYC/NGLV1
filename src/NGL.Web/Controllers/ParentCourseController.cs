@@ -49,6 +49,9 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(CreateModel createModel)
         {
+            if (!ModelState.IsValid)
+                return View(createModel);
+
             var parentCourse = _createModelToParentCourseMapper.Build(createModel);
             _genericRepository.Add(parentCourse);
             _genericRepository.Save();

@@ -26,7 +26,7 @@ namespace NGL.Tests.ParentCourse
             Web.Data.Entities.ParentCourse parentCourse = mapper.Build(model);
 
             parentCourse.EducationOrganizationId.ShouldBe(1);
-            parentCourse.ParentCourseCode.ShouldBe("Drama 101");
+            parentCourse.ParentCourseCode.ShouldBe("ZDrama 101");
             parentCourse.ParentCourseTitle.ShouldBe("Drama and Comedy");
             parentCourse.ParentCourseDescription.ShouldBe("Laugh and Cry");
         }

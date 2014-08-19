@@ -133,6 +133,7 @@
     <Compile Include="Location\ValidatorTests.cs" />
     <Compile Include="ParentCourse\CreateModelToParentCourseMapperTest.cs" />
     <Compile Include="ParentCourse\ParentCourseToIndexModelMapperTests.cs" />
+    <Compile Include="ParentCourse\ValidatorTests.cs" />
     <Compile Include="Schedule\SetModelValidatorTest.cs" />
     <Compile Include="Section\CourseToCourseJsonModelMapperTests.cs" />
     <Compile Include="Schedule\SessionToSessionListItemModelMapperTests.cs" />
