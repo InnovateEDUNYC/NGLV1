@@ -13,14 +13,19 @@ namespace NGL.Web.Models.Student
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
+        private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
 
-        public StudentToProfileModelMapper(StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, ParentToProfileParentModelMapper parentToProfileParentModelMapper,
-                                                                ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
-                         StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper)
+        public StudentToProfileModelMapper(
+            StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
+            ParentToProfileParentModelMapper parentToProfileParentModelMapper,
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
+            StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper,
+            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
             _studentProgramStatusToProfileProgramStatusModelMapper = studentProgramStatusToProfileProgramStatusModelMapper;
+            _studentAttendancePercentageMapper = studentAttendancePercentageMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
@@ -31,6 +36,7 @@ namespace NGL.Web.Models.Student
             target.ProfilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(source);
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
+            _studentAttendancePercentageMapper.Map(source.StudentSectionAttendanceEvents.ToList(), target);
 
 			if (!source.StudentAcademicDetails.IsNullOrEmpty())
                 target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);

@@ -36,7 +36,7 @@ namespace NGL.Tests.Student
             };
 
             _student = new StudentBuilder().WithStudentSectionAttendanceEvents(studentSectionAttendanceEvents).Build();
-            _mapper.Map(_student, _profileModel);
+            _mapper.Map(studentSectionAttendanceEvents, _profileModel);
             _profileModel.AttedancePercentage.ShouldBe("80.00");
         }
         
@@ -46,7 +46,7 @@ namespace NGL.Tests.Student
             SetUp();
             _student = new StudentBuilder().Build();
 
-            _mapper.Map(_student, _profileModel);
+            _mapper.Map(new List<StudentSectionAttendanceEvent>(), _profileModel);
             _profileModel.AttedancePercentage.ShouldBe("0.00");
         }
 

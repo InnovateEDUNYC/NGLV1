@@ -5,11 +5,11 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentAttendancePercentageMapper : MapperBase<Data.Entities.Student, ProfileModel>
+    public class StudentAttendancePercentageMapper : MapperBase<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel>
     {
-        public override void Map(Data.Entities.Student source, ProfileModel target)
+        public override void Map(IList<Data.Entities.StudentSectionAttendanceEvent> source, ProfileModel target)
         {
-            var attendanceEvents = source.StudentSectionAttendanceEvents.ToList();
+            var attendanceEvents = source.ToList();
 
             var presents = attendanceEvents.Count(ae => 
                 ae.AttendanceEventCategoryDescriptorId    == (int)AttendanceEventCategoryDescriptorEnum.InAttendance

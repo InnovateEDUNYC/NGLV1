@@ -23,7 +23,8 @@ namespace NGL.Tests.Student
             _mapper = new StudentToProfileModelMapper(new StudentToAcademicDetailsMapper(downloader),
                 new ParentToProfileParentModelMapper(),
                  new ProfilePhotoUrlFetcher(downloader),
-                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader));
+                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader),
+                new StudentAttendancePercentageMapper());
         }
 
         [Fact]
