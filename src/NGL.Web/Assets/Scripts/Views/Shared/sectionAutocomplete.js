@@ -55,10 +55,13 @@ Ngl.shared.sectionAutocomplete = (function () {
                 });
             },
             select: function (event, ui) {
+                $('#SectionId').val(ui.item.sectionId);
+
                 if (ui.item.label === noResultsLabel) {
                     event.preventDefault();
+                } else {
+                    $("#SectionId").trigger('populated');
                 }
-                $('#SectionId').val(ui.item.sectionId);
             },
             focus: function (event, ui) {
                 if (ui.item.label === noResultsLabel) {

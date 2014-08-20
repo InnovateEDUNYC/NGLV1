@@ -1,4 +1,5 @@
-﻿using NGL.UiTests.Student;
+﻿using NGL.UiTests.ParentCourse;
+using NGL.UiTests.Student;
 using NGL.Web.Models.Student;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;

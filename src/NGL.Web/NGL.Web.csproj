@@ -1703,6 +1703,7 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
+    <Compile Include="Models\GradeModel.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
     <Compile Include="Models\ParentCourse\CreateModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
@@ -1721,8 +1722,11 @@
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
+    <Compile Include="Models\ParentCourse\FindParentCourseModel.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseToIndexModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\ParentCourseToParentGradesModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\SectionToFindParentCourseModelMapper.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />
     <Compile Include="Models\Schedule\SetModel.cs" />
@@ -1924,6 +1928,7 @@
     <EmbeddedResource Include="Data\Scripts\008 - Schema - StudentAcademicDetails.sql" />
     <EmbeddedResource Include="Data\Scripts\002.1 - Add Default Roles And Users.sql" />
     <EmbeddedResource Include="Data\Scripts\009 - Schema - StaffCertificate.sql" />
+    <Content Include="Assets\Scripts\Views\Report\getGrades.js" />
     <Content Include="Assets\Scripts\Views\Schedule\removeStudent.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
@@ -2057,6 +2062,7 @@
     <Content Include="Views\ParentCourse\Index.cshtml" />
     <Content Include="Views\Assessment\Month.cshtml" />
     <Content Include="Views\Attendance\Take.cshtml" />
+    <Content Include="Views\ParentCourse\Grades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

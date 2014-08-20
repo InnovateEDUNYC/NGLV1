@@ -7,25 +7,26 @@
 
 <h2>Students</h2>
 
+@Html.ActionLink("Grade Students", MVC.ParentCourse.Grades(), new { @class = "btn btn-primary" })
+
 <div class="table-container">
     <table class="table table-striped" id="student-table">
         <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StudentUsi)
-                </th>
-                <th>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentUsi)
+            </th>
+            <th>
 
-                </th>
-            </tr>
-        </thead>
-
+            </th>
+        </tr>
+    </thead>
         <tbody>
             @foreach (var item in Model)
             {
