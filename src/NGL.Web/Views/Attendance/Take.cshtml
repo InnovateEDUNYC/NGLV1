@@ -25,41 +25,141 @@
             @s.FieldFor(m => m.SectionId)
         </div>
 
-        <button type="button" id="get-students-btn" class="btn btn-primary">Get Students</button>
+        <button type="button" id="get-students-btn" class="btn btn-primary">Find Students</button>
 
         if (!Model.StudentRows.IsNullOrEmpty())
         {
-            <div class="attendance-list">
-                <div class="attendance-type-container">
-                    <div class="attendance-type">Present</div>
-                    <div class="attendance-type">Excused</div>
-                    <div class="attendance-type">Unexcused</div>
-                    <div class="attendance-type">Tardy</div>
-                    <div class="attendance-type">Early dep.</div>
-                </div>
-                <div class="student-list">
+            <div class="table-container">
+                <table class="table table-striped attendance-list">
+                    <thead>
+                        <tr class="attendance-type-container">
+                            <th class="col-xs-5"><h4 class="strong">Students</h4></th>
+                            <th class="col-xs-1 attendance-type">Present</th>
+                            <th class="col-xs-1 attendance-type">Excused</th>
+                            <th class="col-xs-1 attendance-type">Unexcused</th>
+                            <th class="col-xs-1 attendance-type">Tardy</th>
+                            <th class="col-xs-1 attendance-type">Early dep.</th>
+                        </tr>
+                    </thead>
+                
                     @for (var i = 0; i < Model.StudentRows.Count; i++)
                     {
-                        <div class="hidden">
-                            @Html.TextBoxFor(tam => tam.StudentRows[i].StudentUsi)
-                        </div>
+                        <tr>
+                        
+                            @{ var attendance = @Model.StudentRows[i].AttendanceType; }
 
-                        <div class="attendance-list-item attendance-list-item-@(i%2)">
-                            <img class="profile-photo-thumbnail" src="@Model.StudentRows[i].ProfileThumbnailUrl"/>
-                            <div class="student-name">@Html.DisplayTextFor(tam => tam.StudentRows[i].StudentName)</div>
-                            @s.FieldFor(tam => tam.StudentRows[i].AttendanceType).AsRadioList()
-                        </div>
+                            <td>
+                                <span class="hidden">
+                                    @Html.TextBoxFor(tam => tam.StudentRows[i].StudentUsi)
+                                </span>
+                                <img class="profile-photo-thumbnail" src="@Model.StudentRows[i].ProfileThumbnailUrl" />
+                                <div class="student-name">@Html.DisplayTextFor(tam => tam.StudentRows[i].StudentName)</div>
+                            </td>
+
+                            <td class="custom-checkbox-container">
+                                <div class="radio">
+                                    
+                                    @if (attendance.ToString() == "InAttendance")
+                                    {
+                                        <input checked="checked" id="StudentRows_@(i)__AttendanceType_1" name="StudentRows[@(i)].AttendanceType" type="radio" value="InAttendance">
+                                    }
+                                    else
+                                    {
+                                        <input id="StudentRows_@(i)__AttendanceType_1" name="StudentRows[@(i)].AttendanceType" type="radio" value="InAttendance">
+                                    }
+                                    
+                                    <label class="custom-checkbox InAttendance" for="StudentRows_@(i)__AttendanceType_1">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td class="custom-checkbox-container">
+                                <div class="radio">
+                                    
+                                    @if (attendance.ToString() == "ExcusedAbsence")
+                                    {
+                                        <input checked="checked" id="StudentRows_@(i)__AttendanceType_2" name="StudentRows[@(i)].AttendanceType" type="radio" value="ExcusedAbsence">
+                                    }
+                                    else
+                                    {
+                                        <input id="StudentRows_@(i)__AttendanceType_2" name="StudentRows[@(i)].AttendanceType" type="radio" value="ExcusedAbsence">
+                                    }
+                                    
+                                    <label class="custom-checkbox ExcusedAbsence" for="StudentRows_@(i)__AttendanceType_2">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td class="custom-checkbox-container">
+                                <div class="radio">
+                                    
+                                    @if (attendance.ToString() == "UnexcusedAbsence")
+                                    {
+                                        <input checked="checked" id="StudentRows_@(i)__AttendanceType_3" name="StudentRows[@(i)].AttendanceType" type="radio" value="UnexcusedAbsence">
+                                    }
+                                    else
+                                    {
+                                        <input id="StudentRows_@(i)__AttendanceType_3" name="StudentRows[@(i)].AttendanceType" type="radio" value="UnexcusedAbsence">
+                                    }
+                                    
+                                    <label class="custom-checkbox UnexcusedAbsence" for="StudentRows_@(i)__AttendanceType_3">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td class="custom-checkbox-container">
+                                <div class="radio">
+                                    
+                                    @if (attendance.ToString() == "Tardy")
+                                    {
+                                        <input checked="checked" id="StudentRows_@(i)__AttendanceType_4" name="StudentRows[@(i)].AttendanceType" type="radio" value="Tardy">
+                                    }
+                                    else
+                                    {
+                                        <input id="StudentRows_@(i)__AttendanceType_4" name="StudentRows[@(i)].AttendanceType" type="radio" value="Tardy">
+                                    }
+
+                                    <label class="custom-checkbox Tardy" for="StudentRows_@(i)__AttendanceType_4">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td class="custom-checkbox-container">
+                                <div class="radio">
+                                    
+                                    @if (attendance.ToString() == "Earlydeparture")
+                                    {
+                                        <input checked="checked" id="StudentRows_@(i)__AttendanceType_5" name="StudentRows[@(i)].AttendanceType" type="radio" value="Earlydeparture">
+                                    }
+                                    else
+                                    {
+                                        <input id="StudentRows_@(i)__AttendanceType_5" name="StudentRows[@(i)].AttendanceType" type="radio" value="Earlydeparture">
+                                    }
+
+                                    <label class="custom-checkbox Earlydeparture" for="StudentRows_@(i)__AttendanceType_5">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </td>
+
+                        </tr>
                     }
-                </div>
-                
-                <div class="save-attendance">
-                    @using (var n = f.BeginNavigation())
-                    {
-                        @n.Submit("Save").AddClass("btn btn-primary save-button")
-                    }
-                </div>
+           
+                </table>
             </div>
+            <div class="save-attendance">
+                <button class="btn btn btn-default" type="submit">Cancel</button>
 
+                @using (var n = f.BeginNavigation())
+                {
+                    @n.Submit("Save").AddClass("btn btn-primary save-button")
+                }
+            </div>
+            
             
         }
     }
