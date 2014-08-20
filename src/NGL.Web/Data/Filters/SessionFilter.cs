@@ -6,7 +6,7 @@ using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Data.Filters
 {
-    public class SessionFilter
+    public class SessionFilter : ISessionFilter
     {
         private readonly IGenericRepository _genericRepository;
 

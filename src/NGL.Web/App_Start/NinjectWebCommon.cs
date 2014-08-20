@@ -6,6 +6,7 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using NGL.Web;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
@@ -81,6 +82,8 @@ namespace NGL.Web
             kernel.Bind<ICreateModelToAssessmentSectionMapper>().To<CreateModelToCreateModelToAssessmentSectionMapper>();
             kernel.Bind<ICreateModelToAssessmentLearningStandardMapper>().To<CreateModelToCreateModelToAssessmentLearningStandardMapper>();
             kernel.Bind<IAttendanceService>().To<AttendanceService>();
+            kernel.Bind<ISessionFilter>().To<SessionFilter>();
+            kernel.Bind<IStudentService>().To<StudentService>();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()

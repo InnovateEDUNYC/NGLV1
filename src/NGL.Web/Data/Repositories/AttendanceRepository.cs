@@ -26,6 +26,12 @@ namespace NGL.Web.Data.Repositories
 
         }
 
+        public List<StudentSectionAttendanceEvent> GetSectionAttendanceEventsFor(int studentUsi, short schoolYear)
+        {
+            return DbContext.Set<StudentSectionAttendanceEvent>()
+                .Where(ssae => ssae.StudentUSI == studentUsi && ssae.SchoolYear == schoolYear).ToList();
+        }
+
         public void AddStudentSectionAttendanceEventList(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
         {
             foreach (var ssae in studentSectionAttendanceEventList)
@@ -34,7 +40,7 @@ namespace NGL.Web.Data.Repositories
             }
         }
 
-        public void Delete(List<StudentSectionAttendanceEvent> studentSectionAttendanceEvents)
+        public void Delete(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEvents)
         {
             foreach (var ssae in studentSectionAttendanceEvents)
                 DbContext.Set<StudentSectionAttendanceEvent>().Remove(ssae);

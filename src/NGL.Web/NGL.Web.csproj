@@ -289,16 +289,19 @@
       <SubType>Code</SubType>
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Filters\ISessionFilter.cs" />
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\AttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\ISectionRepository.cs" />
+    <Compile Include="Data\Repositories\IStudentRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
     <Compile Include="Data\Repositories\ParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\SectionRepository.cs" />
+    <Compile Include="Data\Repositories\StudentRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionRepository.cs" />
     <Compile Include="Data\Entities\AcademicHonorCategoryType.cs">
@@ -1651,7 +1654,6 @@
     <Compile Include="Data\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Data\Infrastructure\IRepositoryBase.cs" />
     <Compile Include="Data\Queries\SessionByTermTypeAndSchoolYearQuery.cs" />
-    <Compile Include="Data\Queries\StudentByUsiQuery.cs" />
     <Compile Include="Data\Repositories\ISchoolRepository.cs" />
     <Compile Include="Data\Repositories\SchoolRepository.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -1781,6 +1783,8 @@
     <Compile Include="Models\Student\ParentToProfileParentModelMapper.cs" />
     <Compile Include="Service\AttendanceService.cs" />
     <Compile Include="Service\IAttendanceService.cs" />
+    <Compile Include="Service\IStudentService.cs" />
+    <Compile Include="Service\StudentService.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

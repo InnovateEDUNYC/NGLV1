@@ -26,6 +26,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Assessment, IndexModel> _assessmentToAssessmentIndexModelMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly ILearningStandardRepository _learningStandardRepository;
+        private readonly ISessionFilter _sessionFilter;
 
         public AssessmentController(IMapper<CreateModel, Assessment> createModelToAssessmentMapper,
             IGenericRepository genericRepository,
@@ -34,7 +35,7 @@ namespace NGL.Web.Controllers
             IMapper<Assessment, EnterResultsModel> assessmentToEnterResultsModelMapper,
             EnterResultsStudentModelToStudentAssessmentMapper enterResultsStudentModelToStudentAssessmentMapper,
 			IMapper<Assessment, IndexModel> assessmentToAssessmentIndexModelMapper,
-            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository)
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher, ILearningStandardRepository learningStandardRepository, ISessionFilter sessionFilter)
         {
             _createModelToAssessmentMapper = createModelToAssessmentMapper;
             _genericRepository = genericRepository;
@@ -44,6 +45,7 @@ namespace NGL.Web.Controllers
             _enterResultsStudentModelToStudentAssessmentMapper = enterResultsStudentModelToStudentAssessmentMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
              _learningStandardRepository = learningStandardRepository;
+            _sessionFilter = sessionFilter;
             _assessmentToAssessmentIndexModelMapper = assessmentToAssessmentIndexModelMapper;
         }
 
@@ -158,7 +160,7 @@ namespace NGL.Web.Controllers
         {
             if (sessionId == null)
             {
-                var currentSession = new SessionFilter(_genericRepository).FindSession(DateTime.Now);
+                var currentSession = _sessionFilter.FindSession(DateTime.Now);
                 sessionId = currentSession.SessionIdentity;
             }
 

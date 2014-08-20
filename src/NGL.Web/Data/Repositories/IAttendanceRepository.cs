@@ -8,6 +8,7 @@ namespace NGL.Web.Data.Repositories
     {
         List<StudentSectionAttendanceEvent> GetSectionAttendanceEventsFor(Section section, DateTime dateTime);
         void AddStudentSectionAttendanceEventList(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList);
-        void Delete(List<StudentSectionAttendanceEvent> currentAttendanceEvent);
+        void Delete(IEnumerable<StudentSectionAttendanceEvent> currentAttendanceEvent);
+        List<StudentSectionAttendanceEvent> GetSectionAttendanceEventsFor(int studentUsi, short schoolYear);
     }
 }
