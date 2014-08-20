@@ -1765,6 +1765,7 @@
     <Compile Include="Models\Section\SessionToSessionJsonModelMapper.cs" />
     <Compile Include="Models\Section\StudentSectionAssociationToSectionListItemModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
+    <Compile Include="Models\Student\StudentAttendancePercentageMapper.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\ProfileParentAddressModel.cs" />

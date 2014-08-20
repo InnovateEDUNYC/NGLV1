@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using NGL.Tests.Student;
 using NGL.Web.Data.Entities;
 
@@ -23,6 +24,7 @@ namespace NGL.Tests.Builders
         private const bool HispanicLatinoEthnicity = true;
         private const int Race = (int)RaceTypeEnum.NativeHawaiianPacificIslander;
         private const int PrimaryParentRelationType = (int)RelationTypeEnum.Father;
+        private IList<StudentSectionAttendanceEvent> _studentSectionAttendanceEvents  = new List<StudentSectionAttendanceEvent>();
 
         public StudentBuilder()
         {
@@ -46,6 +48,8 @@ namespace NGL.Tests.Builders
             _student.StudentProgramStatus = _studentProgramStatus;
             _student.StudentParentAssociations = _studentParentAssociations;
             _student.StudentAssessments = _studentAssessments;
+            _student.StudentSectionAttendanceEvents = _studentSectionAttendanceEvents;
+
             return _student;
         }
 
@@ -100,6 +104,13 @@ namespace NGL.Tests.Builders
         public StudentBuilder WithFirstName(string firstName)
         {
             _firstName = firstName;
+            return this;
+        }
+
+        public StudentBuilder WithStudentSectionAttendanceEvents(
+            IList<StudentSectionAttendanceEvent> studentSectionAttendanceEvents)
+        {
+            _studentSectionAttendanceEvents = studentSectionAttendanceEvents;
             return this;
         }
     }
