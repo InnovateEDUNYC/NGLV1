@@ -1,9 +1,7 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Dates;
 
 namespace NGL.Web.Data.Repositories
 {
@@ -11,7 +9,7 @@ namespace NGL.Web.Data.Repositories
     {
         public SectionRepository(INglDbContext dbContext) : base(dbContext) { }
 
-        public Section GetWithStudentAttendanceForDate(int sectionIdentity, DateTime date)
+        public Section GetWithStudentAttendance(int sectionIdentity)
         {
             var section = DbContext.Set<Section>()
                 .Where(s => s.SectionIdentity == sectionIdentity)
@@ -19,11 +17,6 @@ namespace NGL.Web.Data.Repositories
                 .Include(s => s.StudentSectionAssociations.Select(ssa => ssa.Student))
                 .Include(s => s.StudentSectionAttendanceEvents)
                 .ToList().FirstOrDefault();
-
-//            var studentSectionAssociationsOnDate = section.StudentSectionAssociations
-//                .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(date)).ToList();
-//
-//            section.StudentSectionAssociations = studentSectionAssociationsOnDate;
 
             return section;
         }

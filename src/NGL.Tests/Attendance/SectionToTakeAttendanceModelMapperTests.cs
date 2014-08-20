@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
@@ -11,14 +12,14 @@ namespace NGL.Tests.Attendance
 {
     public class SectionToTakeAttendanceModelMapperTests
     {
-        [Fact(Skip = "")]
+        [Fact]
         public void ShouldMap()
         {
             var student1 = new StudentBuilder().Build();
             var student2 = new StudentBuilder().WithStudentUsi(1234).WithFirstName("Mike").Build();
             var section = new SectionBuilder().WithStudent(student1).WithStudent(student2).Build();
 
-            var date = new DateTime();
+            var date = student1.StudentSectionAssociations.First().BeginDate.AddDays(1);
 
             var downloader = Substitute.For<IFileDownloader>();
             var profilePhotoUrlFetcher = Substitute.For<ProfilePhotoUrlFetcher>(downloader);
