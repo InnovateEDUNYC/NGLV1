@@ -11,23 +11,25 @@
      @Html.ActionLink("Create New Section", MVC.Section.Create(), new { @class = "btn btn-primary" })
 }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UniqueSectionCode)
-            </th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-container">
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td class="section-code">
-                    @Html.DisplayFor(modelItem => item.UniqueSectionCode)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.UniqueSectionCode)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="section-code">
+                        @Html.DisplayFor(modelItem => item.UniqueSectionCode)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

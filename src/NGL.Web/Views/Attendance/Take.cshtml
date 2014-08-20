@@ -152,7 +152,7 @@
                 </table>
             </div>
             <div class="save-attendance">
-                <button class="btn btn btn-default" type="submit">Cancel</button>
+                @Html.ActionLink("Cancel", MVC.Attendance.Take(), new { @class = "btn btn-default" })
 
                 @using (var n = f.BeginNavigation())
                 {

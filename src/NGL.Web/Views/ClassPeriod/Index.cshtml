@@ -10,22 +10,25 @@
 {
             @Html.ActionLink("Add Period", MVC.ClassPeriod.Create(), new { @class = "btn btn-primary" })
 }
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ClassPeriodName)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+<div class="table-container">
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td class="period-name">
-                    @Html.DisplayFor(modelItem => item.ClassPeriodName)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClassPeriodName)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="period-name">
+                        @Html.DisplayFor(modelItem => item.ClassPeriodName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

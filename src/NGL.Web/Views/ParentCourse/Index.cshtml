@@ -11,35 +11,37 @@
     @Html.ActionLink("Add Parent Course", MVC.ParentCourse.Create(), new { @class = "btn btn-primary" })
 }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ParentCourseCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ParentCourseTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ParentCourseDescription)
-            </th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-container">
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td class="parent-course-code">
-                    @Html.DisplayFor(modelItem => item.ParentCourseCode)
-                </td>
-                <td class="parent-course-title">
-                    @Html.DisplayFor(modelItem => item.ParentCourseTitle)
-                </td>
-                <td class="parent-course-description">
-                    @Html.DisplayFor(modelItem => item.ParentCourseDescription)
-                 </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.ParentCourseCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ParentCourseTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ParentCourseDescription)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="parent-course-code">
+                        @Html.DisplayFor(modelItem => item.ParentCourseCode)
+                    </td>
+                    <td class="parent-course-title">
+                        @Html.DisplayFor(modelItem => item.ParentCourseTitle)
+                    </td>
+                    <td class="parent-course-description">
+                        @Html.DisplayFor(modelItem => item.ParentCourseDescription)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
