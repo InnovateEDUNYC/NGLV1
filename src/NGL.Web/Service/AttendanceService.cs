@@ -17,6 +17,7 @@ namespace NGL.Web.Service
 
         public void RecordAttendanceFor(Section section, DateTime date, IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
         {
+
             var currentAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, date);
 
             if (!currentAttendanceEvents.IsNullOrEmpty())

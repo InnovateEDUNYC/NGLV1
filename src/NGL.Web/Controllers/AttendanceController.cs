@@ -47,7 +47,7 @@ namespace NGL.Web.Controllers
             }
 
             var date = DateTime.Parse(takeAttendanceModel.Date);
-            var section = _sectionRepository.GetWithStudentAttendanceForDate(takeAttendanceModel.SectionId.Value, date);
+            var section = _sectionRepository.GetWithStudentAttendanceForDate(takeAttendanceModel.SectionId.GetValueOrDefault(), date);
 
             var takeAttendanceModelWithStudents = _sectionToTakeAttendanceModelMapper.Build(section, date);
             
@@ -59,6 +59,7 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Save(TakeAttendanceModel takeAttendanceModel)
         {
             var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId);
+            
             var studentSectionAttendanceEventList =_takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
 
             _attendanceService.RecordAttendanceFor(section, DateTime.Parse(takeAttendanceModel.Date), studentSectionAttendanceEventList);

@@ -10,6 +10,7 @@ namespace NGL.Web.Data.Repositories
     public class SectionRepository: RepositoryBase, ISectionRepository
     {
         public SectionRepository(INglDbContext dbContext) : base(dbContext) { }
+
         public Section GetWithStudentAttendanceForDate(int sectionIdentity, DateTime date)
         {
             var section = DbContext.Set<Section>()
@@ -20,14 +21,9 @@ namespace NGL.Web.Data.Repositories
                 .ToList().FirstOrDefault();
 
             var studentSectionAssociationsOnDate = section.StudentSectionAssociations
-                .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.Value).Includes(date)).ToList();
+                .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(date)).ToList();
 
             section.StudentSectionAssociations = studentSectionAssociationsOnDate;
-
-            var studentSectionAttendanceEventsOnDate = section.StudentSectionAttendanceEvents
-                .Where(ssae => ssae.EventDate == date).ToList();
-
-            section.StudentSectionAttendanceEvents = studentSectionAttendanceEventsOnDate;
 
             return section;
         }
