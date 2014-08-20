@@ -20,10 +20,10 @@ namespace NGL.Web.Data.Repositories
                 .Include(s => s.StudentSectionAttendanceEvents)
                 .ToList().FirstOrDefault();
 
-            var studentSectionAssociationsOnDate = section.StudentSectionAssociations
-                .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(date)).ToList();
-
-            section.StudentSectionAssociations = studentSectionAssociationsOnDate;
+//            var studentSectionAssociationsOnDate = section.StudentSectionAssociations
+//                .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(date)).ToList();
+//
+//            section.StudentSectionAssociations = studentSectionAssociationsOnDate;
 
             return section;
         }

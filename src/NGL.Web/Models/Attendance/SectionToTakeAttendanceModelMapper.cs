@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
+using NGL.Web.Dates;
 using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Attendance
@@ -25,7 +26,10 @@ namespace NGL.Web.Models.Attendance
             target.Session = section.Session.SessionName;
             target.Date = date.ToShortDateString();
 
-            target.StudentRows = section.StudentSectionAssociations.Select(ssa => ssa.Student)
+            var studentSectionAssociationsOnDate = section.StudentSectionAssociations
+                .Where(ssa => new DateRange(ssa.BeginDate, ssa.EndDate.GetValueOrDefault()).Includes(date)).ToList();
+
+            target.StudentRows = studentSectionAssociationsOnDate.Select(ssa => ssa.Student)
                 .Select(s => new StudentAttendanceRowModel
                 {
                     StudentUsi = s.StudentUSI,
