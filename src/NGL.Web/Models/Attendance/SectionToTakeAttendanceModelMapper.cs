@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
@@ -36,7 +34,8 @@ namespace NGL.Web.Models.Attendance
                     AttendanceType = AttendanceEventCategoryDescriptorEnum.InAttendance
                 }).ToList();
 
-            var existingStudentSectionAttendanceEvents = section.StudentSectionAttendanceEvents;
+            var existingStudentSectionAttendanceEvents = section.StudentSectionAttendanceEvents.Where(ssae => ssae.EventDate == date).ToList();
+
             if (!existingStudentSectionAttendanceEvents.IsNullOrEmpty())
             {
                 foreach (var ssae in existingStudentSectionAttendanceEvents)
