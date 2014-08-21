@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NGL.Tests.Builders;
+using NGL.Tests.Session;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Filters;
 using NGL.Web.Models.Student;
+using NSubstitute;
 using Shouldly;
 using Xunit;
 
@@ -18,24 +22,48 @@ namespace NGL.Tests.Student
             SetUp();
             var studentSectionAttendanceEvents = new[]
             {
-                new StudentSectionAttendanceEventBuilder().WithAttendanceEventCategoryDescriptorId(
-                    (int) AttendanceEventCategoryDescriptorEnum.Tardy).Build(),
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.Tardy)
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
 
-                    new StudentSectionAttendanceEventBuilder().WithAttendanceEventCategoryDescriptorId(
-                    (int) AttendanceEventCategoryDescriptorEnum.InAttendance).Build(),
+                    new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance)
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
                     
-                    new StudentSectionAttendanceEventBuilder().WithAttendanceEventCategoryDescriptorId(
-                    (int) AttendanceEventCategoryDescriptorEnum.Earlydeparture).Build(),
+                    new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.Earlydeparture)
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
                     
-                    new StudentSectionAttendanceEventBuilder().WithAttendanceEventCategoryDescriptorId(
-                    (int) AttendanceEventCategoryDescriptorEnum.InAttendance).Build(),
+                    new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance)
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
                     
-                    new StudentSectionAttendanceEventBuilder().WithAttendanceEventCategoryDescriptorId(
-                    (int) AttendanceEventCategoryDescriptorEnum.ExcusedAbsence).Build(),
+                    new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.ExcusedAbsence)
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
             };
 
             _mapper.Map(studentSectionAttendanceEvents, _profileModel);
             _profileModel.AttendancePercentage.ShouldBe(80);
+        }
+        
+        [Fact]
+        public void ShouldOnlyIncludeAttendanceForCurrentSchoolYear()
+        {
+            SetUp();
+            var studentSectionAttendanceEvents = new[]
+            {
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.Tardy)
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2013).Build(),
+
+                    new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance)
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
+            };
+
+            _mapper.Map(studentSectionAttendanceEvents, _profileModel);
+            _profileModel.AttendancePercentage.ShouldBe(100);
         }
         
         [Fact]
@@ -49,7 +77,9 @@ namespace NGL.Tests.Student
 
         private void SetUp()
         {
-            _mapper = new StudentAttendancePercentageMapper();
+            var sessionFilter = Substitute.For<ISessionFilter>();
+            sessionFilter.FindSession(Arg.Any<DateTime>()).Returns(new SessionBuilder().WithSchoolYear(SchoolYearTypeEnum.Year2014).Build());
+            _mapper = new StudentAttendancePercentageMapper(sessionFilter);
             _profileModel = new ProfileModel();
         }
     }

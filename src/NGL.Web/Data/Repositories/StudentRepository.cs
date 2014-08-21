@@ -23,6 +23,7 @@ namespace NGL.Web.Data.Repositories
                 .Include(s => s.StudentParentAssociations.Select(p => p.Parent.ParentElectronicMails))
                 .Include(s => s.StudentAcademicDetails)
                 .Include(s => s.StudentProgramStatus)
+                .Include(s => s.StudentSectionAttendanceEvents)
                 .ToList().SingleOrDefault();
 
             return student;

@@ -83,7 +83,6 @@ namespace NGL.Web
             kernel.Bind<ICreateModelToAssessmentLearningStandardMapper>().To<CreateModelToCreateModelToAssessmentLearningStandardMapper>();
             kernel.Bind<IAttendanceService>().To<AttendanceService>();
             kernel.Bind<ISessionFilter>().To<SessionFilter>();
-            kernel.Bind<IStudentService>().To<StudentService>();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()

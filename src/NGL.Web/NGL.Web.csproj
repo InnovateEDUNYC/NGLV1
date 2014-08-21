@@ -1784,8 +1784,6 @@
     <Compile Include="Models\Student\ParentToProfileParentModelMapper.cs" />
     <Compile Include="Service\AttendanceService.cs" />
     <Compile Include="Service\IAttendanceService.cs" />
-    <Compile Include="Service\IStudentService.cs" />
-    <Compile Include="Service\StudentService.cs" />
     <Compile Include="T4MVC\AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

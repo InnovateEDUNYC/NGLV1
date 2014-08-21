@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Humanizer;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
+using NGL.Web.Models;
 using NGL.Web.Models.Student;
 using NSubstitute;
 using Shouldly;
@@ -14,17 +18,19 @@ namespace NGL.Tests.Student
     public class StudentToProfileModelMapperTest
     {
         private StudentToProfileModelMapper _mapper;
+        private IMapper<IList<StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapperMock;
 
         private void SetupWithDownloaderReturning(string downloaderReturns)
         {
             var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns(downloaderReturns);
+            _studentAttendancePercentageMapperMock = Substitute.For<IMapper<IList<StudentSectionAttendanceEvent>, ProfileModel>>();
 
             _mapper = new StudentToProfileModelMapper(new StudentToAcademicDetailsMapper(downloader),
                 new ParentToProfileParentModelMapper(),
                  new ProfilePhotoUrlFetcher(downloader),
                 new StudentProgramStatusToProfileProgramStatusModelMapper(downloader),
-                new StudentAttendancePercentageMapper());
+                _studentAttendancePercentageMapperMock);
         }
 
         [Fact]
@@ -43,6 +49,7 @@ namespace NGL.Tests.Student
             NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
             profileModel.ProgramStatus.ShouldNotBe(null);
+            _studentAttendancePercentageMapperMock.Received().Map(Arg.Any<IList<StudentSectionAttendanceEvent>>(), Arg.Any<ProfileModel>());
         }
 
         [Fact]
