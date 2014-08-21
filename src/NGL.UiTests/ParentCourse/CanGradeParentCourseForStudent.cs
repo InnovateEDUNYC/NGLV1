@@ -35,11 +35,11 @@ namespace NGL.UiTests.ParentCourse
         public void IEnterValidGrades()
         {
             _gradesPage.SelectAParentCourse();
-            _gradesPage.EnterGrades();
+            _gradesPage.EnterGrades("100");
         }
         public void TheGradesAreSaved()
         {
-            throw new NotImplementedException();
+            _gradesPage.CheckGrades("100");
         }
 
         [Fact (Skip = "not yet finished")]

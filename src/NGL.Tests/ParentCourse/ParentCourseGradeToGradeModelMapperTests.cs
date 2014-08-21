@@ -16,12 +16,17 @@ namespace NGL.Tests.ParentCourse
         [Fact]
         public void ShouldMap()
         {
-            var student = new StudentBuilder().WithFirstName("Hugo").WithLastSurname("Range").Build();
+            var student = new StudentBuilder()
+                .WithFirstName("Hugo")
+                .WithLastSurname("Range")
+                .WithStudentUsi(12345)
+                .Build();
             var parentCourseGrade = new ParentCourseGradeBuilder().WithStudent(student).Build();
             var gradeModel = new ParentCourseGradeToGradeModelMapper().Build(parentCourseGrade);
 
             gradeModel.StudentFirstName.ShouldBe(student.FirstName);
             gradeModel.StudentLastName.ShouldBe(student.LastSurname);
+            gradeModel.StudentUSI.ShouldBe(student.StudentUSI);
             gradeModel.Grade.ShouldBe(parentCourseGrade.GradeEarned);
         }
     }

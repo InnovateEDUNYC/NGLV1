@@ -1,5 +1,6 @@
 ﻿@using System.Diagnostics.Eventing.Reader
 @using Castle.Core.Internal
+@using NGL.Web.Models.Assessment
 @using Ninject
 @model NGL.Web.Models.Assessment.EnterResultsModel
 
@@ -40,17 +41,17 @@
         <form method="POST" action="">
             <input class="hidden" name="AssessmentId" value="@Model.AssessmentId"/>
             <strong>Assessment Result</strong>
-            @for (var i = 0; i < Model.StudentResults.Count; i++)
+            @foreach (EnterResultsStudentModel enterResultsStudentModel in Model.StudentResults)
             {
                 <p>
-                    @Model.StudentResults[i].Name
-                    @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult)
-                    @Html.ValidationMessageFor(s => Model.StudentResults[i].AssessmentResult)
+                    @enterResultsStudentModel.Name
+                    @Html.TextBoxFor(s => enterResultsStudentModel.AssessmentResult)
+                    @Html.ValidationMessageFor(s => enterResultsStudentModel.AssessmentResult)
                     <div class="hidden">
-                        @Html.TextBoxFor(s => Model.StudentResults[i].StudentUsi)
+                        @Html.TextBoxFor(s => enterResultsStudentModel.StudentUsi)
                     </div>
-				</p>
-        	}
+                </p>
+            }
             <div class="cancel-and-save-buttons">
                 @Html.ActionLink("Cancel", MVC.Assessment.Index(), new { @class = "btn btn-default" })
                 <button class="btn btn-primary" type="submit">Save Results</button>

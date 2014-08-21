@@ -21,14 +21,20 @@
     {
         <h4><strong>STUDENTS</strong></h4>
         <form method="POST" action="">
-            @foreach (var studentGrade in Model.ParentGradesModelList)
-            {
-                <p>
-                    @studentGrade.StudentFirstName @studentGrade.StudentLastName
-                    <br/>
-                    @Html.TextBoxFor(s => studentGrade.Grade)
-                </p>
-            }
+            <table>
+                @for (var i = 0; i < Model.ParentGradesModelList.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <input class="hidden" name="StudentUSI" value="@Model.ParentGradesModelList[i].StudentUSI"/>
+                            @Model.ParentGradesModelList[i].StudentFirstName @Model.ParentGradesModelList[i].StudentLastName
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(s => Model.ParentGradesModelList[i].Grade, new { @id = "grade-" + i })
+                        </td>
+                    </tr>
+                }
+            </table>
             <div class="cancel-and-save-buttons">
                 @Html.ActionLink("Cancel", MVC.Assessment.Index(), new {@class = "btn btn-default"})
                 <button class="btn btn-primary" type="submit">Save Results</button>
