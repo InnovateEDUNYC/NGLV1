@@ -18,7 +18,7 @@ Ngl.attendance.take = (function () {
     }
 
     var clearStudentList = function() {
-        $(".attendance-list").hide();
+        $(".attendance-list-and-buttons").hide();
     }
 
     var setUpEvents = function () {
