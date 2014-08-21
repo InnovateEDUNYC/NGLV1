@@ -15,6 +15,7 @@ Ngl.schedule.removeStudent = (function () {
                 },
                 success: function (result) {
                     if (result.DeletedCompletely) {
+                        self.closest("tr").next("tr.spacer").remove();
                         self.closest("tr").remove();
                     } else {
                         updateEndDate(self, result.EndDate);

@@ -9,29 +9,30 @@
 {
     @Html.ActionLink("Add User", MVC.Account.AddUser(), new { @class = "btn btn-primary" })}
 
-<table class="table table-striped" id="users">
-    <thead>
-        <tr>
-            <th>Staff USI</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Hispanic/Latino</th>
-            <th>Username</th>
-            <th>Role</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
+<div class="table-container">
+    <table class="table table-striped" id="users">
+        <thead>
             <tr>
-                <td class="staffusi">@user.StaffUSI</td>
-                <td class="firstname">@user.FirstName</td>
-                <td class="lastname">@user.LastName</td>
-                <td class="hispanicLatino">@user.HispanicLatino</td>
-                <td class="username">@user.Username</td>
-                <td class="role">@user.Role</td>
+                <th>Staff USI</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Hispanic/Latino</th>
+                <th>Username</th>
+                <th>Role</th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td class="staffusi">@user.StaffUSI</td>
+                    <td class="firstname">@user.FirstName</td>
+                    <td class="lastname">@user.LastName</td>
+                    <td class="hispanicLatino">@user.HispanicLatino</td>
+                    <td class="username">@user.Username</td>
+                    <td class="role">@user.Role</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

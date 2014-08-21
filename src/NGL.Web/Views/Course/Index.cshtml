@@ -11,36 +11,39 @@
 {
     @Html.ActionLink("Create New Course", MVC.Course.Create(), new { @class = "btn btn-primary" })
 }
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CourseCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourseTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourseDescription)
-            </th>
-        </tr>
-    </thead>
-    
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td class="course-code">
-                    @Html.DisplayFor(modelItem => item.CourseCode)
-                </td>
-                <td class="course-title">
-                    @Html.DisplayFor(modelItem => item.CourseTitle)
-                </td>
-                <td class="course-description">
-                    @Html.DisplayFor(modelItem => item.CourseDescription)
-                </td>
 
+<div class="table-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseDescription)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="course-code">
+                        @Html.DisplayFor(modelItem => item.CourseCode)
+                    </td>
+                    <td class="course-title">
+                        @Html.DisplayFor(modelItem => item.CourseTitle)
+                    </td>
+                    <td class="course-description">
+                        @Html.DisplayFor(modelItem => item.CourseDescription)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

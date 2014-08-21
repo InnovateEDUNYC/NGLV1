@@ -17,13 +17,13 @@ namespace NGL.UiTests.Attendance
 
         public List<string> GetStudentAttendance()
         {
-            return Find.Elements(By.CssSelector("Input[checked=checked]")).Select(e => e.GetAttribute("value")).ToList();
-
+            var studentAttendance = Find.Elements(By.CssSelector("Input[checked=checked]")).Select(e => e.GetAttribute("value")).ToList();
+            return studentAttendance;
         }
 
         public TakeAttendancePage EnterAttendanceStatus()
         {
-            var tardyCheckboxes = Find.Elements(By.CssSelector("Input[value=Tardy]"));
+            var tardyCheckboxes = Find.Elements(By.CssSelector("label.Tardy"));
             tardyCheckboxes.ForEach(tcb => tcb.Click());
 
             return Navigate.To<TakeAttendancePage>(By.ClassName("save-button"));

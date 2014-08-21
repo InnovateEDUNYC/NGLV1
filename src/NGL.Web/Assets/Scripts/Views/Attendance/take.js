@@ -3,6 +3,7 @@
 Ngl.attendance.take = (function () {
     var init = function () {
         setUpEvents();
+        checkRadioButton();
     }
     var getStudentsUrlTemplate = "/Attendance/GetStudents?sectionId={sectionId}&sessionId={sessionId}&section={section}&session={session}&date={date}";
 
@@ -27,6 +28,17 @@ Ngl.attendance.take = (function () {
         $("#Session").on('change', clearStudentList);
         $("#Section").on('change', clearStudentList);
     };
+
+    var checkRadioButton = function() {
+
+        $('table.attendance-list input:checked + label > span').addClass('fa fa-check fa-2x');
+        $('table.attendance-list input').click(function () {
+            var spans = $(this).closest('tr').find('span');
+            spans.removeClass('fa fa-check fa-2x');
+
+            $(this).next('label').children('span').addClass('fa fa-check fa-2x');
+        });
+    }
 
     return {
         init: init

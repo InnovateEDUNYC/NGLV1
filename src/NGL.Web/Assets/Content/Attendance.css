@@ -1,42 +1,27 @@
-﻿.attendance-list {
-    width: 600px;
+﻿.table-container {
+    background-color: white;
+    margin: 30px 0;
+    padding: 60px 30px;
+    border-radius: 4px;
 }
 
-.attendance-type-container {
-    text-align: right;
+.attendance-list {
+    table-layout: fixed;
+}
+
+.table > thead > tr > th.attendance-type {
+    padding: 0 0 0 35px;
 }
 
 .attendance-type {
-    display: inline-block;
-    width: 7%;
-    margin-bottom: 3%;
-    margin-top: 2%;
-    white-space: nowrap;
-
-    -webkit-transform: rotate(300deg);
-    -moz-transform: rotate(300deg);
-    -ms-transform: rotate(300deg);
-    -o-transform: rotate(300deg);
+    transform-origin: 10% 50%;
+    -webkit-transform: rotate(330deg);
+    -moz-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    -o-transform: rotate(330deg);
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
-.student-list {
-    border-top: 1px solid lightgrey;
-    margin-bottom: 10px;
-}
-
-.attendance-list-item {
-    border-top: 1px solid lightgrey;
-}
-
-.attendance-list-item-0 {
-    background-color: white;
-}
-
-.attendance-list-item > div {
-    vertical-align: middle;
-    margin-bottom: 0;
-}
 
 .profile-photo-thumbnail {
     height: 45px;
@@ -49,24 +34,40 @@
     width: 240px;
 }
 
-.attendance-list-item > div.form-group {
+table.attendance-list div.radio {
     display: inline-block;
-    text-align: right;
-    width: 300px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
 }
 
-.attendance-list-item > div > div.radio {
-    display: inline-block;
-    margin-bottom: 0;
-    margin-top: 0;
-    margin-right: 7%;
+table.attendance-list input[type="radio"] {
+    display: none;
 }
 
-.attendance-list-item > div > div.radio > input[type="radio"] {
-    -webkit-appearance: checkbox;
-    -moz-appearance: checkbox;
-    -ms-appearance: checkbox;
-    -o-appearance: checkbox;
+table.attendance-list input[type="radio"] + .custom-checkbox {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #2DBCBB;
+}
+
+table.attendance-list input[type="radio"]:checked + .custom-checkbox {
+    background-color: #2DBCBB;
+}
+
+.table > tbody > tr > td.custom-checkbox-container {
+    vertical-align: baseline;
+    padding: 0 0 0 35px;
+}
+
+.custom-checkbox {
+    margin: 0;
+    padding: 2px;
+    color: white;
 }
 
 .attendance-list-item > div > span {
@@ -77,7 +78,7 @@
     display: none;
 }
 
-.save-attendance {
+.cancel-and-save-buttons {
     width: 100%;
     text-align: right;
 }

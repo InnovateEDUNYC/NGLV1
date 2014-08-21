@@ -15,7 +15,6 @@ Ngl.schedule.setSchedule = (function () {
                 dataType: 'json',
                 data: $('form#schedule-student-form').serialize(),
                 success: function (sectionListItem) {
-                    console.log(sectionListItem);
                     var errors = sectionListItem.errors;
                     if (!errors == false) {
                         errors.forEach(function(error) {
