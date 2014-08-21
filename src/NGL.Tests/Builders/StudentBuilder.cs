@@ -10,7 +10,9 @@ namespace NGL.Tests.Builders
     {
         private int _studentUsi = 999;
         private string _firstName = "Bob";
-        private const string LastName = "Jenkins";
+        private static string _lastName = "Jenkins";
+        private const string Parent1FirstName = "Leroy";
+        private const string Parent2FirstName = "Johanna";
         private const int Sex = (int)SexTypeEnum.Male;
         private readonly DateTime _birthDate = new DateTime(2000, 2, 2);
         private ICollection<StudentAcademicDetail> _studentAcademicDetails;
@@ -28,7 +30,7 @@ namespace NGL.Tests.Builders
             {
                 StudentUSI = _studentUsi,
                 FirstName = _firstName,
-                LastSurname = LastName,
+                LastSurname = _lastName,
                 SexTypeId = Sex,
                 BirthDate = _birthDate,
                 HispanicLatinoEthnicity = HispanicLatinoEthnicity,
@@ -98,10 +100,17 @@ namespace NGL.Tests.Builders
             return this;
         }
 
+
         public StudentBuilder WithStudentSectionAttendanceEvents(
             IList<StudentSectionAttendanceEvent> studentSectionAttendanceEvents)
         {
             _studentSectionAttendanceEvents = studentSectionAttendanceEvents;
+            return this;
+        }
+
+        public StudentBuilder WithLastSurname(string lastName)
+        {
+            _lastName = lastName;
             return this;
         }
     }
