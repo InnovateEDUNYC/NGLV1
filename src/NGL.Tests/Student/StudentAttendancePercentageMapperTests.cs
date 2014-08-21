@@ -10,7 +10,6 @@ namespace NGL.Tests.Student
     public class StudentAttendancePercentageMapperTests
     {
         private StudentAttendancePercentageMapper _mapper;
-        private Web.Data.Entities.Student _student;
         private ProfileModel _profileModel;
 
         [Fact]
@@ -35,19 +34,17 @@ namespace NGL.Tests.Student
                     (int) AttendanceEventCategoryDescriptorEnum.ExcusedAbsence).Build(),
             };
 
-            _student = new StudentBuilder().WithStudentSectionAttendanceEvents(studentSectionAttendanceEvents).Build();
             _mapper.Map(studentSectionAttendanceEvents, _profileModel);
-            _profileModel.AttedancePercentage.ShouldBe("80.00");
+            _profileModel.AttendancePercentage.ShouldBe(80);
         }
         
         [Fact]
         public void ShouldMapWhenThereAreNoAttendanceEvents()
         {
             SetUp();
-            _student = new StudentBuilder().Build();
 
             _mapper.Map(new List<StudentSectionAttendanceEvent>(), _profileModel);
-            _profileModel.AttedancePercentage.ShouldBe("0.00");
+            _profileModel.AttendancePercentage.ShouldBe(0);
         }
 
         private void SetUp()

@@ -216,3 +216,17 @@ body h4.panel:first-child {
 .arrow {
     padding-left: 5px;
 }
+
+.progress {
+    background-color: #E9E9EB;
+    border-radius: 20px;
+}
+
+.progress-bar {
+    background-color: #2DBCBB;
+    border-radius: 20px;
+}
+
+.vertical-align-middle {
+    vertical-align: middle;
+}

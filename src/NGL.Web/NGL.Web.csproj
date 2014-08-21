@@ -1902,6 +1902,7 @@
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Content\Image.css" />
     <Content Include="Assets\Content\Tables.css" />
+    <Content Include="Assets\Content\Profile.css" />
     <Content Include="Assets\Content\ViewAssessmentResults.css" />
     <Content Include="Assets\Images\brooklyn_lab_logo.png" />
     <Content Include="Assets\Images\innovate_edu_logo.png" />

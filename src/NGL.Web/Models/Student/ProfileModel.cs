@@ -29,6 +29,6 @@ namespace NGL.Web.Models.Student
         public ProfileParentModel SecondProfileParentModel { get; set; }
         public ProfileAcademicDetailModel AcademicDetail { get; set; }
         public ProfileProgramStatusModel ProgramStatus { get; set; }
-        public string AttedancePercentage { get; set; }
+        public int AttendancePercentage { get; set; }
     }
 }
