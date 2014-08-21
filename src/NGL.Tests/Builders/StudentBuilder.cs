@@ -11,48 +11,44 @@ namespace NGL.Tests.Builders
         private int _studentUsi = 999;
         private string _firstName = "Bob";
         private const string LastName = "Jenkins";
-        private const string Parent1FirstName = "Leroy";
-        private const string Parent2FirstName = "Johanna";
         private const int Sex = (int)SexTypeEnum.Male;
-        private readonly DateTime BirthDate = new DateTime(2000, 2, 2);
+        private readonly DateTime _birthDate = new DateTime(2000, 2, 2);
         private ICollection<StudentAcademicDetail> _studentAcademicDetails;
         private StudentProgramStatus _studentProgramStatus;
-        private Web.Data.Entities.Student _student;
-        private ICollection<StudentParentAssociation> _studentParentAssociations;
+        private readonly ICollection<StudentParentAssociation> _studentParentAssociations = new Collection<StudentParentAssociation>();
         private List<StudentAssessment> _studentAssessments;
         private const bool HispanicLatinoEthnicity = true;
         private const int Race = (int)RaceTypeEnum.NativeHawaiianPacificIslander;
         private const int PrimaryParentRelationType = (int)RelationTypeEnum.Father;
+        private IList<StudentSectionAttendanceEvent> _studentSectionAttendanceEvents  = new List<StudentSectionAttendanceEvent>();
 
-        public StudentBuilder()
+        public Web.Data.Entities.Student Build()
         {
-            _student = new Web.Data.Entities.Student
+            var student = new Web.Data.Entities.Student
             {
                 StudentUSI = _studentUsi,
                 FirstName = _firstName,
                 LastSurname = LastName,
                 SexTypeId = Sex,
-                BirthDate = BirthDate,
+                BirthDate = _birthDate,
                 HispanicLatinoEthnicity = HispanicLatinoEthnicity,
             };
-            _studentParentAssociations = new Collection<StudentParentAssociation>();
-        }
-        public Web.Data.Entities.Student Build()
-        {
-            _student.StudentRaces.Add(CreateStudentRace());
-            _student.StudentAddresses.Add(StudentAddressFactory.CreateStudentAddress());
-            _student.StudentLanguages.Add(StudentLanguageFactory.CreateStudentLanguageWithHomeUse());
-            _student.StudentAcademicDetails = _studentAcademicDetails;
-            _student.StudentProgramStatus = _studentProgramStatus;
-            _student.StudentParentAssociations = _studentParentAssociations;
-            _student.StudentAssessments = _studentAssessments;
-            return _student;
+
+            student.StudentRaces.Add(CreateStudentRace());
+            student.StudentAddresses.Add(StudentAddressFactory.CreateStudentAddress());
+            student.StudentLanguages.Add(StudentLanguageFactory.CreateStudentLanguageWithHomeUse());
+            student.StudentAcademicDetails = _studentAcademicDetails;
+            student.StudentProgramStatus = _studentProgramStatus;
+            student.StudentParentAssociations = _studentParentAssociations;
+            student.StudentAssessments = _studentAssessments;
+            student.StudentSectionAttendanceEvents = _studentSectionAttendanceEvents;
+
+            return student;
         }
 
         public StudentBuilder WithStudentAcademicDetails()
         {
-            _studentAcademicDetails = new List<StudentAcademicDetail>();
-            _studentAcademicDetails.Add(new StudentAcademicDetailBuilder().Build());
+            _studentAcademicDetails = new List<StudentAcademicDetail> {new StudentAcademicDetailBuilder().Build()};
             return this;
         }
 
@@ -72,7 +68,6 @@ namespace NGL.Tests.Builders
                 RelationTypeId = PrimaryParentRelationType,
                 LivesWith = livesWith,
                 Parent = parent,
-                Student = _student
             };
 
             _studentParentAssociations.Add(studentParentAssociation);
@@ -100,6 +95,13 @@ namespace NGL.Tests.Builders
         public StudentBuilder WithFirstName(string firstName)
         {
             _firstName = firstName;
+            return this;
+        }
+
+        public StudentBuilder WithStudentSectionAttendanceEvents(
+            IList<StudentSectionAttendanceEvent> studentSectionAttendanceEvents)
+        {
+            _studentSectionAttendanceEvents = studentSectionAttendanceEvents;
             return this;
         }
     }

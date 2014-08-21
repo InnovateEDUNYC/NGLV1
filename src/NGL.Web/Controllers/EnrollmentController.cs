@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
@@ -19,16 +20,19 @@ namespace NGL.Web.Controllers
         private readonly IFileUploader _fileUploader;
         private readonly IMapper<AcademicDetailModel, StudentSchoolAssociation> _schoolAssociationMapper;
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
+        private readonly IStudentRepository _studentRepository;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
                                                 IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
                                                 IMapper<AcademicDetailModel, StudentAcademicDetail> academicDetailMapper, 
                                                 IFileUploader fileUploader,
                                                 IMapper<AcademicDetailModel, 
-                                                StudentSchoolAssociation> schoolAssociationMapper)
+                                                StudentSchoolAssociation> schoolAssociationMapper,
+                                                IStudentRepository studentRepository)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;
+            _studentRepository = studentRepository;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -70,9 +74,9 @@ namespace NGL.Web.Controllers
             return View(model);
         }
 
-        private bool StudentDoesNotExist(int id)
+        private bool StudentDoesNotExist(int usi)
         {
-            return _repository.Get(new StudentByUsiQuery(id)) == null;
+            return _studentRepository.GetByUSI(usi) == null;
         }
 
         // POST: /Enrollment/EnterAcademicDetails/id

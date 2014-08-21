@@ -3,7 +3,7 @@
 namespace NGL.Web.Models
 {
     public abstract class MapperBase<TSource, TTarget> : IMapper<TSource, TTarget> 
-        where TSource : class, new()
+        where TSource : class
         where TTarget : class, new()
     {
         public abstract void Map(TSource source, TTarget target);

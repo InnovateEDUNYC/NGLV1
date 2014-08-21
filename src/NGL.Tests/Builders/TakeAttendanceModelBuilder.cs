@@ -24,5 +24,11 @@ namespace NGL.Tests.Builders
                 StudentRows = _studentRows
             };
         }
+
+        public TakeAttendanceModelBuilder WithDate(string date)
+        {
+            _date = date;
+            return this;
+        }
     }
 }

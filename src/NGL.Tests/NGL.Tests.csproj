@@ -109,6 +109,7 @@
     <Compile Include="Builders\SetScheduleModelBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
     <Compile Include="Builders\StudentBuilder.cs" />
+    <Compile Include="Builders\StudentSectionAttendanceEventBuilder.cs" />
     <Compile Include="Builders\TakeAttendanceModelBuilder.cs" />
     <Compile Include="ClassPeriod\CreateClassPeriodModelBuilder.cs" />
     <Compile Include="Builders\StudentProgramStatusBuilder.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Student\ParentFactory.cs" />
     <Compile Include="Student\StudentAcademicDetailBuilder.cs" />
     <Compile Include="Student\StudentAddressFactory.cs" />
+    <Compile Include="Student\StudentAttendancePercentageMapperTests.cs" />
     <Compile Include="Student\StudentLanguageFactory.cs" />
     <Compile Include="Student\StudentToProfileModelMapperTest.cs" />
     <Compile Include="Student\StudentProgramStatusToProfileProgramStatusModelMapperTests.cs" />

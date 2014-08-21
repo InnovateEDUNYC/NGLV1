@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Elmah;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
+using NGL.Web.Data.Repositories;
 using NGL.Web.ImageTools;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
@@ -22,15 +22,17 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Student, ProfileModel> _studentToProfileModelMapper;
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
+        private readonly IStudentRepository _studentRepository;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
                                                 IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                                AzureStorageUploader fileUploader)
+                                                AzureStorageUploader fileUploader, IStudentRepository studentRepository)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
             _fileUploader = fileUploader;
+            _studentRepository = studentRepository;
         }
 
         // GET: /Student/All
@@ -72,20 +74,7 @@ namespace NGL.Web.Controllers
         [AuthorizeFor(Resource = "enrollment", Operation = "view")]
         public virtual ActionResult Index(int usi)
         {
-            var student = _repository.Get(
-                new StudentByUsiQuery(usi),
-                s => s.StudentAddresses,
-                s => s.StudentRaces,
-                s => s.StudentLanguages,
-                s => s.StudentLanguages.Select(l => l.StudentLanguageUses),
-                s => s.StudentParentAssociations.Select(p => p.Parent),
-                s => s.StudentParentAssociations.Select(p => p.Parent.ParentAddresses),
-                s => s.StudentParentAssociations.Select(p => p.Parent.ParentTelephones),
-                s => s.StudentParentAssociations.Select(p => p.Parent.ParentElectronicMails),
-                s => s.StudentAcademicDetails,
-                s => s.StudentProgramStatus
-            );
-
+            var student = _studentRepository.GetByUSI(usi);
             if (student == null)
                 return HttpNotFound();
 
