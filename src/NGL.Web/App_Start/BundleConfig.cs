@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿
+using System.Web.Optimization;
 using Links;
 
 namespace NGL.Web
@@ -57,7 +58,8 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Shared/sectionAutocomplete.js",
                 "~/Assets/Scripts/Views/Assessment/result.js",
                 "~/Assets/Scripts/Views/Attendance/take.js",
-                "~/Assets/Scripts/Views/Shared/learningStandards.js"
+                "~/Assets/Scripts/Views/Shared/learningStandards.js",
+                "~/Assets/Scripts/Views/Report/getGrades.js"
                 ));
         }
     }

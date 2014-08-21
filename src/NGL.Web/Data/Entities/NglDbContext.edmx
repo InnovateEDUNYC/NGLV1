@@ -98,6 +98,21 @@
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="ParentCourseGrade">
+          <Key>
+            <PropertyRef Name="ParentCourseGradeIdentity" />
+          </Key>
+          <Property Name="StudentUSI" Type="int" Nullable="false" />
+          <Property Name="SchoolId" Type="int" Nullable="false" />
+          <Property Name="TermTypeId" Type="int" Nullable="false" />
+          <Property Name="SchoolYear" Type="smallint" Nullable="false" />
+          <Property Name="ParentCourseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GradeEarned" Type="nvarchar" MaxLength="20" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ParentCourseGradeIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="SchemaVersions">
           <Key>
             <PropertyRef Name="Id" />
@@ -11131,6 +11146,46 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ParentCourseGrade_ParentCourse_ParentCourseId">
+          <End Role="ParentCourse" Type="Self.ParentCourse" Multiplicity="1" />
+          <End Role="ParentCourseGrade" Type="Self.ParentCourseGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParentCourseGrade">
+              <PropertyRef Name="ParentCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentCourseGrade_Session_SessionIdentity">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="ParentCourseGrade" Type="Self.ParentCourseGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SchoolId" />
+              <PropertyRef Name="TermTypeId" />
+              <PropertyRef Name="SchoolYear" />
+            </Principal>
+            <Dependent Role="ParentCourseGrade">
+              <PropertyRef Name="SchoolId" />
+              <PropertyRef Name="TermTypeId" />
+              <PropertyRef Name="SchoolYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentCourseGrade_Student_StudentUSI">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="ParentCourseGrade" Type="Self.ParentCourseGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentUSI" />
+            </Principal>
+            <Dependent Role="ParentCourseGrade">
+              <PropertyRef Name="StudentUSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParentElectronicMail_ElectronicMailType_ElectronicMailTypeId">
           <End Role="ElectronicMailType" Type="Self.ElectronicMailType" Multiplicity="1" />
           <End Role="ParentElectronicMail" Type="Self.ParentElectronicMail" Multiplicity="*" />
@@ -16090,6 +16145,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySet Name="AssessmentLearningStandard" EntityType="Self.AssessmentLearningStandard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentCourse" EntityType="Self.ParentCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParentCourseGrade" EntityType="Self.ParentCourseGrade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SchemaVersions" EntityType="Self.SchemaVersions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffCertificate" EntityType="Self.StaffCertificate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentAcademicDetails" EntityType="Self.StudentAcademicDetails" Schema="dbo" store:Type="Tables" />
@@ -17985,6 +18041,18 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <AssociationSet Name="FK_ParentAddress_StateAbbreviationType_StateAbbreviationTypeId" Association="Self.FK_ParentAddress_StateAbbreviationType_StateAbbreviationTypeId">
             <End Role="StateAbbreviationType" EntitySet="StateAbbreviationType" />
             <End Role="ParentAddress" EntitySet="ParentAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentCourseGrade_ParentCourse_ParentCourseId" Association="Self.FK_ParentCourseGrade_ParentCourse_ParentCourseId">
+            <End Role="ParentCourse" EntitySet="ParentCourse" />
+            <End Role="ParentCourseGrade" EntitySet="ParentCourseGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentCourseGrade_Session_SessionIdentity" Association="Self.FK_ParentCourseGrade_Session_SessionIdentity">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="ParentCourseGrade" EntitySet="ParentCourseGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentCourseGrade_Student_StudentUSI" Association="Self.FK_ParentCourseGrade_Student_StudentUSI">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ParentCourseGrade" EntitySet="ParentCourseGrade" />
           </AssociationSet>
           <AssociationSet Name="FK_ParentElectronicMail_ElectronicMailType_ElectronicMailTypeId" Association="Self.FK_ParentElectronicMail_ElectronicMailType_ElectronicMailTypeId">
             <End Role="ElectronicMailType" EntitySet="ElectronicMailType" />
@@ -24822,6 +24890,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="SessionAcademicWeeks" Relationship="Self.FK_SessionAcademicWeek_Session" FromRole="Session" ToRole="SessionAcademicWeek" />
           <NavigationProperty Name="SessionGradingPeriods" Relationship="Self.FK_SessionGradingPeriod_Session_EducationOrganizationId" FromRole="Session" ToRole="SessionGradingPeriod" />
           <NavigationProperty Name="StudentSchoolAttendanceEvents" Relationship="Self.FK_StudentSchoolAttendanceEvent_Session_SchoolId" FromRole="Session" ToRole="StudentSchoolAttendanceEvent" />
+          <NavigationProperty Name="ParentCourseGrades" Relationship="NGLModel.FK_ParentCourseGrade_Session_SessionIdentity" FromRole="Session" ToRole="ParentCourseGrade" />
         </EntityType>
         <EntityType Name="SessionAcademicWeek">
           <Key>
@@ -25516,6 +25585,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="StudentVisas" Relationship="Self.FK_StudentVisa_Student_StudentUSI" FromRole="Student" ToRole="StudentVisa" />
           <NavigationProperty Name="StudentProgramStatus" Relationship="NGLModel.FK_StudentProgramStatus_Student" FromRole="Student" ToRole="StudentProgramStatus" />
           <NavigationProperty Name="StudentAcademicDetails" Relationship="NGLModel.FK_StudentAcademicDetails_Student1" FromRole="Student" ToRole="StudentAcademicDetail1" />
+          <NavigationProperty Name="ParentCourseGrades" Relationship="NGLModel.FK_ParentCourseGrade_Student_StudentUSI" FromRole="Student" ToRole="ParentCourseGrade" />
         </EntityType>
         <EntityType Name="StudentAcademicRecord">
           <Key>
@@ -39932,6 +40002,19 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="ParentCourse" EntitySet="ParentCourses" />
             <End Role="Course" EntitySet="Courses" />
           </AssociationSet>
+          <EntitySet Name="ParentCourseGrades" EntityType="NGLModel.ParentCourseGrade" />
+          <AssociationSet Name="FK_ParentCourseGrade_ParentCourse_ParentCourseId" Association="NGLModel.FK_ParentCourseGrade_ParentCourse_ParentCourseId">
+            <End Role="ParentCourse" EntitySet="ParentCourses" />
+            <End Role="ParentCourseGrade" EntitySet="ParentCourseGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentCourseGrade_Session_SessionIdentity" Association="NGLModel.FK_ParentCourseGrade_Session_SessionIdentity">
+            <End Role="Session" EntitySet="Sessions" />
+            <End Role="ParentCourseGrade" EntitySet="ParentCourseGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentCourseGrade_Student_StudentUSI" Association="NGLModel.FK_ParentCourseGrade_Student_StudentUSI">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="ParentCourseGrade" EntitySet="ParentCourseGrades" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentProgramStatus">
           <Key>
@@ -40249,6 +40332,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Courses" Relationship="NGLModel.FK_Course_ParentCourse_ParentCourseId" FromRole="ParentCourse" ToRole="Course" />
+          <NavigationProperty Name="ParentCourseGrades" Relationship="NGLModel.FK_ParentCourseGrade_ParentCourse_ParentCourseId" FromRole="ParentCourse" ToRole="ParentCourseGrade" />
         </EntityType>
         <Association Name="FK_Course_ParentCourse_ParentCourseId">
           <End Type="NGLModel.ParentCourse" Role="ParentCourse" Multiplicity="1" />
@@ -40259,6 +40343,64 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Principal>
             <Dependent Role="Course">
               <PropertyRef Name="ParentCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ParentCourseGrade">
+          <Key>
+            <PropertyRef Name="ParentCourseGradeIdentity" />
+          </Key>
+          <Property Name="StudentUSI" Type="Int32" Nullable="false" />
+          <Property Name="SchoolId" Type="Int32" Nullable="false" />
+          <Property Name="TermTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SchoolYear" Type="Int16" Nullable="false" />
+          <Property Name="ParentCourseId" Type="Guid" Nullable="false" />
+          <Property Name="GradeEarned" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ParentCourseGradeIdentity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ParentCourse" Relationship="NGLModel.FK_ParentCourseGrade_ParentCourse_ParentCourseId" FromRole="ParentCourseGrade" ToRole="ParentCourse" />
+          <NavigationProperty Name="Session" Relationship="NGLModel.FK_ParentCourseGrade_Session_SessionIdentity" FromRole="ParentCourseGrade" ToRole="Session" />
+          <NavigationProperty Name="Student" Relationship="NGLModel.FK_ParentCourseGrade_Student_StudentUSI" FromRole="ParentCourseGrade" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_ParentCourseGrade_ParentCourse_ParentCourseId">
+          <End Type="NGLModel.ParentCourse" Role="ParentCourse" Multiplicity="1" />
+          <End Type="NGLModel.ParentCourseGrade" Role="ParentCourseGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentCourse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParentCourseGrade">
+              <PropertyRef Name="ParentCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentCourseGrade_Session_SessionIdentity">
+          <End Type="NGLModel.Session" Role="Session" Multiplicity="1" />
+          <End Type="NGLModel.ParentCourseGrade" Role="ParentCourseGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="SchoolId" />
+              <PropertyRef Name="TermTypeId" />
+              <PropertyRef Name="SchoolYear" />
+            </Principal>
+            <Dependent Role="ParentCourseGrade">
+              <PropertyRef Name="SchoolId" />
+              <PropertyRef Name="TermTypeId" />
+              <PropertyRef Name="SchoolYear" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentCourseGrade_Student_StudentUSI">
+          <End Type="NGLModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="NGLModel.ParentCourseGrade" Role="ParentCourseGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentUSI" />
+            </Principal>
+            <Dependent Role="ParentCourseGrade">
+              <PropertyRef Name="StudentUSI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -46299,6 +46441,22 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
                 <ScalarProperty Name="ParentCourseTitle" ColumnName="ParentCourseTitle" />
                 <ScalarProperty Name="ParentCourseCode" ColumnName="ParentCourseCode" />
                 <ScalarProperty Name="EducationOrganizationId" ColumnName="EducationOrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParentCourseGrades">
+            <EntityTypeMapping TypeName="NGLModel.ParentCourseGrade">
+              <MappingFragment StoreEntitySet="ParentCourseGrade">
+                <ScalarProperty Name="ParentCourseGradeIdentity" ColumnName="ParentCourseGradeIdentity" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GradeEarned" ColumnName="GradeEarned" />
+                <ScalarProperty Name="ParentCourseId" ColumnName="ParentCourseId" />
+                <ScalarProperty Name="SchoolYear" ColumnName="SchoolYear" />
+                <ScalarProperty Name="TermTypeId" ColumnName="TermTypeId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="StudentUSI" ColumnName="StudentUSI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

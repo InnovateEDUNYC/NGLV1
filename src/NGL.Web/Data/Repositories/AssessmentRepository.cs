@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Microsoft.Owin.Security.Provider;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 
@@ -27,7 +28,7 @@ namespace NGL.Web.Data.Repositories
                 .Include(sa => sa.StudentAssessmentScoreResults)
                 .ToList();
         }
-
+      
         public IEnumerable<Assessment> GetAssessments()
         {
             return DbContext.Set<Assessment>()

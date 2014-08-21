@@ -72,6 +72,7 @@ namespace NGL.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string Grades = "Grades";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,6 +80,7 @@ namespace NGL.Web.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string Grades = "Grades";
         }
 
 
@@ -89,6 +91,14 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string createModel = "createModel";
+        }
+        static readonly ActionParamsClass_Grades s_params_Grades = new ActionParamsClass_Grades();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Grades GradesParams { get { return s_params_Grades; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Grades
+        {
+            public readonly string sectionId = "sectionId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -101,9 +111,11 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string Grades = "Grades";
                 public readonly string Index = "Index";
             }
             public readonly string Create = "~/Views/ParentCourse/Create.cshtml";
+            public readonly string Grades = "~/Views/ParentCourse/Grades.cshtml";
             public readonly string Index = "~/Views/ParentCourse/Index.cshtml";
         }
     }
@@ -144,6 +156,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
             CreateOverride(callInfo, createModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GradesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sectionId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Grades(int? sectionId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Grades);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sectionId", sectionId);
+            GradesOverride(callInfo, sectionId);
             return callInfo;
         }
 
