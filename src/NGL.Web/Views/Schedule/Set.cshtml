@@ -82,23 +82,25 @@
 
         <div class="current-sections-container">
             <span class="category-title">Sections Assigned</span>
-            <table class="table table-condensed current-section-list">
-                @foreach (var item in Model.CurrentlyEnrolledSections)
-                {
-                    <tr class="current-section-list-item">
-                        <td class="scheduled-section-name">@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td class="scheduled-section-dates">
-                            <span class="scheduled-section-begin-date">@item.BeginDate</span> -
-                            <span class="scheduled-section-end-date">@item.EndDate</span>
-                        </td>
-                        <td class="delete-row-btn">
-                            <div data-student-section-id="@item.StudentSectionId" data-section-id="@item.SectionId" class="fa fa-times-circle remove-student"></div>
-                        </td>
-                        <td class="hidden section-id">@item.SectionId</td>
-                    </tr>
-                    <tr class="spacer"></tr>
-                }
-            </table>
+
+                <table class="table table-condensed current-section-list">
+                    @foreach (var item in Model.CurrentlyEnrolledSections)
+                    {
+                        <tr class="current-section-list-item">
+                            <td class="scheduled-section-name">@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td class="scheduled-section-dates">
+                                <span class="scheduled-section-begin-date">@item.BeginDate</span> -
+                                <span class="scheduled-section-end-date">@item.EndDate</span>
+                            </td>
+                            <td class="delete-row-btn">
+                                <div data-student-section-id="@item.StudentSectionId" data-section-id="@item.SectionId" class="fa fa-times-circle remove-student"></div>
+                            </td>
+                            <td class="hidden section-id">@item.SectionId</td>
+                        </tr>
+                        <tr class="spacer"></tr>
+                    }
+                </table>
+
         </div>
     </div>
 </div>
