@@ -1,5 +1,6 @@
 ﻿using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
+using NGL.Web.Data.Entities;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -14,6 +15,12 @@ namespace NGL.UiTests.Attendance
     {
         private HomePage _homePage;
         private TakeAttendancePage _takeAttendancePage;
+
+        public TakeAttendancePage TakeAttendancePage
+        {
+            set { _takeAttendancePage = value; }
+            get { return _takeAttendancePage; }
+        }
 
         public void IHaveLoggedIn()
         {
@@ -40,12 +47,27 @@ namespace NGL.UiTests.Attendance
 
         public void ISaveAfterMarkingAllTheStudentsTardy()
         {
-            _takeAttendancePage = _takeAttendancePage.EnterAttendanceStatus();
+            _takeAttendancePage = _takeAttendancePage.EnterAttendanceStatus(AttendanceEventCategoryDescriptorEnum.Tardy);
         }
 
         public void AllTheStudentsShouldBeMarkedTardy()
         {
             _takeAttendancePage.GetStudentAttendance().ShouldAllBe(sa => sa == "Tardy");
+        }
+
+        public void IMarkAStudentPresentForTwoOtherDays()
+        {
+            _takeAttendancePage = _homePage.TopMenu.GoToTakeAttendancePage();
+            _takeAttendancePage.MarkPresentForDate("09/10/2014");
+            _takeAttendancePage.MarkPresentForDate("09/11/2014");
+        }
+
+        public void StudentProfilePageShouldDisplayTheAttendancePercentage()
+        {
+            var studentIndex = _homePage.TopMenu.GoToStudentsPage();
+            var profilePage = studentIndex.GoToProfilePage();
+            profilePage.AttendancePercentageIs("66%").ShouldBe(true);
+
         }
 
         [Fact]
@@ -57,6 +79,8 @@ namespace NGL.UiTests.Attendance
                 .Then(_ => AListOfStudentsAttendingThatSectionShouldShow())
                 .When(_ => ISaveAfterMarkingAllTheStudentsTardy())
                 .Then(_ => AllTheStudentsShouldBeMarkedTardy())
+                .When(_ => IMarkAStudentPresentForTwoOtherDays())
+                .Then(_ => StudentProfilePageShouldDisplayTheAttendancePercentage())
                 .BDDfy();
         }
     }

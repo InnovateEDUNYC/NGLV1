@@ -55,5 +55,10 @@ namespace NGL.UiTests.Student
             return Navigate.To<SchedulePage>(By.LinkText("Scheduling"));
         }
 
+        public bool AttendancePercentageIs(string attendancePercentage)
+        {
+            var percentage = Find.Element(By.Id("profile-attendance-percentage-value"));
+            return percentage.Text == attendancePercentage;
+        }
     }
 }
