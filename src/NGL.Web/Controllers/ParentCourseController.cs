@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration.Internal;
 using System.Web.Mvc;
+using Humanizer;
 using Microsoft.Ajax.Utilities;
 using Microsoft.Owin.Security.Provider;
 using NGL.Web.Data.Entities;
@@ -73,9 +74,19 @@ namespace NGL.Web.Controllers
             if (sectionId == null) 
                 return View();
 
-            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == sectionId); ;
-            var course = _genericRepository.Get<Course>(c => c.CourseCode == section.LocalCourseCode);
-            var parentCourse = _genericRepository.Get<ParentCourse>( pc => pc.Id == course.ParentCourseId);
+            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == sectionId);
+
+            var parentCourse = _genericRepository.Get<ParentCourse>(
+                p =>
+                    p.Courses.Any(c => c.CourseCode == section.LocalCourseCode)
+                );
+           
+//            var grades = _genericRepository.GetAll<Grade>().Where(g => g.ParentCourse.Any(pc => 
+//                pc.Courses.Any(c => 
+//                    c.CourseCode == section.LocalCourseCode)));
+           
+
+            
 //            var grades = _genericRepository.GetAll<Grade>( grade => grade.ParentCourseId); //sql migration script todo
 
             var findParentCourseModel = _sectionToFindParentCourseModelMapper.Build(section); //perhaps just populate this from the section info?

@@ -1939,8 +1939,8 @@
     <EmbeddedResource Include="Data\Scripts\016 - Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
-    <EmbeddedResource Include="Data\Scripts\016.1 - Add Assessment Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\015 - Schema - Add Parent Course To Course Table.sql" />
+    <EmbeddedResource Include="Data\Scripts\016.1 - Add Assessment Sample Data.sample - Copy.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1956,6 +1956,7 @@
     </Content>
     <EmbeddedResource Include="Data\Scripts\013 - Add Performance Level Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\014 - Schema - Create Parent Course Table.sql" />
+    <EmbeddedResource Include="Data\Scripts\017 - Schema - Change Grade To Associate With Parent Course.sql" />
     <None Include="Data\Entities\ConfigurationAccessor.ttinclude">
       <LastGenOutput>ConfigurationAccessor1.cs</LastGenOutput>
     </None>

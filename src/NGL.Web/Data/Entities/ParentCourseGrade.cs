@@ -12,26 +12,28 @@ namespace NGL.Web.Data.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ParentCourse
+    public partial class ParentCourseGrade
     {
-        public ParentCourse()
+        public ParentCourseGrade()
         {
     		this.Id = System.Guid.NewGuid();
     		this.LastModifiedDate = System.DateTime.Now;
     		this.CreateDate = System.DateTime.Now;
-            this.Courses = new HashSet<Course>();
-            this.ParentCourseGrades = new HashSet<ParentCourseGrade>();
         }
     
-        public int EducationOrganizationId { get; set; }
-        public string ParentCourseCode { get; set; }
-        public string ParentCourseTitle { get; set; }
-        public string ParentCourseDescription { get; set; }
+        public int StudentUSI { get; set; }
+        public int SchoolId { get; set; }
+        public int TermTypeId { get; set; }
+        public short SchoolYear { get; set; }
+        public System.Guid ParentCourseId { get; set; }
+        public string GradeEarned { get; set; }
         public System.Guid Id { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public int ParentCourseGradeIdentity { get; set; }
     
-        public virtual ICollection<Course> Courses { get; set; }
-        public virtual ICollection<ParentCourseGrade> ParentCourseGrades { get; set; }
+        public virtual ParentCourse ParentCourse { get; set; }
+        public virtual Session Session { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

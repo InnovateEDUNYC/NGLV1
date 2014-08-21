@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Entities
             this.SessionAcademicWeeks = new HashSet<SessionAcademicWeek>();
             this.SessionGradingPeriods = new HashSet<SessionGradingPeriod>();
             this.StudentSchoolAttendanceEvents = new HashSet<StudentSchoolAttendanceEvent>();
+            this.ParentCourseGrades = new HashSet<ParentCourseGrade>();
         }
     
         public int SchoolId { get; set; }
@@ -46,5 +47,6 @@ namespace NGL.Web.Data.Entities
         public virtual ICollection<SessionAcademicWeek> SessionAcademicWeeks { get; set; }
         public virtual ICollection<SessionGradingPeriod> SessionGradingPeriods { get; set; }
         public virtual ICollection<StudentSchoolAttendanceEvent> StudentSchoolAttendanceEvents { get; set; }
+        public virtual ICollection<ParentCourseGrade> ParentCourseGrades { get; set; }
     }
 }
