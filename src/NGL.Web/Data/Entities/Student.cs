@@ -54,6 +54,7 @@ namespace NGL.Web.Data.Entities
             this.StudentVisas = new HashSet<StudentVisa>();
             this.StudentAcademicDetails = new HashSet<StudentAcademicDetail>();
             this.ParentCourseGrades = new HashSet<ParentCourseGrade>();
+            this.AttendanceFlags = new HashSet<AttendanceFlag>();
         }
     
         public int StudentUSI { get; set; }
@@ -128,5 +129,6 @@ namespace NGL.Web.Data.Entities
         public virtual StudentProgramStatus StudentProgramStatus { get; set; }
         public virtual ICollection<StudentAcademicDetail> StudentAcademicDetails { get; set; }
         public virtual ICollection<ParentCourseGrade> ParentCourseGrades { get; set; }
+        public virtual ICollection<AttendanceFlag> AttendanceFlags { get; set; }
     }
 }
