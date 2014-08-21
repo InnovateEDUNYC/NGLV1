@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using NGL.Web.Data.Entities;
 using NGL.Web.Models.Attendance;
 
 namespace NGL.Tests.Builders
@@ -10,24 +12,39 @@ namespace NGL.Tests.Builders
         private int? _sessionId = 1;
         private string _section = "Math 123";
         private string _session = "Fall 2014";
-        private IList<StudentAttendanceRowModel> _studentRows = null;
+        private List<StudentAttendanceRowModel> _studentRows = new List<StudentAttendanceRowModel>();
 
         public TakeAttendanceModel Build()
         {
-            return new TakeAttendanceModel
+            var takeAttendanceModel = new TakeAttendanceModel
             {
                 Date = _date,
                 SectionId = _sectionId,
                 Section = _section,
                 SessionId = _sessionId,
                 Session = _session,
-                StudentRows = _studentRows
             };
+
+            if (_studentRows.Any())
+                takeAttendanceModel.StudentRows = _studentRows;
+
+            return takeAttendanceModel;
         }
 
         public TakeAttendanceModelBuilder WithDate(string date)
         {
             _date = date;
+            return this;
+        }
+
+        public TakeAttendanceModelBuilder WithStudent(Web.Data.Entities.Student student)
+        {
+            _studentRows.Add(new StudentAttendanceRowModel
+            {
+                AttendanceType = AttendanceEventCategoryDescriptorEnum.InAttendance,
+                StudentUsi = student.StudentUSI
+            });
+
             return this;
         }
     }

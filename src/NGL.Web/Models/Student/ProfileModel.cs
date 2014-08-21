@@ -30,5 +30,6 @@ namespace NGL.Web.Models.Student
         public ProfileAcademicDetailModel AcademicDetail { get; set; }
         public ProfileProgramStatusModel ProgramStatus { get; set; }
         public int AttendancePercentage { get; set; }
+        public int FlagCount { get; set; }
     }
 }

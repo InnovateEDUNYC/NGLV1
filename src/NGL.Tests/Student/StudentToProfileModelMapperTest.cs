@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Humanizer;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Filters;
-using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Student;
@@ -38,7 +35,7 @@ namespace NGL.Tests.Student
         {
             SetupWithDownloaderReturning("");
 
-            var student = new StudentBuilder().WithParent().WithStudentProgramStatus().Build();
+            var student = new StudentBuilder().WithParent().WithStudentProgramStatus().WithAttendanceFlags(1).Build();
 
             var parent = student.StudentParentAssociations.First().Parent;
             var profileModel = new ProfileModel();
@@ -50,6 +47,7 @@ namespace NGL.Tests.Student
             StudentParentAssociationShouldBeMapped(student, profileModel);
             profileModel.ProgramStatus.ShouldNotBe(null);
             _studentAttendancePercentageMapperMock.Received().Map(Arg.Any<IList<StudentSectionAttendanceEvent>>(), Arg.Any<ProfileModel>());
+            profileModel.FlagCount.ShouldBe(student.AttendanceFlags.First().FlagCount);
         }
 
         [Fact]
@@ -170,7 +168,7 @@ namespace NGL.Tests.Student
         {
             profileParentModel.FirstName.ShouldBe(parent.FirstName);
             profileParentModel.LastName.ShouldBe(parent.LastSurname);
-            profileParentModel.Sex.ShouldBe(((SexTypeEnum)parent.SexTypeId).Humanize());
+            profileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId.GetValueOrDefault()).Humanize());
             profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
         }
 

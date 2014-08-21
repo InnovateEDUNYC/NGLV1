@@ -37,11 +37,17 @@ namespace NGL.Web.Models.Student
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
             _studentAttendancePercentageMapper.Map(source.StudentSectionAttendanceEvents.ToList(), target);
+            MapFlagCount(source, target);
 
 			if (!source.StudentAcademicDetails.IsNullOrEmpty())
                 target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
 
             MapProgramStatus(source, target);
+        }
+
+        private void MapFlagCount(Data.Entities.Student source, ProfileModel target)
+        {
+            target.FlagCount = !source.AttendanceFlags.IsNullOrEmpty() ? source.AttendanceFlags.First().FlagCount : 0;
         }
 
         private void MapProgramStatus(Data.Entities.Student source, ProfileModel target)
