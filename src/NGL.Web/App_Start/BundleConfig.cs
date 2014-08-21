@@ -59,7 +59,8 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Assessment/result.js",
                 "~/Assets/Scripts/Views/Attendance/take.js",
                 "~/Assets/Scripts/Views/Shared/learningStandards.js",
-                "~/Assets/Scripts/Views/Report/getGrades.js"
+                "~/Assets/Scripts/Views/Report/getGrades.js",
+                "~/Assets/Scripts/Views/Shared/accordianArrows.js"
                 ));
         }
     }

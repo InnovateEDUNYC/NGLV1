@@ -1950,6 +1950,7 @@
     <Content Include="Assets\Scripts\Views\Report\getGrades.js" />
     <Content Include="Assets\Scripts\Views\Schedule\removeStudent.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
+    <Content Include="Assets\Scripts\Views\Shared\accordianArrows.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
     <Content Include="Assets\Scripts\Views\Shared\sessionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
