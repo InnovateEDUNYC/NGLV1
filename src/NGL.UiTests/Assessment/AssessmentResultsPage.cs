@@ -14,7 +14,7 @@ namespace NGL.UiTests.Assessment
         public AssessmentIndexPage EnterResultsForFirstStudent(string score)
         {
             Find.Element(By.Id("StudentResults_0__AssessmentResult")).SendKeys(score);
-            return Navigate.To<AssessmentIndexPage>(By.ClassName("btn"));
+            return Navigate.To<AssessmentIndexPage>(By.ClassName("btn-primary"));
         }
 
         public bool ResultsExistForFirstStudent(string score)
