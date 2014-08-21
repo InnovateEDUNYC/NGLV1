@@ -1172,6 +1172,8 @@
         <AssociationConnector Association="NGLModel.FK_ParentCourseGrade_ParentCourse_ParentCourseId" />
         <AssociationConnector Association="NGLModel.FK_ParentCourseGrade_Session_SessionIdentity" />
         <AssociationConnector Association="NGLModel.FK_ParentCourseGrade_Student_StudentUSI" />
+        <EntityTypeShape EntityType="NGLModel.AttendanceFlag" Width="1.5" PointX="19.5" PointY="425.125" />
+        <AssociationConnector Association="NGLModel.FK_AttendanceFlag_Student_StudentUSI" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

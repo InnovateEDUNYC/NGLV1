@@ -70,6 +70,16 @@
           <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="AttendanceFlag">
+          <Key>
+            <PropertyRef Name="AttendanceFlagIdentity" />
+          </Key>
+          <Property Name="AttendanceFlagIdentity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentUSI" Type="int" Nullable="false" />
+          <Property Name="FlagCount" Type="int" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="ELMAH_Error">
           <Key>
             <PropertyRef Name="ErrorId" />
@@ -7221,6 +7231,18 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             </Principal>
             <Dependent Role="AttendanceEventCategoryDescriptor">
               <PropertyRef Name="AttendanceEventCategoryDescriptorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendanceFlag_Student_StudentUSI">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="AttendanceFlag" Type="Self.AttendanceFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentUSI" />
+            </Principal>
+            <Dependent Role="AttendanceFlag">
+              <PropertyRef Name="StudentUSI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16143,6 +16165,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssessmentLearningStandard" EntityType="Self.AssessmentLearningStandard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttendanceFlag" EntityType="Self.AttendanceFlag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentCourse" EntityType="Self.ParentCourse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentCourseGrade" EntityType="Self.ParentCourseGrade" Schema="dbo" store:Type="Tables" />
@@ -16845,6 +16868,10 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <AssociationSet Name="FK_AttendanceEventCategoryDescriptor_Descriptor_DescriptorId" Association="Self.FK_AttendanceEventCategoryDescriptor_Descriptor_DescriptorId">
             <End Role="Descriptor" EntitySet="Descriptor" />
             <End Role="AttendanceEventCategoryDescriptor" EntitySet="AttendanceEventCategoryDescriptor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendanceFlag_Student_StudentUSI" Association="Self.FK_AttendanceFlag_Student_StudentUSI">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="AttendanceFlag" EntitySet="AttendanceFlag" />
           </AssociationSet>
           <AssociationSet Name="FK_BehaviorDescriptor_BehaviorType_BehaviorTypeId" Association="Self.FK_BehaviorDescriptor_BehaviorType_BehaviorTypeId">
             <End Role="BehaviorType" EntitySet="BehaviorType" />
@@ -25586,6 +25613,7 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
           <NavigationProperty Name="StudentProgramStatus" Relationship="NGLModel.FK_StudentProgramStatus_Student" FromRole="Student" ToRole="StudentProgramStatus" />
           <NavigationProperty Name="StudentAcademicDetails" Relationship="NGLModel.FK_StudentAcademicDetails_Student1" FromRole="Student" ToRole="StudentAcademicDetail1" />
           <NavigationProperty Name="ParentCourseGrades" Relationship="NGLModel.FK_ParentCourseGrade_Student_StudentUSI" FromRole="Student" ToRole="ParentCourseGrade" />
+          <NavigationProperty Name="AttendanceFlags" Relationship="NGLModel.FK_AttendanceFlag_Student_StudentUSI" FromRole="Student" ToRole="AttendanceFlag" />
         </EntityType>
         <EntityType Name="StudentAcademicRecord">
           <Key>
@@ -40015,6 +40043,11 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
             <End Role="Student" EntitySet="Students" />
             <End Role="ParentCourseGrade" EntitySet="ParentCourseGrades" />
           </AssociationSet>
+          <EntitySet Name="AttendanceFlags" EntityType="NGLModel.AttendanceFlag" />
+          <AssociationSet Name="FK_AttendanceFlag_Student_StudentUSI" Association="NGLModel.FK_AttendanceFlag_Student_StudentUSI">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="AttendanceFlag" EntitySet="AttendanceFlags" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="StudentProgramStatus">
           <Key>
@@ -40400,6 +40433,29 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
               <PropertyRef Name="StudentUSI" />
             </Principal>
             <Dependent Role="ParentCourseGrade">
+              <PropertyRef Name="StudentUSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AttendanceFlag">
+          <Key>
+            <PropertyRef Name="AttendanceFlagIdentity" />
+          </Key>
+          <Property Name="AttendanceFlagIdentity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentUSI" Type="Int32" Nullable="false" />
+          <Property Name="FlagCount" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Student" Relationship="NGLModel.FK_AttendanceFlag_Student_StudentUSI" FromRole="AttendanceFlag" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_AttendanceFlag_Student_StudentUSI">
+          <End Type="NGLModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="NGLModel.AttendanceFlag" Role="AttendanceFlag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentUSI" />
+            </Principal>
+            <Dependent Role="AttendanceFlag">
               <PropertyRef Name="StudentUSI" />
             </Dependent>
           </ReferentialConstraint>
@@ -46457,6 +46513,17 @@ warning 6002: The table/view 'NGL.dbo.VersionLevel' does not have a primary key 
                 <ScalarProperty Name="TermTypeId" ColumnName="TermTypeId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="StudentUSI" ColumnName="StudentUSI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttendanceFlags">
+            <EntityTypeMapping TypeName="NGLModel.AttendanceFlag">
+              <MappingFragment StoreEntitySet="AttendanceFlag">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="FlagCount" ColumnName="FlagCount" />
+                <ScalarProperty Name="StudentUSI" ColumnName="StudentUSI" />
+                <ScalarProperty Name="AttendanceFlagIdentity" ColumnName="AttendanceFlagIdentity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

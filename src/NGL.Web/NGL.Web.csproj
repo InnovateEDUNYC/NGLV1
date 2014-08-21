@@ -279,7 +279,14 @@
     <Compile Include="Controllers\ParentCourseController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Data\Entities\AttendanceFlag.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Entities\ParentCourse.cs">
+      <DependentUpon>NglDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Entities\ParentCourseGrade.cs">
+      <SubType>Code</SubType>
       <DependentUpon>NglDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
@@ -1941,6 +1948,7 @@
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
     <EmbeddedResource Include="Data\Scripts\015 - Schema - Add Parent Course To Course Table.sql" />
     <EmbeddedResource Include="Data\Scripts\016.1 - Add Assessment Sample Data.sample - Copy.sql" />
+    <EmbeddedResource Include="Data\Scripts\018 - Schema - Attendance Flags.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
