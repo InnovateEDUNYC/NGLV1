@@ -68,9 +68,6 @@ namespace NGL.Web.Service
             {
                 studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount--;
             }
-
-
-//            studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount--;
         }
     }
 }
