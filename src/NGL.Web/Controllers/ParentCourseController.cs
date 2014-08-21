@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration.Internal;
 using System.Web.Mvc;
+using Castle.Core.Internal;
 using Humanizer;
 using Microsoft.Ajax.Utilities;
 using Microsoft.Owin.Security.Provider;
+using Microsoft.WindowsAzure.Storage.Table;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
@@ -23,14 +26,18 @@ namespace NGL.Web.Controllers
         private readonly IMapper<ParentCourse, IndexModel> _parentCourseToIndexModelMapper;
         private readonly IParentCourseRepository _parentCourseRepository;
         private readonly IMapper<Section, FindParentCourseModel> _sectionToFindParentCourseModelMapper;
+        private readonly IMapper<ParentCourseGrade, GradeModel> _parentCourseGradeToGradeModelMapper;
+        private readonly IMapper<Student, GradeModel> _studentToGradeModelMapper;
 
-        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<Section, FindParentCourseModel> sectionToFindParentCourseModelMapper)
+        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<Section, FindParentCourseModel> sectionToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToParentCourseMapper = createModelToParentCourseMapper;
             _parentCourseToIndexModelMapper = parentCourseToIndexModelMapper;
             _parentCourseRepository = parentCourseRepository;
             _sectionToFindParentCourseModelMapper = sectionToFindParentCourseModelMapper;
+            _parentCourseGradeToGradeModelMapper = parentCourseGradeToGradeModelMapper;
+            _studentToGradeModelMapper = studentToGradeModelMapper;
         }
         //
         // GET: /ParentCourse/
@@ -71,29 +78,33 @@ namespace NGL.Web.Controllers
         // GET: /ParentCourse/Grades
         public virtual ActionResult Grades(int? sectionId = null)
         {
-            if (sectionId == null) 
-                return View();
+            if (sectionId == null)
+                return View(new ParentCourseGradesModel());
 
-            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == sectionId);
 
-            var parentCourse = _genericRepository.Get<ParentCourse>(
-                p =>
-                    p.Courses.Any(c => c.CourseCode == section.LocalCourseCode)
-                );
-           
-//            var grades = _genericRepository.GetAll<Grade>().Where(g => g.ParentCourse.Any(pc => 
-//                pc.Courses.Any(c => 
-//                    c.CourseCode == section.LocalCourseCode)));
-           
 
-            
-//            var grades = _genericRepository.GetAll<Grade>( grade => grade.ParentCourseId); //sql migration script todo
+            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == sectionId, s => s.StudentSectionAssociations.Select(ssa => ssa.Student), s => s.Session);
 
-            var findParentCourseModel = _sectionToFindParentCourseModelMapper.Build(section); //perhaps just populate this from the section info?
+            var studentsInSection = section.StudentSectionAssociations.Select(ssa => ssa.Student).ToList();
 
-//            var parentGradesModelList = _parentCourseToParentGradesModelMapper.Build(parentCourse);
-//            return View(Tuple.Create(findParentCourseModel, parentGradesModelList));
-            return View();
+            var grades = _genericRepository.Query<ParentCourseGrade>().Where(g => g.ParentCourse.Courses.Any(c => c.CourseCode == section.LocalCourseCode)).Include(g => g.Student).ToList();
+
+            var studentsWithGrades = grades.Select(g => g.Student).ToList();
+
+            var studentsInSectionWithoutGrades = studentsInSection.Except(studentsWithGrades).ToList();
+
+            var findParentCourseModel = _sectionToFindParentCourseModelMapper.Build(section);
+
+            var parentGradesModelEnumerable = grades.Select(grade => _parentCourseGradeToGradeModelMapper.Build(grade));
+
+            parentGradesModelEnumerable = parentGradesModelEnumerable.Concat(studentsInSectionWithoutGrades.Select(s => _studentToGradeModelMapper.Build(s)));
+
+            var parentCourseGradesModel = new ParentCourseGradesModel();
+
+            parentCourseGradesModel.FindParentCourseModel = findParentCourseModel;
+            parentCourseGradesModel.ParentGradesModelList = parentGradesModelEnumerable.ToList();
+
+            return View(parentCourseGradesModel);
         }
     }
 }
