@@ -10,7 +10,7 @@ namespace NGL.Tests.Builders
         private const int SchoolYear = (int) SchoolYearTypeEnum.Year2014;
         private const int TermTypeId = (int) TermTypeEnum.FallSemester;
         private string _classPeriodName = "Period 3";
-        private const string ClassroomIdentificationCode = "BKL 200";
+        private string _classroomIdentificationCode = "BKL 200";
         private string _localCourseCode = "CHEM2090";
         private string _uniqueSectionCode = "CHEM2090 - 200";
         private const int SequenceOfCourse = 1;
@@ -35,7 +35,7 @@ namespace NGL.Tests.Builders
                 SchoolYear = SchoolYear,
                 TermTypeId = TermTypeId,
                 ClassPeriodName = _classPeriodName,
-                ClassroomIdentificationCode = ClassroomIdentificationCode,
+                ClassroomIdentificationCode = _classroomIdentificationCode,
                 LocalCourseCode = _localCourseCode,
                 UniqueSectionCode = _uniqueSectionCode,
                 SequenceOfCourse = SequenceOfCourse,
@@ -117,9 +117,14 @@ namespace NGL.Tests.Builders
             return this;
         }
 
-        public SectionBuilder WithAttendanceEvents(List<StudentSectionAttendanceEvent> attendanceEvents)
-        {
+        public SectionBuilder WithAttendanceEvents(List<StudentSectionAttendanceEvent> attendanceEvents){
             _attendanceEvents = attendanceEvents;
+            return this;
+        }
+        
+        public SectionBuilder WithClassroomIdentificationCode(string classroomIdentificationCode)
+        {
+            _classroomIdentificationCode = classroomIdentificationCode;
             return this;
         }
     }
