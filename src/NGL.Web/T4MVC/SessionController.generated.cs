@@ -54,6 +54,12 @@ namespace NGL.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Sections()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Sections);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SessionController Actions { get { return MVC.Session; } }
@@ -72,6 +78,7 @@ namespace NGL.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string Sections = "Sections";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,6 +86,7 @@ namespace NGL.Web.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string Sections = "Sections";
         }
 
 
@@ -89,6 +97,14 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string createModel = "createModel";
+        }
+        static readonly ActionParamsClass_Sections s_params_Sections = new ActionParamsClass_Sections();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Sections SectionsParams { get { return s_params_Sections; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Sections
+        {
+            public readonly string sessionIdentity = "sessionIdentity";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -102,9 +118,11 @@ namespace NGL.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
+                public readonly string Sections = "Sections";
             }
             public readonly string Create = "~/Views/Session/Create.cshtml";
             public readonly string Index = "~/Views/Session/Index.cshtml";
+            public readonly string Sections = "~/Views/Session/Sections.cshtml";
         }
     }
 
@@ -144,6 +162,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
             CreateOverride(callInfo, createModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SectionsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int sessionIdentity);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Sections(int sessionIdentity)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Sections);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionIdentity", sessionIdentity);
+            SectionsOverride(callInfo, sessionIdentity);
             return callInfo;
         }
 

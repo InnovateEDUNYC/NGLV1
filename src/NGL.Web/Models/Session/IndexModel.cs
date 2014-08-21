@@ -7,5 +7,6 @@
         public System.DateTime BeginDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public int TotalInstructionalDays { get; set; }
+        public int SessionIdentity { get; set; }
     }
 }

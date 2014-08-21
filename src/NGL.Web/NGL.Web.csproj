@@ -298,11 +298,13 @@
     <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\ISectionRepository.cs" />
+    <Compile Include="Data\Repositories\ISessionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
     <Compile Include="Data\Repositories\ParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\SectionRepository.cs" />
+    <Compile Include="Data\Repositories\SessionRepository.cs" />
     <Compile Include="Data\Repositories\StudentRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\StudentSectionRepository.cs" />
@@ -1769,6 +1771,8 @@
     <Compile Include="Models\Section\SessionToSessionJsonModelMapper.cs" />
     <Compile Include="Models\Section\StudentSectionAssociationToSectionListItemModelMapper.cs" />
     <Compile Include="Models\Session\CreateModelValidator.cs" />
+    <Compile Include="Models\Session\SessionToSessionWithSectionsModelMapper.cs" />
+    <Compile Include="Models\Session\SessionWithSectionsModel.cs" />
     <Compile Include="Models\Student\StudentAttendancePercentageMapper.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
@@ -2080,6 +2084,7 @@
     <Content Include="Views\Assessment\Month.cshtml" />
     <Content Include="Views\Attendance\Take.cshtml" />
     <Content Include="Views\ParentCourse\Grades.cshtml" />
+    <Content Include="Views\Session\Sections.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

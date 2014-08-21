@@ -51,6 +51,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.TotalInstructionalDays)
                     </td>
+                    @if ((User as NglPrincipal).HasAccessTo("session", "view"))
+                    {
+                        <td>
+                            @Html.ActionLink("View Sections", MVC.Session.Sections(item.SessionIdentity), new { @class = "btn" })
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

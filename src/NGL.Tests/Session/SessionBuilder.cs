@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Session
@@ -11,6 +12,7 @@ namespace NGL.Tests.Session
         private static readonly DateTime EndDate = new DateTime(2014, 9, 26);
         private const int TotalInstructionalDays = 92;
         private const string SessionName = "Fall Semester 2014";
+        private IList<Web.Data.Entities.Section> _sections = new List<Web.Data.Entities.Section>();
 
         public Web.Data.Entities.Session Build()
         {
@@ -22,13 +24,20 @@ namespace NGL.Tests.Session
                 SessionName = SessionName,
                 BeginDate = BeginDate,
                 EndDate = EndDate,
-                TotalInstructionalDays = TotalInstructionalDays
+                TotalInstructionalDays = TotalInstructionalDays,
+                Sections = _sections
             };
         }
 
         public SessionBuilder WithSchoolYear(SchoolYearTypeEnum schoolYearTypeEnum)
         {
             _schoolYear = (short) schoolYearTypeEnum;
+            return this;
+        }
+
+        public SessionBuilder WithSections(IList<Web.Data.Entities.Section> sections)
+        {
+            _sections = sections;
             return this;
         }
     }
