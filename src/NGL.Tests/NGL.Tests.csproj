@@ -79,6 +79,8 @@
     <Compile Include="Assessment\AssessmentToAssessmentIndexModelMapperTests.cs" />
     <Compile Include="Assessment\AssessmentToEnterResultsModelMapperTests.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentLearningStandardMapperTests.cs" />
+    <Compile Include="Attendance\AttendanceServiceTests.cs" />
+    <Compile Include="Attendance\TakeAttendanceModelToStudentSectionAttendanceEventListMapperTests.cs" />
     <Compile Include="Builders\CreateAssessmentModelBuilder.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentMapperTests.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentPerformanceLevelMapperTests.cs" />

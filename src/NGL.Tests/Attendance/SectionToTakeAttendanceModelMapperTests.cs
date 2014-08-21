@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
@@ -18,6 +18,20 @@ namespace NGL.Tests.Attendance
             var student1 = new StudentBuilder().Build();
             var student2 = new StudentBuilder().WithStudentUsi(1234).WithFirstName("Mike").Build();
             var section = new SectionBuilder().WithStudent(student1).WithStudent(student2).Build();
+            var attendanceEvents = new List<StudentSectionAttendanceEvent>
+            {
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int)AttendanceEventCategoryDescriptorEnum.InAttendance)
+                    .WithStudent(student1)
+                    .WithSection(section)
+                    .Build(),
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int)AttendanceEventCategoryDescriptorEnum.InAttendance)
+                    .WithStudent(student2)
+                    .WithSection(section)
+                    .Build()
+            };
+            section.StudentSectionAttendanceEvents = attendanceEvents;
 
             var date = student1.StudentSectionAssociations.First().BeginDate.AddDays(1);
 

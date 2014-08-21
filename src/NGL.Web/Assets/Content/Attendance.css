@@ -83,3 +83,20 @@ table.attendance-list input[type="radio"]:checked + .custom-checkbox {
     width: 100%;
     text-align: right;
 }
+
+.attendance-flags {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.great {
+    color: #69BD45;
+}
+
+.in-danger {
+    color: #FFD902;
+}
+
+.bad {
+    color: #EC4B36;
+}

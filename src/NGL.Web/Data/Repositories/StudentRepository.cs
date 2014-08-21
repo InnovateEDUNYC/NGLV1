@@ -24,6 +24,7 @@ namespace NGL.Web.Data.Repositories
                 .Include(s => s.StudentAcademicDetails)
                 .Include(s => s.StudentProgramStatus)
                 .Include(s => s.StudentSectionAttendanceEvents)
+                .Include(s => s.AttendanceFlags)
                 .ToList().SingleOrDefault();
 
             return student;

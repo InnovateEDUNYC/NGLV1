@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Repositories;
@@ -15,15 +16,61 @@ namespace NGL.Web.Service
             _attendanceRepository = attendanceRepository;
         }
 
-        public void RecordAttendanceFor(Section section, DateTime date, IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
+        public void RecordAttendanceFor(Section section, DateTime date, IEnumerable<StudentSectionAttendanceEvent> newAttendanceEvents)
         {
 
-            var currentAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, date);
+            var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, date);
 
-            if (!currentAttendanceEvents.IsNullOrEmpty())
-                _attendanceRepository.Delete(currentAttendanceEvents);
+            if (!existingAttendanceEvents.IsNullOrEmpty())
+            {
+                foreach (var studentSectionAttendanceEvent in existingAttendanceEvents)
+                    DecrementFlagCount(studentSectionAttendanceEvent);
 
-            _attendanceRepository.AddStudentSectionAttendanceEventList(studentSectionAttendanceEventList);
+                _attendanceRepository.Delete(existingAttendanceEvents);
+            }
+
+            foreach (var studentSectionAttendanceEvent in newAttendanceEvents)
+            {
+                IncrementFlagCount(studentSectionAttendanceEvent);
+            }
+            _attendanceRepository.AddStudentSectionAttendanceEventList(newAttendanceEvents);
+        }
+
+        private void IncrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
+        {
+            var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;
+            if (attendanceType == (int)AttendanceEventCategoryDescriptorEnum.Tardy || attendanceType == (int)AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence)
+            {
+                if (studentSectionAttendanceEvent.Student.AttendanceFlags.IsNullOrEmpty())
+                {
+                    CreateNewAttendanceFlagEntryFor(studentSectionAttendanceEvent.Student);
+                }
+                studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount++;
+            }
+        }
+
+        private void CreateNewAttendanceFlagEntryFor(Student student)
+        {
+            student.AttendanceFlags = new List<AttendanceFlag>
+            {
+                new AttendanceFlag
+                {
+                    FlagCount = 0,
+                    StudentUSI = student.StudentUSI
+                }
+            };
+        }
+
+        private static void DecrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
+        {
+            var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;
+            if (attendanceType == (int) AttendanceEventCategoryDescriptorEnum.Tardy || attendanceType == (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence)
+            {
+                studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount--;
+            }
+
+
+//            studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount--;
         }
     }
 }

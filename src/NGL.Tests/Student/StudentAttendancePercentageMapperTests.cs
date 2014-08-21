@@ -23,24 +23,19 @@ namespace NGL.Tests.Student
             var studentSectionAttendanceEvents = new[]
             {
                 new StudentSectionAttendanceEventBuilder()
-                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.Tardy)
-                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.Tardy).Build(),
 
-                    new StudentSectionAttendanceEventBuilder()
-                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance)
-                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance).Build(),
                     
-                    new StudentSectionAttendanceEventBuilder()
-                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.Earlydeparture)
-                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.Earlydeparture).Build(),
                     
-                    new StudentSectionAttendanceEventBuilder()
-                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance)
-                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance).Build(),
                     
-                    new StudentSectionAttendanceEventBuilder()
-                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.ExcusedAbsence)
-                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.ExcusedAbsence).Build()
             };
 
             _mapper.Map(studentSectionAttendanceEvents, _profileModel);
@@ -59,7 +54,7 @@ namespace NGL.Tests.Student
 
                     new StudentSectionAttendanceEventBuilder()
                     .WithAttendanceEventCategoryDescriptorId((int) AttendanceEventCategoryDescriptorEnum.InAttendance)
-                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build(),
+                    .WithSchoolYear(SchoolYearTypeEnum.Year2014).Build()
             };
 
             _mapper.Map(studentSectionAttendanceEvents, _profileModel);

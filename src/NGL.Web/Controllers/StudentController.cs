@@ -75,6 +75,7 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Index(int usi)
         {
             var student = _studentRepository.GetByUSI(usi);
+
             if (student == null)
                 return HttpNotFound();
 

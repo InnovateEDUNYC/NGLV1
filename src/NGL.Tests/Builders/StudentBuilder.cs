@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using NGL.Tests.Student;
 using NGL.Web.Data.Entities;
 
@@ -19,6 +20,7 @@ namespace NGL.Tests.Builders
         private StudentProgramStatus _studentProgramStatus;
         private readonly ICollection<StudentParentAssociation> _studentParentAssociations = new Collection<StudentParentAssociation>();
         private List<StudentAssessment> _studentAssessments;
+        private int _flagCount;
         private const bool HispanicLatinoEthnicity = true;
         private const int Race = (int)RaceTypeEnum.NativeHawaiianPacificIslander;
         private const int PrimaryParentRelationType = (int)RelationTypeEnum.Father;
@@ -44,6 +46,9 @@ namespace NGL.Tests.Builders
             student.StudentParentAssociations = _studentParentAssociations;
             student.StudentAssessments = _studentAssessments;
             student.StudentSectionAttendanceEvents = _studentSectionAttendanceEvents;
+
+            student.AttendanceFlags.Add(new AttendanceFlag());
+            student.AttendanceFlags.First().FlagCount = _flagCount;
 
             return student;
         }
@@ -111,6 +116,12 @@ namespace NGL.Tests.Builders
         public StudentBuilder WithLastSurname(string lastName)
         {
             _lastName = lastName;
+            return this;
+        }
+
+        public StudentBuilder WithAttendanceFlags(int flagCount)
+        {
+            _flagCount = flagCount;
             return this;
         }
     }
