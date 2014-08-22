@@ -101,6 +101,36 @@ namespace NGL.Tests.Attendance
             _student.AttendanceFlags.First().FlagCount.ShouldBe(1);
         }
 
+        [Fact]
+        public void ShouldNotAddMoreThanTenFlags()
+        {
+            Setup();
+            _student.AttendanceFlags.First().FlagCount = 10;
+
+            var existingAttendanceEvents = new List<StudentSectionAttendanceEvent>
+            {
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId(PresentId)
+                    .WithStudent(_student)
+                    .WithSection(_section)
+                    .Build()
+            };
+            _attendanceRepository.GetSectionAttendanceEventsFor(_section, _date).Returns(existingAttendanceEvents);
+
+            var newAttendanceEvents = new List<StudentSectionAttendanceEvent>
+            {
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId(TardyId)
+                    .WithStudent(_student)
+                    .WithSection(_section)
+                    .Build()
+            };
+
+            _attendanceService.RecordAttendanceFor(_section, _date, newAttendanceEvents);
+
+            _student.AttendanceFlags.First().FlagCount.ShouldBe(10);
+        }
+
         private void Setup()
         {
             _attendanceRepository = Substitute.For<IAttendanceRepository>();

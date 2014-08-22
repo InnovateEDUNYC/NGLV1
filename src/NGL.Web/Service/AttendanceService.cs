@@ -39,14 +39,17 @@ namespace NGL.Web.Service
         private void IncrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
         {
             var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;
-            if (attendanceType == (int)AttendanceEventCategoryDescriptorEnum.Tardy || attendanceType == (int)AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence)
-            {
-                if (studentSectionAttendanceEvent.Student.AttendanceFlags.IsNullOrEmpty())
-                {
-                    CreateNewAttendanceFlagEntryFor(studentSectionAttendanceEvent.Student);
-                }
+            if (attendanceType != (int) AttendanceEventCategoryDescriptorEnum.Tardy &&
+                attendanceType != (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence) 
+                    return;
+
+            if (studentSectionAttendanceEvent.Student.AttendanceFlags.IsNullOrEmpty())
+                CreateNewAttendanceFlagEntryFor(studentSectionAttendanceEvent.Student);
+                
+            var flagCount = studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount;
+
+            if (flagCount < 10)
                 studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount++;
-            }
         }
 
         private void CreateNewAttendanceFlagEntryFor(Student student)
