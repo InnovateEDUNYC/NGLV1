@@ -9,6 +9,7 @@ using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Section;
+using NGL.Web.Models.Session;
 using CreateModel = NGL.Web.Models.Section.CreateModel;
 using IndexModel = NGL.Web.Models.Section.IndexModel;
 
@@ -25,6 +26,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Session, SessionJsonModel> _sessionToSessionJsonModelMapper;
         private readonly IMapper<Course, CourseJsonModel> _courseToCourseJsonModelMapper;
         private readonly ISessionRepository _sessionRepository;
+        private readonly IMapper<Session, SessionWithSectionsModel> _sessionToSessionWithSectionsModelMapper;
 
         public SectionController(IGenericRepository genericRepository, 
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
@@ -34,7 +36,7 @@ namespace NGL.Web.Controllers
             IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
             IMapper<Session, SessionJsonModel> sessionToSessionJsonModelMapper, 
             IMapper<Course, CourseJsonModel> courseToCourseJsonModelMapper, 
-            ISessionRepository sessionRepository)
+            ISessionRepository sessionRepository, IMapper<Session, SessionWithSectionsModel> sessionToSessionWithSectionsModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToSectionMapper = createModelToSectionMapper;
@@ -42,6 +44,7 @@ namespace NGL.Web.Controllers
             _sessionToSessionJsonModelMapper = sessionToSessionJsonModelMapper;
             _courseToCourseJsonModelMapper = courseToCourseJsonModelMapper;
             _sessionRepository = sessionRepository;
+            _sessionToSessionWithSectionsModelMapper = sessionToSessionWithSectionsModelMapper;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
@@ -120,6 +123,15 @@ namespace NGL.Web.Controllers
 
             var courseModels = courses.Select(c => _courseToCourseJsonModelMapper.Build(c));
             return Json(courseModels, JsonRequestBehavior.AllowGet);
+        }
+
+        [AuthorizeFor(Resource = "session", Operation = "view")]
+        public virtual ActionResult ForSession(int id)
+        {
+            var session = _sessionRepository.GetWithSectionsById(id);
+            var sessionWithSectionsModel = _sessionToSessionWithSectionsModelMapper.Build(session);
+
+            return View(sessionWithSectionsModel);
         }
 
         private static bool ContainsCourseCode(string searchString, Course course)

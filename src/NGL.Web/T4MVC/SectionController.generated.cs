@@ -72,6 +72,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetCourses);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ForSession()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ForSession);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SectionController Actions { get { return MVC.Section; } }
@@ -92,6 +98,7 @@ namespace NGL.Web.Controllers
             public readonly string Create = "Create";
             public readonly string GetSessions = "GetSessions";
             public readonly string GetCourses = "GetCourses";
+            public readonly string ForSession = "ForSession";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -101,6 +108,7 @@ namespace NGL.Web.Controllers
             public const string Create = "Create";
             public const string GetSessions = "GetSessions";
             public const string GetCourses = "GetCourses";
+            public const string ForSession = "ForSession";
         }
 
 
@@ -129,6 +137,14 @@ namespace NGL.Web.Controllers
         {
             public readonly string searchString = "searchString";
         }
+        static readonly ActionParamsClass_ForSession s_params_ForSession = new ActionParamsClass_ForSession();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ForSession ForSessionParams { get { return s_params_ForSession; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ForSession
+        {
+            public readonly string id = "id";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -140,9 +156,11 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string ForSession = "ForSession";
                 public readonly string Index = "Index";
             }
             public readonly string Create = "~/Views/Section/Create.cshtml";
+            public readonly string ForSession = "~/Views/Section/ForSession.cshtml";
             public readonly string Index = "~/Views/Section/Index.cshtml";
         }
     }
@@ -208,6 +226,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetCourses);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchString", searchString);
             GetCoursesOverride(callInfo, searchString);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ForSessionOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ForSession(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ForSession);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ForSessionOverride(callInfo, id);
             return callInfo;
         }
 

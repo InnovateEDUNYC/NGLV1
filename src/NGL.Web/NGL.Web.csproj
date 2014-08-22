@@ -2085,7 +2085,7 @@
     <Content Include="Views\Assessment\Month.cshtml" />
     <Content Include="Views\Attendance\Take.cshtml" />
     <Content Include="Views\ParentCourse\Grades.cshtml" />
-    <Content Include="Views\Session\Sections.cshtml" />
+    <Content Include="Views\Section\ForSession.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

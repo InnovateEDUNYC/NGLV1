@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Session;
@@ -15,20 +14,14 @@ namespace NGL.Web.Controllers
         private readonly IGenericRepository _genericRepository;
         private readonly IMapper<CreateModel, Session> _createModelToEntityMapper;
         private readonly IMapper<Session, IndexModel> _entityToIndexModelMapper;
-        private readonly IMapper<Session, SessionWithSectionsModel> _sessionToSessionWithSectionsModelMapper;
-        private readonly ISessionRepository _sessionRepository;
 
         public SessionController(IGenericRepository genericRepository, 
             IMapper<CreateModel, Session> createModelToEntityMapper, 
-            IMapper<Session, IndexModel> entityToIndexModelMapper, 
-            ISessionRepository sessionRepository, 
-            IMapper<Session, SessionWithSectionsModel> sessionToSessionWithSectionsModelMapper)
+            IMapper<Session, IndexModel> entityToIndexModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToEntityMapper = createModelToEntityMapper;
             _entityToIndexModelMapper = entityToIndexModelMapper;
-            _sessionRepository = sessionRepository;
-            _sessionToSessionWithSectionsModelMapper = sessionToSessionWithSectionsModelMapper;
         }
 
         [AuthorizeFor(Resource = "session", Operation = "view")]
@@ -66,15 +59,6 @@ namespace NGL.Web.Controllers
             _genericRepository.Save();
 
             return RedirectToAction(Actions.Index());
-        }
-
-        [AuthorizeFor(Resource = "session", Operation = "view")]
-        public virtual ActionResult Sections(int sessionIdentity)
-        {
-            var session = _sessionRepository.GetWithSectionsById(sessionIdentity);
-            var sessionWithSectionsModel = _sessionToSessionWithSectionsModelMapper.Build(session);
-
-            return View(sessionWithSectionsModel);
         }
     }
 }
