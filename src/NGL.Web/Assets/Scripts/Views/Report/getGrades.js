@@ -1,7 +1,7 @@
 ﻿Ngl.createNS('Ngl.report.getGrades');
 
 Ngl.report.getGrades = (function() {
-    var init = function() {
+    var init = function(window) {
         var url = "/ParentCourse/Grades";
         var getResultsUrlTemplate = "/{sectionId}";
 
