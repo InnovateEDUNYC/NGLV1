@@ -3,7 +3,7 @@
 Ngl.report.getGrades = (function() {
     var init = function() {
         var url = "/ParentCourse/Grades";
-        var getResultsUrlTemplate = "?sectionId={sectionId}";
+        var getResultsUrlTemplate = "/{sectionId}";
 
         $("#SectionId").on("populated", function() {
             var sectionId = $(this).val();

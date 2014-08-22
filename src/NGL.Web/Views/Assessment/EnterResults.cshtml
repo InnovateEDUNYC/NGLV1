@@ -41,14 +41,14 @@
         <form method="POST" action="">
             <input class="hidden" name="AssessmentId" value="@Model.AssessmentId"/>
             <strong>Assessment Result</strong>
-            @foreach (EnterResultsStudentModel enterResultsStudentModel in Model.StudentResults)
+            @for(var i=0; i<Model.StudentResults.Count; i++)
             {
                 <p>
-                    @enterResultsStudentModel.Name
-                    @Html.TextBoxFor(s => enterResultsStudentModel.AssessmentResult)
-                    @Html.ValidationMessageFor(s => enterResultsStudentModel.AssessmentResult)
+                    @Model.StudentResults[i].Name
+                    @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult, new { @id = "StudentResults_" + i +"__AssessmentResult" })
+                    @Html.ValidationMessageFor(s => Model.StudentResults[i].AssessmentResult)
                     <div class="hidden">
-                        @Html.TextBoxFor(s => enterResultsStudentModel.StudentUsi)
+                        @Html.TextBoxFor(s => Model.StudentResults[i].StudentUsi)
                     </div>
                 </p>
             }
