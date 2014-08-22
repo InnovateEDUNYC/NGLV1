@@ -4,6 +4,7 @@ namespace NGL.Web.Models.Session
 {
     public class SessionWithSectionsModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public IList<CourseRowModel> CourseRows { get; set; }
     }

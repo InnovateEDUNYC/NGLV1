@@ -7,6 +7,7 @@ namespace NGL.Web.Models.Session
     {
         public override void Map(Data.Entities.Session source, SessionWithSectionsModel target)
         {
+            target.Id = source.SessionIdentity;
             target.Name = source.SessionName;
             target.CourseRows = GetCourseRows(source.Sections);
         }

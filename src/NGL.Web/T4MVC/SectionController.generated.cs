@@ -56,6 +56,12 @@ namespace NGL.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Create()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult GetSessions()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetSessions);
@@ -104,6 +110,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
+            public readonly string sessionIdentity = "sessionIdentity";
             public readonly string createModel = "createModel";
         }
         static readonly ActionParamsClass_GetSessions s_params_GetSessions = new ActionParamsClass_GetSessions();
@@ -157,13 +164,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sessionIdentity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult Create(int? sessionIdentity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionIdentity", sessionIdentity);
+            CreateOverride(callInfo, sessionIdentity);
             return callInfo;
         }
 

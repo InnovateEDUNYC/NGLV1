@@ -37,6 +37,7 @@ namespace NGL.Tests.Session
                 }).Build();
             var model = new SessionToSessionWithSectionsModelMapper().Build(session);
 
+            model.Id.ShouldBe(session.SessionIdentity);
             model.Name.ShouldBe(session.SessionName);
             model.CourseRows.Count.ShouldBe(2);
 

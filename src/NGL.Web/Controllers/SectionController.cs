@@ -5,6 +5,7 @@ using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Section;
@@ -23,6 +24,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<CreateModel, CourseOffering> _createModelToCourseOfferingMapper;
         private readonly IMapper<Session, SessionJsonModel> _sessionToSessionJsonModelMapper;
         private readonly IMapper<Course, CourseJsonModel> _courseToCourseJsonModelMapper;
+        private readonly ISessionRepository _sessionRepository;
 
         public SectionController(IGenericRepository genericRepository, 
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
@@ -31,13 +33,15 @@ namespace NGL.Web.Controllers
             IMapper<CreateModel, Section> createModelToSectionMapper, 
             IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
             IMapper<Session, SessionJsonModel> sessionToSessionJsonModelMapper, 
-            IMapper<Course, CourseJsonModel> courseToCourseJsonModelMapper)
+            IMapper<Course, CourseJsonModel> courseToCourseJsonModelMapper, 
+            ISessionRepository sessionRepository)
         {
             _genericRepository = genericRepository;
             _createModelToSectionMapper = createModelToSectionMapper;
             _createModelToCourseOfferingMapper = createModelToCourseOfferingMapper;
             _sessionToSessionJsonModelMapper = sessionToSessionJsonModelMapper;
             _courseToCourseJsonModelMapper = courseToCourseJsonModelMapper;
+            _sessionRepository = sessionRepository;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
@@ -62,12 +66,14 @@ namespace NGL.Web.Controllers
 
         // GET: /Section/Create
         [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
-        public virtual ActionResult Create()
+        public virtual ActionResult Create(int? sessionIdentity)
         {
+            var session = sessionIdentity.HasValue ? _sessionRepository.GetById(sessionIdentity.Value) : null; 
             var classPeriodModels = GetClassPeriodNameModels();
             var classRoomModels = GetClassRoomModels();
 
-            var createModel = CreateModel.CreateNewWith(classPeriodModels, classRoomModels);
+            var createModel = CreateModel.CreateNewWith(classPeriodModels, classRoomModels, session);
+
             return View(createModel);
         }
 

@@ -6,6 +6,7 @@ namespace NGL.Tests.Session
 {
     public class SessionBuilder
     {
+        private const int SessionIdentity = 1;
         private short _schoolYear = (int) SchoolYearTypeEnum.Year2014;
         private const int TermType = (int) TermTypeEnum.FallSemester;
         private static readonly DateTime BeginDate = new DateTime(2014, 6, 26);
@@ -18,6 +19,7 @@ namespace NGL.Tests.Session
         {
             return new Web.Data.Entities.Session
             {
+                SessionIdentity = SessionIdentity,
                 SchoolId = Constants.SchoolId,
                 TermTypeId = TermType,
                 SchoolYear = _schoolYear,

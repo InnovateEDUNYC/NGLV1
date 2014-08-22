@@ -16,5 +16,10 @@ namespace NGL.Web.Data.Repositories
                 .Include(s => s.Sections)
                 .ToList().SingleOrDefault();
         }
+
+        public Session GetById(int sessionIdentity)
+        {
+            return DbContext.Set<Session>().SingleOrDefault(s => s.SessionIdentity == sessionIdentity);
+        }
     }
 }

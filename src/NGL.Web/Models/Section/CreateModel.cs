@@ -28,13 +28,21 @@ namespace NGL.Web.Models.Section
 
         public string UniqueSectionCode { get; set; }
 
-        public static CreateModel CreateNewWith(List<ClassPeriodListItemModel> classPeriods, List<LocationListItemModel> classRoomModels)
+        public static CreateModel CreateNewWith(List<ClassPeriodListItemModel> classPeriods, List<LocationListItemModel> classRoomModels, Data.Entities.Session session)
         {
-            return new CreateModel
+            var createModel = new CreateModel
             {
                 Periods = classPeriods,
                 Classrooms = classRoomModels,
             };
+
+            if (session != null)
+            {
+                createModel.SessionId = session.SessionIdentity;
+                createModel.Session = session.SessionName;
+            }
+
+            return createModel;
         }
     }
 }

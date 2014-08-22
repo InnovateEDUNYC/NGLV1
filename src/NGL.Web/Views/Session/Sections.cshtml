@@ -5,7 +5,11 @@
 }
 
 <h2>@Model.Name</h2>
-<h4>Sections Created</h4>
+<ul class="list-inline">
+    <li><h4>Sections Created</h4></li>
+    <li class="pull-right">@Html.ActionLink("Create New", MVC.Section.Create(Model.Id), new { @class = "btn btn-primary" })</li>
+</ul>
+
 <div>
     @for (int courseIndex = 0; courseIndex < Model.CourseRows.Count; courseIndex++)
     {
