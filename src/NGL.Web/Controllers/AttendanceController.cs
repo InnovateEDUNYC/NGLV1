@@ -72,5 +72,16 @@ namespace NGL.Web.Controllers
 
             return RedirectToAction("GetStudents", takeAttendanceModel.Clone());
         }
+
+        [HttpPost]
+        [AuthorizeFor(Resource = "attendance", Operation = "clearAllFlags")]
+        public virtual ActionResult ClearAllFlags()
+        {
+            _attendanceService.ClearAllFlags();
+            _genericRepository.Save();
+
+            TempData["ShowSuccess"] = true;
+            return RedirectToAction(MVC.Student.All());
+        }
     }
 }
