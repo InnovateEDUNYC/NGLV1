@@ -76,10 +76,14 @@ namespace NGL.Web.Service
         private static void DecrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
         {
             var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;
-            if (attendanceType == (int) AttendanceEventCategoryDescriptorEnum.Tardy || attendanceType == (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence)
-            {
+            if (attendanceType != (int) AttendanceEventCategoryDescriptorEnum.Tardy &&
+                attendanceType != (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence) 
+                    return;
+
+            var flagCount = studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount;
+
+            if (flagCount > 0)
                 studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount--;
-            }
         }
     }
 }

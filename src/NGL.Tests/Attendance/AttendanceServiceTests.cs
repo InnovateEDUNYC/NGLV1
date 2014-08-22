@@ -133,6 +133,36 @@ namespace NGL.Tests.Attendance
         }
 
         [Fact]
+        public void ShouldNotSubtractBelowZeroFlags()
+        {
+            Setup();
+            _student.AttendanceFlags.First().FlagCount = 0;
+
+            var existingAttendanceEvents = new List<StudentSectionAttendanceEvent>
+            {
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId(TardyId)
+                    .WithStudent(_student)
+                    .WithSection(_section)
+                    .Build()
+            };
+            _attendanceRepository.GetSectionAttendanceEventsFor(_section, _date).Returns(existingAttendanceEvents);
+
+            var newAttendanceEvents = new List<StudentSectionAttendanceEvent>
+            {
+                new StudentSectionAttendanceEventBuilder()
+                    .WithAttendanceEventCategoryDescriptorId(PresentId)
+                    .WithStudent(_student)
+                    .WithSection(_section)
+                    .Build()
+            };
+
+            _attendanceService.RecordAttendanceFor(_section, _date, newAttendanceEvents);
+
+            _student.AttendanceFlags.First().FlagCount.ShouldBe(0);
+        }
+
+        [Fact]
         public void ShouldWipeAllFlags()
         {
             Setup();
