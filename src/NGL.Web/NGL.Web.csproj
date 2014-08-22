@@ -277,6 +277,7 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Controllers\ParentCourseController.cs" />
+    <Compile Include="Controllers\ParentCourseGradeController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\AttendanceFlag.cs">
@@ -1869,6 +1870,9 @@
     <Compile Include="T4MVC\ParentCourseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC\ParentCourseGradeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC\ScheduleController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -2089,6 +2093,8 @@
     <Content Include="Views\ParentCourse\Grades.cshtml" />
     <Content Include="Views\Section\ForSession.cshtml" />
     <Content Include="Views\ParentCourse\EditGrades.cshtml" />
+    <Content Include="Views\ParentCourseGrade\Edit.cshtml" />
+    <Content Include="Views\ParentCourseGrade\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

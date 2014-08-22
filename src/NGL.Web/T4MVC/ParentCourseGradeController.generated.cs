@@ -23,10 +23,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace NGL.Web.Controllers
 {
-    public partial class ParentCourseController
+    public partial class ParentCourseGradeController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ParentCourseController(Dummy d) { }
+        protected ParentCourseGradeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -56,13 +56,13 @@ namespace NGL.Web.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ParentCourseController Actions { get { return MVC.ParentCourse; } }
+        public ParentCourseGradeController Actions { get { return MVC.ParentCourseGrade; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "ParentCourse";
+        public readonly string Name = "ParentCourseGrade";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "ParentCourse";
+        public const string NameConst = "ParentCourseGrade";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -71,24 +71,35 @@ namespace NGL.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Create = "Create";
+            public readonly string Get = "Get";
+            public readonly string Edit = "Edit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Create = "Create";
+            public const string Get = "Get";
+            public const string Edit = "Edit";
         }
 
 
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        static readonly ActionParamsClass_Get s_params_Get = new ActionParamsClass_Get();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        public ActionParamsClass_Get GetParams { get { return s_params_Get; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Create
+        public class ActionParamsClass_Get
         {
-            public readonly string createModel = "createModel";
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Edit
+        {
+            public readonly string id = "id";
+            public readonly string parentCourseGradesModel = "parentCourseGradesModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -100,18 +111,18 @@ namespace NGL.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Create = "Create";
+                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Views/ParentCourse/Create.cshtml";
-            public readonly string Index = "~/Views/ParentCourse/Index.cshtml";
+            public readonly string Edit = "~/Views/ParentCourseGrade/Edit.cshtml";
+            public readonly string Index = "~/Views/ParentCourseGrade/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ParentCourseController : NGL.Web.Controllers.ParentCourseController
+    public partial class T4MVC_ParentCourseGradeController : NGL.Web.Controllers.ParentCourseGradeController
     {
-        public T4MVC_ParentCourseController() : base(Dummy.Instance) { }
+        public T4MVC_ParentCourseGradeController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -125,25 +136,38 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void GetOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult Get(int? id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Get);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            GetOverride(callInfo, id);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ParentCourse.CreateModel createModel);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(NGL.Web.Models.ParentCourse.CreateModel createModel)
+        public override System.Web.Mvc.ActionResult Edit(int? id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createModel", createModel);
-            CreateOverride(callInfo, createModel);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Edit(NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseGradesModel", parentCourseGradesModel);
+            EditOverride(callInfo, parentCourseGradesModel);
             return callInfo;
         }
 

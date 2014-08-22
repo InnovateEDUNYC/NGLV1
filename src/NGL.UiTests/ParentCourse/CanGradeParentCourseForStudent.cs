@@ -35,7 +35,7 @@ namespace NGL.UiTests.ParentCourse
         public void IEnterValidGrades()
         {
             _gradesPage.SelectAParentCourse();
-            _gradesPage.EnterGrades("100");
+            _gradesPage.EditGrades("100");
         }
         public void TheGradesAreSaved()
         {

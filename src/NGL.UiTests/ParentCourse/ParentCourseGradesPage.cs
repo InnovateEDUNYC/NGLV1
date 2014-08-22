@@ -20,8 +20,9 @@ namespace NGL.UiTests.ParentCourse
             Execute.Script("$('#SectionId').trigger('populated');");
         }
 
-        public void EnterGrades(string grade)
+        public void EditGrades(string grade)
         {
+            Navigate.To<ParentCourseGradesPage>(By.LinkText("Edit"));
             Input.ReplaceInputValueWith(m => m.ParentGradesModelList[0].Grade, grade);
             Navigate.To<ParentCourseGradesPage>(By.ClassName("btn-primary"));
         }
