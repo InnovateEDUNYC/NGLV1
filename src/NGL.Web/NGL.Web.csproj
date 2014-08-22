@@ -1742,6 +1742,7 @@
     <Compile Include="Models\ParentCourse\ParentCourseToIndexModelMapper.cs" />
     <Compile Include="Models\ParentCourse\parentCourseGradeToGradeModelMapper.cs" />
     <Compile Include="Models\ParentCourse\SectionToFindParentCourseModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\SectionToParentCourseGradeMapper.cs" />
     <Compile Include="Models\ParentCourse\StudentToGradeModelMapper.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
     <Compile Include="Models\Schedule\SessionToSessionListItemModelMapper.cs" />

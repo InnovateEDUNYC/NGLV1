@@ -21,22 +21,34 @@
     {
         <h4><strong>STUDENTS</strong></h4>
         <form method="POST" action="">
+            <div class="hidden">
+                @Html.TextBoxFor(s => Model.FindParentCourseModel.SectionId)
+                @Html.TextBoxFor(s => Model.FindParentCourseModel.Section)
+                @Html.TextBoxFor(s => Model.FindParentCourseModel.SessionId)
+                @Html.TextBoxFor(s => Model.FindParentCourseModel.Session)
+            </div>
             <table>
                 @for (var i = 0; i < Model.ParentGradesModelList.Count; i++)
                 {
                     <tr>
                         <td>
-                            <input class="hidden" name="StudentUSI" value="@Model.ParentGradesModelList[i].StudentUSI"/>
+                            <div class="hidden">
+                                @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentFirstName) 
+                                @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentLastName) 
+                            </div>
                             @Model.ParentGradesModelList[i].StudentFirstName @Model.ParentGradesModelList[i].StudentLastName
                         </td>
                         <td>
                             @Html.TextBoxFor(s => Model.ParentGradesModelList[i].Grade, new { @id = "grade-" + i })
                         </td>
+                        <div class="hidden">
+                            @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentUSI)
+                        </div>
                     </tr>
                 }
             </table>
             <div class="cancel-and-save-buttons">
-                @Html.ActionLink("Cancel", MVC.Assessment.Index(), new {@class = "btn btn-default"})
+                @Html.ActionLink("Cancel", MVC.Assessment.Index(), new { @class = "btn btn-default" })
                 <button class="btn btn-primary" type="submit">Save Results</button>
             </div>
         </form>

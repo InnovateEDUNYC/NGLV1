@@ -54,12 +54,6 @@ namespace NGL.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EnterResult()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResult);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ParentCourseController Actions { get { return MVC.ParentCourse; } }
@@ -79,7 +73,6 @@ namespace NGL.Web.Controllers
             public readonly string Index = "Index";
             public readonly string Create = "Create";
             public readonly string Grades = "Grades";
-            public readonly string EnterResult = "EnterResult";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,7 +81,6 @@ namespace NGL.Web.Controllers
             public const string Index = "Index";
             public const string Create = "Create";
             public const string Grades = "Grades";
-            public const string EnterResult = "EnterResult";
         }
 
 
@@ -107,13 +99,6 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Grades
         {
             public readonly string sectionId = "sectionId";
-        }
-        static readonly ActionParamsClass_EnterResult s_params_EnterResult = new ActionParamsClass_EnterResult();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EnterResult EnterResultParams { get { return s_params_EnterResult; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EnterResult
-        {
             public readonly string parentCourseGradesModel = "parentCourseGradesModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
@@ -188,14 +173,14 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void EnterResultOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel);
+        partial void GradesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult EnterResult(NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel)
+        public override System.Web.Mvc.ActionResult Grades(NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterResult);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Grades);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseGradesModel", parentCourseGradesModel);
-            EnterResultOverride(callInfo, parentCourseGradesModel);
+            GradesOverride(callInfo, parentCourseGradesModel);
             return callInfo;
         }
 

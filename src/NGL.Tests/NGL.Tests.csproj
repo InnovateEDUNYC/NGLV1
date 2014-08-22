@@ -140,6 +140,7 @@
     <Compile Include="ParentCourse\ParentCourseGradeToGradeModelMapperTests.cs" />
     <Compile Include="ParentCourse\ParentCourseToIndexModelMapperTests.cs" />
     <Compile Include="ParentCourse\SectionToFindParentCourseModelMapperTests.cs" />
+    <Compile Include="ParentCourse\SectionToParentCourseGradeMapperTests.cs" />
     <Compile Include="ParentCourse\StudentToGradeModelMapperTests.cs" />
     <Compile Include="ParentCourse\ValidatorTests.cs" />
     <Compile Include="Schedule\SetModelValidatorTest.cs" />
