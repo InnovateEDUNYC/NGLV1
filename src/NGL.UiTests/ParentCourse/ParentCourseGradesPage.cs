@@ -15,21 +15,22 @@ namespace NGL.UiTests.ParentCourse
     {
         public void SelectAParentCourse()
         {
-            Input.ReplaceInputValueWith(m => m.FindParentCourseModel.SessionId, 1);
-            Input.ReplaceInputValueWith(m => m.FindParentCourseModel.SectionId, 7);
+            Execute.Script("$('#SectionId').val(7);");
             Execute.Script("$('#SectionId').trigger('populated');");
         }
 
         public void EditGrades(string grade)
         {
-            Navigate.To<ParentCourseGradesPage>(By.LinkText("Edit"));
-            Input.ReplaceInputValueWith(m => m.ParentGradesModelList[0].Grade, grade);
+            Find.Element(By.ClassName("btn-primary"));
+            Navigate.To<ParentCourseGradesPage>(By.ClassName("btn-primary"));
+//            Input.ReplaceInputValueWith(m => m.ParentGradesModelList[0].Grade, grade);
+            Execute.Script("$('#grade-0').val(" + grade + ");");
             Navigate.To<ParentCourseGradesPage>(By.ClassName("btn-primary"));
         }
 
         public void CheckGrades(string grade)
         {
-            Find.Element(By.CssSelector("tr:last-of-type studentGrade_Grade")).Text.Equals(grade);
+            Find.Element(By.ClassName("table")).Text.Contains(grade);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace NGL.UiTests.ParentCourse
             _gradesPage.CheckGrades("100");
         }
 
-        [Fact (Skip = "not yet finished")]
+        [Fact]
         public void ShouldCreateCourse()
         {
             this.Given(_ => IHaveLoggedInAsATeacher())
