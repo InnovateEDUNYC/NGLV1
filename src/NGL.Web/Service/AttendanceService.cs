@@ -36,6 +36,15 @@ namespace NGL.Web.Service
             _attendanceRepository.AddStudentSectionAttendanceEventList(newAttendanceEvents);
         }
 
+        public void ClearAllFlags()
+        {
+            var flags = _attendanceRepository.GetAllFlags();
+            foreach (var flag in flags)
+            {
+                flag.FlagCount = 0;
+            }
+        }
+
         private void IncrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
         {
             var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;

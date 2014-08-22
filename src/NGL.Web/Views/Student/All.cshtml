@@ -3,6 +3,15 @@
 
 @{
     ViewBag.Title = "Students";
+    var success = TempData["ShowSuccess"] as bool?;
+}
+
+@if (success == true)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        All attendance flags were successfully cleared.
+    </div>
 }
 
 <h2>Students</h2>
@@ -10,6 +19,13 @@
 @if ((User as NglPrincipal).HasAccessTo("enrollment", "create"))
 {
     @Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent(), new { @class = "btn btn-primary" })
+}
+
+@if ((User as NglPrincipal).HasAccessTo("attendance", "clearAllFlags"))
+{
+    <form method="post" id="clearAllFlags" action="@Url.Action(MVC.Attendance.ClearAllFlags())" class="inline-block">
+        <input class="btn btn-primary" type="submit" value="Clear All Flags" />
+    </form>
 }
 
 <div class="table-container">

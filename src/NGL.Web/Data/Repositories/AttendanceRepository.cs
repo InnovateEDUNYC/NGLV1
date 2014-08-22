@@ -31,6 +31,11 @@ namespace NGL.Web.Data.Repositories
                 .Where(ssae => ssae.StudentUSI == studentUsi && ssae.SchoolYear == schoolYear).ToList();
         }
 
+        public List<AttendanceFlag> GetAllFlags()
+        {
+            return DbContext.Set<AttendanceFlag>().ToList();
+        }
+
         public void AddStudentSectionAttendanceEventList(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
         {
             foreach (var ssae in studentSectionAttendanceEventList)

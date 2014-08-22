@@ -85,6 +85,7 @@ namespace NGL.Web.Controllers
             public readonly string Take = "Take";
             public readonly string GetStudents = "GetStudents";
             public readonly string Save = "Save";
+            public readonly string ClearAllFlags = "ClearAllFlags";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,6 +94,7 @@ namespace NGL.Web.Controllers
             public const string Take = "Take";
             public const string GetStudents = "GetStudents";
             public const string Save = "Save";
+            public const string ClearAllFlags = "ClearAllFlags";
         }
 
 
@@ -165,6 +167,17 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Save);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "takeAttendanceModel", takeAttendanceModel);
             SaveOverride(callInfo, takeAttendanceModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ClearAllFlagsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ClearAllFlags()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ClearAllFlags);
+            ClearAllFlagsOverride(callInfo);
             return callInfo;
         }
 

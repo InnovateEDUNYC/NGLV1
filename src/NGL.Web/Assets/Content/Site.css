@@ -230,3 +230,7 @@ body h4.panel:first-child {
 .vertical-align-middle {
     vertical-align: middle;
 }
+
+.inline-block {
+    display: inline-block;
+}

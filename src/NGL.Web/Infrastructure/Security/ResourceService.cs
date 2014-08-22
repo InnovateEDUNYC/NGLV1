@@ -16,7 +16,7 @@ namespace NGL.Web.Infrastructure.Security
                            + " user.create user.edit user.view"
                            + " scheduleStudents.create scheduleStudents.edit scheduleStudents.view"
                            + " assessment.create assessment.edit assessment.view"
-                           + " attendance.create attendance.edit attendance.view";
+                           + " attendance.create attendance.edit attendance.view attendance.clearAllFlags";
 
                 case ApplicationRole.Admin:
                     return "session.edit session.view"

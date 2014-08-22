@@ -18,6 +18,7 @@ namespace NGL.Tests.Attendance
         private IAttendanceRepository _attendanceRepository;
         private AttendanceService _attendanceService;
         private DateTime _date;
+        private List<AttendanceFlag> _attendanceFlags;
         private const int TardyId = (int)AttendanceEventCategoryDescriptorEnum.Tardy;
         private const int PresentId = (int) AttendanceEventCategoryDescriptorEnum.InAttendance;
 
@@ -131,6 +132,20 @@ namespace NGL.Tests.Attendance
             _student.AttendanceFlags.First().FlagCount.ShouldBe(10);
         }
 
+        [Fact]
+        public void ShouldWipeAllFlags()
+        {
+            Setup();
+            _attendanceRepository.GetAllFlags().Returns(_attendanceFlags);
+
+            _attendanceService.ClearAllFlags();
+
+            foreach (var attendanceFlag in _attendanceFlags)
+            {
+                attendanceFlag.FlagCount.ShouldBe(0);
+            }
+        }
+
         private void Setup()
         {
             _attendanceRepository = Substitute.For<IAttendanceRepository>();
@@ -140,7 +155,12 @@ namespace NGL.Tests.Attendance
             _section = new SectionBuilder().WithStudent(_student).Build();
             _date = _student.StudentSectionAssociations.First().BeginDate.AddDays(3);
 
-            
+            _attendanceFlags = new List<AttendanceFlag>
+            {
+                new AttendanceFlag{StudentUSI = new StudentBuilder().WithStudentUsi(1).Build().StudentUSI, FlagCount = 7},
+                new AttendanceFlag{StudentUSI = new StudentBuilder().WithStudentUsi(2).Build().StudentUSI, FlagCount = 6},
+                new AttendanceFlag{StudentUSI = new StudentBuilder().WithStudentUsi(3).Build().StudentUSI, FlagCount = 3}
+            };
         }
     }
 }
