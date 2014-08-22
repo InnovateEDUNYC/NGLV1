@@ -21,7 +21,7 @@
 <div>
     @for (int courseIndex = 0; courseIndex < Model.CourseRows.Count; courseIndex++)
     {
-        <h4 class="panel panel-default" data-toggle='collapse' data-parent="#accordion" href="#collapse-@courseIndex"><strong>@Model.CourseRows[courseIndex].Name</strong><i class="fa fa-caret-down arrow"></i></h4>
+        <h4 class="panel panel-default course" data-toggle='collapse' data-parent="#accordion" href="#collapse-@courseIndex"><strong>@Model.CourseRows[courseIndex].Name</strong><i class="fa fa-caret-down arrow"></i></h4>
 
         <div id="collapse-@courseIndex" class="panel-collapse collapse">
         

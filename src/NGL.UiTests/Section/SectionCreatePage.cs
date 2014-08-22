@@ -19,5 +19,10 @@ namespace NGL.UiTests.Section
 
             return Navigate.To<SectionIndexPage>(By.ClassName("btn"));
         }
+
+        public string GetSession()
+        {
+            return Find.Element(By.Id("Session")).GetAttribute("value");
+        }
     }
 }

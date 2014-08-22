@@ -117,6 +117,7 @@
     <Compile Include="Schedule\CanScheduleStudent.cs" />
     <Compile Include="Schedule\SchedulePage.cs" />
     <Compile Include="Section\CanCreateSection.cs" />
+    <Compile Include="Section\CanViewAndCreateSectionsForASession.cs" />
     <Compile Include="Section\SectionCreatePage.cs" />
     <Compile Include="Section\SectionIndexPage.cs" />
     <Compile Include="Session\CanCreateSession.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Course\CourseCreatePage.cs" />
     <Compile Include="Course\CourseIndexPage.cs" />
     <Compile Include="Enrollment\EnrollmentPage.cs" />
+    <Compile Include="Session\SectionsForSessionPage.cs" />
     <Compile Include="Shared\AddUserPage.cs" />
     <Compile Include="Shared\HomePage.cs" />
     <Compile Include="Account\LoginPage.cs" />
