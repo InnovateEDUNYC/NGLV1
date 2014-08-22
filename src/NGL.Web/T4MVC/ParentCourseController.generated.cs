@@ -72,7 +72,7 @@ namespace NGL.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
-            public readonly string Grades = "Grades";
+            public readonly string EditGrades = "EditGrades";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -80,7 +80,7 @@ namespace NGL.Web.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
-            public const string Grades = "Grades";
+            public const string EditGrades = "EditGrades";
         }
 
 
@@ -92,13 +92,13 @@ namespace NGL.Web.Controllers
         {
             public readonly string createModel = "createModel";
         }
-        static readonly ActionParamsClass_Grades s_params_Grades = new ActionParamsClass_Grades();
+        static readonly ActionParamsClass_EditGrades s_params_EditGrades = new ActionParamsClass_EditGrades();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Grades GradesParams { get { return s_params_Grades; } }
+        public ActionParamsClass_EditGrades EditGradesParams { get { return s_params_EditGrades; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Grades
+        public class ActionParamsClass_EditGrades
         {
-            public readonly string sectionId = "sectionId";
+            public readonly string id = "id";
             public readonly string parentCourseGradesModel = "parentCourseGradesModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
@@ -161,26 +161,26 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void GradesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sectionId);
+        partial void EditGradesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Grades(int? sectionId)
+        public override System.Web.Mvc.ActionResult EditGrades(int? id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Grades);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sectionId", sectionId);
-            GradesOverride(callInfo, sectionId);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditGrades);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EditGradesOverride(callInfo, id);
             return callInfo;
         }
 
         [NonAction]
-        partial void GradesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel);
+        partial void EditGradesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Grades(NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel)
+        public override System.Web.Mvc.ActionResult EditGrades(NGL.Web.Models.ParentCourse.ParentCourseGradesModel parentCourseGradesModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Grades);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditGrades);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseGradesModel", parentCourseGradesModel);
-            GradesOverride(callInfo, parentCourseGradesModel);
+            EditGradesOverride(callInfo, parentCourseGradesModel);
             return callInfo;
         }
 

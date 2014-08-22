@@ -2088,6 +2088,7 @@
     <Content Include="Views\Attendance\Take.cshtml" />
     <Content Include="Views\ParentCourse\Grades.cshtml" />
     <Content Include="Views\Section\ForSession.cshtml" />
+    <Content Include="Views\ParentCourse\EditGrades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
