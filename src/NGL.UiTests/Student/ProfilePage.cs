@@ -1,4 +1,5 @@
-﻿using Humanizer;
+﻿using System.Linq;
+using Humanizer;
 using NGL.UiTests.Schedule;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
@@ -59,6 +60,12 @@ namespace NGL.UiTests.Student
         {
             var percentage = Find.Element(By.Id("profile-attendance-percentage-value"));
             return percentage.Text == attendancePercentage;
+        }
+
+        public bool FlagCountIs(int flagCount)
+        {
+            var flags = Find.Elements(By.CssSelector("span.fa-flag"));
+            return flags.Count() == flagCount;
         }
     }
 }
