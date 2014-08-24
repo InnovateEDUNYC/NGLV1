@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using Castle.Core.Internal;
 
 namespace NGL.Web.Data.Entities
 {
@@ -18,6 +19,10 @@ namespace NGL.Web.Data.Entities
             {
                 var elmahException = new DbEntityValidationException(DbEntityValidationExceptionToString(ex), ex);
                 Elmah.ErrorSignal.FromCurrentContext().Raise(elmahException);
+                ChangeTracker.Entries().ForEach(e =>
+                {
+                    e.State = EntityState.Detached;
+                });
                 throw;
             }
         }

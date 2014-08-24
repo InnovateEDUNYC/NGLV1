@@ -30,8 +30,6 @@ namespace NGL.Tests.Builders
         private string SSN = "123-45-6789";
         private string Certificate1 = "certificate 1";
         private string Certificate2 = "certificate 2";
-        private string Certificate3 = "certificate 3";
-        private string Certificate4 = "certificate 4";
         private bool CriminalBackgroundCheck = true;
         private bool Fingerprinted = true;
 
@@ -63,8 +61,6 @@ namespace NGL.Tests.Builders
                 SSN = SSN,
                 Certificate1 = Certificate1,
                 Certificate2 = Certificate2,
-                Certificate3 = Certificate3,
-                Certificate4 = Certificate4,
                 CriminalBackgroundCheck = CriminalBackgroundCheck,
                 Fingerprinted = Fingerprinted
             };
