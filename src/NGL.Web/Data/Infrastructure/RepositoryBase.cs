@@ -1,5 +1,3 @@
-using NGL.Web.Data.Repositories;
-
 namespace NGL.Web.Data.Infrastructure
 {
     public class RepositoryBase : IRepositoryBase
