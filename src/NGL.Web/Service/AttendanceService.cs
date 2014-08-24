@@ -29,11 +29,12 @@ namespace NGL.Web.Service
                 _attendanceRepository.Delete(existingAttendanceEvents);
             }
 
-            foreach (var studentSectionAttendanceEvent in newAttendanceEvents)
+            var studentSectionAttendanceEventList = newAttendanceEvents as IList<StudentSectionAttendanceEvent> ?? newAttendanceEvents.ToList();
+            foreach (var studentSectionAttendanceEvent in studentSectionAttendanceEventList)
             {
                 IncrementFlagCount(studentSectionAttendanceEvent);
             }
-            _attendanceRepository.AddStudentSectionAttendanceEventList(newAttendanceEvents);
+            _attendanceRepository.AddStudentSectionAttendanceEventList(studentSectionAttendanceEventList);
         }
 
         public void ClearAllFlags()

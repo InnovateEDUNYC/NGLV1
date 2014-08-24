@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -62,7 +63,7 @@ namespace NGL.Web.Controllers
                 return View(MVC.Attendance.Views.Take, takeAttendanceModel);
             }
 
-            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId);
+            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId, s => s.StudentSectionAssociations.Select(ssa => ssa.Student));
             
             var studentSectionAttendanceEventList =_takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
 
