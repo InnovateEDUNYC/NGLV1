@@ -19,6 +19,10 @@ namespace NGL.Web.Data.Entities
             {
                 var elmahException = new DbEntityValidationException(DbEntityValidationExceptionToString(ex), ex);
                 Elmah.ErrorSignal.FromCurrentContext().Raise(elmahException);
+                throw;
+            }
+            catch
+            {
                 ChangeTracker.Entries().ForEach(e =>
                 {
                     e.State = EntityState.Detached;
