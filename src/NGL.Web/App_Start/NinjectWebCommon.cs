@@ -72,7 +72,7 @@ namespace NGL.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<INglDbContext>().To<NglDbContext>().InSingletonScope().WithConstructorArgument(ConfigManager.EdmxConnectionString);
+            kernel.Bind<INglDbContext>().To<NglDbContext>().InRequestScope().WithConstructorArgument(ConfigManager.EdmxConnectionString);
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
             kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
