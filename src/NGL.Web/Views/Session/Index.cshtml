@@ -54,7 +54,7 @@
                     @if ((User as NglPrincipal).HasAccessTo("session", "view"))
                     {
                         <td>
-                            @Html.ActionLink("View Sections", MVC.Section.ForSession(item.SessionIdentity), new { @class = "btn" })
+                            @Html.ActionLink("View Sections", MVC.Section.ForSession(item.SessionIdentity), new { @class = "btn btn-default" })
                         </td>
                     }
                 </tr>
