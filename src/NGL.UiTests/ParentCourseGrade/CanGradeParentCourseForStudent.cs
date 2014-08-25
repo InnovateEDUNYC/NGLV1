@@ -8,7 +8,7 @@ using NGL.UiTests.Shared;
 using TestStack.BDDfy;
 using Xunit;
 
-namespace NGL.UiTests.ParentCourse
+namespace NGL.UiTests.ParentCourseGrade
 {
     [Story(
         AsA = "As a teacher",
@@ -23,7 +23,7 @@ namespace NGL.UiTests.ParentCourse
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(ObjectMother.UserHellenSmith.ViewModel);
+                .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
 
         public void GoToParentCourseGradesPage()
@@ -35,14 +35,14 @@ namespace NGL.UiTests.ParentCourse
         public void IEnterValidGrades()
         {
             _gradesPage.SelectAParentCourse();
-            _gradesPage.EnterGrades();
+            _gradesPage.EditGrades("100");
         }
         public void TheGradesAreSaved()
         {
-            throw new NotImplementedException();
+            _gradesPage.CheckGrades("100");
         }
 
-        [Fact (Skip = "not yet finished")]
+        [Fact]
         public void ShouldCreateCourse()
         {
             this.Given(_ => IHaveLoggedInAsATeacher())

@@ -18,5 +18,22 @@ namespace NGL.Web.Data.Repositories
         {
             return DbContext.Set<ParentCourse>();
         }
+
+        public ParentCourse GetParentCourse(string courseCode)
+        {
+            return DbContext.Set<ParentCourse>().FirstOrDefault(pc => pc.Courses.Any(c => c.CourseCode == courseCode));
+        }
+
+        public List<ParentCourseGrade> GetParentCourseGrades(string courseCode)
+        {
+            return DbContext.Set<ParentCourseGrade>()
+                .Where(g => g.ParentCourse.Courses.Any(c => c.CourseCode == courseCode))
+                .Include(g => g.Student).ToList();
+        }
+
+        public ParentCourseGrade GetParentCourseGrade(int StudentUSI, Guid parentCourseId)
+        {
+            return DbContext.Set<ParentCourseGrade>().FirstOrDefault(pcg => pcg.StudentUSI == StudentUSI && pcg.ParentCourseId == parentCourseId);
+        }
     }
 }

@@ -1,0 +1,64 @@
+﻿@using Castle.Core.Internal
+@model NGL.Web.Models.ParentCourse.ParentCourseGradesModel
+
+@{
+    ViewBag.Title = "Assign Student Grades";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-5">
+        <h4><strong>SESSION</strong></h4>
+        @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control full-input", @id = "Session" })
+        <h4><strong>SECTION</strong></h4>
+        @Html.TextBoxFor(m => m.FindParentCourseModel.Section, new { @class = "form-control full-input", @id = "Section" })
+
+        @Html.HiddenFor(m => m.FindParentCourseModel.SessionId, new { @id = "SessionId" })
+        @Html.HiddenFor(m => m.FindParentCourseModel.SectionId, new { @id = "SectionId" })
+    </div>
+</div>
+<div class="panel panel-default col-md-10 top-buffer">
+    @if (!Model.ParentGradesModelList.IsNullOrEmpty())
+    {
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>
+                        <h4><strong>STUDENTS</strong></h4>
+                    </td>
+                    <td>
+                        <h4 class="pull-right">Final Grade</h4>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.ParentGradesModelList.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.ParentGradesModelList[i].StudentFirstName @Model.ParentGradesModelList[i].StudentLastName
+                        </td>
+                        <td>
+                            <span class="pull-right">
+                                @Model.ParentGradesModelList[i].Grade
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SectionId), new { @class="btn btn-primary"})
+    }
+    else
+    {
+        <p>No students have been assigned to this section.</p>
+    }
+</div>
+<div></div>
+@section Scripts {
+    Ngl.shared.sessionAutocomplete.init();
+    Ngl.shared.sectionAutocomplete.init();
+    Ngl.report.getGrades.init(window);
+}

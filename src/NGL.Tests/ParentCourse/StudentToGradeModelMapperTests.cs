@@ -21,7 +21,7 @@ namespace NGL.Tests.ParentCourse
 
             gradeModel.StudentFirstName.ShouldBe(student.FirstName);
             gradeModel.StudentLastName.ShouldBe(student.LastSurname);
-
+            gradeModel.StudentUSI.ShouldBe(student.StudentUSI);
         }
     }
 }

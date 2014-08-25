@@ -9,5 +9,11 @@ namespace NGL.Web.Data.Repositories
     public interface IParentCourseRepository
     {
         IEnumerable<ParentCourse> GetParentCourses();
+
+        ParentCourse GetParentCourse(string courseCode);
+
+        List<ParentCourseGrade> GetParentCourseGrades(string courseCode);
+
+        ParentCourseGrade GetParentCourseGrade(int StudentUSI, Guid parentCourseId);
     }
 }

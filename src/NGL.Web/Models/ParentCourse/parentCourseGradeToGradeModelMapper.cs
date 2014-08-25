@@ -12,6 +12,7 @@ namespace NGL.Web.Models.ParentCourse
         {
             target.StudentFirstName = source.Student.FirstName;
             target.StudentLastName = source.Student.LastSurname;
+            target.StudentUSI = source.Student.StudentUSI;
             target.Grade = source.GradeEarned;
         }
     }
