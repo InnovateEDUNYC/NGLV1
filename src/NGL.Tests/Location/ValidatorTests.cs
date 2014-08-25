@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using FluentValidation.TestHelper;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
 using NGL.Web.Models.Location;
 using NSubstitute;
 using Xunit;
@@ -44,7 +45,7 @@ namespace NGL.Tests.Location
         {
             _genericRepository = Substitute.For<IGenericRepository>();
             _locationCreateModel = new CreateLocationModelBuilder().Build();
-            _validator = new CreateModelValidator(_genericRepository);
+            _validator = new CreateModelValidator(new RepositoryReader<Web.Data.Entities.Location>(_genericRepository));
         }
        
     }

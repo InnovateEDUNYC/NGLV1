@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using FluentValidation.TestHelper;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
 using NGL.Web.Models.ClassPeriod;
 using NSubstitute;
 using Xunit;
@@ -44,7 +45,7 @@ namespace NGL.Tests.ClassPeriod
         {
             _genericRepository = Substitute.For<IGenericRepository>();
             _classPeriodCreateModel = new CreateClassPeriodModelBuilder().Build();
-            _validator = new CreateModelValidator(_genericRepository);   
+            _validator = new CreateModelValidator(new RepositoryReader<Web.Data.Entities.ClassPeriod>(_genericRepository));   
         }
     }
 }
