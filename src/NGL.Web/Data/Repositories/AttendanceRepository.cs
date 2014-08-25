@@ -40,7 +40,7 @@ namespace NGL.Web.Data.Repositories
             return DbContext.Set<AttendanceFlag>().ToList();
         }
 
-        public void AddStudentSectionAttendanceEventList(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
+        public void AddAttendanceEvents(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
         {
             foreach (var ssae in studentSectionAttendanceEventList)
             {
