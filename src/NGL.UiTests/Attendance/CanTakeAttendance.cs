@@ -54,22 +54,6 @@ namespace NGL.UiTests.Attendance
             _takeAttendancePage = _takeAttendancePage.EnterAttendanceStatus(AttendanceEventCategoryDescriptorEnum.Tardy);
         }
 
-        private void AllTheStudentsShouldBeMarkedTardy()
-        {
-            _takeAttendancePage.GetStudentAttendance().ShouldAllBe(sa => sa == "Tardy");
-        }
-
-        private void IVisitThatStudentsProfilePage()
-        {
-            _studentIndex = _homePage.TopMenu.GoToStudentsPage();
-            _profilePage = _studentIndex.GoToProfilePage();
-        }
-
-        private void TheFlagCountShouldBe(int flagCount)
-        {
-            _profilePage.FlagCountIs(flagCount).ShouldBe(true);
-        }
-
         private void IMarkAStudentPresentForTwoOtherDays()
         {
             _takeAttendancePage = _homePage.TopMenu.GoToTakeAttendancePage();
@@ -77,7 +61,12 @@ namespace NGL.UiTests.Attendance
             _takeAttendancePage.MarkPresentForDate("09/11/2014");
         }
 
-        private void StudentProfilePageShouldDisplayTheAttendancePercentage()
+        private void AllTheStudentsShouldBeMarkedTardy()
+        {
+            _takeAttendancePage.GetStudentAttendance().ShouldAllBe(sa => sa == "Tardy");
+        }
+
+        private void TheStudentProfilePageShouldDisplayTheAttendancePercentage()
         {
             _profilePage.AttendancePercentageIs("66%").ShouldBe(true);
         }
@@ -86,6 +75,17 @@ namespace NGL.UiTests.Attendance
         {
             _studentIndex = _homePage.TopMenu.GoToStudentsPage();
             _studentIndex.ClearFlags();
+        }
+
+        private void TheFlagCountShouldBe(int flagCount)
+        {
+            _profilePage.FlagCountIs(flagCount).ShouldBe(true);
+        }
+
+        private void IVisitThatStudentsProfilePage()
+        {
+            _studentIndex = _homePage.TopMenu.GoToStudentsPage();
+            _profilePage = _studentIndex.GoToProfilePage();
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace NGL.UiTests.Attendance
                 .Then(_ => TheFlagCountShouldBe(1))
                 .When(_ => IMarkAStudentPresentForTwoOtherDays())
                 .And(_ => IVisitThatStudentsProfilePage())
-                .Then(_ => StudentProfilePageShouldDisplayTheAttendancePercentage())
+                .Then(_ => TheStudentProfilePageShouldDisplayTheAttendancePercentage())
                 .When(_ => IClearAllFlagsForEveryone())
                 .And(_ => IVisitThatStudentsProfilePage())
                 .Then(_ => TheFlagCountShouldBe(0))

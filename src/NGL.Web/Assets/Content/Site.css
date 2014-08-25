@@ -238,3 +238,7 @@ body h4.panel:first-child {
 .inline-block {
     display: inline-block;
 }
+
+.alert > p {
+    margin-bottom: 10px;
+}

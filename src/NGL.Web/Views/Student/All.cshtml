@@ -14,6 +14,17 @@
     </div>
 }
 
+@if ((User as NglPrincipal).HasAccessTo("attendance", "clearAllFlags"))
+{
+    <div id="clear-all-flags-confirm" class="alert alert-danger alert-dismissible" hidden="hidden" role="alert">
+        <p>Are you sure you want to clear all flags for all students? This cannot be undone.</p>
+        <form method="post" id="clearAllFlags" action="@Url.Action(MVC.Attendance.ClearAllFlags())" class="inline-block">
+            <input class="btn btn-danger" type="submit" value="Yes, Clear All Flags" />
+        </form>
+        <button id="clearAllFlagsCancel" class="btn btn-default">Cancel</button>
+    </div>
+}
+
 <h2>Students</h2>
 
 @if ((User as NglPrincipal).HasAccessTo("enrollment", "create"))
@@ -23,9 +34,7 @@
 
 @if ((User as NglPrincipal).HasAccessTo("attendance", "clearAllFlags"))
 {
-    <form method="post" id="clearAllFlags" action="@Url.Action(MVC.Attendance.ClearAllFlags())" class="inline-block">
-        <input class="btn btn-primary" type="submit" value="Clear All Flags" />
-    </form>
+    <button id="clear-all-flags" class="btn btn-default pull-right">Clear All Flags</button>
 }
 
 <div class="table-container">
@@ -69,3 +78,7 @@
 
     </table>
 </div>
+
+@section Scripts {
+    Ngl.student.all.init();
+}
