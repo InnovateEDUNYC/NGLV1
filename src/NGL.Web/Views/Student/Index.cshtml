@@ -111,6 +111,7 @@
                     @if (Model.AcademicDetail == null)
                     {
                         @Html.Raw("No Information Entered")
+                        @Html.ActionLink("Enter Academic Details", MVC.Enrollment.EnterAcademicDetails(@Model.StudentUsi), new {@class="btn pull-right"})
                     }
                     else
                     {
@@ -167,6 +168,7 @@
                 @if (Model.ProgramStatus == null)
                 {
                     @Html.Raw("No Information Entered")
+                    @Html.ActionLink("Enter Program Status", MVC.Enrollment.EnterProgramStatus(@Model.StudentUsi), new {@class="btn pull-right"})
                 }
                 else
                 {
