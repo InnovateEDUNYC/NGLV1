@@ -8,6 +8,7 @@ using FluentValidation.TestHelper;
 using NGL.Tests.Builders;
 using NGL.Tests.Course;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
 using NGL.Web.Models.ParentCourse;
 using NSubstitute;
 using Xunit;
@@ -25,7 +26,7 @@ namespace NGL.Tests.ParentCourse
         {
             _genericRepository = Substitute.For<IGenericRepository>();
             _courseCreateModel = new CreateCourseModelBuilder().Build();
-            _validator = new CreateModelValidator(_genericRepository);
+            _validator = new CreateModelValidator(new RepositoryReader<Web.Data.Entities.ParentCourse>(_genericRepository));
         }
 
         [Fact]

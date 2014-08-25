@@ -18,7 +18,7 @@ namespace NGL.Web.Models.Course
         {
             target.EducationOrganizationId = _schoolRepository.GetSchool()
                 .EducationOrganization.EducationOrganizationId;
-            target.CourseCode = source.CourseCode;
+            target.CourseCode = source.CourseCode.Trim();
             target.CourseTitle = source.CourseTitle;
             target.NumberOfParts = source.NumberOfParts.GetValueOrDefault();
             target.AcademicSubjectDescriptorId = (int?)source.AcademicSubject;
