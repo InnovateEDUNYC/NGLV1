@@ -8,7 +8,7 @@ using NGL.UiTests.Shared;
 using TestStack.BDDfy;
 using Xunit;
 
-namespace NGL.UiTests.ParentCourse
+namespace NGL.UiTests.ParentCourseGrade
 {
     [Story(
         AsA = "As a teacher",

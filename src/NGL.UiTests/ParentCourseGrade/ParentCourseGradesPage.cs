@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Caching;
-using System.Web.UI;
-using NGL.Web.Models.ParentCourse;
+﻿using NGL.Web.Models.ParentCourse;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
-namespace NGL.UiTests.ParentCourse
+namespace NGL.UiTests.ParentCourseGrade
 {
     public class ParentCourseGradesPage : Page<ParentCourseGradesModel>
     {
