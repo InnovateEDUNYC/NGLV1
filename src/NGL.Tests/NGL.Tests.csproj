@@ -138,6 +138,7 @@
     <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelValidatorTests.cs" />
+    <Compile Include="Grade\ParentCourseGradeToCsvMapperTests.cs" />
     <Compile Include="Location\CreateLocationModelBuilder.cs" />
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />

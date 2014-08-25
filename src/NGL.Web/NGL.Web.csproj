@@ -1737,6 +1737,8 @@
     <Compile Include="Models\Student\StudentNameToStudentMapper.cs" />
     <Compile Include="Models\Student\StudentToBiographicalInfoModelMapper.cs" />
     <Compile Include="Models\ParentCourse\GradeModel.cs" />
+    <Compile Include="Models\GradeModel.cs" />
+    <Compile Include="Models\Grade\ParentCourseGradeToCsvMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
     <Compile Include="Models\ParentCourse\CreateModel.cs" />
     <Compile Include="Models\CreditAttribute.cs" />
