@@ -82,5 +82,13 @@ namespace NGL.Web.Controllers
 
             return RedirectToAction(MVC.ParentCourseGrade.Get(parentCourseGradesModel.FindParentCourseModel.SessionId, parentCourseGradesModel.FindParentCourseModel.ParentCourseId));
         }
+
+        public virtual ActionResult ExportCsv(ParentCourseGradesModel model)
+        {
+            if (model == null)
+                return View();
+            return null;
+
+        }
     }
 }
