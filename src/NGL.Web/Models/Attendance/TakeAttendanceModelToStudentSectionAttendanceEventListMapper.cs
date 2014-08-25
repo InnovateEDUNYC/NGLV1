@@ -13,6 +13,7 @@ namespace NGL.Web.Models.Attendance
             {
                 StudentUSI = sr.StudentUsi,
                 Student = section.StudentSectionAssociations.First(ssa => ssa.StudentUSI == sr.StudentUsi).Student,
+
                 AttendanceEventCategoryDescriptorId = (int) sr.AttendanceType, 
                 EventDate = DateTime.Parse(takeAttendanceModel.Date),
                 SchoolId = section.SchoolId, 

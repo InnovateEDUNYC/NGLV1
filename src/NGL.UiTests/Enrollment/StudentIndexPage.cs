@@ -22,6 +22,8 @@ namespace NGL.UiTests.Enrollment
 
         public void ClearFlags()
         {
+            var revealClearAllFlagsButton = Find.Element(By.Id("clear-all-flags"));
+            revealClearAllFlagsButton.Click();
             var clearFlagsButton = Find.Element(By.CssSelector("form#clearAllFlags > input"));
             clearFlagsButton.Click();
         }

@@ -18,51 +18,66 @@ namespace NGL.Web.Service
 
         public void RecordAttendanceFor(Section section, DateTime date, IEnumerable<StudentSectionAttendanceEvent> newAttendanceEvents)
         {
+            RemoveOldAttendanceEvents(section, date);
+            AddNewAttendanceEvents(newAttendanceEvents);
+        }
 
+        private static bool IsTardyOrUnexcused(int attendanceType)
+        {
+            return attendanceType == (int) AttendanceEventCategoryDescriptorEnum.Tardy ||
+                   attendanceType == (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence;
+        }
+
+        private void RemoveOldAttendanceEvents(Section section, DateTime date)
+        {
             var existingAttendanceEvents = _attendanceRepository.GetSectionAttendanceEventsFor(section, date);
 
             if (!existingAttendanceEvents.IsNullOrEmpty())
             {
-                foreach (var studentSectionAttendanceEvent in existingAttendanceEvents)
-                    DecrementFlagCount(studentSectionAttendanceEvent);
+                foreach (var attendanceEvent in existingAttendanceEvents.Where(attendanceEvent => IsTardyOrUnexcused
+                    (attendanceEvent.AttendanceEventCategoryDescriptorId)))
+                {
+                    DecrementFlagCount(attendanceEvent.Student);
+                }
 
                 _attendanceRepository.Delete(existingAttendanceEvents);
             }
-
-            var studentSectionAttendanceEventList = newAttendanceEvents as IList<StudentSectionAttendanceEvent> ?? newAttendanceEvents.ToList();
-            foreach (var studentSectionAttendanceEvent in studentSectionAttendanceEventList)
-            {
-                IncrementFlagCount(studentSectionAttendanceEvent);
-            }
-            _attendanceRepository.AddStudentSectionAttendanceEventList(studentSectionAttendanceEventList);
         }
 
-        public void ClearAllFlags()
+        private void AddNewAttendanceEvents(IEnumerable<StudentSectionAttendanceEvent> newAttendanceEvents)
         {
-            var flags = _attendanceRepository.GetAllFlags();
-            foreach (var flag in flags)
+            var studentSectionAttendanceEventList = newAttendanceEvents as IList<StudentSectionAttendanceEvent> ??
+                                                    newAttendanceEvents.ToList();
+
+            foreach (var attendanceEvent in studentSectionAttendanceEventList.Where(attendanceEvent => IsTardyOrUnexcused
+                (attendanceEvent.AttendanceEventCategoryDescriptorId)))
             {
-                flag.FlagCount = 0;
+                IncrementFlagCount(attendanceEvent.Student);
             }
+
+            _attendanceRepository.AddAttendanceEvents(studentSectionAttendanceEventList);
         }
 
-        private void IncrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
+        private static void DecrementFlagCount(Student student)
         {
-            var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;
-            if (attendanceType != (int) AttendanceEventCategoryDescriptorEnum.Tardy &&
-                attendanceType != (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence) 
-                    return;
+            var flagCount = student.AttendanceFlags.First().FlagCount;
 
-            if (studentSectionAttendanceEvent.Student.AttendanceFlags.IsNullOrEmpty())
-                CreateNewAttendanceFlagEntryFor(studentSectionAttendanceEvent.Student);
-                
-            var flagCount = studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount;
+            if (flagCount > 0)
+                student.AttendanceFlags.First().FlagCount--;
+        }
+
+        private static void IncrementFlagCount(Student student)
+        {
+            if (student.AttendanceFlags.IsNullOrEmpty())
+                CreateNewAttendanceFlagEntryFor(student);
+
+            var flagCount = student.AttendanceFlags.First().FlagCount;
 
             if (flagCount < 10)
-                studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount++;
+                student.AttendanceFlags.First().FlagCount++;
         }
 
-        private void CreateNewAttendanceFlagEntryFor(Student student)
+        private static void CreateNewAttendanceFlagEntryFor(Student student)
         {
             student.AttendanceFlags = new List<AttendanceFlag>
             {
@@ -74,17 +89,13 @@ namespace NGL.Web.Service
             };
         }
 
-        private static void DecrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
+        public void ClearAllFlags()
         {
-            var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;
-            if (attendanceType != (int) AttendanceEventCategoryDescriptorEnum.Tardy &&
-                attendanceType != (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence) 
-                    return;
-
-            var flagCount = studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount;
-
-            if (flagCount > 0)
-                studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount--;
+            var flags = _attendanceRepository.GetAllFlags();
+            foreach (var flag in flags)
+            {
+                flag.FlagCount = 0;
+            }
         }
     }
 }

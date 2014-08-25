@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -21,7 +22,10 @@ namespace NGL.Web.Data.Repositories
                     && ssae.LocalCourseCode == section.LocalCourseCode
                     && ssae.TermTypeId == section.TermTypeId
                     && ssae.SchoolYear == section.SchoolYear
-                ).ToList();
+                )
+                .Include(ssae => ssae.Student)
+                .Include(ssae => ssae.Student.AttendanceFlags)
+                .ToList();
 
         }
 
@@ -36,7 +40,7 @@ namespace NGL.Web.Data.Repositories
             return DbContext.Set<AttendanceFlag>().ToList();
         }
 
-        public void AddStudentSectionAttendanceEventList(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
+        public void AddAttendanceEvents(IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList)
         {
             foreach (var ssae in studentSectionAttendanceEventList)
             {
