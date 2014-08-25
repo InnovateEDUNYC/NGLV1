@@ -23,7 +23,7 @@ namespace NGL.UiTests.ParentCourseGrade
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
-                .Login(ObjectMother.UserHellenSmith.ViewModel);
+                .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
 
         public void GoToParentCourseGradesPage()
