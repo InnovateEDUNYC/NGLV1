@@ -6,5 +6,6 @@ namespace NGL.Web.Data.Repositories
     {
         Section GetWithStudentAttendance(int sectionIdentity);
         Section GetWithStudentsAndSession(int sectionIdentity);
+        Section GetWithAttendanceFlags(int? sectionId);
     }
 }

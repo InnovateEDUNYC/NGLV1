@@ -24,7 +24,7 @@ namespace NGL.Web.Service
             if (!existingAttendanceEvents.IsNullOrEmpty())
             {
                 foreach (var studentSectionAttendanceEvent in existingAttendanceEvents)
-                    DecrementFlagCount(studentSectionAttendanceEvent);
+                    DecrementFlagCount(studentSectionAttendanceEvent, studentSectionAttendanceEvent.Student);
 
                 _attendanceRepository.Delete(existingAttendanceEvents);
             }
@@ -55,7 +55,7 @@ namespace NGL.Web.Service
 
             if (studentSectionAttendanceEvent.Student.AttendanceFlags.IsNullOrEmpty())
                 CreateNewAttendanceFlagEntryFor(studentSectionAttendanceEvent.Student);
-                
+
             var flagCount = studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount;
 
             if (flagCount < 10)
@@ -74,17 +74,17 @@ namespace NGL.Web.Service
             };
         }
 
-        private static void DecrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent)
+        private static void DecrementFlagCount(StudentSectionAttendanceEvent studentSectionAttendanceEvent, Student student)
         {
             var attendanceType = studentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId;
             if (attendanceType != (int) AttendanceEventCategoryDescriptorEnum.Tardy &&
                 attendanceType != (int) AttendanceEventCategoryDescriptorEnum.UnexcusedAbsence) 
                     return;
 
-            var flagCount = studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount;
+            var flagCount = student.AttendanceFlags.First().FlagCount;
 
             if (flagCount > 0)
-                studentSectionAttendanceEvent.Student.AttendanceFlags.First().FlagCount--;
+                student.AttendanceFlags.First().FlagCount--;
         }
     }
 }

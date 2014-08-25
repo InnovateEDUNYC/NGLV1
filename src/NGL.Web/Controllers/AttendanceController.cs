@@ -63,7 +63,8 @@ namespace NGL.Web.Controllers
                 return View(MVC.Attendance.Views.Take, takeAttendanceModel);
             }
 
-            var section = _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId, s => s.StudentSectionAssociations.Select(ssa => ssa.Student));
+            var section = _sectionRepository.GetWithAttendanceFlags(takeAttendanceModel.SectionId);
+                _genericRepository.Get<Section>(s => s.SectionIdentity == takeAttendanceModel.SectionId, s => s.StudentSectionAssociations.Select(ssa => ssa.Student));
             
             var studentSectionAttendanceEventList =_takeAttendanceModelToStudentSectionAttendanceEventListMapper.Build(takeAttendanceModel, section);
 
