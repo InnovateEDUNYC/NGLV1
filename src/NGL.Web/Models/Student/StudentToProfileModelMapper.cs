@@ -15,7 +15,7 @@ namespace NGL.Web.Models.Student
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
         private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
-        private IMapper<Web.Data.Entities.Student, StudentBiographicalInformationModel> _biographicalInfoMapper;
+        private readonly IMapper<Data.Entities.Student, StudentBiographicalInformationModel> _biographicalInfoMapper;
 
         public StudentToProfileModelMapper(
             StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
@@ -35,7 +35,6 @@ namespace NGL.Web.Models.Student
         public override void Map(Data.Entities.Student source, ProfileModel target)
         {
             MapBasicStudentInfo(source, target);
-            MapHomeLanguage(source, target);
             target.ProfilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(source);
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
@@ -62,27 +61,12 @@ namespace NGL.Web.Models.Student
             
         }
 
-        private static void MapHomeLanguage(Data.Entities.Student source, ProfileModel target)
-        {
-            var homeLanguage = GetAllHomeLanguages(source).First();
-            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
-        }
-
         private void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
         {
             target.StudentUsi = source.StudentUSI;
-
             target.BiographicalInformation = _biographicalInfoMapper.Build(source);
-            target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
         }
             
-        private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)
-        {
-            return source.StudentLanguages.Where(
-                language => language.StudentLanguageUses.Any(
-                    languageUse => languageUse.LanguageUseTypeId.Equals((int)LanguageUseTypeEnum.Homelanguage)));
-        }
-
         private static void MapStudentAddress(Data.Entities.Student source, ProfileModel target)
         {
             var studentAddresses = source.StudentAddresses;
@@ -93,7 +77,6 @@ namespace NGL.Web.Models.Student
             target.State = ((StateAbbreviationTypeEnum) studentAddress.StateAbbreviationTypeId).Humanize();
             target.PostalCode = studentAddress.PostalCode;
         }
-
 
         private void MapParentInformation(Data.Entities.Student source, ProfileModel target)
         {
@@ -107,6 +90,5 @@ namespace NGL.Web.Models.Student
                 target.SecondProfileParentModel = _parentToProfileParentModelMapper.Build(parent2);
             }
         }
-
     }
 }

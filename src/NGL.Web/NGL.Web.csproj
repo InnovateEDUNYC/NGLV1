@@ -2097,6 +2097,7 @@
     <Content Include="Views\Section\ForSession.cshtml" />
     <Content Include="Views\ParentCourseGrade\Edit.cshtml" />
     <Content Include="Views\ParentCourseGrade\Index.cshtml" />
+    <Content Include="Views\Student\BiographicalInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

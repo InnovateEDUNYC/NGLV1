@@ -154,15 +154,16 @@ namespace NGL.Tests.Student
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);
             profileModel.BiographicalInformation.FirstName.ShouldBe(student.FirstName);
             profileModel.BiographicalInformation.LastName.ShouldBe(student.LastSurname);
-            profileModel.BiographicalInformation.BirthDate.ShouldBe(student.BirthDate);
+            profileModel.BiographicalInformation.BirthDate.ShouldBe(student.BirthDate.ToShortDateString());
 
             var studentRace = student.StudentRaces.First();
-            profileModel.Race.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
+            profileModel.BiographicalInformation.Race.ShouldBe((RaceTypeEnum)studentRace.RaceTypeId);
+            profileModel.BiographicalInformation.RaceForDisplay.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
             profileModel.BiographicalInformation.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
             profileModel.BiographicalInformation.Sex.ShouldBe((SexTypeEnum)student.SexTypeId);
 
-            var studentProfileHomeLanguage = profileModel.HomeLanguage;
-            studentProfileHomeLanguage.ShouldBe(((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId).Humanize());
+            var studentProfileHomeLanguage = profileModel.BiographicalInformation.HomeLanguage;
+            studentProfileHomeLanguage.ShouldBe((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId);
         }
 
         private static void NativeParentPropertiesShouldBeMapped(Parent parent, ProfileParentModel profileParentModel)

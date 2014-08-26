@@ -1,0 +1,81 @@
+﻿@using Glimpse.Core.Extensions
+@using NGL.Web.Infrastructure.Security
+@model NGL.Web.Models.Enrollment.StudentBiographicalInformationModel
+<h4 class="panel panel-default strong">
+    Biographical Information
+    @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
+    {
+        Html.Raw("edit");
+    }
+</h4>
+<dl class="dl-horizontal panel panel-default">
+    <dt>
+        Sex
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Sex)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.BirthDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.BirthDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+    </dt>
+
+    <dd>
+        @Html.DisplayTextFor(model => model.HispanicLatinoEthnicity)
+    </dd>
+
+    <dt>
+        Race
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.RaceForDisplay)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.HomeLanguage)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.HomeLanguage)
+    </dd>
+</dl>
+
+<dl class="dl-horizontal panel panel-default">
+@using (var f = Html.BeginNglForm())
+{
+
+        using (var s = f.BeginSection(""))
+            {
+                <div class="profile-edit">
+                    @s.FieldFor(m => m.Sex)
+                    @s.FieldFor(m => m.BirthDate).AddClass("datepicker")
+                    
+@*                    <div class="form-group">*@
+@*                        <label for="HispanicLatinoEthnicity">Hispanic/Latino</label><em class="required" title="Required"></em>*@
+@*                        <input class="form-group" id="HispanicLatinoEthnicity" name="HispanicLatinoEthnicity" type="checkbox" value="true">*@
+@*                        <span class="field-validation-valid help-block" data-valmsg-for="HispanicLatinoEthnicity" data-valmsg-replace="true"></span>*@
+                    @*                    </div>*@
+                    
+                    <dt>
+                        @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+                    </dt>
+
+                    <dd>
+                        @Html.CheckBoxFor(model => model.HispanicLatinoEthnicity)
+                    </dd>
+
+                    @s.FieldFor(m => m.Race)
+                    @s.FieldFor(m => m.HomeLanguage)
+                </div>
+}
+}
+    
+    </dl>

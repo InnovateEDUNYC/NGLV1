@@ -12,3 +12,36 @@
     vertical-align: top;
     margin-left: -4px;
 }
+
+.profile-edit > .form-group {
+    margin-bottom: 5px;
+}
+
+.profile-edit > dt {
+    margin-right: 5px;
+}
+
+.profile-edit > .form-group > .input-group, .profile-edit > .form-group > .form-control {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.profile-edit > .form-group > label {
+    width: 240px;
+}
+
+.profile-edit > .form-group > .checkbox label {
+    font-weight: bold;
+}
+
+.profile-edit .input-group-addon {
+    display: none;
+}
+
+.profile-edit .input-group .form-control:first-child {
+    border-radius: 4px;
+}
+
+.profile-edit .datepicker {
+    max-width: 275px;
+}

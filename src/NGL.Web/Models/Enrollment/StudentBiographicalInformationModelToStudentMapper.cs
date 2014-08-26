@@ -1,4 +1,5 @@
-﻿using NGL.Web.Models;
+﻿using System;
+using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
 
 namespace NGL.Tests.Enrollment
@@ -9,7 +10,7 @@ namespace NGL.Tests.Enrollment
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
-            target.BirthDate = source.BirthDate;
+            target.BirthDate = DateTime.Parse(source.BirthDate);
             target.SexTypeId = (int) source.Sex;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
         }
