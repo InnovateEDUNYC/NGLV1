@@ -1965,6 +1965,7 @@
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
     <Content Include="Assets\Scripts\Views\Shared\sectionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Student\all.js" />
+    <Content Include="Assets\Scripts\Views\Student\editBiographicalInfo.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\016 - Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
@@ -2097,6 +2098,7 @@
     <Content Include="Views\Section\ForSession.cshtml" />
     <Content Include="Views\ParentCourseGrade\Edit.cshtml" />
     <Content Include="Views\ParentCourseGrade\Index.cshtml" />
+    <Content Include="Views\Student\BiographicalInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

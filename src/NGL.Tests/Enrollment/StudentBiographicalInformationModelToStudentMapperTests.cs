@@ -22,7 +22,7 @@ namespace NGL.Tests.Enrollment
             mapper.Map(studentBiographicalInfo, student);
             student.FirstName.ShouldBe(studentBiographicalInfo.FirstName);
             student.LastSurname.ShouldBe(studentBiographicalInfo.LastName);
-            student.BirthDate.ShouldBe(studentBiographicalInfo.BirthDate);
+            student.BirthDate.ShouldBe(DateTime.Parse(studentBiographicalInfo.BirthDate));
             student.SexTypeId.ShouldBe((int)studentBiographicalInfo.Sex);
             student.HispanicLatinoEthnicity.ShouldBe(studentBiographicalInfo.HispanicLatinoEthnicity);
         }
@@ -33,7 +33,7 @@ namespace NGL.Tests.Enrollment
         private int _studentUsi = 3434;
         private string _firstName = "John";
         private string _lastName = "White";
-        private DateTime _birthDate = new DateTime(2004, 6, 6);
+        private string _birthDate = "6/6/2004";
         private SexTypeEnum _sex = SexTypeEnum.Male;
         private bool _hispanicLatinoEthnicity = false;
         public StudentBiographicalInformationModel Build()

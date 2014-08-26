@@ -10,9 +10,6 @@ namespace NGL.Web.Models.Student
         public int StudentUsi { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public StudentBiographicalInformationModel BiographicalInformation { get; set; }
-        public string Race { get; set; }
-        public string HomeLanguage { get; set; }
-
         public string Address { get; set; }
         public string Address2 { get; set; }
         public string City { get; set; }

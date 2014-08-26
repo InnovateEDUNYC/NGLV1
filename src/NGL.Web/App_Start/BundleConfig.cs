@@ -46,12 +46,12 @@ namespace NGL.Web
                  "~/Assets/Scripts/lib/bootstrap-datepicker.js",
                  "~/Assets/Scripts/forms.js"
                 ));
-
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
                 "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",
                 "~/Assets/Scripts/Views/Enrollment/createStudent.js",
                 "~/Assets/Scripts/Views/Student/index.js",
                 "~/Assets/Scripts/Views/Student/all.js",
+                "~/Assets/Scripts/Views/Student/editBiographicalInfo.js",
                 "~/Assets/Scripts/Views/Schedule/setSchedule.js",
                 "~/Assets/Scripts/Views/Schedule/removeStudent.js",
                 "~/Assets/Scripts/Views/Section/getCourse.js",

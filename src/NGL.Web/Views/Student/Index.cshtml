@@ -1,4 +1,5 @@
-﻿@using NGL.Web.Infrastructure.Security
+﻿@using Glimpse.Mvc.AlternateType
+@using NGL.Web.Infrastructure.Security
 @model NGL.Web.Models.Student.ProfileModel
 
 @{
@@ -94,54 +95,9 @@
 
             </div>
         </div>
-
         <div class="col-md-7">
-            <h4 class="panel panel-default strong">
-                Biographical Information
-                @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
-                {
-                    Html.Raw("edit");
-                }
-            </h4>
-            <dl class="dl-horizontal panel panel-default">
-                <dt>
-                    Sex
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BiographicalInformation.Sex)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.BiographicalInformation.BirthDate)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BiographicalInformation.BirthDate)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.BiographicalInformation.HispanicLatinoEthnicity)
-                </dt>
-
-                <dd>
-                    @Html.DisplayTextFor(model => model.BiographicalInformation.HispanicLatinoEthnicity)
-                </dd>
-
-                <dt>
-                    Race
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Race)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.HomeLanguage)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.HomeLanguage)
-                </dd>
-            </dl>
+        @Html.Partial("BiographicalInformation", Model.BiographicalInformation)
+        
             <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseAcademicDetails">
                 @if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistoryFileUrl != null)
                 {
@@ -506,4 +462,5 @@
 @section Scripts {
     Ngl.student.index.init();
     Ngl.shared.accordianArrows.init();
+    Ngl.student.editBiographicalInfo.init();
 }
