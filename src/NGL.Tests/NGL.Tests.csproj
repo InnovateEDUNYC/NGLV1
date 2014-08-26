@@ -128,14 +128,12 @@
     <Compile Include="Enrollment\AcademicDetailModelToStudentSchoolAssociationMapperTest.cs" />
     <Compile Include="Enrollment\AcademicDetailModelValidatorTests.cs" />
     <Compile Include="Enrollment\CreateAcademicDetailModelFactory.cs" />
-    <Compile Include="Enrollment\EditStudentModelToStudentMapper.cs" />
-    <Compile Include="Enrollment\EditStudentModelToStudentMapperTests.cs" />
+    <Compile Include="Enrollment\StudentBiographicalInformationModelToStudentMapperTests.cs" />
     <Compile Include="Enrollment\EnterProgramStatusModelFactory.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentAddressMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelValidatorTests.cs" />
-    <Compile Include="Enrollment\StudentToEditStudentModelMapperTests.cs" />
     <Compile Include="Location\CreateLocationModelBuilder.cs" />
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />

@@ -271,7 +271,6 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\ClassPeriodController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
-    <Compile Include="Models\Enrollment\EditStudentModel.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LearningStandardController.cs" />
@@ -1718,9 +1717,9 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
-    <Compile Include="Models\Enrollment\EditStudentModelToStudentMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentModel.cs" />
-    <Compile Include="Models\Enrollment\StudentToEditStudentModelMapper.cs" />
+    <Compile Include="Models\Enrollment\StudentBiographicalInformationModelToStudentMapper.cs" />
+    <Compile Include="Models\Enrollment\StudentBiographicalInformationModel.cs" />
+    <Compile Include="Models\Enrollment\StudentToBiographicalInfoModelMapper.cs" />
     <Compile Include="Models\GradeModel.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
     <Compile Include="Models\ParentCourse\CreateModel.cs" />
@@ -2098,7 +2097,6 @@
     <Content Include="Views\Section\ForSession.cshtml" />
     <Content Include="Views\ParentCourseGrade\Edit.cshtml" />
     <Content Include="Views\ParentCourseGrade\Index.cshtml" />
-    <Content Include="Views\Enrollment\EditStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

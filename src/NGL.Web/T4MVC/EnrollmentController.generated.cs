@@ -136,7 +136,6 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_EditStudent
         {
-            public readonly string studentUsi = "studentUsi";
             public readonly string model = "model";
         }
         static readonly ViewsClass s_views = new ViewsClass();
@@ -150,12 +149,10 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string CreateStudent = "CreateStudent";
-                public readonly string EditStudent = "EditStudent";
                 public readonly string EnterAcademicDetails = "EnterAcademicDetails";
                 public readonly string EnterProgramStatus = "EnterProgramStatus";
             }
             public readonly string CreateStudent = "~/Views/Enrollment/CreateStudent.cshtml";
-            public readonly string EditStudent = "~/Views/Enrollment/EditStudent.cshtml";
             public readonly string EnterAcademicDetails = "~/Views/Enrollment/EnterAcademicDetails.cshtml";
             public readonly string EnterProgramStatus = "~/Views/Enrollment/EnterProgramStatus.cshtml";
         }
@@ -240,22 +237,10 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void EditStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi);
+        partial void EditStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Enrollment.StudentBiographicalInformationModel model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult EditStudent(int studentUsi)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditStudent);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
-            EditStudentOverride(callInfo, studentUsi);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EditStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Enrollment.EditStudentModel model);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult EditStudent(NGL.Web.Models.Enrollment.EditStudentModel model)
+        public override System.Web.Mvc.ActionResult EditStudent(NGL.Web.Models.Enrollment.StudentBiographicalInformationModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditStudent);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

@@ -5,6 +5,7 @@ using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
+using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using NSubstitute;
 using Shouldly;
@@ -27,7 +28,7 @@ namespace NGL.Tests.Student
                 new ParentToProfileParentModelMapper(),
                  new ProfilePhotoUrlFetcher(downloader),
                 new StudentProgramStatusToProfileProgramStatusModelMapper(downloader),
-                _studentAttendancePercentageMapperMock);
+                _studentAttendancePercentageMapperMock, new StudentToBiographicalInfoModelMapper());
         }
 
         [Fact]
@@ -151,14 +152,14 @@ namespace NGL.Tests.Student
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);
-            profileModel.FirstName.ShouldBe(student.FirstName);
-            profileModel.LastName.ShouldBe(student.LastSurname);
-            profileModel.BirthDate.ShouldBe(student.BirthDate);
+            profileModel.BiographicalInformation.FirstName.ShouldBe(student.FirstName);
+            profileModel.BiographicalInformation.LastName.ShouldBe(student.LastSurname);
+            profileModel.BiographicalInformation.BirthDate.ShouldBe(student.BirthDate);
 
             var studentRace = student.StudentRaces.First();
             profileModel.Race.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
-            profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
-            profileModel.Sex.ShouldBe(((SexTypeEnum)student.SexTypeId).Humanize());
+            profileModel.BiographicalInformation.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
+            profileModel.BiographicalInformation.Sex.ShouldBe((SexTypeEnum)student.SexTypeId);
 
             var studentProfileHomeLanguage = profileModel.HomeLanguage;
             studentProfileHomeLanguage.ShouldBe(((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId).Humanize());

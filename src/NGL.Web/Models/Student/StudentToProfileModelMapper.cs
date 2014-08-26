@@ -4,6 +4,7 @@ using Castle.Core.Internal;
 using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
+using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {
@@ -14,18 +15,20 @@ namespace NGL.Web.Models.Student
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
         private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
+        private IMapper<Web.Data.Entities.Student, StudentBiographicalInformationModel> _biographicalInfoMapper;
 
         public StudentToProfileModelMapper(
             StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
             ParentToProfileParentModelMapper parentToProfileParentModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
             StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper,
-            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper)
+            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, IMapper<Data.Entities.Student, StudentBiographicalInformationModel> biographicalInfoMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
             _studentProgramStatusToProfileProgramStatusModelMapper = studentProgramStatusToProfileProgramStatusModelMapper;
             _studentAttendancePercentageMapper = studentAttendancePercentageMapper;
+            _biographicalInfoMapper = biographicalInfoMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
@@ -65,14 +68,11 @@ namespace NGL.Web.Models.Student
             target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
         }
 
-        private static void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
+        private void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
         {
             target.StudentUsi = source.StudentUSI;
-            target.FirstName = source.FirstName;
-            target.LastName = source.LastSurname;
-            target.Sex = ((SexTypeEnum) source.SexTypeId).Humanize();
-            target.BirthDate = source.BirthDate;
-            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+
+            target.BiographicalInformation = _biographicalInfoMapper.Build(source);
             target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
         }
             
