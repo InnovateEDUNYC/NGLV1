@@ -176,6 +176,15 @@ namespace NGL.Tests.Attendance
             }
         }
 
+        [Fact]
+        public void ShouldEditStudentFlags()
+        {
+            Setup();
+            _attendanceService.SetNewFlagCount(_student, 6);
+
+            _student.AttendanceFlags.First().FlagCount.ShouldBe(6);
+        }
+
         private void Setup()
         {
             _attendanceRepository = Substitute.For<IAttendanceRepository>();

@@ -101,9 +101,13 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string EditGrades = "EditGrades";
+                public readonly string Grades = "Grades";
                 public readonly string Index = "Index";
             }
             public readonly string Create = "~/Views/ParentCourse/Create.cshtml";
+            public readonly string EditGrades = "~/Views/ParentCourse/EditGrades.cshtml";
+            public readonly string Grades = "~/Views/ParentCourse/Grades.cshtml";
             public readonly string Index = "~/Views/ParentCourse/Index.cshtml";
         }
     }
