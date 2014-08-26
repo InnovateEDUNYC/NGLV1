@@ -45,3 +45,7 @@
 .profile-edit .datepicker {
     max-width: 275px;
 }
+
+#editable-biographical-info {
+    display: none;
+}
