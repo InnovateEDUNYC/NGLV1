@@ -9,8 +9,7 @@ namespace NGL.Web.Models.Enrollment
     {
         public override void Map(Data.Entities.Student source, StudentBiographicalInformationModel target)
         {
-            target.FirstName = source.FirstName;
-            target.LastName = source.LastSurname;
+            target.StudentUsi = source.StudentUSI;
             target.BirthDate = source.BirthDate.ToShortDateString();
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.Sex = (SexTypeEnum) source.SexTypeId;

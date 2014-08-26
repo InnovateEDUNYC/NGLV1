@@ -68,12 +68,6 @@ namespace NGL.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EditStudent()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditStudent);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult EditProgramStatus()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProgramStatus);
@@ -97,7 +91,6 @@ namespace NGL.Web.Controllers
             public readonly string CreateStudent = "CreateStudent";
             public readonly string EnterAcademicDetails = "EnterAcademicDetails";
             public readonly string EnterProgramStatus = "EnterProgramStatus";
-            public readonly string EditStudent = "EditStudent";
             public readonly string EditProgramStatus = "EditProgramStatus";
         }
 
@@ -107,7 +100,6 @@ namespace NGL.Web.Controllers
             public const string CreateStudent = "CreateStudent";
             public const string EnterAcademicDetails = "EnterAcademicDetails";
             public const string EnterProgramStatus = "EnterProgramStatus";
-            public const string EditStudent = "EditStudent";
             public const string EditProgramStatus = "EditProgramStatus";
         }
 
@@ -137,14 +129,6 @@ namespace NGL.Web.Controllers
         {
             public readonly string id = "id";
             public readonly string enterProgramStatusModel = "enterProgramStatusModel";
-        }
-        static readonly ActionParamsClass_EditStudent s_params_EditStudent = new ActionParamsClass_EditStudent();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EditStudent EditStudentParams { get { return s_params_EditStudent; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EditStudent
-        {
-            public readonly string model = "model";
         }
         static readonly ActionParamsClass_EditProgramStatus s_params_EditProgramStatus = new ActionParamsClass_EditProgramStatus();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -253,15 +237,6 @@ namespace NGL.Web.Controllers
             return callInfo;
         }
 
-        [NonAction]
-        partial void EditStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Enrollment.StudentBiographicalInformationModel model);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult EditStudent(NGL.Web.Models.Enrollment.StudentBiographicalInformationModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditStudent);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            EditStudentOverride(callInfo, model);
             return callInfo;
         }
 
@@ -275,9 +250,6 @@ namespace NGL.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "programStatus", programStatus);
             EditProgramStatusOverride(callInfo, studentUsi, programStatus);
-            return callInfo;
-        }
-
     }
 }
 

@@ -1,18 +1,21 @@
 ﻿using System;
-using NGL.Web.Models;
-using NGL.Web.Models.Enrollment;
+using System.Linq;
+using NGL.Web.Data.Entities;
 
-namespace NGL.Tests.Enrollment
+namespace NGL.Web.Models.Enrollment
 {
-    public class StudentBiographicalInformationModelToStudentMapper : MapperBase<StudentBiographicalInformationModel, Web.Data.Entities.Student>
+    public class StudentBiographicalInformationModelToStudentMapper : MapperBase<StudentBiographicalInformationModel, Data.Entities.Student>
     {
-        public override void Map(StudentBiographicalInformationModel source, Web.Data.Entities.Student target)
+        public override void Map(StudentBiographicalInformationModel source, Data.Entities.Student target)
         {
-            target.FirstName = source.FirstName;
-            target.LastSurname = source.LastName;
             target.BirthDate = DateTime.Parse(source.BirthDate);
             target.SexTypeId = (int) source.Sex;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+            target.StudentRaces.First().RaceTypeId = (int) source.Race;
+            target.StudentLanguages.First().LanguageDescriptorId = (int) source.HomeLanguage;
+            target.StudentLanguages.First().LanguageDescriptorId = (int) source.HomeLanguage;
+            target.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId = (int) source.HomeLanguage;
         }
+
     }
 }

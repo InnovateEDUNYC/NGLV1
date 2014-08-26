@@ -64,6 +64,8 @@ namespace NGL.Web.Models.Student
         private void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
         {
             target.StudentUsi = source.StudentUSI;
+            target.FirstName = source.FirstName;
+            target.LastName = source.LastSurname;
             target.BiographicalInformation = _biographicalInfoMapper.Build(source);
         }
             

@@ -40,6 +40,7 @@ namespace NGL.Tests.Enrollment
             _student.StudentLanguages.First()
                 .StudentLanguageUses.First()
                 .LanguageUseTypeId.ShouldBe((int) LanguageUseTypeEnum.Homelanguage);
+
             _student.StudentLanguages.First()
                 .StudentLanguageUses.First()
                 .LanguageDescriptorId.ShouldBe(languageDescriptorId);

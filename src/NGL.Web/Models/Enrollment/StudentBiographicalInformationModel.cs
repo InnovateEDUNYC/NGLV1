@@ -7,8 +7,6 @@ namespace NGL.Web.Models.Enrollment
     public class StudentBiographicalInformationModel
     {
         public int StudentUsi { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public SexTypeEnum Sex { get; set; }
         public string BirthDate { get; set; }
         [Display(Name="Hispanic/Latino")]

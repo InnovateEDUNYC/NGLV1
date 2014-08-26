@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using NGL.Tests.Enrollment;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
@@ -154,19 +153,6 @@ namespace NGL.Web.Controllers
 
             _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
             return relativePath;
-        }
-
-        [HttpPost]
-        public virtual ActionResult EditStudent(StudentBiographicalInformationModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var student = _studentRepository.GetByUSI(model.StudentUsi);
-            _studentBiographicalInfoToStudentMapper.Map(model, student);
-            _repository.Save();
-
-            return RedirectToAction(MVC.Student.Index(model.StudentUsi));
         }
 
         public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)

@@ -152,8 +152,8 @@ namespace NGL.Tests.Student
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);
-            profileModel.BiographicalInformation.FirstName.ShouldBe(student.FirstName);
-            profileModel.BiographicalInformation.LastName.ShouldBe(student.LastSurname);
+            profileModel.FirstName.ShouldBe(student.FirstName);
+            profileModel.LastName.ShouldBe(student.LastSurname);
             profileModel.BiographicalInformation.BirthDate.ShouldBe(student.BirthDate.ToShortDateString());
 
             var studentRace = student.StudentRaces.First();

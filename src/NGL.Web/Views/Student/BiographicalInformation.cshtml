@@ -6,7 +6,7 @@
         Biographical Information
         @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
         {
-            <a id="edit-biographical-info" class="fa fa-pencil pull-right"></a>
+            <a id="edit-biographical-info-button" class="fa fa-pencil pull-right"></a>
         }
     </h4>
     <dl class="dl-horizontal panel panel-default">
@@ -54,11 +54,14 @@
         Biographical Information
     </h4>
     <dl class="dl-horizontal panel panel-default">
-        @using (var f = Html.BeginNglForm())
+        @using (var f = Html.BeginNglForm(htmlAttributes: new HtmlAttributes(new { id = "edit-biographical-information" })))
         {
             using (var s = f.BeginSection(""))
             {
                 <div class="profile-edit">
+                    <div class="hidden">
+                              @s.FieldFor(m => m.StudentUsi)
+                      </div>
                     @s.FieldFor(m => m.Sex)
                     @s.FieldFor(m => m.BirthDate).AddClass("datepicker")
 
