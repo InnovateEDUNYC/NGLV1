@@ -105,7 +105,5 @@ namespace NGL.Web.Service
                 flag.FlagCount = 0;
             }
         }
-
-
     }
 }
