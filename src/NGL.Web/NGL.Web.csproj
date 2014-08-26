@@ -2091,9 +2091,7 @@
     <Content Include="Views\ParentCourse\Index.cshtml" />
     <Content Include="Views\Assessment\Month.cshtml" />
     <Content Include="Views\Attendance\Take.cshtml" />
-    <Content Include="Views\ParentCourse\Grades.cshtml" />
     <Content Include="Views\Section\ForSession.cshtml" />
-    <Content Include="Views\ParentCourse\EditGrades.cshtml" />
     <Content Include="Views\ParentCourseGrade\Edit.cshtml" />
     <Content Include="Views\ParentCourseGrade\Index.cshtml" />
   </ItemGroup>
