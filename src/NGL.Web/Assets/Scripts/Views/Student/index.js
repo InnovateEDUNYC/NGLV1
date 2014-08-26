@@ -35,7 +35,7 @@ Ngl.student.index = (function () {
             var flagCount = $('#flag-count').val();
             $('#flag-count').val(--flagCount);
 
-            if (flagCount <= 0) {
+            if (flagCount == 0) {
                 $(this).remove();
             }
         });
