@@ -49,3 +49,14 @@
 #editable-biographical-info {
     display: none;
 }
+
+.profile-labels-edit-mode {
+    width: 240px;
+}
+
+.file-upload {
+    display: inline-block;
+    width: 210px;
+    margin-left: 10px;
+    vertical-align: middle;
+}

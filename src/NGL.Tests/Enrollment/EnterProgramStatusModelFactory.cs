@@ -36,7 +36,7 @@ namespace NGL.Tests.Enrollment
                 BilingualProgram = BilingualProgram,
                 EnglishAsSecondLanguage = EnglishAsSecondLanguage,
                 Gifted = Gifted,
-                FoodServiceEligibilityStatus = FoodServiceEligibilityStatus,
+                FoodServicesEligibilityStatus = FoodServiceEligibilityStatus,
                 TestingAccommodationFile = TestingAccommodationFile,
                 SpecialEducationFile = SpecialEducationFile,
                 McKinneyVentoFile = McKinneyVentoFile,

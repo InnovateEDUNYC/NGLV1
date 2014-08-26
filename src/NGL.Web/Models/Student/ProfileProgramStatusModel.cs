@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
@@ -16,7 +18,7 @@ namespace NGL.Web.Models.Student
         [Display(Name = "McKinney Vento")]
         public string McKinneyVento { get; set; }
         public string McKinneyVentoFile { get; set; }
-
-        public string FoodServiceEligibilityStatus { get; set; }
+        public string FoodServicesEligibilityStatusForDisplay { get; set; }
+        public SchoolFoodServicesEligibilityTypeEnum FoodServicesEligibilityStatus { get; set; }
     }
 }

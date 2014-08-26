@@ -27,6 +27,6 @@ namespace NGL.Web.Models.Enrollment
         public HttpPostedFileBase McKinneyVentoFile { get; set; }
         
         [Required]
-        public SchoolFoodServicesEligibilityTypeEnum FoodServiceEligibilityStatus { get; set; }
+        public SchoolFoodServicesEligibilityTypeEnum FoodServicesEligibilityStatus { get; set; }
     }
 }
