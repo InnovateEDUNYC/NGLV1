@@ -21,6 +21,8 @@ namespace NGL.Web.Controllers
         private readonly IMapper<AcademicDetailModel, StudentSchoolAssociation> _schoolAssociationMapper;
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
         private readonly IStudentRepository _studentRepository;
+        private readonly IMapper<Student, EditStudentModel> _studentToEditStudentModelMapper;
+        private readonly IMapper<EditStudentModel, Student> _editStudentModelToStudentMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
                                                 IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
@@ -28,11 +30,15 @@ namespace NGL.Web.Controllers
                                                 IFileUploader fileUploader,
                                                 IMapper<AcademicDetailModel, 
                                                 StudentSchoolAssociation> schoolAssociationMapper,
-                                                IStudentRepository studentRepository)
+                                                IStudentRepository studentRepository,
+                                                IMapper<Student, EditStudentModel> studentToEditStudentModelMapper,
+                                                IMapper<EditStudentModel, Student> editStudentModelToStudentMapper)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;
             _studentRepository = studentRepository;
+            _studentToEditStudentModelMapper = studentToEditStudentModelMapper;
+            _editStudentModelToStudentMapper = editStudentModelToStudentMapper;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -151,6 +157,27 @@ namespace NGL.Web.Controllers
 
             _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
             return relativePath;
+        }
+
+        public virtual ActionResult EditStudent(int studentUsi)
+        {
+            var student = _studentRepository.GetByUSI(studentUsi);
+            var editStudentModel = _studentToEditStudentModelMapper.Build(student);
+            return View(editStudentModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult EditStudent(EditStudentModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var student = _studentRepository.GetByUSI(model.StudentModel.StudentUsi);
+            _editStudentModelToStudentMapper.Map(model, student);
+            _repository.Add(student);
+            _repository.Save();
+
+            return MVC.Student.Index(model.StudentModel.StudentUsi);
         }
     }
 }

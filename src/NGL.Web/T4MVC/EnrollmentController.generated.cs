@@ -66,6 +66,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EnterProgramStatus);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EditStudent()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditStudent);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public EnrollmentController Actions { get { return MVC.Enrollment; } }
@@ -85,6 +91,7 @@ namespace NGL.Web.Controllers
             public readonly string CreateStudent = "CreateStudent";
             public readonly string EnterAcademicDetails = "EnterAcademicDetails";
             public readonly string EnterProgramStatus = "EnterProgramStatus";
+            public readonly string EditStudent = "EditStudent";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,6 +100,7 @@ namespace NGL.Web.Controllers
             public const string CreateStudent = "CreateStudent";
             public const string EnterAcademicDetails = "EnterAcademicDetails";
             public const string EnterProgramStatus = "EnterProgramStatus";
+            public const string EditStudent = "EditStudent";
         }
 
 
@@ -122,6 +130,15 @@ namespace NGL.Web.Controllers
             public readonly string id = "id";
             public readonly string enterProgramStatusModel = "enterProgramStatusModel";
         }
+        static readonly ActionParamsClass_EditStudent s_params_EditStudent = new ActionParamsClass_EditStudent();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditStudent EditStudentParams { get { return s_params_EditStudent; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditStudent
+        {
+            public readonly string studentUsi = "studentUsi";
+            public readonly string model = "model";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -133,10 +150,12 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string CreateStudent = "CreateStudent";
+                public readonly string EditStudent = "EditStudent";
                 public readonly string EnterAcademicDetails = "EnterAcademicDetails";
                 public readonly string EnterProgramStatus = "EnterProgramStatus";
             }
             public readonly string CreateStudent = "~/Views/Enrollment/CreateStudent.cshtml";
+            public readonly string EditStudent = "~/Views/Enrollment/EditStudent.cshtml";
             public readonly string EnterAcademicDetails = "~/Views/Enrollment/EnterAcademicDetails.cshtml";
             public readonly string EnterProgramStatus = "~/Views/Enrollment/EnterProgramStatus.cshtml";
         }
@@ -217,6 +236,30 @@ namespace NGL.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enterProgramStatusModel", enterProgramStatusModel);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EnterProgramStatusOverride(callInfo, enterProgramStatusModel, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EditStudent(int studentUsi)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditStudent);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
+            EditStudentOverride(callInfo, studentUsi);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.Enrollment.EditStudentModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EditStudent(NGL.Web.Models.Enrollment.EditStudentModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditStudent);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            EditStudentOverride(callInfo, model);
             return callInfo;
         }
 

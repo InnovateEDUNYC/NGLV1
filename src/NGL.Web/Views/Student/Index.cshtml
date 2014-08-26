@@ -96,7 +96,15 @@
         </div>
 
         <div class="col-md-7">
-            <h4 class="panel panel-default strong">Biographical Information</h4>
+            <h4 class="panel panel-default strong">
+                Biographical Information
+                @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
+                {
+                    <a class="text-center" href=@Url.Action(MVC.Enrollment.EditStudent(Model.StudentUsi))>
+                        <span class="fa fa-pencil fa-1 pull-right"></span>
+                    </a>
+                }
+            </h4>
             <dl class="dl-horizontal panel panel-default">
                 <dt>
                     Sex
