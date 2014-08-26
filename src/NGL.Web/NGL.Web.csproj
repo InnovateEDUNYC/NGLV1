@@ -1740,7 +1740,7 @@
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\FindParentCourseModel.cs" />
-    <Compile Include="Models\ParentCourse\GradesAndSectionToParentCourseGradesModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\StudentsToParentCourseGradesModelMapper.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseGradesModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseJsonModel.cs" />

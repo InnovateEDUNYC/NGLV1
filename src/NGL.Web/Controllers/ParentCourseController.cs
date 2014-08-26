@@ -30,7 +30,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<ParentCourse, IndexModel> _parentCourseToIndexModelMapper;
         private readonly IParentCourseRepository _parentCourseRepository;
         private readonly IMapper<Section, ParentCourseGrade> _sectionToParentCourseGradeMapper;
-        private readonly GradesAndSectionToParentCourseGradesModelMapper _gradesAndSectionToParentCourseGradesModelMapper;
+        private readonly StudentsToParentCourseGradesModelMapper _studentsToParentCourseGradesModelMapper;
         private readonly ISectionRepository _sectionRepository;
         private readonly IMapper<ParentCourse, ParentCourseJsonModel> _parentCourseToParentCourseJsonModelMapper;
 
@@ -43,7 +43,7 @@ namespace NGL.Web.Controllers
             _sectionToParentCourseGradeMapper = sectionToParentCourseGradeMapper;
             _sectionRepository = sectionRepository;
             _parentCourseToParentCourseJsonModelMapper = parentCourseToParentCourseJsonModelMapper;
-            _gradesAndSectionToParentCourseGradesModelMapper = new GradesAndSectionToParentCourseGradesModelMapper(parentCourseGradeToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
+            _studentsToParentCourseGradesModelMapper = new StudentsToParentCourseGradesModelMapper(parentCourseGradeToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
         }
         //
         // GET: /ParentCourse/
