@@ -30,8 +30,8 @@
                     }
                     <h3>
                         <strong>
-                            @Html.DisplayFor(model => model.FirstName)
-                            @Html.DisplayFor(model => model.LastName)
+                            @Html.DisplayFor(model => model.BiographicalInformation.FirstName)
+                            @Html.DisplayFor(model => model.BiographicalInformation.LastName)
                         </strong>
                     </h3>
                     <p>
@@ -96,29 +96,35 @@
         </div>
 
         <div class="col-md-7">
-            <h4 class="panel panel-default strong">Biographical Information</h4>
+            <h4 class="panel panel-default strong">
+                Biographical Information
+                @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
+                {
+                    Html.Raw("edit");
+                }
+            </h4>
             <dl class="dl-horizontal panel panel-default">
                 <dt>
                     Sex
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Sex)
+                    @Html.DisplayFor(model => model.BiographicalInformation.Sex)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.BirthDate)
+                    @Html.DisplayNameFor(model => model.BiographicalInformation.BirthDate)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.BirthDate)
+                    @Html.DisplayFor(model => model.BiographicalInformation.BirthDate)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+                    @Html.DisplayNameFor(model => model.BiographicalInformation.HispanicLatinoEthnicity)
                 </dt>
 
                 <dd>
-                    @Html.DisplayTextFor(model => model.HispanicLatinoEthnicity)
+                    @Html.DisplayTextFor(model => model.BiographicalInformation.HispanicLatinoEthnicity)
                 </dd>
 
                 <dt>
