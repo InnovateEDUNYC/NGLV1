@@ -43,7 +43,10 @@ namespace NGL.Web.Data.Repositories
                 .SelectMany(c => c.CourseOfferings.Where(co => co.Session.SessionIdentity == sessionId)
                     .SelectMany(co => co.Sections)
                     .SelectMany(s => s.StudentSectionAssociations)
-                    .Select(ssa => ssa.Student)).Include(s => s.ParentCourseGrades).Distinct().ToList();
+                    .Select(ssa => ssa.Student))
+                    .Include(s => s.ParentCourseGrades)
+                    .Include(s => s.ParentCourseGrades.Select(pcg => pcg.ParentCourse))
+                    .Include(s => s.ParentCourseGrades.Select(pcg => pcg.Session)).Distinct().ToList();
 
             
             return studentsWithParentCourseGrades;
