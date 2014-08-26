@@ -1718,6 +1718,7 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
+    <Compile Include="Models\Enrollment\EditStudentModelToStudentMapper.cs" />
     <Compile Include="Models\Enrollment\StudentModel.cs" />
     <Compile Include="Models\Enrollment\StudentToEditStudentModelMapper.cs" />
     <Compile Include="Models\GradeModel.cs" />

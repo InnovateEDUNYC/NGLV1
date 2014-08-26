@@ -100,9 +100,7 @@
                 Biographical Information
                 @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                 {
-                    <a class="text-center" href=@Url.Action(MVC.Enrollment.EditStudent(Model.StudentUsi))>
-                        <span class="fa fa-pencil fa-1 pull-right"></span>
-                    </a>
+                        @Html.ActionLink("Edit", MVC.Enrollment.EditStudent(studentUsi:Model.StudentUsi), new { @class = "btn btn-primary" })
                 }
             </h4>
             <dl class="dl-horizontal panel panel-default">

@@ -159,9 +159,9 @@ namespace NGL.Web.Controllers
             return relativePath;
         }
 
-        public virtual ActionResult EditStudent(int studentUsi)
+        public virtual ActionResult EditStudent(int id)
         {
-            var student = _studentRepository.GetByUSI(studentUsi);
+            var student = _studentRepository.GetByUSI(id);
             var editStudentModel = _studentToEditStudentModelMapper.Build(student);
             return View(editStudentModel);
         }
