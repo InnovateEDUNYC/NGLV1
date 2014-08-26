@@ -87,7 +87,7 @@
                     <input id="flag-count" class="hidden" type="text" name="newFlagCount" value="@Model.FlagCount" />
                     
                     <div class="text-right top-buffer">
-                        <button class="btn btn-default">Cancel</button>
+                        @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
                         <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </form>
