@@ -1747,7 +1747,7 @@
     <Compile Include="Models\ParentCourse\ParentCourseToIndexModelMapper.cs" />
     <Compile Include="Models\ParentCourse\parentCourseGradeToGradeModelMapper.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseToParentCourseJsonModelMapper.cs" />
-    <Compile Include="Models\ParentCourse\SectionToFindParentCourseModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\ParentCourseGradeToFindParentCourseModelMapper.cs" />
     <Compile Include="Models\ParentCourse\SectionToParentCourseGradeMapper.cs" />
     <Compile Include="Models\ParentCourse\StudentToGradeModelMapper.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />
@@ -1800,9 +1800,6 @@
     <Compile Include="Models\Student\ParentToProfileParentModelMapper.cs" />
     <Compile Include="Service\AttendanceService.cs" />
     <Compile Include="Service\IAttendanceService.cs" />
-    <Compile Include="T4MVC\AccountController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ConfigureChameleonTwitterBootstrap.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -1826,6 +1823,25 @@
     <Compile Include="Data\Entities\NglDbContext..cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Account\LoginModel.cs" />
+    <Compile Include="Models\IMapper.cs" />
+    <Compile Include="Models\School\SchoolModelToEducationOrganizationMapper.cs" />
+    <Compile Include="Models\School\EducationOrganizationToSchoolModelMapper.cs" />
+    <Compile Include="Models\School\SchoolModel.cs" />
+    <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
+    <Compile Include="Models\ClassPeriod\CreateModel.cs" />
+    <Compile Include="Models\Course\CreateModel.cs" />
+    <Compile Include="Models\Location\CreateModel.cs" />
+    <Compile Include="Models\Section\CreateModel.cs" />
+    <Compile Include="Models\Session\CreateModel.cs" />
+    <Compile Include="Models\Staff\StaffModel.cs" />
+    <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
+    <Compile Include="Models\StudentSectionAttendanceEvent\StudentModelForStudentSectionAttendanceEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="T4MVC\AccountController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\AssessmentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -1851,21 +1867,6 @@
     <Compile Include="T4MVC\HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account\LoginModel.cs" />
-    <Compile Include="Models\IMapper.cs" />
-    <Compile Include="Models\School\SchoolModelToEducationOrganizationMapper.cs" />
-    <Compile Include="Models\School\EducationOrganizationToSchoolModelMapper.cs" />
-    <Compile Include="Models\School\SchoolModel.cs" />
-    <Compile Include="Models\Enrollment\CreateStudentModel.cs" />
-    <Compile Include="Models\ClassPeriod\CreateModel.cs" />
-    <Compile Include="Models\Course\CreateModel.cs" />
-    <Compile Include="Models\Location\CreateModel.cs" />
-    <Compile Include="Models\Section\CreateModel.cs" />
-    <Compile Include="Models\Session\CreateModel.cs" />
-    <Compile Include="Models\Staff\StaffModel.cs" />
-    <Compile Include="Models\StudentSectionAttendanceEvent\StudentSectionAttendanceEventModel.cs" />
-    <Compile Include="Models\StudentSectionAttendanceEvent\StudentModelForStudentSectionAttendanceEvent.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC\LearningStandardController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -1893,7 +1894,6 @@
     <Compile Include="T4MVC\SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Startup.cs" />
     <Compile Include="T4MVC\StudentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

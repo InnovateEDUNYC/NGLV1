@@ -15,6 +15,8 @@ namespace NGL.Tests.Builders
         private int _studentUsi;
         private string _gradeEarned;
         private Web.Data.Entities.Student _student;
+        private Web.Data.Entities.Session _session;
+        private Web.Data.Entities.ParentCourse _parentCourse;
 
         public ParentCourseGrade Build()
         {
@@ -30,7 +32,9 @@ namespace NGL.Tests.Builders
                 TermTypeId = _termTypeId,
                 StudentUSI = _studentUsi,
                 GradeEarned = _gradeEarned,
-                Student = _student
+                Student = _student,
+                Session = _session,
+                ParentCourse = _parentCourse
             };
         }
 
@@ -38,6 +42,18 @@ namespace NGL.Tests.Builders
         {
             _student = student;
             _studentUsi = student.StudentUSI;
+            return this;
+        }
+
+        public ParentCourseGradeBuilder WithSession(Web.Data.Entities.Session session)
+        {
+            _session = session;
+            return this;
+        }
+
+        public ParentCourseGradeBuilder WithParentCourse(Web.Data.Entities.ParentCourse parentCourse)
+        {
+            _parentCourse = parentCourse;
             return this;
         }
     }

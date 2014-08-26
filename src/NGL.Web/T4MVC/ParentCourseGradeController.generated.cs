@@ -90,7 +90,8 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Get
         {
-            public readonly string id = "id";
+            public readonly string sessionId = "sessionId";
+            public readonly string parentCourseId = "parentCourseId";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -98,7 +99,8 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Edit
         {
-            public readonly string id = "id";
+            public readonly string sessionId = "sessionId";
+            public readonly string parentCourseId = "parentCourseId";
             public readonly string parentCourseGradesModel = "parentCourseGradesModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
@@ -136,26 +138,28 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void GetOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
+        partial void GetOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sessionId, System.Guid? parentCourseId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Get(int? id)
+        public override System.Web.Mvc.ActionResult Get(int? sessionId, System.Guid? parentCourseId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Get);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            GetOverride(callInfo, id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseId", parentCourseId);
+            GetOverride(callInfo, sessionId, parentCourseId);
             return callInfo;
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sessionId, System.Guid? parentCourseId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(int? id)
+        public override System.Web.Mvc.ActionResult Edit(int? sessionId, System.Guid? parentCourseId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            EditOverride(callInfo, id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseId", parentCourseId);
+            EditOverride(callInfo, sessionId, parentCourseId);
             return callInfo;
         }
 

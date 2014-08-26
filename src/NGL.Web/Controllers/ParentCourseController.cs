@@ -34,7 +34,7 @@ namespace NGL.Web.Controllers
         private readonly ISectionRepository _sectionRepository;
         private readonly IMapper<ParentCourse, ParentCourseJsonModel> _parentCourseToParentCourseJsonModelMapper;
 
-        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<Section, FindParentCourseModel> sectionToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper, IMapper<Section, ParentCourseGrade> sectionToParentCourseGradeMapper, ISectionRepository sectionRepository, IMapper<ParentCourse, ParentCourseJsonModel> parentCourseToParentCourseJsonModelMapper)
+        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<ParentCourseGrade, FindParentCourseModel> parentCourseGradeToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper, IMapper<Section, ParentCourseGrade> sectionToParentCourseGradeMapper, ISectionRepository sectionRepository, IMapper<ParentCourse, ParentCourseJsonModel> parentCourseToParentCourseJsonModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToParentCourseMapper = createModelToParentCourseMapper;
@@ -43,7 +43,7 @@ namespace NGL.Web.Controllers
             _sectionToParentCourseGradeMapper = sectionToParentCourseGradeMapper;
             _sectionRepository = sectionRepository;
             _parentCourseToParentCourseJsonModelMapper = parentCourseToParentCourseJsonModelMapper;
-            _gradesAndSectionToParentCourseGradesModelMapper = new GradesAndSectionToParentCourseGradesModelMapper(sectionToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
+            _gradesAndSectionToParentCourseGradesModelMapper = new GradesAndSectionToParentCourseGradesModelMapper(parentCourseGradeToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
         }
         //
         // GET: /ParentCourse/
