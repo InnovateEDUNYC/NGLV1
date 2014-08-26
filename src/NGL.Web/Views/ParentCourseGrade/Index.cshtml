@@ -11,11 +11,11 @@
     <div class="col-md-5">
         <h4><strong>SESSION</strong></h4>
         @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control full-input", @id = "Session" })
-        <h4><strong>SECTION</strong></h4>
-        @Html.TextBoxFor(m => m.FindParentCourseModel.Section, new { @class = "form-control full-input", @id = "Section" })
+        <h4><strong>PARENT COURSE</strong></h4>
+        @Html.TextBoxFor(m => m.FindParentCourseModel.ParentCourse, new { @class = "form-control full-input", @id = "ParentCourse" })
 
         @Html.HiddenFor(m => m.FindParentCourseModel.SessionId, new { @id = "SessionId" })
-        @Html.HiddenFor(m => m.FindParentCourseModel.SectionId, new { @id = "SectionId" })
+        @Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "ParentCourseId" })
     </div>
 </div>
 <div class="panel panel-default col-md-10 top-buffer">
@@ -49,7 +49,7 @@
                 }
             </tbody>
         </table>
-        @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SectionId), new { @class="btn btn-primary"})
+        @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.ParentCourseId), new { @class="btn btn-primary"})
     }
     else
     {
@@ -59,6 +59,6 @@
 <div></div>
 @section Scripts {
     Ngl.shared.sessionAutocomplete.init();
-    Ngl.shared.sectionAutocomplete.init();
+    Ngl.shared.parentCourseAutocomplete.init();
     Ngl.report.getGrades.init(window);
 }

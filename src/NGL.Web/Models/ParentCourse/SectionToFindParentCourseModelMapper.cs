@@ -9,8 +9,8 @@ namespace NGL.Web.Models.ParentCourse
     {
         public override void Map(Data.Entities.Section source, FindParentCourseModel target)
         {
-            target.Section = source.UniqueSectionCode;
-            target.SectionId = source.SectionIdentity;
+            target.ParentCourse = source.UniqueSectionCode;
+            target.ParentCourseId = source.SectionIdentity;
             target.Session = source.Session.SessionName;
             target.SessionId = source.Session.SessionIdentity;
         }

@@ -19,8 +19,8 @@ namespace NGL.Tests.ParentCourse
 
             var findParentCourseModel = new SectionToFindParentCourseModelMapper().Build(section);
 
-            findParentCourseModel.Section.ShouldBe(section.UniqueSectionCode);
-            findParentCourseModel.SectionId.ShouldBe(section.SectionIdentity);
+            findParentCourseModel.ParentCourse.ShouldBe(section.UniqueSectionCode);
+            findParentCourseModel.ParentCourseId.ShouldBe(section.SectionIdentity);
             findParentCourseModel.Session.ShouldBe(section.Session.SessionName);
             findParentCourseModel.SessionId.ShouldBe(section.Session.SessionIdentity);
         }

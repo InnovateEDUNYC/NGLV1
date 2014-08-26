@@ -8,7 +8,7 @@ namespace NGL.Web.Models.ParentCourse
     {
         public string Session { get; set; }
         public int? SessionId { get; set; }
-        public string Section { get; set; }
-        public int? SectionId { get; set; }
+        public string ParentCourse { get; set; }
+        public int? ParentCourseId { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace NGL.Web.Controllers
         }
         public virtual ActionResult Index()
         {
+            _parentCourseRepository.GetStudents(1, Guid.Parse("205D8296-434A-4CF7-8941-FED32960B924"));
                 return View(new ParentCourseGradesModel());
         }
 
@@ -62,11 +63,11 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ParentCourseGradesModel parentCourseGradesModel)
         {
-            if (parentCourseGradesModel.FindParentCourseModel.SectionId != null)
+            if (parentCourseGradesModel.FindParentCourseModel.ParentCourseId != null)
             {
                 var section =
                     _sectionRepository.GetWithStudentsAndSession(
-                        parentCourseGradesModel.FindParentCourseModel.SectionId.Value);
+                        parentCourseGradesModel.FindParentCourseModel.ParentCourseId.Value);
                 var parentCourse =
                     _parentCourseRepository.GetParentCourse(section.LocalCourseCode);
                 var previouslyGradedStudents =

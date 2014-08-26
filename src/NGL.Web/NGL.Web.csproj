@@ -1743,8 +1743,10 @@
     <Compile Include="Models\ParentCourse\GradesAndSectionToParentCourseGradesModelMapper.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseGradesModel.cs" />
+    <Compile Include="Models\ParentCourse\ParentCourseJsonModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseToIndexModelMapper.cs" />
     <Compile Include="Models\ParentCourse\parentCourseGradeToGradeModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\ParentCourseToParentCourseJsonModelMapper.cs" />
     <Compile Include="Models\ParentCourse\SectionToFindParentCourseModelMapper.cs" />
     <Compile Include="Models\ParentCourse\SectionToParentCourseGradeMapper.cs" />
     <Compile Include="Models\ParentCourse\StudentToGradeModelMapper.cs" />
@@ -1961,6 +1963,7 @@
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Shared\accordianArrows.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
+    <Content Include="Assets\Scripts\Views\Shared\parentCourseAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Shared\sessionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
     <Content Include="Assets\Scripts\Views\Shared\sectionAutocomplete.js" />

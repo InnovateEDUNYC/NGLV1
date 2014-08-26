@@ -16,7 +16,6 @@ Ngl.shared.sessionAutocomplete = (function () {
                 $('#SessionId').val("").trigger('cleared');
             }
         });
-
     }
 
     var sessionAutocomplete = function () {
