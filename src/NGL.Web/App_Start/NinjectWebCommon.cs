@@ -12,7 +12,6 @@ using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
-using NGL.Web.Models.Enrollment;
 using NGL.Web.Service;
 using Ninject;
 using Ninject.Extensions.Conventions;

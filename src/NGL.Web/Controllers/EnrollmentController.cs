@@ -159,9 +159,9 @@ namespace NGL.Web.Controllers
             return relativePath;
         }
 
-        public virtual ActionResult EditStudent(int id)
+        public virtual ActionResult EditStudent(int studentUsi)
         {
-            var student = _studentRepository.GetByUSI(id);
+            var student = _studentRepository.GetByUSI(studentUsi);
             var editStudentModel = _studentToEditStudentModelMapper.Build(student);
             return View(editStudentModel);
         }
@@ -174,10 +174,9 @@ namespace NGL.Web.Controllers
 
             var student = _studentRepository.GetByUSI(model.StudentModel.StudentUsi);
             _editStudentModelToStudentMapper.Map(model, student);
-            _repository.Add(student);
             _repository.Save();
 
-            return MVC.Student.Index(model.StudentModel.StudentUsi);
+            return RedirectToAction(MVC.Student.Index(model.StudentModel.StudentUsi));
         }
     }
 }

@@ -100,7 +100,7 @@
                 Biographical Information
                 @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                 {
-                        @Html.ActionLink("Edit", MVC.Enrollment.EditStudent(studentUsi:Model.StudentUsi), new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Edit", MVC.Enrollment.EditStudent(Model.StudentUsi), new { @class = "btn btn-primary" })
                 }
             </h4>
             <dl class="dl-horizontal panel panel-default">

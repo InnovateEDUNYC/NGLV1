@@ -7,7 +7,7 @@ namespace NGL.Web.Models.Enrollment
     public class StudentModel
     {
         [Display(Name = "Student USI")]
-        public int StudentUsi;
+        public int StudentUsi { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public SexTypeEnum Sex { get; set; }
