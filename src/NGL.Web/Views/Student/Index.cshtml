@@ -58,6 +58,11 @@
                 
             </div>
             <div class="panel panel-default text-center">
+                @if ((User as NglPrincipal).HasAccessTo("attendance", "clearAllFlags"))
+                {
+                    <span id="edit-attendance" class="fa fa-pencil pull-right"></span>
+                }
+
                 <h4 class="strong">Attendance</h4>
                 <div class="progress profile-progress">
                     <div class="progress-bar" style="width: @Model.AttendancePercentage%;">
@@ -77,6 +82,11 @@
                         else { <span class="fa fa-flag fa-2x bad"></span> }
                     }
                 </div>
+
+                <form hidden="hidden" method="post" id="editFlags" action="@Url.Action(MVC.Attendance.EditFlags(Model.StudentUsi, 0))">
+                    <input id="flag-count" class="hidden" type="text" name="newFlagCount" value="@Model.FlagCount" />
+                    <button class="btn btn-default" type="submit">Save</button>
+                </form>
 
             </div>
         </div>

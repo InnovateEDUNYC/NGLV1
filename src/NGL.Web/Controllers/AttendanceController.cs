@@ -17,18 +17,21 @@ namespace NGL.Web.Controllers
         private readonly SectionToTakeAttendanceModelMapper _sectionToTakeAttendanceModelMapper;
         private readonly TakeAttendanceModelToStudentSectionAttendanceEventListMapper _takeAttendanceModelToStudentSectionAttendanceEventListMapper;
         private readonly IAttendanceService _attendanceService;
+        private readonly IStudentRepository _studentRepository;
 
         public AttendanceController(IGenericRepository genericRepository,
             ISectionRepository sectionRepository,
             SectionToTakeAttendanceModelMapper sectionToTakeAttendanceModelMapper,
             TakeAttendanceModelToStudentSectionAttendanceEventListMapper takeAttendanceModelToStudentSectionAttendanceEventListMapper, 
-            IAttendanceService attendanceService)
+            IAttendanceService attendanceService, 
+            IStudentRepository studentRepository)
         {
             _genericRepository = genericRepository;
             _sectionRepository = sectionRepository;
             _sectionToTakeAttendanceModelMapper = sectionToTakeAttendanceModelMapper;
             _takeAttendanceModelToStudentSectionAttendanceEventListMapper = takeAttendanceModelToStudentSectionAttendanceEventListMapper;
             _attendanceService = attendanceService;
+            _studentRepository = studentRepository;
         }
 
         [HttpGet]
@@ -84,6 +87,17 @@ namespace NGL.Web.Controllers
 
             TempData["ShowSuccess"] = true;
             return RedirectToAction(MVC.Student.All());
+        }
+
+        [HttpPost]
+        [AuthorizeFor(Resource = "attendance", Operation = "clearAllFlags")]
+        public virtual ActionResult EditFlags(int studentUsi, int newFlagCount)
+        {
+            var student = _studentRepository.GetByUSI(studentUsi);
+            _attendanceService.SetNewFlagCount(student, newFlagCount);
+            _genericRepository.Save();
+
+            return RedirectToAction(MVC.Student.Index(studentUsi));
         }
     }
 }

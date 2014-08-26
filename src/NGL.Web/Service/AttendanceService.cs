@@ -22,6 +22,14 @@ namespace NGL.Web.Service
             AddNewAttendanceEvents(newAttendanceEvents);
         }
 
+        public void SetNewFlagCount(Student student, int newFlagCount)
+        {
+            if (student.AttendanceFlags.IsNullOrEmpty())
+                CreateNewAttendanceFlagEntryFor(student);
+
+            student.AttendanceFlags.First().FlagCount = newFlagCount;
+        }
+
         private static bool IsTardyOrUnexcused(int attendanceType)
         {
             return attendanceType == (int) AttendanceEventCategoryDescriptorEnum.Tardy ||
@@ -97,5 +105,7 @@ namespace NGL.Web.Service
                 flag.FlagCount = 0;
             }
         }
+
+
     }
 }
