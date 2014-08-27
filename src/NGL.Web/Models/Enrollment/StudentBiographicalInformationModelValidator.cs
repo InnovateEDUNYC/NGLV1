@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class StudentBiographicalInformationModelValidator : AbstractValidator<StudentBiographicalInformationModel>
+    public class StudentBiographicalInformationModelValidator : AbstractValidator<EditStudentBiographicalInfoModel>
     {
         public StudentBiographicalInformationModelValidator()
         {

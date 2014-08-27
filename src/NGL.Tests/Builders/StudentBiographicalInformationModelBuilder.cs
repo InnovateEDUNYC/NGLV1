@@ -10,16 +10,18 @@ namespace NGL.Tests.Builders
         private SexTypeEnum _sex = SexTypeEnum.Male;
         private bool _hispanicLatinoEthnicity = false;
         private LanguageDescriptorEnum _homeLanguage = LanguageDescriptorEnum.Spanish;
+        private RaceTypeEnum _race = RaceTypeEnum.BlackAfricanAmerican;
 
-        public StudentBiographicalInformationModel Build()
+        public EditStudentBiographicalInfoModel Build()
         {
-            return new StudentBiographicalInformationModel
+            return new EditStudentBiographicalInfoModel
             {
                 StudentUsi = _studentUsi,
                 BirthDate = _birthDate,
                 Sex = _sex,
                 HispanicLatinoEthnicity = _hispanicLatinoEthnicity,
-                HomeLanguage = _homeLanguage
+                HomeLanguage = _homeLanguage,
+                Race = _race
             };
         }
     }

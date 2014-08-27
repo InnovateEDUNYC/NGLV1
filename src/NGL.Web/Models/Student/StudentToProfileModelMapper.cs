@@ -15,14 +15,14 @@ namespace NGL.Web.Models.Student
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
         private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
-        private readonly IMapper<Data.Entities.Student, StudentBiographicalInformationModel> _biographicalInfoMapper;
+        private readonly IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> _biographicalInfoMapper;
 
         public StudentToProfileModelMapper(
             StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
             ParentToProfileParentModelMapper parentToProfileParentModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
             StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper,
-            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, IMapper<Data.Entities.Student, StudentBiographicalInformationModel> biographicalInfoMapper)
+            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> biographicalInfoMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
@@ -66,7 +66,7 @@ namespace NGL.Web.Models.Student
             target.StudentUsi = source.StudentUSI;
             target.FirstName = source.FirstName;
             target.LastName = source.LastSurname;
-            target.BiographicalInformation = _biographicalInfoMapper.Build(source);
+            target.BiographicalInfo = _biographicalInfoMapper.Build(source);
         }
             
         private static void MapStudentAddress(Data.Entities.Student source, ProfileModel target)

@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Castle.Core.Internal;
 using Elmah;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -25,12 +24,12 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
         private readonly IStudentRepository _studentRepository;
-        private readonly IMapper<StudentBiographicalInformationModel, Student> _studentBiographicalInfoToStudentMapper;
+        private readonly IMapper<EditStudentBiographicalInfoModel, Student> _studentBiographicalInfoToStudentMapper;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
                                                 IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
                                                 AzureStorageUploader fileUploader, IStudentRepository studentRepository,
-                                IMapper<StudentBiographicalInformationModel, Student> studentBiographicalInfoToStudentMapper)
+                                IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
@@ -108,17 +107,14 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
-        public virtual JsonResult EditBiographicalInfo(StudentBiographicalInformationModel model)
+        public virtual JsonResult EditBiographicalInfo(EditStudentBiographicalInfoModel model)
         {
             if (!ModelState.IsValid)
             {
-//                var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
-                var errorAndFields = ModelState.Where(k => !k.Value.Errors.IsNullOrEmpty());
-                var nglErrors = errorAndFields.Select(eaf => new NglError(eaf.Key, eaf.Value.Errors.First().ErrorMessage));
+                var nglErrors = ModelState.GetNglErrors();
 
                 return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
             }
-
 
             var student = _studentRepository.GetByUSI(model.StudentUsi);
             _studentBiographicalInfoToStudentMapper.Map(model, student);
@@ -132,18 +128,6 @@ namespace NGL.Web.Controllers
         {
             if (file != null)
                 _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
-        }
-    }
-
-    public class NglError
-    {
-        public string Field { get; set; }
-        public string Message { get; set; }
-
-        public NglError(string field, string message)
-        {
-            Field = field;
-            Message = message;
         }
     }
 }

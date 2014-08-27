@@ -6,18 +6,17 @@ namespace NGL.Web.Models.Enrollment
     public class CreateStudentModelToStudentMapper : MapperBase<CreateStudentModel, Data.Entities.Student>
     {
         private readonly IMapper<CreateStudentModel, StudentAddress> _studentAddressMapper;
+        private readonly IMapper<CreateStudentModel, StudentLanguage> _studentLanguageMapper;
         private readonly IMapper<CreateParentModel, StudentParentAssociation> _studentParentAssociationMapper;
-        private readonly IMapper<StudentBiographicalInformationModel, Data.Entities.Student> _studentBiographicalInfoMapper;
-
 
         public CreateStudentModelToStudentMapper(
-            IMapper<CreateStudentModel, StudentAddress> studentAddressMapper, 
-            CreateParentModelToStudentParentAssociationMapper studentParentAssociationMapper, 
-            IMapper<StudentBiographicalInformationModel, Data.Entities.Student> studentBiographicalInfoMapper)
+            IMapper<CreateStudentModel, StudentAddress> studentAddressMapper,
+            IMapper<CreateStudentModel, StudentLanguage> studentLanguageMapper,
+            CreateParentModelToStudentParentAssociationMapper studentParentAssociationMapper)
         {
             _studentAddressMapper = studentAddressMapper;
+            _studentLanguageMapper = studentLanguageMapper;
             _studentParentAssociationMapper = studentParentAssociationMapper;
-            _studentBiographicalInfoMapper = studentBiographicalInfoMapper;
         }
 
         public override void Map(CreateStudentModel source, Data.Entities.Student target)
@@ -27,9 +26,12 @@ namespace NGL.Web.Models.Enrollment
             var studentAddress = _studentAddressMapper.Build(source);
             target.StudentAddresses.Add(studentAddress);
 
+            var studentLanguage = _studentLanguageMapper.Build(source);
+            target.StudentLanguages = new List<StudentLanguage> { studentLanguage };
+
             var firstParentAssociation = _studentParentAssociationMapper.Build(source.FirstParent);
             target.StudentParentAssociations.Add(firstParentAssociation);
-            
+
             if (source.AddSecondParent)
             {
                 var secondParentAssociation = _studentParentAssociationMapper.Build(source.SecondParent);
@@ -37,13 +39,18 @@ namespace NGL.Web.Models.Enrollment
             }
         }
 
-        private void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)
+        private static void SetStudentNativeProperties(CreateStudentModel source, Data.Entities.Student target)
         {
             if (source.StudentUsi != null) target.StudentUSI = (int)source.StudentUsi;
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
-
-            _studentBiographicalInfoMapper.Map(source.BiographicalInformation, target);
+            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
+            target.SexTypeId = (int)source.Sex.GetValueOrDefault();
+            target.BirthDate = source.BirthDate.GetValueOrDefault();
+            target.StudentRaces = new List<StudentRace>
+            {
+                new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()}
+            };
         }
     }
 }

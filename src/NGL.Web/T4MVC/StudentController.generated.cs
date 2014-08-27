@@ -212,10 +212,10 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void EditBiographicalInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Enrollment.StudentBiographicalInformationModel model);
+        partial void EditBiographicalInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Enrollment.EditStudentBiographicalInfoModel model);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult EditBiographicalInfo(NGL.Web.Models.Enrollment.StudentBiographicalInformationModel model)
+        public override System.Web.Mvc.JsonResult EditBiographicalInfo(NGL.Web.Models.Enrollment.EditStudentBiographicalInfoModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditBiographicalInfo);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

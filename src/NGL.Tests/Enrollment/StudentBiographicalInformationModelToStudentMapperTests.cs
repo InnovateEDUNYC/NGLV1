@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
@@ -17,7 +14,7 @@ namespace NGL.Tests.Enrollment
         public void ShouldMap()
         {
             var studentBiographicalInfo = new StudentBiographicalInformationModelBuilder().Build();
-            var mapper = new StudentBiographicalInformationModelToStudentMapper();
+            var mapper = new EditStudentBiographicalInfoModelToStudentMapper();
             var student = new StudentBuilder().Build();
             mapper.Map(studentBiographicalInfo, student);
 

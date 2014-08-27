@@ -276,6 +276,7 @@
     <Compile Include="Controllers\LearningStandardController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
+    <Compile Include="Controllers\ModelStateDictionaryExtensions.cs" />
     <Compile Include="Controllers\ParentCourseController.cs" />
     <Compile Include="Controllers\ParentCourseGradeController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
@@ -1622,6 +1623,7 @@
     <Compile Include="Data\Repositories\LearningStandardRepository.cs" />
     <Compile Include="Dates\DateRange.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
+    <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
@@ -1717,9 +1719,10 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentBiographicalInformationModelToStudentMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentBiographicalInformationModel.cs" />
+    <Compile Include="Models\Enrollment\EditStudentBiographicalInfoModelToStudentMapper.cs" />
+    <Compile Include="Models\Enrollment\EditStudentBiographicalInfoModel.cs" />
     <Compile Include="Models\Enrollment\StudentBiographicalInformationModelValidator.cs" />
+    <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\Enrollment\StudentToBiographicalInfoModelMapper.cs" />
     <Compile Include="Models\ParentCourse\GradeModel.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
@@ -1781,6 +1784,7 @@
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Session\SessionToSessionWithSectionsModelMapper.cs" />
     <Compile Include="Models\Session\SessionWithSectionsModel.cs" />
+    <Compile Include="Models\Shared\NglErrorModel.cs" />
     <Compile Include="Models\Student\StudentAttendancePercentageMapper.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
