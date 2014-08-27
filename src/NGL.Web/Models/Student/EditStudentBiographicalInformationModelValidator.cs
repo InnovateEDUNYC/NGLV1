@@ -1,10 +1,11 @@
 using FluentValidation;
+using NGL.Web.Models.Enrollment;
 
-namespace NGL.Web.Models.Enrollment
+namespace NGL.Web.Models.Student
 {
-    public class StudentBiographicalInformationModelValidator : AbstractValidator<EditStudentBiographicalInfoModel>
+    public class EditStudentBiographicalInformationModelValidator : AbstractValidator<EditStudentBiographicalInfoModel>
     {
-        public StudentBiographicalInformationModelValidator()
+        public EditStudentBiographicalInformationModelValidator()
         {
             RuleFor(bim => bim.Sex).NotNull();
             RuleFor(bim => bim.BirthDate).NotNull();

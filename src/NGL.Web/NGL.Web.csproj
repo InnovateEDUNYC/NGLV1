@@ -276,7 +276,6 @@
     <Compile Include="Controllers\LearningStandardController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\CourseGenerationController.cs" />
-    <Compile Include="Controllers\ModelStateDictionaryExtensions.cs" />
     <Compile Include="Controllers\ParentCourseController.cs" />
     <Compile Include="Controllers\ParentCourseGradeController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
@@ -1719,11 +1718,11 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
-    <Compile Include="Models\Enrollment\EditStudentBiographicalInfoModelToStudentMapper.cs" />
-    <Compile Include="Models\Enrollment\EditStudentBiographicalInfoModel.cs" />
-    <Compile Include="Models\Enrollment\StudentBiographicalInformationModelValidator.cs" />
+    <Compile Include="Models\Student\EditStudentBiographicalInfoModelToStudentMapper.cs" />
+    <Compile Include="Models\Student\EditStudentBiographicalInfoModel.cs" />
+    <Compile Include="Models\Student\EditStudentBiographicalInformationModelValidator.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentToBiographicalInfoModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToBiographicalInfoModelMapper.cs" />
     <Compile Include="Models\ParentCourse\GradeModel.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
     <Compile Include="Models\ParentCourse\CreateModel.cs" />

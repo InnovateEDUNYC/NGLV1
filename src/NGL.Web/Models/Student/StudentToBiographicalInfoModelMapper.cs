@@ -2,8 +2,9 @@
 using System.Linq;
 using Humanizer;
 using NGL.Web.Data.Entities;
+using NGL.Web.Models.Enrollment;
 
-namespace NGL.Web.Models.Enrollment
+namespace NGL.Web.Models.Student
 {
     public class StudentToBiographicalInfoModelMapper : MapperBase<Data.Entities.Student, EditStudentBiographicalInfoModel>
     {

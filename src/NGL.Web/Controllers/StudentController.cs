@@ -8,6 +8,7 @@ using Elmah;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Extensions;
 using NGL.Web.ImageTools;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
