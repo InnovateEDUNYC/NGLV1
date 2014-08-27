@@ -38,8 +38,6 @@ Ngl.student.editProgramStatus = (function () {
         });
     }
 
-
-
     return {
         init: init
     }
