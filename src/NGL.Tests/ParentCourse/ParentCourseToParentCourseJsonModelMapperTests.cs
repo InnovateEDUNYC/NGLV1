@@ -1,4 +1,5 @@
 ﻿using NGL.Tests.Builders;
+using NGL.Web.Models.ParentCourse;
 using Shouldly;
 using Xunit;
 
@@ -14,8 +15,8 @@ namespace NGL.Tests.ParentCourse
 
             var model = mapper.Build(entity);
 
-            model.LabelName.ShouldBe(entity.ParentCourseTitle);
-            model.ValueName.ShouldBe(entity.ParentCourseTitle);
+            model.LabelName.ShouldBe(entity.ParentCourseCode + " - " + entity.ParentCourseTitle);
+            model.ValueName.ShouldBe(entity.ParentCourseCode + " - " + entity.ParentCourseTitle);
             model.Id.ShouldBe(entity.Id);
         }
     }

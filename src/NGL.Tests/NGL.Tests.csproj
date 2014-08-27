@@ -142,7 +142,6 @@
     <Compile Include="ParentCourse\ParentCourseGradeToGradeModelMapperTests.cs" />
     <Compile Include="ParentCourse\ParentCourseToIndexModelMapperTests.cs" />
     <Compile Include="ParentCourse\ParentCourseToParentCourseJsonModelMapperTests.cs" />
-    <Compile Include="ParentCourse\ParentCourseToParentCourseJsonModelMapper.cs" />
     <Compile Include="ParentCourse\SessionToFindParentCourseModelMapperTests.cs" />
     <Compile Include="ParentCourse\SectionToParentCourseGradeMapperTests.cs" />
     <Compile Include="ParentCourse\StudentToGradeModelMapperTests.cs" />

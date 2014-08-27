@@ -4,8 +4,9 @@
     {
         public override void Map(Web.Data.Entities.ParentCourse source, ParentCourseJsonModel target)
         {
-            target.LabelName = source.ParentCourseTitle;
-            target.ValueName = source.ParentCourseTitle;
+            var compositeName = source.ParentCourseCode + " - " + source.ParentCourseTitle;
+            target.LabelName = compositeName;
+            target.ValueName = compositeName;
             target.Id = source.Id;
         }
     }
