@@ -7,12 +7,12 @@ namespace NGL.UiTests.ParentCourseGrade
 {
     public class ParentCourseGradesPage : Page<ParentCourseGradesModel>
     {
-        public void SelectAParentCourseAndSession(Guid parentCourseId, int sessionId)
+        public void SelectAParentCourseAndSession(string parentCourseId, int sessionId)
         {
 
             Execute.Script("$('#SessionId').val("+sessionId+");");
             Execute.Script("$('#SessionId').trigger('populated');");
-            Execute.Script("$('#ParentCourseId').val('B9724E50-959C-401E-9DC8-CE076AF6C791');");
+            Execute.Script("$('#ParentCourseId').val('"+parentCourseId+"');");
             Execute.Script("$('#ParentCourseId').trigger('populated');");
         }
 

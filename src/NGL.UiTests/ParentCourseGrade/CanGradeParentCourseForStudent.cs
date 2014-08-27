@@ -29,7 +29,7 @@ namespace NGL.UiTests.ParentCourseGrade
 
         public void IEnterValidGrades()
         {
-            _gradesPage.SelectAParentCourseAndSession(Guid.Parse("F43C1E50-1FEA-4D11-B98E-3DBA8AB22F18"), 1);
+            _gradesPage.SelectAParentCourseAndSession("F43C1E50-1FEA-4D11-B98E-3DBA8AB22F18", 1);
             _gradesPage.EditGrades("100");
         }
         public void TheGradesAreSaved()
@@ -38,7 +38,7 @@ namespace NGL.UiTests.ParentCourseGrade
         }
 
         [Fact]
-        public void ShouldCreateCourse()
+        public void ShouldCreateCourseGrade()
         {
             this.Given(_ => IHaveLoggedInAsAnAdmin())
                 .And(_ => GoToParentCourseGradesPage())

@@ -50,10 +50,10 @@ INSERT INTO [edfi].[ClassPeriod]
 INSERT INTO [dbo].[ParentCourse]
 	(	[EducationOrganizationId],
 	[ParentCourseCode],
-	[ParentCourseTitle])
+	[ParentCourseTitle], [Id])
 	VALUES 
-	(1, 'MATH123', 'Algebra I'),
-	(1, 'ENGL400', 'Creative Writing II')
+	(1, 'MATH123', 'Algebra I', 'F43C1E50-1FEA-4D11-B98E-3DBA89999F18'),
+	(1, 'ENGL400', 'Creative Writing II', 'F43C1E50-1FEA-4D11-B98E-3DBA8AB22F18')
 
 declare @math123parentCourseid uniqueidentifier
 declare @engl400parentCourseId uniqueidentifier
