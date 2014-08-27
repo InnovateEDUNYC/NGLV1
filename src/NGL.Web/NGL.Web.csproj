@@ -1742,6 +1742,7 @@
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\FindParentCourseModel.cs" />
+    <Compile Include="Models\ParentCourse\ParentCourseGradesModelToStudentsMapper.cs" />
     <Compile Include="Models\ParentCourse\StudentsSesssionParentCourseToParentCourseGradesModelMapper.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseGradesModel.cs" />
