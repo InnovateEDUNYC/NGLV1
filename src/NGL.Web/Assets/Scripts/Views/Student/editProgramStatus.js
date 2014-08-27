@@ -34,7 +34,11 @@ Ngl.student.editProgramStatus = (function () {
     var enableEditMode = function () {
         $('#edit-program-status').on('click', function () {
             $('#readonly-program-status').hide();
-            $('#editable-program-status').show();
+            $('#editable-program-status > h4').show();
+            $('#editable-program-status > div').slideDown({
+                duration: "950",
+                easing: "linear"
+            });
         });
     }
 

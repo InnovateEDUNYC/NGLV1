@@ -15,7 +15,7 @@ Ngl.student.index = (function () {
     var enableAttendanceEditMode = function() {
         $('#edit-attendance').on('click', function() {
             $('.attendance-flags span:last-child')
-                .after('<span class="fa fa-times-circle remove-flag"></span>');
+                .after('<span class="fa fa-times-circle remove-flag-button"></span>');
             $('#editFlags').show();
 
             enterEditFlagsMode();
@@ -28,7 +28,7 @@ Ngl.student.index = (function () {
     }
 
     var setupRemoveFlagsButton = function() {
-        $('.remove-flag').on('click', function () {
+        $('.remove-flag-button').on('click', function () {
             var flagToRemove = $(this).prev();
             flagToRemove.remove();
 
