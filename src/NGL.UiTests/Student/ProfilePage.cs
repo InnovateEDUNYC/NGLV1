@@ -17,7 +17,7 @@ namespace NGL.UiTests.Student
                 Browser.PageSource.Contains(createStudentModel.FirstName) &&
                 Browser.PageSource.Contains(createStudentModel.LastName) &&
                 Browser.PageSource.Contains(createStudentModel.Sex.Humanize()) &&
-                Browser.PageSource.Contains(createStudentModel.BirthDate.GetValueOrDefault().ToString("MM-dd-yyyy")) &&
+                Browser.PageSource.Contains(createStudentModel.BirthDate.GetValueOrDefault().ToShortDateString()) &&
                 Browser.PageSource.Contains(createStudentModel.HispanicLatinoEthnicity.ToString()) &&
                 Browser.PageSource.Contains(createStudentModel.Race.Humanize()) &&
                 Browser.PageSource.Contains(createStudentModel.HomeLanguage.GetValueOrDefault().ToString()) &&
