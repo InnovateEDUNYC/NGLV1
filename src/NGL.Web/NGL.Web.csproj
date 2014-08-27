@@ -1740,14 +1740,14 @@
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\FindParentCourseModel.cs" />
-    <Compile Include="Models\ParentCourse\StudentsToParentCourseGradesModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\StudentsSesssionParentCourseToParentCourseGradesModelMapper.cs" />
     <Compile Include="Models\ParentCourse\IndexModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseGradesModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseJsonModel.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseToIndexModelMapper.cs" />
     <Compile Include="Models\ParentCourse\parentCourseGradeToGradeModelMapper.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseToParentCourseJsonModelMapper.cs" />
-    <Compile Include="Models\ParentCourse\ParentCourseGradeToFindParentCourseModelMapper.cs" />
+    <Compile Include="Models\ParentCourse\SessionToFindParentCourseModelMapper.cs" />
     <Compile Include="Models\ParentCourse\SectionToParentCourseGradeMapper.cs" />
     <Compile Include="Models\ParentCourse\StudentToGradeModelMapper.cs" />
     <Compile Include="Models\Schedule\SessionListItemModel.cs" />

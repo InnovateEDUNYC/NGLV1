@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Services.Client;
-using System.Linq;
-using System.Web;
-using System.Web.Configuration.Internal;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Castle.Core.Internal;
-using Humanizer;
-using Microsoft.Ajax.Utilities;
-using Microsoft.Owin.Security.Provider;
-using Microsoft.WindowsAzure.Storage.Table;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
-using NGL.Web.Models.Assessment;
 using NGL.Web.Models.ParentCourse;
 using CreateModel = NGL.Web.Models.ParentCourse.CreateModel;
 using IndexModel = NGL.Web.Models.ParentCourse.IndexModel;
@@ -29,21 +18,15 @@ namespace NGL.Web.Controllers
         private readonly IGenericRepository _genericRepository;
         private readonly IMapper<ParentCourse, IndexModel> _parentCourseToIndexModelMapper;
         private readonly IParentCourseRepository _parentCourseRepository;
-        private readonly IMapper<Section, ParentCourseGrade> _sectionToParentCourseGradeMapper;
-        private readonly StudentsToParentCourseGradesModelMapper _studentsToParentCourseGradesModelMapper;
-        private readonly ISectionRepository _sectionRepository;
         private readonly IMapper<ParentCourse, ParentCourseJsonModel> _parentCourseToParentCourseJsonModelMapper;
 
-        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<ParentCourseGrade, FindParentCourseModel> parentCourseGradeToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper, IMapper<Section, ParentCourseGrade> sectionToParentCourseGradeMapper, ISectionRepository sectionRepository, IMapper<ParentCourse, ParentCourseJsonModel> parentCourseToParentCourseJsonModelMapper)
+        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<ParentCourse, ParentCourseJsonModel> parentCourseToParentCourseJsonModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToParentCourseMapper = createModelToParentCourseMapper;
             _parentCourseToIndexModelMapper = parentCourseToIndexModelMapper;
             _parentCourseRepository = parentCourseRepository;
-            _sectionToParentCourseGradeMapper = sectionToParentCourseGradeMapper;
-            _sectionRepository = sectionRepository;
             _parentCourseToParentCourseJsonModelMapper = parentCourseToParentCourseJsonModelMapper;
-            _studentsToParentCourseGradesModelMapper = new StudentsToParentCourseGradesModelMapper(parentCourseGradeToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
         }
         //
         // GET: /ParentCourse/
