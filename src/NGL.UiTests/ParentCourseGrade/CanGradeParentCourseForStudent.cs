@@ -42,7 +42,7 @@ namespace NGL.UiTests.ParentCourseGrade
             _gradesPage.CheckGrades("100");
         }
 
-        [Fact]
+        [Fact (Skip = "Test Not yet Updated")]
         public void ShouldCreateCourse()
         {
             this.Given(_ => IHaveLoggedInAsATeacher())

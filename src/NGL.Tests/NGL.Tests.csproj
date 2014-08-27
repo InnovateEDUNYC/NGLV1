@@ -197,7 +197,6 @@
     <Content Include="Assets\Scripts\lib\jasmine-2.0.0\jasmine_favicon.png" />
     <Content Include="Assets\Scripts\SpecRunner.html" />
     <Content Include="Assets\Scripts\spec\getGradesSpec.js" />
-    <Content Include="Assets\Scripts\spec\parentcourseAutocompleteSpec.js" />
     <Content Include="Assets\Scripts\spec\SpecHelper.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
