@@ -26,7 +26,7 @@ namespace NGL.Web.Models.ParentCourse
 
             var findParentCourseModel = _sectionToFindParentCourseModelMapper.Build(session, t =>
             {
-                t.ParentCourse = parentCourse.ParentCourseTitle;
+                t.ParentCourse = parentCourse.ParentCourseCode +" - "+ parentCourse.ParentCourseTitle;
                 t.ParentCourseId = parentCourse.Id;
             });
 

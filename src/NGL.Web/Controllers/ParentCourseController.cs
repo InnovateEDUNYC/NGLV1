@@ -68,7 +68,7 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual JsonResult GetParentCourses(string searchString)
         {
-            var parentCourses = _genericRepository.GetAll<ParentCourse>().Where(pc => pc.ParentCourseTitle.ToLower().Contains(searchString.ToLower())).ToList();
+            var parentCourses = _genericRepository.GetAll<ParentCourse>().Where(pc => pc.ParentCourseTitle.ToLower().Contains(searchString.ToLower()) || pc.ParentCourseCode.ToLower().Contains(searchString.ToLower())).ToList();
 
             var parentCourseJsonModels = parentCourses.Select(p => _parentCourseToParentCourseJsonModelMapper.Build(p)).ToList();
 
