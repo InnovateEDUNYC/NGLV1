@@ -1,11 +1,4 @@
-﻿.table-container {
-    background-color: white;
-    margin: 30px 0;
-    padding: 60px 30px;
-    border-radius: 4px;
-}
-
-.attendance-list {
+﻿.attendance-list {
     table-layout: fixed;
 }
 
@@ -99,4 +92,16 @@ table.attendance-list input[type="radio"]:checked + .custom-checkbox {
 
 .bad {
     color: #EC4B36;
+}
+
+.remove-flag-button {
+    vertical-align: top;
+    margin-left: -4px;
+}
+
+.attendance-percentage {
+    width: 80%;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
 }

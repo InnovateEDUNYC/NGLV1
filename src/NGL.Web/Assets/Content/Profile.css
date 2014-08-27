@@ -1,16 +1,5 @@
-﻿.profile-progress {
-    width: 80%;
-    display: inline-block;
-    margin-bottom: 0;
-    vertical-align: middle;
-}
-.profile-photo-and-buttons-panel {
+﻿.profile-photo-and-buttons-panel {
     padding-bottom: 30px;
-}
-
-.remove-flag {
-    vertical-align: top;
-    margin-left: -4px;
 }
 
 .profile-edit > .form-group {
@@ -26,8 +15,8 @@
     display: inline-block;
 }
 
-.profile-edit > .form-group > label {
-    width: 240px;
+.profile-edit > .form-group > label, .profile-labels, .dl-horizontal dt {
+    width: 250px;
 }
 
 .profile-edit > .form-group > .checkbox label {
@@ -46,12 +35,8 @@
     max-width: 275px;
 }
 
-#editable-biographical-info, #editable-program-status {
+#editable-biographical-info {
     display: none;
-}
-
-.profile-labels-edit-mode {
-    width: 240px;
 }
 
 .file-upload {
@@ -59,4 +44,8 @@
     width: 210px;
     margin-left: 10px;
     vertical-align: middle;
+}
+
+.input-group .form-control {
+    border-radius: 4px !important;
 }

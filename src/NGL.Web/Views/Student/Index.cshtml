@@ -65,7 +65,7 @@
                 }
 
                 <h4 class="strong">Attendance</h4>
-                <div class="progress profile-progress">
+                <div class="progress attendance-percentage">
                     <div class="progress-bar" style="width: @Model.AttendancePercentage%;">
                         <span class="sr-only"></span>
                     </div>
@@ -87,7 +87,7 @@
                 <form hidden="hidden" method="post" id="editFlags" action="@Url.Action(MVC.Attendance.EditFlags(Model.StudentUsi, 0))">
                     <input id="flag-count" class="hidden" type="text" name="newFlagCount" value="@Model.FlagCount" />
                     
-                    <div class="text-right top-buffer">
+                    <div class="text-right top-buffer-30">
                         @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
                         <button class="btn btn-primary" type="submit">Save</button>
                     </div>

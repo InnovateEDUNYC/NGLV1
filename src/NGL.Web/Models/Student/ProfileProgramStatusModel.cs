@@ -15,9 +15,12 @@ namespace NGL.Web.Models.Student
         public string SpecialEducationFile { get; set; }
         public string TitleParticipation { get; set; }
         public string TitleParticipationFile { get; set; }
+
         [Display(Name = "McKinney Vento")]
         public string McKinneyVento { get; set; }
         public string McKinneyVentoFile { get; set; }
+
+        [Display(Name = "Food services eligibility status")]
         public string FoodServicesEligibilityStatusForDisplay { get; set; }
         public SchoolFoodServicesEligibilityTypeEnum FoodServicesEligibilityStatus { get; set; }
     }

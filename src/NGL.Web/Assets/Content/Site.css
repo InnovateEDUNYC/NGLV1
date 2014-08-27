@@ -12,8 +12,16 @@
     margin-top: 80px;
 }
 
-.top-buffer {
+.top-buffer-30 {
     margin-top: 30px;
+}
+
+.top-buffer-10 {
+    margin-top: 10px;
+}
+
+.display-none {
+    display: none;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -120,7 +128,6 @@ form .inline input {
 }
 
 .dl-horizontal dt {
-    width: 240px;
     text-align: left;
 }
 
