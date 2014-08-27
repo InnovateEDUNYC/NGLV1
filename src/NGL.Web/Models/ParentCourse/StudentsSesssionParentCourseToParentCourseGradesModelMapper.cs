@@ -8,25 +8,27 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.ParentCourse
 {
-    public class StudentsToParentCourseGradesModelMapper 
+    public class StudentsSesssionParentCourseToParentCourseGradesModelMapper 
     {
-        private readonly IMapper<ParentCourseGrade, FindParentCourseModel> _sectionToFindParentCourseModelMapper;
+        private readonly IMapper<Data.Entities.Session, FindParentCourseModel> _sectionToFindParentCourseModelMapper;
         private readonly IMapper<ParentCourseGrade, GradeModel> _parentCourseGradeToGradeModelMapper;
         private readonly IMapper<Data.Entities.Student, GradeModel> _studentToGradeModelMapper;
 
-        public StudentsToParentCourseGradesModelMapper(IMapper<ParentCourseGrade, FindParentCourseModel> sectionToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Data.Entities.Student, GradeModel> studentToGradeModelMapper)
+        public StudentsSesssionParentCourseToParentCourseGradesModelMapper(IMapper<Data.Entities.Session, FindParentCourseModel> sectionToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Data.Entities.Student, GradeModel> studentToGradeModelMapper)
         {
             _sectionToFindParentCourseModelMapper = sectionToFindParentCourseModelMapper;
             _parentCourseGradeToGradeModelMapper = parentCourseGradeToGradeModelMapper;
             _studentToGradeModelMapper = studentToGradeModelMapper;
         }
 
-        public ParentCourseGradesModel Build(List<Data.Entities.Student> students)
+        public ParentCourseGradesModel Build(List<Data.Entities.Student> students, Data.Entities.Session session, Data.Entities.ParentCourse parentCourse)
         {
 
-            var studentWithParentCourseGrades = students.First(s => !s.ParentCourseGrades.IsNullOrEmpty());
-            var parentCourseGrade = studentWithParentCourseGrades.ParentCourseGrades.First();
-            var findParentCourseModel = _sectionToFindParentCourseModelMapper.Build(parentCourseGrade);
+            var findParentCourseModel = _sectionToFindParentCourseModelMapper.Build(session, t =>
+            {
+                t.ParentCourse = parentCourse.ParentCourseTitle;
+                t.ParentCourseId = parentCourse.Id;
+            });
 
             var grades = students.SelectMany(s => s.ParentCourseGrades);
 
