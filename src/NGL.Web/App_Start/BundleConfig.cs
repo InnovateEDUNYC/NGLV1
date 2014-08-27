@@ -47,6 +47,7 @@ namespace NGL.Web
                  "~/Assets/Scripts/forms.js"
                 ));
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
+                "~/Assets/Scripts/Views/Shared/programStatus.js",
                 "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",
                 "~/Assets/Scripts/Views/Enrollment/createStudent.js",
                 "~/Assets/Scripts/Views/Student/index.js",
