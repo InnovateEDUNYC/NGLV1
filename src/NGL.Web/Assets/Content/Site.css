@@ -257,3 +257,8 @@ body h4.panel:first-child {
     width: 40px;
     border-radius: 5px;
 }
+
+.grade-textbox-error {
+    float: right;
+    margin-top: 0px;   
+}
