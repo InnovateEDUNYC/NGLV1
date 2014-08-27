@@ -14,10 +14,10 @@
                 @s.FieldFor(m => m.StudentUsi)
                 @s.FieldFor(m => m.FirstName)
                 @s.FieldFor(m => m.LastName)
-                @s.FieldFor(m => m.Sex)
-                @s.FieldFor(m => m.BirthDate)
-                @s.FieldFor(m => m.Race)
-                @s.FieldFor(m => m.HispanicLatinoEthnicity)
+                @s.FieldFor(m => m.BiographicalInformation.Sex)
+                @s.FieldFor(m => m.BiographicalInformation.BirthDate).AddClass("datepicker")
+                @s.FieldFor(m => m.BiographicalInformation.Race)
+                @s.FieldFor(m => m.BiographicalInformation.HispanicLatinoEthnicity)
             </div>
             <div class="col-sm-6">
                 @s.FieldFor(m => m.Address)
@@ -25,7 +25,7 @@
                 @s.FieldFor(m => m.City)
                 @s.FieldFor(m => m.State)
                 @s.FieldFor(m => m.PostalCode)
-                @s.FieldFor(m => m.HomeLanguage)
+                @s.FieldFor(m => m.BiographicalInformation.HomeLanguage)
             </div>
         </div>
         <hr />

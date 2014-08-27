@@ -17,8 +17,28 @@ Ngl.student.editBiographicalInfo = (function () {
 
     var setUpCancelButton = function() {
         $('#cancel-biographical-info-edit').on('click', function () {
-            $('#readonly-biographical-info').show();
-            $('#editable-biographical-info').hide();
+            location.reload();
+        });
+    };
+
+    var removeOldErrors = function ()
+    {
+        $('.field-validation-error')
+        .addClass("field-validation-valid")
+        .removeClass("field-validation-error")
+        .text("");
+        $('.control-label').parent().removeClass('has-error');
+    }
+
+    var displayErrors = function (errors) {
+        removeOldErrors();
+
+        errors.forEach(function (error) {
+            $('.field-validation-valid[data-valmsg-for="' + error.Field + '"]')
+                .addClass("field-validation-error")
+                .removeClass("field-validation-valid")
+                .text(error.Message);
+            $('.control-label[for="' + error.Field + '"]').parent().addClass('has-error');
         });
     };
 
@@ -29,11 +49,10 @@ Ngl.student.editBiographicalInfo = (function () {
             dataType: 'json',
             data: $('#edit-biographical-information').serialize(),
             success: function (returnValue) {
-                var errors = returnValue.errors;
+                var errors = returnValue.nglErrors;
                 if (!errors == false) {
-                    errors.forEach(function (error) {
-                        $('.field-validation-error').append("<p>" + error.ErrorMessage + "</p>");
-                    });
+                    displayErrors(errors);
+                    
                 } else {
                     location.reload(true);
                 }

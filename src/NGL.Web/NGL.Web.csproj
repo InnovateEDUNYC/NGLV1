@@ -1719,6 +1719,7 @@
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
     <Compile Include="Models\Enrollment\StudentBiographicalInformationModelToStudentMapper.cs" />
     <Compile Include="Models\Enrollment\StudentBiographicalInformationModel.cs" />
+    <Compile Include="Models\Enrollment\StudentBiographicalInformationModelValidator.cs" />
     <Compile Include="Models\Enrollment\StudentToBiographicalInfoModelMapper.cs" />
     <Compile Include="Models\ParentCourse\GradeModel.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
@@ -1737,7 +1738,6 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModel.cs" />
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\FindParentCourseModel.cs" />
     <Compile Include="Models\ParentCourse\StudentsSesssionParentCourseToParentCourseGradesModelMapper.cs" />

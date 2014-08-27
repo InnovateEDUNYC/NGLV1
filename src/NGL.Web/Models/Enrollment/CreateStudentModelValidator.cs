@@ -14,13 +14,11 @@ namespace NGL.Web.Models.Enrollment
             RuleFor(csm => csm.Address).NotEmpty().Length(1, 150);
             RuleFor(csm => csm.Address2).Length(0, 20);
             RuleFor(csm => csm.City).NotEmpty().Length(1, 30);
-            RuleFor(csm => csm.Sex).NotNull();
-            RuleFor(csm => csm.BirthDate).NotNull();
-            RuleFor(csm => csm.Race).NotNull();
             RuleFor(csm => csm.State).NotNull();
             RuleFor(csm => csm.PostalCode).NotEmpty().Length(1, 17);
-            RuleFor(csm => csm.HomeLanguage).NotNull();
+            
             RuleFor(csm => csm.FirstParent).SetValidator(new CreateParentModelValidator());
+            RuleFor(csm => csm.BiographicalInformation).SetValidator(new StudentBiographicalInformationModelValidator());
 
             RuleFor(model => model.StudentUsi).Must(usi =>
             {

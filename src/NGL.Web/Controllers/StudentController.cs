@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Castle.Core.Internal;
 using Elmah;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
@@ -111,12 +112,17 @@ namespace NGL.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
-                return Json(new { errors }, JsonRequestBehavior.AllowGet);
+//                var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
+                var errorAndFields = ModelState.Where(k => !k.Value.Errors.IsNullOrEmpty());
+                var nglErrors = errorAndFields.Select(eaf => new NglError(eaf.Key, eaf.Value.Errors.First().ErrorMessage));
+
+                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
             }
+
 
             var student = _studentRepository.GetByUSI(model.StudentUsi);
             _studentBiographicalInfoToStudentMapper.Map(model, student);
+           
             _repository.Save();
 
             return Json(true, JsonRequestBehavior.AllowGet);
@@ -126,6 +132,18 @@ namespace NGL.Web.Controllers
         {
             if (file != null)
                 _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
+        }
+    }
+
+    public class NglError
+    {
+        public string Field { get; set; }
+        public string Message { get; set; }
+
+        public NglError(string field, string message)
+        {
+            Field = field;
+            Message = message;
         }
     }
 }

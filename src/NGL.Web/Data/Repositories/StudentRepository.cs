@@ -29,5 +29,6 @@ namespace NGL.Web.Data.Repositories
 
             return student;
         }
+
     }
 }
