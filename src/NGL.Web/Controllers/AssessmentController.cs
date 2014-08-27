@@ -161,7 +161,8 @@ namespace NGL.Web.Controllers
             if (sessionId == null)
             {
                 var currentSession = _sessionFilter.FindSession(DateTime.Now);
-                sessionId = currentSession.SessionIdentity;
+                if (currentSession != null)
+                    sessionId = currentSession.SessionIdentity;
             }
 
             var assessmentResultModel = Result(studentUsi, sessionId, dayFrom, dayTo);
