@@ -1,11 +1,13 @@
 ﻿Ngl.createNS('Ngl.student.editProgramStatus');
 
 Ngl.student.editProgramStatus = (function () {
-    var setConditionalFileUploads = function () {
+    var init = function () {
         allowFileUploadConditionally("ProgramStatus_TestingAccommodation", "ProgramStatus_TestingAccommodationFile");
         allowFileUploadConditionally("ProgramStatus_SpecialEducation", "ProgramStatus_SpecialEducationFile");
         allowFileUploadConditionally("ProgramStatus_TitleParticipation", "ProgramStatus_TitleParticipationFile");
         allowFileUploadConditionally("ProgramStatus_McKinneyVento", "ProgramStatus_McKinneyVentoFile");
+
+        enableEditMode();
     }
 
     var allowFileUploadConditionally = function (radioInputId, fileInputId) {
@@ -29,8 +31,16 @@ Ngl.student.editProgramStatus = (function () {
         }
     }
 
+    var enableEditMode = function () {
+        $('#edit-program-status').on('click', function () {
+            $('#readonly-program-status').hide();
+            $('#editable-program-status').show();
+        });
+    }
+
+
 
     return {
-        init: setConditionalFileUploads
+        init: init
     }
 })();

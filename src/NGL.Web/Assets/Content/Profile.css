@@ -46,7 +46,7 @@
     max-width: 275px;
 }
 
-#editable-biographical-info {
+#editable-biographical-info, #editable-program-status {
     display: none;
 }
 
