@@ -17,7 +17,8 @@
                     @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                     {
                         <div class="upload-profile-photo-container">
-                            @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+                            @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi, htmlAttributes:
+                        new HtmlAttributes().Id("profile-photo-uplaod")))
                             {
                                 <div class="upload-profile-photo">
                                     <button type="button" class="btn btn-default">

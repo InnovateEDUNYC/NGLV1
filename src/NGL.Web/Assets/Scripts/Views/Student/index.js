@@ -8,7 +8,7 @@ Ngl.student.index = (function () {
 
     var profilePhotoButtons = function () {
         $('.ghost-btn').change(function() {
-             $('form').submit();
+            $('#profile-photo-uplaod').submit();
         });
     }
 
