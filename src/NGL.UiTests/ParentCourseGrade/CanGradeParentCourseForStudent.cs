@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NGL.UiTests.Enrollment;
 using NGL.UiTests.Shared;
 using TestStack.BDDfy;
 using Xunit;
@@ -11,7 +6,7 @@ using Xunit;
 namespace NGL.UiTests.ParentCourseGrade
 {
     [Story(
-        AsA = "As a teacher",
+        AsA = "As an admin",
         IWant = "I want to enter grades for each student (at the parent course level)",
         SoThat = "So that I can submit grades to the state")]
     public class CanGradeParentCourseForStudent
@@ -19,7 +14,7 @@ namespace NGL.UiTests.ParentCourseGrade
         private HomePage _homePage;
         private ParentCourseGradesPage _gradesPage;
 
-        public void IHaveLoggedInAsATeacher()
+        public void IHaveLoggedInAsAnAdmin()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
@@ -34,7 +29,7 @@ namespace NGL.UiTests.ParentCourseGrade
 
         public void IEnterValidGrades()
         {
-            _gradesPage.SelectAParentCourse();
+            _gradesPage.SelectAParentCourseAndSession("F43C1E50-1FEA-4D11-B98E-3DBA8AB22F18", 1);
             _gradesPage.EditGrades("100");
         }
         public void TheGradesAreSaved()
@@ -42,10 +37,10 @@ namespace NGL.UiTests.ParentCourseGrade
             _gradesPage.CheckGrades("100");
         }
 
-        [Fact (Skip = "Test Not yet Updated")]
-        public void ShouldCreateCourse()
+        [Fact]
+        public void ShouldCreateCourseGrade()
         {
-            this.Given(_ => IHaveLoggedInAsATeacher())
+            this.Given(_ => IHaveLoggedInAsAnAdmin())
                 .And(_ => GoToParentCourseGradesPage())
                 .When(_ => IEnterValidGrades())
                 .Then(_ => TheGradesAreSaved())
