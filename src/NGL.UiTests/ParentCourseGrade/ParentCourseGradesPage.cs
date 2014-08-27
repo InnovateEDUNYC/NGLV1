@@ -8,8 +8,10 @@ namespace NGL.UiTests.ParentCourseGrade
     {
         public void SelectAParentCourse()
         {
-            Execute.Script("$('#SectionId').val(7);");
-            Execute.Script("$('#SectionId').trigger('populated');");
+            Execute.Script("$('#SessionId').val(1);");
+            Execute.Script("$('#SessionId').trigger('populated');");
+            Execute.Script("$('#ParentCourseId').val(7);");//<-Todo needs valid ParentCourseId
+            Execute.Script("$('#ParentCourseId').trigger('populated');");
         }
 
         public void EditGrades(string grade)

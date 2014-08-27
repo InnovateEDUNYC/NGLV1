@@ -30,10 +30,11 @@ namespace NGL.Web.Controllers
         private readonly IMapper<ParentCourse, IndexModel> _parentCourseToIndexModelMapper;
         private readonly IParentCourseRepository _parentCourseRepository;
         private readonly IMapper<Section, ParentCourseGrade> _sectionToParentCourseGradeMapper;
-        private readonly GradesAndSectionToParentCourseGradesModelMapper _gradesAndSectionToParentCourseGradesModelMapper;
+        private readonly StudentsToParentCourseGradesModelMapper _studentsToParentCourseGradesModelMapper;
         private readonly ISectionRepository _sectionRepository;
+        private readonly IMapper<ParentCourse, ParentCourseJsonModel> _parentCourseToParentCourseJsonModelMapper;
 
-        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<Section, FindParentCourseModel> sectionToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper, IMapper<Section, ParentCourseGrade> sectionToParentCourseGradeMapper, ISectionRepository sectionRepository)
+        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<ParentCourseGrade, FindParentCourseModel> parentCourseGradeToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper, IMapper<Section, ParentCourseGrade> sectionToParentCourseGradeMapper, ISectionRepository sectionRepository, IMapper<ParentCourse, ParentCourseJsonModel> parentCourseToParentCourseJsonModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToParentCourseMapper = createModelToParentCourseMapper;
@@ -41,7 +42,8 @@ namespace NGL.Web.Controllers
             _parentCourseRepository = parentCourseRepository;
             _sectionToParentCourseGradeMapper = sectionToParentCourseGradeMapper;
             _sectionRepository = sectionRepository;
-            _gradesAndSectionToParentCourseGradesModelMapper = new GradesAndSectionToParentCourseGradesModelMapper(sectionToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
+            _parentCourseToParentCourseJsonModelMapper = parentCourseToParentCourseJsonModelMapper;
+            _studentsToParentCourseGradesModelMapper = new StudentsToParentCourseGradesModelMapper(parentCourseGradeToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
         }
         //
         // GET: /ParentCourse/
@@ -77,6 +79,22 @@ namespace NGL.Web.Controllers
             _genericRepository.Save();
 
             return RedirectToAction(Actions.Index());
+        }
+
+
+        [HttpPost]
+        public virtual JsonResult GetParentCourses(string searchString)
+        {
+            var parentCourses = _genericRepository.GetAll<ParentCourse>().Where(pc => pc.ParentCourseTitle.ToLower().Contains(searchString.ToLower())).ToList();
+
+            var parentCourseJsonModels = parentCourses.Select(p => _parentCourseToParentCourseJsonModelMapper.Build(p)).ToList();
+
+            if (parentCourseJsonModels.IsNullOrEmpty())
+            {
+                parentCourseJsonModels.Add(new ParentCourseJsonModel { LabelName = "No results" });
+            }
+
+            return Json(parentCourseJsonModels, JsonRequestBehavior.AllowGet);
         }
     }
 }

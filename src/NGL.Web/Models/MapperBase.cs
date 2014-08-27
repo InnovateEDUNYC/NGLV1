@@ -1,4 +1,5 @@
 ﻿using System;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models
 {

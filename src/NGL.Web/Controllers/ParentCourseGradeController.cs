@@ -16,45 +16,44 @@ namespace NGL.Web.Controllers
     {
         private readonly ISectionRepository _sectionRepository;
         private readonly IParentCourseRepository _parentCourseRepository;
-        private readonly GradesAndSectionToParentCourseGradesModelMapper _gradesAndSectionToParentCourseGradesModelMapper;
+        private readonly StudentsToParentCourseGradesModelMapper _studentsToParentCourseGradesModelMapper;
         private readonly IMapper<Section, ParentCourseGrade> _sectionToParentCourseGradeMapper;
         private readonly IGenericRepository _genericRepository;
 
-        public ParentCourseGradeController(ISectionRepository sectionRepository, IParentCourseRepository parentCourseRepository, IMapper<Section, ParentCourseGrade> sectionToParentCourseGradeMapper, IGenericRepository genericRepository, IMapper<Section, FindParentCourseModel> sectionToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper)
+        public ParentCourseGradeController(ISectionRepository sectionRepository, IParentCourseRepository parentCourseRepository, IMapper<Section, ParentCourseGrade> sectionToParentCourseGradeMapper, IGenericRepository genericRepository, IMapper<ParentCourseGrade, FindParentCourseModel> parentCourseGradeToFindParentCourseModelMapper, IMapper<ParentCourseGrade, GradeModel> parentCourseGradeToGradeModelMapper, IMapper<Student, GradeModel> studentToGradeModelMapper)
         {
             _sectionRepository = sectionRepository;
             _parentCourseRepository = parentCourseRepository;
-            _gradesAndSectionToParentCourseGradesModelMapper = new GradesAndSectionToParentCourseGradesModelMapper(sectionToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
+            _studentsToParentCourseGradesModelMapper = new StudentsToParentCourseGradesModelMapper(parentCourseGradeToFindParentCourseModelMapper, parentCourseGradeToGradeModelMapper, studentToGradeModelMapper);
             _sectionToParentCourseGradeMapper = sectionToParentCourseGradeMapper;
             _genericRepository = genericRepository;
         }
         public virtual ActionResult Index()
         {
+            
                 return View(new ParentCourseGradesModel());
         }
 
-        public virtual ActionResult Get(int? id = null)
+        public virtual ActionResult Get(int? sessionId = null, Guid? parentCourseId = null)
         {
-            if (id == null)
+            if (sessionId == null || parentCourseId == null)
                 return View(new ParentCourseGradesModel());
 
-            var section = _sectionRepository.GetWithStudentsAndSession(id.Value);
-            var grades = _parentCourseRepository.GetParentCourseGrades(section.LocalCourseCode);
+            var studentsWithParentCourseGrades = _parentCourseRepository.GetStudents((int) sessionId, (Guid) parentCourseId);
 
-            var parentCourseGradesModel = _gradesAndSectionToParentCourseGradesModelMapper.Build(grades, section);
+            var parentCourseGradesModel = _studentsToParentCourseGradesModelMapper.Build(studentsWithParentCourseGrades);
 
             return View("Index", parentCourseGradesModel);
         }
 
 
-        public virtual ActionResult Edit(int? id = null)
+        public virtual ActionResult Edit(int? sessionId = null, Guid? parentCourseId = null)
         {
-            if (id == null)
+            if (sessionId == null || parentCourseId == null)
                 return View(new ParentCourseGradesModel());
-            var section = _sectionRepository.GetWithStudentsAndSession(id.Value);
-            var grades = _parentCourseRepository.GetParentCourseGrades(section.LocalCourseCode);
 
-            var parentCourseGradesModel = _gradesAndSectionToParentCourseGradesModelMapper.Build(grades, section);
+            var studentsWithParentCourseGrades = _parentCourseRepository.GetStudents((int)sessionId, (Guid)parentCourseId);
+            var parentCourseGradesModel = _studentsToParentCourseGradesModelMapper.Build(studentsWithParentCourseGrades);
 
             return View(parentCourseGradesModel);
         }
@@ -62,55 +61,60 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ParentCourseGradesModel parentCourseGradesModel)
         {
-            if (parentCourseGradesModel.FindParentCourseModel.SectionId != null)
+            if (parentCourseGradesModel.FindParentCourseModel.ParentCourseId != null || parentCourseGradesModel.FindParentCourseModel.SessionId != null)
             {
-                var section =
-                    _sectionRepository.GetWithStudentsAndSession(
-                        parentCourseGradesModel.FindParentCourseModel.SectionId.Value);
-                var parentCourse =
-                    _parentCourseRepository.GetParentCourse(section.LocalCourseCode);
-                var previouslyGradedStudents =
-                    _parentCourseRepository.GetParentCourseGrades(section.LocalCourseCode).Select(g => g.Student);
+                var sessionId = parentCourseGradesModel.FindParentCourseModel.SessionId;
+                var parentCourseId = parentCourseGradesModel.FindParentCourseModel.ParentCourseId;
+                var parentCourseGradesModelList = parentCourseGradesModel.ParentGradesModelList;
 
-                foreach (var newStudentParentCourseGrade in parentCourseGradesModel.ParentGradesModelList)
-                {
-                    CreateOrUpdateParentCourseGrade(previouslyGradedStudents, newStudentParentCourseGrade, section,
-                        parentCourse);
-                }
-                return RedirectToAction(MVC.ParentCourseGrade.Get(section.SectionIdentity));
+                var studentsWithParentCourseGrades = _parentCourseRepository.GetStudents((int)sessionId, (Guid)parentCourseId);
+
+                var studentsToBeGraded =  studentsWithParentCourseGrades.Where(
+                    s =>
+                        parentCourseGradesModel.ParentGradesModelList.Any(
+                            gradeModel => gradeModel.StudentUSI == s.StudentUSI)).ToList();
+                
+
+                    foreach (var student in studentsToBeGraded)
+                    {
+                        if (!student.ParentCourseGrades.IsNullOrEmpty() || student.ParentCourseGrades.Any(pcg => pcg.ParentCourseId == parentCourseId)){
+                            
+                            foreach(var pcg in student.ParentCourseGrades.Where(p => p.ParentCourseId == parentCourseId)){
+                                pcg.GradeEarned = _findGradeOfStudentInParentGradesModelList(parentCourseGradesModelList,
+                                    student);
+                            }
+                        }
+                        else
+                        {
+                            var session =
+                                studentsToBeGraded.First(s => !s.ParentCourseGrades.IsNullOrEmpty())
+                                    .ParentCourseGrades.First()
+                                    .Session;
+                            var newParentCourseGrade = new ParentCourseGrade
+                            {
+                                GradeEarned = _findGradeOfStudentInParentGradesModelList(parentCourseGradesModelList, student),
+                                ParentCourseId = (Guid) parentCourseId,
+                                SchoolYear = session.SchoolYear,
+                                TermTypeId = session.TermTypeId,
+                                SchoolId = session.SchoolId
+                            };
+                            student.ParentCourseGrades.Add(newParentCourseGrade);
+                        }
+                    }
+
+                    _genericRepository.Save();
+
+                return RedirectToAction(MVC.ParentCourseGrade.Get(sessionId, parentCourseId));
             }
             return View(parentCourseGradesModel);
         }
 
-
-        private void CreateOrUpdateParentCourseGrade(IEnumerable<Student> previouslyGradedStudents,
-            GradeModel newStudentParentCourseGrade, Section section, ParentCourse parentCourse)
+        private string _findGradeOfStudentInParentGradesModelList(List<GradeModel> parentCourseGradesModelList, Student student)
         {
-            ParentCourseGrade parentCourseGradeToBeSaved;
-            if (studentWasPreviouslyGraded(previouslyGradedStudents, newStudentParentCourseGrade))
-            {
-                parentCourseGradeToBeSaved = _sectionToParentCourseGradeMapper.Build(section,
-                    pcg =>
-                    {
-                        pcg.StudentUSI = newStudentParentCourseGrade.StudentUSI;
-                        pcg.ParentCourseId = parentCourse.Id;
-                        pcg.GradeEarned = newStudentParentCourseGrade.Grade;
-                    });
-                _genericRepository.Add(parentCourseGradeToBeSaved);
-            }
-            else
-            {
-                parentCourseGradeToBeSaved =
-                    _parentCourseRepository.GetParentCourseGrade(newStudentParentCourseGrade.StudentUSI, parentCourse.Id);
-                parentCourseGradeToBeSaved.GradeEarned = newStudentParentCourseGrade.Grade;
-            }
-
-            _genericRepository.Save();
+            var grade =
+                parentCourseGradesModelList.First(gradeModel => gradeModel.StudentUSI == student.StudentUSI).Grade;
+            return grade == "Not Yet Graded" ? null : grade;
         }
 
-        private bool studentWasPreviouslyGraded(IEnumerable<Student> previouslyGradedStudents, GradeModel gradeModel)
-        {
-            return previouslyGradedStudents.Where(s => s.StudentUSI == gradeModel.StudentUSI).IsNullOrEmpty();
-        }
     }
 }
