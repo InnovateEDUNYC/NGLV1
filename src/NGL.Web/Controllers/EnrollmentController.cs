@@ -154,9 +154,6 @@ namespace NGL.Web.Controllers
 
         public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
         {
-            if (!ModelState.IsValid)
-                return RedirectToAction(MVC.Student.Index(studentUsi));
-
             var specialEducationFileName = Upload(programStatus.SpecialEducationFile, studentUsi, "ProgramStatus", "specialEducation");
             var testingAccomodationFileName = Upload(programStatus.TestingAccommodationFile, studentUsi, "ProgramStatus", "testingAccomodation");
             var titleParticipationFileName = Upload(programStatus.TitleParticipationFile, studentUsi, "ProgramStatus", "titleParticipation");
@@ -175,6 +172,7 @@ namespace NGL.Web.Controllers
 
             _repository.Save();
 
+            TempData["ShowSuccess"] = true;
             return RedirectToAction(MVC.Student.Index(studentUsi));
         }
     }

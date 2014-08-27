@@ -1967,6 +1967,7 @@
     <Content Include="Assets\Scripts\Views\Shared\accordianArrows.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
     <Content Include="Assets\Scripts\Views\Shared\parentCourseAutocomplete.js" />
+    <Content Include="Assets\Scripts\Views\Shared\programStatus.js" />
     <Content Include="Assets\Scripts\Views\Shared\sessionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Schedule\setSchedule.js" />
     <Content Include="Assets\Scripts\Views\Shared\sectionAutocomplete.js" />
