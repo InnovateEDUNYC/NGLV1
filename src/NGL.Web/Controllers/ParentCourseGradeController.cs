@@ -63,6 +63,10 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ParentCourseGradesModel parentCourseGradesModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(parentCourseGradesModel);
+            }
             if (parentCourseGradesModel.FindParentCourseModel.ParentCourseId == null ||
                 parentCourseGradesModel.FindParentCourseModel.SessionId == null) 
                 return View(parentCourseGradesModel);
