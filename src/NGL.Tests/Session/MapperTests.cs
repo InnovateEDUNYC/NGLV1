@@ -1,5 +1,4 @@
-﻿using System;
-using Humanizer;
+﻿using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Session;
@@ -17,16 +16,16 @@ namespace NGL.Tests.Session
             var schoolRepository = Substitute.For<ISchoolRepository>();
             schoolRepository.GetSchool().Returns(new School { SchoolId = Constants.SchoolId });
 
-            var sessionCreateModel = new CreateSessionModelBuilder().Build();
-            var sessionEntity = new CreateModelToSessionMapper(schoolRepository).Build(sessionCreateModel);
+            var model = new CreateSessionModelBuilder().Build();
+            var entity = new CreateModelToSessionMapper(schoolRepository).Build(model);
 
-            sessionEntity.SchoolId.ShouldBe(Constants.SchoolId);
-            sessionEntity.TermTypeId.ShouldBe((int) sessionCreateModel.Term);
-            sessionEntity.SchoolYear.ShouldBe((short) sessionCreateModel.SchoolYear);
-            sessionEntity.BeginDate.ShouldBe((DateTime) sessionCreateModel.BeginDate);
-            sessionEntity.EndDate.ShouldBe((DateTime) sessionCreateModel.EndDate);
-            sessionEntity.TotalInstructionalDays.ShouldBe((int) sessionCreateModel.TotalInstructionalDays);
-            sessionEntity.SessionName.ShouldBe("Fall Semester 2014");
+            entity.SchoolId.ShouldBe(Constants.SchoolId);
+            entity.TermTypeId.ShouldBe((int) model.Term.GetValueOrDefault());
+            entity.SchoolYear.ShouldBe((short) model.SchoolYear);
+            entity.BeginDate.ShouldBe(model.BeginDate.GetValueOrDefault());
+            entity.EndDate.ShouldBe(model.EndDate.GetValueOrDefault());
+            entity.TotalInstructionalDays.ShouldBe(model.TotalInstructionalDays.GetValueOrDefault());
+            entity.SessionName.ShouldBe("Fall Semester 2013-2014");
         }
 
         [Fact]
