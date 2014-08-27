@@ -1,70 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Castle.Core.Internal;
-using NGL.Web.Data.Entities;
-using NGL.Web.Data.Repositories;
 
 namespace NGL.Web.Models.ParentCourse
 {
     public class ParentCourseGradesModelToStudentsMapper
     {
-        private ISessionRepository _sesssionRepository;
+        private ParentCourseGradeModelToParentCourseGradeMapper _parentCourseGradeModelToParentCourseGradeMapper;
 
-        public ParentCourseGradesModelToStudentsMapper(ISessionRepository sesssionRepository)
+        public ParentCourseGradesModelToStudentsMapper(ParentCourseGradeModelToParentCourseGradeMapper parentCourseGradeModelToParentCourseGradeMapper)
         {
-            _sesssionRepository = sesssionRepository;
+            _parentCourseGradeModelToParentCourseGradeMapper = parentCourseGradeModelToParentCourseGradeMapper;
         }
 
         public void Map(ParentCourseGradesModel parentCourseGradesModel, List<Data.Entities.Student> studentsToBeGraded)
         {
-            var session = _sesssionRepository.GetById((int)parentCourseGradesModel.FindParentCourseModel.SessionId);
             var parentCourseId = (Guid)parentCourseGradesModel.FindParentCourseModel.ParentCourseId;
-            var parentCourseGradesModelList = parentCourseGradesModel.ParentGradesModelList;
+            var sesssionId = (int) parentCourseGradesModel.FindParentCourseModel.SessionId;
 
             foreach (var student in studentsToBeGraded)
             {
-                if (!student.ParentCourseGrades.IsNullOrEmpty() ||
-                    student.ParentCourseGrades.Any(pcg => pcg.ParentCourseId == parentCourseId))
+                if (!student.ParentCourseGrades.IsNullOrEmpty() &&
+                    student.ParentCourseGrades.Any(pcg => pcg.ParentCourseId == parentCourseId && pcg.Session.SessionIdentity == sesssionId ))
                 {
-                    UpdateParentCourseGradeForStudent(student, parentCourseId, parentCourseGradesModelList);
+
+                    var parentCourseGrade = student.ParentCourseGrades.FirstOrDefault( p =>
+                            p.ParentCourseId == parentCourseGradesModel.FindParentCourseModel.ParentCourseId &&
+                            p.Session.SessionIdentity == parentCourseGradesModel.FindParentCourseModel.SessionId);
+
+                    _parentCourseGradeModelToParentCourseGradeMapper.Map(parentCourseGradesModel, student.StudentUSI, parentCourseGrade);
+
                 }
                 else
                 {
-                    CreateNewParentCourseGradeForStudent(parentCourseGradesModelList, student, parentCourseId, session);
+                    var parentCourseGradeForStudent = _parentCourseGradeModelToParentCourseGradeMapper.Build(parentCourseGradesModel, student.StudentUSI);
+                    student.ParentCourseGrades.Add(parentCourseGradeForStudent);
                 }
             }
-        }
-
-        private void UpdateParentCourseGradeForStudent(Data.Entities.Student student, Guid? parentCourseId, List<GradeModel> parentCourseGradesModelList)
-        {
-            foreach (var pcg in student.ParentCourseGrades.Where(p => p.ParentCourseId == parentCourseId))
-            {
-                pcg.GradeEarned = FindGradeOfStudentInParentGradesModelList(parentCourseGradesModelList,
-                    student);
-            }
-        }
-
-        private void CreateNewParentCourseGradeForStudent(List<GradeModel> parentCourseGradesModelList, Data.Entities.Student student,
-    Guid? parentCourseId, Data.Entities.Session session)
-        {
-            var newParentCourseGrade = new ParentCourseGrade
-            {
-                GradeEarned = FindGradeOfStudentInParentGradesModelList(parentCourseGradesModelList, student),
-                ParentCourseId = (Guid)parentCourseId,
-                SchoolYear = session.SchoolYear,
-                TermTypeId = session.TermTypeId,
-                SchoolId = session.SchoolId
-            };
-            student.ParentCourseGrades.Add(newParentCourseGrade);
-        }
-
-        private string FindGradeOfStudentInParentGradesModelList(List<GradeModel> parentCourseGradesModelList, Data.Entities.Student student)
-        {
-            var grade =
-                parentCourseGradesModelList.First(gradeModel => gradeModel.StudentUSI == student.StudentUSI).Grade;
-            return grade == "Not Yet Graded" ? null : grade;
         }
     }
 }
