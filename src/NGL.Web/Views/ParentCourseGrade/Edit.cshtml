@@ -10,48 +10,59 @@
 <h4><strong>SESSION</strong></h4>
 @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control full-input", @id = "Session" })
 <h4><strong>SECTION</strong></h4>
-@Html.TextBoxFor(m => m.FindParentCourseModel.ParentCourse, new { @class = "form-control full-input", @id = "Section" })
+@Html.TextBoxFor(m => m.FindParentCourseModel.ParentCourse, new { @class = "form-control full-input", @id = "ParentCourse" })
 
 @Html.HiddenFor(m => m.FindParentCourseModel.SessionId, new { @id = "SessionId" })
-@Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "SectionId"})
+@Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "ParentCourseId"})
 <br/>
 
 <div class="panel panel-default">
     @if (!Model.ParentGradesModelList.IsNullOrEmpty())
     {
-        <h4><strong>STUDENTS</strong></h4>
         <form method="POST" action="">
-            <div class="hidden">
-                @Html.TextBoxFor(s => Model.FindParentCourseModel.ParentCourseId)
-                @Html.TextBoxFor(s => Model.FindParentCourseModel.ParentCourse)
-                @Html.TextBoxFor(s => Model.FindParentCourseModel.SessionId)
-                @Html.TextBoxFor(s => Model.FindParentCourseModel.Session)
-            </div>
-            <table>
+        <div class="hidden">
+            @Html.TextBoxFor(s => Model.FindParentCourseModel.ParentCourseId)
+            @Html.TextBoxFor(s => Model.FindParentCourseModel.ParentCourse)
+            @Html.TextBoxFor(s => Model.FindParentCourseModel.SessionId)
+            @Html.TextBoxFor(s => Model.FindParentCourseModel.Session)
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>
+                        <h4><strong>STUDENTS</strong></h4>
+                    </td>
+                    <td>
+                        <h4 class="pull-right">Final Grade</h4>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
                 @for (var i = 0; i < Model.ParentGradesModelList.Count; i++)
                 {
                     <tr>
                         <td>
                             <div class="hidden">
-                                @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentFirstName) 
-                                @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentLastName) 
+                                @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentFirstName)
+                                @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentLastName)
                             </div>
                             @Model.ParentGradesModelList[i].StudentFirstName @Model.ParentGradesModelList[i].StudentLastName
                         </td>
                         <td>
-                            @Html.TextBoxFor(s => Model.ParentGradesModelList[i].Grade, new { @id = "grade-" + i })
+                            @Html.TextBoxFor(s => Model.ParentGradesModelList[i].Grade, new { @id = "grade-" + i, @class = "grade-textbox" })
                         </td>
                         <div class="hidden">
                             @Html.TextBoxFor(s => Model.ParentGradesModelList[i].StudentUSI)
                         </div>
                     </tr>
                 }
-            </table>
-            <div class="cancel-and-save-buttons">
-                @Html.ActionLink("Cancel", MVC.Assessment.Index(), new { @class = "btn btn-default" })
-                <button class="btn btn-primary" type="submit">Save Results</button>
-            </div>
-        </form>
+            </tbody>
+        </table>
+        <div class="cancel-and-save-buttons top-buffer">
+            @Html.ActionLink("Cancel", MVC.ParentCourseGrade.Get(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "btn btn-default" })
+            <button class="btn btn-primary" type="submit">Save Results</button>
+        </div>
+    </form>
     }
     else
     {
