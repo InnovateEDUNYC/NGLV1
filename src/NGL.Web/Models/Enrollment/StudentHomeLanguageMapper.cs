@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.Collections.Generic;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
@@ -15,7 +16,7 @@ namespace NGL.Web.Models.Enrollment
                 LanguageUseTypeId = HomeLanguageTypeId
             };
 
-            target.StudentLanguageUses.Add(studentHomeLanguageUse);
+            target.StudentLanguageUses = new List<StudentLanguageUse> {studentHomeLanguageUse};
         }
     }
 }

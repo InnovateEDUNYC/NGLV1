@@ -237,9 +237,6 @@ namespace NGL.Web.Controllers
             return callInfo;
         }
 
-            return callInfo;
-        }
-
         [NonAction]
         partial void EditProgramStatusOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, NGL.Web.Models.Enrollment.EnterProgramStatusModel programStatus);
 
@@ -250,6 +247,9 @@ namespace NGL.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "programStatus", programStatus);
             EditProgramStatusOverride(callInfo, studentUsi, programStatus);
+            return callInfo;
+        }
+
     }
 }
 

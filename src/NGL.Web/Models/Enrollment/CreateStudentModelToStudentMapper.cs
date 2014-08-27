@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.Collections.Generic;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
@@ -26,7 +27,7 @@ namespace NGL.Web.Models.Enrollment
             target.StudentAddresses.Add(studentAddress);
 
             var studentLanguage = _studentLanguageMapper.Build(source);
-            target.StudentLanguages.Add(studentLanguage);
+            target.StudentLanguages = new List<StudentLanguage>{studentLanguage};
 
             var firstParentAssociation = _studentParentAssociationMapper.Build(source.FirstParent);
             target.StudentParentAssociations.Add(firstParentAssociation);
@@ -46,7 +47,10 @@ namespace NGL.Web.Models.Enrollment
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
             target.SexTypeId = (int) source.Sex.GetValueOrDefault();
             target.BirthDate = source.BirthDate.GetValueOrDefault();
-            target.StudentRaces.Add(new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()});
+            target.StudentRaces = new List<StudentRace>
+            {
+                new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()}
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NGL.Web.Data.Entities;
 
@@ -11,11 +12,24 @@ namespace NGL.Web.Models.Enrollment
             target.BirthDate = DateTime.Parse(source.BirthDate);
             target.SexTypeId = (int) source.Sex;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.StudentRaces.First().RaceTypeId = (int) source.Race;
-            target.StudentLanguages.First().LanguageDescriptorId = (int) source.HomeLanguage;
-            target.StudentLanguages.First().LanguageDescriptorId = (int) source.HomeLanguage;
-            target.StudentLanguages.First().StudentLanguageUses.First().LanguageDescriptorId = (int) source.HomeLanguage;
-        }
+            target.StudentRaces = new List<StudentRace>
+            {
+                new StudentRace {RaceTypeId = (int) source.Race}
+            };
 
+            var studentHomeLanguageUse = new StudentLanguageUse
+            {
+                LanguageDescriptorId = (int) source.HomeLanguage,
+                LanguageUseTypeId = (int) LanguageUseTypeEnum.Homelanguage
+            };
+
+            var studentLanguage = new StudentLanguage
+            {
+                LanguageDescriptorId = (int) source.HomeLanguage,
+                StudentLanguageUses = new List<StudentLanguageUse> { studentHomeLanguageUse}
+            };
+
+            target.StudentLanguages = new List<StudentLanguage> {studentLanguage};
+        }
     }
 }
