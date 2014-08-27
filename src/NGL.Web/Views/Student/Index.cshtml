@@ -1,5 +1,4 @@
-﻿@using Glimpse.Mvc.AlternateType
-@using NGL.Web.Infrastructure.Security
+﻿@using NGL.Web.Infrastructure.Security
 @model NGL.Web.Models.Student.ProfileModel
 
 @{
@@ -32,8 +31,8 @@
                     }
                     <h3>
                         <strong>
-                            @Html.DisplayFor(model => model.BiographicalInformation.FirstName)
-                            @Html.DisplayFor(model => model.BiographicalInformation.LastName)
+                            @Html.DisplayFor(model => model.FirstName)
+                            @Html.DisplayFor(model => model.LastName)
                         </strong>
                     </h3>
                     <p>
@@ -97,7 +96,7 @@
             </div>
         </div>
         <div class="col-md-7">
-        @Html.Partial("BiographicalInformation", Model.BiographicalInformation)
+        @Html.Partial("BiographicalInformation", Model.BiographicalInfo)
         
             <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseAcademicDetails">
                 @if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistoryFileUrl != null)

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
@@ -17,36 +14,25 @@ namespace NGL.Tests.Enrollment
         public void ShouldMap()
         {
             var studentBiographicalInfo = new StudentBiographicalInformationModelBuilder().Build();
-            var mapper = new StudentBiographicalInformationModelToStudentMapper();
+            var mapper = new EditStudentBiographicalInfoModelToStudentMapper();
             var student = new StudentBuilder().Build();
             mapper.Map(studentBiographicalInfo, student);
-            student.FirstName.ShouldBe(studentBiographicalInfo.FirstName);
-            student.LastSurname.ShouldBe(studentBiographicalInfo.LastName);
+
             student.BirthDate.ShouldBe(DateTime.Parse(studentBiographicalInfo.BirthDate));
             student.SexTypeId.ShouldBe((int)studentBiographicalInfo.Sex);
             student.HispanicLatinoEthnicity.ShouldBe(studentBiographicalInfo.HispanicLatinoEthnicity);
-        }
-    }
+            student.StudentRaces.First().RaceTypeId.ShouldBe((int)studentBiographicalInfo.Race);
 
-    public class StudentBiographicalInformationModelBuilder
-    {
-        private int _studentUsi = 3434;
-        private string _firstName = "John";
-        private string _lastName = "White";
-        private string _birthDate = "6/6/2004";
-        private SexTypeEnum _sex = SexTypeEnum.Male;
-        private bool _hispanicLatinoEthnicity = false;
-        public StudentBiographicalInformationModel Build()
-        {
-            return new StudentBiographicalInformationModel
-            {
-                StudentUsi = _studentUsi,
-                FirstName = _firstName,
-                LastName = _lastName,
-                BirthDate = _birthDate,
-                Sex = _sex,
-                HispanicLatinoEthnicity = _hispanicLatinoEthnicity
-            };
+            const int languageDescriptorId = (int)LanguageDescriptorEnum.Spanish;
+
+            student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
+            student.StudentLanguages.First()
+                .StudentLanguageUses.First()
+                .LanguageUseTypeId.ShouldBe((int)LanguageUseTypeEnum.Homelanguage);
+
+            student.StudentLanguages.First()
+                .StudentLanguageUses.First()
+                .LanguageDescriptorId.ShouldBe(languageDescriptorId);
         }
     }
 }

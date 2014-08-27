@@ -8,10 +8,12 @@ using Elmah;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Extensions;
 using NGL.Web.ImageTools;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
+using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
@@ -23,16 +25,19 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
         private readonly IStudentRepository _studentRepository;
+        private readonly IMapper<EditStudentBiographicalInfoModel, Student> _studentBiographicalInfoToStudentMapper;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
                                                 IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                                AzureStorageUploader fileUploader, IStudentRepository studentRepository)
+                                                AzureStorageUploader fileUploader, IStudentRepository studentRepository,
+                                IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
             _studentToStudentIndexModelMapper = studentToStudentIndexModelMapper;
             _fileUploader = fileUploader;
             _studentRepository = studentRepository;
+            _studentBiographicalInfoToStudentMapper = studentBiographicalInfoToStudentMapper;
         }
 
         // GET: /Student/All
@@ -100,6 +105,24 @@ namespace NGL.Web.Controllers
                 ErrorSignal.FromCurrentContext().Raise(ex);
             }
             return RedirectToAction(MVC.Student.Index(usi));
+        }
+
+        [HttpPost]
+        public virtual JsonResult EditBiographicalInfo(EditStudentBiographicalInfoModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var nglErrors = ModelState.GetNglErrors();
+
+                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
+            }
+
+            var student = _studentRepository.GetByUSI(model.StudentUsi);
+            _studentBiographicalInfoToStudentMapper.Map(model, student);
+           
+            _repository.Save();
+
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         private void Upload(Stream file, string relativePath)

@@ -152,17 +152,17 @@ namespace NGL.Tests.Student
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);
-            profileModel.BiographicalInformation.FirstName.ShouldBe(student.FirstName);
-            profileModel.BiographicalInformation.LastName.ShouldBe(student.LastSurname);
-            profileModel.BiographicalInformation.BirthDate.ShouldBe(student.BirthDate.ToShortDateString());
+            profileModel.FirstName.ShouldBe(student.FirstName);
+            profileModel.LastName.ShouldBe(student.LastSurname);
+            profileModel.BiographicalInfo.BirthDate.ShouldBe(student.BirthDate.ToShortDateString());
 
             var studentRace = student.StudentRaces.First();
-            profileModel.BiographicalInformation.Race.ShouldBe((RaceTypeEnum)studentRace.RaceTypeId);
-            profileModel.BiographicalInformation.RaceForDisplay.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
-            profileModel.BiographicalInformation.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
-            profileModel.BiographicalInformation.Sex.ShouldBe((SexTypeEnum)student.SexTypeId);
+            profileModel.BiographicalInfo.Race.ShouldBe((RaceTypeEnum)studentRace.RaceTypeId);
+            profileModel.BiographicalInfo.RaceForDisplay.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
+            profileModel.BiographicalInfo.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
+            profileModel.BiographicalInfo.Sex.ShouldBe((SexTypeEnum)student.SexTypeId);
 
-            var studentProfileHomeLanguage = profileModel.BiographicalInformation.HomeLanguage;
+            var studentProfileHomeLanguage = profileModel.BiographicalInfo.HomeLanguage;
             studentProfileHomeLanguage.ShouldBe((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId);
         }
 

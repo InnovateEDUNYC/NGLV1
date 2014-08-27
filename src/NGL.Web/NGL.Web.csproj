@@ -1622,6 +1622,7 @@
     <Compile Include="Data\Repositories\LearningStandardRepository.cs" />
     <Compile Include="Dates\DateRange.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
+    <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageDownloader.cs" />
     <Compile Include="Infrastructure\Azure\AzureStorageUploader.cs" />
@@ -1717,9 +1718,11 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentBiographicalInformationModelToStudentMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentBiographicalInformationModel.cs" />
-    <Compile Include="Models\Enrollment\StudentToBiographicalInfoModelMapper.cs" />
+    <Compile Include="Models\Student\EditStudentBiographicalInfoModelToStudentMapper.cs" />
+    <Compile Include="Models\Student\EditStudentBiographicalInfoModel.cs" />
+    <Compile Include="Models\Student\EditStudentBiographicalInformationModelValidator.cs" />
+    <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Student\StudentToBiographicalInfoModelMapper.cs" />
     <Compile Include="Models\ParentCourse\GradeModel.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
     <Compile Include="Models\ParentCourse\CreateModel.cs" />
@@ -1737,7 +1740,6 @@
     <Compile Include="Models\Enrollment\EnterProgramStatusModel.cs" />
     <Compile Include="Models\Enrollment\EnterProgramStatusModelToStudentProgramStatusMapper.cs" />
     <Compile Include="Models\Enrollment\StudentHomeAddressMapper.cs" />
-    <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\ParentCourse\CreateModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\FindParentCourseModel.cs" />
     <Compile Include="Models\ParentCourse\StudentsSesssionParentCourseToParentCourseGradesModelMapper.cs" />
@@ -1781,6 +1783,7 @@
     <Compile Include="Models\Session\CreateModelValidator.cs" />
     <Compile Include="Models\Session\SessionToSessionWithSectionsModelMapper.cs" />
     <Compile Include="Models\Session\SessionWithSectionsModel.cs" />
+    <Compile Include="Models\Shared\NglErrorModel.cs" />
     <Compile Include="Models\Student\StudentAttendancePercentageMapper.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />

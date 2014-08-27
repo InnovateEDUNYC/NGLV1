@@ -39,6 +39,9 @@
     display: none;
 }
 
+.profile-edit .field-validation-error {
+    margin-left: 245px;
+}
 .file-upload {
     display: inline-block;
     width: 210px;

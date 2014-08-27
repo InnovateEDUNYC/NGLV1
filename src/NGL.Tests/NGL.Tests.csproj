@@ -111,6 +111,7 @@
     <Compile Include="Builders\SchoolBuilder.cs" />
     <Compile Include="Builders\SetScheduleModelBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
+    <Compile Include="Builders\StudentBiographicalInformationModelBuilder.cs" />
     <Compile Include="Builders\StudentBuilder.cs" />
     <Compile Include="Builders\StudentSectionAttendanceEventBuilder.cs" />
     <Compile Include="Builders\TakeAttendanceModelBuilder.cs" />

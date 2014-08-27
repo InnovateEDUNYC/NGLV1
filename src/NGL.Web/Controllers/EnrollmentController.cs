@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using NGL.Tests.Enrollment;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
@@ -21,7 +20,6 @@ namespace NGL.Web.Controllers
         private readonly IMapper<AcademicDetailModel, StudentSchoolAssociation> _schoolAssociationMapper;
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
         private readonly IStudentRepository _studentRepository;
-        private readonly IMapper<StudentBiographicalInformationModel, Student> _studentBiographicalInfoToStudentMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
                                                 IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
@@ -29,13 +27,11 @@ namespace NGL.Web.Controllers
                                                 IFileUploader fileUploader,
                                                 IMapper<AcademicDetailModel, 
                                                 StudentSchoolAssociation> schoolAssociationMapper,
-                                                IStudentRepository studentRepository,
-                                                IMapper<StudentBiographicalInformationModel, Student> studentBiographicalInfoToStudentMapper)
+                                                IStudentRepository studentRepository)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;
             _studentRepository = studentRepository;
-            _studentBiographicalInfoToStudentMapper = studentBiographicalInfoToStudentMapper;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -154,19 +150,6 @@ namespace NGL.Web.Controllers
 
             _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
             return relativePath;
-        }
-
-        [HttpPost]
-        public virtual ActionResult EditStudent(StudentBiographicalInformationModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var student = _studentRepository.GetByUSI(model.StudentUsi);
-            _studentBiographicalInfoToStudentMapper.Map(model, student);
-            _repository.Save();
-
-            return RedirectToAction(MVC.Student.Index(model.StudentUsi));
         }
 
         public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)

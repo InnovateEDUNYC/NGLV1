@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.Collections.Generic;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Enrollment
 {
@@ -9,8 +10,8 @@ namespace NGL.Web.Models.Enrollment
         private readonly IMapper<CreateParentModel, StudentParentAssociation> _studentParentAssociationMapper;
 
         public CreateStudentModelToStudentMapper(
-            IMapper<CreateStudentModel, StudentAddress> studentAddressMapper, 
-            IMapper<CreateStudentModel, StudentLanguage> studentLanguageMapper, 
+            IMapper<CreateStudentModel, StudentAddress> studentAddressMapper,
+            IMapper<CreateStudentModel, StudentLanguage> studentLanguageMapper,
             CreateParentModelToStudentParentAssociationMapper studentParentAssociationMapper)
         {
             _studentAddressMapper = studentAddressMapper;
@@ -26,11 +27,11 @@ namespace NGL.Web.Models.Enrollment
             target.StudentAddresses.Add(studentAddress);
 
             var studentLanguage = _studentLanguageMapper.Build(source);
-            target.StudentLanguages.Add(studentLanguage);
+            target.StudentLanguages = new List<StudentLanguage> { studentLanguage };
 
             var firstParentAssociation = _studentParentAssociationMapper.Build(source.FirstParent);
             target.StudentParentAssociations.Add(firstParentAssociation);
-            
+
             if (source.AddSecondParent)
             {
                 var secondParentAssociation = _studentParentAssociationMapper.Build(source.SecondParent);
@@ -44,9 +45,12 @@ namespace NGL.Web.Models.Enrollment
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
             target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.SexTypeId = (int) source.Sex.GetValueOrDefault();
+            target.SexTypeId = (int)source.Sex.GetValueOrDefault();
             target.BirthDate = source.BirthDate.GetValueOrDefault();
-            target.StudentRaces.Add(new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()});
+            target.StudentRaces = new List<StudentRace>
+            {
+                new StudentRace {RaceTypeId = (int)source.Race.GetValueOrDefault()}
+            };
         }
     }
 }
