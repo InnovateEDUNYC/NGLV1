@@ -28,7 +28,7 @@ Ngl.student.index = (function () {
     }
 
     var setupRemoveFlagsButton = function() {
-        $('.remove-flag-button-button').on('click', function () {
+        $('.remove-flag-button').on('click', function () {
             var flagToRemove = $(this).prev();
             flagToRemove.remove();
 
