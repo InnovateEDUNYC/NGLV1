@@ -31,7 +31,7 @@ namespace NGL.Tests.Student
             model.TitleParticipation.ShouldBe(studentProgramStatus.TitleParticipation.ToYesNoString());
             model.McKinneyVento.ShouldBe(studentProgramStatus.McKinneyVento.ToYesNoString());
 
-            model.FoodServiceEligibilityStatus.ShouldBe("Full Price");
+            model.FoodServicesEligibilityStatusForDisplay.ShouldBe("Full Price");
 
             model.TestingAccommodationFile.ShouldBe("TestingAccommodationFile_Full_Url");
             model.SpecialEducationFile.ShouldBe("SpecialEducationFile_Full_Url");

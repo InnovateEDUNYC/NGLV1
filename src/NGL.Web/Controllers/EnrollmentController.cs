@@ -168,5 +168,31 @@ namespace NGL.Web.Controllers
 
             return RedirectToAction(MVC.Student.Index(model.StudentUsi));
         }
+
+        public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction(MVC.Student.Index(studentUsi));
+
+            var specialEducationFileName = Upload(programStatus.SpecialEducationFile, studentUsi, "ProgramStatus", "specialEducation");
+            var testingAccomodationFileName = Upload(programStatus.TestingAccommodationFile, studentUsi, "ProgramStatus", "testingAccomodation");
+            var titleParticipationFileName = Upload(programStatus.TitleParticipationFile, studentUsi, "ProgramStatus", "titleParticipation");
+            var mcKinneyVentoFileName = Upload(programStatus.McKinneyVentoFile, studentUsi, "ProgramStatus", "mcKinneyVento");
+
+            var studentProgramStatus = _repository.Get<StudentProgramStatus>(sps => sps.StudentUSI == studentUsi);
+
+            _programStatusMapper.Map(programStatus, studentProgramStatus,
+                ps =>
+                {
+                    ps.TitleParticipationFile = titleParticipationFileName;
+                    ps.TestingAccommodationFile = testingAccomodationFileName;
+                    ps.SpecialEducationFile = specialEducationFileName;
+                    ps.McKinneyVentoFile = mcKinneyVentoFileName;
+                });
+
+            _repository.Save();
+
+            return RedirectToAction(MVC.Student.Index(studentUsi));
+        }
     }
 }

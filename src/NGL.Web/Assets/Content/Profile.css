@@ -46,6 +46,17 @@
     max-width: 275px;
 }
 
-#editable-biographical-info {
+#editable-biographical-info, #editable-program-status {
     display: none;
+}
+
+.profile-labels-edit-mode {
+    width: 240px;
+}
+
+.file-upload {
+    display: inline-block;
+    width: 210px;
+    margin-left: 10px;
+    vertical-align: middle;
 }

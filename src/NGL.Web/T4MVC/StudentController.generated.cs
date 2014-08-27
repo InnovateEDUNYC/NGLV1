@@ -126,15 +126,19 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string All = "All";
+                public readonly string BiographicalInformation = "BiographicalInformation";
                 public readonly string Delete = "Delete";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
+                public readonly string ProgramStatusPartial = "ProgramStatusPartial";
                 public readonly string Reports = "Reports";
             }
             public readonly string All = "~/Views/Student/All.cshtml";
+            public readonly string BiographicalInformation = "~/Views/Student/BiographicalInformation.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string ProgramStatusPartial = "~/Views/Student/ProgramStatusPartial.cshtml";
             public readonly string Reports = "~/Views/Student/Reports.cshtml";
         }
     }

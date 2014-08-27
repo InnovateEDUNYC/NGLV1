@@ -9,7 +9,7 @@ namespace NGL.Web.Models.Enrollment
             target.TestingAccommodation = source.TestingAccommodation.GetValueOrDefault();
             target.BilingualProgram = source.BilingualProgram.GetValueOrDefault();
             target.EnglishAsSecondLanguage = source.EnglishAsSecondLanguage.GetValueOrDefault();
-            target.SchoolFoodServicesEligibilityTypeId = (int)source.FoodServiceEligibilityStatus;
+            target.SchoolFoodServicesEligibilityTypeId = (int)source.FoodServicesEligibilityStatus;
             target.Gifted = source.Gifted.GetValueOrDefault();
             target.SpecialEducation = source.SpecialEducation.GetValueOrDefault();
             target.TitleParticipation = source.TitleParticipation.GetValueOrDefault();

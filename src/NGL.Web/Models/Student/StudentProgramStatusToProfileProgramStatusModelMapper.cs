@@ -1,4 +1,8 @@
-﻿using Humanizer;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Extensions;
 using NGL.Web.Infrastructure.Azure;
@@ -24,7 +28,8 @@ namespace NGL.Web.Models.Student
             target.TitleParticipation = source.TitleParticipation.ToYesNoString();
             target.McKinneyVento = source.McKinneyVento.ToYesNoString();
 
-            target.FoodServiceEligibilityStatus = ((SchoolFoodServicesEligibilityTypeEnum)source.SchoolFoodServicesEligibilityTypeId).Humanize(LetterCasing.Title);
+            target.FoodServicesEligibilityStatusForDisplay = ((SchoolFoodServicesEligibilityTypeEnum)source.SchoolFoodServicesEligibilityTypeId).Humanize(LetterCasing.Title);
+            target.FoodServicesEligibilityStatus = (SchoolFoodServicesEligibilityTypeEnum)source.SchoolFoodServicesEligibilityTypeId;
 
             target.TestingAccommodationFile = GetFullFilePath(source.TestingAccommodationFile);
             target.SpecialEducationFile = GetFullFilePath(source.SpecialEducationFile);

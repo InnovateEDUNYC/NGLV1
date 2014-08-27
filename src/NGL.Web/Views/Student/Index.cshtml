@@ -141,110 +141,21 @@
                         </dd>
 
                         if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistoryFileUrl != null)
-                         {
-                             <dt>
-                                 @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
-                             </dt>
-                             <dd>
-                                 <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">@downloadFileText</a><br />
-                             </dd>
-                         }
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
+                            </dt>
+                            <dd>
+                                <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">@downloadFileText</a><br />
+                            </dd>
+                        }
                     }
                
                 </dl>
             </div>
-            <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseProgramStatus">
-                @if (Model.ProgramStatus != null && (Model.ProgramStatus.McKinneyVentoFile != null 
-                                                  || Model.ProgramStatus.SpecialEducationFile != null
-                                                  || Model.ProgramStatus.TestingAccommodationFile != null
-                                                  || Model.ProgramStatus.TitleParticipationFile != null))
-                {
-                    <span class="fa fa-file-text-o fa-1x"></span>
-                }
-                Program Status <i class="fa fa-caret-down arrow"></i>
-            </h4>
-            <div id="collapseProgramStatus" class="panel-collapse collapse">
-            <dl class="dl-horizontal panel panel-default">
-                @if (Model.ProgramStatus == null)
-                {
-                    @Html.Raw("No Information Entered")
-                    @Html.ActionLink("Enter Program Status", MVC.Enrollment.EnterProgramStatus(@Model.StudentUsi), new {@class="btn pull-right"})
-                }
-                else
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.TestingAccommodation)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.TestingAccommodation)
-                        @if (Model.ProgramStatus.TestingAccommodationFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.TestingAccommodationFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dd>
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.BilingualProgram)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.BilingualProgram)<br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.EnglishAsSecondLanguage)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.EnglishAsSecondLanguage)<br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.Gifted)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.Gifted)<br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.SpecialEducation)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.SpecialEducation)
-                        @if (Model.ProgramStatus.SpecialEducationFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.SpecialEducationFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.TitleParticipation)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.TitleParticipation)
-                        @if (Model.ProgramStatus.TitleParticipationFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.TitleParticipationFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.McKinneyVento)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.McKinneyVento)
-                        @if (Model.ProgramStatus.McKinneyVentoFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.McKinneyVentoFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.FoodServiceEligibilityStatus)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.FoodServiceEligibilityStatus)<br />
-                    </dd>
-                }
-                </dl>
-            </div>
+
+            @Html.Partial("ProgramStatusPartial", Model)
+
             <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseHomeAddress">Home Address <i class="fa fa-caret-down arrow"></i></h4>
             <div id="collapseHomeAddress" class="panel-collapse collapse">
                 <dl class="dl-horizontal panel panel-default">
@@ -463,4 +374,5 @@
     Ngl.student.index.init();
     Ngl.shared.accordianArrows.init();
     Ngl.student.editBiographicalInfo.init();
+    Ngl.student.editProgramStatus.init();
 }
