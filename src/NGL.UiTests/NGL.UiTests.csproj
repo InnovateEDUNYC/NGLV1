@@ -144,6 +144,7 @@
     <Compile Include="Shared\UsersPage.cs" />
     <Compile Include="Student\CanEditProfileInfo.cs" />
     <Compile Include="Student\ProfilePage.cs" />
+    <Compile Include="Student\EditProgramStatusPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

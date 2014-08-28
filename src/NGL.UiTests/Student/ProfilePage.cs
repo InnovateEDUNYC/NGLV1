@@ -96,11 +96,39 @@ namespace NGL.UiTests.Student
             WaitFor.AjaxCallsToComplete();
             var sex = Browser.PageSource.Contains(newBiographicalInformation.Sex.Humanize());
             var birthday = Browser.PageSource.Contains(newBiographicalInformation.BirthDate);
-            var lationo = Browser.PageSource.Contains(newBiographicalInformation.HispanicLatinoEthnicity.ToString());
+            var latino = Browser.PageSource.Contains(newBiographicalInformation.HispanicLatinoEthnicity.ToString());
             var race = Browser.PageSource.Contains(newBiographicalInformation.Race.Humanize());
             var language = Browser.PageSource.Contains(newBiographicalInformation.HomeLanguage.ToString());
 
-            return sex && birthday && language && lationo && race;
+            return sex && birthday && language && latino && race;
+        }
+
+        public EditProgramStatusPanel EditProgramStatus()
+        {
+            return Navigate.To<EditProgramStatusPanel>(By.Id("edit-program-status"));
+        }
+
+        public bool IsProgramStatusInfoAccordingTo(EnterProgramStatusModel enterProgramStatusModel)
+        {
+            Find.Element(By.CssSelector("#readonly-program-status > h4")).Click();
+
+            var testingAccommodation = Find.Element(By.Name("testing-accommodation")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.TestingAccommodation));
+            var bilingualProgram = Find.Element(By.Name("bilingual-program")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.BilingualProgram));
+            var englishAsSecondLanguage = Find.Element(By.Name("esl")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.EnglishAsSecondLanguage));
+            var gifted = Find.Element(By.Name("gifted")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.Gifted));
+            var specialEducation = Find.Element(By.Name("special-education")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.SpecialEducation));
+            var titleParticipation = Find.Element(By.Name("title-participation")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.TitleParticipation));
+            var mckinneyvento = Find.Element(By.Name("mckinneyvento")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.McKinneyVento));
+            var foodServicesEligibility = Find.Element(By.Name("food-services")).Text.Equals(enterProgramStatusModel.FoodServicesEligibilityStatus.Humanize(LetterCasing.Title));
+
+            return testingAccommodation && bilingualProgram && englishAsSecondLanguage && gifted 
+                    && specialEducation && titleParticipation && mckinneyvento && foodServicesEligibility;
+        }
+
+        private static string ConvertBoolToYesOrNo(bool? field)
+        {
+            var yesno = (field.GetValueOrDefault() ? "Yes" : "No");
+            return yesno;
         }
 
         public bool EditedNameIsVisible(NameModel nameModel)
