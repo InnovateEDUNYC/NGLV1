@@ -1722,6 +1722,9 @@
     <Compile Include="Models\Student\EditStudentBiographicalInfoModel.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInformationModelValidator.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
+    <Compile Include="Models\Student\NameModel.cs" />
+    <Compile Include="Models\Student\NameModelValidator.cs" />
+    <Compile Include="Models\Student\StudentNameToStudentMapper.cs" />
     <Compile Include="Models\Student\StudentToBiographicalInfoModelMapper.cs" />
     <Compile Include="Models\ParentCourse\GradeModel.cs" />
     <Compile Include="Models\ParentCourse\CreateModelValidator.cs" />
@@ -1803,6 +1806,7 @@
     <Compile Include="Models\Session\CreateModelToSessionMapper.cs" />
     <Compile Include="Models\Student\ParentToProfileParentAddressModelMapper.cs" />
     <Compile Include="Models\Student\ParentToProfileParentModelMapper.cs" />
+    <Compile Include="Models\Student\StudentToNameModelMapper.cs" />
     <Compile Include="Service\AttendanceService.cs" />
     <Compile Include="Service\IAttendanceService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -1976,6 +1980,7 @@
     <Content Include="Assets\Scripts\Views\Student\all.js" />
     <Content Include="Assets\Scripts\Views\Student\editBiographicalInfo.js" />
     <Content Include="Assets\Scripts\Views\Student\editProgramStatus.js" />
+    <Content Include="Assets\Scripts\Views\Student\editStudentName.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
     <EmbeddedResource Include="Data\Scripts\016 - Sample Data.sample.sql" />
     <EmbeddedResource Include="Data\Scripts\011 - Add Common Core Standards.sql" />
@@ -2110,6 +2115,7 @@
     <Content Include="Views\ParentCourseGrade\Index.cshtml" />
     <Content Include="Views\Student\BiographicalInformation.cshtml" />
     <Content Include="Views\Student\ProgramStatusPartial.cshtml" />
+    <Content Include="Views\Student\StudentName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

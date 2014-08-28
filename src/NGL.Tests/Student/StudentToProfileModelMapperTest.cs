@@ -28,7 +28,7 @@ namespace NGL.Tests.Student
                 new ParentToProfileParentModelMapper(),
                  new ProfilePhotoUrlFetcher(downloader),
                 new StudentProgramStatusToProfileProgramStatusModelMapper(downloader),
-                _studentAttendancePercentageMapperMock, new StudentToBiographicalInfoModelMapper());
+                _studentAttendancePercentageMapperMock, new StudentToBiographicalInfoModelMapper(), new StudentToNameModelMapper());
         }
 
         [Fact]
@@ -152,8 +152,8 @@ namespace NGL.Tests.Student
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);
-            profileModel.FirstName.ShouldBe(student.FirstName);
-            profileModel.LastName.ShouldBe(student.LastSurname);
+            profileModel.StudentName.FirstName.ShouldBe(student.FirstName);
+            profileModel.StudentName.LastName.ShouldBe(student.LastSurname);
             profileModel.BiographicalInfo.BirthDate.ShouldBe(student.BirthDate.ToShortDateString());
 
             var studentRace = student.StudentRaces.First();

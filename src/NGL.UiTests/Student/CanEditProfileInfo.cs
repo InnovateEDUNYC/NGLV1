@@ -18,6 +18,7 @@ namespace NGL.UiTests.Student
         private Web.Data.Entities.Student _student;
         private ProfilePage _profilePage;
         private EditStudentBiographicalInfoModel _newBiographicalInformation;
+        private NameModel _nameModel;
 
         private void IHaveLoggedIn()
         {
@@ -37,6 +38,24 @@ namespace NGL.UiTests.Student
             var profileModel = new ProfileModel {BiographicalInfo = _newBiographicalInformation};
             _profilePage.EditBiographicalInfo(profileModel);
         }
+        public void IEditTheStudentName()
+        {
+            _nameModel = new NameModel
+            {
+                FirstName = "New",
+                LastName = "Beginning"
+            };
+            _profilePage.EditName(_nameModel);
+        }
+        private void IShouldSeeUpdatedBiographicalInformation()
+        {
+            var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
+            canSeeUpdatedInformation.ShouldBe(true);
+        }
+        private void IShouldSeeUpdatedName()
+        {
+            _profilePage.EditedNameIsVisible(_nameModel).ShouldBe(true);
+        }
 
         [Fact]
         public void ShouldEditProfileInfo()
@@ -44,15 +63,10 @@ namespace NGL.UiTests.Student
             this.Given(_ => IHaveLoggedIn())
                 .When(_ => IGoTTheStudentProfilePage())
                 .And(_ => IEditAStudentsBiographicalInformation())
-                .Then(_ => IShouldSeeUpdatedInformation())
-                
+                .Then(_ => IShouldSeeUpdatedBiographicalInformation())
+                .And(_ => IEditTheStudentName())
+                .Then(_ => IShouldSeeUpdatedName())
             .BDDfy();
-        }
-
-        private void IShouldSeeUpdatedInformation()
-        {
-            var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
-            canSeeUpdatedInformation.ShouldBe(true);
         }
     }
 }
