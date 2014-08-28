@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Castle.Core.Internal;
-using NGL.Web.Controllers;
 using NGL.Web.Models.Shared;
 
 namespace NGL.Web.Extensions

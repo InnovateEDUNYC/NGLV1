@@ -299,12 +299,14 @@
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IParentCourseRepository.cs" />
+    <Compile Include="Data\Repositories\IParentRepository.cs" />
     <Compile Include="Data\Repositories\ISectionRepository.cs" />
     <Compile Include="Data\Repositories\ISessionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
     <Compile Include="Data\Repositories\ParentCourseRepository.cs" />
+    <Compile Include="Data\Repositories\ParentRepository.cs" />
     <Compile Include="Data\Repositories\SectionRepository.cs" />
     <Compile Include="Data\Repositories\SessionRepository.cs" />
     <Compile Include="Data\Repositories\StudentRepository.cs" />
@@ -1723,6 +1725,8 @@
     <Compile Include="Models\Student\HomeAddressModelValidator.cs" />
     <Compile Include="Models\Student\StudentHomeAddressModelToStudentMapper.cs" />
     <Compile Include="Models\Student\ProgramStatusModelToProgramStatusForEditMapper.cs" />
+    <Compile Include="Models\Student\EditParentInfoModelValidator.cs" />
+    <Compile Include="Models\Student\EditProfileParentModelToParentMapper.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInfoModelToStudentMapper.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInfoModel.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInformationModelValidator.cs" />
@@ -1798,7 +1802,7 @@
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
     <Compile Include="Models\Student\ProfileParentAddressModel.cs" />
-    <Compile Include="Models\Student\ProfileParentModel.cs" />
+    <Compile Include="Models\Student\EditProfileParentModel.cs" />
     <Compile Include="Infrastructure\Azure\ProfilePhotoUrlFetcher.cs" />
     <Compile Include="Models\Student\ProfileProgramStatusModel.cs" />
     <Compile Include="Models\Student\StudentProgramStatusToProfileProgramStatusModelMapper.cs" />
@@ -1977,6 +1981,7 @@
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Shared\accordianArrows.js" />
     <Content Include="Assets\Scripts\Views\Shared\enableEditMode.js" />
+    <Content Include="Assets\Scripts\Views\Shared\editProfile.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
     <Content Include="Assets\Scripts\Views\Shared\parentCourseAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Shared\programStatus.js" />
@@ -1986,6 +1991,7 @@
     <Content Include="Assets\Scripts\Views\Student\all.js" />
     <Content Include="Assets\Scripts\Views\Student\editBiographicalInfo.js" />
     <Content Include="Assets\Scripts\Views\Student\editHomeAddress.js" />
+    <Content Include="Assets\Scripts\Views\Student\editParentInfo.js" />
     <Content Include="Assets\Scripts\Views\Student\editProgramStatus.js" />
     <Content Include="Assets\Scripts\Views\Student\editStudentName.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
@@ -2123,6 +2129,8 @@
     <Content Include="Views\Student\ProgramStatus.cshtml" />
     <Content Include="Views\Student\StudentName.cshtml" />
     <Content Include="Views\Student\HomeAddress.cshtml" />
+    <Content Include="Views\Student\ProgramStatusPartial.cshtml" />
+    <Content Include="Views\Student\ParentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />
