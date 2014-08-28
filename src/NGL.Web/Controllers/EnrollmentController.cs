@@ -164,10 +164,10 @@ namespace NGL.Web.Controllers
             _programStatusMapper.Map(programStatus, studentProgramStatus,
                 ps =>
                 {
-                    ps.TitleParticipationFile = titleParticipationFileName ?? ps.TitleParticipationFile;
-                    ps.TestingAccommodationFile = testingAccomodationFileName ?? ps.TestingAccommodationFile;
-                    ps.SpecialEducationFile = specialEducationFileName ?? ps.SpecialEducationFile;
-                    ps.McKinneyVentoFile = mcKinneyVentoFileName ?? ps.McKinneyVentoFile;
+                    ps.TitleParticipationFile = titleParticipationFileName ?? (programStatus.TitleParticipation.GetValueOrDefault() ? ps.TitleParticipationFile : null);
+                    ps.TestingAccommodationFile = testingAccomodationFileName ?? (programStatus.TestingAccommodation.GetValueOrDefault() ? ps.TestingAccommodationFile : null);
+                    ps.SpecialEducationFile = specialEducationFileName ?? (programStatus.SpecialEducation.GetValueOrDefault() ? ps.SpecialEducationFile : null);
+                    ps.McKinneyVentoFile = mcKinneyVentoFileName ?? (programStatus.McKinneyVento.GetValueOrDefault() ? ps.McKinneyVentoFile : null);
                 });
 
             _repository.Save();
