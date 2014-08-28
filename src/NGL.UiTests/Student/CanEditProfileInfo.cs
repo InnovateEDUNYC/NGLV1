@@ -1,8 +1,5 @@
 ﻿using NGL.Tests.Builders;
-using NGL.Tests.ClassPeriod;
-using NGL.UiTests.ClassPeriod;
 using NGL.UiTests.Shared;
-using NGL.Web.Models.ClassPeriod;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using Shouldly;
@@ -40,8 +37,6 @@ namespace NGL.UiTests.Student
             var profileModel = new ProfileModel {BiographicalInfo = _newBiographicalInformation};
             _profilePage.EditBiographicalInfo(profileModel);
         }
-
-
 
         [Fact]
         public void ShouldEditProfileInfo()

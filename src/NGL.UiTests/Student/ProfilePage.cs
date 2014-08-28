@@ -90,11 +90,13 @@ namespace NGL.UiTests.Student
 
         public bool EditedBiographicalInformationIsVisable(EditStudentBiographicalInfoModel newBiographicalInformation)
         {
-            return Browser.PageSource.Contains(newBiographicalInformation.Sex.Humanize()) &&
-                   Browser.PageSource.Contains(newBiographicalInformation.BirthDate) &&
-                   Browser.PageSource.Contains(newBiographicalInformation.HispanicLatinoEthnicity.ToString()) &&
-                   Browser.PageSource.Contains(newBiographicalInformation.Race.Humanize()) &&
-                   Browser.PageSource.Contains(newBiographicalInformation.HomeLanguage.ToString());
+            var sex = Browser.PageSource.Contains(newBiographicalInformation.Sex.Humanize());
+            var birthday = Browser.PageSource.Contains(newBiographicalInformation.BirthDate);
+            var lationo = Browser.PageSource.Contains(newBiographicalInformation.HispanicLatinoEthnicity.ToString());
+            var race = Browser.PageSource.Contains(newBiographicalInformation.Race.Humanize());
+            var language = Browser.PageSource.Contains(newBiographicalInformation.HomeLanguage.ToString());
+
+            return sex && birthday && language && lationo && race;
         }
     }
 }
