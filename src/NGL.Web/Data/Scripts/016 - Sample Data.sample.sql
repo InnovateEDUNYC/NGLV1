@@ -333,6 +333,20 @@ INSERT INTO [edfi].[ParentTelephone]
 	VALUES
 	(@jillparentusi, 1, '123423421')
 
+INSERT INTO [dbo].[StudentProgramStatus]
+           ([StudentUSI]
+           ,[TestingAccommodation]
+           ,[BilingualProgram]
+           ,[EnglishAsSecondLanguage]
+           ,[SchoolFoodServicesEligibilityTypeId]
+           ,[Gifted]
+           ,[SpecialEducation]
+           ,[TitleParticipation]
+           ,[McKinneyVento])
+     VALUES
+           (999, 0, 1, 0, 1, 0, 1, 0, 1)
+GO
+
 INSERT INTO [edfi].[StudentSectionAssociation]
            ([StudentUSI]
            ,[SchoolId]

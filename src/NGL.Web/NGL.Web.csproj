@@ -278,6 +278,7 @@
     <Compile Include="Controllers\CourseGenerationController.cs" />
     <Compile Include="Controllers\ParentCourseController.cs" />
     <Compile Include="Controllers\ParentCourseGradeController.cs" />
+    <Compile Include="Controllers\ProgramStatusUploadedFilePaths.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Data\Entities\AttendanceFlag.cs">
@@ -1718,6 +1719,7 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
+    <Compile Include="Models\Student\ProgramStatusModelToProgramStatusForEditMapper.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInfoModelToStudentMapper.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInfoModel.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInformationModelValidator.cs" />

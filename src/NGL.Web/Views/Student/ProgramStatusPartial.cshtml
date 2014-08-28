@@ -45,7 +45,7 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.TestingAccommodation)
                 </dt>
-                <dd>
+                <dd name="testing-accommodation">
                     @Html.DisplayTextFor(model => model.ProgramStatus.TestingAccommodation)
                     @if (Model.ProgramStatus.TestingAccommodationFile != null)
                     {
@@ -58,25 +58,25 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.BilingualProgram)
                 </dt>
-                <dd>
+                <dd name="bilingual-program">
                     @Html.DisplayTextFor(model => model.ProgramStatus.BilingualProgram)<br />
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.EnglishAsSecondLanguage)
                 </dt>
-                <dd>
+                <dd name="esl">
                     @Html.DisplayTextFor(model => model.ProgramStatus.EnglishAsSecondLanguage)<br />
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.Gifted)
                 </dt>
-                <dd>
+                <dd name="gifted">
                     @Html.DisplayTextFor(model => model.ProgramStatus.Gifted)<br />
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.SpecialEducation)
                 </dt>
-                <dd>
+                <dd name="special-education">
                     @Html.DisplayTextFor(model => model.ProgramStatus.SpecialEducation)
                     @if (Model.ProgramStatus.SpecialEducationFile != null)
                     {
@@ -87,7 +87,7 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.TitleParticipation)
                 </dt>
-                <dd>
+                <dd name="title-participation">
                     @Html.DisplayTextFor(model => model.ProgramStatus.TitleParticipation)
                     @if (Model.ProgramStatus.TitleParticipationFile != null)
                     {
@@ -98,7 +98,7 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.McKinneyVento)
                 </dt>
-                <dd>
+                <dd name="mckinneyvento">
                     @Html.DisplayTextFor(model => model.ProgramStatus.McKinneyVento)
                     @if (Model.ProgramStatus.McKinneyVentoFile != null)
                     {
@@ -109,7 +109,7 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.ProgramStatus.FoodServicesEligibilityStatusForDisplay)
                 </dt>
-                <dd>
+                <dd name="food-services">
                     @Html.DisplayTextFor(model => model.ProgramStatus.FoodServicesEligibilityStatusForDisplay)<br />
                 </dd>
             }
@@ -322,7 +322,7 @@
 
                     <div class="text-right top-buffer-30">
                         @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
-                        <input type="submit" class="btn btn-default btn-primary" value="Save" />
+                        <input id="submit-program-status" type="submit" class="btn btn-default btn-primary" value="Save" />
                     </div>
                 }
 

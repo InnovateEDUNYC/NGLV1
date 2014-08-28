@@ -1,4 +1,5 @@
 ﻿using NGL.Tests.Builders;
+using NGL.Tests.Enrollment;
 using NGL.UiTests.Shared;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
@@ -15,10 +16,10 @@ namespace NGL.UiTests.Student
     public class CanEditProfileInfo
     {
         private HomePage _homePage;
-        private Web.Data.Entities.Student _student;
         private ProfilePage _profilePage;
         private EditStudentBiographicalInfoModel _newBiographicalInformation;
         private NameModel _nameModel;
+        private EnterProgramStatusModel _enterProgramStatusModel;
 
         private void IHaveLoggedIn()
         {
@@ -28,7 +29,6 @@ namespace NGL.UiTests.Student
         }
         private void IGoTTheStudentProfilePage()
         {
-            _student = new StudentBuilder().Build();
             _profilePage = _homePage.TopMenu.GoToStudentsPage().GoToProfilePage();
 
         }
@@ -57,6 +57,26 @@ namespace NGL.UiTests.Student
             _profilePage.EditedNameIsVisible(_nameModel).ShouldBe(true);
         }
 
+        private void IShouldSeeUpdatedInformation()
+        {
+            var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
+            canSeeUpdatedInformation.ShouldBe(true);
+        }
+
+        private void IEditTheProgramStatusInformation()
+        {
+            var editProgramStatusPanel = _profilePage.EditProgramStatus();
+
+            _enterProgramStatusModel = new EnterProgramStatusModelBuilder().WithTestingAccommodation(true).WithMcKinneyVento(false).Build();
+            editProgramStatusPanel.Edit(_enterProgramStatusModel);
+        }
+
+        private void IShouldSeeUpdateProgramStatusInformation()
+        {
+            var canSeeUpdateProgramStatus = _profilePage.IsProgramStatusInfoAccordingTo(_enterProgramStatusModel);
+            canSeeUpdateProgramStatus.ShouldBe(true);
+        }
+
         [Fact]
         public void ShouldEditProfileInfo()
         {
@@ -66,7 +86,10 @@ namespace NGL.UiTests.Student
                 .Then(_ => IShouldSeeUpdatedBiographicalInformation())
                 .And(_ => IEditTheStudentName())
                 .Then(_ => IShouldSeeUpdatedName())
-            .BDDfy();
+                .When(_ => IEditTheProgramStatusInformation())
+                .Then(_ => IShouldSeeUpdateProgramStatusInformation())
+
+                .BDDfy();
         }
     }
 }

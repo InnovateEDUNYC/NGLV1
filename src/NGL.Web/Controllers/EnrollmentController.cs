@@ -8,6 +8,7 @@ using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -20,6 +21,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<AcademicDetailModel, StudentSchoolAssociation> _schoolAssociationMapper;
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
         private readonly IStudentRepository _studentRepository;
+        private readonly ProgramStatusModelToProgramStatusForEditMapper _programStatusModelToProgramStatusForEditMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
                                                 IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
@@ -27,11 +29,13 @@ namespace NGL.Web.Controllers
                                                 IFileUploader fileUploader,
                                                 IMapper<AcademicDetailModel, 
                                                 StudentSchoolAssociation> schoolAssociationMapper,
-                                                IStudentRepository studentRepository)
+                                                IStudentRepository studentRepository, 
+                                                ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;
             _studentRepository = studentRepository;
+            _programStatusModelToProgramStatusForEditMapper = programStatusModelToProgramStatusForEditMapper;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -159,16 +163,11 @@ namespace NGL.Web.Controllers
             var titleParticipationFileName = Upload(programStatus.TitleParticipationFile, studentUsi, "ProgramStatus", "titleParticipation");
             var mcKinneyVentoFileName = Upload(programStatus.McKinneyVentoFile, studentUsi, "ProgramStatus", "mcKinneyVento");
 
-            var studentProgramStatus = _repository.Get<StudentProgramStatus>(sps => sps.StudentUSI == studentUsi);
+            var filePaths = new ProgramStatusUploadedFilePaths(specialEducationFileName, testingAccomodationFileName,
+                titleParticipationFileName, mcKinneyVentoFileName);
 
-            _programStatusMapper.Map(programStatus, studentProgramStatus,
-                ps =>
-                {
-                    ps.TitleParticipationFile = titleParticipationFileName ?? ps.TitleParticipationFile;
-                    ps.TestingAccommodationFile = testingAccomodationFileName ?? ps.TestingAccommodationFile;
-                    ps.SpecialEducationFile = specialEducationFileName ?? ps.SpecialEducationFile;
-                    ps.McKinneyVentoFile = mcKinneyVentoFileName ?? ps.McKinneyVentoFile;
-                });
+            var studentProgramStatus = _repository.Get<StudentProgramStatus>(sps => sps.StudentUSI == studentUsi);
+            _programStatusModelToProgramStatusForEditMapper.Map(programStatus, studentProgramStatus, filePaths);
 
             _repository.Save();
 
