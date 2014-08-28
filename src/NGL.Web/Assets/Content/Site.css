@@ -24,6 +24,15 @@
     display: none;
 }
 
+.enabled-edit {
+    cursor: pointer;
+    color: #2DBCBB;
+}
+
+.enabled-edit:hover {
+    color: #249695;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -138,7 +147,7 @@ form .inline input {
 .current-section-list-item {
     background-color: white;
     border: solid 1px lightgrey;
-    border-left: turquoise 4px solid;
+    border-left: #2DBCBB 4px solid;
     padding: 3px 0 3px 8px;
     width: 100%;
 }

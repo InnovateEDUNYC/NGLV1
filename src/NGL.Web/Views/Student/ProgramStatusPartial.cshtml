@@ -29,7 +29,7 @@
         Program Status <i class="fa fa-caret-down arrow"></i>
         @if (Model.ProgramStatus != null)
         {
-            <a id="edit-program-status" class="fa fa-pencil pull-right hidden"></a>
+            <span id="edit-program-status" class="fa fa-pencil pull-right enabled-edit"></span>
         }
     </h4>
 
@@ -159,6 +159,12 @@
                                     <div class="file-upload">
                                         @s.FieldFor(m => m.ProgramStatus.TestingAccommodationFile).Attrs(fileAttributes).WithoutLabel().Label("")
                                     </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.TestingAccommodationFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
+                                    </div>
 
                                 </div>
                             </div>
@@ -241,6 +247,12 @@
                                     <div class="file-upload">
                                         @s.FieldFor(m => m.ProgramStatus.SpecialEducationFile).Attrs(fileAttributes).WithoutLabel().Label("")
                                     </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.SpecialEducationFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
+                                    </div>
 
                                 </div>
                             </div>
@@ -265,6 +277,12 @@
                                     <div class="file-upload">
                                         @s.FieldFor(m => m.ProgramStatus.TitleParticipationFile).Attrs(fileAttributes).WithoutLabel().Label("")
                                     </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.TitleParticipationFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
+                                    </div>
 
                                 </div>
                             </div>
@@ -288,6 +306,12 @@
 
                                     <div class="file-upload">
                                         @s.FieldFor(m => m.ProgramStatus.McKinneyVentoFile).Attrs(fileAttributes).WithoutLabel().Label("")
+                                    </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.McKinneyVentoFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
                                     </div>
 
                                 </div>

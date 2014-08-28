@@ -2,7 +2,6 @@
 
 Ngl.student.editProgramStatus = (function () {
     var init = function () {
-        console.log(Ngl);
         Ngl.shared.programStatus.allowFileUploadConditionally("ProgramStatus_TestingAccommodation", "ProgramStatus_TestingAccommodationFile");
         Ngl.shared.programStatus.allowFileUploadConditionally("ProgramStatus_SpecialEducation", "ProgramStatus_SpecialEducationFile");
         Ngl.shared.programStatus.allowFileUploadConditionally("ProgramStatus_TitleParticipation", "ProgramStatus_TitleParticipationFile");
