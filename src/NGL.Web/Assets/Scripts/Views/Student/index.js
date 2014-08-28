@@ -24,6 +24,7 @@ Ngl.student.index = (function () {
 
     var enterEditFlagsMode = function () {
         $('#edit-attendance').off('click');
+        $('#edit-attendance').removeClass('enabled-edit');
         setupRemoveFlagsButton();
     }
 

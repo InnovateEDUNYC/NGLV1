@@ -11,7 +11,6 @@ Ngl.shared.learningStandards = (function () {
     }
 
     var setUpLearningStandardChangeEvent = function () {
-        console.log("settingUpLearningStandardChangeEvent");
         $('#LearningStandard').on('change', setUpStandards);
     }
 
@@ -30,10 +29,8 @@ Ngl.shared.learningStandards = (function () {
             },
 
             success: function (listOfCommonCoreListItemModels) {
-//                console.log(listOfCommonCoreListItemModels);
                 if (!listOfCommonCoreListItemModels.BadInput) {
                     listOfCommonCoreListItemModels.forEach(function (e) {
-                        console.log(e.Description);
                         $('#CommonCoreStandard').append('<option value="' + e.LearningStandardId + '">' + e.Description + '</option>');
                     });
                 }
