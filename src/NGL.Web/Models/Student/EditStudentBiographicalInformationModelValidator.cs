@@ -11,6 +11,7 @@ namespace NGL.Web.Models.Student
             RuleFor(bim => bim.BirthDate).NotNull();
             RuleFor(bim => bim.Race).NotNull();
             RuleFor(bim => bim.HomeLanguage).NotNull();
+            RuleFor(bim => bim.StudentUsi).NotNull().NotEqual(0);
         }
     }
 }

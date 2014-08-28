@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
@@ -8,8 +9,8 @@ namespace NGL.Web.Models.Student
     {
         [Display(Name = "Student USI")]
         public int StudentUsi { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+
+        public NameModel StudentName { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public EditStudentBiographicalInfoModel BiographicalInfo { get; set; }
         public string Address { get; set; }

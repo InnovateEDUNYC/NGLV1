@@ -271,3 +271,11 @@ body h4.panel:first-child {
     float: right;
     margin-top: 0px;   
 }
+
+.inline {
+    display: inline;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}

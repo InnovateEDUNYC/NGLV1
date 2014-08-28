@@ -16,19 +16,21 @@ namespace NGL.Web.Models.Student
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
         private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
         private readonly IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> _biographicalInfoMapper;
+        private readonly IMapper<Data.Entities.Student, NameModel> _studentNameMapper;
 
         public StudentToProfileModelMapper(
             StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
             ParentToProfileParentModelMapper parentToProfileParentModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
             StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper,
-            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> biographicalInfoMapper)
+            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> biographicalInfoMapper, IMapper<Data.Entities.Student, NameModel> studentNameMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
             _studentProgramStatusToProfileProgramStatusModelMapper = studentProgramStatusToProfileProgramStatusModelMapper;
             _studentAttendancePercentageMapper = studentAttendancePercentageMapper;
             _biographicalInfoMapper = biographicalInfoMapper;
+            _studentNameMapper = studentNameMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
@@ -64,8 +66,7 @@ namespace NGL.Web.Models.Student
         private void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
         {
             target.StudentUsi = source.StudentUSI;
-            target.FirstName = source.FirstName;
-            target.LastName = source.LastSurname;
+            target.StudentName = _studentNameMapper.Build(source);
             target.BiographicalInfo = _biographicalInfoMapper.Build(source);
         }
             

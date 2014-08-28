@@ -26,11 +26,12 @@ namespace NGL.Web.Controllers
         private readonly AzureStorageUploader _fileUploader;
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper<EditStudentBiographicalInfoModel, Student> _studentBiographicalInfoToStudentMapper;
+        private readonly IMapper<NameModel, Student> _studentNameToStudentMapper;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
                                                 IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
                                                 AzureStorageUploader fileUploader, IStudentRepository studentRepository,
-                                IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper)
+                                IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, IMapper<NameModel, Student> studentNameToStudentMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
@@ -38,6 +39,7 @@ namespace NGL.Web.Controllers
             _fileUploader = fileUploader;
             _studentRepository = studentRepository;
             _studentBiographicalInfoToStudentMapper = studentBiographicalInfoToStudentMapper;
+            _studentNameToStudentMapper = studentNameToStudentMapper;
         }
 
         // GET: /Student/All
@@ -124,6 +126,21 @@ namespace NGL.Web.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public virtual JsonResult EditStudentName(NameModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var nglErrors = ModelState.GetNglErrors();
+                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
+            }
+
+            var student = _studentRepository.GetByUSI(model.StudentUsi);
+            _studentNameToStudentMapper.Map(model, student);
+
+            _repository.Save();
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
         private void Upload(Stream file, string relativePath)
         {
             if (file != null)

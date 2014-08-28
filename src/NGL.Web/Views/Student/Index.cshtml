@@ -39,12 +39,7 @@
                             }
                         </div>
                     }
-                    <h3>
-                        <strong>
-                            @Html.DisplayFor(model => model.FirstName)
-                            @Html.DisplayFor(model => model.LastName)
-                        </strong>
-                    </h3>
+                        @Html.Partial("StudentName", Model.StudentName)
                     <p>
                         @Html.DisplayNameFor(model => model.StudentUsi): 
                         @Html.DisplayFor(model => model.StudentUsi)
@@ -385,4 +380,5 @@
     Ngl.shared.accordianArrows.init();
     Ngl.student.editBiographicalInfo.init();
     Ngl.student.editProgramStatus.init();
+    Ngl.student.editStudentName.init();
 }
