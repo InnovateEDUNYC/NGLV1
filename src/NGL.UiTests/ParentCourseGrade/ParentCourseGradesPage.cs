@@ -20,7 +20,6 @@ namespace NGL.UiTests.ParentCourseGrade
         {
             Find.Element(By.ClassName("btn-primary"));
             Navigate.To<ParentCourseGradesPage>(By.ClassName("btn-primary"));
-//            Input.ReplaceInputValueWith(m => m.ParentGradesModelList[0].Grade, grade);
             Execute.Script("$('#grade-0').val(" + grade + ");");
             Navigate.To<ParentCourseGradesPage>(By.ClassName("btn-primary"));
         }

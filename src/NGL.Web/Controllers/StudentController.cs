@@ -113,7 +113,6 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
             {
                 var nglErrors = ModelState.GetNglErrors();
-
                 return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
             }
 

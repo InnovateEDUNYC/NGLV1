@@ -142,6 +142,7 @@
     <Compile Include="Shared\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\UsersPage.cs" />
+    <Compile Include="Student\CanEditProfileInfo.cs" />
     <Compile Include="Student\ProfilePage.cs" />
   </ItemGroup>
   <ItemGroup>
