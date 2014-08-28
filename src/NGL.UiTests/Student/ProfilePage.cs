@@ -5,7 +5,9 @@ using NGL.UiTests.Schedule;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using OpenQA.Selenium;
+using TestStack.Seleno.Configuration;
 using TestStack.Seleno.PageObjects;
+using TestStack.Seleno.PageObjects.Actions;
 
 namespace NGL.UiTests.Student
 {
@@ -73,12 +75,12 @@ namespace NGL.UiTests.Student
         {
             var editButton = Find.Element(By.Id("edit-biographical-info-button"));
             editButton.Click();
-            InputBiographicalInfoValues(profileModel);
-            return this;
+            return InputBiographicalInfoValues(profileModel);
         }
 
-        private void InputBiographicalInfoValues(ProfileModel profileModel)
+        private ProfilePage InputBiographicalInfoValues(ProfileModel profileModel)
         {
+            WaitFor.AjaxCallsToComplete();
             Execute.Script("$('#Sex').val('" + profileModel.BiographicalInfo.Sex + "')");
             Execute.Script("$('#BirthDate').val('" + profileModel.BiographicalInfo.BirthDate + "')");
             Execute.Script("$('#HispanicLatinoEthnicity').attr('checked'," +
@@ -86,10 +88,12 @@ namespace NGL.UiTests.Student
             Execute.Script("$('#Race').val('" + profileModel.BiographicalInfo.Race + "')");
             Execute.Script("$('#HomeLanguage').val('" + profileModel.BiographicalInfo.HomeLanguage + "')");
             Execute.Script("$('#save-biographical-info-edit').click()");
+            return this;
         }
 
         public bool EditedBiographicalInformationIsVisable(EditStudentBiographicalInfoModel newBiographicalInformation)
         {
+            WaitFor.AjaxCallsToComplete();
             var sex = Browser.PageSource.Contains(newBiographicalInformation.Sex.Humanize());
             var birthday = Browser.PageSource.Contains(newBiographicalInformation.BirthDate);
             var lationo = Browser.PageSource.Contains(newBiographicalInformation.HispanicLatinoEthnicity.ToString());
@@ -97,6 +101,22 @@ namespace NGL.UiTests.Student
             var language = Browser.PageSource.Contains(newBiographicalInformation.HomeLanguage.ToString());
 
             return sex && birthday && language && lationo && race;
+        }
+
+        public bool EditedNameIsVisible(NameModel nameModel)
+        {
+            return (Browser.PageSource.Contains(nameModel.FirstName) &&
+                Browser.PageSource.Contains(nameModel.LastName));
+        }
+
+        public ProfilePage EditName(NameModel nameModel)
+        {
+            Find.Element(By.Id("edit-student-name-button")).Click();
+            Execute.Script("$('#FirstName').val('" + nameModel.FirstName + "')");
+            Execute.Script("$('#LastName').val('" + nameModel.LastName + "')");
+            Execute.Script("$('#save-student-name-edit').click()");
+            WaitFor.AjaxCallsToComplete();
+            return this;
         }
     }
 }
