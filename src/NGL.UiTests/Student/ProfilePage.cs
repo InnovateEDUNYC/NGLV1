@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Humanizer;
 using NGL.UiTests.Schedule;
 using NGL.Web.Models.Enrollment;
@@ -66,6 +67,34 @@ namespace NGL.UiTests.Student
         {
             var flags = Find.Elements(By.CssSelector("span.fa-flag"));
             return flags.Count() == flagCount;
+        }
+
+        public ProfilePage EditBiographicalInfo(ProfileModel profileModel)
+        {
+            var editButton = Find.Element(By.Id("edit-biographical-info-button"));
+            editButton.Click();
+            InputBiographicalInfoValues(profileModel);
+            return this;
+        }
+
+        private void InputBiographicalInfoValues(ProfileModel profileModel)
+        {
+            Execute.Script("$('#Sex').val('" + profileModel.BiographicalInfo.Sex + "')");
+            Execute.Script("$('#BirthDate').val('" + profileModel.BiographicalInfo.BirthDate + "')");
+            Execute.Script("$('#HispanicLatinoEthnicity').attr('checked'," +
+                           profileModel.BiographicalInfo.HispanicLatinoEthnicity.ToString().ToLower() + ")");
+            Execute.Script("$('#Race').val('" + profileModel.BiographicalInfo.Race + "')");
+            Execute.Script("$('#HomeLanguage').val('" + profileModel.BiographicalInfo.HomeLanguage + "')");
+            Execute.Script("$('#save-biographical-info-edit').click()");
+        }
+
+        public bool EditedBiographicalInformationIsVisable(EditStudentBiographicalInfoModel newBiographicalInformation)
+        {
+            return Browser.PageSource.Contains(newBiographicalInformation.Sex.Humanize()) &&
+                   Browser.PageSource.Contains(newBiographicalInformation.BirthDate) &&
+                   Browser.PageSource.Contains(newBiographicalInformation.HispanicLatinoEthnicity.ToString()) &&
+                   Browser.PageSource.Contains(newBiographicalInformation.Race.Humanize()) &&
+                   Browser.PageSource.Contains(newBiographicalInformation.HomeLanguage.ToString());
         }
     }
 }

@@ -6,6 +6,8 @@ Ngl.student.editBiographicalInfo = (function () {
         setUpEditButton();
         setUpCancelButton();
         setUpSaveButton();
+
+
     }
 
     var setUpEditButton = function() {
@@ -13,7 +15,7 @@ Ngl.student.editBiographicalInfo = (function () {
             $('#readonly-biographical-info').hide();
             $('#editable-biographical-info').show();
         });
-    };
+    }
 
     var setUpCancelButton = function() {
         $('#cancel-biographical-info-edit').on('click', function () {
@@ -52,10 +54,10 @@ Ngl.student.editBiographicalInfo = (function () {
                 var errors = returnValue.nglErrors;
                 if (!errors == false) {
                     displayErrors(errors);
-                    
+
                 } else {
                     location.reload(true);
-                }
+                };
             }
         });
     }
