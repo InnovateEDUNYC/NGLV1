@@ -51,13 +51,13 @@
             </tbody>
         </table>
         if ((User as NglPrincipal).HasAccessTo("grades", "edit"))
-        @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "btn btn-primary top-buffer-30" })
         {
-        @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SectionId), new { @class="btn btn-primary"})
+            @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId),
+            new { @class = "btn btn-primary top-buffer-30 pull-right" })
         }
         if ((User as NglPrincipal).HasAccessTo("grades", "view"))
         {
-            @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model), new { @class = "btn btn-primary" })
+            @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model), new { @class = "btn btn-primary pull-right" })
         }
     }
     else

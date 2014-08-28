@@ -12,6 +12,7 @@ using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
+using NGL.Web.Models.Grade;
 using NGL.Web.Service;
 using Ninject;
 using Ninject.Extensions.Conventions;
@@ -83,6 +84,8 @@ namespace NGL.Web
             kernel.Bind<ICreateModelToAssessmentLearningStandardMapper>().To<CreateModelToCreateModelToAssessmentLearningStandardMapper>();
             kernel.Bind<IAttendanceService>().To<AttendanceService>();
             kernel.Bind<ISessionFilter>().To<SessionFilter>();
+            kernel.Bind<ParentCourseGradeToCsvMapper>().ToSelf();
+
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()

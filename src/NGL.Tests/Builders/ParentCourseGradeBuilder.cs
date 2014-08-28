@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Builders
 {
@@ -43,7 +38,6 @@ namespace NGL.Tests.Builders
         public ParentCourseGradeBuilder WithSession(Web.Data.Entities.Session session)
         {
             _session = session;
-            _parentCourse = parentCourse;
             return this;
         }
 

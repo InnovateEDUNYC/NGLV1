@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Models.Grade;
 using NGL.Web.Models.ParentCourse;
 
 namespace NGL.Web.Controllers
@@ -14,14 +15,16 @@ namespace NGL.Web.Controllers
         private readonly IGenericRepository _genericRepository;
         private readonly ISessionRepository _sesssionRepository;
         private readonly ParentCourseGradesModelToStudentsMapper _parentCourseGradesModelToStudentsMapper;
+        private readonly ParentCourseGradeToCsvMapper _parentCourseToCsvMapper;
 
-        public ParentCourseGradeController(IParentCourseRepository parentCourseRepository, IGenericRepository genericRepository, ISessionRepository sesssionRepository, ParentCourseGradesModelToStudentsMapper parentCourseGradesModelToStudentsMapper, StudentsSesssionParentCourseToParentCourseGradesModelMapper studentsSesssionParentCourseToParentCourseGradesModelMapper)
+        public ParentCourseGradeController(IParentCourseRepository parentCourseRepository, IGenericRepository genericRepository, ISessionRepository sesssionRepository, ParentCourseGradesModelToStudentsMapper parentCourseGradesModelToStudentsMapper, StudentsSesssionParentCourseToParentCourseGradesModelMapper studentsSesssionParentCourseToParentCourseGradesModelMapper, ParentCourseGradeToCsvMapper parentCourseToCsvMapper)
         {
             _parentCourseRepository = parentCourseRepository;
             _genericRepository = genericRepository;
             _sesssionRepository = sesssionRepository;
             _parentCourseGradesModelToStudentsMapper = parentCourseGradesModelToStudentsMapper;
             _studentsSesssionParentCourseToParentCourseGradesModelMapper = studentsSesssionParentCourseToParentCourseGradesModelMapper;
+            _parentCourseToCsvMapper = parentCourseToCsvMapper;
         }
         public virtual ActionResult Index()
         {
@@ -86,9 +89,16 @@ namespace NGL.Web.Controllers
         public virtual ActionResult ExportCsv(ParentCourseGradesModel model)
         {
             if (model == null)
-                return View();
-            return null;
+                RedirectToAction(MVC.ParentCourseGrade.Get());
 
+            var bytesInStream = _parentCourseToCsvMapper.Build(model.FindParentCourseModel.ParentCourse, model.ParentGradesModelList);
+            Response.Clear();
+            Response.ContentType = "application/force-download";
+            Response.AddHeader("content-disposition", "attachment; filename=course.csv");
+            Response.BinaryWrite(bytesInStream);
+            Response.End();
+
+            return new FileContentResult(bytesInStream, "application/force-download");
         }
     }
 }
