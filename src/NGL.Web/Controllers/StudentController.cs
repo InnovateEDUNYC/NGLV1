@@ -28,14 +28,18 @@ namespace NGL.Web.Controllers
         private readonly IMapper<EditStudentBiographicalInfoModel, Student> _studentBiographicalInfoToStudentMapper;
         private readonly IMapper<NameModel, Student> _studentNameToStudentMapper;
         private readonly IMapper<HomeAddressModel, StudentAddress> _studentHomeAddressToStudentMapper;
+        private readonly IParentRepository _parentRepository;
+        private readonly IMapper<EditProfileParentModel, Parent> _editProfileParentModelToParentMapper;
 
-        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
-                                    IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                    AzureStorageUploader fileUploader, 
-                                    IStudentRepository studentRepository,
-                                    IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
-                                    IMapper<NameModel, Student> studentNameToStudentMapper, 
-                                    IMapper<HomeAddressModel, StudentAddress> studentHomeAddressToStudentMapper)
+        public StudentController(IGenericRepository repository, 
+            IMapper<Student, ProfileModel> studentToProfileModelMapper,
+            IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
+            IMapper<NameModel, Student> studentNameToStudentMapper, 
+            IMapper<HomeAddressModel, StudentAddress> studentHomeAddressToStudentMapper,
+            AzureStorageUploader fileUploader, IStudentRepository studentRepository,
+            IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
+            IParentRepository parentRepository, 
+            IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
@@ -45,6 +49,8 @@ namespace NGL.Web.Controllers
             _studentBiographicalInfoToStudentMapper = studentBiographicalInfoToStudentMapper;
             _studentNameToStudentMapper = studentNameToStudentMapper;
             _studentHomeAddressToStudentMapper = studentHomeAddressToStudentMapper;
+            _parentRepository = parentRepository;
+            _editProfileParentModelToParentMapper = editProfileParentModelToParentMapper;
         }
 
         // GET: /Student/All
@@ -161,6 +167,22 @@ namespace NGL.Web.Controllers
 
             _studentHomeAddressToStudentMapper.Map(model, address);
 
+            _repository.Save();
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual JsonResult EditParentInfo(EditProfileParentModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var nglErrors = ModelState.GetNglErrors();
+
+                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
+            }
+
+            var parent = _parentRepository.GetByUSI(model.ParentUSI);
+            _editProfileParentModelToParentMapper.Map(model, parent);
             _repository.Save();
 
             return Json(true, JsonRequestBehavior.AllowGet);

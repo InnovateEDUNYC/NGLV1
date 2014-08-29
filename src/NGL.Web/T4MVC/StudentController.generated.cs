@@ -84,6 +84,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditHomeAddress);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult EditParentInfo()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditParentInfo);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StudentController Actions { get { return MVC.Student; } }
@@ -107,6 +113,7 @@ namespace NGL.Web.Controllers
             public readonly string EditBiographicalInfo = "EditBiographicalInfo";
             public readonly string EditStudentName = "EditStudentName";
             public readonly string EditHomeAddress = "EditHomeAddress";
+            public readonly string EditParentInfo = "EditParentInfo";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -119,6 +126,7 @@ namespace NGL.Web.Controllers
             public const string EditBiographicalInfo = "EditBiographicalInfo";
             public const string EditStudentName = "EditStudentName";
             public const string EditHomeAddress = "EditHomeAddress";
+            public const string EditParentInfo = "EditParentInfo";
         }
 
 
@@ -163,6 +171,14 @@ namespace NGL.Web.Controllers
         {
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_EditParentInfo s_params_EditParentInfo = new ActionParamsClass_EditParentInfo();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditParentInfo EditParentInfoParams { get { return s_params_EditParentInfo; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditParentInfo
+        {
+            public readonly string model = "model";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -178,7 +194,9 @@ namespace NGL.Web.Controllers
                 public readonly string Delete = "Delete";
                 public readonly string HomeAddress = "HomeAddress";
                 public readonly string Index = "Index";
+                public readonly string ParentPartial = "ParentPartial";
                 public readonly string ProgramStatus = "ProgramStatus";
+                public readonly string ProgramStatusPartial = "ProgramStatusPartial";
                 public readonly string Reports = "Reports";
                 public readonly string StudentName = "StudentName";
             }
@@ -187,7 +205,9 @@ namespace NGL.Web.Controllers
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
             public readonly string HomeAddress = "~/Views/Student/HomeAddress.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string ParentPartial = "~/Views/Student/ParentPartial.cshtml";
             public readonly string ProgramStatus = "~/Views/Student/ProgramStatus.cshtml";
+            public readonly string ProgramStatusPartial = "~/Views/Student/ProgramStatusPartial.cshtml";
             public readonly string Reports = "~/Views/Student/Reports.cshtml";
             public readonly string StudentName = "~/Views/Student/StudentName.cshtml";
         }
@@ -278,6 +298,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditHomeAddress);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             EditHomeAddressOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditParentInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Student.EditProfileParentModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult EditParentInfo(NGL.Web.Models.Student.EditProfileParentModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditParentInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            EditParentInfoOverride(callInfo, model);
             return callInfo;
         }
 

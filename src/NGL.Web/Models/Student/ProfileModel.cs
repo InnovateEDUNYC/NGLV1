@@ -18,8 +18,8 @@ namespace NGL.Web.Models.Student
         public string City { get; set; }
         public string State { get; set; }
         public string PostalCode { get; set; }
-        public ProfileParentModel ProfileParentModel { get; set; }
-        public ProfileParentModel SecondProfileParentModel { get; set; }
+        public EditProfileParentModel EditProfileParentModel { get; set; }
+        public EditProfileParentModel SecondEditProfileParentModel { get; set; }
         public ProfileAcademicDetailModel AcademicDetail { get; set; }
         public ProfileProgramStatusModel ProgramStatus { get; set; }
         public int AttendancePercentage { get; set; }

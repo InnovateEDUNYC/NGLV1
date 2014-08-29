@@ -12,8 +12,6 @@ namespace NGL.Tests.Builders
         private int _studentUsi = 999;
         private string _firstName = "Bob";
         private static string _lastName = "Jenkins";
-        private const string Parent1FirstName = "Leroy";
-        private const string Parent2FirstName = "Johanna";
         private const int Sex = (int)SexTypeEnum.Male;
         private readonly DateTime _birthDate = new DateTime(2000, 2, 2);
         private ICollection<StudentAcademicDetail> _studentAcademicDetails;
@@ -68,7 +66,7 @@ namespace NGL.Tests.Builders
         public StudentBuilder WithParent(Parent parent=null, bool livesWith = true)
         {
             if (parent == null)
-                parent = ParentFactory.CreateParentWithoutAddress();
+                parent = new ParentBuilder().WithAddress().WithPhoneNumber().Build();
 
             var studentParentAssociation = new StudentParentAssociation
             {

@@ -44,7 +44,7 @@ namespace NGL.Tests.Student
             _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
-            NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
+            NativeParentPropertiesShouldBeMapped(parent, profileModel.EditProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
             profileModel.ProgramStatus.ShouldNotBe(null);
             _studentAttendancePercentageMapperMock.Received().Map(Arg.Any<IList<StudentSectionAttendanceEvent>>(), Arg.Any<ProfileModel>());
@@ -70,14 +70,14 @@ namespace NGL.Tests.Student
         {
             SetupWithDownloaderReturning("");
 
-            var parent = ParentFactory.CreateParentWithAddress();
+            var parent = new ParentBuilder().WithAddress().WithPhoneNumber().Build();
             var student = new StudentBuilder().WithParent(parent, false).Build();
             var profileModel = new ProfileModel();
 
             _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
-            NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
+            NativeParentPropertiesShouldBeMapped(parent, profileModel.EditProfileParentModel);
             ParentAddressShouldBeMapped(parent, profileModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
         }
@@ -95,8 +95,8 @@ namespace NGL.Tests.Student
             _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
-            NativeParentPropertiesShouldBeMapped(firstParent, profileModel.ProfileParentModel);
-            NativeParentPropertiesShouldBeMapped(secondParent, profileModel.SecondProfileParentModel);
+            NativeParentPropertiesShouldBeMapped(firstParent, profileModel.EditProfileParentModel);
+            NativeParentPropertiesShouldBeMapped(secondParent, profileModel.SecondEditProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
         }
 
@@ -166,27 +166,27 @@ namespace NGL.Tests.Student
             studentProfileHomeLanguage.ShouldBe((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId);
         }
 
-        private static void NativeParentPropertiesShouldBeMapped(Parent parent, ProfileParentModel profileParentModel)
+        private static void NativeParentPropertiesShouldBeMapped(Parent parent, EditProfileParentModel editProfileParentModel)
         {
-            profileParentModel.FirstName.ShouldBe(parent.FirstName);
-            profileParentModel.LastName.ShouldBe(parent.LastSurname);
-            profileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId.GetValueOrDefault()).Humanize());
-            profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
+            editProfileParentModel.FirstName.ShouldBe(parent.FirstName);
+            editProfileParentModel.LastName.ShouldBe(parent.LastSurname);
+            editProfileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId.GetValueOrDefault()));
+            editProfileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
         }
 
         private static void StudentParentAssociationShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
-            var profileParentModel = profileModel.ProfileParentModel;
+            var profileParentModel = profileModel.EditProfileParentModel;
             var studentParentAssociation = student.StudentParentAssociations.First();
             profileParentModel.Relationship.ShouldBe(
-                ((RelationTypeEnum)studentParentAssociation.RelationTypeId).Humanize());
+                ((RelationTypeEnum)studentParentAssociation.RelationTypeId));
 
             profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
         }
 
         private static void ParentAddressShouldBeMapped(Parent parent, ProfileModel profileModel)
         {
-            var profileParentAddressModel = profileModel.ProfileParentModel.ProfileParentAddressModel;
+            var profileParentAddressModel = profileModel.EditProfileParentModel.ProfileParentAddressModel;
             var parentHomeAddress = parent.ParentAddresses.First();
 
             profileParentAddressModel.Address.ShouldBe(parentHomeAddress.StreetNumberName);

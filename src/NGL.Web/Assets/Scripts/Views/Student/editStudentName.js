@@ -6,8 +6,6 @@ Ngl.student.editStudentName = (function () {
         setUpEditButton();
         setUpCancelButton();
         setUpSaveButton();
-
-
     }
 
     var setUpEditButton = function () {

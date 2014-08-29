@@ -105,7 +105,7 @@ namespace NGL.UiTests.Student
 
         public EditProgramStatusPanel EditProgramStatus()
         {
-            return Navigate.To<EditProgramStatusPanel>(By.Id("edit-program-status"));
+            return Navigate.To<EditProgramStatusPanel>(By.Id("edit-program-status-button"));
         }
 
         public bool IsProgramStatusInfoAccordingTo(EnterProgramStatusModel enterProgramStatusModel)

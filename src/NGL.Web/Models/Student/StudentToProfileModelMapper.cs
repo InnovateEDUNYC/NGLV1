@@ -10,7 +10,7 @@ namespace NGL.Web.Models.Student
 {
     public class StudentToProfileModelMapper : MapperBase<Data.Entities.Student, ProfileModel>
     {
-        private readonly IMapper<Parent, ProfileParentModel> _parentToProfileParentModelMapper;
+        private readonly IMapper<Parent, EditProfileParentModel> _parentToProfileParentModelMapper;
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
@@ -85,12 +85,12 @@ namespace NGL.Web.Models.Student
         {
             var studentParentAssociations = source.StudentParentAssociations;
             var parent1 = studentParentAssociations.First().Parent;
-            target.ProfileParentModel = _parentToProfileParentModelMapper.Build(parent1);
+            target.EditProfileParentModel = _parentToProfileParentModelMapper.Build(parent1);
 
             if (studentParentAssociations.Count == 2)
             {
                 var parent2 = studentParentAssociations.ElementAt(1).Parent;
-                target.SecondProfileParentModel = _parentToProfileParentModelMapper.Build(parent2);
+                target.SecondEditProfileParentModel = _parentToProfileParentModelMapper.Build(parent2);
             }
         }
     }
