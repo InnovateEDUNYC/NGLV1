@@ -2129,7 +2129,6 @@
     <Content Include="Views\Student\ProgramStatus.cshtml" />
     <Content Include="Views\Student\StudentName.cshtml" />
     <Content Include="Views\Student\HomeAddress.cshtml" />
-    <Content Include="Views\Student\ProgramStatusPartial.cshtml" />
     <Content Include="Views\Student\ParentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>

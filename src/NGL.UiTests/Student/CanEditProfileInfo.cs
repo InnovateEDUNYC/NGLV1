@@ -52,15 +52,15 @@ namespace NGL.UiTests.Student
             var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
             canSeeUpdatedInformation.ShouldBe(true);
         }
-        private void IShouldSeeUpdatedName()
-        {
-            _profilePage.EditedNameIsVisible(_nameModel).ShouldBe(true);
-        }
 
         private void IShouldSeeUpdatedInformation()
         {
             var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
             canSeeUpdatedInformation.ShouldBe(true);
+        }
+        private void IShouldSeeUpdatedName()
+        {
+            _profilePage.EditedNameIsVisible(_nameModel).ShouldBe(true);
         }
 
         private void IEditTheProgramStatusInformation()

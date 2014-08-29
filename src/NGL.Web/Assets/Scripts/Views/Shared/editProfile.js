@@ -2,10 +2,29 @@
 
 Ngl.shared.editProfile = (function () {
 
-    var setup = function (readOnlySectionSelector, editableSectionSelector, editButtonSelector, saveButtonSelector, cancelButtonSelector, route, formSelector) {
-        setupEditButton(editButtonSelector, readOnlySectionSelector, editableSectionSelector);
+    var setup = function (readOnlyDiv, collapseDiv, editableHeader, editableDiv, pencil, saveButtonSelector, cancelButtonSelector, route, formSelector) {
+        setupEdit(pencil, collapseDiv, readOnlyDiv, editableHeader, editableDiv);
         setupCancelButton(cancelButtonSelector);
         setupSaveButton(saveButtonSelector, route, formSelector);
+    }
+
+    var setupEdit = function (pencil, collapseDiv, readonlyDiv, editableHeader, editableDiv) {
+
+        $(pencil).on('click', function () {
+
+            if (!$(collapseDiv).is(':visible')) {
+                $(readonlyDiv).hide();
+                $(editableHeader).show();
+                $(editableDiv).slideDown({
+                    duration: "950",
+                    easing: "linear"
+                });
+            } else {
+                $(readonlyDiv).hide();
+                $(editableHeader).show();
+                $(editableDiv).show();
+            }
+        });
     }
 
     var setupEditButton = function (editButtonSelector, readOnlySectionSelector, editableSectionSelector) {
