@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Castle.Core.Internal;
@@ -100,11 +101,12 @@ namespace NGL.Web.Controllers
             var bytesInStream = _parentCourseToCsvMapper.Build(parentCourseGrades);
             Response.Clear();
             Response.ContentType = "application/force-download";
-            Response.AddHeader("content-disposition", "attachment; filename=course.csv");
+            Response.AddHeader("content-disposition", "attachment; filename=CourseGrades.csv");
             Response.BinaryWrite(bytesInStream);
             Response.End();
 
             return new FileContentResult(bytesInStream, "application/force-download");
         }
+
     }
 }
