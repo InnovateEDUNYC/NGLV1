@@ -5,7 +5,6 @@ using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
-using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using NSubstitute;
 using Shouldly;
@@ -28,7 +27,10 @@ namespace NGL.Tests.Student
                 new ParentToProfileParentModelMapper(),
                  new ProfilePhotoUrlFetcher(downloader),
                 new StudentProgramStatusToProfileProgramStatusModelMapper(downloader),
-                _studentAttendancePercentageMapperMock, new StudentToBiographicalInfoModelMapper(), new StudentToNameModelMapper());
+                _studentAttendancePercentageMapperMock, 
+                new StudentToBiographicalInfoModelMapper(), 
+                new StudentToNameModelMapper(),
+                new StudentAddressToHomeAddressModelMapper());
         }
 
         [Fact]
@@ -45,6 +47,7 @@ namespace NGL.Tests.Student
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             NativeParentPropertiesShouldBeMapped(parent, profileModel.EditProfileParentModel);
+            AddressShouldBeMapped(student.StudentAddresses.First(), profileModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
             profileModel.ProgramStatus.ShouldNotBe(null);
             _studentAttendancePercentageMapperMock.Received().Map(Arg.Any<IList<StudentSectionAttendanceEvent>>(), Arg.Any<ProfileModel>());
@@ -128,11 +131,9 @@ namespace NGL.Tests.Student
         {
             var student = new StudentBuilder().WithParent().Build();
 
-
             SetupWithDownloaderReturning(null);
 
             var profileModel = _mapper.Build(student);
-                
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
             profileModel.AcademicDetail.ShouldBe(null);
@@ -184,6 +185,17 @@ namespace NGL.Tests.Student
             profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
         }
 
+        private static void AddressShouldBeMapped(StudentAddress address, ProfileModel profileModel)
+        {
+            var addressModel = profileModel.HomeAddress;
+
+            addressModel.StudentUsi.ShouldBe(address.StudentUSI);
+            addressModel.Address.ShouldBe(address.StreetNumberName);
+            addressModel.Address2.ShouldBe(address.ApartmentRoomSuiteNumber);
+            addressModel.City.ShouldBe(address.City);
+            addressModel.State.ShouldBe((StateAbbreviationTypeEnum)address.StateAbbreviationTypeId);
+            addressModel.PostalCode.ShouldBe(address.PostalCode);
+        }
         private static void ParentAddressShouldBeMapped(Parent parent, ProfileModel profileModel)
         {
             var profileParentAddressModel = profileModel.EditProfileParentModel.ProfileParentAddressModel;

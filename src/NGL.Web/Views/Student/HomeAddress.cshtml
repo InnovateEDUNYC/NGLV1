@@ -1,4 +1,4 @@
-﻿@model NGL.Web.Models.Student.ProfileModel
+﻿@model NGL.Web.Models.Student.HomeAddressModel
 
 
 <div id="readonly-home-address" class="top-buffer-10">
@@ -73,7 +73,7 @@
 
                 <div class="text-right top-buffer-30">
                     @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
-                    <input id="submit-home-address" type="submit" class="btn btn-default btn-primary" value="Save" />
+                    <div id="submit-home-address" class="btn btn-primary">Save</div>
                 </div>
             }
 
