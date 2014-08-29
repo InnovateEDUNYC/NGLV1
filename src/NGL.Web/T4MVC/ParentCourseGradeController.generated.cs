@@ -54,6 +54,12 @@ namespace NGL.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ExportCsv()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExportCsv);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ParentCourseGradeController Actions { get { return MVC.ParentCourseGrade; } }
@@ -73,6 +79,7 @@ namespace NGL.Web.Controllers
             public readonly string Index = "Index";
             public readonly string Get = "Get";
             public readonly string Edit = "Edit";
+            public readonly string ExportCsv = "ExportCsv";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,6 +88,7 @@ namespace NGL.Web.Controllers
             public const string Index = "Index";
             public const string Get = "Get";
             public const string Edit = "Edit";
+            public const string ExportCsv = "ExportCsv";
         }
 
 
@@ -102,6 +110,15 @@ namespace NGL.Web.Controllers
             public readonly string sessionId = "sessionId";
             public readonly string parentCourseId = "parentCourseId";
             public readonly string parentCourseGradesModel = "parentCourseGradesModel";
+        }
+        static readonly ActionParamsClass_ExportCsv s_params_ExportCsv = new ActionParamsClass_ExportCsv();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ExportCsv ExportCsvParams { get { return s_params_ExportCsv; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ExportCsv
+        {
+            public readonly string sessionId = "sessionId";
+            public readonly string parentCourseId = "parentCourseId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -172,6 +189,19 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseGradesModel", parentCourseGradesModel);
             EditOverride(callInfo, parentCourseGradesModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ExportCsvOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sessionId, System.Guid? parentCourseId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ExportCsv(int? sessionId, System.Guid? parentCourseId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExportCsv);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseId", parentCourseId);
+            ExportCsvOverride(callInfo, sessionId, parentCourseId);
             return callInfo;
         }
 

@@ -251,6 +251,10 @@ body h4.panel:first-child {
     vertical-align: middle;
 }
 
+.table .vertical-align-middle {
+    vertical-align: middle;
+}
+
 .inline-block {
     display: inline-block;
 }
@@ -264,7 +268,11 @@ body h4.panel:first-child {
 .grade-textbox {
     float: right;
     width: 40px;
+    height: 40px;
     border-radius: 5px;
+    border: 1px solid #2DBCBB;
+    text-align: center;
+    margin-right: 25px;
 }
 
 .grade-textbox-error {
@@ -278,4 +286,8 @@ body h4.panel:first-child {
 
 .margin-bottom-20 {
     margin-bottom: 20px;
+}
+
+.right-elbow-room {
+    margin-right: 5px;
 }

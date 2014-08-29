@@ -43,7 +43,7 @@ namespace NGL.Web.Controllers
 
             return View(indexModels);
         }
-
+            
         // GET: /Course/Create
         [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
         public virtual ActionResult Create()
