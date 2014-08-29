@@ -19,49 +19,51 @@
         @Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "ParentCourseId" })
     </div>
 </div>
-<div class="panel panel-default col-md-10 top-buffer-30">
+<br/>
+<div class="panel panel-default">
     @if (!Model.ParentGradesModelList.IsNullOrEmpty())
-    {
-        
-        <table class="table table-striped">
-            <thead>
+{
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>
+                    <h4><strong>STUDENTS</strong></h4>
+                </td>
+                <td>
+                    <h4 class="pull-right">Final Grade</h4>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.ParentGradesModelList.Count; i++)
+            {
                 <tr>
                     <td>
-                        <h4><strong>STUDENTS</strong></h4>
+                        @Model.ParentGradesModelList[i].StudentFirstName @Model.ParentGradesModelList[i].StudentLastName
                     </td>
                     <td>
-                        <h4 class="pull-right">Final Grade</h4>
+                        <span class="pull-right">
+                            @Model.ParentGradesModelList[i].Grade
+                        </span>
                     </td>
                 </tr>
-            </thead>
-            <tbody>
-                @for (var i = 0; i < Model.ParentGradesModelList.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            @Model.ParentGradesModelList[i].StudentFirstName @Model.ParentGradesModelList[i].StudentLastName
-                        </td>
-                        <td>
-                            <span class="pull-right">
-                                @Model.ParentGradesModelList[i].Grade
-                            </span>
-                        </td>
-                    </tr>
-                }
-            </tbody>
+            }
+        </tbody>
         </table>
-        if ((User as NglPrincipal).HasAccessTo("grades", "edit"))
-        {
-            @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId),
+            if ((User as NglPrincipal).HasAccessTo("grades", "edit"))
+            {
+                @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId),
             new { @class = "btn btn-primary top-buffer-30 pull-right" })
-        }
-        if ((User as NglPrincipal).HasAccessTo("grades", "view"))
-        {
-            @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "btn btn-primary pull-right" })
-        }
-    }
-    else
-    {
+            }
+            if ((User as NglPrincipal).HasAccessTo("grades", "view"))
+            {
+                @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "top-buffer-30 btn btn-default pull-right right-elbow-room" })
+            }
+    
+}
+else
+{
         <p>No students have been assigned to this section.</p>
     }
 </div>
