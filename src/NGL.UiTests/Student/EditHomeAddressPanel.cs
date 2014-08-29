@@ -14,7 +14,7 @@ namespace NGL.UiTests.Student
             Execute.Script("$('#State').val('" + homeAddressModel.State + "')");
             Execute.Script("$('#PostalCode').val('" + homeAddressModel.PostalCode + "')");
 
-            Find.Element(By.Id("submit-home-address")).Click();
+            Find.Element(By.Id("save-home-address-edit")).Click();
             WaitFor.AjaxCallsToComplete();
         }
     }
