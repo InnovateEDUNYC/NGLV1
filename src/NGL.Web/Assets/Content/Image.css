@@ -10,6 +10,8 @@
 
 .nav .fa {
     margin-top: 20px;
+    text-align: center;
+    width: 100%;
 }
 
 .profile-image {
@@ -21,5 +23,6 @@
 }
 
 .media-list .fa {
-    margin-right: 25px;
+    margin: 10px;
+    margin-right: 20px;
 }
