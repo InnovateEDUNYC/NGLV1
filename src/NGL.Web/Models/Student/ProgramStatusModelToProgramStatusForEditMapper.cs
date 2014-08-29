@@ -18,7 +18,7 @@ namespace NGL.Web.Models.Student
             target.TitleParticipation = source.TitleParticipation.GetValueOrDefault();
             target.McKinneyVento = source.McKinneyVento.GetValueOrDefault();
 
-            target.TitleParticipationFile = filePaths.TitleParticipation ?? NewFilePath(source.TitleParticipation, target.TestingAccommodationFile);
+            target.TitleParticipationFile = filePaths.TitleParticipation ?? NewFilePath(source.TitleParticipation, target.TitleParticipationFile);
             target.TestingAccommodationFile = filePaths.TestingAccomodation ?? NewFilePath(source.TestingAccommodation, target.TestingAccommodationFile);
             target.SpecialEducationFile = filePaths.SpecialEducation ?? NewFilePath(source.SpecialEducation, target.SpecialEducationFile);
             target.McKinneyVentoFile = filePaths.McKinneyVento ?? NewFilePath(source.McKinneyVento.GetValueOrDefault(), target.McKinneyVentoFile);
