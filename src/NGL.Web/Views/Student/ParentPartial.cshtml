@@ -1,5 +1,5 @@
 ﻿@using NGL.Web.Infrastructure.Security
-@model NGL.Web.Models.Student.EditProfileParentModel
+@model NGL.Web.Models.Student.EditableParentModel
 
 <div id="readonly-parent-info" class="top-buffer-10">
     <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo">
@@ -47,6 +47,48 @@
                 <dd>
                     @Html.DisplayTextFor(model => model.EmailAddress)<br />
                 </dd>
+                
+                <h4 class="panel-default"><strong>Address</strong></h4>
+                @if (Model.SameAddressAsStudent == false)
+                {
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EditableParentAddressModel.Address)
+                        </dt>
+                        <dd>
+                            @Html.DisplayTextFor(model => model.EditableParentAddressModel.Address)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EditableParentAddressModel.Address2)
+                        </dt>
+                        <dd>
+                            @Html.DisplayTextFor(model => model.EditableParentAddressModel.Address2)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EditableParentAddressModel.City)
+                        </dt>
+                        <dd>
+                            @Html.DisplayTextFor(model => model.EditableParentAddressModel.City)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EditableParentAddressModel.StateForDisplay)
+                        </dt>
+                        <dd>
+                            @Html.DisplayTextFor(model => model.EditableParentAddressModel.StateForDisplay)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EditableParentAddressModel.PostalCode)
+                        </dt>
+                        <dd>
+                            @Html.DisplayTextFor(model => model.EditableParentAddressModel.PostalCode)
+                        </dd>
+                    </dl>
+                }
+                else
+                {
+                    <p>Same as student</p>
+                    <br />
+                }
             </dl>
         </div>
     </div>
@@ -71,6 +113,11 @@
                     @s.FieldFor(m => m.Relationship)
                     @s.FieldFor(m => m.TelephoneNumber)
                     @s.FieldFor(m => m.EmailAddress)
+                    @s.FieldFor(m => m.EditableParentAddressModel.Address)
+                    @s.FieldFor(m => m.EditableParentAddressModel.Address2)
+                    @s.FieldFor(m => m.EditableParentAddressModel.City)
+                    @s.FieldFor(m => m.EditableParentAddressModel.State)
+                    @s.FieldFor(m => m.EditableParentAddressModel.PostalCode)
 
                     @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                     {

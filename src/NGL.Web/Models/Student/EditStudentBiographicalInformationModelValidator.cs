@@ -3,7 +3,7 @@ using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {
-    public class EditStudentBiographicalInformationModelValidator : AbstractValidator<EditStudentBiographicalInfoModel>
+    public class EditStudentBiographicalInformationModelValidator : AbstractValidator<EditableStudentBiographicalInfoModel>
     {
         public EditStudentBiographicalInformationModelValidator()
         {

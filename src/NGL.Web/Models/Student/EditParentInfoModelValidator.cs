@@ -2,7 +2,7 @@
 
 namespace NGL.Web.Models.Student
 {
-    public class EditProfileParentModelValidator : AbstractValidator<EditProfileParentModel>
+    public class EditProfileParentModelValidator : AbstractValidator<EditableParentModel>
     {
         public EditProfileParentModelValidator()
         {

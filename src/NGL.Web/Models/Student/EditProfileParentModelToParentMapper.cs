@@ -5,9 +5,9 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class EditProfileParentModelToParentMapper : MapperBase<EditProfileParentModel, Parent>
+    public class EditProfileParentModelToParentMapper : MapperBase<EditableParentModel, Parent>
     {
-        public override void Map(EditProfileParentModel source, Parent target)
+        public override void Map(EditableParentModel source, Parent target)
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;

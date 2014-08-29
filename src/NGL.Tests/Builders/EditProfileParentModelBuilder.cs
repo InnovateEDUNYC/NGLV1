@@ -13,9 +13,9 @@ namespace NGL.Tests.Builders
         private SexTypeEnum _sexTypeEnum = SexTypeEnum.Female;
         private string _telephoneNumber = "555-999-9999";
 
-        public EditProfileParentModel Build()
+        public EditableParentModel Build()
         {
-            return new EditProfileParentModel
+            return new EditableParentModel
             {
                 ParentUSI = _parentUsi,
                 EmailAddress = _email,

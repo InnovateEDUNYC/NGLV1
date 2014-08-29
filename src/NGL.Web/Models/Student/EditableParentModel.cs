@@ -2,7 +2,7 @@
 
 namespace NGL.Web.Models.Student
 {
-    public class EditProfileParentModel
+    public class EditableParentModel
     {
         public int ParentUSI { get; set; }
         public string FirstName { get; set; }
@@ -12,6 +12,6 @@ namespace NGL.Web.Models.Student
         public string TelephoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public bool? SameAddressAsStudent { get; set; }
-        public ProfileParentAddressModel ProfileParentAddressModel { get; set; }
+        public EditableParentAddressModel EditableParentAddressModel { get; set; }
     }
 }

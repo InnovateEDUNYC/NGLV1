@@ -4,16 +4,17 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class ParentToProfileParentAddressModelMapper : MapperBase<Parent, ProfileParentAddressModel>
+    public class ParentToProfileParentAddressModelMapper : MapperBase<Parent, EditableParentAddressModel>
     {
-        public override void Map(Parent source, ProfileParentAddressModel target)
+        public override void Map(Parent source, EditableParentAddressModel target)
         {
             var parentAddress = source.ParentAddresses.First();
 
             target.Address = parentAddress.StreetNumberName;
             target.Address2 = parentAddress.ApartmentRoomSuiteNumber;
             target.City = parentAddress.City;
-            target.State = ((StateAbbreviationTypeEnum) parentAddress.StateAbbreviationTypeId).Humanize();
+            target.StateForDisplay = ((StateAbbreviationTypeEnum) parentAddress.StateAbbreviationTypeId).Humanize();
+            target.State = (StateAbbreviationTypeEnum) parentAddress.StateAbbreviationTypeId;
             target.PostalCode = parentAddress.PostalCode;
         }
     }

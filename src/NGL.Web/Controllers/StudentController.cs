@@ -23,13 +23,14 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Student, IndexModel> _studentToStudentIndexModelMapper;
         private readonly AzureStorageUploader _fileUploader;
         private readonly IStudentRepository _studentRepository;
-        private readonly IMapper<EditStudentBiographicalInfoModel, Student> _studentBiographicalInfoToStudentMapper;
+        private readonly IMapper<EditableStudentBiographicalInfoModel, Student> _studentBiographicalInfoToStudentMapper;
         private readonly IMapper<NameModel, Student> _studentNameToStudentMapper;
         private readonly IMapper<HomeAddressModel, StudentAddress> _studentHomeAddressToStudentMapper;
         private readonly IParentRepository _parentRepository;
         private readonly IMapper<EditProfileParentModel, Parent> _editProfileParentModelToParentMapper;
         private readonly ProgramStatusModelToProgramStatusForEditMapper _programStatusModelToProgramStatusForEditMapper;
         private readonly EditAcademicDetailModelToStudentAcademicDetailMapper _editAcademicDetailModelToStudentAcademicDetailMapper;
+        private readonly IMapper<EditableParentModel, Parent> _editProfileParentModelToParentMapper;
 
         public StudentController(IGenericRepository repository, 
             IMapper<Student, ProfileModel> studentToProfileModelMapper,
@@ -37,9 +38,12 @@ namespace NGL.Web.Controllers
             IMapper<NameModel, Student> studentNameToStudentMapper, 
             IMapper<HomeAddressModel, StudentAddress> studentHomeAddressToStudentMapper,
             AzureStorageUploader fileUploader, IStudentRepository studentRepository,
-            IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
+            IMapper<EditableStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
             IParentRepository parentRepository, 
-            IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper, ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper, EditAcademicDetailModelToStudentAcademicDetailMapper editAcademicDetailModelToStudentAcademicDetailMapper)
+            IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper,
+            ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper, 
+			EditAcademicDetailModelToStudentAcademicDetailMapper editAcademicDetailModelToStudentAcademicDetailMapper,
+            IMapper<EditableParentModel, Parent> editProfileParentModelToParentMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
@@ -119,7 +123,7 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
-        public virtual JsonResult EditBiographicalInfo(EditStudentBiographicalInfoModel model)
+        public virtual JsonResult EditBiographicalInfo(EditableStudentBiographicalInfoModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -174,7 +178,7 @@ namespace NGL.Web.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        public virtual JsonResult EditParentInfo(EditProfileParentModel model)
+        public virtual JsonResult EditParentInfo(EditableParentModel model)
         {
             if (!ModelState.IsValid)
             {
