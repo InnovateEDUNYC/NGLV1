@@ -6,6 +6,8 @@ namespace NGL.Web.Service
 {
     public interface IAttendanceService
     {
-        void RecordAttendanceFor(Section section, DateTime date, IEnumerable<StudentSectionAttendanceEvent> studentSectionAttendanceEventList);
+        void RecordAttendanceFor(Section section, DateTime date, IEnumerable<StudentSectionAttendanceEvent> newAttendanceEvents);
+        void ClearAllFlags();
+        void SetNewFlagCount(Student student, int newFlagCount);
     }
 }

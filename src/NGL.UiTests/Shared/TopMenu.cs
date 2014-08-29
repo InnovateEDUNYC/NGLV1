@@ -2,6 +2,7 @@
 using NGL.UiTests.Assessment;
 using NGL.UiTests.Attendance;
 using NGL.UiTests.Enrollment;
+using NGL.UiTests.Reports;
 using NGL.UiTests.School;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
@@ -65,6 +66,11 @@ namespace NGL.UiTests.Shared
         public TakeAttendancePage GoToTakeAttendancePage()
         {
             return Navigate.To<TakeAttendancePage>(By.LinkText("Attendance"));
+        }
+
+        public ReportsIndexPage GoToReportsPage()
+        {
+            return Navigate.To<ReportsIndexPage>(By.LinkText("Reports"));
         }
     }
 }

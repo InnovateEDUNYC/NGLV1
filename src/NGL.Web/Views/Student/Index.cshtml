@@ -3,41 +3,48 @@
 
 @{
     ViewBag.Title = "Profile";
-    string downloadFileText = "Download File";
+    var success = TempData["ShowSuccess"] as bool?;
+    const string downloadFileText = "Download File";
 }
+
+@if (success == true)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        Successfully updated profile
+    </div>
+}
+
 <div class="panel panel-gray">
     <h2>Student Profile</h2>
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default text-center">
+            <div class="panel panel-default text-center profile-photo-and-buttons-panel">
                 <div class="profile-photo-container">
                     <img class="profile-image" src="@Model.ProfilePhotoUrl"></img>
 
                     @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                     {
                         <div class="upload-profile-photo-container">
-                            @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi))
+                            @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart, action: "uploadPhoto/?usi=" + Model.StudentUsi, htmlAttributes:
+                        new HtmlAttributes().Id("profile-photo-uplaod")))
                             {
-                            <div class="upload-profile-photo">
-                                <button type="button" class="btn btn-default">
-                                    New photo
-                                </button>
-                                <input type="file" class="ghost-btn center-block" name="profilePhoto" accept="image/*" />
-                            </div>
+                                <div class="upload-profile-photo">
+                                    <button type="button" class="btn btn-default">
+                                        New photo
+                                    </button>
+                                    <input type="file" class="ghost-btn center-block" name="profilePhoto" accept="image/*" />
+                                </div>
 
                             }
                         </div>
                     }
-                    <h3>
-                        <strong>
-                            @Html.DisplayFor(model => model.FirstName)
-                            @Html.DisplayFor(model => model.LastName)
-                        </strong>
-                    </h3>
+                        @Html.Partial("StudentName", Model.StudentName)
                     <p>
                         @Html.DisplayNameFor(model => model.StudentUsi): 
                         @Html.DisplayFor(model => model.StudentUsi)
                     </p>
+                    
                 </div>
 
                 <div class="btn-group-horizontal">
@@ -54,56 +61,54 @@
                         }
                     </p>
                 </div>
+                
+            </div>
+            <div class="panel panel-default">
+                @if ((User as NglPrincipal).HasAccessTo("attendance", "clearAllFlags"))
+                {
+                    <h4 class="strong"><span id="edit-attendance" class="fa fa-pencil pull-right enabled-edit"></span></h4>
+                }
+
+                <h4 class="strong">Attendance</h4>
+                <div class="progress attendance-percentage">
+                    <div class="progress-bar" style="width: @Model.AttendancePercentage%;">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+
+                <span id="profile-attendance-percentage-value">
+                    @Html.DisplayFor(model => model.AttendancePercentage)%
+                </span>
+                
+                <div class="attendance-flags">
+                    @for (var i = 0; i < @Model.FlagCount; i++)
+                    {
+                        if (i == 0) { <span class="fa fa-flag fa-2x great"></span> }
+                        else if (i == 1) { <span class="fa fa-flag fa-2x in-danger"></span> }
+                        else { <span class="fa fa-flag fa-2x bad"></span> }
+                    }
+                </div>
+
+                <form hidden="hidden" method="post" id="editFlags" action="@Url.Action(MVC.Attendance.EditFlags(Model.StudentUsi, 0))">
+                    <input id="flag-count" class="hidden" type="text" name="newFlagCount" value="@Model.FlagCount" />
+                    
+                    <div class="text-right top-buffer-30">
+                        @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
 
             </div>
         </div>
-        <div class="col-md-7">
-            <h4 class="panel panel-default"><strong>BIOGRAPHICAL INFORMATION</strong></h4>
-            <dl class="dl-horizontal panel panel-default">
-                <dt>
-                    Sex
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Sex)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.BirthDate)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BirthDate)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
-                </dt>
-
-                <dd>
-                    @Html.DisplayTextFor(model => model.HispanicLatinoEthnicity)
-                </dd>
-
-                <dt>
-                    Race
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Race)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.HomeLanguage)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.HomeLanguage)
-                </dd>
-            </dl>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseAcademicDetails">
+        <div class="col-md-9">
+        @Html.Partial("BiographicalInformation", Model.BiographicalInfo)
+        
+            <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseAcademicDetails">
                 @if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistoryFileUrl != null)
                 {
                     <span class="fa fa-file-text-o fa-1x"></span>
                 }
-                <strong> @Html.DisplayFor(model => model.AcademicDetail.SchoolYear) ACADEMIC DETAILS</strong> <i class="fa fa-caret-down arrow"></i>
+                @Html.DisplayFor(model => model.AcademicDetail.SchoolYear) Academic Details <i class="fa fa-caret-down arrow"></i>
             </h4>
             <div id="collapseAcademicDetails" class="panel-collapse collapse">
                 <dl class="dl-horizontal panel panel-default">
@@ -111,6 +116,7 @@
                     @if (Model.AcademicDetail == null)
                     {
                         @Html.Raw("No Information Entered")
+                        @Html.ActionLink("Enter Academic Details", MVC.Enrollment.EnterAcademicDetails(@Model.StudentUsi), new {@class="btn pull-right"})
                     }
                     else
                     {
@@ -140,148 +146,24 @@
                         </dd>
 
                         if (Model.AcademicDetail != null && Model.AcademicDetail.PerformanceHistoryFileUrl != null)
-                         {
-                             <dt>
-                                 @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
-                             </dt>
-                             <dd>
-                                 <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">@downloadFileText</a><br />
-                             </dd>
-                         }
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.AcademicDetail.PerformanceHistoryFileUrl)
+                            </dt>
+                            <dd>
+                                <a href="@Model.AcademicDetail.PerformanceHistoryFileUrl">@downloadFileText</a><br />
+                            </dd>
+                        }
                     }
                
                 </dl>
             </div>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseProgramStatus">
-                @if (Model.ProgramStatus != null && (Model.ProgramStatus.McKinneyVentoFile != null 
-                                                  || Model.ProgramStatus.SpecialEducationFile != null
-                                                  || Model.ProgramStatus.TestingAccommodationFile != null
-                                                  || Model.ProgramStatus.TitleParticipationFile != null))
-                {
-                    <span class="fa fa-file-text-o fa-1x"></span>
-                }
-                <strong>PROGRAM STATUS</strong><i class="fa fa-caret-down arrow"></i>
-            </h4>
-            <div id="collapseProgramStatus" class="panel-collapse collapse">
-            <dl class="dl-horizontal panel panel-default">
-                @if (Model.ProgramStatus == null)
-                {
-                    @Html.Raw("No Information Entered")
-                }
-                else
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.TestingAccommodation)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.TestingAccommodation)
-                        @if (Model.ProgramStatus.TestingAccommodationFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.TestingAccommodationFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dd>
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.BilingualProgram)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.BilingualProgram)<br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.EnglishAsSecondLanguage)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.EnglishAsSecondLanguage)<br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.Gifted)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.Gifted)<br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.SpecialEducation)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.SpecialEducation)
-                        @if (Model.ProgramStatus.SpecialEducationFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.SpecialEducationFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.TitleParticipation)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.TitleParticipation)
-                        @if (Model.ProgramStatus.TitleParticipationFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.TitleParticipationFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.McKinneyVento)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.McKinneyVento)
-                        @if (Model.ProgramStatus.McKinneyVentoFile != null)
-                            {
-                            <a href="@Model.ProgramStatus.McKinneyVentoFile">@downloadFileText</a>
-                            }
-                        <br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProgramStatus.FoodServiceEligibilityStatus)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.ProgramStatus.FoodServiceEligibilityStatus)<br />
-                    </dd>
-                }
-                </dl>
-            </div>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseHomeAddress"><strong>HOME ADDRESS</strong><i class="fa fa-caret-down arrow"></i></h4>
-            <div id="collapseHomeAddress" class="panel-collapse collapse">
-                <dl class="dl-horizontal panel panel-default">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Address)
-                    </dt>
 
-                    <dd>
-                        @Html.DisplayTextFor(model => model.Address)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Address2)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.Address2)<br />
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.City)
-                    </dt>
+            @Html.Partial("ProgramStatus", Model)
+            @Html.Partial("HomeAddress", Model)
 
-                    <dd>
-                        @Html.DisplayTextFor(model => model.City)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.State)
-                    </dt>
-                    <dd>
-                        @Html.DisplayTextFor(model => model.State)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.PostalCode)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayTextFor(model => model.PostalCode)
-                    </dd>
-                </dl>
-              </div>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo">   <strong>PARENT INFO</strong><i class="fa fa-caret-down arrow"></i></h4>
+   
+                     <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo">   Parent Info <i class="fa fa-caret-down arrow"></i></h4>
             <div id="collapseParentInfo" class="panel-collapse collapse">
                 <div class="panel panel-default">
                     <h4>
@@ -321,7 +203,7 @@
                     </dl>
                 </div>
                 </div>
-            <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseParentAddress">   <strong>PARENT ADDRESS</strong><i class="fa fa-caret-down arrow"></i></h4>
+            <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseParentAddress">   Parent Address <i class="fa fa-caret-down arrow"></i></h4>
             <div id="collapseParentAddress" class="panel-collapse collapse">
                 <div class="panel panel-default">
                     @if (Model.ProfileParentModel.SameAddressAsStudent == false)
@@ -366,100 +248,103 @@
                 </div>
                 </div>
                 @if (Model.SecondProfileParentModel != null)
-{
+                {
 
-    <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParent">   <strong>SECOND PARENT</strong><i class="fa fa-caret-down arrow"></i></h4>
+                    <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParent">   Second Parent <i class="fa fa-caret-down arrow"></i></h4>
                     <div id="collapseSecondParent" class="panel-collapse collapse">
-                    <div class="panel panel-default">
-                        <h4>
-                            <strong>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.FirstName) @Html.DisplayTextFor(model => model.SecondProfileParentModel.LastName)
-                            </strong>
-                        </h4>
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.Sex)
-                            </dt>
+                        <div class="panel panel-default">
+                            <h4>
+                                <strong>
+                                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.FirstName) @Html.DisplayTextFor(model => model.SecondProfileParentModel.LastName)
+                                </strong>
+                            </h4>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.Sex)
+                                </dt>
 
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.Sex)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.Relationship)
-                            </dt>
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.Relationship)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.TelephoneNumber)
-                            </dt>
+                                <dd>
+                                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.Sex)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.Relationship)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.Relationship)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.TelephoneNumber)
+                                </dt>
 
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.TelephoneNumber)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.SecondProfileParentModel.EmailAddress)
-                            </dt>
+                                <dd>
+                                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.TelephoneNumber)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.EmailAddress)
+                                </dt>
 
-                            <dd>
-                                @Html.DisplayTextFor(model => model.SecondProfileParentModel.EmailAddress)<br />
-                            </dd>
-                        </dl>
+                                <dd>
+                                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.EmailAddress)<br />
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
+                    
+                    <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParentAddress">   Second Parent Address <i class="fa fa-caret-down arrow"></i></h4>
+                    <div id="collapseSecondParentAddress" class="panel-collapse collapse">
+                        <div class="panel panel-default">
+                            @if (Model.SecondProfileParentModel.SameAddressAsStudent == false)
+                            {
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
+                                    </dd>
+                                </dl>
+                            }
+                            else
+                            {
+                                <p>Same as student</p><br />
+                            }
+                        </div>
                     </div>
-    <h4 class="panel panel-default" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParentAddress">   <strong>SECOND PARENT ADDRESS</strong><i class="fa fa-caret-down arrow"></i></h4>
-    <div id="collapseSecondParentAddress" class="panel-collapse collapse">
-        <div class="panel panel-default">
-            @if (Model.SecondProfileParentModel.SameAddressAsStudent == false)
-            {
-
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
-                </dt>
-                <dd>
-                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
-                </dt>
-                <dd>
-                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.Address2)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
-                </dt>
-                <dd>
-                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.City)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
-                </dt>
-                <dd>
-                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.State)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
-                </dt>
-                <dd>
-                    @Html.DisplayTextFor(model => model.SecondProfileParentModel.ProfileParentAddressModel.PostalCode)
-                </dd>
-            </dl>
-            }
-            else
-            {
-            <p>Same as student</p><br />
-            }
-        </div>
-    </div>
-}
+                }
             </div>
-
-
     </div>
-
 </div>
 
-    @section Scripts {
-        Ngl.student.index.init();
-    }
+@section Scripts {
+    Ngl.student.index.init();
+    Ngl.shared.enableEditMode.init();
+    Ngl.shared.accordianArrows.init();
+    Ngl.student.editBiographicalInfo.init();
+    Ngl.student.editProgramStatus.init();
+    Ngl.student.editStudentName.init();
+    Ngl.student.editHomeAddress.init();
+}

@@ -6,6 +6,7 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using NGL.Web;
 using NGL.Web.Data;
 using NGL.Web.Data.Entities;
+using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
@@ -71,7 +72,7 @@ namespace NGL.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<INglDbContext>().To<NglDbContext>().InSingletonScope().WithConstructorArgument(ConfigManager.EdmxConnectionString);
+            kernel.Bind<INglDbContext>().To<NglDbContext>().InRequestScope().WithConstructorArgument(ConfigManager.EdmxConnectionString);
             kernel.Bind<IUnitOfWork>().To<NglDbContext>().InRequestScope();
             kernel.Bind<ApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
             kernel.Bind<IFileUploader>().To<AzureStorageUploader>().InSingletonScope();
@@ -81,6 +82,7 @@ namespace NGL.Web
             kernel.Bind<ICreateModelToAssessmentSectionMapper>().To<CreateModelToCreateModelToAssessmentSectionMapper>();
             kernel.Bind<ICreateModelToAssessmentLearningStandardMapper>().To<CreateModelToCreateModelToAssessmentLearningStandardMapper>();
             kernel.Bind<IAttendanceService>().To<AttendanceService>();
+            kernel.Bind<ISessionFilter>().To<SessionFilter>();
 
             kernel
                 .Bind<UserManager<ApplicationUser>>()
@@ -107,6 +109,12 @@ namespace NGL.Web
                 x => x.FromThisAssembly()
                     .SelectAllTypes()
                     .InheritedFrom(typeof (IMapper<,>))
+                    .BindDefaultInterfaces());
+
+            kernel.Bind(
+                x => x.FromThisAssembly()
+                    .SelectAllTypes()
+                    .InheritedFrom(typeof (IRepositoryReader<>))
                     .BindDefaultInterfaces());
         }        
     }

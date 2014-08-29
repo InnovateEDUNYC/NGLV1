@@ -10,7 +10,7 @@ namespace NGL.Tests.Builders
         private const int SchoolYear = (int) SchoolYearTypeEnum.Year2014;
         private const int TermTypeId = (int) TermTypeEnum.FallSemester;
         private string _classPeriodName = "Period 3";
-        private const string ClassroomIdentificationCode = "BKL 200";
+        private string _classroomIdentificationCode = "BKL 200";
         private string _localCourseCode = "CHEM2090";
         private string _uniqueSectionCode = "CHEM2090 - 200";
         private const int SequenceOfCourse = 1;
@@ -23,6 +23,7 @@ namespace NGL.Tests.Builders
         private Web.Data.Entities.Session _session = new Web.Data.Entities.Session{ SessionName = "Fall 2014" };
         private DateTime _beginDate = new DateTime(2014, 6, 1);
         private DateTime _endDate = new DateTime(2015, 1, 20);
+        private List<StudentSectionAttendanceEvent> _attendanceEvents;
 
         public Web.Data.Entities.Section Build()
         {
@@ -34,11 +35,12 @@ namespace NGL.Tests.Builders
                 SchoolYear = SchoolYear,
                 TermTypeId = TermTypeId,
                 ClassPeriodName = _classPeriodName,
-                ClassroomIdentificationCode = ClassroomIdentificationCode,
+                ClassroomIdentificationCode = _classroomIdentificationCode,
                 LocalCourseCode = _localCourseCode,
                 UniqueSectionCode = _uniqueSectionCode,
                 SequenceOfCourse = SequenceOfCourse,
-                Session = _session
+                Session = _session,
+                StudentSectionAttendanceEvents = _attendanceEvents
             };
             MakeStudentSectionAssociations();
             MakeAssessmentSectionAssociations();
@@ -68,6 +70,7 @@ namespace NGL.Tests.Builders
                 var studentSectionAssociation = new StudentSectionAssociation
                 {
                     Student = student,
+                    StudentUSI = student.StudentUSI,
                     Section = _section,
                     BeginDate = _beginDate,
                     EndDate = _endDate
@@ -111,6 +114,17 @@ namespace NGL.Tests.Builders
         public SectionBuilder WithClassPeriodName(string classPeriodName)
         {
             _classPeriodName = classPeriodName;
+            return this;
+        }
+
+        public SectionBuilder WithAttendanceEvents(List<StudentSectionAttendanceEvent> attendanceEvents){
+            _attendanceEvents = attendanceEvents;
+            return this;
+        }
+        
+        public SectionBuilder WithClassroomIdentificationCode(string classroomIdentificationCode)
+        {
+            _classroomIdentificationCode = classroomIdentificationCode;
             return this;
         }
     }

@@ -22,7 +22,7 @@ namespace NGL.Tests.Enrollment
 
             _student.FirstName.ShouldBe("John");
             _student.LastSurname.ShouldBe("Doe");
-            _student.SexTypeId.ShouldBe((int) SexTypeEnum.Male);
+            _student.SexTypeId.ShouldBe((int)SexTypeEnum.Male);
             _student.BirthDate.ShouldBe(new DateTime(2001, 1, 1));
             _student.HispanicLatinoEthnicity.ShouldBe(false);
 
@@ -31,7 +31,7 @@ namespace NGL.Tests.Enrollment
         [Fact]
         public void ShouldMapModelStudentLanguageModelToStudent()
         {
-            const int languageDescriptorId = (int) LanguageDescriptorEnum.English;
+            const int languageDescriptorId = (int)LanguageDescriptorEnum.English;
             SetUp();
 
             _mapper.Map(_createStudentModel, _student);
@@ -39,7 +39,8 @@ namespace NGL.Tests.Enrollment
             _student.StudentLanguages.First().LanguageDescriptorId.ShouldBe(languageDescriptorId);
             _student.StudentLanguages.First()
                 .StudentLanguageUses.First()
-                .LanguageUseTypeId.ShouldBe((int) LanguageUseTypeEnum.Homelanguage);
+                .LanguageUseTypeId.ShouldBe((int)LanguageUseTypeEnum.Homelanguage);
+
             _student.StudentLanguages.First()
                 .StudentLanguageUses.First()
                 .LanguageDescriptorId.ShouldBe(languageDescriptorId);
@@ -136,7 +137,7 @@ namespace NGL.Tests.Enrollment
         private void SetUp()
         {
             _mapper = new CreateStudentModelToStudentMapper(
-                new StudentHomeAddressMapper(), 
+                new StudentHomeAddressMapper(),
                 new StudentHomeLanguageMapper(),
                 new CreateParentModelToStudentParentAssociationMapper(new CreateParentModelToParentMapper(), new CreateParentModelToParentAddressMapper()));
 

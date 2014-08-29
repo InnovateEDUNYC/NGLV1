@@ -1,0 +1,91 @@
+﻿@using NGL.Web.Infrastructure.Security
+@model NGL.Web.Models.Student.EditStudentBiographicalInfoModel
+
+<div id="readonly-biographical-info">
+    <h4 class="panel panel-default strong">
+        Biographical Information
+        @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
+        {
+            <span id="edit-biographical-info-button" class="fa fa-pencil pull-right enabled-edit"></span>
+        }
+    </h4>
+    <dl class="dl-horizontal panel panel-default">
+        <dt>
+            Sex
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.HispanicLatinoEthnicity)
+        </dd>
+
+        <dt>
+            Race
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RaceForDisplay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeLanguage)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HomeLanguage)
+        </dd>
+    </dl>
+</div>
+<div id="editable-biographical-info" class="display-none">
+    <h4 class="panel panel-default strong">
+        Biographical Information
+        
+        <span id="edit-biographical-info-button" class="fa fa-pencil pull-right"></span>
+    </h4>
+    <dl class="dl-horizontal panel panel-default">
+        @using (var f = Html.BeginNglForm(htmlAttributes: new HtmlAttributes(new { id = "edit-biographical-information" })))
+        {
+            using (var s = f.BeginSection(""))
+            {
+                <div class="profile-edit">
+                    <div class="hidden">
+                              @s.FieldFor(m => m.StudentUsi)
+                      </div>
+                    @s.FieldFor(m => m.Sex)
+                    @s.FieldFor(m => m.BirthDate).AddClass("datepicker")
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+                    </dt>
+
+                    <dd>
+                        @Html.CheckBoxFor(model => model.HispanicLatinoEthnicity)
+                    </dd>
+
+                    @s.FieldFor(m => m.Race)
+                    @s.FieldFor(m => m.HomeLanguage)
+                    @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
+                    {
+                        <div class="pull-right top-buffer-30">
+                            <div id="cancel-biographical-info-edit" class="btn btn-default">Cancel</div>
+                            <div id="save-biographical-info-edit" class="btn btn-primary">Save</div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </dl>
+</div>

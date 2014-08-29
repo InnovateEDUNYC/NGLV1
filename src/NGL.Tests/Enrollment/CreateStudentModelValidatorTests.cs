@@ -1,5 +1,11 @@
-﻿using FluentValidation.TestHelper;
+﻿using System;
+using System.Linq.Expressions;
+using FluentValidation.TestHelper;
+using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
+using NSubstitute;
+using NSubstitute.Exceptions;
 using Xunit;
 
 namespace NGL.Tests.Enrollment
@@ -10,7 +16,10 @@ namespace NGL.Tests.Enrollment
 
         public CreateStudentModelValidatorTests()
         {
-            _validator = new CreateStudentModelValidator();
+            var repoReader = Substitute.For<IRepositoryReader<Web.Data.Entities.Student>>();
+            repoReader.DoesRepositoryReturnNullFor(Arg.Any<int?>(),
+                Arg.Any<Expression<Func<Web.Data.Entities.Student, bool>>>()).Returns(false);
+            _validator = new CreateStudentModelValidator(repoReader);
         }
         [Fact]
         public void ShouldHaveErrorsIfModelNotValid()
@@ -21,6 +30,17 @@ namespace NGL.Tests.Enrollment
             };
 
             _validator.ShouldHaveValidationErrorFor(csm => csm.FirstName, createStudentModel);
-        } 
+        }
+
+        [Fact]
+        public void ShouldHaveErrorIfStudentAlreadyExists()
+        {
+            var createStudentModel = new CreateStudentModel
+            {
+                StudentUsi = 234
+            };
+
+            _validator.ShouldHaveValidationErrorFor(csm => csm.StudentUsi, createStudentModel);
+        }
     }
 }

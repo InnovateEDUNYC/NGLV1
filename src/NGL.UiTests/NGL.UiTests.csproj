@@ -108,12 +108,16 @@
     <Compile Include="Location\LocationCreatePage.cs" />
     <Compile Include="Location\LocationIndexPage.cs" />
     <Compile Include="ParentCourse\CanCreateParentCourse.cs" />
+    <Compile Include="ParentCourseGrade\CanGradeParentCourseForStudent.cs" />
     <Compile Include="ParentCourse\ParentCourseCreatePage.cs" />
+    <Compile Include="ParentCourseGrade\ParentCourseGradesPage.cs" />
     <Compile Include="ParentCourse\ParentCourseIndexPage.cs" />
+    <Compile Include="Reports\ReportsIndexPage.cs" />
     <Compile Include="Schedule\CanRemoveStudentFromSection.cs" />
     <Compile Include="Schedule\CanScheduleStudent.cs" />
     <Compile Include="Schedule\SchedulePage.cs" />
     <Compile Include="Section\CanCreateSection.cs" />
+    <Compile Include="Section\CanViewAndCreateSectionsForASession.cs" />
     <Compile Include="Section\SectionCreatePage.cs" />
     <Compile Include="Section\SectionIndexPage.cs" />
     <Compile Include="Session\CanCreateSession.cs" />
@@ -126,6 +130,7 @@
     <Compile Include="Course\CourseCreatePage.cs" />
     <Compile Include="Course\CourseIndexPage.cs" />
     <Compile Include="Enrollment\EnrollmentPage.cs" />
+    <Compile Include="Session\SectionsForSessionPage.cs" />
     <Compile Include="Shared\AddUserPage.cs" />
     <Compile Include="Shared\HomePage.cs" />
     <Compile Include="Account\LoginPage.cs" />
@@ -137,7 +142,9 @@
     <Compile Include="Shared\TopMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\UsersPage.cs" />
+    <Compile Include="Student\CanEditProfileInfo.cs" />
     <Compile Include="Student\ProfilePage.cs" />
+    <Compile Include="Student\EditProgramStatusPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

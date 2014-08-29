@@ -455,5 +455,7 @@ namespace NGL.Web.Data.Entities
         public virtual DbSet<StaffCertificate> StaffCertificates { get; set; }
         public virtual DbSet<AssessmentLearningStandard> AssessmentLearningStandards { get; set; }
         public virtual DbSet<ParentCourse> ParentCourses { get; set; }
+        public virtual DbSet<ParentCourseGrade> ParentCourseGrades { get; set; }
+        public virtual DbSet<AttendanceFlag> AttendanceFlags { get; set; }
     }
 }

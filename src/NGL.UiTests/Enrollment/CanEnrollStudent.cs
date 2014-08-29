@@ -60,7 +60,7 @@ namespace NGL.UiTests.Enrollment
 
         private void IHaveInputProgramStatus()
         {
-            var programStatusModel = EnterProgramStatusModelFactory.CreateProgramStatus();
+            var programStatusModel = new EnterProgramStatusModelBuilder().Build();
             _profilePage = _programStatusPage.InputProgramStatus(programStatusModel);
         }
 

@@ -79,6 +79,8 @@
     <Compile Include="Assessment\AssessmentToAssessmentIndexModelMapperTests.cs" />
     <Compile Include="Assessment\AssessmentToEnterResultsModelMapperTests.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentLearningStandardMapperTests.cs" />
+    <Compile Include="Attendance\AttendanceServiceTests.cs" />
+    <Compile Include="Attendance\TakeAttendanceModelToStudentSectionAttendanceEventListMapperTests.cs" />
     <Compile Include="Builders\CreateAssessmentModelBuilder.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentMapperTests.cs" />
     <Compile Include="Assessment\CreateModelToAssessmentPerformanceLevelMapperTests.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Builders\CreateParentCourseModelBuilder.cs" />
     <Compile Include="Builders\LearningStandardBuilder.cs" />
     <Compile Include="Builders\ParentCourseBuilder.cs" />
+    <Compile Include="Builders\ParentCourseGradeBuilder.cs" />
     <Compile Include="Builders\StudentAssessmentBuilder.cs" />
     <Compile Include="Builders\StudentAssessmentScoreResultBuilder.cs" />
     <Compile Include="Assessment\StudentAssessmentsToAssessmentResultModelMapperTests.cs" />
@@ -108,7 +111,9 @@
     <Compile Include="Builders\SchoolBuilder.cs" />
     <Compile Include="Builders\SetScheduleModelBuilder.cs" />
     <Compile Include="Builders\StaffBuilder.cs" />
+    <Compile Include="Builders\StudentBiographicalInformationModelBuilder.cs" />
     <Compile Include="Builders\StudentBuilder.cs" />
+    <Compile Include="Builders\StudentSectionAttendanceEventBuilder.cs" />
     <Compile Include="Builders\TakeAttendanceModelBuilder.cs" />
     <Compile Include="ClassPeriod\CreateClassPeriodModelBuilder.cs" />
     <Compile Include="Builders\StudentProgramStatusBuilder.cs" />
@@ -124,7 +129,8 @@
     <Compile Include="Enrollment\AcademicDetailModelToStudentSchoolAssociationMapperTest.cs" />
     <Compile Include="Enrollment\AcademicDetailModelValidatorTests.cs" />
     <Compile Include="Enrollment\CreateAcademicDetailModelFactory.cs" />
-    <Compile Include="Enrollment\EnterProgramStatusModelFactory.cs" />
+    <Compile Include="Enrollment\StudentBiographicalInformationModelToStudentMapperTests.cs" />
+    <Compile Include="Enrollment\EnterProgramStatusModelBuilder.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentAddressMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToParentMapperTests.cs" />
     <Compile Include="Enrollment\CreateParentModelToStudentParentAssociationMapperTests.cs" />
@@ -133,7 +139,12 @@
     <Compile Include="Location\MapperTests.cs" />
     <Compile Include="Location\ValidatorTests.cs" />
     <Compile Include="ParentCourse\CreateModelToParentCourseMapperTest.cs" />
+    <Compile Include="ParentCourse\ParentCourseGradeToGradeModelMapperTests.cs" />
     <Compile Include="ParentCourse\ParentCourseToIndexModelMapperTests.cs" />
+    <Compile Include="ParentCourse\ParentCourseToParentCourseJsonModelMapperTests.cs" />
+    <Compile Include="ParentCourse\SessionToFindParentCourseModelMapperTests.cs" />
+    <Compile Include="ParentCourse\SectionToParentCourseGradeMapperTests.cs" />
+    <Compile Include="ParentCourse\StudentToGradeModelMapperTests.cs" />
     <Compile Include="ParentCourse\ValidatorTests.cs" />
     <Compile Include="Schedule\SetModelValidatorTest.cs" />
     <Compile Include="Section\CourseToCourseJsonModelMapperTests.cs" />
@@ -151,12 +162,14 @@
     <Compile Include="Session\SessionBuilder.cs" />
     <Compile Include="Session\MapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\SessionToSessionWithSectionsModelMapperTests.cs" />
     <Compile Include="Session\ValidatorTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelToStudentMapperTests.cs" />
     <Compile Include="Student\ParentAddressFactory.cs" />
     <Compile Include="Student\ParentFactory.cs" />
     <Compile Include="Student\StudentAcademicDetailBuilder.cs" />
     <Compile Include="Student\StudentAddressFactory.cs" />
+    <Compile Include="Student\StudentAttendancePercentageMapperTests.cs" />
     <Compile Include="Student\StudentLanguageFactory.cs" />
     <Compile Include="Student\StudentToProfileModelMapperTest.cs" />
     <Compile Include="Student\StudentProgramStatusToProfileProgramStatusModelMapperTests.cs" />
@@ -173,6 +186,18 @@
       <Project>{F035A15E-9F41-4907-A370-B8F2EB8C4010}</Project>
       <Name>NGL.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\Scripts\lib\jasmine-2.0.0\boot.js" />
+    <Content Include="Assets\Scripts\lib\jasmine-2.0.0\console.js" />
+    <Content Include="Assets\Scripts\lib\jasmine-2.0.0\jasmine-html.js" />
+    <Content Include="Assets\Scripts\lib\jasmine-2.0.0\jasmine.css" />
+    <Content Include="Assets\Scripts\lib\jasmine-2.0.0\jasmine.js" />
+    <Content Include="Assets\Scripts\lib\jasmine-2.0.0\jasmine_favicon.png" />
+    <Content Include="Assets\Scripts\SpecRunner.html" />
+    <Content Include="Assets\Scripts\spec\getGradesSpec.js" />
+    <Content Include="Assets\Scripts\spec\SpecHelper.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

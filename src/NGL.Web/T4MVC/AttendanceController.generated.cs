@@ -66,6 +66,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Save);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EditFlags()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditFlags);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AttendanceController Actions { get { return MVC.Attendance; } }
@@ -85,6 +91,8 @@ namespace NGL.Web.Controllers
             public readonly string Take = "Take";
             public readonly string GetStudents = "GetStudents";
             public readonly string Save = "Save";
+            public readonly string ClearAllFlags = "ClearAllFlags";
+            public readonly string EditFlags = "EditFlags";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,6 +101,8 @@ namespace NGL.Web.Controllers
             public const string Take = "Take";
             public const string GetStudents = "GetStudents";
             public const string Save = "Save";
+            public const string ClearAllFlags = "ClearAllFlags";
+            public const string EditFlags = "EditFlags";
         }
 
 
@@ -111,6 +121,15 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_Save
         {
             public readonly string takeAttendanceModel = "takeAttendanceModel";
+        }
+        static readonly ActionParamsClass_EditFlags s_params_EditFlags = new ActionParamsClass_EditFlags();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditFlags EditFlagsParams { get { return s_params_EditFlags; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditFlags
+        {
+            public readonly string studentUsi = "studentUsi";
+            public readonly string newFlagCount = "newFlagCount";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -165,6 +184,30 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Save);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "takeAttendanceModel", takeAttendanceModel);
             SaveOverride(callInfo, takeAttendanceModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ClearAllFlagsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ClearAllFlags()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ClearAllFlags);
+            ClearAllFlagsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditFlagsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, int newFlagCount);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EditFlags(int studentUsi, int newFlagCount)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditFlags);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newFlagCount", newFlagCount);
+            EditFlagsOverride(callInfo, studentUsi, newFlagCount);
             return callInfo;
         }
 

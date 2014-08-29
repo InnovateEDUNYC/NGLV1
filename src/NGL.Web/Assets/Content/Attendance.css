@@ -1,11 +1,4 @@
-﻿.table-container {
-    background-color: white;
-    margin: 30px 0;
-    padding: 60px 30px;
-    border-radius: 4px;
-}
-
-.attendance-list {
+﻿.attendance-list {
     table-layout: fixed;
 }
 
@@ -32,6 +25,7 @@
 .student-name {
     display: inline-block;
     width: 240px;
+    margin-left: 10px;
 }
 
 table.attendance-list div.radio {
@@ -81,4 +75,33 @@ table.attendance-list input[type="radio"]:checked + .custom-checkbox {
 .cancel-and-save-buttons {
     width: 100%;
     text-align: right;
+}
+
+.attendance-flags {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.great {
+    color: #69BD45;
+}
+
+.in-danger {
+    color: #FFD902;
+}
+
+.bad {
+    color: #EC4B36;
+}
+
+.remove-flag-button {
+    vertical-align: top;
+    margin-left: -4px;
+}
+
+.attendance-percentage {
+    width: 80%;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
 }

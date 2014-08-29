@@ -6,7 +6,7 @@ using NGL.Web.Data.Infrastructure;
 
 namespace NGL.Web.Data.Filters
 {
-    public class SessionFilter
+    public class SessionFilter : ISessionFilter
     {
         private readonly IGenericRepository _genericRepository;
 
@@ -21,7 +21,10 @@ namespace NGL.Web.Data.Filters
             var sessions = _genericRepository.GetAll<Session>().ToList();
             var sessionToChecks = sessions as IList<Session> ?? sessions.ToList();
             var closestSession = GetAnyFutureSession(sessionToChecks, dateToCheck);
-            
+
+            if (closestSession == null)
+                return null;
+
             var closestDifference = Difference(dateToCheck, closestSession.EndDate);
 
             foreach (Session sessionToCheck in sessionToChecks)

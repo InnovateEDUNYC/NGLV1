@@ -20,6 +20,7 @@ namespace NGL.Web.Data.Entities
     		this.LastModifiedDate = System.DateTime.Now;
     		this.CreateDate = System.DateTime.Now;
             this.Courses = new HashSet<Course>();
+            this.ParentCourseGrades = new HashSet<ParentCourseGrade>();
         }
     
         public int EducationOrganizationId { get; set; }
@@ -31,5 +32,6 @@ namespace NGL.Web.Data.Entities
         public System.DateTime CreateDate { get; set; }
     
         public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<ParentCourseGrade> ParentCourseGrades { get; set; }
     }
 }

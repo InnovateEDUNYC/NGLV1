@@ -40,6 +40,8 @@ namespace NGL.Web.Models.Account
 
         private static void AddCertificate(int number, string name, Data.Entities.Staff target)
         {
+            if (name == null) return;
+
             var certificate = new StaffCertificate
             {
                 Number = number,

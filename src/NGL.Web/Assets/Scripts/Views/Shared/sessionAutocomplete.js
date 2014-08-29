@@ -16,7 +16,6 @@ Ngl.shared.sessionAutocomplete = (function () {
                 $('#SessionId').val("").trigger('cleared');
             }
         });
-
     }
 
     var sessionAutocomplete = function () {
@@ -62,7 +61,7 @@ Ngl.shared.sessionAutocomplete = (function () {
                     if (ui.item.label === noResultsLabel) {
                         event.preventDefault();
                     } else {
-                        $("#SessionId").trigger('change');
+                        $("#SessionId").trigger('populated');
                     }
                 },
                 focus: function (event, ui) {

@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using FluentValidation.TestHelper;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Models;
 using NGL.Web.Models.Course;
 using NSubstitute;
 using Xunit;
@@ -47,7 +48,7 @@ namespace NGL.Tests.Course
         {
             _genericRepository = Substitute.For<IGenericRepository>();
             _courseCreateModel = new CreateCourseModelBuilder().Build();
-            _validator = new CreateModelValidator(_genericRepository);
+            _validator = new CreateModelValidator(new RepositoryReader<Web.Data.Entities.Course>(_genericRepository));
         }
     }
 }

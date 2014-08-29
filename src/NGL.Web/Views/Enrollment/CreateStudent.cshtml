@@ -1,9 +1,7 @@
 ﻿@model NGL.Web.Models.Enrollment.CreateStudentModel
-
 @{
     ViewBag.Title = "Enrollment";
 }
-
 <h2>Enrollment</h2>
 @using (var f = Html.BeginNglForm())
 {
@@ -41,7 +39,6 @@
                     @s.FieldFor(m => m.FirstParent.EmailAddress)
                     @s.FieldFor(m => m.FirstParent.MakeThisPrimaryContact)
                     @s.FieldFor(m => m.FirstParent.SameAddressAsStudent).AddClass("same-address-as-student")
-
                     <div class="parent-address">
                         @s.FieldFor(m => m.FirstParent.Address)
                         @s.FieldFor(m => m.FirstParent.Address2)
@@ -63,7 +60,6 @@
                     @s.FieldFor(m => m.SecondParent.EmailAddress)
                     @s.FieldFor(m => m.SecondParent.MakeThisPrimaryContact)
                     @s.FieldFor(m => m.SecondParent.SameAddressAsStudent).AddClass("same-address-as-student")
-
                     <div class="parent-address">
                         @s.FieldFor(m => m.SecondParent.Address)
                         @s.FieldFor(m => m.SecondParent.Address2)
@@ -74,15 +70,14 @@
                 </div>
             </div>
         </div>
-    <div class="submit-student-button-container col-md-7">
-        @using (var n = f.BeginNavigation())
-        {
-            @n.Submit("Save and Continue").AddClass("submit-student-button btn btn-primary")
-        }
-    </div>
+        <div class="submit-student-button-container col-md-7">
+            @using (var n = f.BeginNavigation())
+            {
+                @n.Submit("Save and Continue").AddClass("submit-student-button btn btn-primary")
+            }
+        </div>
     }
 }
-
 @section Scripts {
     Ngl.enrollment.createStudent.init();
 }

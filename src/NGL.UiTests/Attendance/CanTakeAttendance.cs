@@ -1,5 +1,8 @@
 ﻿using NGL.Tests.Builders;
+using NGL.UiTests.Enrollment;
 using NGL.UiTests.Shared;
+using NGL.UiTests.Student;
+using NGL.Web.Data.Entities;
 using Shouldly;
 using TestStack.BDDfy;
 using Xunit;
@@ -14,38 +17,75 @@ namespace NGL.UiTests.Attendance
     {
         private HomePage _homePage;
         private TakeAttendancePage _takeAttendancePage;
+        private ProfilePage _profilePage;
+        private StudentIndexPage _studentIndex;
 
-        public void IHaveLoggedIn()
+        public TakeAttendancePage TakeAttendancePage
+        {
+            set { _takeAttendancePage = value; }
+            get { return _takeAttendancePage; }
+        }
+
+        private void IHaveLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
 
-        public void IAmOnTheTakeAttendancePage()
+        private void IAmOnTheTakeAttendancePage()
         {
             _takeAttendancePage = _homePage.TopMenu.GoToTakeAttendancePage();
         }
 
-        public void IEnterAValidSessionSectionAndDate()
+        private void IEnterAValidSessionSectionAndDate()
         {
             var takeAttendanceModel = new TakeAttendanceModelBuilder().Build();
             _takeAttendancePage = _takeAttendancePage.SearchForStudents(takeAttendanceModel);
         }
 
-        public void AListOfStudentsAttendingThatSectionShouldShow()
+        private void AListOfStudentsAttendingThatSectionShouldShow()
         {
             _takeAttendancePage.GetStudentAttendance().Count.ShouldBeGreaterThan(0);
         }
 
-        public void ISaveAfterMarkingAllTheStudentsTardy()
+        private void ISaveAfterMarkingAllTheStudentsTardy()
         {
-            _takeAttendancePage = _takeAttendancePage.EnterAttendanceStatus();
+            _takeAttendancePage = _takeAttendancePage.EnterAttendanceStatus(AttendanceEventCategoryDescriptorEnum.Tardy);
         }
 
-        public void AllTheStudentsShouldBeMarkedTardy()
+        private void IMarkAStudentPresentForTwoOtherDays()
+        {
+            _takeAttendancePage = _homePage.TopMenu.GoToTakeAttendancePage();
+            _takeAttendancePage.MarkPresentForDate("09/10/2014");
+            _takeAttendancePage.MarkPresentForDate("09/11/2014");
+        }
+
+        private void AllTheStudentsShouldBeMarkedTardy()
         {
             _takeAttendancePage.GetStudentAttendance().ShouldAllBe(sa => sa == "Tardy");
+        }
+
+        private void TheStudentProfilePageShouldDisplayTheAttendancePercentage()
+        {
+            _profilePage.AttendancePercentageIs("66%").ShouldBe(true);
+        }
+
+        private void IClearAllFlagsForEveryone()
+        {
+            _studentIndex = _homePage.TopMenu.GoToStudentsPage();
+            _studentIndex.ClearFlags();
+        }
+
+        private void TheFlagCountShouldBe(int flagCount)
+        {
+            _profilePage.FlagCountIs(flagCount).ShouldBe(true);
+        }
+
+        private void IVisitThatStudentsProfilePage()
+        {
+            _studentIndex = _homePage.TopMenu.GoToStudentsPage();
+            _profilePage = _studentIndex.GoToProfilePage();
         }
 
         [Fact]
@@ -57,7 +97,16 @@ namespace NGL.UiTests.Attendance
                 .Then(_ => AListOfStudentsAttendingThatSectionShouldShow())
                 .When(_ => ISaveAfterMarkingAllTheStudentsTardy())
                 .Then(_ => AllTheStudentsShouldBeMarkedTardy())
+                .When(_ => IVisitThatStudentsProfilePage())
+                .Then(_ => TheFlagCountShouldBe(1))
+                .When(_ => IMarkAStudentPresentForTwoOtherDays())
+                .And(_ => IVisitThatStudentsProfilePage())
+                .Then(_ => TheStudentProfilePageShouldDisplayTheAttendancePercentage())
+                .When(_ => IClearAllFlagsForEveryone())
+                .And(_ => IVisitThatStudentsProfilePage())
+                .Then(_ => TheFlagCountShouldBe(0))
                 .BDDfy();
         }
+
     }
 }

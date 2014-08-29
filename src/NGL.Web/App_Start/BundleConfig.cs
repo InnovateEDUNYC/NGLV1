@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿
+using System.Web.Optimization;
 using Links;
 
 namespace NGL.Web
@@ -34,8 +35,8 @@ namespace NGL.Web
                       "~/Assets/Content/datepicker.css",
                       "~/Assets/Content/Attendance.css",
                       "~/Assets/Content/ViewAssessmentResults.css",
-                      "~/Assets/Content/Tables.css"));
-
+                      "~/Assets/Content/Tables.css",
+                      "~/Assets/Content/Profile.css"));
 
            bundles.Add(new StyleBundle("~/Assets/Scripts/lib/jquery-ui-1.11.0/bundle").Include(
                           "~/Assets/Scripts/lib/jquery-ui-1.11.0/*.css"));
@@ -45,11 +46,17 @@ namespace NGL.Web
                  "~/Assets/Scripts/lib/bootstrap-datepicker.js",
                  "~/Assets/Scripts/forms.js"
                 ));
-
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
+                "~/Assets/Scripts/Views/Shared/programStatus.js",
+                "~/Assets/Scripts/Views/Shared/enableEditMode.js",
                 "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",
                 "~/Assets/Scripts/Views/Enrollment/createStudent.js",
                 "~/Assets/Scripts/Views/Student/index.js",
+                "~/Assets/Scripts/Views/Student/all.js",
+                "~/Assets/Scripts/Views/Student/editBiographicalInfo.js",
+                "~/Assets/Scripts/Views/Student/editStudentName.js",
+                "~/Assets/Scripts/Views/Student/editProgramStatus.js",
+                "~/Assets/Scripts/Views/Student/editHomeAddress.js",
                 "~/Assets/Scripts/Views/Schedule/setSchedule.js",
                 "~/Assets/Scripts/Views/Schedule/removeStudent.js",
                 "~/Assets/Scripts/Views/Section/getCourse.js",
@@ -57,7 +64,10 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Shared/sectionAutocomplete.js",
                 "~/Assets/Scripts/Views/Assessment/result.js",
                 "~/Assets/Scripts/Views/Attendance/take.js",
-                "~/Assets/Scripts/Views/Shared/learningStandards.js"
+                "~/Assets/Scripts/Views/Shared/learningStandards.js",
+                "~/Assets/Scripts/Views/Report/getGrades.js",
+                "~/Assets/Scripts/Views/Shared/accordianArrows.js",
+                "~/Assets/Scripts/Views/Shared/parentCourseAutocomplete.js"
                 ));
         }
     }

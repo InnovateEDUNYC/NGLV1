@@ -20,5 +20,25 @@ namespace NGL.Web.Data.Repositories
 
             return section;
         }
+
+        public Section GetWithStudentsAndSession(int sectionIdentity)
+        {
+            return DbContext.Set<Section>()
+                .Where(s => s.SectionIdentity == sectionIdentity)
+                .Include(s => s.StudentSectionAssociations.Select(ssa => ssa.Student))
+                .Include(s => s.Session).FirstOrDefault();
+        }
+
+        public Section GetWithAttendanceFlags(int? sectionId)
+        {
+            var section = DbContext.Set<Section>()
+                .Where(s => s.SectionIdentity == sectionId)
+                .Include(s => s.StudentSectionAssociations)
+                .Include(s => s.StudentSectionAssociations.Select(ssa => ssa.Student))
+                .Include(s => s.StudentSectionAssociations.Select(ssa => ssa.Student.AttendanceFlags))
+                .ToList().FirstOrDefault();
+
+            return section;
+        }
     }
 }

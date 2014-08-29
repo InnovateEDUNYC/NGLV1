@@ -12,6 +12,7 @@ namespace NGL.Web.Models.Session
             target.BeginDate = source.BeginDate;
             target.EndDate = source.EndDate;
             target.TotalInstructionalDays = source.TotalInstructionalDays;
+            target.SessionIdentity = source.SessionIdentity;
         }
     }
 }

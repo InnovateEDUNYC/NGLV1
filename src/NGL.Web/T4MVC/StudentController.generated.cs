@@ -66,6 +66,24 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPhoto);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult EditBiographicalInfo()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditBiographicalInfo);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult EditStudentName()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditStudentName);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult EditHomeAddress()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditHomeAddress);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StudentController Actions { get { return MVC.Student; } }
@@ -86,6 +104,9 @@ namespace NGL.Web.Controllers
             public readonly string Reports = "Reports";
             public readonly string Index = "Index";
             public readonly string UploadPhoto = "UploadPhoto";
+            public readonly string EditBiographicalInfo = "EditBiographicalInfo";
+            public readonly string EditStudentName = "EditStudentName";
+            public readonly string EditHomeAddress = "EditHomeAddress";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -95,6 +116,9 @@ namespace NGL.Web.Controllers
             public const string Reports = "Reports";
             public const string Index = "Index";
             public const string UploadPhoto = "UploadPhoto";
+            public const string EditBiographicalInfo = "EditBiographicalInfo";
+            public const string EditStudentName = "EditStudentName";
+            public const string EditHomeAddress = "EditHomeAddress";
         }
 
 
@@ -115,6 +139,30 @@ namespace NGL.Web.Controllers
             public readonly string profilePhoto = "profilePhoto";
             public readonly string usi = "usi";
         }
+        static readonly ActionParamsClass_EditBiographicalInfo s_params_EditBiographicalInfo = new ActionParamsClass_EditBiographicalInfo();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditBiographicalInfo EditBiographicalInfoParams { get { return s_params_EditBiographicalInfo; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditBiographicalInfo
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_EditStudentName s_params_EditStudentName = new ActionParamsClass_EditStudentName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditStudentName EditStudentNameParams { get { return s_params_EditStudentName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditStudentName
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_EditHomeAddress s_params_EditHomeAddress = new ActionParamsClass_EditHomeAddress();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditHomeAddress EditHomeAddressParams { get { return s_params_EditHomeAddress; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditHomeAddress
+        {
+            public readonly string model = "model";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -126,16 +174,22 @@ namespace NGL.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string All = "All";
+                public readonly string BiographicalInformation = "BiographicalInformation";
                 public readonly string Delete = "Delete";
-                public readonly string Edit = "Edit";
+                public readonly string HomeAddress = "HomeAddress";
                 public readonly string Index = "Index";
+                public readonly string ProgramStatus = "ProgramStatus";
                 public readonly string Reports = "Reports";
+                public readonly string StudentName = "StudentName";
             }
             public readonly string All = "~/Views/Student/All.cshtml";
+            public readonly string BiographicalInformation = "~/Views/Student/BiographicalInformation.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
-            public readonly string Edit = "~/Views/Student/Edit.cshtml";
+            public readonly string HomeAddress = "~/Views/Student/HomeAddress.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string ProgramStatus = "~/Views/Student/ProgramStatus.cshtml";
             public readonly string Reports = "~/Views/Student/Reports.cshtml";
+            public readonly string StudentName = "~/Views/Student/StudentName.cshtml";
         }
     }
 
@@ -188,6 +242,42 @@ namespace NGL.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "profilePhoto", profilePhoto);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "usi", usi);
             UploadPhotoOverride(callInfo, profilePhoto, usi);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditBiographicalInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Student.EditStudentBiographicalInfoModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult EditBiographicalInfo(NGL.Web.Models.Student.EditStudentBiographicalInfoModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditBiographicalInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            EditBiographicalInfoOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditStudentNameOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Student.NameModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult EditStudentName(NGL.Web.Models.Student.NameModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditStudentName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            EditStudentNameOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditHomeAddressOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Student.HomeAddressModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult EditHomeAddress(NGL.Web.Models.Student.HomeAddressModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditHomeAddress);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            EditHomeAddressOverride(callInfo, model);
             return callInfo;
         }
 

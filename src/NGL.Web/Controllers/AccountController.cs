@@ -85,7 +85,7 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Users()
         {
             var users = _staffRepository.GetStaffWithUsers();
-            var userModels = users.Select(_staffToUserModelMapper.Build).ToList();
+            var userModels = users.Select(source => _staffToUserModelMapper.Build(source)).ToList();
             return View(userModels);
         }
 

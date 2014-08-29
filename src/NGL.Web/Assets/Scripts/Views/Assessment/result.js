@@ -6,7 +6,7 @@ Ngl.assessment.result = (function () {
         var monthUrl = "/Assessment/Month";
         var getResultsUrlTemplate = "?studentUsi={studentUsi}&sessionId={sessionId}";
 
-        $("#SessionId").change(function () {
+        $("#SessionId").on("populated", function () {
             var sessionId = $(this).val();
             var url = updateGetResultsUrl(sessionId);
             window.location = url;

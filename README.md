@@ -18,6 +18,7 @@ To run the website,
  - Change your system variables to have a 'BlobConnectionString' system variable set to: 'DefaultEndpointsProtocol=https;AccountName=\<YOUR ACCOUNT NAME\>;AccountKey=\<YOUR AZURE ACCOUNT KEY\>'
  - Clone the repository, run the `resetdb.bat` command found on the root of the repository
  - Open the solution and run the NGL.Web project. On initiation the website looks for the database migration scripts and runs the delta. Since this is your first time running the website, it might take a while as it's building the database schema and inserting the required reference data.
+ - Set the BlobConnectionString environment variable to point at the dev environment Blob service.
 
 ##Definition of Done
 If you want to contribute to the codebase, please fork the repository and submit a GitHub Pull Request. Your code should comply with our Definition of Done before it's accepted:

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {
@@ -7,19 +9,10 @@ namespace NGL.Web.Models.Student
     {
         [Display(Name = "Student USI")]
         public int StudentUsi { get; set; }
+
+        public NameModel StudentName { get; set; }
         public string ProfilePhotoUrl { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Sex { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
-        
-        [Display(Name = "Hispanic/Latino")]
-        public bool HispanicLatinoEthnicity { get; set; }
-        public string Race { get; set; }
-        public string HomeLanguage { get; set; }
-
+        public EditStudentBiographicalInfoModel BiographicalInfo { get; set; }
         public string Address { get; set; }
         public string Address2 { get; set; }
         public string City { get; set; }
@@ -29,5 +22,7 @@ namespace NGL.Web.Models.Student
         public ProfileParentModel SecondProfileParentModel { get; set; }
         public ProfileAcademicDetailModel AcademicDetail { get; set; }
         public ProfileProgramStatusModel ProgramStatus { get; set; }
+        public int AttendancePercentage { get; set; }
+        public int FlagCount { get; set; }
     }
 }

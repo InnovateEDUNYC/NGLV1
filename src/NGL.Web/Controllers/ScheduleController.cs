@@ -56,9 +56,13 @@ namespace NGL.Web.Controllers
             var student = _genericRepository.Get<Student>(s => s.StudentUSI == id);
             var profilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(student);
             var sessionModels = GetAllSessionModels();
-            var currentlyEnrolledSections = GetCurrentlyEnrolledSectionsFor(id);
+            var defaultSessionListModel = new SessionListItemModel();
+            if (!sessionModels.IsNullOrEmpty())
+            {
+                defaultSessionListModel = _sessionToSessionListItemModelMapper.Build(new SessionFilter(_genericRepository).FindSession(DateTime.Now));
+            }
 
-            var defaultSessionListModel = _sessionToSessionListItemModelMapper.Build(new SessionFilter(_genericRepository).FindSession(DateTime.Now));
+            var currentlyEnrolledSections = GetCurrentlyEnrolledSectionsFor(id);
 
             var setModel = SetModel.CreateNewWith(student, profilePhotoUrl, sessionModels, defaultSessionListModel, currentlyEnrolledSections);
             return View(setModel);
@@ -144,6 +148,8 @@ namespace NGL.Web.Controllers
         private List<SessionListItemModel> GetAllSessionModels()
         {
             var sessions = _genericRepository.GetAll<Session>().ToList();
+            if (sessions.IsNullOrEmpty())
+                return new List<SessionListItemModel>();
             return sessions.Select(session => _sessionToSessionListItemModelMapper.Build(session)).ToList();
         }
 	}

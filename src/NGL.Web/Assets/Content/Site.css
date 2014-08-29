@@ -12,6 +12,27 @@
     margin-top: 80px;
 }
 
+.top-buffer-30 {
+    margin-top: 30px;
+}
+
+.top-buffer-10 {
+    margin-top: 10px;
+}
+
+.display-none {
+    display: none;
+}
+
+.enabled-edit {
+    cursor: pointer;
+    color: #2DBCBB;
+}
+
+.enabled-edit:hover {
+    color: #249695;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -116,7 +137,6 @@ form .inline input {
 }
 
 .dl-horizontal dt {
-    width: 240px;
     text-align: left;
 }
 
@@ -127,7 +147,7 @@ form .inline input {
 .current-section-list-item {
     background-color: white;
     border: solid 1px lightgrey;
-    border-left: turquoise 4px solid;
+    border-left: #2DBCBB 4px solid;
     padding: 3px 0 3px 8px;
     width: 100%;
 }
@@ -215,4 +235,47 @@ body h4.panel:first-child {
 
 .arrow {
     padding-left: 5px;
+}
+
+.progress {
+    background-color: #E9E9EB;
+    border-radius: 20px;
+}
+
+.progress-bar {
+    background-color: #2DBCBB;
+    border-radius: 20px;
+}
+
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.alert > p {
+    margin-bottom: 10px;
+}
+
+/* Parent Course Grade Page */
+
+.grade-textbox {
+    float: right;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.grade-textbox-error {
+    float: right;
+    margin-top: 0px;   
+}
+
+.inline {
+    display: inline;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
 }

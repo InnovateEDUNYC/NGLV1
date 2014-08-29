@@ -1,0 +1,333 @@
+﻿@using System.Web.Mvc.Html
+@model NGL.Web.Models.Student.ProfileModel
+
+@functions {
+    private static bool ShouldCheckRadioButton(string property, string value)
+    {
+        return property.Equals(value);
+    }
+}
+
+@{
+    const string downloadFileText = "Download File";
+    var fileAttributes = new { type = "file", @class = "form-control", disabled = "disabled" };
+    const string yes = "Yes";
+    const string no = "No";
+}
+
+
+<div id="readonly-program-status" class="top-buffer-10">
+
+    <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseProgramStatus">
+        @if (Model.ProgramStatus != null && (Model.ProgramStatus.McKinneyVentoFile != null
+                                             || Model.ProgramStatus.SpecialEducationFile != null
+                                             || Model.ProgramStatus.TestingAccommodationFile != null
+                                             || Model.ProgramStatus.TitleParticipationFile != null))
+        {
+            <span class="fa fa-file-text-o fa-1x"></span>
+        }
+        Program Status <i class="fa fa-caret-down arrow"></i>
+        @if (Model.ProgramStatus != null)
+        {
+            <span id="edit-program-status" class="fa fa-pencil pull-right enabled-edit"></span>
+        }
+    </h4>
+
+    <div id="collapseProgramStatus" class="panel-collapse collapse">
+        <dl class="dl-horizontal panel panel-default">
+            @if (Model.ProgramStatus == null)
+            {
+                @Html.Raw("No Information Entered")
+                @Html.ActionLink("Enter Program Status", MVC.Enrollment.EnterProgramStatus(@Model.StudentUsi), new { @class = "btn pull-right" })
+            }
+            else
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.TestingAccommodation)
+                </dt>
+                <dd name="testing-accommodation">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.TestingAccommodation)
+                    @if (Model.ProgramStatus.TestingAccommodationFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.TestingAccommodationFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dd>
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.BilingualProgram)
+                </dt>
+                <dd name="bilingual-program">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.BilingualProgram)<br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.EnglishAsSecondLanguage)
+                </dt>
+                <dd name="esl">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.EnglishAsSecondLanguage)<br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.Gifted)
+                </dt>
+                <dd name="gifted">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.Gifted)<br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.SpecialEducation)
+                </dt>
+                <dd name="special-education">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.SpecialEducation)
+                    @if (Model.ProgramStatus.SpecialEducationFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.SpecialEducationFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.TitleParticipation)
+                </dt>
+                <dd name="title-participation">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.TitleParticipation)
+                    @if (Model.ProgramStatus.TitleParticipationFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.TitleParticipationFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.McKinneyVento)
+                </dt>
+                <dd name="mckinneyvento">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.McKinneyVento)
+                    @if (Model.ProgramStatus.McKinneyVentoFile != null)
+                    {
+                        <a href="@Model.ProgramStatus.McKinneyVentoFile">@downloadFileText</a>
+                    }
+                    <br />
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgramStatus.FoodServicesEligibilityStatusForDisplay)
+                </dt>
+                <dd name="food-services">
+                    @Html.DisplayTextFor(model => model.ProgramStatus.FoodServicesEligibilityStatusForDisplay)<br />
+                </dd>
+            }
+        </dl>
+    </div>
+</div>
+
+<div id="editable-program-status" class="top-buffer-10">
+
+    <h4 class="panel panel-default strong display-none">
+        @if (Model.ProgramStatus != null && (Model.ProgramStatus.McKinneyVentoFile != null
+                                             || Model.ProgramStatus.SpecialEducationFile != null
+                                             || Model.ProgramStatus.TestingAccommodationFile != null
+                                             || Model.ProgramStatus.TitleParticipationFile != null))
+        {
+            <span class="fa fa-file-text-o fa-1x"></span>
+        }
+        Program Status <i class="fa fa-caret-up arrow"></i>
+        <span class="fa fa-pencil pull-right"></span>
+    </h4>
+
+    @if (@Model.ProgramStatus != null)
+    {
+        <div class="display-none">
+
+            <div class="dl-horizontal panel panel-default">
+
+                @using (var f = Html.BeginNglForm(method: FormMethod.Post, action: "/enrollment/editprogramstatus?studentUsi=" + Model.StudentUsi, enctype: EncType.Multipart))
+                {
+                    using (var s = f.BeginSection())
+                    {
+                        <div class="inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.LabelFor(m => m.ProgramStatus.TestingAccommodation, new { @class = "control-label profile-labels" })
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.TestingAccommodation, true,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.TestingAccommodation, yes) ?
+                                                new { Checked = "checked" } : null)) Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.TestingAccommodation, false,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.TestingAccommodation, no) ?
+                                                new { Checked = "checked" } : null)) No
+                                    </label>
+
+                                    <div class="file-upload">
+                                        @s.FieldFor(m => m.ProgramStatus.TestingAccommodationFile).Attrs(fileAttributes).WithoutLabel().Label("")
+                                    </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.TestingAccommodationFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.LabelFor(m => m.ProgramStatus.BilingualProgram, new { @class = "control-label profile-labels" })
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.BilingualProgram, true,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.BilingualProgram, yes) ?
+                                                new { Checked = "checked" } : null)) Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.BilingualProgram, false,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.BilingualProgram, no) ?
+                                                new { Checked = "checked" } : null)) No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.LabelFor(m => m.ProgramStatus.EnglishAsSecondLanguage, new { @class = "control-label profile-labels" })
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.EnglishAsSecondLanguage, true,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.EnglishAsSecondLanguage, yes) ?
+                                                new { Checked = "checked" } : null)) Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.EnglishAsSecondLanguage, false,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.EnglishAsSecondLanguage, no) ?
+                                                new { Checked = "checked" } : null)) No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inline profile-edit">
+                            @s.FieldFor(m => m.ProgramStatus.FoodServicesEligibilityStatus)
+                        </div>
+
+                        <div class="inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.LabelFor(m => m.ProgramStatus.Gifted, new { @class = "control-label profile-labels" })
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.Gifted, true,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.Gifted, yes) ?
+                                                new { Checked = "checked" } : null)) Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.Gifted, false,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.Gifted, no) ?
+                                                new { Checked = "checked" } : null)) No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.LabelFor(m => m.ProgramStatus.SpecialEducation, new { @class = "control-label profile-labels" })
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.SpecialEducation, true,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.SpecialEducation, yes) ?
+                                                new { Checked = "checked" } : null)) Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.SpecialEducation, false,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.SpecialEducation, no) ?
+                                                new { Checked = "checked" } : null)) No
+                                    </label>
+
+                                    <div class="file-upload">
+                                        @s.FieldFor(m => m.ProgramStatus.SpecialEducationFile).Attrs(fileAttributes).WithoutLabel().Label("")
+                                    </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.SpecialEducationFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.LabelFor(m => m.ProgramStatus.TitleParticipation, new { @class = "control-label profile-labels" })
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.TitleParticipation, true,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.TitleParticipation, yes) ?
+                                                new { Checked = "checked" } : null)) Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.TitleParticipation, false,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.TitleParticipation, no) ?
+                                                new { Checked = "checked" } : null)) No
+                                    </label>
+
+                                    <div class="file-upload">
+                                        @s.FieldFor(m => m.ProgramStatus.TitleParticipationFile).Attrs(fileAttributes).WithoutLabel().Label("")
+                                    </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.TitleParticipationFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    @Html.LabelFor(m => m.ProgramStatus.McKinneyVento, new { @class = "control-label profile-labels" })
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.McKinneyVento, true,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.McKinneyVento, yes) ?
+                                                new { Checked = "checked" } : null)) Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        @Html.RadioButtonFor(m => m.ProgramStatus.McKinneyVento, false,
+                                            (ShouldCheckRadioButton(Model.ProgramStatus.McKinneyVento, no) ?
+                                                new { Checked = "checked" } : null)) No
+                                    </label>
+
+                                    <div class="file-upload">
+                                        @s.FieldFor(m => m.ProgramStatus.McKinneyVentoFile).Attrs(fileAttributes).WithoutLabel().Label("")
+                                    </div>
+                                    <div class="file-upload">
+                                        @if (Model.ProgramStatus.McKinneyVentoFile != null)
+                                        {
+                                            <span>Existing File Uploaded</span>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+                    <div class="text-right top-buffer-30">
+                        @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
+                        <input id="submit-program-status" type="submit" class="btn btn-default btn-primary" value="Save" />
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    }
+</div>

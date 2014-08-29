@@ -4,6 +4,7 @@ using Castle.Core.Internal;
 using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
+using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {
@@ -13,29 +14,44 @@ namespace NGL.Web.Models.Student
         private readonly StudentToAcademicDetailsMapper _studentToAcademicDetailsMapper;
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
+        private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
+        private readonly IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> _biographicalInfoMapper;
+        private readonly IMapper<Data.Entities.Student, NameModel> _studentNameMapper;
 
-        public StudentToProfileModelMapper(StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, ParentToProfileParentModelMapper parentToProfileParentModelMapper,
-                                                                ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
-                         StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper)
+        public StudentToProfileModelMapper(
+            StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
+            ParentToProfileParentModelMapper parentToProfileParentModelMapper,
+            ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
+            StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper,
+            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> biographicalInfoMapper, IMapper<Data.Entities.Student, NameModel> studentNameMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
             _studentProgramStatusToProfileProgramStatusModelMapper = studentProgramStatusToProfileProgramStatusModelMapper;
+            _studentAttendancePercentageMapper = studentAttendancePercentageMapper;
+            _biographicalInfoMapper = biographicalInfoMapper;
+            _studentNameMapper = studentNameMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
         public override void Map(Data.Entities.Student source, ProfileModel target)
         {
             MapBasicStudentInfo(source, target);
-            MapHomeLanguage(source, target);
             target.ProfilePhotoUrl = _profilePhotoUrlFetcher.GetProfilePhotoUrlOrDefault(source);
             MapStudentAddress(source, target);
             MapParentInformation(source, target);
+            _studentAttendancePercentageMapper.Map(source.StudentSectionAttendanceEvents.ToList(), target);
+            MapFlagCount(source, target);
 
 			if (!source.StudentAcademicDetails.IsNullOrEmpty())
                 target.AcademicDetail = _studentToAcademicDetailsMapper.Build(source);
 
             MapProgramStatus(source, target);
+        }
+
+        private void MapFlagCount(Data.Entities.Student source, ProfileModel target)
+        {
+            target.FlagCount = !source.AttendanceFlags.IsNullOrEmpty() ? source.AttendanceFlags.First().FlagCount : 0;
         }
 
         private void MapProgramStatus(Data.Entities.Student source, ProfileModel target)
@@ -47,30 +63,13 @@ namespace NGL.Web.Models.Student
             
         }
 
-        private static void MapHomeLanguage(Data.Entities.Student source, ProfileModel target)
-        {
-            var homeLanguage = GetAllHomeLanguages(source).First();
-            target.HomeLanguage = ((LanguageDescriptorEnum) homeLanguage.LanguageDescriptorId).Humanize();
-        }
-
-        private static void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
+        private void MapBasicStudentInfo(Data.Entities.Student source, ProfileModel target)
         {
             target.StudentUsi = source.StudentUSI;
-            target.FirstName = source.FirstName;
-            target.LastName = source.LastSurname;
-            target.Sex = ((SexTypeEnum) source.SexTypeId).Humanize();
-            target.BirthDate = source.BirthDate;
-            target.HispanicLatinoEthnicity = source.HispanicLatinoEthnicity;
-            target.Race = ((RaceTypeEnum) source.StudentRaces.First().RaceTypeId).Humanize();
+            target.StudentName = _studentNameMapper.Build(source);
+            target.BiographicalInfo = _biographicalInfoMapper.Build(source);
         }
             
-        private static IEnumerable<StudentLanguage> GetAllHomeLanguages(Data.Entities.Student source)
-        {
-            return source.StudentLanguages.Where(
-                language => language.StudentLanguageUses.Any(
-                    languageUse => languageUse.LanguageUseTypeId.Equals((int)LanguageUseTypeEnum.Homelanguage)));
-        }
-
         private static void MapStudentAddress(Data.Entities.Student source, ProfileModel target)
         {
             var studentAddresses = source.StudentAddresses;
@@ -81,7 +80,6 @@ namespace NGL.Web.Models.Student
             target.State = ((StateAbbreviationTypeEnum) studentAddress.StateAbbreviationTypeId).Humanize();
             target.PostalCode = studentAddress.PostalCode;
         }
-
 
         private void MapParentInformation(Data.Entities.Student source, ProfileModel target)
         {
@@ -95,6 +93,5 @@ namespace NGL.Web.Models.Student
                 target.SecondProfileParentModel = _parentToProfileParentModelMapper.Build(parent2);
             }
         }
-
     }
 }

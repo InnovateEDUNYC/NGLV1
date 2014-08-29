@@ -3,11 +3,12 @@ using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
-using NGL.Web.Data.Queries;
+using NGL.Web.Data.Repositories;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
+using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -19,16 +20,22 @@ namespace NGL.Web.Controllers
         private readonly IFileUploader _fileUploader;
         private readonly IMapper<AcademicDetailModel, StudentSchoolAssociation> _schoolAssociationMapper;
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
+        private readonly IStudentRepository _studentRepository;
+        private readonly ProgramStatusModelToProgramStatusForEditMapper _programStatusModelToProgramStatusForEditMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
                                                 IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
                                                 IMapper<AcademicDetailModel, StudentAcademicDetail> academicDetailMapper, 
                                                 IFileUploader fileUploader,
                                                 IMapper<AcademicDetailModel, 
-                                                StudentSchoolAssociation> schoolAssociationMapper)
+                                                StudentSchoolAssociation> schoolAssociationMapper,
+                                                IStudentRepository studentRepository, 
+                                                ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;
+            _studentRepository = studentRepository;
+            _programStatusModelToProgramStatusForEditMapper = programStatusModelToProgramStatusForEditMapper;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -70,9 +77,9 @@ namespace NGL.Web.Controllers
             return View(model);
         }
 
-        private bool StudentDoesNotExist(int id)
+        private bool StudentDoesNotExist(int usi)
         {
-            return _repository.Get(new StudentByUsiQuery(id)) == null;
+            return _studentRepository.GetByUSI(usi) == null;
         }
 
         // POST: /Enrollment/EnterAcademicDetails/id
@@ -147,6 +154,25 @@ namespace NGL.Web.Controllers
 
             _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
             return relativePath;
+        }
+
+        public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
+        {
+            var specialEducationFileName = Upload(programStatus.SpecialEducationFile, studentUsi, "ProgramStatus", "specialEducation");
+            var testingAccomodationFileName = Upload(programStatus.TestingAccommodationFile, studentUsi, "ProgramStatus", "testingAccomodation");
+            var titleParticipationFileName = Upload(programStatus.TitleParticipationFile, studentUsi, "ProgramStatus", "titleParticipation");
+            var mcKinneyVentoFileName = Upload(programStatus.McKinneyVentoFile, studentUsi, "ProgramStatus", "mcKinneyVento");
+
+            var filePaths = new ProgramStatusUploadedFilePaths(specialEducationFileName, testingAccomodationFileName,
+                titleParticipationFileName, mcKinneyVentoFileName);
+
+            var studentProgramStatus = _repository.Get<StudentProgramStatus>(sps => sps.StudentUSI == studentUsi);
+            _programStatusModelToProgramStatusForEditMapper.Map(programStatus, studentProgramStatus, filePaths);
+
+            _repository.Save();
+
+            TempData["ShowSuccess"] = true;
+            return RedirectToAction(MVC.Student.Index(studentUsi));
         }
     }
 }

@@ -33,10 +33,11 @@ namespace NGL.Tests.Account
             staff.CitizenshipStatusTypeId.ShouldBe((int)model.CitizenshipStatus);
 
             staff.StaffIdentificationCodes.Single(code => code.StaffIdentificationSystemTypeId == (int)StaffIdentificationSystemTypeEnum.SSN).IdentificationCode.ShouldBe(model.SSN);
+            staff.StaffCertificates.Count.ShouldBe(2);
             staff.StaffCertificates.Single(certificate => certificate.Number == 1).Name.ShouldBe(model.Certificate1);
             staff.StaffCertificates.Single(certificate => certificate.Number == 2).Name.ShouldBe(model.Certificate2);
-            staff.StaffCertificates.Single(certificate => certificate.Number == 3).Name.ShouldBe(model.Certificate3);
-            staff.StaffCertificates.Single(certificate => certificate.Number == 4).Name.ShouldBe(model.Certificate4);
+            staff.StaffCertificates.Any(certificate => certificate.Number == 3).ShouldBe(false);
+            staff.StaffCertificates.Any(certificate => certificate.Number == 4).ShouldBe(false);
         }
     }
 }

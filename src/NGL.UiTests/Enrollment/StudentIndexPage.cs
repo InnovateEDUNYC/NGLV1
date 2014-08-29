@@ -18,5 +18,13 @@ namespace NGL.UiTests.Enrollment
             profileLink.Click();
             return Navigate.To<ProfilePage>("/Student/999");
         }
+
+        public void ClearFlags()
+        {
+            var revealClearAllFlagsButton = Find.Element(By.Id("clear-all-flags"));
+            revealClearAllFlagsButton.Click();
+            var clearFlagsButton = Find.Element(By.CssSelector("form#clearAllFlags > input"));
+            clearFlagsButton.Click();
+        }
     }
 }

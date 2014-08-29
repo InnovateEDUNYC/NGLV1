@@ -1,10 +1,12 @@
-﻿using FluentValidation;
+﻿using System;
+using System.Linq.Expressions;
+using FluentValidation;
 
 namespace NGL.Web.Models.Enrollment
 {
     public class CreateStudentModelValidator : AbstractValidator<CreateStudentModel>
     {
-        public CreateStudentModelValidator()
+        public CreateStudentModelValidator(IRepositoryReader<Data.Entities.Student> repositoryReader)
         {
             RuleFor(csm => csm.StudentUsi).NotNull();
             RuleFor(csm => csm.FirstName).NotEmpty().Length(1, 75);
@@ -19,6 +21,12 @@ namespace NGL.Web.Models.Enrollment
             RuleFor(csm => csm.PostalCode).NotEmpty().Length(1, 17);
             RuleFor(csm => csm.HomeLanguage).NotNull();
             RuleFor(csm => csm.FirstParent).SetValidator(new CreateParentModelValidator());
+
+            RuleFor(model => model.StudentUsi).Must(usi =>
+            {
+                Expression<Func<Data.Entities.Student, bool>> expression = entity => entity.StudentUSI == usi;
+                return repositoryReader.DoesRepositoryReturnNullFor(usi, expression);
+            }).WithMessage("A student with this USI already exists. Please go to the student's profile to enter academic details or program status.");
 
             When(csm => csm.AddSecondParent, () => RuleFor(csm => csm.SecondParent).SetValidator(new CreateParentModelValidator()));
         }

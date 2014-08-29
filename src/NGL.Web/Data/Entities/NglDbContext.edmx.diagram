@@ -1168,6 +1168,12 @@
         <AssociationConnector Association="NGLModel.FK_AssessmentLearningStandard_LearningStandard_LearningStandardId" />
         <EntityTypeShape EntityType="NGLModel.ParentCourse" Width="1.5" PointX="0.75" PointY="9.75" />
         <AssociationConnector Association="NGLModel.FK_Course_ParentCourse_ParentCourseId" />
+        <EntityTypeShape EntityType="NGLModel.ParentCourseGrade" Width="1.5" PointX="19.5" PointY="189.375" />
+        <AssociationConnector Association="NGLModel.FK_ParentCourseGrade_ParentCourse_ParentCourseId" />
+        <AssociationConnector Association="NGLModel.FK_ParentCourseGrade_Session_SessionIdentity" />
+        <AssociationConnector Association="NGLModel.FK_ParentCourseGrade_Student_StudentUSI" />
+        <EntityTypeShape EntityType="NGLModel.AttendanceFlag" Width="1.5" PointX="19.5" PointY="425.125" />
+        <AssociationConnector Association="NGLModel.FK_AttendanceFlag_Student_StudentUSI" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

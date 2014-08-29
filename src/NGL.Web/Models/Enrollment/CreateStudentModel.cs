@@ -10,8 +10,8 @@ namespace NGL.Web.Models.Enrollment
         {
             return new CreateStudentModel
             {
-                FirstParent = new CreateParentModel {SameAddressAsStudent = true},
-                SecondParent = new CreateParentModel {SameAddressAsStudent = true}
+                FirstParent = new CreateParentModel { SameAddressAsStudent = true },
+                SecondParent = new CreateParentModel { SameAddressAsStudent = true }
             };
         }
 

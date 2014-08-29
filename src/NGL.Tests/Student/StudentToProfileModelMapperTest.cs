@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Humanizer;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
 using NGL.Web.Infrastructure.Azure;
+using NGL.Web.Models;
+using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using NSubstitute;
 using Shouldly;
@@ -14,16 +16,19 @@ namespace NGL.Tests.Student
     public class StudentToProfileModelMapperTest
     {
         private StudentToProfileModelMapper _mapper;
+        private IMapper<IList<StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapperMock;
 
         private void SetupWithDownloaderReturning(string downloaderReturns)
         {
             var downloader = Substitute.For<IFileDownloader>();
             downloader.DownloadPath(Arg.Any<string>(), Arg.Any<string>()).Returns(downloaderReturns);
+            _studentAttendancePercentageMapperMock = Substitute.For<IMapper<IList<StudentSectionAttendanceEvent>, ProfileModel>>();
 
             _mapper = new StudentToProfileModelMapper(new StudentToAcademicDetailsMapper(downloader),
                 new ParentToProfileParentModelMapper(),
                  new ProfilePhotoUrlFetcher(downloader),
-                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader));
+                new StudentProgramStatusToProfileProgramStatusModelMapper(downloader),
+                _studentAttendancePercentageMapperMock, new StudentToBiographicalInfoModelMapper(), new StudentToNameModelMapper());
         }
 
         [Fact]
@@ -31,7 +36,7 @@ namespace NGL.Tests.Student
         {
             SetupWithDownloaderReturning("");
 
-            var student = new StudentBuilder().WithParent().WithStudentProgramStatus().Build();
+            var student = new StudentBuilder().WithParent().WithStudentProgramStatus().WithAttendanceFlags(1).Build();
 
             var parent = student.StudentParentAssociations.First().Parent;
             var profileModel = new ProfileModel();
@@ -42,6 +47,8 @@ namespace NGL.Tests.Student
             NativeParentPropertiesShouldBeMapped(parent, profileModel.ProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
             profileModel.ProgramStatus.ShouldNotBe(null);
+            _studentAttendancePercentageMapperMock.Received().Map(Arg.Any<IList<StudentSectionAttendanceEvent>>(), Arg.Any<ProfileModel>());
+            profileModel.FlagCount.ShouldBe(student.AttendanceFlags.First().FlagCount);
         }
 
         [Fact]
@@ -145,24 +152,25 @@ namespace NGL.Tests.Student
         private static void NativeStudentPropertiesShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
             profileModel.StudentUsi.ShouldBe(student.StudentUSI);
-            profileModel.FirstName.ShouldBe(student.FirstName);
-            profileModel.LastName.ShouldBe(student.LastSurname);
-            profileModel.BirthDate.ShouldBe(student.BirthDate);
+            profileModel.StudentName.FirstName.ShouldBe(student.FirstName);
+            profileModel.StudentName.LastName.ShouldBe(student.LastSurname);
+            profileModel.BiographicalInfo.BirthDate.ShouldBe(student.BirthDate.ToShortDateString());
 
             var studentRace = student.StudentRaces.First();
-            profileModel.Race.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
-            profileModel.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
-            profileModel.Sex.ShouldBe(((SexTypeEnum)student.SexTypeId).Humanize());
+            profileModel.BiographicalInfo.Race.ShouldBe((RaceTypeEnum)studentRace.RaceTypeId);
+            profileModel.BiographicalInfo.RaceForDisplay.ShouldBe(((RaceTypeEnum)studentRace.RaceTypeId).Humanize());
+            profileModel.BiographicalInfo.HispanicLatinoEthnicity.ShouldBe(student.HispanicLatinoEthnicity);
+            profileModel.BiographicalInfo.Sex.ShouldBe((SexTypeEnum)student.SexTypeId);
 
-            var studentProfileHomeLanguage = profileModel.HomeLanguage;
-            studentProfileHomeLanguage.ShouldBe(((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId).Humanize());
+            var studentProfileHomeLanguage = profileModel.BiographicalInfo.HomeLanguage;
+            studentProfileHomeLanguage.ShouldBe((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId);
         }
 
         private static void NativeParentPropertiesShouldBeMapped(Parent parent, ProfileParentModel profileParentModel)
         {
             profileParentModel.FirstName.ShouldBe(parent.FirstName);
             profileParentModel.LastName.ShouldBe(parent.LastSurname);
-            profileParentModel.Sex.ShouldBe(((SexTypeEnum)parent.SexTypeId).Humanize());
+            profileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId.GetValueOrDefault()).Humanize());
             profileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
         }
 

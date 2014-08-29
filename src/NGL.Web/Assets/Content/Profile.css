@@ -1,0 +1,55 @@
+﻿.profile-photo-and-buttons-panel {
+    padding-bottom: 30px;
+}
+
+.profile-edit > .form-group {
+    margin-bottom: 5px;
+}
+
+.profile-edit > dt {
+    margin-right: 5px;
+}
+
+.profile-edit > .form-group > .input-group, .profile-edit > .form-group > .form-control {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.profile-edit > .form-group > label, .profile-labels, .dl-horizontal dt {
+    width: 250px;
+}
+
+.profile-edit > .form-group > .checkbox label {
+    font-weight: bold;
+}
+
+.profile-edit .input-group-addon {
+    display: none;
+}
+
+.profile-edit .input-group .form-control:first-child {
+    border-radius: 4px;
+}
+
+.profile-edit .datepicker {
+    max-width: 275px;
+}
+
+.profile-edit .field-validation-error {
+    margin-left: 245px;
+}
+
+.file-upload {
+    display: inline-block;
+    width: 210px;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+.input-group .form-control {
+    border-radius: 4px !important;
+}
+
+.student-name-edit .field-validation-error {
+    margin-left: 0;
+}
