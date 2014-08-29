@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
-using Humanizer;
 using NGL.Web.Data.Entities;
 using NGL.Web.Infrastructure.Azure;
-using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {
@@ -17,13 +15,17 @@ namespace NGL.Web.Models.Student
         private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
         private readonly IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> _biographicalInfoMapper;
         private readonly IMapper<Data.Entities.Student, NameModel> _studentNameMapper;
+        private readonly IMapper<StudentAddress, HomeAddressModel> _studentAddressToHomeAddressModelMapper;
 
         public StudentToProfileModelMapper(
             StudentToAcademicDetailsMapper studentToAcademicDetailsMapper, 
             ParentToProfileParentModelMapper parentToProfileParentModelMapper,
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
             StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper,
-            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> biographicalInfoMapper, IMapper<Data.Entities.Student, NameModel> studentNameMapper)
+            IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, 
+            IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> biographicalInfoMapper, 
+            IMapper<Data.Entities.Student, NameModel> studentNameMapper,
+            IMapper<StudentAddress, HomeAddressModel> studentAddressToHomeAddressModelMapper)
         {
             _parentToProfileParentModelMapper = parentToProfileParentModelMapper;
             _studentToAcademicDetailsMapper = studentToAcademicDetailsMapper;
@@ -31,6 +33,7 @@ namespace NGL.Web.Models.Student
             _studentAttendancePercentageMapper = studentAttendancePercentageMapper;
             _biographicalInfoMapper = biographicalInfoMapper;
             _studentNameMapper = studentNameMapper;
+            _studentAddressToHomeAddressModelMapper = studentAddressToHomeAddressModelMapper;
             _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
@@ -70,15 +73,11 @@ namespace NGL.Web.Models.Student
             target.BiographicalInfo = _biographicalInfoMapper.Build(source);
         }
             
-        private static void MapStudentAddress(Data.Entities.Student source, ProfileModel target)
+        private void MapStudentAddress(Data.Entities.Student source, ProfileModel target)
         {
             var studentAddresses = source.StudentAddresses;
             var studentAddress = studentAddresses.First(address => address.AddressTypeId == (int) AddressTypeEnum.Home);
-            target.Address = studentAddress.StreetNumberName;
-            target.Address2 = studentAddress.ApartmentRoomSuiteNumber;
-            target.City = studentAddress.City;
-            target.State = ((StateAbbreviationTypeEnum) studentAddress.StateAbbreviationTypeId).Humanize();
-            target.PostalCode = studentAddress.PostalCode;
+            target.HomeAddress = _studentAddressToHomeAddressModelMapper.Build(studentAddress);
         }
 
         private void MapParentInformation(Data.Entities.Student source, ProfileModel target)
@@ -92,6 +91,19 @@ namespace NGL.Web.Models.Student
                 var parent2 = studentParentAssociations.ElementAt(1).Parent;
                 target.SecondEditProfileParentModel = _parentToProfileParentModelMapper.Build(parent2);
             }
+        }
+    }
+
+    public class StudentAddressToHomeAddressModelMapper : MapperBase<StudentAddress, HomeAddressModel>
+    {
+        public override void Map(StudentAddress source, HomeAddressModel target)
+        {
+            target.StudentUsi = source.StudentUSI;
+            target.Address = source.StreetNumberName;
+            target.Address2 = source.ApartmentRoomSuiteNumber;
+            target.City = source.City;
+            target.State = (StateAbbreviationTypeEnum) source.StateAbbreviationTypeId;
+            target.PostalCode = source.PostalCode;
         }
     }
 }
