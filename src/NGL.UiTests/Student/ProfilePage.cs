@@ -2,6 +2,7 @@
 using System.Linq;
 using Humanizer;
 using NGL.UiTests.Schedule;
+using NGL.Web.Extensions;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using OpenQA.Selenium;
@@ -108,27 +109,26 @@ namespace NGL.UiTests.Student
             return Navigate.To<EditProgramStatusPanel>(By.Id("edit-program-status-button"));
         }
 
+        public EditHomeAddressPanel EditHomeAddress()
+        {
+            return Navigate.To<EditHomeAddressPanel>(By.Id("edit-home-address-button"));
+        }
+
         public bool IsProgramStatusInfoAccordingTo(EnterProgramStatusModel enterProgramStatusModel)
         {
             Find.Element(By.CssSelector("#readonly-program-status > h4")).Click();
 
-            var testingAccommodation = Find.Element(By.Name("testing-accommodation")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.TestingAccommodation));
-            var bilingualProgram = Find.Element(By.Name("bilingual-program")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.BilingualProgram));
-            var englishAsSecondLanguage = Find.Element(By.Name("esl")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.EnglishAsSecondLanguage));
-            var gifted = Find.Element(By.Name("gifted")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.Gifted));
-            var specialEducation = Find.Element(By.Name("special-education")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.SpecialEducation));
-            var titleParticipation = Find.Element(By.Name("title-participation")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.TitleParticipation));
-            var mckinneyvento = Find.Element(By.Name("mckinneyvento")).Text.Equals(ConvertBoolToYesOrNo(enterProgramStatusModel.McKinneyVento));
+            var testingAccommodation = Find.Element(By.Name("testing-accommodation")).Text.Equals(enterProgramStatusModel.TestingAccommodation.Value.ToYesNoString());
+            var bilingualProgram = Find.Element(By.Name("bilingual-program")).Text.Equals(enterProgramStatusModel.BilingualProgram.Value.ToYesNoString());
+            var englishAsSecondLanguage = Find.Element(By.Name("esl")).Text.Equals(enterProgramStatusModel.EnglishAsSecondLanguage.Value.ToYesNoString());
+            var gifted = Find.Element(By.Name("gifted")).Text.Equals(enterProgramStatusModel.Gifted.Value.ToYesNoString());
+            var specialEducation = Find.Element(By.Name("special-education")).Text.Equals(enterProgramStatusModel.SpecialEducation.Value.ToYesNoString());
+            var titleParticipation = Find.Element(By.Name("title-participation")).Text.Equals(enterProgramStatusModel.TitleParticipation.Value.ToYesNoString());
+            var mckinneyvento = Find.Element(By.Name("mckinneyvento")).Text.Equals(enterProgramStatusModel.McKinneyVento.Value.ToYesNoString());
             var foodServicesEligibility = Find.Element(By.Name("food-services")).Text.Equals(enterProgramStatusModel.FoodServicesEligibilityStatus.Humanize(LetterCasing.Title));
 
             return testingAccommodation && bilingualProgram && englishAsSecondLanguage && gifted 
                     && specialEducation && titleParticipation && mckinneyvento && foodServicesEligibility;
-        }
-
-        private static string ConvertBoolToYesOrNo(bool? field)
-        {
-            var yesno = (field.GetValueOrDefault() ? "Yes" : "No");
-            return yesno;
         }
 
         public bool EditedNameIsVisible(NameModel nameModel)
@@ -145,6 +145,19 @@ namespace NGL.UiTests.Student
             Execute.Script("$('#save-student-name-edit').click()");
             WaitFor.AjaxCallsToComplete();
             return this;
+        }
+
+        public bool IsHomeAddressAccordingTo(HomeAddressModel homeAddressModel)
+        {
+            Find.Element(By.CssSelector("#readonly-home-address > h4")).Click();
+
+            var sameAddress = Find.Element(By.Name("Address")).Text.Equals(homeAddressModel.Address);
+            var sameAddress2 = Find.Element(By.Name("Address 2")).Text.Equals(homeAddressModel.Address2);
+            var sameCity = Find.Element(By.Name("City")).Text.Equals(homeAddressModel.City);
+            var sameState = Find.Element(By.Name("State")).Text.Equals(homeAddressModel.State.ToString());
+            var samePostalCode = Find.Element(By.Name("Postal code")).Text.Equals(homeAddressModel.PostalCode);
+
+            return sameAddress && sameAddress2 && sameCity && sameState && samePostalCode;
         }
     }
 }
