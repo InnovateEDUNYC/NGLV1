@@ -8,7 +8,7 @@
 <h2>Parent Courses</h2>
 @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
 {
-    @Html.ActionLink("Add Parent Course", MVC.ParentCourse.Create(), new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add Parent Course", MVC.ParentCourse.Create(), new { @class = "btn btn-default" })
 }
 
 <div class="table-container">
