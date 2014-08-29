@@ -27,11 +27,15 @@ namespace NGL.Web.Controllers
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper<EditStudentBiographicalInfoModel, Student> _studentBiographicalInfoToStudentMapper;
         private readonly IMapper<NameModel, Student> _studentNameToStudentMapper;
+        private readonly IMapper<HomeAddressModel, StudentAddress> _studentHomeAddressToStudentMapper;
 
         public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
-                                                IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                                AzureStorageUploader fileUploader, IStudentRepository studentRepository,
-                                IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, IMapper<NameModel, Student> studentNameToStudentMapper)
+                                    IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
+                                    AzureStorageUploader fileUploader, 
+                                    IStudentRepository studentRepository,
+                                    IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
+                                    IMapper<NameModel, Student> studentNameToStudentMapper, 
+                                    IMapper<HomeAddressModel, StudentAddress> studentHomeAddressToStudentMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
@@ -40,6 +44,7 @@ namespace NGL.Web.Controllers
             _studentRepository = studentRepository;
             _studentBiographicalInfoToStudentMapper = studentBiographicalInfoToStudentMapper;
             _studentNameToStudentMapper = studentNameToStudentMapper;
+            _studentHomeAddressToStudentMapper = studentHomeAddressToStudentMapper;
         }
 
         // GET: /Student/All
@@ -141,6 +146,26 @@ namespace NGL.Web.Controllers
             _repository.Save();
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public virtual JsonResult EditHomeAddress(HomeAddressModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var nglErrors = ModelState.GetNglErrors();
+                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
+            }
+
+            var student = _studentRepository.GetByUSI(model.StudentUsi);
+            var address = student.StudentAddresses.First();
+
+            _studentHomeAddressToStudentMapper.Map(model, address);
+
+            _repository.Save();
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
         private void Upload(Stream file, string relativePath)
         {
             if (file != null)

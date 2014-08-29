@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
+using NGL.Web.Models.Student;
 
 namespace NGL.Web.Models.Enrollment
 {

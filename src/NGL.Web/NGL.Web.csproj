@@ -1719,6 +1719,9 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
+    <Compile Include="Models\Student\HomeAddressModel.cs" />
+    <Compile Include="Models\Student\HomeAddressModelValidator.cs" />
+    <Compile Include="Models\Student\StudentHomeAddressModelToStudentMapper.cs" />
     <Compile Include="Models\Student\ProgramStatusModelToProgramStatusForEditMapper.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInfoModelToStudentMapper.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInfoModel.cs" />
@@ -1973,6 +1976,7 @@
     <Content Include="Assets\Scripts\Views\Schedule\removeStudent.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Shared\accordianArrows.js" />
+    <Content Include="Assets\Scripts\Views\Shared\enableEditMode.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
     <Content Include="Assets\Scripts\Views\Shared\parentCourseAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Shared\programStatus.js" />
@@ -1981,6 +1985,7 @@
     <Content Include="Assets\Scripts\Views\Shared\sectionAutocomplete.js" />
     <Content Include="Assets\Scripts\Views\Student\all.js" />
     <Content Include="Assets\Scripts\Views\Student\editBiographicalInfo.js" />
+    <Content Include="Assets\Scripts\Views\Student\editHomeAddress.js" />
     <Content Include="Assets\Scripts\Views\Student\editProgramStatus.js" />
     <Content Include="Assets\Scripts\Views\Student\editStudentName.js" />
     <Content Include="Assets\Scripts\Views\Student\index.js" />
@@ -2115,8 +2120,9 @@
     <Content Include="Views\ParentCourseGrade\Edit.cshtml" />
     <Content Include="Views\ParentCourseGrade\Index.cshtml" />
     <Content Include="Views\Student\BiographicalInformation.cshtml" />
-    <Content Include="Views\Student\ProgramStatusPartial.cshtml" />
+    <Content Include="Views\Student\ProgramStatus.cshtml" />
     <Content Include="Views\Student\StudentName.cshtml" />
+    <Content Include="Views\Student\HomeAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

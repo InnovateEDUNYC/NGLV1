@@ -1,28 +1,15 @@
-﻿Ngl.createNS('Ngl.student.editBiographicalInfo');
+﻿Ngl.createNS('Ngl.student.editHomeAddress');
 
-Ngl.student.editBiographicalInfo = (function () {
+Ngl.student.editHomeAddress = (function () {
+    var init = function () {
 
-    var setUp = function() {
-        setUpEditButton();
-        setUpCancelButton();
+        Ngl.shared.enableEditMode.init('#edit-home-address', '#collapseHomeAddress',
+    '#readonly-home-address', '#editable-home-address > h4', '#editable-home-address > div');
+
         setUpSaveButton();
     }
 
-    var setUpEditButton = function() {
-        $('#edit-biographical-info-button').on('click', function () {
-            $('#readonly-biographical-info').hide();
-            $('#editable-biographical-info').show();
-        });
-    }
-
-    var setUpCancelButton = function() {
-        $('#cancel-biographical-info-edit').on('click', function () {
-            location.reload();
-        });
-    };
-
-    var removeOldErrors = function ()
-    {
+    var removeOldErrors = function () {
         $('.field-validation-error')
         .addClass("field-validation-valid")
         .removeClass("field-validation-error")
@@ -42,17 +29,17 @@ Ngl.student.editBiographicalInfo = (function () {
         });
     };
 
+
     var ajaxEditPost = function () {
         $.ajax({
-            url: '/student/editBiographicalInfo',
+            url: '/student/editHomeAddress',
             type: 'POST',
             dataType: 'json',
-            data: $('#edit-biographical-information').serialize(),
+            data: $('#edit-home-address-form').serialize(),
             success: function (returnValue) {
                 var errors = returnValue.nglErrors;
                 if (!errors == false) {
                     displayErrors(errors);
-
                 } else {
                     location.reload(true);
                 };
@@ -61,9 +48,10 @@ Ngl.student.editBiographicalInfo = (function () {
     }
 
     var setUpSaveButton = function () {
-        $('#save-biographical-info-edit').on('click', ajaxEditPost);
+        $('#submit-home-address').on('click', ajaxEditPost);
     }
+
     return {
-        init: setUp
-}
+        init: init
+    }
 })();

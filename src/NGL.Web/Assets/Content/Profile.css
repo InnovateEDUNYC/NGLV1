@@ -35,10 +35,6 @@
     max-width: 275px;
 }
 
-#editable-biographical-info {
-    display: none;
-}
-
 .profile-edit .field-validation-error {
     margin-left: 245px;
 }
@@ -52,10 +48,6 @@
 
 .input-group .form-control {
     border-radius: 4px !important;
-}
-
-#editable-student-name {
-    display: none;
 }
 
 .student-name-edit .field-validation-error {
