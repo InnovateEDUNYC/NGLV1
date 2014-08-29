@@ -318,11 +318,12 @@
                             </div>
 
                         </div>
+                    <div class="hidden"><input type="text" name="studentUsi" value="@Model.StudentUsi"/></div>
                     }
 
                     <div class="text-right top-buffer-30">
                         @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
-                        <input id="submit-program-status" type="submit" class="btn btn-default btn-primary" value="Save" />
+                        <input id="save-program-status-edit" type="submit" class="btn btn-default btn-primary" value="Save" />
                     </div>
                 }
 

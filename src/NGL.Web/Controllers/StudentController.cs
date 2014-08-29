@@ -13,7 +13,6 @@ using NGL.Web.ImageTools;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
-using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers

@@ -156,6 +156,7 @@ namespace NGL.Web.Controllers
             return relativePath;
         }
 
+        [HttpPost]
         public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
         {
             var specialEducationFileName = Upload(programStatus.SpecialEducationFile, studentUsi, "ProgramStatus", "specialEducation");

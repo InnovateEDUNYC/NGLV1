@@ -27,19 +27,17 @@ Ngl.shared.editProfile = (function () {
         });
     }
 
-    var setupEditButton = function (editButtonSelector, readOnlySectionSelector, editableSectionSelector) {
-        $(editButtonSelector).on('click', function () {
-            $(readOnlySectionSelector).hide();
-            $(editableSectionSelector + " > h4").show();
-            $(editableSectionSelector + " > div").slideDown("fast");
-        });
-    };
-
     var setupCancelButton = function (cancelButtonSelector) {
         $(cancelButtonSelector).on('click', function () {
             location.reload();
         });
     };
+
+    var setupSaveButton = function (saveButtonSelector, route, formSelector) {
+        $(saveButtonSelector).on('click', function () {
+            ajaxEditPost(route, formSelector);
+        });
+    }
 
     var removeOldErrors = function ()
     {
@@ -63,9 +61,6 @@ Ngl.shared.editProfile = (function () {
     };
 
     var ajaxEditPost = function (route, formSelector) {
-        console.log("clicked");
-        console.log(route);
-        console.log(formSelector);
         $.ajax({
             url: route,
             type: 'POST',
@@ -80,12 +75,6 @@ Ngl.shared.editProfile = (function () {
                     location.reload(true);
                 }
             }
-        });
-    }
-
-    var setupSaveButton = function (saveButtonSelector, route, formSelector) {
-        $(saveButtonSelector).on('click', function () {
-            ajaxEditPost(route, formSelector);
         });
     }
 

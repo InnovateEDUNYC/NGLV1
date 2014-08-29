@@ -19,7 +19,7 @@ namespace NGL.UiTests.Student
             Execute.Script("$('Input[name=\"ProgramStatus.TitleParticipation\"][value=\"" + programStatusModel.TitleParticipation + "\"]').click()");
             Execute.Script("$('Input[name=\"ProgramStatus.McKinneyVento\"][value=\"" + programStatusModel.McKinneyVento + "\"]').click()");
 
-            return Navigate.To<ProfilePage>(By.Id("submit-program-status"));
+            return Navigate.To<ProfilePage>(By.Id("save-program-status-edit"));
         }
     }
 }

@@ -196,7 +196,6 @@ namespace NGL.Web.Controllers
                 public readonly string Index = "Index";
                 public readonly string ParentPartial = "ParentPartial";
                 public readonly string ProgramStatus = "ProgramStatus";
-                public readonly string ProgramStatusPartial = "ProgramStatusPartial";
                 public readonly string Reports = "Reports";
                 public readonly string StudentName = "StudentName";
             }
@@ -207,7 +206,6 @@ namespace NGL.Web.Controllers
             public readonly string Index = "~/Views/Student/Index.cshtml";
             public readonly string ParentPartial = "~/Views/Student/ParentPartial.cshtml";
             public readonly string ProgramStatus = "~/Views/Student/ProgramStatus.cshtml";
-            public readonly string ProgramStatusPartial = "~/Views/Student/ProgramStatusPartial.cshtml";
             public readonly string Reports = "~/Views/Student/Reports.cshtml";
             public readonly string StudentName = "~/Views/Student/StudentName.cshtml";
         }
