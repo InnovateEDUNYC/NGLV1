@@ -8,7 +8,7 @@
 <h2>Class Periods</h2>
 @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
 {
-            @Html.ActionLink("Add Period", MVC.ClassPeriod.Create(), new { @class = "btn btn-primary" })
+            @Html.ActionLink("Add Period", MVC.ClassPeriod.Create(), new { @class = "btn btn-default" })
 }
 
 <div class="table-container">

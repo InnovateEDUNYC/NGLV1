@@ -8,7 +8,7 @@
 <h2>Sections</h2>
 @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
 {
-     @Html.ActionLink("Create New Section", MVC.Section.Create(), new { @class = "btn btn-primary" })
+     @Html.ActionLink("Create New Section", MVC.Section.Create(), new { @class = "btn btn-default" })
 }
 
 <div class="table-container">
