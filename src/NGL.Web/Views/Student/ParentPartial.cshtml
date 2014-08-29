@@ -1,57 +1,61 @@
 ﻿@using NGL.Web.Infrastructure.Security
 @model NGL.Web.Models.Student.EditProfileParentModel
 
-<h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo">   Parent Info <i class="fa fa-caret-down arrow"></i></h4>
+<div id="readonly-parent-info">
+    <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo">
+        Parent Info <i class="fa fa-caret-down arrow"></i>
 
-    @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
-    {
-        <a id="edit-parent-info-button" class="fa fa-pencil pull-right"></a>
-    }
-    
-<div id="collapseParentInfo" class="panel-collapse collapse">
-    <div class="panel panel-default">
-        <h4>
-            <strong>
-                @Html.DisplayTextFor(model => model.FirstName)
-                @Html.DisplayTextFor(model => model.LastName)
-            </strong>
-        </h4>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Sex)
-            </dt>
+        @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
+        {
+            <a id="edit-parent-info-button" class="fa fa-pencil pull-right"></a>
+        }
+    </h4>
 
-            <dd>
-                @Html.DisplayTextFor(model => model.Sex)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Relationship)
-            </dt>
-            <dd>
-                @Html.DisplayTextFor(model => model.Relationship)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.TelephoneNumber)
-            </dt>
+    <div id="collapseParentInfo" class="panel-collapse collapse">
+        <div class="panel panel-default">
+            <h4>
+                <strong>
+                    @Html.DisplayTextFor(model => model.FirstName)
+                    @Html.DisplayTextFor(model => model.LastName)
+                </strong>
+            </h4>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sex)
+                </dt>
 
-            <dd>
-                @Html.DisplayTextFor(model => model.TelephoneNumber)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.EmailAddress)
-            </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.Sex)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Relationship)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.Relationship)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TelephoneNumber)
+                </dt>
 
-            <dd>
-                @Html.DisplayTextFor(model => model.EmailAddress)<br />
-            </dd>
-        </dl>
+                <dd>
+                    @Html.DisplayTextFor(model => model.TelephoneNumber)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </dt>
+
+                <dd>
+                    @Html.DisplayTextFor(model => model.EmailAddress)<br />
+                </dd>
+            </dl>
+        </div>
     </div>
 </div>
 <div id="editable-parent-info">
-    <h4 class="panel panel-default strong">
+    <h4 class="panel panel-default strong display-none">
         Parent Info
     </h4>
-    <dl class="dl-horizontal panel panel-default">
+    <div class="dl-horizontal panel panel-default display-none">
         @using (var f = Html.BeginNglForm(htmlAttributes: new HtmlAttributes(new { id = "edit-parent-info" })))
         {
             using (var s = f.BeginSection(""))
@@ -78,5 +82,5 @@
                 </div>
             }
         }
-    </dl>
+    </div>
 </div>

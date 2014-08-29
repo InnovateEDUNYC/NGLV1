@@ -167,7 +167,7 @@
     <Compile Include="Session\SessionToSessionWithSectionsModelMapperTests.cs" />
     <Compile Include="Session\ValidatorTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelToStudentMapperTests.cs" />
-    <Compile Include="Student\EditProfileParentModelToParentMapperTest.cs" />
+    <Compile Include="Student\EditProfileParentModelToParentMapperTests.cs" />
     <Compile Include="Student\ParentAddressFactory.cs" />
     <Compile Include="Student\StudentAcademicDetailBuilder.cs" />
     <Compile Include="Student\StudentAddressFactory.cs" />

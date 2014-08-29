@@ -11,7 +11,8 @@ Ngl.shared.editProfile = (function () {
     var setupEditButton = function (editButtonSelector, readOnlySectionSelector, editableSectionSelector) {
         $(editButtonSelector).on('click', function () {
             $(readOnlySectionSelector).hide();
-            $(editableSectionSelector).show();
+            $(editableSectionSelector + " > h4").show();
+            $(editableSectionSelector + " > div").slideDown("fast");
         });
     };
 

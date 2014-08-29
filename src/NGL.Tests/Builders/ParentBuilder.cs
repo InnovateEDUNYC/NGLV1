@@ -12,7 +12,6 @@ namespace NGL.Tests.Builders
         private ICollection<ParentAddress> _parentAddresses = new List<ParentAddress>();
         private ICollection<ParentTelephone> _phoneNumbers = new List<ParentTelephone>();
         private ICollection<ParentElectronicMail> _emails = new List<ParentElectronicMail>();
-        private bool _livesWithStudent = true;
 
         public Parent Build()
         {

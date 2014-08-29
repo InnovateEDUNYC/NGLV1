@@ -14,6 +14,7 @@ namespace NGL.Tests.Student
         public void ShouldMap()
         {
             var entity = new ParentBuilder().WithEmail().WithPhoneNumber().Build();
+            entity.StudentParentAssociations.Add(new StudentParentAssociation());
             var model = new EditProfileParentModelBuilder().Build();
             var mapper = new EditProfileParentModelToParentMapper();
 
@@ -32,6 +33,7 @@ namespace NGL.Tests.Student
         public void ShouldCreateEmailIfNoEmailExisted()
         {
             var entity = new ParentBuilder().WithPhoneNumber().Build();
+            entity.StudentParentAssociations.Add(new StudentParentAssociation());
             var model = new EditProfileParentModelBuilder().Build();
             var mapper = new EditProfileParentModelToParentMapper();
 
@@ -50,6 +52,7 @@ namespace NGL.Tests.Student
         public void ShouldNotCreateEmailIfNoEmailExistedButBlankEmailInEditProfileModel()
         {
             var entity = new ParentBuilder().WithPhoneNumber().Build();
+            entity.StudentParentAssociations.Add(new StudentParentAssociation());
             var model = new EditProfileParentModelBuilder().WithBlankEmail().Build();
             var mapper = new EditProfileParentModelToParentMapper();
 
