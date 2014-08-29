@@ -35,7 +35,6 @@ Ngl.shared.editProfile = (function () {
 
     var setupSaveButton = function (saveButtonSelector, route, formSelector) {
         $(saveButtonSelector).on('click', function () {
-            console.log("I GOT HERE");
             ajaxEditPost(route, formSelector);
         });
     }
