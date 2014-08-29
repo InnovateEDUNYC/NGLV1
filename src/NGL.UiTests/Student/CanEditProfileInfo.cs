@@ -69,7 +69,7 @@ namespace NGL.UiTests.Student
             var editProgramStatusPanel = _profilePage.EditProgramStatus();
 
             _enterProgramStatusModel = new EnterProgramStatusModelBuilder().WithTestingAccommodation(true).WithMcKinneyVento(false).Build();
-            editProgramStatusPanel.Edit(_enterProgramStatusModel);
+            _profilePage = editProgramStatusPanel.Edit(_enterProgramStatusModel);
         }
 
         private void IShouldSeeUpdatedProgramStatusInformation()

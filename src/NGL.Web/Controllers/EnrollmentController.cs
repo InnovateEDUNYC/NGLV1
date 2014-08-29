@@ -157,7 +157,7 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
-        public virtual JsonResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
+        public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
         {
             var specialEducationFileName = Upload(programStatus.SpecialEducationFile, studentUsi, "ProgramStatus", "specialEducation");
             var testingAccomodationFileName = Upload(programStatus.TestingAccommodationFile, studentUsi, "ProgramStatus", "testingAccomodation");
@@ -173,7 +173,7 @@ namespace NGL.Web.Controllers
             _repository.Save();
 
             TempData["ShowSuccess"] = true;
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return RedirectToAction(MVC.Student.Index(studentUsi));
         }
     }
 }

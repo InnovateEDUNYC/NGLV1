@@ -68,9 +68,9 @@ namespace NGL.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult EditProgramStatus()
+        public virtual System.Web.Mvc.ActionResult EditProgramStatus()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditProgramStatus);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProgramStatus);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -238,12 +238,12 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void EditProgramStatusOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int studentUsi, NGL.Web.Models.Enrollment.EnterProgramStatusModel programStatus);
+        partial void EditProgramStatusOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, NGL.Web.Models.Enrollment.EnterProgramStatusModel programStatus);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult EditProgramStatus(int studentUsi, NGL.Web.Models.Enrollment.EnterProgramStatusModel programStatus)
+        public override System.Web.Mvc.ActionResult EditProgramStatus(int studentUsi, NGL.Web.Models.Enrollment.EnterProgramStatusModel programStatus)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditProgramStatus);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProgramStatus);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "programStatus", programStatus);
             EditProgramStatusOverride(callInfo, studentUsi, programStatus);
