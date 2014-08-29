@@ -84,6 +84,8 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditHomeAddress);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult EditParentInfo()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditParentInfo);
@@ -192,9 +194,8 @@ namespace NGL.Web.Controllers
                 public readonly string Delete = "Delete";
                 public readonly string HomeAddress = "HomeAddress";
                 public readonly string Index = "Index";
-                public readonly string ProgramStatusPartial = "ProgramStatusPartial";
-                public readonly string ProgramStatus = "ProgramStatus";
                 public readonly string ParentPartial = "ParentPartial";
+                public readonly string ProgramStatus = "ProgramStatus";
                 public readonly string ProgramStatusPartial = "ProgramStatusPartial";
                 public readonly string Reports = "Reports";
                 public readonly string StudentName = "StudentName";
@@ -204,9 +205,8 @@ namespace NGL.Web.Controllers
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
             public readonly string HomeAddress = "~/Views/Student/HomeAddress.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
-            public readonly string ProgramStatusPartial = "~/Views/Student/ProgramStatusPartial.cshtml";
-            public readonly string ProgramStatus = "~/Views/Student/ProgramStatus.cshtml";
             public readonly string ParentPartial = "~/Views/Student/ParentPartial.cshtml";
+            public readonly string ProgramStatus = "~/Views/Student/ProgramStatus.cshtml";
             public readonly string ProgramStatusPartial = "~/Views/Student/ProgramStatusPartial.cshtml";
             public readonly string Reports = "~/Views/Student/Reports.cshtml";
             public readonly string StudentName = "~/Views/Student/StudentName.cshtml";
@@ -301,6 +301,7 @@ namespace NGL.Web.Controllers
             return callInfo;
         }
 
+        [NonAction]
         partial void EditParentInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Student.EditProfileParentModel model);
 
         [NonAction]

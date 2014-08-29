@@ -31,21 +31,15 @@ namespace NGL.Web.Controllers
         private readonly IParentRepository _parentRepository;
         private readonly IMapper<EditProfileParentModel, Parent> _editProfileParentModelToParentMapper;
 
-        public StudentController(IGenericRepository repository, IMapper<Student, ProfileModel> studentToProfileModelMapper,
-                                                IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                                AzureStorageUploader fileUploader, IStudentRepository studentRepository,
-                                IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper,
-                                    IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                    AzureStorageUploader fileUploader, 
-                                    IStudentRepository studentRepository,
-                                    IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
-                                    IMapper<NameModel, Student> studentNameToStudentMapper, 
-                                    IMapper<HomeAddressModel, StudentAddress> studentHomeAddressToStudentMapper,
-                                                IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
-                                                AzureStorageUploader fileUploader, IStudentRepository studentRepository,
-                                IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
-								IParentRepository parentRepository, 
-								IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper)
+        public StudentController(IGenericRepository repository, 
+            IMapper<Student, ProfileModel> studentToProfileModelMapper,
+            IMapper<Student, IndexModel> studentToStudentIndexModelMapper,
+            IMapper<NameModel, Student> studentNameToStudentMapper, 
+            IMapper<HomeAddressModel, StudentAddress> studentHomeAddressToStudentMapper,
+            AzureStorageUploader fileUploader, IStudentRepository studentRepository,
+            IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
+            IParentRepository parentRepository, 
+            IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;

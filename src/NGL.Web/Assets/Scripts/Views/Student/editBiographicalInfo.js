@@ -9,5 +9,4 @@ Ngl.student.editBiographicalInfo = (function () {
     return {
         init: setup
     }
-    }
 })();
