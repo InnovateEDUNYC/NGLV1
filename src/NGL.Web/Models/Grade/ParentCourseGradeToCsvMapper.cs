@@ -12,14 +12,13 @@ namespace NGL.Web.Models.Grade
         {
             var memoryStream = new MemoryStream();
             TextWriter textWriter = new StreamWriter(memoryStream);
-            textWriter.WriteLine("StudentLastName,StudentUSI,Course,Grade");
+            textWriter.WriteLine("StudentLastName,StudentUSI,CourseCode,CourseTitle,Grade");
             foreach (var parentCourseGrade in parentCourseGrades)
             {
                 textWriter.WriteLine(string.Join(",", parentCourseGrade.Student.LastSurname,
-                    parentCourseGrade.StudentUSI, parentCourseGrade.ParentCourse.ParentCourseTitle,
+                    parentCourseGrade.StudentUSI, parentCourseGrade.ParentCourse.ParentCourseCode, parentCourseGrade.ParentCourse.ParentCourseTitle,
                     parentCourseGrade.GradeEarned));
             }
-            var e = memoryStream;
             textWriter.Flush();
             byte[] bytesInStream = memoryStream.ToArray();
             memoryStream.Close();

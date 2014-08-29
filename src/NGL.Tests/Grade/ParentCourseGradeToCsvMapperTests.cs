@@ -36,14 +36,17 @@ namespace NGL.Tests.Grade
             var csvLines = csvString.Split(new [] { Environment.NewLine }, StringSplitOptions.None);
 
             csvLines.Count().ShouldBe(4);
-            csvLines[0].ShouldBe("StudentLastName,StudentUSI,Course,Grade");
+            csvLines[0].ShouldBe("StudentLastName,StudentUSI,CourseCode,CourseTitle,Grade");
             csvLines[1].ShouldBe(parentCourseGrade1.Student.LastSurname + ","
                                  + parentCourseGrade1.StudentUSI + ","
                                  + parentCourseGrade1.ParentCourse.ParentCourseCode + ","
+                                 + parentCourseGrade1.ParentCourse.ParentCourseTitle + ","
                                  + parentCourseGrade1.GradeEarned);
+
             csvLines[2].ShouldBe(parentCourseGrade2.Student.LastSurname + ","
                                  + parentCourseGrade2.StudentUSI + ","
                                  + parentCourseGrade2.ParentCourse.ParentCourseCode + ","
+                                 + parentCourseGrade2.ParentCourse.ParentCourseTitle + ","
                                  + parentCourseGrade2.GradeEarned);
         }
     }
