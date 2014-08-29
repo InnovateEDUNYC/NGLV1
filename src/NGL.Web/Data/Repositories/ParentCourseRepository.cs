@@ -57,5 +57,14 @@ namespace NGL.Web.Data.Repositories
             return DbContext.Set<ParentCourse>()
                 .First(pc => pc.Id == parentCourseId);
         }
+
+        public List<ParentCourseGrade> GetParentCourseGrades(Guid parentCourseId, int sessionId)
+        {
+            return DbContext.Set<ParentCourseGrade>()
+                .Where(pcg => pcg.ParentCourseId == parentCourseId && pcg.Session.SessionIdentity == sessionId)
+                .Include(pcg => pcg.Student)
+                .Include(pcg => pcg.ParentCourse)
+                .ToList();
+        }
     }
 }

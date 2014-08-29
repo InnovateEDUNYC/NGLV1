@@ -57,7 +57,7 @@
         }
         if ((User as NglPrincipal).HasAccessTo("grades", "view"))
         {
-            @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model), new { @class = "btn btn-primary pull-right" })
+            @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "btn btn-primary pull-right" })
         }
     }
     else

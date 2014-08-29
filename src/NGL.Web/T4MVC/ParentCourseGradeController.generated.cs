@@ -117,7 +117,8 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ExportCsv
         {
-            public readonly string model = "model";
+            public readonly string sessionId = "sessionId";
+            public readonly string parentCourseId = "parentCourseId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -192,14 +193,15 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void ExportCsvOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, NGL.Web.Models.ParentCourse.ParentCourseGradesModel model);
+        partial void ExportCsvOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? sessionId, System.Guid? parentCourseId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ExportCsv(NGL.Web.Models.ParentCourse.ParentCourseGradesModel model)
+        public override System.Web.Mvc.ActionResult ExportCsv(int? sessionId, System.Guid? parentCourseId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExportCsv);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ExportCsvOverride(callInfo, model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sessionId", sessionId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "parentCourseId", parentCourseId);
+            ExportCsvOverride(callInfo, sessionId, parentCourseId);
             return callInfo;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using Castle.Core.Internal;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Grade;
@@ -86,12 +87,17 @@ namespace NGL.Web.Controllers
             return RedirectToAction(MVC.ParentCourseGrade.Get(parentCourseGradesModel.FindParentCourseModel.SessionId, parentCourseGradesModel.FindParentCourseModel.ParentCourseId));
         }
 
-        public virtual ActionResult ExportCsv(ParentCourseGradesModel model)
+        public virtual ActionResult ExportCsv(int? sessionId, Guid? parentCourseId)
         {
-            if (model == null)
-                RedirectToAction(MVC.ParentCourseGrade.Get());
+            if (!sessionId.HasValue || !parentCourseId.HasValue)
+                return RedirectToAction(MVC.ParentCourseGrade.Get());
 
-            var bytesInStream = _parentCourseToCsvMapper.Build(model.FindParentCourseModel.ParentCourse, model.ParentGradesModelList);
+            var parentCourseGrades = _parentCourseRepository.GetParentCourseGrades(parentCourseId.Value, sessionId.Value);
+
+            if (parentCourseGrades.IsNullOrEmpty())
+                return RedirectToAction(MVC.ParentCourseGrade.Get());
+
+            var bytesInStream = _parentCourseToCsvMapper.Build(parentCourseGrades);
             Response.Clear();
             Response.ContentType = "application/force-download";
             Response.AddHeader("content-disposition", "attachment; filename=course.csv");

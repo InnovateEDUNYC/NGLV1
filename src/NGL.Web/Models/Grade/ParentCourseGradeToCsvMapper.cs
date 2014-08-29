@@ -8,18 +8,16 @@ namespace NGL.Web.Models.Grade
 {
     public class ParentCourseGradeToCsvMapper
     {
-        public byte[] Build(string parentCourse, List<GradeModel> parentGradesModelList
-            
-            )
+        public byte[] Build(List<ParentCourseGrade> parentCourseGrades)
         {
             var memoryStream = new MemoryStream();
             TextWriter textWriter = new StreamWriter(memoryStream);
             textWriter.WriteLine("StudentLastName,StudentUSI,Course,Grade");
-            foreach (var parentCourseGradesModel in parentGradesModelList)
+            foreach (var parentCourseGrade in parentCourseGrades)
             {
-                textWriter.WriteLine(string.Join(",", parentCourseGradesModel.StudentLastName,
-                    parentCourseGradesModel.StudentUSI, parentCourse,
-                    parentCourseGradesModel.Grade));
+                textWriter.WriteLine(string.Join(",", parentCourseGrade.Student.LastSurname,
+                    parentCourseGrade.StudentUSI, parentCourseGrade.ParentCourse.ParentCourseTitle,
+                    parentCourseGrade.GradeEarned));
             }
             var e = memoryStream;
             textWriter.Flush();
@@ -27,6 +25,5 @@ namespace NGL.Web.Models.Grade
             memoryStream.Close();
             return bytesInStream;
         }
-
     }
 }

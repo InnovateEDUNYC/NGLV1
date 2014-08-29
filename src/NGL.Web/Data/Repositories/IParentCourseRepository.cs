@@ -17,5 +17,6 @@ namespace NGL.Web.Data.Repositories
         ParentCourseGrade GetParentCourseGrade(int StudentUSI, Guid parentCourseId);
         List<Student> GetStudents(int sessionId, Guid parentCourseId);
         ParentCourse GetById(Guid parentCourseId);
+        List<ParentCourseGrade> GetParentCourseGrades(Guid parentCourseId, int sessionId);
     }
 }
