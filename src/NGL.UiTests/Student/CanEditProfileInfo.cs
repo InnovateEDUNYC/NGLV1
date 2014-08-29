@@ -20,6 +20,7 @@ namespace NGL.UiTests.Student
         private EditStudentBiographicalInfoModel _newBiographicalInformation;
         private NameModel _nameModel;
         private EnterProgramStatusModel _enterProgramStatusModel;
+        private HomeAddressModel _homeAddressModel;
 
         private void IHaveLoggedIn()
         {
@@ -71,10 +72,23 @@ namespace NGL.UiTests.Student
             editProgramStatusPanel.Edit(_enterProgramStatusModel);
         }
 
-        private void IShouldSeeUpdateProgramStatusInformation()
+        private void IShouldSeeUpdatedProgramStatusInformation()
         {
             var canSeeUpdateProgramStatus = _profilePage.IsProgramStatusInfoAccordingTo(_enterProgramStatusModel);
             canSeeUpdateProgramStatus.ShouldBe(true);
+        }
+
+        private void IEditTheHomeAddress()
+        {
+            var editHomeAddressPanel = _profilePage.EditHomeAddress();
+
+            _homeAddressModel = new HomeAddressModelBuilder().Build();
+            editHomeAddressPanel.Edit(_homeAddressModel);
+        }
+
+        private void IShouldSeeUpdatedHomeAddress()
+        {
+            _profilePage.IsHomeAddressAccordingTo(_homeAddressModel).ShouldBe(true);
         }
 
         [Fact]
@@ -87,7 +101,9 @@ namespace NGL.UiTests.Student
                 .And(_ => IEditTheStudentName())
                 .Then(_ => IShouldSeeUpdatedName())
                 .When(_ => IEditTheProgramStatusInformation())
-                .Then(_ => IShouldSeeUpdateProgramStatusInformation())
+                .Then(_ => IShouldSeeUpdatedProgramStatusInformation())
+                .When(_ => IEditTheHomeAddress())
+                .Then(_ => IShouldSeeUpdatedHomeAddress())
 
                 .BDDfy();
         }
