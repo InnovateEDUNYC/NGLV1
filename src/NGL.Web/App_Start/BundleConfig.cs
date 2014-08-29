@@ -48,6 +48,7 @@ namespace NGL.Web
                 ));
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
                 "~/Assets/Scripts/Views/Shared/programStatus.js",
+                "~/Assets/Scripts/Views/Shared/enableEditMode.js",
                 "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",
                 "~/Assets/Scripts/Views/Enrollment/createStudent.js",
                 "~/Assets/Scripts/Views/Student/index.js",
@@ -55,6 +56,7 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Student/editBiographicalInfo.js",
                 "~/Assets/Scripts/Views/Student/editStudentName.js",
                 "~/Assets/Scripts/Views/Student/editProgramStatus.js",
+                "~/Assets/Scripts/Views/Student/editHomeAddress.js",
                 "~/Assets/Scripts/Views/Schedule/setSchedule.js",
                 "~/Assets/Scripts/Views/Schedule/removeStudent.js",
                 "~/Assets/Scripts/Views/Section/getCourse.js",

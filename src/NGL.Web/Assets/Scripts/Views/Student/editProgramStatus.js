@@ -7,18 +7,8 @@ Ngl.student.editProgramStatus = (function () {
         Ngl.shared.programStatus.allowFileUploadConditionally("ProgramStatus_TitleParticipation", "ProgramStatus_TitleParticipationFile");
         Ngl.shared.programStatus.allowFileUploadConditionally("ProgramStatus_McKinneyVento", "ProgramStatus_McKinneyVentoFile");
 
-        enableEditMode();
-    }
-
-    var enableEditMode = function () {
-        $('#edit-program-status').on('click', function () {
-            $('#readonly-program-status').hide();
-            $('#editable-program-status > h4').show();
-            $('#editable-program-status > div').slideDown({
-                duration: "950",
-                easing: "linear"
-            });
-        });
+        Ngl.shared.enableEditMode.init('#edit-program-status', '#collapseProgramStatus',
+            '#readonly-program-status', '#editable-program-status > h4', '#editable-program-status > div');
     }
 
     return {
