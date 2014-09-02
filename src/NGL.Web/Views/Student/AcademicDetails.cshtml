@@ -98,17 +98,14 @@
                             @s.FieldFor(m => m.AcademicDetail.WritingScore)
                             @s.FieldFor(m => m.AcademicDetail.ReadingScore)
                             @s.FieldFor(m => m.AcademicDetail.MathScore)
-                            @s.FieldFor(m => m.AcademicDetail.PerformanceHistory)
-
-                            <div class="file-upload">
-                                @s.FieldFor(m => m.AcademicDetail.PerformanceHistoryFileUrl).Attrs(fileAttributes).WithoutLabel().Label("")
-                            </div>
-                            <div class="file-upload">
-                                @if (Model.AcademicDetail.PerformanceHistoryFileUrl != null)
-                                {
-                                    <span>Existing File Uploaded</span>
-                                }
-                            </div>
+                            @s.FieldFor(m => m.AcademicDetail.PerformanceHistory).Attr("rows", "5")
+                            
+                            @s.FieldFor(m => m.AcademicDetail.PerformanceHistoryFileUrl).Attrs(fileAttributes)
+                            
+                            @if (Model.AcademicDetail.PerformanceHistoryFileUrl != null)
+                            {
+                                <span>Existing File Uploaded</span>
+                            }
 
                             @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                             {
