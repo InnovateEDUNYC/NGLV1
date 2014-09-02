@@ -66,6 +66,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetParentCourses);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Delete()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ParentCourseController Actions { get { return MVC.ParentCourse; } }
@@ -86,6 +92,7 @@ namespace NGL.Web.Controllers
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string GetParentCourses = "GetParentCourses";
+            public readonly string Delete = "Delete";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -95,6 +102,7 @@ namespace NGL.Web.Controllers
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string GetParentCourses = "GetParentCourses";
+            public const string Delete = "Delete";
         }
 
 
@@ -122,6 +130,14 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_GetParentCourses
         {
             public readonly string searchString = "searchString";
+        }
+        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Delete
+        {
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -215,6 +231,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetParentCourses);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchString", searchString);
             GetParentCoursesOverride(callInfo, searchString);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Delete(System.Guid id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteOverride(callInfo, id);
             return callInfo;
         }
 

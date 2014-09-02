@@ -5,7 +5,7 @@ namespace NGL.Web.Models.ParentCourse
 {
     public class IndexModel
     {
-        public Guid Id;
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(60)]

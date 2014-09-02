@@ -63,5 +63,10 @@ namespace NGL.Web.Data.Repositories
                 .Include(pcg => pcg.Session)
                 .ToList();
         }
+
+        public void Delete(ParentCourse parentCourse)
+        {
+            DbContext.Set<ParentCourse>().Remove(parentCourse);
+        }
     }
 }
