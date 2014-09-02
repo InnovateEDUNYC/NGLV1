@@ -13,29 +13,16 @@ namespace NGL.Web.Models.Student
         {
             if (target.ParentAddresses.IsNullOrEmpty())
             {
-                target.ParentAddresses = new Collection<ParentAddress>
-                {
-                    new ParentAddress
-                    {
-                        AddressTypeId = HomeAddressTypeId,
-                        StreetNumberName = source.Address,
-                        ApartmentRoomSuiteNumber = source.Address2,
-                        City = source.City,
-                        PostalCode = source.PostalCode,
-                        StateAbbreviationTypeId = (int) source.State.GetValueOrDefault()
-                    }
-                };
+                target.ParentAddresses.Add(new ParentAddress());
             }
-            else
-            {
                 var parentAddress = target.ParentAddresses.First();
+
                 parentAddress.AddressTypeId = HomeAddressTypeId;
                 parentAddress.StreetNumberName = source.Address;
                 parentAddress.ApartmentRoomSuiteNumber = source.Address2;
                 parentAddress.City = source.City;
                 parentAddress.PostalCode = source.PostalCode;
                 parentAddress.StateAbbreviationTypeId = (int) source.State.GetValueOrDefault();
-            }
         }
     }
 }
