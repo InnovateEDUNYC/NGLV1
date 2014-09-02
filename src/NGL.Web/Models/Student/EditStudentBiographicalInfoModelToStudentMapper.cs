@@ -7,9 +7,9 @@ using NGL.Web.Models.Student;
 
 namespace NGL.Web.Models.Enrollment
 {
-    public class EditStudentBiographicalInfoModelToStudentMapper : MapperBase<EditStudentBiographicalInfoModel, Data.Entities.Student>
+    public class EditStudentBiographicalInfoModelToStudentMapper : MapperBase<EditableStudentBiographicalInfoModel, Data.Entities.Student>
     {
-        public override void Map(EditStudentBiographicalInfoModel source, Data.Entities.Student target)
+        public override void Map(EditableStudentBiographicalInfoModel source, Data.Entities.Student target)
         {
             target.BirthDate = DateTime.Parse(source.BirthDate);
             target.SexTypeId = (int) source.Sex;
@@ -22,7 +22,7 @@ namespace NGL.Web.Models.Enrollment
                 MapLanguage(source, target);
         }
 
-        private static void MapLanguage(EditStudentBiographicalInfoModel source, Data.Entities.Student target)
+        private static void MapLanguage(EditableStudentBiographicalInfoModel source, Data.Entities.Student target)
         {
             var studentHomeLanguageUse = new StudentLanguageUse
             {
@@ -39,13 +39,13 @@ namespace NGL.Web.Models.Enrollment
             target.StudentLanguages = new List<StudentLanguage> {studentLanguage};
         }
 
-        private static bool LanguageHasBeenUpdated(EditStudentBiographicalInfoModel source, Data.Entities.Student target)
+        private static bool LanguageHasBeenUpdated(EditableStudentBiographicalInfoModel source, Data.Entities.Student target)
         {
             return !target.StudentLanguages.IsNullOrEmpty() &&
                    target.StudentLanguages.First().LanguageDescriptorId != (int) source.HomeLanguage;
         }
 
-        private static void MapStudentRace(EditStudentBiographicalInfoModel source, Data.Entities.Student target)
+        private static void MapStudentRace(EditableStudentBiographicalInfoModel source, Data.Entities.Student target)
         {
             target.StudentRaces = new List<StudentRace>
             {
@@ -53,7 +53,7 @@ namespace NGL.Web.Models.Enrollment
             };
         }
 
-        private static bool RaceHasBeenUpdated(EditStudentBiographicalInfoModel source, Data.Entities.Student target)
+        private static bool RaceHasBeenUpdated(EditableStudentBiographicalInfoModel source, Data.Entities.Student target)
         {
             return !target.StudentRaces.IsNullOrEmpty() && target.StudentRaces.First().RaceTypeId != (int)source.Race;
         }

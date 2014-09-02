@@ -56,7 +56,7 @@ Ngl.shared.editProfile = (function () {
                 .addClass("field-validation-error")
                 .removeClass("field-validation-valid")
                 .text(error.Message);
-            $('.control-label[for="' + error.Field + '"]').parent().addClass('has-error');
+            $('.control-label[for="' + error.Field.replace(/\./g, "_") + '"]').parent().addClass('has-error');
         });
     };
 

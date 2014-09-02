@@ -7,6 +7,13 @@ namespace NGL.Web.Models.Student
 {
     public class ParentToProfileParentModelMapper : MapperBase<Parent, EditProfileParentModel>
     {
+        private readonly ParentToProfileParentAddressModelMapper _parentAddressMapper;
+
+        public ParentToProfileParentModelMapper(ParentToProfileParentAddressModelMapper parentAddressMapper)
+        {
+            _parentAddressMapper = parentAddressMapper;
+        }
+
         public override void Map(Parent source, EditProfileParentModel target)
         {
             var studentParentAssociation = source.StudentParentAssociations.First();
@@ -24,8 +31,11 @@ namespace NGL.Web.Models.Student
 
             if (studentParentAssociation.LivesWith == false)
             {
-                var parentToProfileParentAddressModelMapper = new ParentToProfileParentAddressModelMapper();
-                target.ProfileParentAddressModel = parentToProfileParentAddressModelMapper.Build(source);
+                target.EditableParentAddressModel = _parentAddressMapper.Build(source);
+            }
+            else
+            {
+                target.EditableParentAddressModel = new EditableParentAddressModel();
             }
         }
     }

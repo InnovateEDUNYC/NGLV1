@@ -24,7 +24,7 @@ namespace NGL.Tests.Student
             _studentAttendancePercentageMapperMock = Substitute.For<IMapper<IList<StudentSectionAttendanceEvent>, ProfileModel>>();
 
             _mapper = new StudentToProfileModelMapper(new StudentToAcademicDetailsMapper(downloader),
-                new ParentToProfileParentModelMapper(),
+                new ParentToProfileParentModelMapper(new ParentToProfileParentAddressModelMapper()),
                  new ProfilePhotoUrlFetcher(downloader),
                 new StudentProgramStatusToProfileProgramStatusModelMapper(downloader),
                 _studentAttendancePercentageMapperMock, 
@@ -182,7 +182,7 @@ namespace NGL.Tests.Student
             profileParentModel.Relationship.ShouldBe(
                 ((RelationTypeEnum)studentParentAssociation.RelationTypeId));
 
-            profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
+            profileParentModel.SameAddressAsStudent.ShouldBe((bool)studentParentAssociation.LivesWith);
         }
 
         private static void AddressShouldBeMapped(StudentAddress address, ProfileModel profileModel)
@@ -198,13 +198,13 @@ namespace NGL.Tests.Student
         }
         private static void ParentAddressShouldBeMapped(Parent parent, ProfileModel profileModel)
         {
-            var profileParentAddressModel = profileModel.EditProfileParentModel.ProfileParentAddressModel;
+            var profileParentAddressModel = profileModel.EditProfileParentModel.EditableParentAddressModel;
             var parentHomeAddress = parent.ParentAddresses.First();
 
             profileParentAddressModel.Address.ShouldBe(parentHomeAddress.StreetNumberName);
             profileParentAddressModel.Address2.ShouldBe(parentHomeAddress.ApartmentRoomSuiteNumber);
             profileParentAddressModel.City.ShouldBe(parentHomeAddress.City);
-            profileParentAddressModel.State.ShouldBe(
+            profileParentAddressModel.StateForDisplay.ShouldBe(
                 ((StateAbbreviationTypeEnum)parentHomeAddress.StateAbbreviationTypeId).Humanize());
             profileParentAddressModel.PostalCode.ShouldBe(parentHomeAddress.PostalCode);
         }

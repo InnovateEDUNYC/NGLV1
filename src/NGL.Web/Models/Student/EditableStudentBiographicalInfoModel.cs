@@ -3,7 +3,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class EditStudentBiographicalInfoModel
+    public class EditableStudentBiographicalInfoModel
     {
         public int StudentUsi { get; set; }
         public SexTypeEnum Sex { get; set; }

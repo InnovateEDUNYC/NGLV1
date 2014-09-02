@@ -92,7 +92,7 @@ namespace NGL.UiTests.Student
             return this;
         }
 
-        public bool EditedBiographicalInformationIsVisable(EditStudentBiographicalInfoModel newBiographicalInformation)
+        public bool EditedBiographicalInformationIsVisable(EditableStudentBiographicalInfoModel newBiographicalInformation)
         {
             WaitFor.AjaxCallsToComplete();
             var sex = Browser.PageSource.Contains(newBiographicalInformation.Sex.Humanize());

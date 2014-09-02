@@ -93,6 +93,7 @@
     <Compile Include="Builders\AssessmentPerformanceLevelBuilder.cs" />
     <Compile Include="Builders\AssessmentSectionBuilder.cs" />
     <Compile Include="Builders\CreateParentCourseModelBuilder.cs" />
+    <Compile Include="Builders\EditableParentAddressModelBuilder.cs" />
     <Compile Include="Builders\EditProfileParentModelBuilder.cs" />
     <Compile Include="Builders\HomeAddressModelBuilder.cs" />
     <Compile Include="Builders\LearningStandardBuilder.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Session\SessionToSessionWithSectionsModelMapperTests.cs" />
     <Compile Include="Session\ValidatorTests.cs" />
     <Compile Include="Enrollment\CreateStudentModelToStudentMapperTests.cs" />
+    <Compile Include="Student\EditParentAddressModelToParentAddressMapperTests.cs" />
     <Compile Include="Student\EditProfileParentModelToParentMapperTests.cs" />
     <Compile Include="Student\ParentAddressFactory.cs" />
     <Compile Include="Student\StudentAcademicDetailBuilder.cs" />

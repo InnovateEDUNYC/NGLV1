@@ -12,9 +12,9 @@ namespace NGL.Tests.Builders
         private LanguageDescriptorEnum _homeLanguage = LanguageDescriptorEnum.Spanish;
         private RaceTypeEnum _race = RaceTypeEnum.BlackAfricanAmerican;
 
-        public EditStudentBiographicalInfoModel Build()
+        public EditableStudentBiographicalInfoModel Build()
         {
-            return new EditStudentBiographicalInfoModel
+            return new EditableStudentBiographicalInfoModel
             {
                 StudentUsi = _studentUsi,
                 BirthDate = _birthDate,

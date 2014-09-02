@@ -1,4 +1,6 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.Collections.Generic;
+using NGL.Tests.Student;
+using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
 
 namespace NGL.Tests.Builders
@@ -12,18 +14,22 @@ namespace NGL.Tests.Builders
         private RelationTypeEnum _relationTypeEnum = RelationTypeEnum.Motherstep;
         private SexTypeEnum _sexTypeEnum = SexTypeEnum.Female;
         private string _telephoneNumber = "555-999-9999";
+        private readonly EditableParentAddressModel _parentAddressModel = new EditableParentAddressModelBuilder().Build();
+        private bool _sameAddressAsStudent = false;
 
         public EditProfileParentModel Build()
         {
             return new EditProfileParentModel
             {
+                EditableParentAddressModel = _parentAddressModel,
                 ParentUSI = _parentUsi,
                 EmailAddress = _email,
                 FirstName = _firstName,
                 LastName = _lastName,
                 Relationship = _relationTypeEnum,
                 Sex = _sexTypeEnum,
-                TelephoneNumber = _telephoneNumber
+                TelephoneNumber = _telephoneNumber,
+                SameAddressAsStudent = _sameAddressAsStudent
             };
         }
 

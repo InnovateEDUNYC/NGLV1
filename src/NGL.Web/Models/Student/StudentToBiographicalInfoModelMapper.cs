@@ -6,9 +6,9 @@ using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {
-    public class StudentToBiographicalInfoModelMapper : MapperBase<Data.Entities.Student, EditStudentBiographicalInfoModel>
+    public class StudentToBiographicalInfoModelMapper : MapperBase<Data.Entities.Student, EditableStudentBiographicalInfoModel>
     {
-        public override void Map(Data.Entities.Student source, EditStudentBiographicalInfoModel target)
+        public override void Map(Data.Entities.Student source, EditableStudentBiographicalInfoModel target)
         {
             target.StudentUsi = source.StudentUSI;
             target.BirthDate = source.BirthDate.ToShortDateString();
@@ -19,7 +19,7 @@ namespace NGL.Web.Models.Student
             MapHomeLanguage(source, target);
         }
 
-        private static void MapHomeLanguage(Data.Entities.Student source, EditStudentBiographicalInfoModel target)
+        private static void MapHomeLanguage(Data.Entities.Student source, EditableStudentBiographicalInfoModel target)
         {
             var homeLanguage = GetAllHomeLanguages(source).First();
             target.HomeLanguage = (LanguageDescriptorEnum)homeLanguage.LanguageDescriptorId;

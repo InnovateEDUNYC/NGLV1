@@ -17,7 +17,7 @@ namespace NGL.UiTests.Student
     {
         private HomePage _homePage;
         private ProfilePage _profilePage;
-        private EditStudentBiographicalInfoModel _newBiographicalInformation;
+        private EditableStudentBiographicalInfoModel _newBiographicalInformation;
         private NameModel _nameModel;
         private EnterProgramStatusModel _enterProgramStatusModel;
         private HomeAddressModel _homeAddressModel;

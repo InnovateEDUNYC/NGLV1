@@ -13,7 +13,7 @@ namespace NGL.Web.Models.Student
         private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
         private readonly StudentProgramStatusToProfileProgramStatusModelMapper _studentProgramStatusToProfileProgramStatusModelMapper;
         private readonly IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> _studentAttendancePercentageMapper;
-        private readonly IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> _biographicalInfoMapper;
+        private readonly IMapper<Data.Entities.Student, EditableStudentBiographicalInfoModel> _biographicalInfoMapper;
         private readonly IMapper<Data.Entities.Student, NameModel> _studentNameMapper;
         private readonly IMapper<StudentAddress, HomeAddressModel> _studentAddressToHomeAddressModelMapper;
 
@@ -23,7 +23,7 @@ namespace NGL.Web.Models.Student
             ProfilePhotoUrlFetcher profilePhotoUrlFetcher,
             StudentProgramStatusToProfileProgramStatusModelMapper studentProgramStatusToProfileProgramStatusModelMapper,
             IMapper<IList<Data.Entities.StudentSectionAttendanceEvent>, ProfileModel> studentAttendancePercentageMapper, 
-            IMapper<Data.Entities.Student, EditStudentBiographicalInfoModel> biographicalInfoMapper, 
+            IMapper<Data.Entities.Student, EditableStudentBiographicalInfoModel> biographicalInfoMapper, 
             IMapper<Data.Entities.Student, NameModel> studentNameMapper,
             IMapper<StudentAddress, HomeAddressModel> studentAddressToHomeAddressModelMapper)
         {

@@ -1724,6 +1724,7 @@
     <Compile Include="Models\Enrollment\EditAcademicDetailModel.cs" />
     <Compile Include="Models\Enrollment\EditAcademicDetailModelValidator.cs" />
     <Compile Include="Models\Student\EditAcademicDetailModelToStudentAcademicDetailMapper.cs" />
+    <Compile Include="Models\Student\EditableParentAddressModelToParentMapper.cs" />
     <Compile Include="Models\Student\HomeAddressModel.cs" />
     <Compile Include="Models\Student\HomeAddressModelValidator.cs" />
     <Compile Include="Models\Student\StudentAddressToHomeAddressModelMapper.cs" />
@@ -1732,7 +1733,7 @@
     <Compile Include="Models\Student\EditParentInfoModelValidator.cs" />
     <Compile Include="Models\Student\EditProfileParentModelToParentMapper.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInfoModelToStudentMapper.cs" />
-    <Compile Include="Models\Student\EditStudentBiographicalInfoModel.cs" />
+    <Compile Include="Models\Student\EditableStudentBiographicalInfoModel.cs" />
     <Compile Include="Models\Student\EditStudentBiographicalInformationModelValidator.cs" />
     <Compile Include="Models\Enrollment\StudentHomeLanguageMapper.cs" />
     <Compile Include="Models\Student\NameModel.cs" />
@@ -1806,7 +1807,7 @@
     <Compile Include="Models\Student\StudentAttendancePercentageMapper.cs" />
     <Compile Include="Models\Student\ProfileAcademicDetailModel.cs" />
     <Compile Include="Models\Student\ProfileModel.cs" />
-    <Compile Include="Models\Student\ProfileParentAddressModel.cs" />
+    <Compile Include="Models\Student\EditableParentAddressModel.cs" />
     <Compile Include="Models\Student\EditProfileParentModel.cs" />
     <Compile Include="Infrastructure\Azure\ProfilePhotoUrlFetcher.cs" />
     <Compile Include="Models\Student\ProfileProgramStatusModel.cs" />

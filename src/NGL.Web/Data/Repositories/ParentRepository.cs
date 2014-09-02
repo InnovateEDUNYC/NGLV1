@@ -15,6 +15,7 @@ namespace NGL.Web.Data.Repositories
                 .Where(p => p.ParentUSI == parentUsi)
                 .Include(p => p.ParentTelephones)
                 .Include(p => p.ParentElectronicMails)
+                .Include(p => p.ParentAddresses)
                 .Include(p => p.StudentParentAssociations)
                 .ToList().First();
         }
