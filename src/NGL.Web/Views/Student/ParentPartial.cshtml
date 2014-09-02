@@ -107,7 +107,6 @@
                     <div class="hidden">
                         @s.FieldFor(m => m.ParentUSI)
                     </div>
-                    
                     @s.FieldFor(m => m.FirstName)
                     @s.FieldFor(m => m.LastName)
                     @s.FieldFor(m => m.Sex)
@@ -115,12 +114,14 @@
                     @s.FieldFor(m => m.TelephoneNumber)
                     @s.FieldFor(m => m.EmailAddress)
                     @s.FieldFor(m => m.SameAddressAsStudent)
-                    @s.FieldFor(m => m.EditableParentAddressModel.Address)
-                    @s.FieldFor(m => m.EditableParentAddressModel.Address2)
-                    @s.FieldFor(m => m.EditableParentAddressModel.City)
-                    @s.FieldFor(m => m.EditableParentAddressModel.State)
-                    @s.FieldFor(m => m.EditableParentAddressModel.PostalCode)
+                    <div class="edit-parent-address-section">
 
+                        @s.FieldFor(m => m.EditableParentAddressModel.Address)
+                        @s.FieldFor(m => m.EditableParentAddressModel.Address2)
+                        @s.FieldFor(m => m.EditableParentAddressModel.City)
+                        @s.FieldFor(m => m.EditableParentAddressModel.State)
+                        @s.FieldFor(m => m.EditableParentAddressModel.PostalCode)
+                    </div>
                     @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                     {
                         <div class="text-right top-buffer-10">
