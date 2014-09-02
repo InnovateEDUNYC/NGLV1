@@ -16,6 +16,7 @@ namespace NGL.Tests.ParentCourse
             indexModel.ParentCourseCode.ShouldBe(parentCourseModel.ParentCourseCode);
             indexModel.ParentCourseTitle.ShouldBe(parentCourseModel.ParentCourseTitle);
             indexModel.ParentCourseDescription.ShouldBe(parentCourseModel.ParentCourseDescription);
+            indexModel.Id.ShouldBe(parentCourseModel.Id);
         }
     }
 }

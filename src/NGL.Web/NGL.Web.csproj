@@ -1726,6 +1726,7 @@
     <Compile Include="Models\Student\EditAcademicDetailModelToStudentAcademicDetailMapper.cs" />
     <Compile Include="Models\Student\EditableParentAddressModelToParentMapper.cs" />
     <Compile Include="Models\ParentCourse\EditModel.cs" />
+    <Compile Include="Models\ParentCourse\EditModelToParentCourseMapper.cs" />
     <Compile Include="Models\ParentCourse\ParentCourseToEditModelMapper.cs" />
     <Compile Include="Models\Student\HomeAddressModel.cs" />
     <Compile Include="Models\Student\HomeAddressModelValidator.cs" />
