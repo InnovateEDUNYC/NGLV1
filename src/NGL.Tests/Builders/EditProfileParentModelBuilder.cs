@@ -15,6 +15,7 @@ namespace NGL.Tests.Builders
         private SexTypeEnum _sexTypeEnum = SexTypeEnum.Female;
         private string _telephoneNumber = "555-999-9999";
         private readonly EditableParentAddressModel _parentAddressModel = new EditableParentAddressModelBuilder().Build();
+        private bool _sameAddressAsStudent = false;
 
         public EditableParentModel Build()
         {
@@ -27,7 +28,8 @@ namespace NGL.Tests.Builders
                 LastName = _lastName,
                 Relationship = _relationTypeEnum,
                 Sex = _sexTypeEnum,
-                TelephoneNumber = _telephoneNumber
+                TelephoneNumber = _telephoneNumber,
+                SameAddressAsStudent = _sameAddressAsStudent
             };
         }
 
