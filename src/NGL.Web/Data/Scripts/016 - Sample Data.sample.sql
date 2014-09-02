@@ -345,7 +345,17 @@ INSERT INTO [dbo].[StudentProgramStatus]
            ,[McKinneyVento])
      VALUES
            (999, 0, 1, 0, 1, 0, 1, 0, 1)
-GO
+
+INSERT INTO [dbo].[StudentAcademicDetails]
+           ([StudentUSI]
+           ,[ReadingScore]
+           ,[WritingScore]
+           ,[MathScore]
+           ,[SchoolYear]
+           ,[GradeLevelTypeId]
+           ,[PerfomanceHistory])
+     VALUES
+           (999, 15, 25, 35, 2014, 5, 'The student has been doing good.')
 
 INSERT INTO [edfi].[StudentSectionAssociation]
            ([StudentUSI]

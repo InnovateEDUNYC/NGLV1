@@ -95,6 +95,7 @@
     <Compile Include="Builders\CreateParentCourseModelBuilder.cs" />
     <Compile Include="Builders\EditableParentAddressModelBuilder.cs" />
     <Compile Include="Builders\EditParentCourseModelBuilder.cs" />
+    <Compile Include="Builders\EditAcademicDetailsModelBuilder.cs" />
     <Compile Include="Builders\EditProfileParentModelBuilder.cs" />
     <Compile Include="Builders\HomeAddressModelBuilder.cs" />
     <Compile Include="Builders\LearningStandardBuilder.cs" />

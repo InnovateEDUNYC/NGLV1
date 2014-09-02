@@ -21,6 +21,7 @@ namespace NGL.UiTests.Student
         private NameModel _nameModel;
         private EnterProgramStatusModel _enterProgramStatusModel;
         private HomeAddressModel _homeAddressModel;
+        private EditAcademicDetailModel _editAcademicDetailsModel;
 
         private void IHaveLoggedIn()
         {
@@ -48,6 +49,20 @@ namespace NGL.UiTests.Student
             };
             _profilePage.EditName(_nameModel);
         }
+
+        private void IEditTheAcademicDetails()
+        {
+            var editAcademicDetailsPanel = _profilePage.EditAcademicDetails();
+
+            _editAcademicDetailsModel = new EditAcademicDetailsModelBuilder().Build();
+            editAcademicDetailsPanel.Edit(_editAcademicDetailsModel);
+        }
+
+        private void IShouldSeeUpdatedAcademicDetails()
+        {
+            _profilePage.IsAcademicDetailAccordingTo(_editAcademicDetailsModel);
+        }
+
         private void IShouldSeeUpdatedBiographicalInformation()
         {
             var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
@@ -59,6 +74,7 @@ namespace NGL.UiTests.Student
             var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
             canSeeUpdatedInformation.ShouldBe(true);
         }
+
         private void IShouldSeeUpdatedName()
         {
             _profilePage.EditedNameIsVisible(_nameModel).ShouldBe(true);
@@ -100,6 +116,8 @@ namespace NGL.UiTests.Student
                 .Then(_ => IShouldSeeUpdatedBiographicalInformation())
                 .And(_ => IEditTheStudentName())
                 .Then(_ => IShouldSeeUpdatedName())
+                .When(_ => IEditTheAcademicDetails())
+                .Then(_ => IShouldSeeUpdatedAcademicDetails())
                 .When(_ => IEditTheProgramStatusInformation())
                 .Then(_ => IShouldSeeUpdatedProgramStatusInformation())
                 .When(_ => IEditTheHomeAddress())

@@ -1,14 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.Linq;
+using System.Web.WebPages;
 using Humanizer;
 using NGL.UiTests.Schedule;
 using NGL.Web.Extensions;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using OpenQA.Selenium;
-using TestStack.Seleno.Configuration;
 using TestStack.Seleno.PageObjects;
-using TestStack.Seleno.PageObjects.Actions;
 
 namespace NGL.UiTests.Student
 {
@@ -104,6 +102,12 @@ namespace NGL.UiTests.Student
             return sex && birthday && language && latino && race;
         }
 
+        public EditAcademicDetailsPanel EditAcademicDetails()
+        {
+            return Navigate.To<EditAcademicDetailsPanel>(By.Id("edit-academic-details-button"));
+        }
+
+
         public EditProgramStatusPanel EditProgramStatus()
         {
             return Navigate.To<EditProgramStatusPanel>(By.Id("edit-program-status-button"));
@@ -158,6 +162,18 @@ namespace NGL.UiTests.Student
             var samePostalCode = Find.Element(By.Name("Postal code")).Text.Equals(homeAddressModel.PostalCode);
 
             return sameAddress && sameAddress2 && sameCity && sameState && samePostalCode;
+        }
+
+        public bool IsAcademicDetailAccordingTo(EditAcademicDetailModel academicDetailModel)
+        {
+            Find.Element(By.CssSelector("#readonly-academic-details > h4")).Click();
+
+            var writingScore = Find.Element(By.Name("WritingScore")).Text.AsDecimal().Equals(academicDetailModel.WritingScore);
+            var mathScore = Find.Element(By.Name("MathScore")).Text.AsDecimal().Equals(academicDetailModel.MathScore);
+            var readingScore = Find.Element(By.Name("ReadingScore")).Text.AsDecimal().Equals(academicDetailModel.ReadingScore);
+            var performanceHistory = Find.Element(By.Name("PerformanceHistory")).Text.Equals(academicDetailModel.PerformanceHistory);
+
+            return writingScore && mathScore && readingScore && performanceHistory;
         }
     }
 }
