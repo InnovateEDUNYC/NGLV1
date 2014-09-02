@@ -11,8 +11,8 @@ namespace NGL.Web.Models.Student
         public string ProfilePhotoUrl { get; set; }
         public EditableStudentBiographicalInfoModel BiographicalInfo { get; set; }
         public HomeAddressModel HomeAddress { get; set; }
-        public EditableParentModel EditableParentModel { get; set; }
-        public EditableParentModel SecondEditableParentModel { get; set; }
+        public EditProfileParentModel EditProfileParentModel { get; set; }
+        public EditProfileParentModel SecondEditProfileParentModel { get; set; }
         public ProfileAcademicDetailModel AcademicDetail { get; set; }
         public ProfileProgramStatusModel ProgramStatus { get; set; }
         public int AttendancePercentage { get; set; }

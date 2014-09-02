@@ -3,7 +3,7 @@ using FluentValidation.Validators;
 
 namespace NGL.Web.Models.Student
 {
-    public class EditProfileParentModelValidator : AbstractValidator<EditableParentModel>
+    public class EditProfileParentModelValidator : AbstractValidator<EditProfileParentModel>
     {
         public EditProfileParentModelValidator()
         {

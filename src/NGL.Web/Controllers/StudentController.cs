@@ -30,7 +30,6 @@ namespace NGL.Web.Controllers
         private readonly IMapper<EditProfileParentModel, Parent> _editProfileParentModelToParentMapper;
         private readonly ProgramStatusModelToProgramStatusForEditMapper _programStatusModelToProgramStatusForEditMapper;
         private readonly EditAcademicDetailModelToStudentAcademicDetailMapper _editAcademicDetailModelToStudentAcademicDetailMapper;
-        private readonly IMapper<EditableParentModel, Parent> _editProfileParentModelToParentMapper;
 
         public StudentController(IGenericRepository repository, 
             IMapper<Student, ProfileModel> studentToProfileModelMapper,
@@ -42,8 +41,7 @@ namespace NGL.Web.Controllers
             IParentRepository parentRepository, 
             IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper,
             ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper, 
-			EditAcademicDetailModelToStudentAcademicDetailMapper editAcademicDetailModelToStudentAcademicDetailMapper,
-            IMapper<EditableParentModel, Parent> editProfileParentModelToParentMapper)
+			EditAcademicDetailModelToStudentAcademicDetailMapper editAcademicDetailModelToStudentAcademicDetailMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
@@ -178,7 +176,7 @@ namespace NGL.Web.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        public virtual JsonResult EditParentInfo(EditableParentModel model)
+        public virtual JsonResult EditParentInfo(EditProfileParentModel model)
         {
             if (!ModelState.IsValid)
             {

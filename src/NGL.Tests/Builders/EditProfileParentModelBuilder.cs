@@ -17,9 +17,9 @@ namespace NGL.Tests.Builders
         private readonly EditableParentAddressModel _parentAddressModel = new EditableParentAddressModelBuilder().Build();
         private bool _sameAddressAsStudent = false;
 
-        public EditableParentModel Build()
+        public EditProfileParentModel Build()
         {
-            return new EditableParentModel
+            return new EditProfileParentModel
             {
                 EditableParentAddressModel = _parentAddressModel,
                 ParentUSI = _parentUsi,

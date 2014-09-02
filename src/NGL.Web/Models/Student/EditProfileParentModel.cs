@@ -2,7 +2,7 @@
 
 namespace NGL.Web.Models.Student
 {
-    public class EditableParentModel
+    public class EditProfileParentModel
     {
         public int ParentUSI { get; set; }
         public string FirstName { get; set; }

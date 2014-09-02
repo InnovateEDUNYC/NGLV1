@@ -46,7 +46,7 @@ namespace NGL.Tests.Student
             _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
-            NativeParentPropertiesShouldBeMapped(parent, profileModel.EditableParentModel);
+            NativeParentPropertiesShouldBeMapped(parent, profileModel.EditProfileParentModel);
             AddressShouldBeMapped(student.StudentAddresses.First(), profileModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
             profileModel.ProgramStatus.ShouldNotBe(null);
@@ -80,7 +80,7 @@ namespace NGL.Tests.Student
             _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
-            NativeParentPropertiesShouldBeMapped(parent, profileModel.EditableParentModel);
+            NativeParentPropertiesShouldBeMapped(parent, profileModel.EditProfileParentModel);
             ParentAddressShouldBeMapped(parent, profileModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
         }
@@ -98,8 +98,8 @@ namespace NGL.Tests.Student
             _mapper.Map(student, profileModel);
 
             NativeStudentPropertiesShouldBeMapped(student, profileModel);
-            NativeParentPropertiesShouldBeMapped(firstParent, profileModel.EditableParentModel);
-            NativeParentPropertiesShouldBeMapped(secondParent, profileModel.SecondEditableParentModel);
+            NativeParentPropertiesShouldBeMapped(firstParent, profileModel.EditProfileParentModel);
+            NativeParentPropertiesShouldBeMapped(secondParent, profileModel.SecondEditProfileParentModel);
             StudentParentAssociationShouldBeMapped(student, profileModel);
         }
 
@@ -167,17 +167,17 @@ namespace NGL.Tests.Student
             studentProfileHomeLanguage.ShouldBe((LanguageDescriptorEnum)student.StudentLanguages.First().LanguageDescriptorId);
         }
 
-        private static void NativeParentPropertiesShouldBeMapped(Parent parent, EditableParentModel editableParentModel)
+        private static void NativeParentPropertiesShouldBeMapped(Parent parent, EditProfileParentModel editProfileParentModel)
         {
-            editableParentModel.FirstName.ShouldBe(parent.FirstName);
-            editableParentModel.LastName.ShouldBe(parent.LastSurname);
-            editableParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId.GetValueOrDefault()));
-            editableParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
+            editProfileParentModel.FirstName.ShouldBe(parent.FirstName);
+            editProfileParentModel.LastName.ShouldBe(parent.LastSurname);
+            editProfileParentModel.Sex.ShouldBe(((SexTypeEnum) parent.SexTypeId.GetValueOrDefault()));
+            editProfileParentModel.TelephoneNumber.ShouldBe(parent.ParentTelephones.First().TelephoneNumber);
         }
 
         private static void StudentParentAssociationShouldBeMapped(Web.Data.Entities.Student student, ProfileModel profileModel)
         {
-            var profileParentModel = profileModel.EditableParentModel;
+            var profileParentModel = profileModel.EditProfileParentModel;
             var studentParentAssociation = student.StudentParentAssociations.First();
             profileParentModel.Relationship.ShouldBe(
                 ((RelationTypeEnum)studentParentAssociation.RelationTypeId));
@@ -198,7 +198,7 @@ namespace NGL.Tests.Student
         }
         private static void ParentAddressShouldBeMapped(Parent parent, ProfileModel profileModel)
         {
-            var profileParentAddressModel = profileModel.EditableParentModel.EditableParentAddressModel;
+            var profileParentAddressModel = profileModel.EditProfileParentModel.EditableParentAddressModel;
             var parentHomeAddress = parent.ParentAddresses.First();
 
             profileParentAddressModel.Address.ShouldBe(parentHomeAddress.StreetNumberName);

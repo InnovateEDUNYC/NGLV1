@@ -5,7 +5,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class EditProfileParentModelToParentMapper : MapperBase<EditableParentModel, Parent>
+    public class EditProfileParentModelToParentMapper : MapperBase<EditProfileParentModel, Parent>
     {
         private readonly IMapper<EditableParentAddressModel, Parent> _addressMapper;
 
@@ -14,7 +14,7 @@ namespace NGL.Web.Models.Student
             _addressMapper = addressMapper;
         }
 
-        public override void Map(EditableParentModel source, Parent target)
+        public override void Map(EditProfileParentModel source, Parent target)
         {
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
@@ -27,7 +27,7 @@ namespace NGL.Web.Models.Student
             UpdateAddress(source, target);
         }
 
-        private void UpdateAddress(EditableParentModel source, Parent target)
+        private void UpdateAddress(EditProfileParentModel source, Parent target)
         {
             if (!source.SameAddressAsStudent)
             {
@@ -40,7 +40,7 @@ namespace NGL.Web.Models.Student
             }
         }
 
-        private void UpdateEmail(EditableParentModel source, Parent target)
+        private void UpdateEmail(EditProfileParentModel source, Parent target)
         {
             if (source.EmailAddress.IsNullOrEmpty())
             {
@@ -54,7 +54,7 @@ namespace NGL.Web.Models.Student
             }
         }
 
-        private bool AddressHasBeenChanged(EditableParentModel source, Parent target)
+        private bool AddressHasBeenChanged(EditProfileParentModel source, Parent target)
         {
             var targetAddress = target.ParentAddresses.FirstOrDefault();
             var sourceAddress = source.EditableParentAddressModel;

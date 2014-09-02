@@ -5,7 +5,7 @@ using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
-    public class ParentToProfileParentModelMapper : MapperBase<Parent, EditableParentModel>
+    public class ParentToProfileParentModelMapper : MapperBase<Parent, EditProfileParentModel>
     {
         private readonly ParentToProfileParentAddressModelMapper _parentAddressMapper;
 
@@ -14,7 +14,7 @@ namespace NGL.Web.Models.Student
             _parentAddressMapper = parentAddressMapper;
         }
 
-        public override void Map(Parent source, EditableParentModel target)
+        public override void Map(Parent source, EditProfileParentModel target)
         {
             var studentParentAssociation = source.StudentParentAssociations.First();
 

@@ -352,10 +352,10 @@ namespace NGL.Web.Controllers
         }
 
         [NonAction]
-        partial void EditParentInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Student.EditableParentModel model);
+        partial void EditParentInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Student.EditProfileParentModel model);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult EditParentInfo(NGL.Web.Models.Student.EditableParentModel model)
+        public override System.Web.Mvc.JsonResult EditParentInfo(NGL.Web.Models.Student.EditProfileParentModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditParentInfo);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
