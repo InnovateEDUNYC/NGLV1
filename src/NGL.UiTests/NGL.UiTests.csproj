@@ -107,10 +107,11 @@
     <Compile Include="Location\CanCreateLocation.cs" />
     <Compile Include="Location\LocationCreatePage.cs" />
     <Compile Include="Location\LocationIndexPage.cs" />
-    <Compile Include="ParentCourse\CanCreateParentCourse.cs" />
+    <Compile Include="ParentCourse\CanCreateAndEditParentCourse.cs" />
     <Compile Include="ParentCourseGrade\CanGradeParentCourseForStudent.cs" />
     <Compile Include="ParentCourse\ParentCourseCreatePage.cs" />
     <Compile Include="ParentCourseGrade\ParentCourseGradesPage.cs" />
+    <Compile Include="ParentCourse\ParentCourseEditPage.cs" />
     <Compile Include="ParentCourse\ParentCourseIndexPage.cs" />
     <Compile Include="Reports\ReportsIndexPage.cs" />
     <Compile Include="Schedule\CanRemoveStudentFromSection.cs" />
