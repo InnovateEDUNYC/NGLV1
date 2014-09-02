@@ -1,15 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
 
-namespace NGL.Web.Models.Student
+namespace NGL.Web.Models.Enrollment
 {
-    public class ProfileAcademicDetailModel
+    public class EditAcademicDetailModel
     {
         public decimal? ReadingScore { get; set; }
         public decimal? WritingScore { get; set; }
         public decimal? MathScore { get; set; }
 
-        [Display(Name="Performance history file")]
-        public string PerformanceHistoryFileUrl { get; set; }
+        [Display(Name = "Performance History File")]
+        public HttpPostedFileBase PerformanceHistoryFileUrl { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string PerformanceHistory { get; set; }

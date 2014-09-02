@@ -1,7 +1,7 @@
 ﻿@using NGL.Web.Infrastructure.Security
 @model NGL.Web.Models.Student.EditProfileParentModel
 
-<div id="readonly-parent-info">
+<div id="readonly-parent-info" class="top-buffer-10">
     <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseParentInfo">
         Parent Info <i class="fa fa-caret-down arrow"></i>
 
@@ -51,7 +51,7 @@
         </div>
     </div>
 </div>
-<div id="editable-parent-info">
+<div id="editable-parent-info" class="top-buffer-10">
     <h4 class="panel panel-default strong display-none">
         Parent Info
     </h4>
@@ -74,7 +74,7 @@
 
                     @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
                     {
-                        <div class="pull-right">
+                        <div class="text-right top-buffer-10">
                             <div id="cancel-parent-info-edit" class="btn btn-default">Cancel</div>
                             <div id="save-parent-info-edit" class="btn btn-primary">Save</div>
                         </div>
