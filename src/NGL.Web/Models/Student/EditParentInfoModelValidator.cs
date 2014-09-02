@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Validators;
 
 namespace NGL.Web.Models.Student
 {
@@ -11,6 +12,20 @@ namespace NGL.Web.Models.Student
             RuleFor(pm => pm.Sex).NotNull();
             RuleFor(pm => pm.EmailAddress).Length(1, 128).EmailAddress();
             RuleFor(pm => pm.TelephoneNumber).NotNull().Length(1, 24);
+            When(pm => !pm.SameAddressAsStudent,
+                () => RuleFor(pm => pm.EditableParentAddressModel).SetValidator(new ParentAddressValidator()));
+        }
+
+        private class ParentAddressValidator : AbstractValidator<EditableParentAddressModel>
+        {
+            public ParentAddressValidator()
+            {
+                RuleFor(pm => pm.Address).NotEmpty().Length(1, 150);
+                RuleFor(pm => pm.Address2).Length(0, 20);
+                RuleFor(pm => pm.City).NotEmpty().Length(1, 30);
+                RuleFor(pm => pm.State).NotNull();
+                RuleFor(pm => pm.PostalCode).NotEmpty().Length(1, 17);
+            }
         }
     }
 }

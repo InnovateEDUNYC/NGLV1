@@ -23,18 +23,12 @@ namespace NGL.Web.Models.Student
             target.StudentParentAssociations.First().RelationTypeId = (int)source.Relationship;
             target.StudentParentAssociations.First().LivesWith = source.SameAddressAsStudent;
 
-            if (source.EmailAddress.IsNullOrEmpty())
-            {
-                target.ParentElectronicMails = new List<ParentElectronicMail>();
-            }
-            else
-            {
-                if (target.ParentElectronicMails.IsNullOrEmpty())
-                    target.ParentElectronicMails.Add(BuildEmail());
+            UpdateEmail(source, target);
+            UpdateAddress(source, target);
+        }
 
-                target.ParentElectronicMails.First().ElectronicMailAddress = source.EmailAddress;
-            }
-
+        private void UpdateAddress(EditableParentModel source, Parent target)
+        {
             if (!source.SameAddressAsStudent)
             {
                 if (AddressHasBeenChanged(source, target))
@@ -43,6 +37,20 @@ namespace NGL.Web.Models.Student
             else
             {
                 target.ParentAddresses = new List<ParentAddress>();
+            }
+        }
+
+        private void UpdateEmail(EditableParentModel source, Parent target)
+        {
+            if (source.EmailAddress.IsNullOrEmpty())
+            {
+                target.ParentElectronicMails = new List<ParentElectronicMail>();
+            }
+            else
+            {
+                if (target.ParentElectronicMails.IsNullOrEmpty())
+                    target.ParentElectronicMails.Add(BuildEmail());
+                target.ParentElectronicMails.First().ElectronicMailAddress = source.EmailAddress;
             }
         }
 
