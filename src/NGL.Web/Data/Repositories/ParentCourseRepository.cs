@@ -38,18 +38,14 @@ namespace NGL.Web.Data.Repositories
 
         public List<Student> GetStudents(int sessionId, Guid parentCourseId)
         {
-            var studentsWithParentCourseGrades = DbContext.Set<Course>()
+            var students = DbContext.Set<Course>()
                 .Where(c => c.ParentCourseId == parentCourseId)
-                .SelectMany(c => c.CourseOfferings.Where(co => co.Session.SessionIdentity == sessionId)
-                    .SelectMany(co => co.Sections)
-                    .SelectMany(s => s.StudentSectionAssociations)
-                    .Select(ssa => ssa.Student))
-                    .Include(s => s.ParentCourseGrades)
-                    .Include(s => s.ParentCourseGrades.Select(pcg => pcg.ParentCourse))
-                    .Include(s => s.ParentCourseGrades.Select(pcg => pcg.Session)).Distinct().ToList();
+                .SelectMany(c => c.CourseOfferings.Where(co => co.Session.SessionIdentity == sessionId))
+                .SelectMany(co => co.Sections)
+                .SelectMany(s => s.StudentSectionAssociations)
+                .Select(ssa => ssa.Student).Distinct();
 
-            
-            return studentsWithParentCourseGrades;
+            return students.ToList();
         }
 
         public ParentCourse GetById(Guid parentCourseId)
@@ -64,6 +60,7 @@ namespace NGL.Web.Data.Repositories
                 .Where(pcg => pcg.ParentCourseId == parentCourseId && pcg.Session.SessionIdentity == sessionId)
                 .Include(pcg => pcg.Student)
                 .Include(pcg => pcg.ParentCourse)
+                .Include(pcg => pcg.Session)
                 .ToList();
         }
     }
