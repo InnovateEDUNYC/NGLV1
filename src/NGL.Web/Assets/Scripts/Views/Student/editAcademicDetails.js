@@ -8,7 +8,7 @@ Ngl.student.editAcademicDetails = (function () {
             $(formSelector).submit();
         };
 
-        Ngl.shared.editProfile.setup('#readonly-academic-details', '#collapseAcademicDetails', '#editable-academic-details > h4', '#editable-academic-details > div', '#edit-academic-details-button', '#save-academic-details-edit', '#cancel-academic-details-edit', '/enrollment/validateEditedAcademicDetails', formSelector,
+        Ngl.shared.editProfile.setup('#readonly-academic-details', '#collapseAcademicDetails', '#editable-academic-details > h4', '#editable-academic-details > div', '#edit-academic-details-button', '#save-academic-details-edit', '#cancel-academic-details-edit', '/student/validateEditedAcademicDetails', formSelector,
             onSuccess);
 
     }

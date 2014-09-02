@@ -1,16 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
-using NGL.Web.Extensions;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
-using NGL.Web.Models.Student;
 
 namespace NGL.Web.Controllers
 {
@@ -23,8 +18,6 @@ namespace NGL.Web.Controllers
         private readonly IMapper<AcademicDetailModel, StudentSchoolAssociation> _schoolAssociationMapper;
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
         private readonly IStudentRepository _studentRepository;
-        private readonly ProgramStatusModelToProgramStatusForEditMapper _programStatusModelToProgramStatusForEditMapper;
-        private readonly EditAcademicDetailModelToStudentAcademicDetailMapper _editAcademicDetailModelToStudentAcademicDetailMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
                                                 IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
@@ -32,14 +25,11 @@ namespace NGL.Web.Controllers
                                                 IFileUploader fileUploader,
                                                 IMapper<AcademicDetailModel, 
                                                 StudentSchoolAssociation> schoolAssociationMapper,
-                                                IStudentRepository studentRepository, 
-                                                ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper, EditAcademicDetailModelToStudentAcademicDetailMapper editAcademicDetailModelToStudentAcademicDetailMapper)
+                                                IStudentRepository studentRepository)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;
             _studentRepository = studentRepository;
-            _programStatusModelToProgramStatusForEditMapper = programStatusModelToProgramStatusForEditMapper;
-            _editAcademicDetailModelToStudentAcademicDetailMapper = editAcademicDetailModelToStudentAcademicDetailMapper;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -95,7 +85,7 @@ namespace NGL.Web.Controllers
                 return View(academicDetailModel);
 
             var fileCategory = ((int)academicDetailModel.SchoolYear).ToString();
-            var performanceHistoryFileName = Upload(academicDetailModel.PerformanceHistoryFile, id, fileCategory, "performanceHistory");
+            var performanceHistoryFileName = _fileUploader.Upload(academicDetailModel.PerformanceHistoryFile, id, fileCategory, "performanceHistory");
                     
             var studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,
                 adm =>
@@ -129,10 +119,10 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(enterProgramStatusModel);
 
-            var specialEducationFileName = Upload(enterProgramStatusModel.SpecialEducationFile, id, "ProgramStatus", "specialEducation");
-            var testingAccomodationFileName = Upload(enterProgramStatusModel.TestingAccommodationFile, id, "ProgramStatus", "testingAccomodation");
-            var titleParticipationFileName = Upload(enterProgramStatusModel.TitleParticipationFile, id, "ProgramStatus", "titleParticipation");
-            var mcKinneyVentoFileName = Upload(enterProgramStatusModel.McKinneyVentoFile, id, "ProgramStatus", "mcKinneyVento");
+            var specialEducationFileName = _fileUploader.Upload(enterProgramStatusModel.SpecialEducationFile, id, "ProgramStatus", "specialEducation");
+            var testingAccomodationFileName = _fileUploader.Upload(enterProgramStatusModel.TestingAccommodationFile, id, "ProgramStatus", "testingAccomodation");
+            var titleParticipationFileName = _fileUploader.Upload(enterProgramStatusModel.TitleParticipationFile, id, "ProgramStatus", "titleParticipation");
+            var mcKinneyVentoFileName = _fileUploader.Upload(enterProgramStatusModel.McKinneyVentoFile, id, "ProgramStatus", "mcKinneyVento");
 
             var studentProgramStatus = _programStatusMapper.Build(enterProgramStatusModel,
                 psm =>
@@ -147,72 +137,6 @@ namespace NGL.Web.Controllers
             _repository.Add(studentProgramStatus);
             _repository.Save();
             return RedirectToAction(MVC.Student.Index(id));
-        }
-
-        private string Upload(HttpPostedFileBase file, int studentUSI, string fileCategory, string fileName)
-        {
-            if (file == null) return null;
-
-            Func<string, string> makeRelativeFilePathFor = name => string.Format("{0}/{1}/{2}", studentUSI, fileCategory, name);
-            var relativePath = makeRelativeFilePathFor(fileName);
-
-            _fileUploader.Upload(file.InputStream, ConfigManager.StudentBlobContainer, relativePath);
-            return relativePath;
-        }
-
-        [HttpPost]
-        public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
-        {
-            var specialEducationFileName = Upload(programStatus.SpecialEducationFile, studentUsi, "ProgramStatus", "specialEducation");
-            var testingAccomodationFileName = Upload(programStatus.TestingAccommodationFile, studentUsi, "ProgramStatus", "testingAccomodation");
-            var titleParticipationFileName = Upload(programStatus.TitleParticipationFile, studentUsi, "ProgramStatus", "titleParticipation");
-            var mcKinneyVentoFileName = Upload(programStatus.McKinneyVentoFile, studentUsi, "ProgramStatus", "mcKinneyVento");
-
-            var filePaths = new ProgramStatusUploadedFilePaths(specialEducationFileName, testingAccomodationFileName,
-                titleParticipationFileName, mcKinneyVentoFileName);
-
-            var studentProgramStatus = _repository.Get<StudentProgramStatus>(sps => sps.StudentUSI == studentUsi);
-            _programStatusModelToProgramStatusForEditMapper.Map(programStatus, studentProgramStatus, filePaths);
-
-            _repository.Save();
-
-            TempData["ShowSuccess"] = true;
-            return RedirectToAction(MVC.Student.Index(studentUsi));
-        }
-
-        [HttpPost]
-        public virtual ActionResult EditAcademicDetails(int studentUSI, EditAcademicDetailModel academicDetail)
-        {
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction(MVC.Student.Index(studentUSI));
-            }
-
-            var fileCategory = academicDetail.SchoolYear.ToString();
-            var performanceHistoryFileName = Upload(academicDetail.PerformanceHistoryFileUrl, studentUSI, fileCategory, "performanceHistory");
-
-            var student = _studentRepository.GetByUSI(studentUSI);
-            var studentAcademicDetail = student.StudentAcademicDetails.First();
-
-            _editAcademicDetailModelToStudentAcademicDetailMapper.Map(academicDetail, studentAcademicDetail, performanceHistoryFileName);
-
-            _repository.Save();
-
-            TempData["ShowSuccess"] = true;
-            return RedirectToAction(MVC.Student.Index(studentUSI));
-        }
-        
-        [HttpPost]
-        public virtual JsonResult ValidateEditedAcademicDetails(EditAcademicDetailModel AcademicDetail)
-        {
-            if (!ModelState.IsValid)
-            {
-                var nglErrors = ModelState.GetNglErrors();
-
-                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
-            }
-            
-            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

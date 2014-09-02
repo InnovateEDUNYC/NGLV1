@@ -84,7 +84,7 @@
     {
         <div class="display-none">
             <div class="dl-horizontal panel panel-default">
-                @using (var f = Html.BeginNglForm(method: FormMethod.Post, action: "/enrollment/editacademicdetails?studentUsi=" + Model.StudentUsi, enctype: EncType.Multipart, htmlAttributes: new HtmlAttributes(new { id = "edit-academic-details-form" })))
+                @using (var f = Html.BeginNglForm(method: FormMethod.Post, action: "/student/editacademicdetails?studentUsi=" + Model.StudentUsi, enctype: EncType.Multipart, htmlAttributes: new HtmlAttributes(new { id = "edit-academic-details-form" })))
                 {
                     using (var s = f.BeginSection())
                     {
