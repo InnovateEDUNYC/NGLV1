@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,7 +8,6 @@ using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Extensions;
-using NGL.Web.ImageTools;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
@@ -30,6 +28,8 @@ namespace NGL.Web.Controllers
         private readonly IMapper<HomeAddressModel, StudentAddress> _studentHomeAddressToStudentMapper;
         private readonly IParentRepository _parentRepository;
         private readonly IMapper<EditProfileParentModel, Parent> _editProfileParentModelToParentMapper;
+        private readonly ProgramStatusModelToProgramStatusForEditMapper _programStatusModelToProgramStatusForEditMapper;
+        private readonly EditAcademicDetailModelToStudentAcademicDetailMapper _editAcademicDetailModelToStudentAcademicDetailMapper;
 
         public StudentController(IGenericRepository repository, 
             IMapper<Student, ProfileModel> studentToProfileModelMapper,
@@ -39,7 +39,7 @@ namespace NGL.Web.Controllers
             AzureStorageUploader fileUploader, IStudentRepository studentRepository,
             IMapper<EditStudentBiographicalInfoModel, Student> studentBiographicalInfoToStudentMapper, 
             IParentRepository parentRepository, 
-            IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper)
+            IMapper<EditProfileParentModel, Parent> editProfileParentModelToParentMapper, ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper, EditAcademicDetailModelToStudentAcademicDetailMapper editAcademicDetailModelToStudentAcademicDetailMapper)
         {
             _repository = repository;
             _studentToProfileModelMapper = studentToProfileModelMapper;
@@ -51,6 +51,8 @@ namespace NGL.Web.Controllers
             _studentHomeAddressToStudentMapper = studentHomeAddressToStudentMapper;
             _parentRepository = parentRepository;
             _editProfileParentModelToParentMapper = editProfileParentModelToParentMapper;
+            _programStatusModelToProgramStatusForEditMapper = programStatusModelToProgramStatusForEditMapper;
+            _editAcademicDetailModelToStudentAcademicDetailMapper = editAcademicDetailModelToStudentAcademicDetailMapper;
         }
 
         // GET: /Student/All
@@ -107,11 +109,7 @@ namespace NGL.Web.Controllers
         {
             try
             {
-                var photoStream = Resizer.ScaleImage(profilePhoto.InputStream, 200, 200);
-                var thumbNailStream = Resizer.ScaleImage(profilePhoto.InputStream, 50, 50);
-
-                Upload(photoStream, usi + "/profilePhoto");
-                Upload(thumbNailStream, usi + "/profileThumbnail");
+                _fileUploader.UploadProfilePhoto(usi, profilePhoto);
             }
             catch (ArgumentException ex)
             {
@@ -134,6 +132,7 @@ namespace NGL.Web.Controllers
            
             _repository.Save();
 
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -150,6 +149,8 @@ namespace NGL.Web.Controllers
             _studentNameToStudentMapper.Map(model, student);
 
             _repository.Save();
+
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -169,6 +170,7 @@ namespace NGL.Web.Controllers
 
             _repository.Save();
 
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -185,13 +187,64 @@ namespace NGL.Web.Controllers
             _editProfileParentModelToParentMapper.Map(model, parent);
             _repository.Save();
 
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        private void Upload(Stream file, string relativePath)
+        [HttpPost]
+        public virtual ActionResult EditProgramStatus(int studentUsi, EnterProgramStatusModel programStatus)
         {
-            if (file != null)
-                _fileUploader.Upload(file, ConfigManager.StudentBlobContainer, relativePath);
+            var specialEducationFileName = _fileUploader.Upload(programStatus.SpecialEducationFile, studentUsi, "ProgramStatus", "specialEducation");
+            var testingAccomodationFileName = _fileUploader.Upload(programStatus.TestingAccommodationFile, studentUsi, "ProgramStatus", "testingAccomodation");
+            var titleParticipationFileName = _fileUploader.Upload(programStatus.TitleParticipationFile, studentUsi, "ProgramStatus", "titleParticipation");
+            var mcKinneyVentoFileName = _fileUploader.Upload(programStatus.McKinneyVentoFile, studentUsi, "ProgramStatus", "mcKinneyVento");
+
+            var filePaths = new ProgramStatusUploadedFilePaths(specialEducationFileName, testingAccomodationFileName,
+                titleParticipationFileName, mcKinneyVentoFileName);
+
+            var studentProgramStatus = _repository.Get<StudentProgramStatus>(sps => sps.StudentUSI == studentUsi);
+            _programStatusModelToProgramStatusForEditMapper.Map(programStatus, studentProgramStatus, filePaths);
+
+            _repository.Save();
+
+            TempData["ShowSuccess"] = true;
+            return RedirectToAction(MVC.Student.Index(studentUsi));
+        }
+
+        [HttpPost]
+        public virtual ActionResult EditAcademicDetails(int studentUSI, EditAcademicDetailModel academicDetail)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ShowSuccess"] = false;
+                return RedirectToAction(MVC.Student.Index(studentUSI));
+            }
+
+            var fileCategory = academicDetail.SchoolYear.ToString();
+            var performanceHistoryFileName = _fileUploader.Upload(academicDetail.PerformanceHistoryFileUrl, studentUSI, fileCategory, "performanceHistory");
+
+            var student = _studentRepository.GetByUSI(studentUSI);
+            var studentAcademicDetail = student.StudentAcademicDetails.First();
+
+            _editAcademicDetailModelToStudentAcademicDetailMapper.Map(academicDetail, studentAcademicDetail, performanceHistoryFileName);
+
+            _repository.Save();
+
+            TempData["ShowSuccess"] = true;
+            return RedirectToAction(MVC.Student.Index(studentUSI));
+        }
+
+        [HttpPost]
+        public virtual JsonResult ValidateEditedAcademicDetails(EditAcademicDetailModel AcademicDetail)
+        {
+            if (!ModelState.IsValid)
+            {
+                var nglErrors = ModelState.GetNglErrors();
+
+                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

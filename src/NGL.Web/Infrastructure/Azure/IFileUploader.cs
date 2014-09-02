@@ -1,9 +1,10 @@
-using System.IO;
+using System.Web;
 
 namespace NGL.Web.Infrastructure.Azure
 {
     public interface IFileUploader
     {
-        void Upload(Stream file, string container, string fileName);
+        string Upload(HttpPostedFileBase file, int studentUSI, string fileCategory, string fileName);
+        void UploadProfilePhoto(int studentUsi, HttpPostedFileBase profilePhoto);
     }
 }

@@ -2,10 +2,10 @@
 
 Ngl.shared.editProfile = (function () {
 
-    var setup = function (readOnlyDiv, collapseDiv, editableHeader, editableDiv, pencil, saveButtonSelector, cancelButtonSelector, route, formSelector) {
+    var setup = function (readOnlyDiv, collapseDiv, editableHeader, editableDiv, pencil, saveButtonSelector, cancelButtonSelector, route, formSelector, onSuccess) {
         setupEdit(pencil, collapseDiv, readOnlyDiv, editableHeader, editableDiv);
         setupCancelButton(cancelButtonSelector);
-        setupSaveButton(saveButtonSelector, route, formSelector);
+        setupSaveButton(saveButtonSelector, route, formSelector, onSuccess);
     }
 
     var setupEdit = function (pencil, collapseDiv, readonlyDiv, editableHeader, editableDiv) {
@@ -27,19 +27,17 @@ Ngl.shared.editProfile = (function () {
         });
     }
 
-    var setupEditButton = function (editButtonSelector, readOnlySectionSelector, editableSectionSelector) {
-        $(editButtonSelector).on('click', function () {
-            $(readOnlySectionSelector).hide();
-            $(editableSectionSelector + " > h4").show();
-            $(editableSectionSelector + " > div").slideDown("fast");
-        });
-    };
-
     var setupCancelButton = function (cancelButtonSelector) {
         $(cancelButtonSelector).on('click', function () {
             location.reload();
         });
     };
+
+    var setupSaveButton = function (saveButtonSelector, route, formSelector, onSuccess) {
+        $(saveButtonSelector).on('click', function () {
+            ajaxEditPost(route, formSelector, onSuccess);
+        });
+    }
 
     var removeOldErrors = function ()
     {
@@ -62,10 +60,7 @@ Ngl.shared.editProfile = (function () {
         });
     };
 
-    var ajaxEditPost = function (route, formSelector) {
-        console.log("clicked");
-        console.log(route);
-        console.log(formSelector);
+    var ajaxEditPost = function (route, formSelector, onSuccess) {
         $.ajax({
             url: route,
             type: 'POST',
@@ -77,15 +72,13 @@ Ngl.shared.editProfile = (function () {
                     displayErrors(errors);
                     
                 } else {
-                    location.reload(true);
+                    if (onSuccess == undefined) {
+                        location.reload(true);
+                    }
+                    else
+                        onSuccess();
                 }
             }
-        });
-    }
-
-    var setupSaveButton = function (saveButtonSelector, route, formSelector) {
-        $(saveButtonSelector).on('click', function () {
-            ajaxEditPost(route, formSelector);
         });
     }
 

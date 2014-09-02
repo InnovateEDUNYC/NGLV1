@@ -90,6 +90,24 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditParentInfo);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EditProgramStatus()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProgramStatus);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult EditAcademicDetails()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditAcademicDetails);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult ValidateEditedAcademicDetails()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ValidateEditedAcademicDetails);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StudentController Actions { get { return MVC.Student; } }
@@ -114,6 +132,9 @@ namespace NGL.Web.Controllers
             public readonly string EditStudentName = "EditStudentName";
             public readonly string EditHomeAddress = "EditHomeAddress";
             public readonly string EditParentInfo = "EditParentInfo";
+            public readonly string EditProgramStatus = "EditProgramStatus";
+            public readonly string EditAcademicDetails = "EditAcademicDetails";
+            public readonly string ValidateEditedAcademicDetails = "ValidateEditedAcademicDetails";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -127,6 +148,9 @@ namespace NGL.Web.Controllers
             public const string EditStudentName = "EditStudentName";
             public const string EditHomeAddress = "EditHomeAddress";
             public const string EditParentInfo = "EditParentInfo";
+            public const string EditProgramStatus = "EditProgramStatus";
+            public const string EditAcademicDetails = "EditAcademicDetails";
+            public const string ValidateEditedAcademicDetails = "ValidateEditedAcademicDetails";
         }
 
 
@@ -179,6 +203,32 @@ namespace NGL.Web.Controllers
         {
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_EditProgramStatus s_params_EditProgramStatus = new ActionParamsClass_EditProgramStatus();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditProgramStatus EditProgramStatusParams { get { return s_params_EditProgramStatus; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditProgramStatus
+        {
+            public readonly string studentUsi = "studentUsi";
+            public readonly string programStatus = "programStatus";
+        }
+        static readonly ActionParamsClass_EditAcademicDetails s_params_EditAcademicDetails = new ActionParamsClass_EditAcademicDetails();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditAcademicDetails EditAcademicDetailsParams { get { return s_params_EditAcademicDetails; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditAcademicDetails
+        {
+            public readonly string studentUSI = "studentUSI";
+            public readonly string academicDetail = "academicDetail";
+        }
+        static readonly ActionParamsClass_ValidateEditedAcademicDetails s_params_ValidateEditedAcademicDetails = new ActionParamsClass_ValidateEditedAcademicDetails();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ValidateEditedAcademicDetails ValidateEditedAcademicDetailsParams { get { return s_params_ValidateEditedAcademicDetails; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ValidateEditedAcademicDetails
+        {
+            public readonly string AcademicDetail = "AcademicDetail";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -189,6 +239,7 @@ namespace NGL.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string AcademicDetails = "AcademicDetails";
                 public readonly string All = "All";
                 public readonly string BiographicalInformation = "BiographicalInformation";
                 public readonly string Delete = "Delete";
@@ -196,10 +247,10 @@ namespace NGL.Web.Controllers
                 public readonly string Index = "Index";
                 public readonly string ParentPartial = "ParentPartial";
                 public readonly string ProgramStatus = "ProgramStatus";
-                public readonly string ProgramStatusPartial = "ProgramStatusPartial";
                 public readonly string Reports = "Reports";
                 public readonly string StudentName = "StudentName";
             }
+            public readonly string AcademicDetails = "~/Views/Student/AcademicDetails.cshtml";
             public readonly string All = "~/Views/Student/All.cshtml";
             public readonly string BiographicalInformation = "~/Views/Student/BiographicalInformation.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
@@ -207,7 +258,6 @@ namespace NGL.Web.Controllers
             public readonly string Index = "~/Views/Student/Index.cshtml";
             public readonly string ParentPartial = "~/Views/Student/ParentPartial.cshtml";
             public readonly string ProgramStatus = "~/Views/Student/ProgramStatus.cshtml";
-            public readonly string ProgramStatusPartial = "~/Views/Student/ProgramStatusPartial.cshtml";
             public readonly string Reports = "~/Views/Student/Reports.cshtml";
             public readonly string StudentName = "~/Views/Student/StudentName.cshtml";
         }
@@ -310,6 +360,44 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.EditParentInfo);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             EditParentInfoOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditProgramStatusOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUsi, NGL.Web.Models.Enrollment.EnterProgramStatusModel programStatus);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EditProgramStatus(int studentUsi, NGL.Web.Models.Enrollment.EnterProgramStatusModel programStatus)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditProgramStatus);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUsi", studentUsi);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "programStatus", programStatus);
+            EditProgramStatusOverride(callInfo, studentUsi, programStatus);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditAcademicDetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int studentUSI, NGL.Web.Models.Enrollment.EditAcademicDetailModel academicDetail);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult EditAcademicDetails(int studentUSI, NGL.Web.Models.Enrollment.EditAcademicDetailModel academicDetail)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditAcademicDetails);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUSI", studentUSI);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "academicDetail", academicDetail);
+            EditAcademicDetailsOverride(callInfo, studentUSI, academicDetail);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ValidateEditedAcademicDetailsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Enrollment.EditAcademicDetailModel AcademicDetail);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ValidateEditedAcademicDetails(NGL.Web.Models.Enrollment.EditAcademicDetailModel AcademicDetail)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ValidateEditedAcademicDetails);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AcademicDetail", AcademicDetail);
+            ValidateEditedAcademicDetailsOverride(callInfo, AcademicDetail);
             return callInfo;
         }
 

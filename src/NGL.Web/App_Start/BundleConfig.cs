@@ -57,6 +57,7 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Student/editBiographicalInfo.js",
                 "~/Assets/Scripts/Views/Student/editStudentName.js",
                 "~/Assets/Scripts/Views/Student/editParentInfo.js",
+                "~/Assets/Scripts/Views/Student/editAcademicDetails.js",
                 "~/Assets/Scripts/Views/Student/editProgramStatus.js",
                 "~/Assets/Scripts/Views/Student/editHomeAddress.js",
                 "~/Assets/Scripts/Views/Schedule/setSchedule.js",
