@@ -1725,6 +1725,8 @@
     <Compile Include="Models\Enrollment\EditAcademicDetailModelValidator.cs" />
     <Compile Include="Models\Student\EditAcademicDetailModelToStudentAcademicDetailMapper.cs" />
     <Compile Include="Models\Student\EditableParentAddressModelToParentMapper.cs" />
+    <Compile Include="Models\ParentCourse\EditModel.cs" />
+    <Compile Include="Models\ParentCourse\ParentCourseToEditModelMapper.cs" />
     <Compile Include="Models\Student\HomeAddressModel.cs" />
     <Compile Include="Models\Student\HomeAddressModelValidator.cs" />
     <Compile Include="Models\Student\StudentAddressToHomeAddressModelMapper.cs" />
@@ -2138,6 +2140,7 @@
     <Content Include="Views\Student\HomeAddress.cshtml" />
     <Content Include="Views\Student\ParentPartial.cshtml" />
     <Content Include="Views\Student\AcademicDetails.cshtml" />
+    <Content Include="Views\ParentCourse\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Session\Create.cshtml" />

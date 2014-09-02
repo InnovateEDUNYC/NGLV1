@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
@@ -19,14 +20,16 @@ namespace NGL.Web.Controllers
         private readonly IMapper<ParentCourse, IndexModel> _parentCourseToIndexModelMapper;
         private readonly IParentCourseRepository _parentCourseRepository;
         private readonly IMapper<ParentCourse, ParentCourseJsonModel> _parentCourseToParentCourseJsonModelMapper;
+        private readonly IMapper<ParentCourse, EditModel> _parentCourseToEditModelMapper;
 
-        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<ParentCourse, ParentCourseJsonModel> parentCourseToParentCourseJsonModelMapper)
+        public ParentCourseController(IGenericRepository genericRepository, IMapper<CreateModel, ParentCourse> createModelToParentCourseMapper, IMapper<ParentCourse, IndexModel> parentCourseToIndexModelMapper, IParentCourseRepository parentCourseRepository, IMapper<ParentCourse, ParentCourseJsonModel> parentCourseToParentCourseJsonModelMapper, IMapper<ParentCourse, EditModel> parentCourseToEditModelMapper)
         {
             _genericRepository = genericRepository;
             _createModelToParentCourseMapper = createModelToParentCourseMapper;
             _parentCourseToIndexModelMapper = parentCourseToIndexModelMapper;
             _parentCourseRepository = parentCourseRepository;
             _parentCourseToParentCourseJsonModelMapper = parentCourseToParentCourseJsonModelMapper;
+            _parentCourseToEditModelMapper = parentCourseToEditModelMapper;
         }
         //
         // GET: /ParentCourse/
@@ -64,6 +67,15 @@ namespace NGL.Web.Controllers
             return RedirectToAction(Actions.Index());
         }
 
+        //
+        // GET: /ParentCourse/Edit
+        [AuthorizeFor(Resource = "courseGeneration", Operation = "create")]
+        public virtual ActionResult Edit(Guid id)
+        {
+            var parentCourse = _parentCourseRepository.GetById(id);
+            var editModel = _parentCourseToEditModelMapper.Build(parentCourse);
+            return View(editModel);
+        }
 
         [HttpPost]
         public virtual JsonResult GetParentCourses(string searchString)
