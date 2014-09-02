@@ -30,5 +30,17 @@ namespace NGL.UiTests.ParentCourse
         {
             return Find.Element(By.CssSelector("tbody")).Text.Contains(createParentCourseModel.ParentCourseCode);
         }
+
+        public ParentCourseIndexPage GoDelete()
+        {
+            var last = Find.Elements(By.ClassName("delete-row-btn")).Last();
+            last.Click();
+            return this;
+        }
+
+        public int GetNumberOfParentCourses()
+        {
+            return Find.Elements(By.ClassName("delete-row-btn")).Count();
+        }
     }
 }

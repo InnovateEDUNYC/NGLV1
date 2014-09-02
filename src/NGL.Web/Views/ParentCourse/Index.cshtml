@@ -43,6 +43,13 @@
                     <td>
                         @Html.ActionLink("Edit", MVC.ParentCourse.Edit(item.Id), new { @class = "btn btn-primary" })
                     </td>
+                    <td>
+                        @using (Html.BeginForm("Delete","ParentCourse", new { Id = item.Id}, FormMethod.Post))
+                        {
+    
+                        <input class="btn btn-primary delete-row-btn" type="submit" value="Delete" />
+                        }
+                    </td>
                 </tr>
             }
         </tbody>

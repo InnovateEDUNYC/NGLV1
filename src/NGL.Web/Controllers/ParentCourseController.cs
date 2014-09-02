@@ -107,5 +107,15 @@ namespace NGL.Web.Controllers
 
             return Json(parentCourseJsonModels, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public virtual ActionResult Delete(Guid id)
+        {
+            var parentCourseToDelete = _parentCourseRepository.GetById(id);
+            _parentCourseRepository.Delete(parentCourseToDelete);
+            _genericRepository.Save();
+
+            return RedirectToAction(MVC.ParentCourse.Index());
+        }
     }
 }
