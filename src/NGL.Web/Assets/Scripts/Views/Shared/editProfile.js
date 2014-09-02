@@ -2,10 +2,10 @@
 
 Ngl.shared.editProfile = (function () {
 
-    var setup = function (readOnlyDiv, collapseDiv, editableHeader, editableDiv, pencil, saveButtonSelector, cancelButtonSelector, route, formSelector) {
+    var setup = function (readOnlyDiv, collapseDiv, editableHeader, editableDiv, pencil, saveButtonSelector, cancelButtonSelector, route, formSelector, onSuccess) {
         setupEdit(pencil, collapseDiv, readOnlyDiv, editableHeader, editableDiv);
         setupCancelButton(cancelButtonSelector);
-        setupSaveButton(saveButtonSelector, route, formSelector);
+        setupSaveButton(saveButtonSelector, route, formSelector, onSuccess);
     }
 
     var setupEdit = function (pencil, collapseDiv, readonlyDiv, editableHeader, editableDiv) {
@@ -33,9 +33,9 @@ Ngl.shared.editProfile = (function () {
         });
     };
 
-    var setupSaveButton = function (saveButtonSelector, route, formSelector) {
+    var setupSaveButton = function (saveButtonSelector, route, formSelector, onSuccess) {
         $(saveButtonSelector).on('click', function () {
-            ajaxEditPost(route, formSelector);
+            ajaxEditPost(route, formSelector, onSuccess);
         });
     }
 
@@ -60,7 +60,7 @@ Ngl.shared.editProfile = (function () {
         });
     };
 
-    var ajaxEditPost = function (route, formSelector) {
+    var ajaxEditPost = function (route, formSelector, onSuccess) {
         $.ajax({
             url: route,
             type: 'POST',
@@ -72,7 +72,11 @@ Ngl.shared.editProfile = (function () {
                     displayErrors(errors);
                     
                 } else {
-                    location.reload(true);
+                    if (onSuccess == undefined) {
+                        location.reload(true);
+                    }
+                    else
+                        onSuccess();
                 }
             }
         });

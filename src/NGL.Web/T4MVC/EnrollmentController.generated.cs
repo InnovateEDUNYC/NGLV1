@@ -162,7 +162,7 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_EditAcademicDetails
         {
             public readonly string studentUSI = "studentUSI";
-            public readonly string academicDetail = "academicDetail";
+            public readonly string academicDetail = "AcademicDetail";
         }
         static readonly ActionParamsClass_ValidateEditedAcademicDetails s_params_ValidateEditedAcademicDetails = new ActionParamsClass_ValidateEditedAcademicDetails();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -170,7 +170,7 @@ namespace NGL.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ValidateEditedAcademicDetails
         {
-            public readonly string academicDetail = "academicDetail";
+            public readonly string academicDetail = "AcademicDetail";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -291,7 +291,7 @@ namespace NGL.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditAcademicDetails);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentUSI", studentUSI);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "academicDetail", academicDetail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AcademicDetail", academicDetail);
             EditAcademicDetailsOverride(callInfo, studentUSI, academicDetail);
             return callInfo;
         }
@@ -300,11 +300,11 @@ namespace NGL.Web.Controllers
         partial void ValidateEditedAcademicDetailsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, NGL.Web.Models.Enrollment.EditAcademicDetailModel academicDetail);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult ValidateEditedAcademicDetails(NGL.Web.Models.Enrollment.EditAcademicDetailModel academicDetail)
+        public override System.Web.Mvc.JsonResult ValidateEditedAcademicDetails(NGL.Web.Models.Enrollment.EditAcademicDetailModel AcademicDetail)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ValidateEditedAcademicDetails);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "academicDetail", academicDetail);
-            ValidateEditedAcademicDetailsOverride(callInfo, academicDetail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AcademicDetail", AcademicDetail);
+            ValidateEditedAcademicDetailsOverride(callInfo, AcademicDetail);
             return callInfo;
         }
 

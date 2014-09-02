@@ -203,7 +203,7 @@ namespace NGL.Web.Controllers
         }
         
         [HttpPost]
-        public virtual JsonResult ValidateEditedAcademicDetails(EditAcademicDetailModel academicDetail)
+        public virtual JsonResult ValidateEditedAcademicDetails(EditAcademicDetailModel AcademicDetail)
         {
             if (!ModelState.IsValid)
             {

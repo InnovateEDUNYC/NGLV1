@@ -1721,6 +1721,7 @@
     <Compile Include="Models\Course\IndexModel.cs" />
     <Compile Include="Models\Course\ParentCourseListItemModel.cs" />
     <Compile Include="Models\Course\ParentCourseToParentCourseListItemModelMapper.cs" />
+    <Compile Include="Models\Enrollment\EditAcademicDetailModel.cs" />
     <Compile Include="Models\Enrollment\EditAcademicDetailModelValidator.cs" />
     <Compile Include="Models\Student\EditAcademicDetailModelToStudentAcademicDetailMapper.cs" />
     <Compile Include="Models\Student\HomeAddressModel.cs" />

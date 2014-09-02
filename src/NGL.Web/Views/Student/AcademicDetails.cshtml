@@ -3,7 +3,7 @@
            
 @{
     const string downloadFileText = "Download File";
-    var fileAttributes = new { type = "file", @class = "form-control", disabled = "disabled" };
+    var fileAttributes = new { type = "file", @class = "form-control" };
 }
 
 <div id="readonly-academic-details" class="top-buffer-10">
@@ -84,7 +84,7 @@
     {
         <div class="display-none">
             <div class="dl-horizontal panel panel-default">
-                @using (var f = Html.BeginNglForm(method: FormMethod.Post, action: "/enrollment/editacademicdetails?studentUsi=" + Model.StudentUsi, enctype: EncType.Multipart))
+                @using (var f = Html.BeginNglForm(method: FormMethod.Post, action: "/enrollment/editacademicdetails?studentUsi=" + Model.StudentUsi, enctype: EncType.Multipart, htmlAttributes: new HtmlAttributes(new { id = "edit-academic-details-form" })))
                 {
                     using (var s = f.BeginSection())
                     {
@@ -114,8 +114,7 @@
                             {
                                 <div class="text-right top-buffer-10">
                                     @Html.ActionLink("Cancel", MVC.Student.Index(Model.StudentUsi), new { @class = "btn btn-default" })
-                                    @*                                    <div id="save-academic-details-edit" class="btn btn-primary">Save</div>*@
-                                    <input id="submit-academic-details" type="submit" class="btn btn-primary" value="Save" />
+                                    <div id="save-academic-details-edit" class="btn btn-primary">Save</div>
                                 </div>
                             }
                         </div>
