@@ -11,7 +11,7 @@ namespace NGL.Web.Models.Student
         public RelationTypeEnum Relationship { get; set; }
         public string TelephoneNumber { get; set; }
         public string EmailAddress { get; set; }
-        public bool? SameAddressAsStudent { get; set; }
+        public bool SameAddressAsStudent { get; set; }
         public EditableParentAddressModel EditableParentAddressModel { get; set; }
     }
 }

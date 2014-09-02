@@ -13,10 +13,10 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldMap()
         {
-            var entity = new ParentBuilder().WithEmail().WithPhoneNumber().Build();
+            var entity = new ParentBuilder().WithAddress().WithEmail().WithPhoneNumber().Build();
             entity.StudentParentAssociations.Add(new StudentParentAssociation());
             var model = new EditProfileParentModelBuilder().Build();
-            var mapper = new EditProfileParentModelToParentMapper();
+            var mapper = new EditProfileParentModelToParentMapper(new EditableParentAddressModelToParentMapper());
 
             mapper.Map(model, entity);
 
@@ -32,10 +32,10 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldCreateEmailIfNoEmailExisted()
         {
-            var entity = new ParentBuilder().WithPhoneNumber().Build();
+            var entity = new ParentBuilder().WithAddress().WithPhoneNumber().Build();
             entity.StudentParentAssociations.Add(new StudentParentAssociation());
             var model = new EditProfileParentModelBuilder().Build();
-            var mapper = new EditProfileParentModelToParentMapper();
+            var mapper = new EditProfileParentModelToParentMapper(new EditableParentAddressModelToParentMapper());
 
             mapper.Map(model, entity);
 
@@ -51,10 +51,10 @@ namespace NGL.Tests.Student
         [Fact]
         public void ShouldNotCreateEmailIfNoEmailExistedButBlankEmailInEditProfileModel()
         {
-            var entity = new ParentBuilder().WithPhoneNumber().Build();
+            var entity = new ParentBuilder().WithAddress().WithPhoneNumber().Build();
             entity.StudentParentAssociations.Add(new StudentParentAssociation());
             var model = new EditProfileParentModelBuilder().WithBlankEmail().Build();
-            var mapper = new EditProfileParentModelToParentMapper();
+            var mapper = new EditProfileParentModelToParentMapper(new EditableParentAddressModelToParentMapper());
 
             mapper.Map(model, entity);
 

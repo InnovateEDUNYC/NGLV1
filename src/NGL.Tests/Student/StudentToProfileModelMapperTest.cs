@@ -182,7 +182,7 @@ namespace NGL.Tests.Student
             profileParentModel.Relationship.ShouldBe(
                 ((RelationTypeEnum)studentParentAssociation.RelationTypeId));
 
-            profileParentModel.SameAddressAsStudent.ShouldBe(studentParentAssociation.LivesWith);
+            profileParentModel.SameAddressAsStudent.ShouldBe((bool)studentParentAssociation.LivesWith);
         }
 
         private static void AddressShouldBeMapped(StudentAddress address, ProfileModel profileModel)
