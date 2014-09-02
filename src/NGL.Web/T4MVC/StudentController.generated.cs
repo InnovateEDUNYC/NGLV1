@@ -189,6 +189,7 @@ namespace NGL.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string AcademicDetails = "AcademicDetails";
                 public readonly string All = "All";
                 public readonly string BiographicalInformation = "BiographicalInformation";
                 public readonly string Delete = "Delete";
@@ -199,6 +200,7 @@ namespace NGL.Web.Controllers
                 public readonly string Reports = "Reports";
                 public readonly string StudentName = "StudentName";
             }
+            public readonly string AcademicDetails = "~/Views/Student/AcademicDetails.cshtml";
             public readonly string All = "~/Views/Student/All.cshtml";
             public readonly string BiographicalInformation = "~/Views/Student/BiographicalInformation.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";

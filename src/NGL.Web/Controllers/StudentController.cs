@@ -133,6 +133,7 @@ namespace NGL.Web.Controllers
            
             _repository.Save();
 
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -149,6 +150,8 @@ namespace NGL.Web.Controllers
             _studentNameToStudentMapper.Map(model, student);
 
             _repository.Save();
+
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -168,6 +171,7 @@ namespace NGL.Web.Controllers
 
             _repository.Save();
 
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -184,6 +188,7 @@ namespace NGL.Web.Controllers
             _editProfileParentModelToParentMapper.Map(model, parent);
             _repository.Save();
 
+            TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 

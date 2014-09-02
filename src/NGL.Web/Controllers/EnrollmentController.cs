@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Extensions;
 using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
@@ -22,6 +24,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<AcademicDetailModel, StudentAcademicDetail> _academicDetailMapper;
         private readonly IStudentRepository _studentRepository;
         private readonly ProgramStatusModelToProgramStatusForEditMapper _programStatusModelToProgramStatusForEditMapper;
+        private readonly EditAcademicDetailModelToStudentAcademicDetailMapper _editAcademicDetailModelToStudentAcademicDetailMapper;
 
         public EnrollmentController(IGenericRepository repository, IMapper<CreateStudentModel, Student> enrollmentMapper,
                                                 IMapper<EnterProgramStatusModel, StudentProgramStatus> programStatusMapper, 
@@ -30,12 +33,13 @@ namespace NGL.Web.Controllers
                                                 IMapper<AcademicDetailModel, 
                                                 StudentSchoolAssociation> schoolAssociationMapper,
                                                 IStudentRepository studentRepository, 
-                                                ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper)
+                                                ProgramStatusModelToProgramStatusForEditMapper programStatusModelToProgramStatusForEditMapper, EditAcademicDetailModelToStudentAcademicDetailMapper editAcademicDetailModelToStudentAcademicDetailMapper)
         {
             _fileUploader = fileUploader;
             _schoolAssociationMapper = schoolAssociationMapper;
             _studentRepository = studentRepository;
             _programStatusModelToProgramStatusForEditMapper = programStatusModelToProgramStatusForEditMapper;
+            _editAcademicDetailModelToStudentAcademicDetailMapper = editAcademicDetailModelToStudentAcademicDetailMapper;
             _academicDetailMapper = academicDetailMapper;
             _repository = repository;
             _enrollmentMapper = enrollmentMapper;
@@ -174,6 +178,41 @@ namespace NGL.Web.Controllers
 
             TempData["ShowSuccess"] = true;
             return RedirectToAction(MVC.Student.Index(studentUsi));
+        }
+
+        [HttpPost]
+        public virtual ActionResult EditAcademicDetails(int studentUSI, EditAcademicDetailModel academicDetail)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(MVC.Student.Index(studentUSI));
+            }
+
+            var fileCategory = academicDetail.SchoolYear.ToString();
+            var performanceHistoryFileName = Upload(academicDetail.PerformanceHistoryFileUrl, studentUSI, fileCategory, "performanceHistory");
+
+            var student = _studentRepository.GetByUSI(studentUSI);
+            var studentAcademicDetail = student.StudentAcademicDetails.First();
+
+            _editAcademicDetailModelToStudentAcademicDetailMapper.Map(academicDetail, studentAcademicDetail, performanceHistoryFileName);
+
+            _repository.Save();
+
+            TempData["ShowSuccess"] = true;
+            return RedirectToAction(MVC.Student.Index(studentUSI));
+        }
+        
+        [HttpPost]
+        public virtual JsonResult ValidateEditedAcademicDetails(EditAcademicDetailModel academicDetail)
+        {
+            if (!ModelState.IsValid)
+            {
+                var nglErrors = ModelState.GetNglErrors();
+
+                return Json(new { nglErrors }, JsonRequestBehavior.AllowGet);
+            }
+            
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }
