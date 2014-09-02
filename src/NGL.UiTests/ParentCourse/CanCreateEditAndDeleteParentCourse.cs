@@ -11,7 +11,7 @@ namespace NGL.UiTests.ParentCourse
         AsA = "As a school admin",
         IWant = "I want to create parent courses",
         SoThat = "So that I can manage what top level courses are offered")]
-    public class CanCreateAndEditParentCourse
+    public class CanCreateEditAndDeleteParentCourse
     {
             private HomePage _homePage;
             private CourseGenerationPage _courseGenerationPage;
@@ -59,6 +59,16 @@ namespace NGL.UiTests.ParentCourse
             parentCourseChanged.ShouldBe(true);
         }
 
+        public void IDeleteTheParentCourse()
+        {
+            _parentCourseIndexPage = _parentCourseIndexPage.GoDelete();
+        }
+
+        public void TheParentCourseIsNotOnTheParentCourseIndexPage()
+        {
+            _parentCourseIndexPage.GetNumberOfParentCourses().ShouldBe(2);
+        }
+
             [Fact]
         public void ShouldCreateCourse()
         {
@@ -68,6 +78,8 @@ namespace NGL.UiTests.ParentCourse
                .Then(_ => ANewParentCourseShouldBeDisplayedOnTheParentCourseIndexPage())
                .And(_ => IEditTheParentCourse())
                .Then(_ => TheParentCourseIsUpdatedOnTheParentCourseIndexPage())
+               .And(_ => IDeleteTheParentCourse())
+               .Then(_ => TheParentCourseIsNotOnTheParentCourseIndexPage())
                .BDDfy();
         }
     }
