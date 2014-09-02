@@ -11,43 +11,64 @@ namespace NGL.UiTests.ParentCourse
         AsA = "As a school admin",
         IWant = "I want to create parent courses",
         SoThat = "So that I can manage what top level courses are offered")]
-    public class CanCreateParentCourse
+    public class CanCreateAndEditParentCourse
     {
             private HomePage _homePage;
             private CourseGenerationPage _courseGenerationPage;
             private ParentCourseCreatePage _parentCourseCreatePage;
             private CreateModel _createParentCourseModel;
             private ParentCourseIndexPage _parentCourseIndexPage;
+            private EditModel _editParentCourseModel;
 
-            public void GivenIHaveLoggedIn()
+            public void IHaveLoggedInAsAnAdmin()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void AndGivenIAmOnTheCreateParentCoursePage()
+        public void IAmOnTheCreateParentCoursePage()
         {
             _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
             _parentCourseCreatePage = _courseGenerationPage.GoToParentCourseIndexPage().GoToCreatePage();
         }
 
-        public void WhenIHaveEnteredValidInputForAllFields()
+        public void IHaveEnteredValidInputForAllFields()
         {
             _createParentCourseModel = new CreateParentCourseModelBuilder().Build();
             _parentCourseIndexPage = _parentCourseCreatePage.CreateParentCourse(_createParentCourseModel);
         }
 
-        public void ThenANewParentCourseShouldBeDisplayedOnTheParentCourseIndexPage()
+        public void ANewParentCourseShouldBeDisplayedOnTheParentCourseIndexPage()
         {
             var parentCourseExists = _parentCourseIndexPage.ParentCourseExists(_createParentCourseModel);
             parentCourseExists.ShouldBe(true);
         }
 
-        [Fact]
+        public void IEditTheParentCourse()
+        {
+            _editParentCourseModel = new EditParentCourseModelBuilder().Build();
+            var parentCourseEditPage = _parentCourseIndexPage.GoToEditPage();
+            _parentCourseIndexPage = parentCourseEditPage.EditParentCourse(_editParentCourseModel);
+
+        }
+
+        public void TheParentCourseIsUpdatedOnTheParentCourseIndexPage()
+        {
+            var parentCourseChanged = _parentCourseIndexPage.ParentCourseExists(_editParentCourseModel);
+            parentCourseChanged.ShouldBe(true);
+        }
+
+            [Fact]
         public void ShouldCreateCourse()
         {
-            this.BDDfy();
+            this.Given(_ => IHaveLoggedInAsAnAdmin())
+               .And(_ => IAmOnTheCreateParentCoursePage())
+               .When(_ => IHaveEnteredValidInputForAllFields())
+               .Then(_ => ANewParentCourseShouldBeDisplayedOnTheParentCourseIndexPage())
+               .And(_ => IEditTheParentCourse())
+               .Then(_ => TheParentCourseIsUpdatedOnTheParentCourseIndexPage())
+               .BDDfy();
         }
     }
 }

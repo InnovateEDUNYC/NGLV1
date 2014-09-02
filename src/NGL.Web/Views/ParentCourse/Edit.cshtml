@@ -1,0 +1,23 @@
+﻿@model NGL.Web.Models.ParentCourse.EditModel
+@{
+    ViewBag.Title = "Edit Parent Course";
+}
+
+<h2>Create Parent Course</h2>
+
+@using (var f = Html.BeginNglForm())
+{
+    using (var s = f.BeginSection(""))
+    {
+        <div class="hidden">
+            @s.FieldFor(m => m.ParentCourseId)
+        </div>
+        @s.FieldFor(m => m.ParentCourseCode)
+        @s.FieldFor(m => m.ParentCourseTitle)
+        @s.FieldFor(m => m.ParentCourseDescription)
+    }
+    using (var n = f.BeginNavigation())
+    {
+        @n.Submit("Save").AddClass("btn btn-primary")
+    }
+}

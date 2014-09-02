@@ -40,6 +40,9 @@
                     <td class="parent-course-description">
                         @Html.DisplayFor(modelItem => item.ParentCourseDescription)
                     </td>
+                    <td>
+                        @Html.ActionLink("Edit", MVC.ParentCourse.Edit(item.Id), new { @class = "btn btn-primary" })
+                    </td>
                 </tr>
             }
         </tbody>

@@ -20,5 +20,15 @@ namespace NGL.UiTests.ParentCourse
         {
             return Find.Element(By.CssSelector("tbody")).Text.Contains(createParentCourseModel.ParentCourseCode);
         }
+
+        public ParentCourseEditPage GoToEditPage()
+        {
+            return Navigate.To<ParentCourseEditPage>(By.LinkText("Edit"));
+        }
+
+        public bool ParentCourseExists(EditModel createParentCourseModel)
+        {
+            return Find.Element(By.CssSelector("tbody")).Text.Contains(createParentCourseModel.ParentCourseCode);
+        }
     }
 }

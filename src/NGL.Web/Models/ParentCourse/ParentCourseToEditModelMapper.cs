@@ -5,14 +5,14 @@ using System.Web;
 
 namespace NGL.Web.Models.ParentCourse
 {
-    public class ParentCourseToIndexModelMapper : MapperBase<Web.Data.Entities.ParentCourse, IndexModel>
+    public class ParentCourseToEditModelMapper : MapperBase<Data.Entities.ParentCourse, EditModel>
     {
-        public override void Map(Data.Entities.ParentCourse source, IndexModel target)
+        public override void Map(Data.Entities.ParentCourse source, EditModel target)
         {
             target.ParentCourseCode = source.ParentCourseCode;
             target.ParentCourseDescription = source.ParentCourseDescription;
+            target.ParentCourseId = source.Id;
             target.ParentCourseTitle = source.ParentCourseTitle;
-            target.Id = source.Id;
         }
     }
 }
