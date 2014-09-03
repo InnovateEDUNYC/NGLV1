@@ -4,6 +4,7 @@ Ngl.shared.sectionAutocomplete = (function () {
     var setupSectionAutocomplete = function () {
         sectionAutocomplete();
         clearHiddenFieldsOnPressingAnyKeyButEnterOrTab();
+        setupSessionIdListener();
     }
 
     var clearHiddenFieldsOnPressingAnyKeyButEnterOrTab = function () {
@@ -72,11 +73,12 @@ Ngl.shared.sectionAutocomplete = (function () {
         });
     }
 
-    $("#SessionId").on('change cleared',function () {
-        $('#Section').val("");
-        $('#SectionId').val("");
-    });
-
+    var setupSessionIdListener = function() {
+        $("#SessionId").on('change cleared', function() {
+            $('#Section').val("");
+            $('#SectionId').val("");
+        });
+    }
     return {
         init: setupSectionAutocomplete
     }

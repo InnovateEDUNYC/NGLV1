@@ -4,6 +4,7 @@ Ngl.shared.parentCourseAutocomplete = (function () {
     var setupParentCourseAutocomplete = function () {
         parentcourseAutocomplete();
         clearHiddenFieldsOnPressingAnyKeyButEnterOrTab();
+        setupParentCourseIdListener();
     }
 
     var clearHiddenFieldsOnPressingAnyKeyButEnterOrTab = function () {
@@ -70,11 +71,12 @@ Ngl.shared.parentCourseAutocomplete = (function () {
             minLength: 2,
         });
     }
-
-    $("#ParentCourseId").on('change cleared', function () {
-        $('#ParentCourse').val("");
-        $('#ParentCourseId').val("");
-    });
+    var setupParentCourseIdListener = function() {
+        $("#ParentCourseId").on('change cleared', function() {
+            $('#ParentCourse').val("");
+            $('#ParentCourseId').val("");
+        });
+    }
 
     return {
         init: setupParentCourseAutocomplete

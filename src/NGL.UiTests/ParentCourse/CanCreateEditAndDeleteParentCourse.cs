@@ -19,6 +19,7 @@ namespace NGL.UiTests.ParentCourse
             private CreateModel _createParentCourseModel;
             private ParentCourseIndexPage _parentCourseIndexPage;
             private EditModel _editParentCourseModel;
+            private int _parentCoursesOnIndexPage;
 
             public void IHaveLoggedInAsAnAdmin()
         {
@@ -61,12 +62,13 @@ namespace NGL.UiTests.ParentCourse
 
         public void IDeleteTheParentCourse()
         {
+            _parentCoursesOnIndexPage = _parentCourseIndexPage.GetNumberOfParentCourses();
             _parentCourseIndexPage = _parentCourseIndexPage.GoDelete();
         }
 
         public void TheParentCourseIsNotOnTheParentCourseIndexPage()
         {
-            _parentCourseIndexPage.GetNumberOfParentCourses().ShouldBe(2);
+            _parentCourseIndexPage.GetNumberOfParentCourses().ShouldBe(_parentCoursesOnIndexPage - 1);
         }
 
             [Fact]
