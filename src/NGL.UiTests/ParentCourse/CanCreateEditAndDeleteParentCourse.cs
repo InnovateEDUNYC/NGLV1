@@ -63,7 +63,7 @@ namespace NGL.UiTests.ParentCourse
         public void IDeleteTheParentCourse()
         {
             _parentCoursesOnIndexPage = _parentCourseIndexPage.GetNumberOfParentCourses();
-            _parentCourseIndexPage = _parentCourseIndexPage.GoDelete();
+            _parentCourseIndexPage = _parentCourseIndexPage.GoDelete(_createParentCourseModel.ParentCourseCode);
         }
 
         public void TheParentCourseIsNotOnTheParentCourseIndexPage()
