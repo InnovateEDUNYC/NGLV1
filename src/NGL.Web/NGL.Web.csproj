@@ -300,6 +300,7 @@
     <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\IParentRepository.cs" />
+    <Compile Include="Data\Repositories\IPeriodRepository.cs" />
     <Compile Include="Data\Repositories\ISectionRepository.cs" />
     <Compile Include="Data\Repositories\ISessionRepository.cs" />
     <Compile Include="Data\Repositories\IStudentRepository.cs" />
@@ -307,6 +308,7 @@
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
     <Compile Include="Data\Repositories\ParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\ParentRepository.cs" />
+    <Compile Include="Data\Repositories\PeriodRepository.cs" />
     <Compile Include="Data\Repositories\SectionRepository.cs" />
     <Compile Include="Data\Repositories\SessionRepository.cs" />
     <Compile Include="Data\Repositories\StudentRepository.cs" />
@@ -1624,6 +1626,7 @@
     <Compile Include="Data\Repositories\ILearningStandardRepository.cs" />
     <Compile Include="Data\Repositories\LearningStandardRepository.cs" />
     <Compile Include="Dates\DateRange.cs" />
+    <Compile Include="Exceptions\NglException.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
     <Compile Include="ImageTools\Resizer.cs" />

@@ -175,7 +175,7 @@ namespace NGL.Web.Controllers
             TempData["ShowSuccess"] = true;
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
         public virtual JsonResult EditParentInfo(EditProfileParentModel model)
         {
             if (!ModelState.IsValid)
@@ -208,7 +208,7 @@ namespace NGL.Web.Controllers
             _programStatusModelToProgramStatusForEditMapper.Map(programStatus, studentProgramStatus, filePaths);
 
             _repository.Save();
-
+            
             TempData["ShowSuccess"] = true;
             return RedirectToAction(MVC.Student.Index(studentUsi));
         }
