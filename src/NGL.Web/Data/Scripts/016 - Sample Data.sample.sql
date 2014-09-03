@@ -309,7 +309,8 @@ INSERT INTO [edfi].[StudentParentAssociation]
            ,[RelationTypeId]
            ,[LivesWith])
 	VALUES
-	(999, @jakeparentusi, 1, 1)
+	(999, @jakeparentusi, 1, 1),
+	(999, @jillparentusi, 1, 1)
 
 INSERT INTO [edfi].[StudentParentAssociation]
            ([StudentUSI]

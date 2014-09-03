@@ -17,12 +17,12 @@ namespace NGL.Web.Models.Student
         public override void Map(Parent source, EditProfileParentModel target)
         {
             var studentParentAssociation = source.StudentParentAssociations.First();
-
             target.ParentUSI = source.ParentUSI;
             target.FirstName = source.FirstName;
             target.LastName = source.LastSurname;
             target.Sex = (SexTypeEnum) source.SexTypeId;
             target.Relationship = (RelationTypeEnum) studentParentAssociation.RelationTypeId;
+            target.RelationshipForDisplay = ((RelationTypeEnum) studentParentAssociation.RelationTypeId).Humanize();
             target.TelephoneNumber = source.ParentTelephones.First().TelephoneNumber;
             if (!source.ParentElectronicMails.IsNullOrEmpty())
                 target.EmailAddress = source.ParentElectronicMails.First().ElectronicMailAddress; 

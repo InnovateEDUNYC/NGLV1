@@ -112,104 +112,11 @@
         @Html.Partial("AcademicDetails", Model)
         @Html.Partial("ProgramStatus", Model)
         @Html.Partial("HomeAddress", Model.HomeAddress)
-        @Html.Partial("ParentPartial", Model.EditProfileParentModel)
-
+        @Html.Partial("FirstParentPartial", Model.EditProfileParentModel)
         @if (Model.SecondEditProfileParentModel != null)
         {
-
-            @Html.Partial("ProgramStatus", Model)
-            @Html.Partial("HomeAddress", Model.HomeAddress)
-            @Html.Partial("ParentPartial", Model.EditProfileParentModel)
-
-                if (Model.SecondEditProfileParentModel != null)
-                {
-
-                    <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParent">   Second Parent <i class="fa fa-caret-down arrow"></i></h4>
-                    <div id="collapseSecondParent" class="panel-collapse collapse">
-                        <div class="panel panel-default">
-                            <h4>
-                                <strong>
-                                    @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.FirstName) @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.LastName)
-                                </strong>
-                            </h4>
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.Sex)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.Sex)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.Relationship)
-                                </dt>
-                                <dd>
-                                    @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.Relationship)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.TelephoneNumber)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.TelephoneNumber)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.EmailAddress)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.EmailAddress)<br />
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                    
-                    <h4 class="panel panel-default strong" data-toggle="collapse" data-parent="#accordion" href="#collapseSecondParentAddress">   Second Parent Address <i class="fa fa-caret-down arrow"></i></h4>
-                    <div id="collapseSecondParentAddress" class="panel-collapse collapse">
-                        <div class="panel panel-default">
-                            @if (Model.SecondEditProfileParentModel.SameAddressAsStudent == false)
-                            {
-                                <dl class="dl-horizontal">
-                                    <dt>
-                                        @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.Address)
-                                    </dt>
-                                    <dd>
-                                        @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.Address)
-                                    </dd>
-                                    <dt>
-                                        @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.Address2)
-                                    </dt>
-                                    <dd>
-                                        @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.Address2)
-                                    </dd>
-                                    <dt>
-                                        @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.City)
-                                    </dt>
-                                    <dd>
-                                        @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.City)
-                                    </dd>
-                                    <dt>
-                                        @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.StateForDisplay)
-                                    </dt>
-                                    <dd>
-                                        @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.StateForDisplay)
-                                    </dd>
-                                    <dt>
-                                        @Html.DisplayNameFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.PostalCode)
-                                    </dt>
-                                    <dd>
-                                        @Html.DisplayTextFor(model => model.SecondEditProfileParentModel.EditableParentAddressModel.PostalCode)
-                                    </dd>
-                                </dl>
-                            }
-                            else
-                            {
-                                <p>Same as student</p><br />
-                            }
-                        </div>
-                    </div>
-                }
-            }
+            @Html.Partial("SecondParentPartial", Model.SecondEditProfileParentModel)
+        }
         </div>
     </div>
 </div>

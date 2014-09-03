@@ -2,7 +2,7 @@
     padding-bottom: 30px;
 }
 
-.profile-edit > .form-group {
+.profile-edit > .form-group, .profile-edit > .edit-parent-address-section > .form-group {
     margin-bottom: 5px;
 }
 
@@ -10,12 +10,12 @@
     margin-right: 5px;
 }
 
-.profile-edit > .form-group > .input-group, .profile-edit > .form-group > .form-control {
+.profile-edit > .form-group > .input-group, .profile-edit .form-group .form-control {
     vertical-align: middle;
     display: inline-block;
 }
 
-.profile-edit > .form-group > label, .profile-labels, .dl-horizontal dt {
+.profile-edit > .form-group > label, .profile-labels, .dl-horizontal dt, .profile-edit > .edit-parent-address-section > .form-group > label {
     width: 250px;
 }
 
