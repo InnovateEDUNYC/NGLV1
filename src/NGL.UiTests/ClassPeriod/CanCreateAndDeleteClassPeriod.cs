@@ -11,7 +11,7 @@ namespace NGL.UiTests.ClassPeriod
         AsA = "As a school admin",
         IWant = "I want to create periods",
         SoThat = "So that I know when different class sections are occuring")]
-    public class CanCreateClassPeriod
+    public class CanCreateAndDeleteClassPeriod
     {
         private HomePage _homePage;
         private CourseGenerationPage _courseGenerationPage;
@@ -44,10 +44,27 @@ namespace NGL.UiTests.ClassPeriod
             classPeriodExists.ShouldBe(true);
         }
 
+        public void WhenIDeleteTheClassPeriod()
+        {
+            _classPeriodIndexPage.DeletePeriod(_classPeriodCreateModel);
+        }
+
+        public void ThenThePeriodShouldBeDeleted()
+        {
+            var classPeriodExists = _classPeriodIndexPage.ClassPeriodExists(_classPeriodCreateModel);
+            classPeriodExists.ShouldBe(false);
+        }
+
         [Fact]
         public void ShouldCreateClassPeriod()
         {
-            this.BDDfy();
+            this.Given(_ => GivenIHaveLoggedIn())
+                .And(_ => AndGivenIAmOnTheCreateClassPeriodPage())
+                .When(_ => WhenIHaveEnteredValidInputForAllFields())
+                .Then(_ => ThenANewClassPeriodShouldBeDisplayedOnTheClassPeriodIndexPage())
+                .When(_ => WhenIDeleteTheClassPeriod())
+                .Then(_ => ThenThePeriodShouldBeDeleted())
+                .BDDfy();
         }
 
     }

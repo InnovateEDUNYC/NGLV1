@@ -98,7 +98,7 @@
     <Compile Include="Assessment\CanCreateAssessmentAndEnterResult.cs" />
     <Compile Include="Attendance\CanTakeAttendance.cs" />
     <Compile Include="Attendance\TakeAttendancePage.cs" />
-    <Compile Include="ClassPeriod\CanCreateClassPeriod.cs" />
+    <Compile Include="ClassPeriod\CanCreateAndDeleteClassPeriod.cs" />
     <Compile Include="ClassPeriod\ClassPeriodCreatePage.cs" />
     <Compile Include="ClassPeriod\ClassPeriodIndexPage.cs" />
     <Compile Include="Enrollment\AcademicDetailPage.cs" />
