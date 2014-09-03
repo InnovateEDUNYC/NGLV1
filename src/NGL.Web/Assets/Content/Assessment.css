@@ -22,3 +22,9 @@
     display: inline-block;
     max-width: 113px;
 }
+
+.student-name {
+    display: inline-block;
+    width: 240px;
+    margin-left: 10px;
+}

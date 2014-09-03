@@ -16,6 +16,10 @@
     margin-top: 30px;
 }
 
+.top-buffer-20 {
+    margin-top: 20px;
+}
+
 .top-buffer-10 {
     margin-top: 10px;
 }
@@ -284,4 +288,8 @@ body h4.panel:first-child {
 
 .input-width {
     width: 340px;
+}
+
+.ngl-color {
+    color: #2DBCBB;
 }
