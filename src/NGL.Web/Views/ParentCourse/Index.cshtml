@@ -3,6 +3,14 @@
 
 @{
     ViewBag.Title = "Parent Courses";
+    var error = TempData["Error"] as bool?;
+}
+
+@if (error == true)
+{
+    <div id="error" class="alert alert-danger" role="alert">
+      The parent course could not be deleted because it has course or parent course grade dependencies.
+    </div>
 }
 
 <h2>Parent Courses</h2>

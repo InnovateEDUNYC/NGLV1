@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web.Mvc;
 using Castle.Core.Internal;
+using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
@@ -39,7 +41,6 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Index()
         {
             var parentCourses = _parentCourseRepository.GetParentCourses();
-
             var indexModels = parentCourses.Select(pc => _parentCourseToIndexModelMapper.Build(pc));
 
             return View(indexModels);
@@ -113,7 +114,15 @@ namespace NGL.Web.Controllers
         {
             var parentCourseToDelete = _parentCourseRepository.GetById(id);
             _parentCourseRepository.Delete(parentCourseToDelete);
-            _genericRepository.Save();
+            try
+            {
+                _genericRepository.Save();
+                TempData["Error"] = false;
+            }
+            catch (DbUpdateException)
+            {
+                TempData["Error"] = true;
+            }
 
             return RedirectToAction(MVC.ParentCourse.Index());
         }
