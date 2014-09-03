@@ -44,7 +44,7 @@ namespace NGL.Tests.Builders
                 FirstName = FirstName,
                 LastName = LastName,
                 PersonalEmail = PersonalEmail,
-                PeronalTitlePrefix = PersonalTitlePrefix,
+                PersonalTitlePrefix = PersonalTitlePrefix,
                 StaffUSI = StaffUSI,
                 TeacherUSI = TeacherUSI,
                 HispanicLatino = HispanicLatino,

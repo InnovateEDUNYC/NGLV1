@@ -22,7 +22,7 @@ namespace NGL.Web.Models.Account
         public OldEthnicityTypeEnum? OldEthnicityType { get; set; }
         public string GenerationCodeSuffix { get; set; }
         public string MaidenName { get; set; }
-        public string PeronalTitlePrefix { get; set; }
+        public string PersonalTitlePrefix { get; set; }
         public SexTypeEnum? Sex { get; set; }
         public DateTime? BirthDate { get; set; }
         public string PersonalEmail { get; set; }
