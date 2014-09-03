@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "Create an Assessment";
 }
-
 <h2>Create Assessment</h2>
 
 @using (var f = Html.BeginNglForm())
@@ -20,13 +19,25 @@
         <div class="hidden">
             @s.FieldFor(m => m.SectionId)
         </div>
+   
+        <div class="assessment-step">STEP 1
+            <div class="assessment-step-directions">
+                Define assessment type
+            </div>
+        </div>       
 
         @s.FieldFor(m => m.AssessmentTitle)
         @s.FieldFor(m => m.AdministeredDate)
         @s.FieldFor(m => m.QuestionType)
         @s.FieldFor(m => m.GradeLevel)
     }
-    using (var s = f.BeginSection("Learning Standards"))
+    
+            <div class="assessment-step">STEP 2
+                <div class="assessment-step-directions">
+                    Define learning standard
+                </div>
+            </div>    
+    using (var s = f.BeginSection(""))
     {
         <div class="form-group">
             <label class="control-label" for="LearningStandard">Learning Standard</label>   
@@ -52,8 +63,12 @@
         @s.FieldFor(m => m.CommonCoreStandard)
     }
 
-
-    using (var t = f.BeginSection("Set Assessment"))
+                <div class="assessment-step">STEP 3
+                <div class="assessment-step-directions">
+                    Set Assessment
+                </div>
+            </div> 
+    using (var t = f.BeginSection(""))
     {
 
         <div class="form-group">
@@ -64,18 +79,23 @@
             <span class="field-validation-valid help-block" data-valmsg-for="ReportingMethod" data-valmsg-replace="true"></span>
         </div>
     
-        <div class="enter-mastery">          
-            @t.FieldFor(m => m.Mastery)
-            @t.FieldFor(m => m.NearMastery)
+        <div class="enter-mastery">
+            <div class="inline-block">
+                @t.FieldFor(m => m.Mastery)
+            </div>
+            <div class="inline-block">
+                @t.FieldFor(m => m.NearMastery)
+            </div>
         </div>
     }
 
-    
-    
-    using (var n = f.BeginNavigation())
-    {
-        @n.Submit("Create").AddClass("btn btn-primary")
-    }
+
+    <div class="input-width text-right">
+        @using (var n = f.BeginNavigation())
+        {
+            @n.Submit("Save").AddClass("btn btn-primary")
+        }
+    </div>
 }
 
 @section Scripts {
