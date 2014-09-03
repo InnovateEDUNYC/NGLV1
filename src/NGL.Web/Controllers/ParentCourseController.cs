@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 using Castle.Core.Internal;
@@ -119,9 +120,18 @@ namespace NGL.Web.Controllers
                 _genericRepository.Save();
                 TempData["Error"] = false;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException e)
             {
-                TempData["Error"] = true;
+                var inner = e.InnerException;
+                var innerInner = inner.InnerException as SqlException;
+                if (innerInner != null && innerInner.Number == 547)
+                {
+                    TempData["Error"] = true;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return RedirectToAction(MVC.ParentCourse.Index());
