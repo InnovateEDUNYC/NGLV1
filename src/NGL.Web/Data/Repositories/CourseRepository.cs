@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using NGL.Web.Data.Entities;
@@ -17,10 +18,9 @@ namespace NGL.Web.Data.Repositories
         {
             var courseToDelete = GetById(id);
 
-            DbContext.Set<Course>().Remove(courseToDelete);
-
             try
             {
+                DbContext.Set<Course>().Remove(courseToDelete);
                 Save();
             }
             catch (DbUpdateException e)
@@ -33,6 +33,22 @@ namespace NGL.Web.Data.Repositories
                 }
                 throw;
             }
+        }
+
+        public bool HasDependencies(int id)
+        {
+            var course = GetWithCourseOfferings(id);
+
+            return course != null && course.CourseOfferings.Any(co => co.Sections.Any());
+        }
+
+        private Course GetWithCourseOfferings(int id)
+        {
+            return DbContext.Set<Course>()
+                    .Where(c => c.CourseIdentity == id)
+                    .Include(c => c.CourseOfferings)
+                    .Include(c => c.CourseOfferings.Select(co => co.Sections))
+                    .FirstOrDefault();
         }
 
         private Course GetById(int id)

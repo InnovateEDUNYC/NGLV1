@@ -87,8 +87,13 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Delete(int id)
         {
-//            TempData["Error"] = false;
+            if (_courseRepository.HasDependencies(id))
+            {
+                TempData["Error"] = true;
+                return RedirectToAction(MVC.Course.Index());
+            }
 
+            TempData["Error"] = false;
             try
             {
                 _courseRepository.Delete(id);
@@ -97,6 +102,7 @@ namespace NGL.Web.Controllers
             {
                 TempData["Error"] = true;
             }
+
             return RedirectToAction(MVC.Course.Index());
         }
     }

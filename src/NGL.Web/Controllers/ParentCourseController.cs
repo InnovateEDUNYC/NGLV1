@@ -111,11 +111,11 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Delete(Guid id)
         {
-//            if (_parentCourseRepository.HasDependencies(id))
-//            {
-//                TempData["Error"] = true;
-//                return RedirectToAction(MVC.ParentCourse.Index());
-//            }
+            if (_parentCourseRepository.HasDependencies(id))
+            {
+                TempData["Error"] = true;
+                return RedirectToAction(MVC.ParentCourse.Index());
+            }
  
             TempData["Error"] = false;
             try
