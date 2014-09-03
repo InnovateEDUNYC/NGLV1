@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Exceptions;
 
 namespace NGL.Web.Data.Repositories
 {
@@ -54,6 +57,15 @@ namespace NGL.Web.Data.Repositories
                 .First(pc => pc.Id == parentCourseId);
         }
 
+        private ParentCourse GetWithCoursesAndGrades(Guid parentCourseId)
+        {
+            return DbContext.Set<ParentCourse>()
+                .Where(pc => pc.Id == parentCourseId)
+                .Include(pc => pc.ParentCourseGrades)
+                .Include(pc => pc.Courses)
+                .FirstOrDefault();
+        }
+
         public List<ParentCourseGrade> GetParentCourseGrades(Guid parentCourseId, int sessionId)
         {
             return DbContext.Set<ParentCourseGrade>()
@@ -64,9 +76,38 @@ namespace NGL.Web.Data.Repositories
                 .ToList();
         }
 
-        public void Delete(ParentCourse parentCourse)
+        public bool HasDependencies(Guid parentCourseId)
         {
-            DbContext.Set<ParentCourse>().Remove(parentCourse);
+            var parentCourseToDelete = GetWithCoursesAndGrades(parentCourseId);
+
+            if (parentCourseToDelete != null
+                && parentCourseToDelete.ParentCourseGrades.Any()
+                && parentCourseToDelete.Courses.Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void Delete(Guid parentCourseId)
+        {
+            var parentCourseToDelete = GetWithCoursesAndGrades(parentCourseId);
+            DbContext.Set<ParentCourse>().Remove(parentCourseToDelete);
+
+            try
+            {
+                Save();
+            }
+            catch (DbUpdateException e)
+            {
+                var inner = e.InnerException;
+                var innerInner = inner.InnerException as SqlException;
+                if (innerInner != null && innerInner.Number == 547)
+                {
+                    throw new NglException();
+                }
+                throw;
+            }
         }
     }
 }

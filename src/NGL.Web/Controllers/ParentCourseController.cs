@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 using Castle.Core.Internal;
-using Microsoft.Ajax.Utilities;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Exceptions;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.ParentCourse;
@@ -113,25 +111,19 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Delete(Guid id)
         {
-            var parentCourseToDelete = _parentCourseRepository.GetById(id);
-            _parentCourseRepository.Delete(parentCourseToDelete);
+            if (_parentCourseRepository.HasDependencies(id))
+            {
+                return RedirectToAction(MVC.ParentCourse.Index());
+            }
+ 
+            TempData["Error"] = false;
             try
             {
-                _genericRepository.Save();
-                TempData["Error"] = false;
+                _parentCourseRepository.Delete(id);
             }
-            catch (DbUpdateException e)
+            catch (NglException)
             {
-                var inner = e.InnerException;
-                var innerInner = inner.InnerException as SqlException;
-                if (innerInner != null && innerInner.Number == 547)
-                {
-                    TempData["Error"] = true;
-                }
-                else
-                {
-                    throw;
-                }
+                TempData["Error"] = true;
             }
 
             return RedirectToAction(MVC.ParentCourse.Index());
