@@ -7,6 +7,7 @@ namespace NGL.Web.Models.Section
     {
         public override void Map(Data.Entities.Section source, IndexModel target)
         {
+            target.SectionIdentity = source.SectionIdentity;
             target.SchoolYear = ((SchoolYearTypeEnum) source.SchoolYear).Humanize();
             target.Term = ((TermTypeEnum) source.TermTypeId).Humanize();
             target.ClassPeriod = source.ClassPeriodName;

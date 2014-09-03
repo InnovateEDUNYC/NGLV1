@@ -113,82 +113,30 @@ INSERT INTO [edfi].[CourseOffering]
 	 (1, 2, 2014, 1,
 	  'ENGL400 - CW', 'Creative Writing II CW Spring 2015', 'ENGL400 - CW')
 	  
-/* MATH123 - SECTION 1 */
 INSERT INTO [edfi].[Section]
 	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
 	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
 	VALUES
 	 (1, 1, 2014, 'MATH123 - DI',
-	 'Period 1', 'Room 207', 'MATH123-Fall2014-001', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 1', 'Room 207', 'MATH123-Fall2014-001', 1),
 	 (1, 1, 2014, 'MATH123 - CW',
-	 'Period 1', 'Room 207', 'MATH123-Fall2014-001', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 1', 'Room 207', 'MATH123-Fall2014-001', 1),
 	 (1, 1, 2014, 'MATH123 - TU',
-	 'Period 1', 'Room 207', 'MATH123-Fall2014-001', 1)
-
-/* MATH123 - SECTION 2 */
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 1', 'Room 207', 'MATH123-Fall2014-001', 1),
 	 (1, 1, 2014, 'MATH123 - DI',
-	 'Period 2', 'Room 108', 'MATH123-Fall2014-002', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 2', 'Room 108', 'MATH123-Fall2014-002', 1),
 	 (1, 1, 2014, 'MATH123 - CW',
-	 'Period 2', 'Room 108', 'MATH123-Fall2014-002', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 2', 'Room 108', 'MATH123-Fall2014-002', 1),
 	 (1, 1, 2014, 'MATH123 - TU',
-	 'Period 2', 'Room 108', 'MATH123-Fall2014-002', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 2', 'Room 108', 'MATH123-Fall2014-002', 1),
 	 (1, 1, 2014, 'ENGL400 - DI',
-	 'Period 3', 'Room 207', 'ENGL400-Fall2014-001', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 3', 'Room 207', 'ENGL400-Fall2014-001', 1),
 	 (1, 1, 2014, 'ENGL400 - CW',
-	 'Period 3', 'Room 207', 'ENGL400-Fall2014-001', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 3', 'Room 207', 'ENGL400-Fall2014-001', 1),
 	 (1, 1, 2014, 'ENGL400 - DI',
-	 'Period 4', 'Room 207', 'ENGL400-Fall2014-001', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 4', 'Room 207', 'ENGL400-Fall2014-001', 1),
 	 (1, 1, 2014, 'ENGL400 - CW',
-	 'Period 4', 'Room 207', 'ENGL400-Fall2014-001', 1)
-
-INSERT INTO [edfi].[Section]
-	([SchoolId], [TermTypeId], [SchoolYear], [LocalCourseCode], 
-	 [ClassPeriodName], [ClassroomIdentificationCode], [UniqueSectionCode], [SequenceOfCourse])
-	VALUES
+	 'Period 4', 'Room 207', 'ENGL400-Fall2014-001', 1),
 	 (1, 2, 2014, 'ENGL400 - CW',
 	 'Period 4', 'Room 207', 'ENGL400-Spring2015-001', 1)
 

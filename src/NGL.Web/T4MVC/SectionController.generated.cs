@@ -78,6 +78,12 @@ namespace NGL.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ForSession);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Delete()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SectionController Actions { get { return MVC.Section; } }
@@ -99,6 +105,7 @@ namespace NGL.Web.Controllers
             public readonly string GetSessions = "GetSessions";
             public readonly string GetCourses = "GetCourses";
             public readonly string ForSession = "ForSession";
+            public readonly string Delete = "Delete";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -109,6 +116,7 @@ namespace NGL.Web.Controllers
             public const string GetSessions = "GetSessions";
             public const string GetCourses = "GetCourses";
             public const string ForSession = "ForSession";
+            public const string Delete = "Delete";
         }
 
 
@@ -144,6 +152,14 @@ namespace NGL.Web.Controllers
         public class ActionParamsClass_ForSession
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Delete
+        {
+            public readonly string sectionIdentity = "sectionIdentity";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -238,6 +254,18 @@ namespace NGL.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ForSession);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ForSessionOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int sectionIdentity);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Delete(int sectionIdentity)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sectionIdentity", sectionIdentity);
+            DeleteOverride(callInfo, sectionIdentity);
             return callInfo;
         }
 

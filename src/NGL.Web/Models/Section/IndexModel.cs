@@ -2,6 +2,7 @@
 {
     public class IndexModel
     {
+        public int SectionIdentity { get; set; }
         public string SchoolYear { get; set; }
         public string Term { get; set; }
         public string ClassPeriod { get; set; }
