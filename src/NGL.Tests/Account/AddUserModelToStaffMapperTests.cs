@@ -18,7 +18,7 @@ namespace NGL.Tests.Account
             staff.LoginId.ShouldBe(model.Username);
             staff.FirstName.ShouldBe(model.FirstName);
             staff.LastSurname.ShouldBe(model.LastName);
-            staff.PersonalTitlePrefix.ShouldBe(model.PeronalTitlePrefix);
+            staff.PersonalTitlePrefix.ShouldBe(model.PersonalTitlePrefix);
             staff.StaffUSI.ShouldBe(model.StaffUSI.Value);
             staff.TeacherUSI.ShouldBe(model.TeacherUSI.Value);
             staff.HispanicLatinoEthnicity.ShouldBe(model.HispanicLatino);

@@ -27,7 +27,7 @@ namespace NGL.Web.Models.Account
                 .WithMessage("A staff member with this Staff USI already exists.");
 
             RuleFor(m => m.TeacherUSI).NotNull();
-            RuleFor(m => m.PeronalTitlePrefix).Length(1, 75);
+            RuleFor(m => m.PersonalTitlePrefix).Length(1, 75);
 
             RuleFor(m => m.FirstName)
                 .NotNull()

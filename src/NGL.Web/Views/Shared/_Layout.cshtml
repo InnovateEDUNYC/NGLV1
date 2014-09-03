@@ -36,20 +36,27 @@
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="dropdown">
-                            <a class="text-center dropdown-toggle" href="#" data-toggle="dropdown">
-                                <span class="fa fa-book fa-2x"></span>
-                                <br />
-                                Planning
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                @if((User as NglPrincipal).HasAccessTo("enrollment", "create"))
-                                {
-                                    <li>@Html.ActionLink("Enrollment", "CreateStudent", "Enrollment")</li>
-                                }
-                                <li>@Html.ActionLink("Course Generation", "Index", "CourseGeneration")</li>
-                            </ul>
-                        </li>
+                        if ((User as NglPrincipal).HasAccessTo("enrollment", "create") || (User as NglPrincipal).HasAccessTo("courseGeneration", "view"))
+                        {
+                            <li class="dropdown">
+                                <a class="text-center dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <span class="fa fa-book fa-2x"></span>
+                                    <br />
+                                    Planning
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    @if ((User as NglPrincipal).HasAccessTo("enrollment", "create"))
+                                    {
+                                        <li>@Html.ActionLink("Enrollment", "CreateStudent", "Enrollment")</li>
+                                    }
+                                    @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "view"))
+                                    {
+                                        <li>@Html.ActionLink("Course Generation", "Index", "CourseGeneration")</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+
                         if ((User as NglPrincipal).HasAccessTo("attendance", "create"))
                         {
                             <li>
@@ -60,34 +67,47 @@
                                 </a>
                             </li>
                         }
-                        <li>
-                            <a class="text-center" href="@Url.Action(MVC.Assessment.Index())">
-                                <span class="fa fa-child fa-2x"></span>
-                                <br />
-                                Assessment
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-center" href="@Url.Action(MVC.Student.All())">
-                                <span class="fa fa-user fa-2x"></span>
-                                <br />
-                                Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-center" href="@Url.Action(MVC.Student.Reports())">
-                                <span class="fa fa-flag-o fa-2x"></span>
-                                <br />
-                                Reports
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-center" href="@Url.Action("Users", "Account")">
-                                <span class="fa fa-users fa-2x"></span>
-                                <br />
-                                Users
-                            </a>
-                        </li>
+                        if ((User as NglPrincipal).HasAccessTo("assessment", "view"))
+                        {
+                            <li>
+                                <a class="text-center" href="@Url.Action(MVC.Assessment.Index())">
+                                    <span class="fa fa-child fa-2x"></span>
+                                    <br />
+                                    Assessment
+                                </a>
+                            </li>
+                        }
+                        if ((User as NglPrincipal).HasAccessTo("enrollment", "view"))
+                        {
+                            <li>
+                                <a class="text-center" href="@Url.Action(MVC.Student.All())">
+                                    <span class="fa fa-user fa-2x"></span>
+                                    <br />
+                                    Profile
+                                </a>
+                            </li>
+                        }
+
+                        if ((User as NglPrincipal).HasAccessTo("assessment", "view") || (User as NglPrincipal).HasAccessTo("grades", "view"))
+                        {
+                            <li>
+                                <a class="text-center" href="@Url.Action(MVC.Student.Reports())">
+                                    <span class="fa fa-flag-o fa-2x"></span>
+                                    <br />
+                                    Reports
+                                </a>
+                            </li>
+                        }
+                        if ((User as NglPrincipal).HasAccessTo("user", "view"))
+                        {
+                            <li>
+                                <a class="text-center" href="@Url.Action("Users", "Account")">
+                                    <span class="fa fa-users fa-2x"></span>
+                                    <br />
+                                    Users
+                                </a>
+                            </li>
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

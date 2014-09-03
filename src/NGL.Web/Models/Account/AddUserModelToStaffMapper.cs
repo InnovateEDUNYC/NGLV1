@@ -10,7 +10,7 @@ namespace NGL.Web.Models.Account
             target.FirstName = source.FirstName;
             target.LastSurname = source.LastName;
             target.LastSurname = source.LastName;
-            target.PersonalTitlePrefix = source.PeronalTitlePrefix;
+            target.PersonalTitlePrefix = source.PersonalTitlePrefix;
             target.StaffUSI = source.StaffUSI.GetValueOrDefault();
             target.TeacherUSI = source.TeacherUSI.GetValueOrDefault();
             target.HispanicLatinoEthnicity = source.HispanicLatino;

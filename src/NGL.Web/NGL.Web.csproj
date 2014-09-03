@@ -2013,6 +2013,7 @@
     <EmbeddedResource Include="Data\Scripts\012 - Schema - Assessment.sql" />
     <EmbeddedResource Include="Data\Scripts\015 - Schema - Add Parent Course To Course Table.sql" />
     <EmbeddedResource Include="Data\Scripts\018 - Schema - Attendance Flags.sql" />
+    <EmbeddedResource Include="Data\Scripts\019 - Add Developer User.sql" />
     <Content Include="Data\Scripts\016.1 - Add Assessment Sample Data.sample.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\Fonts\glyphicons-halflings-regular.svg" />
