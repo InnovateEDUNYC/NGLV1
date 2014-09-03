@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
@@ -82,7 +84,24 @@ namespace NGL.Web.Controllers
         public virtual ActionResult Delete(int id)
         {
             _genericRepository.Delete(_genericRepository.Get<Course>(c => c.CourseIdentity == id));
-            _genericRepository.Save();
+            try
+            {
+                _genericRepository.Save();
+                TempData["Error"] = false;
+            }
+            catch (DbUpdateException e)
+            {
+                var inner = e.InnerException;
+                var innerInner = inner.InnerException as SqlException;
+                if (innerInner != null && innerInner.Number == 547)
+                {
+                    TempData["Error"] = true;
+                }
+                else
+                {
+                    throw;
+                }
+            }
             return RedirectToAction(MVC.Course.Index());
         }
     }
