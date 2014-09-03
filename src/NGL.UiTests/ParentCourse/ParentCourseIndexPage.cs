@@ -31,10 +31,13 @@ namespace NGL.UiTests.ParentCourse
             return Find.Element(By.CssSelector("tbody")).Text.Contains(createParentCourseModel.ParentCourseCode);
         }
 
-        public ParentCourseIndexPage GoDelete()
+        public ParentCourseIndexPage GoDelete(string parentCourseCode)
         {
-            var last = Find.Elements(By.ClassName("delete-row-btn")).Last();
-            last.Click();
+//            var row = Find.Element(By.CssSelector("tr[data-course = 'parentCourseCode']"));
+//            Execute.Script("$(tr).data('"+parentCourseCode+"')");
+            Execute.Script("$('[data-course=\"" + parentCourseCode + "\"]').find('.delete-row-btn').click()");
+//            row.FindElement(By.ClassName("delete-row-btn")).Click();
+            
             return this;
         }
 
