@@ -87,11 +87,11 @@ namespace NGL.Web.Data.Repositories
 
         public void Delete(Guid parentCourseId)
         {
-            var parentCourseToDelete = GetWithCoursesAndGrades(parentCourseId);
-            DbContext.Set<ParentCourse>().Remove(parentCourseToDelete);
+            var parentCourseToDelete = GetById(parentCourseId);
 
             try
             {
+                DbContext.Set<ParentCourse>().Remove(parentCourseToDelete);
                 Save();
             }
             catch (DbUpdateException e)
