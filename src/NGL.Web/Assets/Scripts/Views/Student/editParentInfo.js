@@ -2,7 +2,8 @@
 
 Ngl.student.editParentInfo = (function () {
     var setUp = function() {
-        Ngl.shared.editProfile.setup('#readonly-parent-info', '#collapseParentInfo', '#editable-parent-info > h4', '#editable-parent-info > div', '#edit-parent-info-button', '#save-parent-info-edit', '#cancel-parent-info-edit', '/student/editParentInfo', "#edit-parent-info-form");
+        Ngl.shared.editProfile.setup('#readonly-parent-1-info', '#collapseParent-1-Info', '#editable-parent-1-info > h4', '#editable-parent-1-info > div', '#edit-parent-1-info-button', '#save-parent-1-info-edit', '#cancel-parent-1-info-edit', '/student/editParentInfo', "#edit-parent-1-info-form");
+        Ngl.shared.editProfile.setup('#readonly-parent-2-info', '#collapseParent-2-Info', '#editable-parent-2-info > h4', '#editable-parent-2-info > div', '#edit-parent-2-info-button', '#save-parent-2-info-edit', '#cancel-parent-2-info-edit', '/student/editParentInfo', "#edit-parent-2-info-form");
         setUpSameAddressCheckbox();
     }
 

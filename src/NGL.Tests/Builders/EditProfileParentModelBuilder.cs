@@ -38,5 +38,16 @@ namespace NGL.Tests.Builders
             _email = null;
             return this;
         }
+
+        public EditProfileParentModelBuilder WithNewValues()
+        {
+            _email = "123@bam.com";
+            _firstName = "Mike";
+            _lastName = "Simpson";
+            _relationTypeEnum = RelationTypeEnum.Cousin;
+            _sameAddressAsStudent = false;
+            _telephoneNumber = "129099";
+            return this;
+        }
     }
 }

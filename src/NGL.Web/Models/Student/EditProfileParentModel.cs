@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student
 {
@@ -8,6 +9,9 @@ namespace NGL.Web.Models.Student
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public SexTypeEnum Sex { get; set; }
+
+        [Display(Name = "Relationship")]
+        public string RelationshipForDisplay { get; set; }
         public RelationTypeEnum Relationship { get; set; }
         public string TelephoneNumber { get; set; }
         public string EmailAddress { get; set; }

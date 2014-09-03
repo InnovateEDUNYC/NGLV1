@@ -6,6 +6,7 @@ using NGL.Web.Extensions;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using OpenQA.Selenium;
+using TestStack.Seleno.Extensions;
 using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Student
@@ -118,7 +119,7 @@ namespace NGL.UiTests.Student
             return Navigate.To<EditHomeAddressPanel>(By.Id("edit-home-address-button"));
         }
 
-        public bool IsProgramStatusInfoAccordingTo(EnterProgramStatusModel enterProgramStatusModel)
+        public bool IsProgramStatusInfoSameAs(EnterProgramStatusModel enterProgramStatusModel)
         {
             Find.Element(By.CssSelector("#readonly-program-status > h4")).Click();
 
@@ -151,7 +152,7 @@ namespace NGL.UiTests.Student
             return this;
         }
 
-        public bool IsHomeAddressAccordingTo(HomeAddressModel homeAddressModel)
+        public bool IsHomeAddressSameAs(HomeAddressModel homeAddressModel)
         {
             Find.Element(By.CssSelector("#readonly-home-address > h4")).Click();
 
@@ -174,6 +175,52 @@ namespace NGL.UiTests.Student
             var performanceHistory = Find.Element(By.Name("PerformanceHistory")).Text.Equals(academicDetailModel.PerformanceHistory);
 
             return writingScore && mathScore && readingScore && performanceHistory;
+        }
+        public EditParentPanel EditParent(int parentNumber)
+        {
+            return Navigate.To<EditParentPanel>(By.Id("edit-parent-" + parentNumber + "-info-button"));
+        }
+
+        public bool IsParentSameAs(int parentNumber, EditProfileParentModel parentModel)
+        {
+            var sameFirstName = Browser.PageSource.Contains(parentModel.FirstName);
+            var sameLastName = Browser.PageSource.Contains(parentModel.LastName);
+            var sameSex = Browser.PageSource.Contains(parentModel.Sex.ToString());
+            var sameRelationship = Browser.PageSource.Contains(parentModel.Relationship.Humanize());
+            var sameTelephoneNumber = Browser.PageSource.Contains(parentModel.TelephoneNumber);
+            var sameEmailAddress = Browser.PageSource.Contains(parentModel.EmailAddress);
+            return sameFirstName
+                   && sameLastName
+                   && sameSex
+                   && sameRelationship
+                   && sameTelephoneNumber
+                   && sameEmailAddress;
+        }
+    }
+
+    public class EditParentPanel : Page<EditProfileParentModel>
+    {
+        public void Edit(int parentNumber, EditProfileParentModel parentModel)
+        {
+            Execute.Script("$('#editable-parent-"+parentNumber+"-info #FirstName').val('" + parentModel.FirstName + "')");
+            Execute.Script("$('#editable-parent-"+parentNumber+"-info #LastName').val('" + parentModel.LastName + "')");
+            Execute.Script("$('#editable-parent-" + parentNumber + "-info #Sex').val('" + parentModel.Sex + "')");
+            Execute.Script("$('#editable-parent-" + parentNumber + "-info #Relationship').val('" + parentModel.Relationship + "')");
+            Execute.Script("$('#editable-parent-" + parentNumber + "-info #TelephoneNumber').val('" + parentModel.TelephoneNumber + "')");
+            Execute.Script("$('#editable-parent-" + parentNumber + "-info #EmailAddress').val('" + parentModel.EmailAddress + "')");
+            Execute.Script("$('#editable-parent-" + parentNumber + "-info #SameAddressAsStudent').attr('checked'," +
+                           parentModel.SameAddressAsStudent.ToString().ToLower() + ")");
+            if (!parentModel.SameAddressAsStudent)
+            {
+                Execute.Script("$('#editable-parent-" + parentNumber + "-info #EditableParentAddressModel_Address').val('" + parentModel.EditableParentAddressModel.Address + "')");
+                Execute.Script("$('#editable-parent-" + parentNumber + "-info #EditableParentAddressModel_Address2').val('" + parentModel.EditableParentAddressModel.Address2 + "')");
+                Execute.Script("$('#editable-parent-" + parentNumber + "-info #EditableParentAddressModel_City').val('" + parentModel.EditableParentAddressModel.City + "')");
+                Execute.Script("$('#editable-parent-" + parentNumber + "-info #EditableParentAddressModel_State').val('" + parentModel.EditableParentAddressModel.State + "')");
+                Execute.Script("$('#editable-parent-" + parentNumber + "-info #EditableParentAddressModel_PostalCode').val('" + parentModel.EditableParentAddressModel.PostalCode + "')");
+            }
+
+            Execute.Script("$('#save-parent-"+ parentNumber +"-info-edit').click()");
+            WaitFor.AjaxCallsToComplete();
         }
     }
 }

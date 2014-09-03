@@ -1,0 +1,81 @@
+﻿@model NGL.Web.Models.Student.EditProfileParentModel
+<div class="panel panel-default">
+    <h4>
+        <strong>
+            @Html.DisplayTextFor(model => model.FirstName)
+            @Html.DisplayTextFor(model => model.LastName)
+        </strong>
+    </h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.Sex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RelationshipForDisplay)
+        </dt>
+        <dd>
+            @Html.DisplayTextFor(model => model.RelationshipForDisplay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelephoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.TelephoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.EmailAddress)<br />
+        </dd>
+
+        <h4 class="panel-default"><strong>Address</strong></h4>
+        @if (Model.SameAddressAsStudent == false)
+        {
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EditableParentAddressModel.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.EditableParentAddressModel.Address)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EditableParentAddressModel.Address2)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.EditableParentAddressModel.Address2)
+                    &nbsp;
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EditableParentAddressModel.City)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.EditableParentAddressModel.City)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EditableParentAddressModel.StateForDisplay)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.EditableParentAddressModel.StateForDisplay)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EditableParentAddressModel.PostalCode)
+                </dt>
+                <dd>
+                    @Html.DisplayTextFor(model => model.EditableParentAddressModel.PostalCode)
+                </dd>
+            </dl>
+        }
+        else
+        {
+            <p>Same as student</p>
+            <br />
+        }
+    </dl>
+</div>

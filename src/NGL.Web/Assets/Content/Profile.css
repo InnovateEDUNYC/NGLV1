@@ -15,7 +15,7 @@
     display: inline-block;
 }
 
-.profile-edit > .form-group > label, .profile-edit > .edit-parent-address-section > .form-group > label, .profile-labels, .dl-horizontal dt {
+.profile-edit > .form-group > label, .profile-labels, .dl-horizontal dt, .profile-edit > .edit-parent-address-section > .form-group > label {
     width: 250px;
 }
 

@@ -22,6 +22,7 @@ namespace NGL.UiTests.Student
         private EnterProgramStatusModel _enterProgramStatusModel;
         private HomeAddressModel _homeAddressModel;
         private EditAcademicDetailModel _editAcademicDetailsModel;
+        private EditProfileParentModel _parentModel;
 
         private void IHaveLoggedIn()
         {
@@ -90,7 +91,7 @@ namespace NGL.UiTests.Student
 
         private void IShouldSeeUpdatedProgramStatusInformation()
         {
-            var canSeeUpdateProgramStatus = _profilePage.IsProgramStatusInfoAccordingTo(_enterProgramStatusModel);
+            var canSeeUpdateProgramStatus = _profilePage.IsProgramStatusInfoSameAs(_enterProgramStatusModel);
             canSeeUpdateProgramStatus.ShouldBe(true);
         }
 
@@ -104,7 +105,23 @@ namespace NGL.UiTests.Student
 
         private void IShouldSeeUpdatedHomeAddress()
         {
-            _profilePage.IsHomeAddressAccordingTo(_homeAddressModel).ShouldBe(true);
+            _profilePage.IsHomeAddressSameAs(_homeAddressModel).ShouldBe(true);
+        }
+
+        private void IEditDetailsForParent(int parentNumber)
+        {
+            var editParentPanel = _profilePage.EditParent(parentNumber);
+            _parentModel = new EditProfileParentModelBuilder().Build();
+            if (parentNumber > 1)
+            {
+                _parentModel = new EditProfileParentModelBuilder().WithNewValues().Build();
+            }
+            editParentPanel.Edit(parentNumber, _parentModel);
+        }
+
+        private void IShouldSeeUpdatedParentDetailsFor(int parentNumber)
+        {
+            _profilePage.IsParentSameAs(parentNumber, _parentModel).ShouldBe(true);
         }
 
         [Fact]
@@ -122,6 +139,10 @@ namespace NGL.UiTests.Student
                 .Then(_ => IShouldSeeUpdatedProgramStatusInformation())
                 .When(_ => IEditTheHomeAddress())
                 .Then(_ => IShouldSeeUpdatedHomeAddress())
+                .When(_ => IEditDetailsForParent(1))
+                .Then(_ => IShouldSeeUpdatedParentDetailsFor(1))
+                .When(_ => IEditDetailsForParent(2))
+                .Then(_ => IShouldSeeUpdatedParentDetailsFor(2))
 
                 .BDDfy();
         }
