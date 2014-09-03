@@ -9,7 +9,7 @@ namespace NGL.Web.Infrastructure.Security
             switch (role)
             {
                 case ApplicationRole.MasterAdmin:
-                    return "session.create session.edit session.view"
+                    return "session.create session.edit session.view session.delete"
                            + " schoolInfo.create schoolInfo.edit schoolInfo.view"
                            + " enrollment.create enrollment.edit enrollment.view"
                            + " courseGeneration.create courseGeneration.edit courseGeneration.view courseGeneration.delete"

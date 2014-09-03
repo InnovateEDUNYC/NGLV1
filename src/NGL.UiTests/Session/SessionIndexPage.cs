@@ -14,16 +14,20 @@ namespace NGL.UiTests.Session
 
         public bool SessionExists(CreateModel createModel)
         {
-            var termExists = Find.Element(By.CssSelector("tr:last-of-type td.term")).Text.Equals(createModel.Term.Humanize());
-            var yearExists =
-                Find.Element(By.CssSelector("tr:last-of-type td.school-year")).Text.Equals(createModel.SchoolYear.Humanize());
+            var term = Execute.ScriptAndReturn<string>("$('.term:contains(\"" + createModel.Term.Humanize() + "\")').text()");
+            var year = Execute.ScriptAndReturn<string>("$('.school-year:contains(\"" + createModel.SchoolYear.Humanize() + "\")').text()");
 
-            return termExists && yearExists;
+            return term != null && year != null;
         }
 
         public SectionsForSessionPage ViewSectionsFor(string sessionName)
         {
             return Navigate.To<SectionsForSessionPage>(By.CssSelector("[data-term='" + sessionName + "'] > td > a"));
+        }
+
+        public void DeleteSession(CreateModel createModel)
+        {
+            Execute.Script("$('.term:contains(\""+ createModel.Term.Humanize() + "\") + .school-year:contains(\"" + createModel.SchoolYear.Humanize() + "\")').parent().find('.btn-primary').click()");
         }
     }
 }

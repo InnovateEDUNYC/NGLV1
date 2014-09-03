@@ -62,14 +62,5 @@ namespace NGL.UiTests
                 }
             }
         }
-
-        public static class Spring2038Semester
-        {
-            public const TermTypeEnum Term = TermTypeEnum.SpringSemester;
-            public const SchoolYearTypeEnum SchoolYear = SchoolYearTypeEnum.Year2038;
-            public static DateTime BeginDate = new DateTime(2038, 08, 30);
-            public static DateTime EndDate = new DateTime(2038, 12, 12);
-            public const int TotalInstructionalDays = 120;
-        }
     }
 }

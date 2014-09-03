@@ -121,7 +121,7 @@
     <Compile Include="Section\CanViewAndCreateSectionsForASession.cs" />
     <Compile Include="Section\SectionCreatePage.cs" />
     <Compile Include="Section\SectionIndexPage.cs" />
-    <Compile Include="Session\CanCreateSession.cs" />
+    <Compile Include="Session\CanCreateAndDeleteSession.cs" />
     <Compile Include="Enrollment\CanEnrollStudent.cs" />
     <Compile Include="School\CanUpdateSchoolInfo.cs" />
     <Compile Include="DatabaseManager.cs" />

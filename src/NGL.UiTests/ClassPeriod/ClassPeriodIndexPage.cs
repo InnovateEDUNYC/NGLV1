@@ -21,7 +21,6 @@ namespace NGL.UiTests.ClassPeriod
 
         public void DeletePeriod(CreateModel createModel)
         {
-            var result = Execute.ScriptAndReturn<string>("$('.period-name:contains(\"" + createModel.ClassPeriodName + "\")').text()").Trim();
             Execute.Script("$('.period-name:contains(\"" + createModel.ClassPeriodName + "\") + td input').click()");
         }
     }

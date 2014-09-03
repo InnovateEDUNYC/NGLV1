@@ -6,5 +6,7 @@ namespace NGL.Web.Data.Repositories
     {
         Session GetWithSectionsById(int sessionIdentity);
         Session GetById(int sessionIdentity);
+        int GetDependencyCount(int sessionIdentity);
+        void Remove(int sessionIdentity);
     }
 }
