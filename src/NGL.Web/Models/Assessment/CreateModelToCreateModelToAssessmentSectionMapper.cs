@@ -21,17 +21,19 @@ namespace NGL.Web.Models.Assessment
             if (assessment.AssessmentSections.IsNullOrEmpty())
                 assessment.AssessmentSections = new Collection<AssessmentSection>();
 
-            var assessmentSection = Build(source);
+            var section = _genericRepository.Get<Data.Entities.Section>(s => s.SectionIdentity == source.SectionId);
+            var assessmentSection = Build(source, section);
 
             assessment.AssessmentSections.Add(assessmentSection);
+            section.AssessmentSections.Add(assessmentSection);
             return assessmentSection;
         }
 
-        private AssessmentSection Build(CreateModel source)
+        private AssessmentSection Build(CreateModel source, Data.Entities.Section section)
         {
             var target = new AssessmentSection();
             MapAssessment(target);
-            MapSection(source, target);
+            MapSection(source, target, section);
             return target;
         }
 
@@ -43,10 +45,8 @@ namespace NGL.Web.Models.Assessment
             target.Version = _assessment.Version;
         }
 
-        private void MapSection(CreateModel source, AssessmentSection target)
+        private void MapSection(CreateModel source, AssessmentSection target, Data.Entities.Section section)
         {
-            var section = _genericRepository.Get<Data.Entities.Section>(s => s.SectionIdentity == source.SectionId);
-
             target.SchoolId = section.SchoolId;
             target.SchoolYear = section.SchoolYear;
             target.TermTypeId = section.TermTypeId;

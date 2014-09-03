@@ -6,6 +6,7 @@ using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Data.Repositories;
+using NGL.Web.Exceptions;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Section;
@@ -27,6 +28,7 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Course, CourseJsonModel> _courseToCourseJsonModelMapper;
         private readonly ISessionRepository _sessionRepository;
         private readonly IMapper<Session, SessionWithSectionsModel> _sessionToSessionWithSectionsModelMapper;
+        private readonly ISectionRepository _sectionRepository;
 
         public SectionController(IGenericRepository genericRepository, 
             IMapper<Section, IndexModel> sectionToIndexModelMapper, 
@@ -36,7 +38,8 @@ namespace NGL.Web.Controllers
             IMapper<CreateModel, CourseOffering> createModelToCourseOfferingMapper, 
             IMapper<Session, SessionJsonModel> sessionToSessionJsonModelMapper, 
             IMapper<Course, CourseJsonModel> courseToCourseJsonModelMapper, 
-            ISessionRepository sessionRepository, IMapper<Session, SessionWithSectionsModel> sessionToSessionWithSectionsModelMapper)
+            ISessionRepository sessionRepository, IMapper<Session, SessionWithSectionsModel> sessionToSessionWithSectionsModelMapper, 
+            ISectionRepository sectionRepository)
         {
             _genericRepository = genericRepository;
             _createModelToSectionMapper = createModelToSectionMapper;
@@ -45,6 +48,7 @@ namespace NGL.Web.Controllers
             _courseToCourseJsonModelMapper = courseToCourseJsonModelMapper;
             _sessionRepository = sessionRepository;
             _sessionToSessionWithSectionsModelMapper = sessionToSessionWithSectionsModelMapper;
+            _sectionRepository = sectionRepository;
             _sectionToIndexModelMapper = sectionToIndexModelMapper;
             _classPeriodToClassPeriodNameModelMapper = classPeriodToClassPeriodNameModelMapper;
             _locationToClassRoomModelMapper = locationToClassRoomModelMapper;
@@ -132,6 +136,28 @@ namespace NGL.Web.Controllers
             var sessionWithSectionsModel = _sessionToSessionWithSectionsModelMapper.Build(session);
 
             return View(sessionWithSectionsModel);
+        }
+
+        public virtual ActionResult Delete(int sectionIdentity)
+        {
+            if (_sectionRepository.HasDependencies(sectionIdentity))
+            {
+                TempData["ShowSuccess"] = false;
+                return RedirectToAction(MVC.Section.Index());
+            }
+
+            try
+            {
+                _sectionRepository.Remove(sectionIdentity);
+            }
+            catch (NglException)
+            {
+                TempData["ShowSuccess"] = false;
+                return RedirectToAction(MVC.Section.Index());
+            }
+
+            TempData["ShowSuccess"] = true;
+            return RedirectToAction(MVC.Section.Index());
         }
 
         private static bool ContainsCourseCode(string searchString, Course course)

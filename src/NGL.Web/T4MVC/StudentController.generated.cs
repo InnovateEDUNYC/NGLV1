@@ -243,22 +243,28 @@ namespace NGL.Web.Controllers
                 public readonly string All = "All";
                 public readonly string BiographicalInformation = "BiographicalInformation";
                 public readonly string Delete = "Delete";
+                public readonly string FirstParentPartial = "FirstParentPartial";
                 public readonly string HomeAddress = "HomeAddress";
                 public readonly string Index = "Index";
                 public readonly string ParentPartial = "ParentPartial";
                 public readonly string ProgramStatus = "ProgramStatus";
+                public readonly string ReadonlyParentInfoPartial = "ReadonlyParentInfoPartial";
                 public readonly string Reports = "Reports";
+                public readonly string SecondParentPartial = "SecondParentPartial";
                 public readonly string StudentName = "StudentName";
             }
             public readonly string AcademicDetails = "~/Views/Student/AcademicDetails.cshtml";
             public readonly string All = "~/Views/Student/All.cshtml";
             public readonly string BiographicalInformation = "~/Views/Student/BiographicalInformation.cshtml";
             public readonly string Delete = "~/Views/Student/Delete.cshtml";
+            public readonly string FirstParentPartial = "~/Views/Student/FirstParentPartial.cshtml";
             public readonly string HomeAddress = "~/Views/Student/HomeAddress.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
             public readonly string ParentPartial = "~/Views/Student/ParentPartial.cshtml";
             public readonly string ProgramStatus = "~/Views/Student/ProgramStatus.cshtml";
+            public readonly string ReadonlyParentInfoPartial = "~/Views/Student/ReadonlyParentInfoPartial.cshtml";
             public readonly string Reports = "~/Views/Student/Reports.cshtml";
+            public readonly string SecondParentPartial = "~/Views/Student/SecondParentPartial.cshtml";
             public readonly string StudentName = "~/Views/Student/StudentName.cshtml";
         }
     }

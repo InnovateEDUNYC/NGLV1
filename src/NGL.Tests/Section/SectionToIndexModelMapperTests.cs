@@ -15,6 +15,7 @@ namespace NGL.Tests.Section
             var entity = new SectionBuilder().Build();
             var model = new SectionToIndexModelMapper().Build(entity);
             
+            model.SectionIdentity.ShouldBe(entity.SectionIdentity);
             model.SchoolYear.ShouldBe(((SchoolYearTypeEnum)entity.SchoolYear).Humanize());
             model.Term.ShouldBe(((TermTypeEnum)entity.TermTypeId).Humanize());
             model.ClassPeriod.ShouldBe(entity.ClassPeriodName);
