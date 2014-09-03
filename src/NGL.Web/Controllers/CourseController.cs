@@ -77,5 +77,13 @@ namespace NGL.Web.Controllers
             var parentCourseList = _genericRepository.GetAll<ParentCourse>().ToList();
             return parentCourseList.Select(parentCourse => _parentCourseToParentCourseListItemModelMapper.Build(parentCourse)).ToList();
         }
+
+        [HttpPost]
+        public virtual ActionResult Delete(int id)
+        {
+            _genericRepository.Delete(_genericRepository.Get<Course>(c => c.CourseIdentity == id));
+            _genericRepository.Save();
+            return RedirectToAction(MVC.Course.Index());
+        }
     }
 }

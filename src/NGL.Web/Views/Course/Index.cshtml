@@ -41,7 +41,13 @@
                     <td class="course-description">
                         @Html.DisplayFor(modelItem => item.CourseDescription)
                     </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Course", new { Id = item.Identity }, FormMethod.Post))
+                        {
 
+                            <input class="btn btn-primary delete-row-btn" type="submit" value="Delete" />
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
