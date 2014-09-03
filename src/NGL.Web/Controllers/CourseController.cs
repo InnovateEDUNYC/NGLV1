@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
+using NGL.Web.Data.Repositories;
+using NGL.Web.Exceptions;
 using NGL.Web.Infrastructure.Security;
 using NGL.Web.Models;
 using NGL.Web.Models.Course;
@@ -17,15 +19,17 @@ namespace NGL.Web.Controllers
         private readonly IMapper<Course, IndexModel> _courseToIndexModelMapper;
         private readonly IMapper<CreateModel, Course> _createModelToCourseMapper;
         private readonly IMapper<ParentCourse, ParentCourseListItemModel> _parentCourseToParentCourseListItemModelMapper;
+        private readonly ICourseRepository _courseRepository;
 
         public CourseController(IGenericRepository genericRepository, 
             IMapper<Course, IndexModel> courseToIndexModelMapper, 
-            IMapper<CreateModel, Course> createModelToCourseMapper, IMapper<ParentCourse, ParentCourseListItemModel> parentCourseToParentCourseListItemModelMapper)
+            IMapper<CreateModel, Course> createModelToCourseMapper, IMapper<ParentCourse, ParentCourseListItemModel> parentCourseToParentCourseListItemModelMapper, ICourseRepository courseRepository)
         {
             _genericRepository = genericRepository;
             _courseToIndexModelMapper = courseToIndexModelMapper;
             _createModelToCourseMapper = createModelToCourseMapper;
             _parentCourseToParentCourseListItemModelMapper = parentCourseToParentCourseListItemModelMapper;
+            _courseRepository = courseRepository;
         }
 
 
@@ -83,24 +87,15 @@ namespace NGL.Web.Controllers
         [HttpPost]
         public virtual ActionResult Delete(int id)
         {
-            _genericRepository.Delete(_genericRepository.Get<Course>(c => c.CourseIdentity == id));
+//            TempData["Error"] = false;
+
             try
             {
-                _genericRepository.Save();
-                TempData["Error"] = false;
+                _courseRepository.Delete(id);
             }
-            catch (DbUpdateException e)
+            catch (NglException)
             {
-                var inner = e.InnerException;
-                var innerInner = inner.InnerException as SqlException;
-                if (innerInner != null && innerInner.Number == 547)
-                {
-                    TempData["Error"] = true;
-                }
-                else
-                {
-                    throw;
-                }
+                TempData["Error"] = true;
             }
             return RedirectToAction(MVC.Course.Index());
         }

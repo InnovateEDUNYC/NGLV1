@@ -80,13 +80,9 @@ namespace NGL.Web.Data.Repositories
         {
             var parentCourseToDelete = GetWithCoursesAndGrades(parentCourseId);
 
-            if (parentCourseToDelete != null
-                && parentCourseToDelete.ParentCourseGrades.Any()
-                && parentCourseToDelete.Courses.Any())
-            {
-                return true;
-            }
-            return false;
+            return parentCourseToDelete != null
+                   && parentCourseToDelete.ParentCourseGrades.Any()
+                   && parentCourseToDelete.Courses.Any();
         }
 
         public void Delete(Guid parentCourseId)
