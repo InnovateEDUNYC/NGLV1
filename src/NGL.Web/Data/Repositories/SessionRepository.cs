@@ -48,7 +48,7 @@ namespace NGL.Web.Data.Repositories
             {
                 if (e.InnerException == null || e.InnerException.InnerException == null) throw;
                 var innerException = e.InnerException.InnerException as SqlException;
-                if (innerException != null && innerException.Number == 547)
+                if (innerException != null && innerException.Number == ConstraintExceptionNumber)
                 {
                     throw new NglException();
                 }
