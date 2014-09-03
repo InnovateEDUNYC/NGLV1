@@ -14,8 +14,15 @@ namespace NGL.UiTests.ClassPeriod
 
         public bool ClassPeriodExists(CreateModel createModel)
         {
-            return Find.Element(By.CssSelector("tr:last-of-type td.period-name")).Text.Equals(createModel.ClassPeriodName);
+            var result = Execute.ScriptAndReturn<string>("$('.period-name:contains(\"" + createModel.ClassPeriodName + "\")').text()");
+
+            return result != null;
         }
 
+        public void DeletePeriod(CreateModel createModel)
+        {
+            var result = Execute.ScriptAndReturn<string>("$('.period-name:contains(\"" + createModel.ClassPeriodName + "\")').text()").Trim();
+            Execute.Script("$('.period-name:contains(\"" + createModel.ClassPeriodName + "\") + td input').click()");
+        }
     }
 }
