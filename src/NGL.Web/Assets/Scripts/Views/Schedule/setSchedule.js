@@ -8,12 +8,12 @@ Ngl.schedule.setSchedule = (function () {
     }
 
     var configureSaveButton = function() {
-        $('button#schedule-student-button').click(function () {
+        $('#schedule-student-button').click(function () {
             $.ajax({
                 url: '/schedule/scheduleStudent',
                 type: 'POST',
                 dataType: 'json',
-                data: $('form#schedule-student-form').serialize(),
+                data: $('#schedule-student-form').serialize(),
                 success: function (sectionListItem) {
                     var errors = sectionListItem.errors;
                     if (!errors == false) {

@@ -22,9 +22,15 @@ a:hover {
     text-decoration: none;
 } 
 
+h2 {
+    text-transform: capitalize;
+}
+
 h4 {
     font-weight: bold;
 }
+
+
 /* Set padding to keep content from hitting the edges and top */
 .body-content {
     padding-left: 15px;
@@ -220,6 +226,7 @@ form .inline input {
 
 .panel-gray {
     background-color: #e9e9eb;
+    border-radius: 4px; 
     padding: 10px;
 }
 

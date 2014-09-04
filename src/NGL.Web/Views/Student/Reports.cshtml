@@ -7,7 +7,7 @@
 
 <h2>Students</h2>
 
-@Html.ActionLink("Grade Students", MVC.ParentCourseGrade.Index(), new { @class = "btn btn-primary" })
+@Html.ActionLink("Grade Students", MVC.ParentCourseGrade.Index(), new { @class = "btn btn-default" })
 
 <div class="table-container">
     <table class="table table-striped" id="student-table">
@@ -41,7 +41,7 @@
                         @Html.DisplayFor(modelItem => item.StudentUsi)
                     </td>
                     <td>
-                        @Html.ActionLink("Reports", MVC.Assessment.Week(item.StudentUsi, null), new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Reports", MVC.Assessment.Week(item.StudentUsi, null), new { @class = "btn btn-primary pull-right" })
                     </td>
                 </tr>
             }

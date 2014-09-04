@@ -1,18 +1,18 @@
-﻿@using Castle.DynamicProxy.Generators.Emitters
-@using Microsoft.Ajax.Utilities
+﻿@using Microsoft.Ajax.Utilities
 @model NGL.Web.Models.Assessment.AssessmentResultModel
 
 @{
     ViewBag.Title = "Student Report";
     const int numberOfDaysInWeek = 7;
 }
+
 <div class="panel panel-gray">
     <h2>Student Report</h2>
     <div class="row clear-right-margin">
         <div class="col-md-3">
             <div class="panel panel-default text-center">
                 <div>
-                    <img class="profile-image" src="@Model.ProfilePhotoUrl" />
+                    <img class="profile-image" src="@Model.ProfilePhotoUrl" alt=""/>
                     <h3>
                         <strong>
                             @Html.ActionLink(Model.FirstName + " " + Model.LastName, MVC.Student.Index(Model.StudentUsi), new {@class="black-text"})
