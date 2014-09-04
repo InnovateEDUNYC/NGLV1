@@ -369,3 +369,17 @@ body h4.panel:first-child {
     text-align: right;
     vertical-align: middle;
 }
+
+.header-buttons .btn {
+    margin: 0 8px;
+}
+
+.table-buttons form{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.table-buttons a{
+    display: inline-block;
+    margin: 0 10px;
+}

@@ -10,18 +10,22 @@
 @if (error == true)
 {
     <div id="error" class="alert alert-danger" role="alert">
-      The course could not be deleted because it has section dependencies.
+        The course could not be deleted because it has section dependencies.
     </div>
 }
 
-
-<h2>Courses</h2>
-@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
-{
-    @Html.ActionLink("Create New Course", MVC.Course.Create(), new { @class = "btn btn-default" })
-}
-
-<div class="table-container">
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Courses</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Create New Course", MVC.Course.Create(), new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -50,11 +54,10 @@
                     <td class="course-description">
                         @Html.DisplayFor(modelItem => item.CourseDescription)
                     </td>
-                    <td>
+                    <td class="text-right table-buttons">
                         @using (Html.BeginForm("Delete", "Course", new { Id = item.Identity }, FormMethod.Post))
                         {
-
-                            <input class="btn btn-primary delete-row-btn pull-right" type="submit" value="Delete" />
+                            <input class="btn btn-primary delete-row-btn" type="submit" value="Delete" />
                         }
                     </td>
                 </tr>

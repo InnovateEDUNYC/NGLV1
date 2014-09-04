@@ -4,12 +4,19 @@
     ViewBag.Title = "Users";
 }
 
-<h2>Users</h2>
-@if ((User as NglPrincipal).HasAccessTo("user", "create"))
-{
-    @Html.ActionLink("Add User", MVC.Account.AddUser(), new { @class = "btn btn-default" })}
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Users</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("user", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Add User", MVC.Account.AddUser(), new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
 
-<div class="table-container">
+<div class="index-table-container">
     <table class="table table-striped" id="users">
         <thead>
             <tr>

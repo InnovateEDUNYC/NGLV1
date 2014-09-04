@@ -21,16 +21,19 @@
         @classPeriodName cannot be deleted. It is assigned to a section
     </div>
 }
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Class Periods</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Add Period", MVC.ClassPeriod.Create(), new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
 
-<h2>Class Periods</h2>
-
-@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
-{
-    @Html.ActionLink("Add Period", MVC.ClassPeriod.Create(), new { @class = "btn btn-default" })
-}
-
-
-<div class="table-container">
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -48,10 +51,10 @@
                     </td>
                     @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "delete"))
                     {
-                        <td>
+                        <td class="table-buttons text-right">
                             <form action="/ClassPeriod/Delete" method="POST">
                                 <input type="hidden" name="classPeriodName" value="@item.ClassPeriodName" />
-                                <input type="submit" class="btn btn-primary pull-right" value="Delete" />
+                                <input type="submit" class="btn btn-primary" value="Delete" />
                             </form>
                         </td>
                     }

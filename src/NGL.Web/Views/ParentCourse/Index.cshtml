@@ -9,17 +9,22 @@
 @if (error == true)
 {
     <div id="error" class="alert alert-danger" role="alert">
-      The parent course could not be deleted because it has course or parent course grade dependencies.
+        The parent course could not be deleted because it has course or parent course grade dependencies.
     </div>
 }
 
-<h2>Parent Courses</h2>
-@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
-{
-    @Html.ActionLink("Add Parent Course", MVC.ParentCourse.Create(), new { @class = "btn btn-default" })
-}
-
-<div class="table-container">
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Parent Courses</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Add Parent Course", MVC.ParentCourse.Create(), new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -48,14 +53,11 @@
                     <td class="parent-course-description">
                         @Html.DisplayFor(modelItem => item.ParentCourseDescription)
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", MVC.ParentCourse.Edit(item.Id), new { @class = "btn btn-primary" })
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("Delete","ParentCourse", new { Id = item.Id}, FormMethod.Post))
+                    <td class="text-right table-buttons">
+                        @Html.ActionLink("Edit", MVC.ParentCourse.Edit(item.Id), new { @class = "btn btn-default inline-block" })
+                        @using (Html.BeginForm("Delete", "ParentCourse", new { Id = item.Id }, FormMethod.Post))
                         {
-    
-                        <input class="btn btn-primary delete-row-btn" type="submit" value="Delete" />
+                            <input class="btn btn-primary delete-row-btn inline-block" type="submit" value="Delete" />
                         }
                     </td>
                 </tr>

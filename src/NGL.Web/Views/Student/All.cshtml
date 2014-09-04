@@ -25,19 +25,25 @@
     </div>
 }
 
-<h2>Students</h2>
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Students</h2>
+    </div>
+    <div class="header-buttons">
 
-@if ((User as NglPrincipal).HasAccessTo("enrollment", "create"))
-{
-    @Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent(), new { @class = "btn btn-default" })
-}
+        @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+        {
+            @Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent(), new { @class = "btn btn-default" })
 
-@if ((User as NglPrincipal).HasAccessTo("attendance", "clearAllFlags"))
-{
-    <button id="clear-all-flags" class="btn btn-default pull-right">Clear All Flags</button>
-}
+        }
+        @if ((User as NglPrincipal).HasAccessTo("attendance", "clearAllFlags"))
+        {
+            <button id="clear-all-flags" class="btn btn-default pull-right">Clear All Flags</button>
+        }
+    </div>
+</div>
 
-<div class="table-container">
+<div class="index-table-container">
     <table class="table table-striped" id="student-table">
         <thead>
             <tr>
@@ -69,8 +75,8 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.StudentUsi)
                     </td>
-                    <td>
-                        @Html.ActionLink("Profile", MVC.Student.Index(item.StudentUsi), new { @class = "btn btn-primary pull-right" })
+                    <td class="table-buttons text-right">
+                        @Html.ActionLink("Profile", MVC.Student.Index(item.StudentUsi), new { @class = "btn btn-primary" })
                     </td>
                 </tr>
             }
