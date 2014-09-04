@@ -127,7 +127,7 @@
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="ObjectMother.cs" />
-    <Compile Include="Course\CanCreateCourse.cs" />
+    <Compile Include="Course\CanCreateAndDeleteCourse.cs" />
     <Compile Include="Course\CourseCreatePage.cs" />
     <Compile Include="Course\CourseIndexPage.cs" />
     <Compile Include="Enrollment\EnrollmentPage.cs" />

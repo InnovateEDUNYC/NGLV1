@@ -9,7 +9,7 @@ namespace NGL.UiTests.ParentCourse
 {
         [Story(
         AsA = "As a school admin",
-        IWant = "I want to create parent courses",
+        IWant = "I want to create, edit, and delete parent courses",
         SoThat = "So that I can manage what top level courses are offered")]
     public class CanCreateEditAndDeleteParentCourse
     {
@@ -78,9 +78,9 @@ namespace NGL.UiTests.ParentCourse
                .And(_ => IAmOnTheCreateParentCoursePage())
                .When(_ => IHaveEnteredValidInputForAllFields())
                .Then(_ => ANewParentCourseShouldBeDisplayedOnTheParentCourseIndexPage())
-               .And(_ => IEditTheParentCourse())
+               .When(_ => IEditTheParentCourse())
                .Then(_ => TheParentCourseIsUpdatedOnTheParentCourseIndexPage())
-               .And(_ => IDeleteTheParentCourse())
+               .When(_ => IDeleteTheParentCourse())
                .Then(_ => TheParentCourseIsNotOnTheParentCourseIndexPage())
                .BDDfy();
         }
