@@ -14,18 +14,18 @@ namespace NGL.UiTests.Location
 
         public bool LocationExists(CreateModel createModel)
         {
-            var classroomIdCodeExists =
-                Find.Element(By.CssSelector("tr:last-of-type td.classroom-code")).Text.Equals(createModel.ClassroomIdentificationCode);
+            var classroomIdCodeExists = Execute.ScriptAndReturn<string>("$('.classroom-code:contains(\"" + createModel.ClassroomIdentificationCode + "\")').text()");
 
+            var maxSeatsExists = Execute.ScriptAndReturn<string>("$('.max-seats:contains(\"" + createModel.MaximumNumberOfSeats + "\")').text()");
 
-            var maxSeatsExists =
-                Find.Element(By.CssSelector("tr:last-of-type td.max-seats")).Text.Equals(createModel.MaximumNumberOfSeats.ToString());
+            var optimalSeatsExists = Execute.ScriptAndReturn<string>("$('.optimal-seats:contains(\"" + createModel.OptimalNumberOfSeats + "\")').text()");
 
+            return classroomIdCodeExists !=null && maxSeatsExists != null && optimalSeatsExists != null;
+        }
 
-            var optimalSeatsExists =
-                Find.Element(By.CssSelector("tr:last-of-type td.optimal-seats")).Text.Equals(createModel.OptimalNumberOfSeats.ToString());
-
-            return classroomIdCodeExists && maxSeatsExists && optimalSeatsExists;
+        public void Delete(CreateModel locationCreateModel)
+        {
+            Execute.Script("$('.classroom-code:contains(\"" +locationCreateModel.ClassroomIdentificationCode + "\")').parent().find('.btn-primary').click()");
         }
     }
 }
