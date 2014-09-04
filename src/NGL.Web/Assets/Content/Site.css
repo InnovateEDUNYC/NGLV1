@@ -223,8 +223,17 @@ form .inline input {
     box-shadow: none;
 }
 
+.panel-above-table {
+    padding-left: 30px;
+}
+
 body h4.panel:first-child {
     margin-top: 0;
+}
+
+.extra-vertical-padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .arrow {
@@ -284,6 +293,14 @@ body h4.panel:first-child {
 
 .right-elbow-room {
     margin-right: 5px;
+}
+
+.right-elbow-room-20 {
+    margin-right: 20px;
+}
+
+.right-elbow-room-80 {
+    margin-right: 80px;
 }
 
 .input-width {

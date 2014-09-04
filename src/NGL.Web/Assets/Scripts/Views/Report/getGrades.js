@@ -19,7 +19,6 @@ Ngl.report.getGrades = (function() {
             var parentCourseId = $("#ParentCourseId").val();
             var url = updateGetResultsUrl(sessionId, parentCourseId);
             if (sessionId != "" && parentCourseId != "") {
-                debugger
                 window.location = url;
             }
         });

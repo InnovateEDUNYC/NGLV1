@@ -23,6 +23,11 @@
     max-width: 113px;
 }
 
+.assessment-table-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 .student-name {
     display: inline-block;
     width: 240px;
