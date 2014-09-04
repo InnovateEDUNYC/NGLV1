@@ -5,5 +5,6 @@
         public string CourseCode { get; set; }
         public string CourseTitle { get; set; }
         public string CourseDescription { get; set; }
+        public int Identity { get; set; }
     }
 }

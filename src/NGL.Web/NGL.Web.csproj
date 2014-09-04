@@ -296,8 +296,10 @@
     </Compile>
     <Compile Include="Data\Repositories\AssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\AttendanceRepository.cs" />
+    <Compile Include="Data\Repositories\CourseRepository.cs" />
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
+    <Compile Include="Data\Repositories\ICourseRepository.cs" />
     <Compile Include="Data\Repositories\IParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\IParentRepository.cs" />
     <Compile Include="Data\Repositories\IPeriodRepository.cs" />

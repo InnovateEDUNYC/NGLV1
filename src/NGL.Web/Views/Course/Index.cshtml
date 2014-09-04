@@ -4,7 +4,16 @@
 
 @{
     ViewBag.Title = "Courses";
+    var error = TempData["Error"] as bool?;
 }
+
+@if (error == true)
+{
+    <div id="error" class="alert alert-danger" role="alert">
+      The course could not be deleted because it has section dependencies.
+    </div>
+}
+
 
 <h2>Courses</h2>
 @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
@@ -41,7 +50,13 @@
                     <td class="course-description">
                         @Html.DisplayFor(modelItem => item.CourseDescription)
                     </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Course", new { Id = item.Identity }, FormMethod.Post))
+                        {
 
+                            <input class="btn btn-primary delete-row-btn" type="submit" value="Delete" />
+                        }
+                    </td>
                 </tr>
             }
         </tbody>

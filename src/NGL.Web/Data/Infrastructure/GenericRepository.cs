@@ -106,5 +106,10 @@ namespace NGL.Web.Data.Infrastructure
             var existing = DbContext.Set<TEntity>().Find(id);
             DbContext.Set<TEntity>().Remove(existing);
         }
+
+        public void Delete<TEntity>(TEntity entity) where TEntity : class
+        {
+            DbContext.Set<TEntity>().Remove(entity);
+        }
     }
 }
