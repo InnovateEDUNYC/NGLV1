@@ -1,80 +1,79 @@
-﻿@using System.Diagnostics.Eventing.Reader
-@using Castle.Core.Internal
-@using NGL.Web.Models.Assessment
-@using Ninject
+﻿@using Castle.Core.Internal
 @model NGL.Web.Models.Assessment.EnterResultsModel
 
 @{
     ViewBag.Title = "Enter Assessment Results";
 }
-
-<h3>
-    <strong>
-        @Model.AssessmentTitle
-    </strong>
-</h3>
-<div class="ngl-color top-buffer-20">
-    <h4>
+<div class="col-md-8">
+    <h3 class="panel panel-default">
         <strong>
-            @Model.Section,
-            @Model.Session
+            @Model.AssessmentTitle
         </strong>
-    </h4>
-</div>
+    </h3>
+    <div class="panel">
+        <div class="ngl-color top-buffer-10">
+            <h4>
+                <strong>
+                    @Model.Section,
+                    @Model.Session
+                </strong>
+            </h4>
+        </div>
 
-<h4 class="top-buffer-20">
-    Date:
-    @Model.AssessmentDate
-</h4>
+        <h4 class="top-buffer-20">
+            Date:
+            @Model.AssessmentDate
+        </h4>
 
-<h4 class="top-buffer-20">
-    @Model.CCSS
-</h4>
+        <h4 class="top-buffer-20">
+            CCSS: @Model.CCSS
+        </h4>
+    </div>
 
-<div>
-    <h4 class="panel panel-default strong">
-        enter assessment results
-        <span class="pull-right">Result</span>
-    </h4>
-</div>
+    <div class="top-buffer-30">
+        <h4 class="panel panel-default strong">
+            enter assessment results
+            <span class="pull-right right-elbow-room-20">Result</span>
+        </h4>
+    </div>
 
-<div class="dl-horizontal panel panel-default">
-    @if (!Model.StudentResults.IsNullOrEmpty())
-    {
-        <form method="POST" action="">
-            <input class="hidden" name="AssessmentId" value="@Model.AssessmentId" />
-            <div class="attendance-list-and-buttons">
-                <div class="table-container">
-                    <table class="table table-striped attendance-list">
-                        @for (var i = 0; i < Model.StudentResults.Count; i++)
-                        {
-                            <tr>
-                                <td class="vertical-align-middle">
-                                    <div class="student-name">@Html.DisplayTextFor(erm => erm.StudentResults[i].Name)</div>
-                                </td>
-                                <td>
-                                    @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult, new { @id = "StudentResults_" + i + "__AssessmentResult", @class = "grade-textbox" })
-                                </td>
-                                <td>
-                                    @Html.ValidationMessageFor(s => Model.StudentResults[i].AssessmentResult)
-                                </td>
-                                <div class="hidden">
-                                    @Html.TextBoxFor(s => Model.StudentResults[i].StudentUsi)
-                                </div>
-                            </tr>
-                        }
-                    </table>
+    <div class="dl-horizontal panel panel-default">
+        @if (!Model.StudentResults.IsNullOrEmpty())
+        {
+            <form method="POST" action="">
+                <input class="hidden" name="AssessmentId" value="@Model.AssessmentId" />
+                <div>
+                    <div class="assessment-table-container">
+                        <table class="table table-striped attendance-list">
+                            @for (var i = 0; i < Model.StudentResults.Count; i++)
+                            {
+                                <tr>
+                                    <td class="vertical-align-middle">
+                                        <div class="student-name">@Html.DisplayTextFor(erm => erm.StudentResults[i].Name)</div>
+                                    </td>
+                                    <td class="text-right ">
+                                        @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult, new { @id = "StudentResults_" + i + "__AssessmentResult", @class = "grade-textbox" })
+                                        <div class="right-elbow-room-80">@Html.ValidationMessageFor(s => Model.StudentResults[i].AssessmentResult)</div>
+                                    </td>
+                                    
+                                    <div class="hidden">
+                                        @Html.TextBoxFor(s => Model.StudentResults[i].StudentUsi)
+                                    </div>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
                 </div>
-
-            </div>
-            <div class="cancel-and-save-buttons">
-                @Html.ActionLink("Cancel", MVC.Assessment.Index(), new { @class = "btn btn-default" })
-                <button class="btn btn-primary" type="submit">Save Results</button>
-            </div>
-        </form>
-    }
-else
-{
-        <p>No students have been assigned to this section on this assessment date</p>
-    }
+                <div class="cancel-and-save-buttons">
+                    @Html.ActionLink("Cancel", MVC.Assessment.Index(), new { @class = "btn btn-default" })
+                    <button class="btn btn-primary" type="submit">Save Results</button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <p>No students have been assigned to this section on this assessment date</p>
+        }
+    </div>
 </div>

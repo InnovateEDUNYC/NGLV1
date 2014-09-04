@@ -286,6 +286,14 @@ body h4.panel:first-child {
     margin-right: 5px;
 }
 
+.right-elbow-room-20 {
+    margin-right: 20px;
+}
+
+.right-elbow-room-80 {
+    margin-right: 80px;
+}
+
 .input-width {
     width: 340px;
 }
