@@ -22,12 +22,18 @@
     </div>
 }
 
-<h2>Sessions</h2>
-    @if((User as NglPrincipal).HasAccessTo("session", "create")){
-        @Html.ActionLink("Create New Session", MVC.Session.Create(), new { @class = "btn btn-default"})
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Sessions</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("session", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Create New Session", MVC.Session.Create(), new { @class = "btn btn-default" })
+        </div>
     }
-
-<div class="table-container">
+</div>
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
