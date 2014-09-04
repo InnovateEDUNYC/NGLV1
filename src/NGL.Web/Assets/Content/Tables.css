@@ -1,7 +1,14 @@
 ﻿.table-container {
     background-color: white;
     margin: 30px 0;
-    padding: 60px 30px;
+    padding: 60px;
+    border-radius: 4px;
+}
+
+.table-with-buttons-container {
+    background-color: white;
+    margin: 10px 0;
+    padding: 10px 30px 65px;
     border-radius: 4px;
 }
 

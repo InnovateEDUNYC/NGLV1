@@ -223,6 +223,10 @@ form .inline input {
     box-shadow: none;
 }
 
+.panel-above-table {
+    padding-left: 30px;
+}
+
 body h4.panel:first-child {
     margin-top: 0;
 }

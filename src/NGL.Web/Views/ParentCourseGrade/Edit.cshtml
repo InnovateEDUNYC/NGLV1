@@ -8,12 +8,12 @@
 <div class="panel panel-default">
     <h2>@ViewBag.Title</h2>
 </div>
-<div class="row">
-    <div class="col-md-5">
+<div>
+    <div class="panel panel-default">
         <h4><strong>Session</strong></h4>
-        @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control full-input", @id = "Session" })
+        @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control", @id = "Session" })
         <h4><strong>Parent Course</strong></h4>
-        @Html.TextBoxFor(m => m.FindParentCourseModel.ParentCourse, new { @class = "form-control full-input", @id = "ParentCourse" })
+        @Html.TextBoxFor(m => m.FindParentCourseModel.ParentCourse, new { @class = "form-control", @id = "ParentCourse" })
 
         @Html.HiddenFor(m => m.FindParentCourseModel.SessionId, new { @id = "SessionId" })
         @Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "ParentCourseId" })
