@@ -1,4 +1,4 @@
-﻿.btn {
+﻿a.btn, button.btn {
     border-radius: 20px;
 }
 
@@ -10,13 +10,13 @@
     margin-top: -34px;
 }
 
-.btn-primary:hover {
+a.btn-primary:hover, button.btn-primary:hover {
     background-color: #249695;
     border-color: #249695;
 }
 
 .btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:link {
-    background-color: #2DBCBB !important;
+    background-color: #2DBCBB;
     border-color: #2DBCBB;
 }
 
