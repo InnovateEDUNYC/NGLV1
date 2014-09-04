@@ -63,7 +63,7 @@ namespace NGL.Web.Data.Repositories
                 .Where(pc => pc.Id == parentCourseId)
                 .Include(pc => pc.ParentCourseGrades)
                 .Include(pc => pc.Courses)
-                .FirstOrDefault();
+                .ToList().FirstOrDefault();
         }
 
         public List<ParentCourseGrade> GetParentCourseGrades(Guid parentCourseId, int sessionId)
@@ -81,8 +81,8 @@ namespace NGL.Web.Data.Repositories
             var parentCourseToDelete = GetWithCoursesAndGrades(parentCourseId);
 
             return parentCourseToDelete != null
-                   && parentCourseToDelete.ParentCourseGrades.Any()
-                   && parentCourseToDelete.Courses.Any();
+                   && (parentCourseToDelete.ParentCourseGrades.Any()
+                   || parentCourseToDelete.Courses.Any());
         }
 
         public void Delete(Guid parentCourseId)
