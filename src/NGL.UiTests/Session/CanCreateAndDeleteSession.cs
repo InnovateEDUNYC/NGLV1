@@ -1,8 +1,5 @@
-﻿using System;
-using NGL.Tests.Builders;
+﻿using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
-using NGL.Web;
-using NGL.Web.Data.Entities;
 using NGL.Web.Models.Session;
 using Shouldly;
 using TestStack.BDDfy;
@@ -58,7 +55,7 @@ namespace NGL.UiTests.Session
         }
 
         [Fact]
-        public void ShouldCreateSession()
+        public void ShouldCreateAndDeleteSession()
         {
             this.Given(_ => IHaveLoggedIn())
                 .And(_ => IAmOnTheCreateSessionPage())

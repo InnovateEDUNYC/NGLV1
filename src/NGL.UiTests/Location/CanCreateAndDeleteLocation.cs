@@ -9,10 +9,10 @@ namespace NGL.UiTests.Location
 {
     [Story(
         AsA = "As a school admin",
-        IWant = "I want to create locations",
+        IWant = "I want to create and delete locations",
         SoThat = "So that I know what are the different class rooms"
         )]
-    public class CanCreateLocation
+    public class CanCreateAndDeleteLocation
     {
         private HomePage _homePage;
         private CourseGenerationPage _courseGenerationPage;
@@ -20,36 +20,52 @@ namespace NGL.UiTests.Location
         private CreateModel _locationCreateModel;
         private LocationIndexPage _locationIndexPage;
 
-        public void GivenIHaveLoggedIn()
+        public void IHaveLoggedIn()
         {
             _homePage = Host.Instance
            .NavigateToInitialPage<HomePage>()
            .Login(ObjectMother.UserJohnSmith.ViewModel); 
         }
 
-        public void AndGivenIAmOnTheCreateLocationPage()
+        public void IAmOnTheCreateLocationPage()
         {
             _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
             _locationCreatePage = _courseGenerationPage.GoToLocationIndexPage().GoToCreatePage();
         }
 
-        public void WhenIHaveEnteredValidInputForAllFields()
+        public void IHaveEnteredValidInputForAllFields()
         {
             _locationCreateModel = new CreateLocationModelBuilder().Build();
             _locationIndexPage = _locationCreatePage.CreateLocation(_locationCreateModel);
         }
 
-        public void ThenANewLocationShouldBeDisplayedOnTheLocationIndexPage()
+        public void ANewLocationShouldBeDisplayedOnTheLocationIndexPage()
         {
             var locationExists = _locationIndexPage.LocationExists(_locationCreateModel);
             locationExists.ShouldBe(true);
         }
 
 
-        [Fact]
-        public void ShouldCreateLocation()
+        private void IDeleteALocation()
         {
-            this.BDDfy();
+            _locationIndexPage.Delete(_locationCreateModel);
+        }
+
+        private void TheLocationShouldNotBeDisplayed()
+        {
+            _locationIndexPage.LocationExists(_locationCreateModel).ShouldBe(false);
+        }
+
+        [Fact]
+        public void ShouldCreateAndDeleteLocation()
+        {
+            this.Given(_ => IHaveLoggedIn())
+                .And(_ => IAmOnTheCreateLocationPage())
+                .When(_ => IHaveEnteredValidInputForAllFields())
+                .Then(_ => ANewLocationShouldBeDisplayedOnTheLocationIndexPage())
+                .When(_ => IDeleteALocation())
+                .Then(_ => TheLocationShouldNotBeDisplayed())
+                .BDDfy();
         }
     }
 }

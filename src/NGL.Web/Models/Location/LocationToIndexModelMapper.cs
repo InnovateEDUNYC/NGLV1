@@ -7,6 +7,7 @@
             target.ClassroomIdentificationCode = source.ClassroomIdentificationCode;
             target.MaximumNumberOfSeats = source.MaximumNumberOfSeats;
             target.OptimalNumberOfSeats = source.OptimalNumberOfSeats;
+            target.Identity = source.LocationIdentity;
         }
     }
 }
