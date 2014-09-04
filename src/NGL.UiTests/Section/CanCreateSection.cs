@@ -17,6 +17,7 @@ namespace NGL.UiTests.Section
         private SectionCreatePage _sectionCreatePage;
         private CreateModel _createSectionModel;
         private SectionIndexPage _sectionIndexPage;
+        private int _sectionsCount;
 
         public void IHaveLoggedIn()
         {
@@ -43,6 +44,17 @@ namespace NGL.UiTests.Section
             sectionExists.ShouldBe(true);
         }
 
+        private void IDeleteTheSection()
+        {
+            _sectionsCount = _sectionIndexPage.GetNumberOfSections();
+            _sectionIndexPage = _sectionIndexPage.GoDelete(_createSectionModel);
+        }
+
+        private void TheSectionIsNotOnTheSectionIndexPage()
+        {
+            _sectionIndexPage.GetNumberOfSections().ShouldBe(_sectionsCount - 1);
+        }
+
         [Fact]
         public void ShouldCreateSection()
         {
@@ -50,6 +62,8 @@ namespace NGL.UiTests.Section
                 .And(_ => IAmOnTheCreateSectionPage())
                 .When(_ => IHaveEnteredValidInputForAllFields())
                 .Then(_ => ANewSectionShouldBeDisplayedOnTheSectionIndexPage())
+                .When(_ => IDeleteTheSection())
+                .Then(_ => TheSectionIsNotOnTheSectionIndexPage())
                 .BDDfy();
         }
     }

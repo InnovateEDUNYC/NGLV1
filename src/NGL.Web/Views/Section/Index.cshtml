@@ -32,6 +32,21 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.SchoolYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Term)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocalCourseCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClassPeriod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Classroom)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.UniqueSectionCode)
                 </th>
             </tr>
@@ -40,7 +55,22 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr data-section="@item.Classroom-@item.ClassPeriod-@item.LocalCourseCode-@item.Term @item.SchoolYear">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SchoolYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Term)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocalCourseCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClassPeriod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Classroom)
+                    </td>
                     <td class="section-code">
                         @Html.DisplayFor(modelItem => item.UniqueSectionCode)
                     </td>
@@ -49,7 +79,7 @@
                         <td>
                             <form action="/Section/Delete" method="POST">
                                 <input type="hidden" name="sectionIdentity" value="@item.SectionIdentity" />
-                                <input type="submit" class="btn btn-primary pull-right" value="Delete" />
+                                <input type="submit" class="btn btn-primary pull-right delete-row-btn" value="Delete" />
                             </form>
                         </td>
                     }
