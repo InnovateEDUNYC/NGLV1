@@ -3,6 +3,23 @@
 
 @{
     ViewBag.Title = "Classrooms";
+    var success = TempData["ShowSuccess"] as bool?;
+    var location = TempData["location"];
+}
+
+@if (success == true)
+{
+    <div id="profile-edit-success" class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        @location successfully deleted.
+    </div>
+}
+@if (success == false)
+{
+    <div id="profile-edit-error" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        @location cannot be deleted. It is in use.
+    </div>
 }
 
 <h2>Classrooms</h2>
@@ -40,6 +57,16 @@
                     <td class="optimal-seats">
                         @Html.DisplayFor(modelItem => item.OptimalNumberOfSeats)
                     </td>
+                    @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "delete"))
+                    {
+                        <td>
+                            <form action="/Location/Delete" method="POST">
+                                <input type="hidden" name="locationIdentity" value="@item.Identity" />
+                                <input type="hidden" name="locationName" value="@item.ClassroomIdentificationCode" />
+                                <input type="submit" class="btn btn-primary pull-right" value="Delete" />
+                            </form>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

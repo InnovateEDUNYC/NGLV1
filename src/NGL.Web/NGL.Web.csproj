@@ -300,6 +300,7 @@
     <Compile Include="Data\Repositories\IAssessmentSectionRepository.cs" />
     <Compile Include="Data\Repositories\IAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\ICourseRepository.cs" />
+    <Compile Include="Data\Repositories\ILocationRepository.cs" />
     <Compile Include="Data\Repositories\IParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\IParentRepository.cs" />
     <Compile Include="Data\Repositories\IPeriodRepository.cs" />
@@ -308,6 +309,7 @@
     <Compile Include="Data\Repositories\IStudentRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionAttendanceRepository.cs" />
     <Compile Include="Data\Repositories\IStudentSectionRepository.cs" />
+    <Compile Include="Data\Repositories\LocationRepository.cs" />
     <Compile Include="Data\Repositories\ParentCourseRepository.cs" />
     <Compile Include="Data\Repositories\ParentRepository.cs" />
     <Compile Include="Data\Repositories\PeriodRepository.cs" />
