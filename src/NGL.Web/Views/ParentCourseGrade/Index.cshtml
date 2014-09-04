@@ -9,13 +9,14 @@
     <h2>@ViewBag.Title</h2>
 </div>
 <div class="panel panel-default panel-above-table">
-        <h4><strong>Session</strong></h4>
-        @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control", @id = "Session" })
-        <h4><strong>Parent Course</strong></h4>
-        @Html.TextBoxFor(m => m.FindParentCourseModel.ParentCourse, new { @class = "form-control ", @id = "ParentCourse" })
+    <h4><strong>Session</strong></h4>
+    @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control", @id = "Session" })
+    <h4><strong>Parent Course</strong></h4>
+    @Html.TextBoxFor(m => m.FindParentCourseModel.ParentCourse, new { @class = "form-control ", @id = "ParentCourse" })
 
-        @Html.HiddenFor(m => m.FindParentCourseModel.SessionId, new { @id = "SessionId" })
-        @Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "ParentCourseId" })
+    @Html.HiddenFor(m => m.FindParentCourseModel.SessionId, new { @id = "SessionId" })
+    @Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "ParentCourseId" })
+    <br/>
 </div>
 <div class="panel panel-default table-with-buttons-container">
     @if (!Model.ParentGradesModelList.IsNullOrEmpty())
@@ -52,11 +53,11 @@
         @if ((User as NglPrincipal).HasAccessTo("grades", "edit"))
         {
         @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId),
-                new { @class = "btn btn-primary top-buffer-20 pull-right" })
+                new { @class = "btn btn-primary" })
         }
         @if ((User as NglPrincipal).HasAccessTo("grades", "view"))
         {
-        @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "top-buffer-20 btn btn-default pull-right right-elbow-room" })
+        @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "btn btn-default right-elbow-room" })
         }
     </div>
 

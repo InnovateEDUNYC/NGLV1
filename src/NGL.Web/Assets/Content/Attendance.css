@@ -75,6 +75,7 @@ table.attendance-list input[type="radio"]:checked + .custom-checkbox {
 .cancel-and-save-buttons {
     width: 100%;
     text-align: right;
+    margin-top: 20px;
 }
 
 .attendance-flags {

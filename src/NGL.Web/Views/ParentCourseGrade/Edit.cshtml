@@ -5,11 +5,11 @@
     ViewBag.Title = "Assign Student Grades";
 }
 
-<div class="panel panel-default">
+<div class="panel panel-default panel-above-table">
     <h2>@ViewBag.Title</h2>
 </div>
 <div>
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-above-table">
         <h4><strong>Session</strong></h4>
         @Html.TextBoxFor(m => m.FindParentCourseModel.Session, new { @class = "form-control", @id = "Session" })
         <h4><strong>Parent Course</strong></h4>
@@ -17,11 +17,10 @@
 
         @Html.HiddenFor(m => m.FindParentCourseModel.SessionId, new { @id = "SessionId" })
         @Html.HiddenFor(m => m.FindParentCourseModel.ParentCourseId, new { @id = "ParentCourseId" })
+        <br/>
     </div>
 </div>
-<br/>
-
-<div class="panel panel-default">
+<div class="panel panel-default table-with-buttons-container">
     @if (!Model.ParentGradesModelList.IsNullOrEmpty())
     {
         <form method="POST" action="">
@@ -54,7 +53,7 @@
                             @Model.ParentGradesModelList[i].StudentFirstName @Model.ParentGradesModelList[i].StudentLastName
                         </td>
                         <td>
-                            @Html.TextBoxFor(s => Model.ParentGradesModelList[i].Grade, new { @id = "grade-" + i, @class = "grade-textbox" })<br/><br/>
+                            @Html.TextBoxFor(s => Model.ParentGradesModelList[i].Grade, new { @id = "grade-" + i, @class = "grade-textbox" })
                             @Html.ValidationMessageFor(s => Model.ParentGradesModelList[i].Grade, "Grade cannot be more than 20 characters.", new { @class = "grade-textbox-error" })
                         </td>
                         <div class="hidden">
