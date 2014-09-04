@@ -55,7 +55,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr data-section="@item.SectionIdentity">
+                <tr data-section="@item.Classroom-@item.ClassPeriod-@item.LocalCourseCode-@item.Term @item.SchoolYear">
                     <td>
                         @Html.DisplayFor(modelItem => item.SchoolYear)
                     </td>
