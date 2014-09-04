@@ -33,10 +33,7 @@ namespace NGL.UiTests.ParentCourse
 
         public ParentCourseIndexPage GoDelete(string parentCourseCode)
         {
-//            var row = Find.Element(By.CssSelector("tr[data-course = 'parentCourseCode']"));
-//            Execute.Script("$(tr).data('"+parentCourseCode+"')");
             Execute.Script("$('[data-course=\"" + parentCourseCode + "\"]').find('.delete-row-btn').click()");
-//            row.FindElement(By.ClassName("delete-row-btn")).Click();
             
             return this;
         }

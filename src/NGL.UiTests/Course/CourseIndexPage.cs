@@ -1,4 +1,5 @@
-﻿using NGL.Web.Models.Course;
+﻿using System.Linq;
+using NGL.Web.Models.Course;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 
@@ -25,5 +26,16 @@ namespace NGL.UiTests.Course
             return courseCodeExists && courseTitleExists && courseDescriptionExists;
         }
 
+        public int GetNumberOfCourses()
+        {
+            return Find.Elements(By.ClassName("delete-row-btn")).Count();
+        }
+
+        public CourseIndexPage GoDelete(string courseCode)
+        {
+            Execute.Script("$('[data-course=\"" + courseCode + "\"]').find('.delete-row-btn').click()");
+
+            return this;
+        }
     }
 }
