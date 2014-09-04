@@ -16,6 +16,10 @@
     margin-top: 30px;
 }
 
+.top-buffer-20 {
+    margin-top: 20px;
+}
+
 .top-buffer-10 {
     margin-top: 10px;
 }
@@ -194,16 +198,6 @@ form .inline input {
     width: 100%;
 }
 
-/* Assessment Page */
-
-.enter-mastery {
-    max-width: 330px;
-}
-
-.enter-mastery .form-control {
-    max-width: 100px;
-}
-
 .panel-gray {
     background-color: #e9e9eb;
     padding: 10px;
@@ -290,4 +284,12 @@ body h4.panel:first-child {
 
 .right-elbow-room {
     margin-right: 5px;
+}
+
+.input-width {
+    width: 340px;
+}
+
+.ngl-color {
+    color: #2DBCBB;
 }

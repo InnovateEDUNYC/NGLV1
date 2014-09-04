@@ -1937,6 +1937,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Scripts\007 - Schema - Elmah.sql" />
+    <Content Include="Assets\Content\Assessment.css" />
     <Content Include="Assets\Content\Attendance.css" />
     <Content Include="Assets\Content\bootstrap-theme.css" />
     <Content Include="Assets\Content\bootstrap-theme.min.css" />
