@@ -1,5 +1,6 @@
 ﻿.attendance-list {
     table-layout: fixed;
+    margin-top: 20px;
 }
 
 .table > thead > tr > th.attendance-type {
