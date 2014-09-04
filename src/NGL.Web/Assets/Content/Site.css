@@ -187,6 +187,10 @@ form .inline input {
     border-left: #2DBCBB 6px solid;
 }
 
+td.scheduled-section-dates {
+    text-align: right;
+}
+
 .padding-30 {
     padding: 30px !important;
 }

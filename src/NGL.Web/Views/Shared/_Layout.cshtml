@@ -77,6 +77,18 @@
                                 </a>
                             </li>
                         }
+                        
+                        if ((User as NglPrincipal).HasAccessTo("assessment", "view") || (User as NglPrincipal).HasAccessTo("grades", "view"))
+                        {
+                            <li>
+                                <a class="text-center" href="@Url.Action(MVC.Student.Reports())">
+                                    <span class="fa fa-flag-o fa-2x"></span>
+                                    <br />
+                                    Reports
+                                </a>
+                            </li>
+                        }
+                        
                         if ((User as NglPrincipal).HasAccessTo("enrollment", "view"))
                         {
                             <li>
@@ -88,16 +100,6 @@
                             </li>
                         }
 
-                        if ((User as NglPrincipal).HasAccessTo("assessment", "view") || (User as NglPrincipal).HasAccessTo("grades", "view"))
-                        {
-                            <li>
-                                <a class="text-center" href="@Url.Action(MVC.Student.Reports())">
-                                    <span class="fa fa-flag-o fa-2x"></span>
-                                    <br />
-                                    Reports
-                                </a>
-                            </li>
-                        }
                         if ((User as NglPrincipal).HasAccessTo("user", "view"))
                         {
                             <li>
