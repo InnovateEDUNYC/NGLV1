@@ -8,7 +8,7 @@
 
 @using (var f = Html.BeginNglForm())
 {
-    using (var s = f.BeginSection("Info"))
+    using (var s = f.BeginSection())
     {
         @s.FieldFor(m => m.StateOrganizationId)
         @s.FieldFor(m => m.NameOfInstitution)

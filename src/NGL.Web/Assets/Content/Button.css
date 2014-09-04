@@ -10,7 +10,7 @@
     margin-top: -34px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus {
     background-color: #249695;
     border-color: #249695;
 }
