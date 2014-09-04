@@ -5,6 +5,10 @@
     background-color: #E9E9EB;
 }
 
+footer {
+    margin-top: 30px;
+}
+
 a, a:visited, a:active {
     color: #2DBCBB;
 }
@@ -171,15 +175,20 @@ form .inline input {
 }
 
 /* Schedule student page */
-.current-section-list-item > td {
-    margin-bottom: 100px;
-}
 .current-section-list-item {
     background-color: white;
-    border: solid 1px lightgrey;
-    border-left: #2DBCBB 4px solid;
-    padding: 3px 0 3px 8px;
-    width: 100%;
+}
+
+.current-section-list-item td {
+    padding: 10px !important;
+}
+
+.table > tbody > tr.current-section-list-item td:first-child   {
+    border-left: #2DBCBB 6px solid;
+}
+
+.padding-30 {
+    padding: 30px !important;
 }
 
 .scheduled-section-dates {
@@ -204,11 +213,6 @@ form .inline input {
 
 .field-validation-error {
     margin-top: 15px;  
-}
-
-.category-title {
-    font-size: 1.3em;
-    font-weight: bold;
 }
 
 .current-sections-container {

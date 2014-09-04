@@ -7,6 +7,8 @@ namespace NGL.Web.Models.Schedule
     public class SetModel
     {
         public string StudentName { get; set; }
+
+        [Display(Name = "Student USI")]
         public int StudentUsi { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public List<SessionListItemModel> Sessions { get; set; }
