@@ -8,16 +8,16 @@ namespace NGL.UiTests.Student
     {
         public ProfilePage Edit(EnterProgramStatusModel programStatusModel)
         {
-            Execute.Script("$('Input[name=\"ProgramStatus.TestingAccommodation\"][value=\"" + programStatusModel.TestingAccommodation +"\"]').click()");
-            Execute.Script("$('Input[name=\"ProgramStatus.BilingualProgram\"][value=\"" + programStatusModel.BilingualProgram + "\"]').click()");
-            Execute.Script("$('Input[name=\"ProgramStatus.EnglishAsSecondLanguage\"][value=\"" + programStatusModel.EnglishAsSecondLanguage + "\"]').click()");
+            Execute.Script("$('Input[name=\"ProgramStatus.TestingAccommodation\"][value=\"" + programStatusModel.TestingAccommodation.ToString().ToLower() +"\"]').click()");
+            Execute.Script("$('Input[name=\"ProgramStatus.BilingualProgram\"][value=\"" + programStatusModel.BilingualProgram.ToString().ToLower() + "\"]').click()");
+            Execute.Script("$('Input[name=\"ProgramStatus.EnglishAsSecondLanguage\"][value=\"" + programStatusModel.EnglishAsSecondLanguage.ToString().ToLower() + "\"]').click()");
             Execute.Script("$('#ProgramStatus_FoodServicesEligibilityStatus').val('" +
                            programStatusModel.FoodServicesEligibilityStatus + "')");
-                
-            Execute.Script("$('Input[name=\"ProgramStatus.Gifted\"][value=\"" + programStatusModel.Gifted + "\"]').click()");
-            Execute.Script("$('Input[name=\"ProgramStatus.SpecialEducation\"][value=\"" + programStatusModel.SpecialEducation + "\"]').click()");
-            Execute.Script("$('Input[name=\"ProgramStatus.TitleParticipation\"][value=\"" + programStatusModel.TitleParticipation + "\"]').click()");
-            Execute.Script("$('Input[name=\"ProgramStatus.McKinneyVento\"][value=\"" + programStatusModel.McKinneyVento + "\"]').click()");
+
+            Execute.Script("$('Input[name=\"ProgramStatus.Gifted\"][value=\"" + programStatusModel.Gifted.ToString().ToLower() + "\"]').click()");
+            Execute.Script("$('Input[name=\"ProgramStatus.SpecialEducation\"][value=\"" + programStatusModel.SpecialEducation.ToString().ToLower() + "\"]').click()");
+            Execute.Script("$('Input[name=\"ProgramStatus.TitleParticipation\"][value=\"" + programStatusModel.TitleParticipation.ToString().ToLower() + "\"]').click()");
+            Execute.Script("$('Input[name=\"ProgramStatus.McKinneyVento\"][value=\"" + programStatusModel.McKinneyVento.ToString().ToLower() + "\"]').click()");
 
             return Navigate.To<ProfilePage>(By.Id("save-program-status-edit"));
         }
