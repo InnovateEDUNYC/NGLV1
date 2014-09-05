@@ -28,3 +28,32 @@
 .delete-row-btn {
     cursor:pointer
 }
+
+
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + .custom-small-checkbox {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #2DBCBB;
+}
+
+input[type="checkbox"]:checked + .custom-small-checkbox {
+    background-color: #2DBCBB;
+}
+
+.custom-small-checkbox {
+    margin: 0;
+    padding: 2px;
+    color: white;
+}
+
+span.small-checkbox {
+    vertical-align: top;
+}

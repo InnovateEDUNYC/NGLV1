@@ -41,7 +41,7 @@ table.attendance-list input[type="radio"] {
     display: none;
 }
 
-table.attendance-list input[type="radio"] + .custom-checkbox {
+table.attendance-list input[type="radio"] + .custom-large-checkbox {
     position: absolute;
     width: 35px;
     height: 35px;
@@ -50,7 +50,7 @@ table.attendance-list input[type="radio"] + .custom-checkbox {
     border: 1px solid #2DBCBB;
 }
 
-table.attendance-list input[type="radio"]:checked + .custom-checkbox {
+table.attendance-list input[type="radio"]:checked + .custom-large-checkbox {
     background-color: #2DBCBB;
 }
 
@@ -59,7 +59,7 @@ table.attendance-list input[type="radio"]:checked + .custom-checkbox {
     padding: 0 0 0 35px;
 }
 
-.custom-checkbox {
+.custom-large-checkbox {
     margin: 0;
     padding: 2px;
     color: white;
