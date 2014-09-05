@@ -8,12 +8,12 @@ Ngl.schedule.setSchedule = (function () {
     }
 
     var configureSaveButton = function() {
-        $('button#schedule-student-button').click(function () {
+        $('#schedule-student-button').click(function () {
             $.ajax({
                 url: '/schedule/scheduleStudent',
                 type: 'POST',
                 dataType: 'json',
-                data: $('form#schedule-student-form').serialize(),
+                data: $('#schedule-student-form').serialize(),
                 success: function (sectionListItem) {
                     var errors = sectionListItem.errors;
                     if (!errors == false) {
@@ -27,6 +27,7 @@ Ngl.schedule.setSchedule = (function () {
                         $('.current-section-list').append(
                             '<tr class="current-section-list-item new-item">' +
                                 '<td class="scheduled-section-name">' + name + '</td>' +
+                                '<td class="hidden section-id">' + sectionListItem.SectionId + '</td>' +
                                 '<td class="scheduled-section-dates">' +
                                     '<span class="scheduled-section-begin-date">' + beginDate + '</span> - ' +
                                     '<span class="scheduled-section-end-date">' + endDate + '</span>' +
@@ -34,9 +35,9 @@ Ngl.schedule.setSchedule = (function () {
                                 '<td class="delete-row-btn">' + 
                                     '<div data-student-section-id="' + sectionListItem.StudentSectionId
                                             + '" data-section-id="' + sectionListItem.SectionId
-                                            + '" class="fa fa-times-circle remove-student"></div>' +
+                                            + '" class="btn btn-default pull-right remove-student">Remove</div>' +
                                 '</td>' +
-                                '<td class="hidden section-id">' + sectionListItem.SectionId + '</td>' +
+                                
                             '</tr>' +
                            '<tr class="spacer"></tr>');
                     }

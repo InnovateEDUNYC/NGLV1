@@ -165,6 +165,7 @@ namespace NGL.Web.Controllers
                     sessionId = currentSession.SessionIdentity;
             }
 
+
             var assessmentResultModel = Result(studentUsi, sessionId, dayFrom, dayTo);
             return View(assessmentResultModel);
         }

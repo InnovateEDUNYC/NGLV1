@@ -5,6 +5,36 @@
     background-color: #E9E9EB;
 }
 
+footer {
+    margin-top: 60px;
+}
+
+a, a:visited, a:active {
+    color: #2DBCBB;
+}
+
+a.btn-primary {
+    color: white;
+}
+
+a.btn-default {
+    color: black;
+}
+
+a:hover {
+    color: #249695;
+    text-decoration: none;
+} 
+
+h2 {
+    text-transform: capitalize;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+
 /* Set padding to keep content from hitting the edges and top */
 .body-content {
     padding-left: 15px;
@@ -145,15 +175,24 @@ form .inline input {
 }
 
 /* Schedule student page */
-.current-section-list-item > td {
-    margin-bottom: 100px;
-}
 .current-section-list-item {
     background-color: white;
-    border: solid 1px lightgrey;
-    border-left: #2DBCBB 4px solid;
-    padding: 3px 0 3px 8px;
-    width: 100%;
+}
+
+.current-section-list-item td {
+    padding: 10px !important;
+}
+
+.table > tbody > tr.current-section-list-item td:first-child   {
+    border-left: #2DBCBB 6px solid;
+}
+
+td.scheduled-section-dates {
+    text-align: right;
+}
+
+.padding-30 {
+    padding: 30px !important;
 }
 
 .scheduled-section-dates {
@@ -180,11 +219,6 @@ form .inline input {
     margin-top: 15px;  
 }
 
-.category-title {
-    font-size: 1.3em;
-    font-weight: bold;
-}
-
 .current-sections-container {
     margin-top: 30px;
 }
@@ -200,6 +234,7 @@ form .inline input {
 
 .panel-gray {
     background-color: #e9e9eb;
+    border-radius: 4px; 
     padding: 10px;
 }
 

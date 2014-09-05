@@ -20,7 +20,7 @@ namespace NGL.UiTests.Account
 
         public bool HasSuccessMessage()
         {
-            return Find.Element(By.ClassName("text-success")).Text == "Your password has been changed.";
+            return Find.Element(By.Id("password-edit-success")).Text.Contains("Your password has been changed.");
         }
     }
 }

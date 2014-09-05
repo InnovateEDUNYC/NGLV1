@@ -10,13 +10,13 @@
     margin-top: -34px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus {
     background-color: #249695;
     border-color: #249695;
 }
 
 .btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:link {
-    background-color: #2DBCBB !important;
+    background-color: #2DBCBB;
     border-color: #2DBCBB;
 }
 
