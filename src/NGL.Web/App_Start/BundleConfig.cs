@@ -51,6 +51,7 @@ namespace NGL.Web
                 ));
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
                 "~/Assets/Scripts/Views/Shared/programStatus.js",
+                "~/Assets/Scripts/Views/Shared/checkboxesAndRadioButtons.js",
                 "~/Assets/Scripts/Views/Shared/enableEditMode.js",
                 "~/Assets/Scripts/Views/Shared/editProfile.js",
                 "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",

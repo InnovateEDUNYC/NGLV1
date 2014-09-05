@@ -18,6 +18,8 @@ namespace NGL.Web.Models.Account
         public int? StaffUSI { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        [Display(Name = "Hispanic/Latino Ethnicity")]
         public bool HispanicLatino { get; set; }
         public OldEthnicityTypeEnum? OldEthnicityType { get; set; }
         public string GenerationCodeSuffix { get; set; }

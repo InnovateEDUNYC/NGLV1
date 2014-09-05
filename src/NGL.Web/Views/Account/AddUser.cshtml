@@ -23,7 +23,21 @@
         @s.FieldFor(m => m.PersonalTitlePrefix)
         @s.FieldFor(m => m.FirstName)
         @s.FieldFor(m => m.LastName)
-        @s.FieldFor(m => m.HispanicLatino)
+    
+        <div class="form-group">
+            <div class="checkbox-left">
+                <input id="HispanicLatino" name="HispanicLatino" type="checkbox" value="true">
+                <label class="custom-small-checkbox" for="HispanicLatino">
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="label-right">
+                @Html.DisplayNameFor(model => model.HispanicLatino)
+            </div>
+
+        </div>
+    
         @s.FieldFor(m => m.OldEthnicityType)
         @s.FieldFor(m => m.GenerationCodeSuffix)
         @s.FieldFor(m => m.MaidenName)
@@ -33,7 +47,49 @@
         @s.FieldFor(m => m.HighestCompletedLevelOfEducation)
         @s.FieldFor(m => m.YearsOfPriorProfessionalExperience)
         @s.FieldFor(m => m.YearsOfPriorTeachingExperience)
-        @s.FieldFor(m => m.HighlyQualified).AsRadioList()
+    
+@*        @s.FieldFor(m => m.HighlyQualified).AsRadioList()*@
+    
+        <div class="form-group">
+            <label class="control-label">@Html.DisplayNameFor(model => model.HighlyQualified)</label>
+            
+            <div class="input-group">
+                <div class="checkbox-left">
+                    <input id="HighlyQualified_1" name="HighlyQualified" type="radio" value="true">
+                    <label class="custom-small-checkbox" for="HighlyQualified_1">
+                        <span></span>
+                    </label>
+                </div>
+                
+                <div class="label-right">
+                    Neither
+                </div>
+
+                <div class="checkbox-left">
+                    <input id="HighlyQualified_2" name="HighlyQualified" type="radio" value="true">
+                    <label class="custom-small-checkbox" for="HighlyQualified_2">
+                        <span></span>
+                    </label>
+                </div>
+                
+                <div class="label-right">
+                    Yes
+                </div>
+
+                <div class="checkbox-left">
+                    <input id="HighlyQualified_3" name="HighlyQualified" type="radio" value="true">
+                    <label class="custom-small-checkbox" for="HighlyQualified_3">
+                        <span></span>
+                    </label>
+                </div>
+                
+                <div class="label-right">
+                    No
+                </div>
+            </div>
+
+        </div>
+        @Html.ValidationMessageFor(m => m.HighlyQualified)
         @s.FieldFor(m => m.TeacherUSI)
         @s.FieldFor(m => m.CitizenshipStatus)
         @s.FieldFor(m => m.SSN)
@@ -45,8 +101,33 @@
 
     using (var s = f.BeginSection("Clearance"))
     {
-        @s.FieldFor(m => m.CriminalBackgroundCheck)
-        @s.FieldFor(m => m.Fingerprinted)
+        <div class="form-group">
+            <div class="checkbox-left">
+                <input id="CriminalBackgroundCheck" name="CriminalBackgroundCheck" type="checkbox" value="true">
+                <label class="custom-small-checkbox" for="CriminalBackgroundCheck">
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="label-right">
+                @Html.DisplayNameFor(model => model.CriminalBackgroundCheck)
+            </div>
+
+        </div>
+            @Html.ValidationMessageFor(m => m.CriminalBackgroundCheck)
+        <div class="form-group">
+            <div class="checkbox-left">
+                <input id="Fingerprinted" name="Fingerprinted" type="checkbox" value="true">
+                <label class="custom-small-checkbox" for="Fingerprinted">
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="label-right">
+                @Html.DisplayNameFor(model => model.Fingerprinted)
+            </div>
+        </div>
+            @Html.ValidationMessageFor(m => m.Fingerprinted)
     }
 
     using (var a = f.BeginNavigation())
@@ -55,3 +136,6 @@
     }
 }
 
+@section Scripts {
+    Ngl.shared.checkboxesAndRadioButtons.init();
+}

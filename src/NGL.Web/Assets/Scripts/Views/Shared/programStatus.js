@@ -1,10 +1,10 @@
 ﻿Ngl.createNS('Ngl.shared.programStatus');
 
 Ngl.shared.programStatus = (function () {
-    var allowFileUploadConditionally = function (radioInputId, fileInputId) {
+    var allowFileUploadConditionally = function (radioInputName, fileInputId) {
         var $fileInputField = $('#' + fileInputId);
-        var $radioButtons = $('input[id=' + radioInputId + ']');
-        var $checkedRadioButton = $('input[id=' + radioInputId + ']:checked');
+        var $radioButtons = $('input[name="' + radioInputName + '"]');
+        var $checkedRadioButton = $('input[name="' + radioInputName + '"]:checked');
 
         enableOrDisableFileUploadInput($fileInputField, $checkedRadioButton.val());
         $radioButtons.on("click", function () {
@@ -13,7 +13,7 @@ Ngl.shared.programStatus = (function () {
     };
 
     var enableOrDisableFileUploadInput = function (fileInputField, radioButtonVal) {
-        if (radioButtonVal === 'True') {
+        if (radioButtonVal === 'true') {
             fileInputField.removeAttr('disabled');
         }
         else {

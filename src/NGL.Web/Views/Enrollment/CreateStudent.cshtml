@@ -24,8 +24,23 @@
                     @s.FieldFor(m => m.Sex)
                     @s.FieldFor(m => m.BirthDate)
                     @s.FieldFor(m => m.Race)
-                    @s.FieldFor(m => m.HispanicLatinoEthnicity)
+                
+                <div class="form-group">
+                    <div class="checkbox-left">
+                        <input id="HispanicLatinoEthnicity" name="HispanicLatinoEthnicity" type="checkbox" value="true">
+                        <label class="custom-small-checkbox" for="HispanicLatinoEthnicity">
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <div class="label-right">
+                        @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+                    </div>
+
                 </div>
+                @Html.ValidationMessageFor(m => m.HispanicLatinoEthnicity)
+              </div>
+
                 <div class="col-sm-6">
                     @s.FieldFor(m => m.Address)
                     @s.FieldFor(m => m.Address2)
@@ -42,7 +57,7 @@
                     Parent Information
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4">
-                    <div>
+                <div class="parent-info">
                         <h3 class="no-margin">First Parent Information</h3>
                         @s.FieldFor(m => m.FirstParent.FirstName)
                         @s.FieldFor(m => m.FirstParent.LastName)
@@ -50,8 +65,36 @@
                         @s.FieldFor(m => m.FirstParent.RelationshipToStudent)
                         @s.FieldFor(m => m.FirstParent.TelephoneNumber)
                         @s.FieldFor(m => m.FirstParent.EmailAddress)
-                        @s.FieldFor(m => m.FirstParent.MakeThisPrimaryContact)
-                        @s.FieldFor(m => m.FirstParent.SameAddressAsStudent).AddClass("same-address-as-student")
+                    
+                    <div class="form-group">
+                        <div class="checkbox-left">
+                            <input id="FirstParent_MakeThisPrimaryContact" name="FirstParent.MakeThisPrimaryContact" type="checkbox" value="true">
+                            <label class="custom-small-checkbox" for="FirstParent_MakeThisPrimaryContact">
+                                <span></span>
+                            </label>
+                        </div>
+
+                        <div class="label-right">
+                            @Html.DisplayNameFor(model => model.FirstParent.MakeThisPrimaryContact)
+                        </div>
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.FirstParent.MakeThisPrimaryContact)
+                    <div class="form-group">
+                        <div class="checkbox-left">
+                            <input id="FirstParent_SameAddressAsStudent" name="FirstParent.SameAddressAsStudent" 
+                                   checked="checked" class="same-address-as-student" type="checkbox" value="true">
+                            <label class="custom-small-checkbox" for="FirstParent_SameAddressAsStudent">
+                                <span></span>
+                            </label>
+                        </div>
+
+                        <div class="label-right">
+                            @Html.DisplayNameFor(model => model.FirstParent.SameAddressAsStudent)
+                        </div>
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.FirstParent.SameAddressAsStudent)
                         <div class="parent-address">
                             @s.FieldFor(m => m.FirstParent.Address)
                             @s.FieldFor(m => m.FirstParent.Address2)
@@ -60,10 +103,25 @@
                             @s.FieldFor(m => m.FirstParent.State)
                         </div>
                     </div>
-                    @s.FieldFor(m => m.AddSecondParent)
+
+                    <div class="form-group">
+                        <div class="checkbox-left">
+                            <input id="AddSecondParent" name="AddSecondParent" type="checkbox" value="true">
+                            <label class="custom-small-checkbox" for="AddSecondParent">
+                                <span></span>
+                            </label>
+                        </div>
+
+                        <div class="label-right">
+                            @Html.DisplayNameFor(model => model.AddSecondParent)
+                        </div>
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.AddSecondParent)
                 </div>
+
                 <div class="col-sm-6 col-md-5 col-lg-4">
-                    <div>
+                    <div class="second-parent parent-info">
                         <h3 class="no-margin">Second Parent Information</h3>
                         @s.FieldFor(m => m.SecondParent.FirstName)
                         @s.FieldFor(m => m.SecondParent.LastName)
@@ -71,8 +129,38 @@
                         @s.FieldFor(m => m.SecondParent.RelationshipToStudent)
                         @s.FieldFor(m => m.SecondParent.TelephoneNumber)
                         @s.FieldFor(m => m.SecondParent.EmailAddress)
-                        @s.FieldFor(m => m.SecondParent.MakeThisPrimaryContact)
-                        @s.FieldFor(m => m.SecondParent.SameAddressAsStudent).AddClass("same-address-as-student")
+
+                        <div class="form-group">
+                            <div class="checkbox-left">
+                                <input id="SecondParent_MakeThisPrimaryContact" name="SecondParent.MakeThisPrimaryContact" type="checkbox" value="true">
+                                <label class="custom-small-checkbox" for="SecondParent_MakeThisPrimaryContact">
+                                    <span></span>
+                                </label>
+                            </div>
+
+                            <div class="label-right">
+                                @Html.DisplayNameFor(model => model.SecondParent.MakeThisPrimaryContact)
+                            </div>
+
+                        </div>
+                        @Html.ValidationMessageFor(m => m.SecondParent.MakeThisPrimaryContact)
+
+                        <div class="form-group">
+                            <div class="checkbox-left">
+                                <input id="SecondParent_SameAddressAsStudent" name="SecondParent.SameAddressAsStudent"
+                                       checked="checked" class="same-address-as-student" type="checkbox" value="true">
+                                <label class="custom-small-checkbox" for="SecondParent_SameAddressAsStudent">
+                                    <span></span>
+                                </label>
+                            </div>
+
+                            <div class="label-right">
+                                @Html.DisplayNameFor(model => model.SecondParent.SameAddressAsStudent)
+                            </div>
+
+                        </div>
+                        @Html.ValidationMessageFor(m => m.SecondParent.SameAddressAsStudent)
+
                         <div class="parent-address">
                             @s.FieldFor(m => m.SecondParent.Address)
                             @s.FieldFor(m => m.SecondParent.Address2)
@@ -94,4 +182,5 @@
     }
 @section Scripts {
     Ngl.enrollment.createStudent.init();
+    Ngl.shared.checkboxesAndRadioButtons.init();
 }

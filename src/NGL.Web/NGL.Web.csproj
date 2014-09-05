@@ -1999,6 +1999,7 @@
     <Content Include="Assets\Scripts\Views\Schedule\removeStudent.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Shared\accordianArrows.js" />
+    <Content Include="Assets\Scripts\Views\Shared\checkboxesAndRadioButtons.js" />
     <Content Include="Assets\Scripts\Views\Shared\enableEditMode.js" />
     <Content Include="Assets\Scripts\Views\Shared\editProfile.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />
