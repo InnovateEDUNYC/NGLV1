@@ -15,11 +15,28 @@
     {
         @s.FieldFor(m => m.Username)
         @s.FieldFor(m => m.Password)
-        @s.FieldFor(m => m.RememberMe)
+    
+        <div class="form-group">
+            <div class="checkbox-left">
+                <input id="RememberMe" name="RememberMe" type="checkbox" value="true">
+                <label class="custom-small-checkbox" for="RememberMe">
+                    <span></span>
+                </label>
+            </div>
+            
+            <div class="lable-right">
+                @Html.DisplayNameFor(model => model.RememberMe)
+            </div>
+
+        </div>
     }
 
     using (var n = f.BeginNavigation())
     {
         @n.Submit("Log in").AddClass("btn btn-primary")
     }
+}
+
+@section Scripts {
+    Ngl.shared.checkboxesAndRadioButtons.init();
 }

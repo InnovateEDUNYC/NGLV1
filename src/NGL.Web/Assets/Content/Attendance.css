@@ -29,7 +29,7 @@
     margin-left: 10px;
 }
 
-table.attendance-list div.radio {
+div.radio {
     display: inline-block;
     position: relative;
     margin: 0;
