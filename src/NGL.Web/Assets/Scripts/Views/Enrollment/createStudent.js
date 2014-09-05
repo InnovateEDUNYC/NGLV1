@@ -9,7 +9,7 @@ Ngl.enrollment.createStudent = (function () {
     var showHideOptionalAddresses = function () {
         var sameAddressAsStudentCheckboxes = ["#FirstParent_SameAddressAsStudent", "#SecondParent_SameAddressAsStudent"];
         sameAddressAsStudentCheckboxes.forEach(function (checkbox) {
-            var addressPanel = $(checkbox).parent().parent().find(".parent-address");
+            var addressPanel = $(checkbox).closest(".parent-info").find(".parent-address");
             if ($(checkbox).is(':checked'))
                 addressPanel.hide();
             else
@@ -17,7 +17,7 @@ Ngl.enrollment.createStudent = (function () {
         });
 
         $(".same-address-as-student").on("click", function () {
-            var parentPanel = $(this.parentElement.parentElement);
+            var parentPanel = $(this).closest(".parent-info");
             var addressPanel = parentPanel.find(".parent-address");
             clearFieldsInElement(addressPanel);
 
