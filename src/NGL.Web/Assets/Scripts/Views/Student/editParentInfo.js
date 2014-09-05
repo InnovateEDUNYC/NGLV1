@@ -11,7 +11,13 @@ Ngl.student.editParentInfo = (function () {
         element.find("select, input[type='text']").each(function () { $(this).val(''); });
     }
 
-    var setUpSameAddressCheckbox = function() {
+    var setUpSameAddressCheckbox = function () {
+        if ($('#SameAddressAsStudent').is(':checked')) {
+            disableFieldsInElement($('.edit-parent-address-section'));
+        } else {
+            enableFieldsInElement($('.edit-parent-address-section'));
+        }
+
         $('#SameAddressAsStudent').on('click', function() {
             clearFieldsInElement($('.edit-parent-address-section'));
 
