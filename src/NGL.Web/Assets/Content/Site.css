@@ -219,10 +219,6 @@ td.scheduled-section-dates {
     margin-top: 15px;  
 }
 
-.current-sections-container {
-    margin-top: 30px;
-}
-
 .section-searchbox-container {
     display: inline-block;
     width: 140%;
@@ -261,6 +257,10 @@ td.scheduled-section-dates {
 .panel-above-table {
     padding-left: 30px;
     padding-bottom: 20px;
+}
+
+.panel-padding-left {
+    padding-left: 15px;
 }
 
 .index-header-panel {

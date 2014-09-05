@@ -53,3 +53,7 @@
 .student-name-edit .field-validation-error {
     margin-left: 0;
 }
+
+.set-schedule-profile-container {
+    padding-bottom: 68px;
+}
