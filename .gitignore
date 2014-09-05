@@ -163,6 +163,7 @@ ClientBin/
 *.dbproj.schemaview
 *.pfx
 *.publishsettings
+*.dcvr
 node_modules/
 
 # RIA/Silverlight projects

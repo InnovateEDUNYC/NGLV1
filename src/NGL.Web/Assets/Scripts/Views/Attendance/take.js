@@ -30,7 +30,6 @@ Ngl.attendance.take = (function () {
     };
 
     var checkRadioButton = function() {
-
         $('table.attendance-list input:checked + label > span').addClass('fa fa-check fa-2x');
         $('table.attendance-list input').click(function () {
             var spans = $(this).closest('tr').find('span');

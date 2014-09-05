@@ -340,6 +340,21 @@ body h4.panel:first-child {
     color: #2DBCBB;
 }
 
+.custom-checkbox-holder > input[type="radio"] {
+    display: none;
+}
+
+.custom-checkbox {
+    width: 35px;
+    height: 35px;
+    background-color: #FFF;
+    border-radius: 4px;
+    border: 1px solid #2DBCBB;
+}
+
+.custom-checkbox.checked {
+    background-color: #2DBCBB;
+}
 .header-text {
     display: inline-block;
     width: 49%;

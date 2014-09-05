@@ -73,6 +73,7 @@ namespace NGL.Web
                 "~/Assets/Scripts/Views/Shared/learningStandards.js",
                 "~/Assets/Scripts/Views/Report/getGrades.js",
                 "~/Assets/Scripts/Views/Shared/accordianArrows.js",
+                "~/Assets/Scripts/Views/Shared/radioButtons.js",
                 "~/Assets/Scripts/Views/Shared/parentCourseAutocomplete.js"
                 ));
         }

@@ -1,6 +1,9 @@
 ﻿Ngl.createNS('Ngl.enrollment.enterProgramStatus');
 
 Ngl.enrollment.enterProgramStatus = (function () {
+    var init = function() {
+        setConditionalFileUploads();
+    }
     var setConditionalFileUploads = function()
     {
         Ngl.shared.programStatus.allowFileUploadConditionally("TestingAccommodation", "TestingAccommodationFile");
@@ -10,6 +13,6 @@ Ngl.enrollment.enterProgramStatus = (function () {
     }
 
     return {
-        init: setConditionalFileUploads
-        }
+        init: init
+    }
 })(); 

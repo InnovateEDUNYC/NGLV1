@@ -7,7 +7,7 @@ Ngl.shared.programStatus = (function () {
         var $checkedRadioButton = $('input[id=' + radioInputId + ']:checked');
 
         enableOrDisableFileUploadInput($fileInputField, $checkedRadioButton.val());
-        $radioButtons.click(function () {
+        $radioButtons.on("click", function () {
             enableOrDisableFileUploadInput($fileInputField, $(this).val());
         });
     };
