@@ -340,7 +340,7 @@ body h4.panel:first-child {
     color: #2DBCBB;
 }
 
-.custom-checkbox-holder > input[type="radio"] {
+.custom-checkbox-holder input[type="radio"] {
     display: none;
 }
 
@@ -355,6 +355,7 @@ body h4.panel:first-child {
 .custom-checkbox.checked {
     background-color: #2DBCBB;
 }
+
 .header-text {
     display: inline-block;
     width: 49%;
