@@ -76,4 +76,5 @@ span.small-checkbox {
     display: inline-block;
     vertical-align: middle;
     vertical-align: -webkit-baseline-middle;
+    margin-right: 10px;
 }
