@@ -31,11 +31,11 @@
 
 
 
-input[type="checkbox"] {
+input[type="checkbox"], input[type="radio"] {
     display: none;
 }
 
-input[type="checkbox"] + .custom-small-checkbox {
+input[type="checkbox"] + .custom-small-checkbox, input[type="radio"] + .custom-small-checkbox {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -44,7 +44,7 @@ input[type="checkbox"] + .custom-small-checkbox {
     border: 1px solid #2DBCBB;
 }
 
-input[type="checkbox"]:checked + .custom-small-checkbox {
+input[type="checkbox"]:checked + .custom-small-checkbox, input[type="radio"]:checked + .custom-small-checkbox {
     background-color: #2DBCBB;
 }
 

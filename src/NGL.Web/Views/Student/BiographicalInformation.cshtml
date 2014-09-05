@@ -68,24 +68,26 @@
                         @s.FieldFor(m => m.Sex)
                         @s.FieldFor(m => m.BirthDate).AddClass("datepicker")
                         
-                        <dt>
-                            @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
-                        </dt>
-                        
-                        <div class="radio">
-                            
-                            @if (Model.HispanicLatinoEthnicity)
-                            {
-                                <input checked="checked" id="HispanicLatinoEthnicity" name="HispanicLatinoEthnicity" type="checkbox" value="true">
-                            }
-                            else
-                            {
-                                <input id="HispanicLatinoEthnicity" name="HispanicLatinoEthnicity" type="checkbox" value="true">
-                            }
+                        <div class="form-group">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.HispanicLatinoEthnicity)
+                            </dt>
 
-                            <label class="custom-small-checkbox" for="HispanicLatinoEthnicity">
-                                <span></span>
-                            </label>
+                            <div class="radio">
+
+                                @if (Model.HispanicLatinoEthnicity)
+                                {
+                                    <input checked="checked" id="HispanicLatinoEthnicity" name="HispanicLatinoEthnicity" type="checkbox" value="true">
+                                }
+                                else
+                                {
+                                    <input id="HispanicLatinoEthnicity" name="HispanicLatinoEthnicity" type="checkbox" value="true">
+                                }
+
+                                <label class="custom-small-checkbox" for="HispanicLatinoEthnicity">
+                                    <span></span>
+                                </label>
+                            </div>
                         </div>
 
                         @s.FieldFor(m => m.Race)
