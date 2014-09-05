@@ -31,7 +31,7 @@
     </div>
     <div class="header-buttons">
 
-        @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+        @if ((User as NglPrincipal).HasAccessTo("enrollment", "create"))
         {
             @Html.ActionLink("Enroll a Student", MVC.Enrollment.CreateStudent(), new { @class = "btn btn-default" })
 
