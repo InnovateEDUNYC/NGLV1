@@ -58,10 +58,17 @@ span.small-checkbox {
     vertical-align: top;
 }
 
+.profile-checkbox {
+    margin: 0 0 10px 4px;
+    padding: 0;
+    min-width: 10px;
+    min-height: 10px;
+}
+
 .checkbox-left {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    min-width: 10px;
+    min-height: 10px;
     margin-right: 15px;
 }
 
