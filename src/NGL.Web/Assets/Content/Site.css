@@ -340,6 +340,10 @@ body h4.panel:first-child {
     color: #2DBCBB;
 }
 
+.custom-checkbox-holder {
+    display: inline-block;
+}
+
 .custom-checkbox-holder input[type="radio"] {
     display: none;
 }
