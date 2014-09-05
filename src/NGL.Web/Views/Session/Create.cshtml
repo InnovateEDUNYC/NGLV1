@@ -4,20 +4,24 @@
     ViewBag.Title = "Create a Session";
 }
 
-<h2>Session</h2>
+<div class="panel panel-default form-header">
+    <h2>Session</h2>
+</div>
 
-@using (var f = Html.BeginNglForm())
-{
-    using (var s = f.BeginSection(""))
+<div class="panel panel-default form-panel">
+    @using (var f = Html.BeginNglForm())
     {
-        @s.FieldFor(m => m.Term)
-        @s.FieldFor(m => m.SchoolYear)
-        @s.FieldFor(m => m.BeginDate)
-        @s.FieldFor(m => m.EndDate)
-        @s.FieldFor(m => m.TotalInstructionalDays)
+        using (var s = f.BeginSection(""))
+        {
+            @s.FieldFor(m => m.Term)
+            @s.FieldFor(m => m.SchoolYear)
+            @s.FieldFor(m => m.BeginDate)
+            @s.FieldFor(m => m.EndDate)
+            @s.FieldFor(m => m.TotalInstructionalDays)
+        }
+        using (var n = f.BeginNavigation())
+        {
+            @n.Submit("Create").AddClass("btn btn-primary")
+        }
     }
-    using (var n = f.BeginNavigation())
-    {
-        @n.Submit("Create").AddClass("btn btn-primary")
-    }
-}
+</div>
