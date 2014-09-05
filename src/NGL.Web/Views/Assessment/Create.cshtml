@@ -4,102 +4,110 @@
 @{
     ViewBag.Title = "Create an Assessment";
 }
-<h2>Create Assessment</h2>
+<div class="panel panel-default form-header">
+    <h2>Create Assessment</h2>
+</div>
+<div class="panel panel-default">
 
-@using (var f = Html.BeginNglForm())
-{
-    using (var s = f.BeginSection(""))
+    @using (var f = Html.BeginNglForm())
     {
-        @s.FieldFor(m => m.Session)
-        <div class="hidden">
-            @s.FieldFor(m => m.SessionId)
-        </div>
-
-        @s.FieldFor(m => m.Section)
-        <div class="hidden">
-            @s.FieldFor(m => m.SectionId)
-        </div>
-   
-        <div class="assessment-step">STEP 1
-            <div class="assessment-step-directions">
-                Define assessment type
-            </div>
-        </div>       
-
-        @s.FieldFor(m => m.AssessmentTitle)
-        @s.FieldFor(m => m.AdministeredDate)
-        @s.FieldFor(m => m.QuestionType)
-        @s.FieldFor(m => m.GradeLevel)
-    }
-    
-            <div class="assessment-step">STEP 2
-                <div class="assessment-step-directions">
-                    Define learning standard
-                </div>
-            </div>    
-    using (var s = f.BeginSection(""))
-    {
-        <div class="form-group">
-            <label class="control-label" for="LearningStandard">Learning Standard</label>   
-            <div class="input-group">
-                <select class="form-control" id="LearningStandard">
-                    <option selected="selected" value=""></option>
-                    <optgroup label="ELA-Literacy">
-                        <option value="Reading">Reading</option>
-                        <option value="Writing">Writing</option>
-                        <option value="SpeakingandListening">Speaking and Listening</option>
-                    </optgroup>
-                    <optgroup label="Math">
-                        <option value="MathContent">Content</option>
-                        <option value="MathPractice">Practice</option>
-                    </optgroup>
-                </select>
-                <div class="input-group-addon required">
-                    <em class="required" title="Required">∗</em>
-                </div>
-            </div>
-        </div>
-
-        @s.FieldFor(m => m.CommonCoreStandard)
-    }
-
-                <div class="assessment-step">STEP 3
-                <div class="assessment-step-directions">
-                    Set Assessment
-                </div>
-            </div> 
-    using (var t = f.BeginSection(""))
-    {
-
-        <div class="form-group">
-            <label class="control-label" for="ReportingMethod">Reporting method</label>
-            <select class="form-control" id="ReportingMethod" name="ReportingMethod">
-                <option selected="selected" value="Percentile">Percentile</option>
-            </select>
-            <span class="field-validation-valid help-block" data-valmsg-for="ReportingMethod" data-valmsg-replace="true"></span>
-        </div>
-    
-        <div class="enter-mastery">
-            <div class="inline-block">
-                @t.FieldFor(m => m.Mastery)
-            </div>
-            <div class="inline-block">
-                @t.FieldFor(m => m.NearMastery)
-            </div>
-        </div>
-    }
-
-
-    <div class="input-width text-right">
-        @using (var n = f.BeginNavigation())
+        using (var s = f.BeginSection(""))
         {
-            @n.Submit("Save").AddClass("btn btn-primary")
-        }
-    </div>
-}
 
-@section Scripts {
-    Ngl.shared.sessionAutocomplete.init();
-    Ngl.shared.sectionAutocomplete.init();
-    Ngl.shared.learningStandards.init();
-}
+            @s.FieldFor(m => m.Session)
+            <div class="hidden">
+                @s.FieldFor(m => m.SessionId)
+            </div>
+
+            @s.FieldFor(m => m.Section)
+            <div class="hidden">
+                @s.FieldFor(m => m.SectionId)
+            </div>
+
+            <div class="assessment-step">
+                STEP 1
+                <div class="assessment-step-directions">
+                    Define assessment type
+                </div>
+            </div>
+
+            @s.FieldFor(m => m.AssessmentTitle)
+            @s.FieldFor(m => m.AdministeredDate)
+            @s.FieldFor(m => m.QuestionType)
+            @s.FieldFor(m => m.GradeLevel)
+        }
+
+        <div class="assessment-step">
+            STEP 2
+            <div class="assessment-step-directions">
+                Define learning standard
+            </div>
+        </div>
+        using (var s = f.BeginSection(""))
+        {
+            <div class="form-group">
+                <label class="control-label" for="LearningStandard">Learning Standard</label>
+                <div class="input-group">
+                    <select class="form-control" id="LearningStandard">
+                        <option selected="selected" value=""></option>
+                        <optgroup label="ELA-Literacy">
+                            <option value="Reading">Reading</option>
+                            <option value="Writing">Writing</option>
+                            <option value="SpeakingandListening">Speaking and Listening</option>
+                        </optgroup>
+                        <optgroup label="Math">
+                            <option value="MathContent">Content</option>
+                            <option value="MathPractice">Practice</option>
+                        </optgroup>
+                    </select>
+                    <div class="input-group-addon required">
+                        <em class="required" title="Required">∗</em>
+                    </div>
+                </div>
+            </div>
+
+            @s.FieldFor(m => m.CommonCoreStandard)
+        }
+
+        <div class="assessment-step">
+            STEP 3
+            <div class="assessment-step-directions">
+                Set Assessment
+            </div>
+        </div>
+        using (var t = f.BeginSection(""))
+        {
+
+            <div class="form-group">
+                <label class="control-label" for="ReportingMethod">Reporting method</label>
+                <select class="form-control" id="ReportingMethod" name="ReportingMethod">
+                    <option selected="selected" value="Percentile">Percentile</option>
+                </select>
+                <span class="field-validation-valid help-block" data-valmsg-for="ReportingMethod" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="enter-mastery">
+                <div class="inline-block">
+                    @t.FieldFor(m => m.Mastery)
+                </div>
+                <div class="inline-block">
+                    @t.FieldFor(m => m.NearMastery)
+                </div>
+            </div>
+        }
+
+
+        <div class="input-width text-right">
+            @using (var n = f.BeginNavigation())
+        {
+        @n.Submit("Save").AddClass("btn btn-primary")
+        }
+        </div>
+    }
+</div>
+
+    @section Scripts {
+        Ngl.shared.sessionAutocomplete.init();
+        Ngl.shared.sectionAutocomplete.init();
+        Ngl.shared.learningStandards.init();
+    }
