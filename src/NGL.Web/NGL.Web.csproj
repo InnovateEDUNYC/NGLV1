@@ -1954,6 +1954,7 @@
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Content\Image.css" />
+    <Content Include="Assets\Content\paddingAndMargins.css" />
     <Content Include="Assets\Content\Tables.css" />
     <Content Include="Assets\Content\Profile.css" />
     <Content Include="Assets\Content\ViewAssessmentResults.css" />

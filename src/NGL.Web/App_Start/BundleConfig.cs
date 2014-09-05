@@ -38,7 +38,8 @@ namespace NGL.Web
                       "~/Assets/Content/ViewAssessmentResults.css",
                       "~/Assets/Content/Tables.css",
                       "~/Assets/Content/Profile.css",
-                      "~/Assets/Content/Assessment.css"));
+                      "~/Assets/Content/Assessment.css",
+                      "~/Assets/Content/paddingAndMargins.css"));
 
            bundles.Add(new StyleBundle("~/Assets/Scripts/lib/jquery-ui-1.11.0/bundle").Include(
                           "~/Assets/Scripts/lib/jquery-ui-1.11.0/*.css"));

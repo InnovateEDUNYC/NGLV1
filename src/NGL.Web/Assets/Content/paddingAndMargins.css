@@ -1,0 +1,51 @@
+﻿.top-buffer-30 {
+    margin-top: 30px;
+}
+
+.top-buffer-20 {
+    margin-top: 20px;
+}
+
+.top-buffer-10 {
+    margin-top: 10px;
+}
+
+.top-buffer-5 {
+    margin-top: 5px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}
+
+.right-elbow-room {
+    margin-right: 5px;
+}
+
+.right-elbow-room-20 {
+    margin-right: 20px;
+}
+
+.right-elbow-room-80 {
+    margin-right: 80px;
+}
+
+.padding-30 {
+    padding: 30px !important;
+}
+
+.padding-bottom-50 {
+    padding-bottom: 50px;
+}

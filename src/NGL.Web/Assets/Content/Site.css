@@ -42,22 +42,6 @@ h4 {
     margin-top: 80px;
 }
 
-.top-buffer-30 {
-    margin-top: 30px;
-}
-
-.top-buffer-20 {
-    margin-top: 20px;
-}
-
-.top-buffer-10 {
-    margin-top: 10px;
-}
-
-.top-buffer-5 {
-    margin-top: 5px;
-}
-
 .display-none {
     display: none;
 }
@@ -193,10 +177,6 @@ form .inline input {
 
 td.scheduled-section-dates {
     text-align: right;
-}
-
-.padding-30 {
-    padding: 30px !important;
 }
 
 .scheduled-section-dates {
@@ -352,26 +332,6 @@ body h4.panel:first-child {
     display: inline;
 }
 
-.margin-bottom-20 {
-    margin-bottom: 20px;
-}
-
-.margin-bottom-10 {
-    margin-bottom: 10px;
-}
-
-.right-elbow-room {
-    margin-right: 5px;
-}
-
-.right-elbow-room-20 {
-    margin-right: 20px;
-}
-
-.right-elbow-room-80 {
-    margin-right: 80px;
-}
-
 .input-width {
     width: 340px;
 }
@@ -413,4 +373,14 @@ body h4.panel:first-child {
 
 .no-width {
     width: 0;
+}
+
+.enrollment-step {
+    border-bottom: 1px solid #2DBCBB;
+    color: #2DBCBB;
+    font-weight: bold;
+    font-size: 150%;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 25px;    
 }

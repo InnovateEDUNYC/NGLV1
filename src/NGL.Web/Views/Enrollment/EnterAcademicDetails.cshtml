@@ -6,31 +6,48 @@
     ViewBag.Title = "Academic Details";
 }
 
-<h2 class="title">Academic Details</h2>
+<div class="panel panel-default form-header">
+    <h2>Academic Details</h2>
+</div>
 
-@using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart))
-{
-    using (var r = f.BeginSection("Enter student's previous grade or percentage for each subject below"))
+<div class="panel">
+    @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart))
     {
-        @Html.HiddenFor(s => s.StudentUsi) // Needs to be passed back for validation
-        @r.FieldFor(s => s.Reading)
-        @r.FieldFor(s => s.Writing)
-        @r.FieldFor(s => s.Math)
-    <hr/>
-        @r.FieldFor(s => s.SchoolYear)
-        @r.FieldFor(s => s.AnticipatedGrade)
-        @r.FieldFor(s => s.EntryDate)
-    }
+        using (var r = f.BeginSection(""))
+        {
+            <div class="enrollment-step">
+                Enter student's previous grade or percentage for each subject below
+            </div>
+            <div class="margin-left-15 margin-bottom-20">
+                @Html.HiddenFor(s => s.StudentUsi)
+                @r.FieldFor(s => s.Reading)
+                @r.FieldFor(s => s.Writing)
+                @r.FieldFor(s => s.Math)
+            </div>
+            <div class="enrollment-step">
+                Enter student's school information
+            </div>
+            <div class="margin-left-15 margin-bottom-20">
+                @r.FieldFor(s => s.SchoolYear)
+                @r.FieldFor(s => s.AnticipatedGrade)
+                @r.FieldFor(s => s.EntryDate)
+            </div>
+        }
 
-    <h2>Performance History</h2>
-    using (var t = f.BeginSection("Elaborate on the student's performance history and upload performance records"))
-    {
-        @t.FieldFor(s => s.PerformanceHistory).AddClass("performance-history-textbox").Attr("rows", "5")
-        @t.FieldFor(s => s.PerformanceHistoryFile).Attr("type", "file")
-    }
+        using (var t = f.BeginSection(""))
+        {
+            <div class="enrollment-step">
+                Elaborate on the student's performance history and upload performance records
+            </div>
+            <div class="margin-left-15 margin-bottom-20">
+                @t.FieldFor(s => s.PerformanceHistory).AddClass("performance-history-textbox").Attr("rows", "5")
+                @t.FieldFor(s => s.PerformanceHistoryFile).Attr("type", "file")
+            </div>  
+        }
 
-    using (var v = f.BeginNavigation())
-    {
-        @v.Submit("Save and Continue").Id("submit-details").AddClass("btn btn-primary")
+        using (var v = f.BeginNavigation())
+        {
+            @v.Submit("Save and Continue").Id("submit-details").AddClass("btn btn-primary")
+        }
     }
-}
+</div>

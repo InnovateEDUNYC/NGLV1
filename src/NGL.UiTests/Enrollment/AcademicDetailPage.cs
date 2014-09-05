@@ -10,7 +10,7 @@ namespace NGL.UiTests.Enrollment
 
         public bool IsTitleCorrect()
         {
-            return Find.Element(By.CssSelector("h2.title")).Text.Equals(AcademicDetailTitle);
+            return Find.Element(By.CssSelector("h2")).Text.Equals(AcademicDetailTitle);
         }
 
         public ProgramStatusPage InputDetails(AcademicDetailModel academicDetailModel)
