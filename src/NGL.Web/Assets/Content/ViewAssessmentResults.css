@@ -4,7 +4,7 @@
 }
 
 .time-span-chooser {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .result-view-period {
@@ -13,7 +13,7 @@
     display: inline-block;
     width: 50%;
     margin: 0 -4px 0 0;
-    padding: 10px 5px;
+    padding: 15px 5px;
     text-align: center;
     border: solid #2DBCBB 1px;
 }
@@ -40,7 +40,7 @@
 .date-range-display {
     background-color: #2DBCBB;
     border-radius: 0 0 4px 4px;
-    padding: 15px;
+    padding: 25px 15px 25px 15px;
     color: white;
 }
 

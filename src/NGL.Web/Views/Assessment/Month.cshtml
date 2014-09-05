@@ -7,10 +7,12 @@
     const int numberOfDaysInMonth = 30;
 }
 <div class="panel panel-gray">
-    <h2>Student Report</h2>
-    <div class="row clear-right-margin">
+    <div class="panel panel-default extra-vertical-padding margin-bottom-10">
+        <h2 class="profile-header">Student Report</h2>
+    </div>
+    <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default text-center">
+            <div class="panel text-center">
                 <div>
                     <img class="profile-image" src="@Model.ProfilePhotoUrl" />
                     <h3>
@@ -25,13 +27,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9 clear-right-padding">
+        <div class="col-md-9">
             <div class="panel panel-default find-session">
                 <h4 class="strong">Session</h4>
 
-                <div>
-
-                </div>
                 @Html.TextBoxFor(m => m.Session, new { @class = "form-control full-input" })
                 @Html.HiddenFor(m => m.SessionId)
                 @Html.HiddenFor(m => m.StudentUsi)
@@ -75,7 +74,7 @@
     </div>
     @if (@Model.Session != null)
     {
-        <div>
+        <div class="top-buffer-5">
             @if (Model.AssessmentResultRows != null && Model.AssessmentResultRows.Count > 0)
             {
                 <table class="table table-report">

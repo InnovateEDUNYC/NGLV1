@@ -5,19 +5,18 @@
     ViewBag.Title = "Student Report";
     const int numberOfDaysInWeek = 7;
 }
-
 <div class="panel panel-gray">
-    <div class="row clear-right-margin">
+    <div class="panel panel-default extra-vertical-padding margin-bottom-10">
+        <h2 class="profile-header">Student Report</h2>
+    </div>
+    <div class="row">
         <div class="col-md-3">
-            <div class="panel extra-vertical-padding text-center">
-                <h2 class="profile-header">Student Report</h2>
-            </div>
             <div class="panel text-center">
                 <div>
-                    <img class="profile-image" src="@Model.ProfilePhotoUrl" alt=""/>
+                    <img class="profile-image" src="@Model.ProfilePhotoUrl" alt="" />
                     <h3>
                         <strong>
-                            @Html.ActionLink(Model.FirstName + " " + Model.LastName, MVC.Student.Index(Model.StudentUsi), new {@class="black-text"})
+                            @Html.ActionLink(Model.FirstName + " " + Model.LastName, MVC.Student.Index(Model.StudentUsi), new { @class = "black-text" })
                         </strong>
                     </h3>
                     <p>
@@ -27,57 +26,49 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9 clear-right-padding">
+        <div class="col-md-9">
             <div class="panel panel-default find-session">
                 <h4 class="strong">Session</h4>
-                
-                <div>
-                    
-                </div>
                 @Html.TextBoxFor(m => m.Session, new { @class = "form-control full-input" })
                 @Html.HiddenFor(m => m.SessionId)
                 @Html.HiddenFor(m => m.StudentUsi)
                 @Html.HiddenFor(m => m.DayFrom)
             </div>
-            
-@if (@Model.Session != null)
-{
-    <div class="time-span-chooser">
-        
-        <div>
-            <div id="week" class="result-view-period selected">
-                <h3>@Html.ActionLink("Week", MVC.Assessment.Week(@Model.StudentUsi, @Model.SessionId))</h3>
-            </div>
-        
-            <div id="month" class="result-view-period unselected">
-                <h3>@Html.ActionLink("Month", MVC.Assessment.Month(@Model.StudentUsi, @Model.SessionId), new {@class="bigger"})</h3>
-            </div>
-        </div>
 
-        <div class="panel date-range-display">
-            <ul class="pager">
-                <li class="previous">
-                    @Html.ActionLink(" ", MVC.Assessment.Week(
-             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom - numberOfDaysInWeek, @Model.DayTo - numberOfDaysInWeek), new { @class = "fa fa-arrow-left fa-2" })
-                </li>
-                <li>@Model.DateRange</li>
-                <li class="next">
-                    @Html.ActionLink(" ", MVC.Assessment.Week(
-             @Model.StudentUsi, @Model.SessionId, @Model.DayFrom + numberOfDaysInWeek, @Model.DayTo + numberOfDaysInWeek), new { @class = "fa fa-arrow-right fa-2" })
-                </li>
-            </ul>
-        </div>
-    </div>
-}
+            @if (@Model.Session != null)
+            {
+                <div class="time-span-chooser">
 
+                    <div>
+                        <div id="week" class="result-view-period selected">
+                            <h3>@Html.ActionLink("Week", MVC.Assessment.Week(@Model.StudentUsi, @Model.SessionId))</h3>
+                        </div>
 
+                        <div id="month" class="result-view-period unselected">
+                            <h3>@Html.ActionLink("Month", MVC.Assessment.Month(@Model.StudentUsi, @Model.SessionId))</h3>
+                        </div>
+                    </div>
 
-
+                    <div class="panel date-range-display">
+                        <ul class="pager">
+                            <li class="previous">
+                                @Html.ActionLink(" ", MVC.Assessment.Week(
+                         @Model.StudentUsi, @Model.SessionId, @Model.DayFrom - numberOfDaysInWeek, @Model.DayTo - numberOfDaysInWeek), new { @class = "fa fa-arrow-left fa-2" })
+                            </li>
+                            <li>@Model.DateRange</li>
+                            <li class="next">
+                                @Html.ActionLink(" ", MVC.Assessment.Week(
+                         @Model.StudentUsi, @Model.SessionId, @Model.DayFrom + numberOfDaysInWeek, @Model.DayTo + numberOfDaysInWeek), new { @class = "fa fa-arrow-right fa-2" })
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
         </div>
     </div>
     @if (@Model.Session != null)
     {
-        <div>
+        <div class="top-buffer-5">
             @if (Model.AssessmentResultRows != null && Model.AssessmentResultRows.Count > 0)
             {
                 <table class="table table-report">
@@ -108,13 +99,12 @@
                             {
                                 if (result.IsNullOrWhiteSpace())
                                 {
-                                    <td class ="profile-result"><div class="week-result-pill @result"></div></td>
+                                    <td class="profile-result"><div class="week-result-pill @result"></div></td>
                                 }
                                 else
                                 {
                                     <td class="profile-result">
-                                        <button class="week-result-pill popover-dismiss @result" title="@row.AssessmentTitle" data-container="body" data-toggle="popover" data-placement="top" data-contentwrapper="#@row.AssessmentTitle.Replace(' ', '-')" data-html="true">
-                                        </button>
+                                        <button class="week-result-pill popover-dismiss @result" title="@row.AssessmentTitle" data-container="body" data-toggle="popover" data-placement="top" data-contentwrapper="#@row.AssessmentTitle.Replace(' ', '-')" data-html="true"></button>
                                     </td>
                                 }
                             }
