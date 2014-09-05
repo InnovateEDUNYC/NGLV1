@@ -18,12 +18,11 @@
                 @Html.LabelFor(m => m.TestingAccommodation) *
             </div>
             <div class="custom-checkbox-holder top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="TestingAccommodation" name="TestingAccommodation" value="True" checked>
+                <label class="custom-checkbox vertical-align-middle true"><span class="fa fa-check fa-2x"></span></label>
+                <input type="radio" id="TestingAccommodation" name="TestingAccommodation" value="True">
                 <div class="inline-block margin-left-5">
                     Yes
                 </div>
-				<span class="col-md-1"></span>
                 <label class="custom-checkbox margin-left-15 vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
                 <input type="radio" id="TestingAccommodation" name="TestingAccommodation" value="False">
                 <div class="inline-block margin-left-5">
@@ -33,6 +32,9 @@
             <div class="inline-block margin-left-50">
                 @s.FieldFor(m => m.TestingAccommodationFile).Attrs(fileAttributes).Label("")
             </div>
+            <div>
+                @Html.ValidationMessageFor(m => m.TestingAccommodation)
+            </div>
         </div>
 
         <div class="panel panel-default top-buffer-20">
@@ -40,16 +42,18 @@
                 @Html.LabelFor(m => m.BilingualProgram) *
             </div>
             <div class="custom-checkbox-holder top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="BilingualProgram" name="BilingualProgram" value="True" checked>
+                <label class="custom-checkbox vertical-align-middle true"><span class="fa fa-check fa-2x"></span></label>
+                <input type="radio" id="BilingualProgram" name="BilingualProgram" value="True">
                 <div class="inline-block margin-left-5">
                     Yes
                 </div>
-				<span class="col-md-1"></span>
                 <label class="custom-checkbox margin-left-15 vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
                 <input type="radio" id="BilingualProgram" name="BilingualProgram" value="False">
                 <div class="inline-block margin-left-5">
                     No
+                </div>
+                <div class="top-buffer-10">
+                    @Html.ValidationMessageFor(m => m.BilingualProgram)
                 </div>
             </div>
         </div>
@@ -59,16 +63,18 @@
             @Html.LabelFor(m => m.EnglishAsSecondLanguage) *
         </div>
         <div class="custom-checkbox-holder top-buffer-10">
-            <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="EnglishAsSecondLanguage" name="EnglishAsSecondLanguage" value="True" checked>
+            <label class="custom-checkbox vertical-align-middle true"><span class="fa fa-check fa-2x"></span></label>
+            <input type="radio" id="EnglishAsSecondLanguage" name="EnglishAsSecondLanguage" value="True">
             <div class="inline-block margin-left-5">
                 Yes
             </div>
-			<span class="col-md-1"></span>
             <label class="custom-checkbox margin-left-15 vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
             <input type="radio" id="EnglishAsSecondLanguage" name="EnglishAsSecondLanguage" value="False">
             <div class="inline-block margin-left-5">
                 No
+            </div>
+            <div class="top-buffer-10">
+                @Html.ValidationMessageFor(m => m.EnglishAsSecondLanguage)
             </div>
         </div>
     </div>
@@ -82,16 +88,18 @@
                 @Html.LabelFor(m => m.Gifted) *
             </div>
             <div class="custom-checkbox-holder top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="Gifted" name="Gifted" value="True" checked>
+                <label class="custom-checkbox vertical-align-middle true"><span class="fa fa-check fa-2x"></span></label>
+                <input type="radio" id="Gifted" name="Gifted" value="True">
                 <div class="inline-block margin-left-5">
                     Yes
                 </div>
-				<span class="col-md-1"></span>
                 <label class="custom-checkbox margin-left-15 vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
                 <input type="radio" id="Gifted" name="Gifted" value="False">
                 <div class="inline-block margin-left-5">
                     No
+                </div>
+                <div class="top-buffer-10">
+                    @Html.ValidationMessageFor(m => m.Gifted)
                 </div>
             </div>
         </div>
@@ -101,12 +109,11 @@
                 @Html.LabelFor(m => m.SpecialEducation) *
             </div>
             <div class="custom-checkbox-holder inline-block top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="SpecialEducation" name="SpecialEducation" value="True" checked>
+                <label class="custom-checkbox vertical-align-middle true"><span class="fa fa-check fa-2x"></span></label>
+                <input type="radio" id="SpecialEducation" name="SpecialEducation" value="True">
                 <div class="inline-block margin-left-5">
                     Yes
                 </div>
-				<span class="col-md-1"></span>
                 <label class="custom-checkbox margin-left-15 vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
                 <input type="radio" id="SpecialEducation" name="SpecialEducation" value="False">
                 <div class="inline-block margin-left-5">
@@ -116,6 +123,9 @@
             <div class="inline-block margin-left-50">
                 @s.FieldFor(m => m.SpecialEducationFile).Attrs(fileAttributes).Label("")
             </div>
+            <div>
+                @Html.ValidationMessageFor(m => m.SpecialEducation)
+            </div>
         </div>
     
         <div class="panel panel-default top-buffer-20">
@@ -123,12 +133,11 @@
                 @Html.LabelFor(m => m.TitleParticipation) *
             </div>
             <div class="custom-checkbox-holder inline-block top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="TitleParticipation" name="TitleParticipation" value="True" checked>
+                <label class="custom-checkbox vertical-align-middle true"><span class="fa fa-check fa-2x"></span></label>
+                <input type="radio" id="TitleParticipation" name="TitleParticipation" value="True">
                 <div class="inline-block margin-left-5">
                     Yes
                 </div>
-				<span class="col-md-1"></span>
                 <label class="custom-checkbox margin-left-15 vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
                 <input type="radio" id="TitleParticipation" name="TitleParticipation" value="False">
                 <div class="inline-block margin-left-5">
@@ -138,18 +147,20 @@
             <div class="inline-block margin-left-50">
                 @s.FieldFor(m => m.TitleParticipationFile).Attrs(fileAttributes).Label("")
             </div>
+            <div>
+                @Html.ValidationMessageFor(m => m.TitleParticipation)
+            </div>
         </div>
         <div class="panel panel-default top-buffer-20">
             <div>
                 @Html.LabelFor(m => m.McKinneyVento) *
             </div>
             <div class="custom-checkbox-holder inline-block top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="McKinneyVento" name="McKinneyVento" value="True" checked>
+                <label class="custom-checkbox vertical-align-middle true"><span class="fa fa-check fa-2x"></span></label>
+                <input type="radio" id="McKinneyVento" name="McKinneyVento" value="True">
                 <div class="inline-block margin-left-5">
                     Yes
                 </div>
-            	<span class="col-md-1"></span>
                 <label class="custom-checkbox margin-left-15 vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
                 <input type="radio" id="McKinneyVento" name="McKinneyVento" value="False">
                 <div class="inline-block margin-left-5">
@@ -158,6 +169,9 @@
             </div>
             <div class="inline-block margin-left-50">
                 @s.FieldFor(m => m.McKinneyVentoFile).Attrs(fileAttributes).Label("")
+            </div>
+            <div>
+                @Html.ValidationMessageFor(m => m.McKinneyVento)
             </div>
         </div>
     }

@@ -11,7 +11,7 @@ namespace NGL.UiTests.Enrollment
 
         public bool IsTitleCorrect()
         {
-            return Find.Element(By.CssSelector("h2.title")).Text.Equals(PageTitle);
+            return Find.Element(By.CssSelector("h2")).Text.Equals(PageTitle);
         }
 
         public ProfilePage InputProgramStatus(EnterProgramStatusModel programStatusModel)
