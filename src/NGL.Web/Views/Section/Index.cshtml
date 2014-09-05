@@ -21,13 +21,19 @@
     </div>
 }
 
-<h2>Sections</h2>
-@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
-{
-     @Html.ActionLink("Create New Section", MVC.Section.Create(), new { @class = "btn btn-default" })
-}
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Sections</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Create New Section", MVC.Section.Create(), new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
 
-<div class="table-container">
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -76,10 +82,10 @@
                     </td>
                     @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "delete"))
                     {
-                        <td>
+                        <td class="table-buttons text-right">
                             <form action="/Section/Delete" method="POST">
                                 <input type="hidden" name="sectionIdentity" value="@item.SectionIdentity" />
-                                <input type="submit" class="btn btn-primary pull-right delete-row-btn" value="Delete" />
+                                <input type="submit" class="btn btn-primary delete-row-btn" value="Delete" />
                             </form>
                         </td>
                     }

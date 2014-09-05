@@ -22,13 +22,19 @@
     </div>
 }
 
-<h2>Classrooms</h2>
-@if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
-{
-     @Html.ActionLink("Add Classroom", MVC.Location.Create(), new { @class = "btn btn-default" })
-}
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Classrooms</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Add Classroom", MVC.Location.Create(), new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
 
-<div class="table-container">
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -59,11 +65,11 @@
                     </td>
                     @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "delete"))
                     {
-                        <td>
+                        <td class="table-buttons text-right">
                             <form action="/Location/Delete" method="POST">
                                 <input type="hidden" name="locationIdentity" value="@item.Identity" />
                                 <input type="hidden" name="locationName" value="@item.ClassroomIdentificationCode" />
-                                <input type="submit" class="btn btn-primary pull-right" value="Delete" />
+                                <input type="submit" class="btn btn-primary" value="Delete" />
                             </form>
                         </td>
                     }

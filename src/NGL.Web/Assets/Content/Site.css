@@ -260,6 +260,13 @@ td.scheduled-section-dates {
 
 .panel-above-table {
     padding-left: 30px;
+    padding-bottom: 20px;
+}
+
+.index-header-panel {
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 body h4.panel:first-child {
@@ -344,4 +351,35 @@ body h4.panel:first-child {
 
 .ngl-color {
     color: #2DBCBB;
+}
+
+.header-text {
+    display: inline-block;
+    width: 49%;
+    vertical-align: middle;
+}
+
+.header-text > h2{
+    margin: 0;
+}
+
+.header-buttons {
+    display: inline-block;
+    width: 49%;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.header-buttons .btn {
+    margin: 0 8px;
+}
+
+.table-buttons form{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.table-buttons a{
+    display: inline-block;
+    margin: 0 10px;
 }

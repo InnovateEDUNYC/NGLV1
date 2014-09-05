@@ -22,12 +22,18 @@
     </div>
 }
 
-<h2>Sessions</h2>
-    @if((User as NglPrincipal).HasAccessTo("session", "create")){
-        @Html.ActionLink("Create New Session", MVC.Session.Create(), new { @class = "btn btn-default"})
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Sessions</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("session", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Create New Session", MVC.Session.Create(), new { @class = "btn btn-default" })
+        </div>
     }
-
-<div class="table-container">
+</div>
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -68,22 +74,22 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.TotalInstructionalDays)
                     </td>
-                    @if ((User as NglPrincipal).HasAccessTo("session", "view"))
-                    {
-                        <td>
+                    <td class="text-right table-buttons">
+                        @if ((User as NglPrincipal).HasAccessTo("session", "view"))
+                        {
+
                             @Html.ActionLink("View Sections", MVC.Section.ForSession(item.SessionIdentity), new { @class = "btn btn-default" })
-                        </td>
-                    }
-                    @if ((User as NglPrincipal).HasAccessTo("session", "delete"))
-                    {
-                        <td>
+                        }
+                        @if ((User as NglPrincipal).HasAccessTo("session", "delete"))
+                        {
                             <form action="/Session/Delete" method="POST">
                                 <input type="hidden" name="sessionIdentity" value="@item.SessionIdentity" />
                                 <input type="hidden" name="sessionName" value="@item.Term @item.SchoolYear" />
-                                <input type="submit" class="btn btn-primary pull-right" value="Delete" />
+                                <input type="submit" class="btn btn-primary" value="Delete" />
                             </form>
-                        </td>
-                    }
+
+                        }
+                    </td>
                 </tr>
             }
         </tbody>

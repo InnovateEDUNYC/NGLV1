@@ -5,14 +5,19 @@
     ViewBag.Title = "Assessments";
 }
 
-<h2>Assessments</h2>
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Assessments</h2>
+    </div>
+    @if ((User as NglPrincipal).HasAccessTo("assessment", "create"))
+    {
+        <div class="header-buttons">
+            @Html.ActionLink("Create Assessment", MVC.Assessment.Create(), new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
 
-@if ((User as NglPrincipal).HasAccessTo("assessment", "create"))
-{
-    @Html.ActionLink("Create Assessment", MVC.Assessment.Create(), new { @class = "btn btn-default" })
-}
-
-<div class="table-container">
+<div class="index-table-container">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -52,7 +57,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
-                <td>
+                <td class="table-buttons text-right">
                     @Html.ActionLink("Results", MVC.Assessment.EnterResults(item.id), new { @class = "btn btn-primary" })
                 </td>
             </tr>

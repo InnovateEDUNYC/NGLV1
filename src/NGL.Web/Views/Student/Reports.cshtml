@@ -5,11 +5,16 @@
     ViewBag.Title = "Students";
 }
 
-<h2>Students</h2>
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Students</h2>
+    </div>
+    <div class="header-buttons">
+        @Html.ActionLink("Grade Students", MVC.ParentCourseGrade.Index(), new { @class = "btn btn-default" })
+    </div>
+</div>
 
-@Html.ActionLink("Grade Students", MVC.ParentCourseGrade.Index(), new { @class = "btn btn-default" })
-
-<div class="table-container">
+<div class="index-table-container">
     <table class="table table-striped" id="student-table">
         <thead>
         <tr>
@@ -40,8 +45,8 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.StudentUsi)
                     </td>
-                    <td>
-                        @Html.ActionLink("Reports", MVC.Assessment.Week(item.StudentUsi, null), new { @class = "btn btn-primary pull-right" })
+                    <td class="table-buttons text-right">
+                        @Html.ActionLink("Reports", MVC.Assessment.Week(item.StudentUsi, null), new { @class = "btn btn-primary" })
                     </td>
                 </tr>
             }

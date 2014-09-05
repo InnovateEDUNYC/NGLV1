@@ -12,6 +12,13 @@
     border-radius: 4px;
 }
 
+.index-table-container {
+    background-color: white;
+    margin: 10px 0;
+    padding: 30px;
+    border-radius: 4px;
+}
+
 .table {
     margin-bottom: 0;
     border-collapse: separate;
