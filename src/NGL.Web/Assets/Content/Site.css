@@ -254,6 +254,14 @@ td.scheduled-section-dates {
     box-shadow: none;
 }
 
+.panel-default {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
 .panel-above-table {
     padding-left: 30px;
     padding-bottom: 20px;
@@ -267,6 +275,7 @@ td.scheduled-section-dates {
     padding-left: 30px;
     padding-top: 20px;
     padding-bottom: 20px;
+    padding-right: 10px;
 }
 
 .form-header {
@@ -275,15 +284,8 @@ td.scheduled-section-dates {
     padding-bottom: 20px;
 }
 
-.form-header > h2{
+.form-header > h2 {
     margin: 0;
-}
-
-.form-panel {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 30px;
-
 }
 
 body h4.panel:first-child {
@@ -376,7 +378,7 @@ body h4.panel:first-child {
     vertical-align: middle;
 }
 
-.header-text > h2{
+.header-text > h2 {
     margin: 0;
 }
 
@@ -399,4 +401,8 @@ body h4.panel:first-child {
 .table-buttons a{
     display: inline-block;
     margin: 0 10px;
+}
+
+.no-width {
+    width: 0;
 }

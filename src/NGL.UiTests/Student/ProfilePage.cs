@@ -144,7 +144,7 @@ namespace NGL.UiTests.Student
 
         public ProfilePage EditName(NameModel nameModel)
         {
-            Find.Element(By.Id("edit-student-name-button")).Click();
+            Execute.Script("$('#edit-student-name-button').click()");
             Execute.Script("$('#FirstName').val('" + nameModel.FirstName + "')");
             Execute.Script("$('#LastName').val('" + nameModel.LastName + "')");
             Execute.Script("$('#save-student-name-edit').click()");

@@ -2,6 +2,12 @@
     padding-bottom: 30px;
 }
 
+.superscript {
+    position: absolute;
+    
+
+}
+
 .profile-edit > .form-group, .profile-edit > .edit-parent-address-section > .form-group {
     margin-bottom: 5px;
 }
@@ -55,5 +61,13 @@
 }
 
 .set-schedule-profile-container {
-    padding-bottom: 68px;
+    padding-bottom: 60px;
+}
+
+.profile-header {
+    margin: 0;
+}
+
+.current-sections-container {
+    margin-top: 10px;
 }

@@ -1,7 +1,7 @@
 ﻿@using NGL.Web.Infrastructure.Security
 @model NGL.Web.Models.Student.NameModel
 
-<div id="readonly-student-name">
+<div id="readonly-student-name" class="top-buffer-10">
     <h3 class="inline">
         <strong>
             @Html.DisplayFor(model => model.FirstName)
@@ -10,7 +10,7 @@
     </h3>
     @if ((User as NglPrincipal).HasAccessTo("enrollment", "edit"))
     {<h4 class="inline-block">
-        <span id="edit-student-name-button" class="fa fa-pencil fa-1 pull-right enabled-edit"></span>
+        <span id="edit-student-name-button" class="fa fa-pencil fa-1 pull-right enabled-edit no-width"></span>
     </h4>
     }
 </div>
