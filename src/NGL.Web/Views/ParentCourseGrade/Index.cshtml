@@ -50,14 +50,14 @@
             </tbody>
         </table>
     <div class="cancel-and-save-buttons">
-        @if ((User as NglPrincipal).HasAccessTo("grades", "edit"))
-        {
-        @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId),
-                new { @class = "btn btn-primary" })
-        }
         @if ((User as NglPrincipal).HasAccessTo("grades", "view"))
         {
         @Html.ActionLink("Export as CSV file", MVC.ParentCourseGrade.ExportCsv(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId), new { @class = "btn btn-default right-elbow-room" })
+        }
+        @if ((User as NglPrincipal).HasAccessTo("grades", "edit"))
+        {
+            @Html.ActionLink("Edit", MVC.ParentCourseGrade.Edit(Model.FindParentCourseModel.SessionId, Model.FindParentCourseModel.ParentCourseId),
+                new { @class = "btn btn-primary" })
         }
     </div>
 

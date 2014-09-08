@@ -1952,6 +1952,7 @@
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
+    <Content Include="Assets\Content\CheckboxesAndRadioButtons.css" />
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Content\Image.css" />
     <Content Include="Assets\Content\paddingAndMargins.css" />
@@ -1999,6 +2000,7 @@
     <Content Include="Assets\Scripts\Views\Schedule\removeStudent.js" />
     <Content Include="Assets\Scripts\Views\Section\getCourse.js" />
     <Content Include="Assets\Scripts\Views\Shared\accordianArrows.js" />
+    <Content Include="Assets\Scripts\Views\Shared\checkboxesAndRadioButtons.js" />
     <Content Include="Assets\Scripts\Views\Shared\enableEditMode.js" />
     <Content Include="Assets\Scripts\Views\Shared\editProfile.js" />
     <Content Include="Assets\Scripts\Views\Shared\learningStandards.js" />

@@ -33,6 +33,7 @@ namespace NGL.Web
                       "~/Assets/Content/BootstrapOverrides.css",
                       "~/Assets/Content/image.css",
                       "~/Assets/Content/button.css",
+                      "~/Assets/Content/CheckboxesAndRadioButtons.css",
                       "~/Assets/Content/datepicker.css",
                       "~/Assets/Content/Attendance.css",
                       "~/Assets/Content/ViewAssessmentResults.css",
@@ -51,6 +52,7 @@ namespace NGL.Web
                 ));
             bundles.Add(new ScriptBundle("~/bundles/views").Include(
                 "~/Assets/Scripts/Views/Shared/programStatus.js",
+                "~/Assets/Scripts/Views/Shared/checkboxesAndRadioButtons.js",
                 "~/Assets/Scripts/Views/Shared/enableEditMode.js",
                 "~/Assets/Scripts/Views/Shared/editProfile.js",
                 "~/Assets/Scripts/Views/Enrollment/enterProgramStatus.js",

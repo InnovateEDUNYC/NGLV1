@@ -208,8 +208,7 @@ namespace NGL.UiTests.Student
             Execute.Script("$('#editable-parent-" + parentNumber + "-info #Relationship').val('" + parentModel.Relationship + "')");
             Execute.Script("$('#editable-parent-" + parentNumber + "-info #TelephoneNumber').val('" + parentModel.TelephoneNumber + "')");
             Execute.Script("$('#editable-parent-" + parentNumber + "-info #EmailAddress').val('" + parentModel.EmailAddress + "')");
-            Execute.Script("$('#editable-parent-" + parentNumber + "-info #SameAddressAsStudent').attr('checked'," +
-                           parentModel.SameAddressAsStudent.ToString().ToLower() + ")");
+            Execute.Script("$('#editable-parent-" + parentNumber + "-info #SameAddressAsStudent').click()");
             if (!parentModel.SameAddressAsStudent)
             {
                 Execute.Script("$('#editable-parent-" + parentNumber + "-info #EditableParentAddressModel_Address').val('" + parentModel.EditableParentAddressModel.Address + "')");

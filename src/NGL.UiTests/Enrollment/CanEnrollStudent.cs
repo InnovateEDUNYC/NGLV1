@@ -37,7 +37,6 @@ namespace NGL.UiTests.Enrollment
         public void IHaveEnteredValidInputForAllFields()
         {
             _createStudentModel = CreateStudentModelFactory.CreateStudent();
-
             _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
         }
 
@@ -45,11 +44,10 @@ namespace NGL.UiTests.Enrollment
         {
             _academicDetailPage.IsTitleCorrect().ShouldBe(true);
         }
+
         private void IHaveInputAcademicDetails()
         {
-
             var academicDetailModel = CreateAcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
-
             _programStatusPage = _academicDetailPage.InputDetails(academicDetailModel);
         }
 
@@ -65,11 +63,11 @@ namespace NGL.UiTests.Enrollment
         }
 
         private void IShouldBeAbleToViewTheStudentInfo()
-
         {
             var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
             allFieldsExist.ShouldBe(true);
         }
+
         [Fact]
         public void ShouldEnrollStudent()
         {

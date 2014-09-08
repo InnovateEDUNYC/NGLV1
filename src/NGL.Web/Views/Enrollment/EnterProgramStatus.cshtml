@@ -5,110 +5,288 @@
     var fileAttributes = new {type = "file", @class = "form-control", disabled = "disabled"};
 }
 
-<h2 class="title">Program Status</h2>
+<div class="panel panel-default form-header">
+    <h2>Program Status</h2>
+</div>
 
 @using (var f = Html.BeginNglForm(method: FormMethod.Post, enctype: EncType.Multipart))
 {
     using (var s = f.BeginSection())
     {
-        <div class="panel top-buffer-20">
+        <div class="panel panel-default top-buffer-20">
+            <div>
                 @Html.LabelFor(m => m.TestingAccommodation) *
-            <div class="custom-checkbox-holder top-buffer-10">
-                    <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                    <input type="radio" id="TestingAccommodation" name="TestingAccommodation" value="True" checked>
+            </div>
+            <div class="form-group">
+                
+                <div class="input-group inline-block">
+                    <div class="large-checkbox-left">
+                        <input type="radio" id="TestingAccommodation_1" name="TestingAccommodation" value="true">
+                        <label class="custom-large-checkbox" for="TestingAccommodation_1">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+                
+                    <div class="large-label-right">
+                        Yes
+                    </div>
+
+                    <div class="large-checkbox-left">
+                        <input checked type="radio" id="TestingAccommodation_2" name="TestingAccommodation" value="false">
+                        <label class="custom-large-checkbox" for="TestingAccommodation_2">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+                
+                    <div class="large-label-right">
+                        No
+                    </div>
+                </div>
+                
+                <div class="file-upload">
+                    @s.FieldFor(m => m.TestingAccommodationFile).Attrs(fileAttributes).Label("")
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(m => m.TestingAccommodation)
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel panel-default top-buffer-20">
+            <div>
+                @Html.LabelFor(m => m.BilingualProgram) *
+            </div>
+            <div class="form-group">
+
+                <div class="input-group inline-block">
+                    <div class="large-checkbox-left">
+                        <input type="radio" id="BilingualProgram_1" name="BilingualProgram" value="true">
+                        <label class="custom-large-checkbox" for="BilingualProgram_1">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        Yes
+                    </div>
+
+                    <div class="large-checkbox-left">
+                        <input checked type="radio" id="BilingualProgram_2" name="BilingualProgram" value="false">
+                        <label class="custom-large-checkbox" for="BilingualProgram_2">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        No
+                    </div>
+                </div>
+
+                <div>
+                    @Html.ValidationMessageFor(m => m.BilingualProgram)
+                </div>
+
+            </div>
+        </div>
+
+    <div class="panel panel-default top-buffer-20">
+        <div>
+            @Html.LabelFor(m => m.EnglishAsSecondLanguage) *
+        </div>
+        <div class="form-group">
+
+            <div class="input-group inline-block">
+                <div class="large-checkbox-left">
+                    <input type="radio" id="EnglishAsSecondLanguage_1" name="EnglishAsSecondLanguage" value="true">
+                    <label class="custom-large-checkbox" for="EnglishAsSecondLanguage_1">
+                        <span class="fa fa-check fa-2x"></span>
+                    </label>
+                </div>
+
+                <div class="large-label-right">
                     Yes
-                    <span class="col-md-1"></span>
-                    <label class="custom-checkbox vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
-                    <input type="radio" id="TestingAccommodation" name="TestingAccommodation" value="False">
+                </div>
+
+                <div class="large-checkbox-left">
+                    <input checked type="radio" id="EnglishAsSecondLanguage_2" name="EnglishAsSecondLanguage" value="false">
+                    <label class="custom-large-checkbox" for="EnglishAsSecondLanguage_2">
+                        <span class="fa fa-check fa-2x"></span>
+                    </label>
+                </div>
+
+                <div class="large-label-right">
                     No
+                </div>
             </div>
-                @s.FieldFor(m => m.TestingAccommodationFile).Attrs(fileAttributes).Label("")
-        </div>
 
-        <div class="panel top-buffer-20">
-            @Html.LabelFor(m => m.BilingualProgram) *
-            <div class="custom-checkbox-holder top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="BilingualProgram" name="BilingualProgram" value="True" checked>
-                Yes
-                <span class="col-md-1"></span>
-                <label class="custom-checkbox vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="BilingualProgram" name="BilingualProgram" value="False">
-                No
+            <div>
+                @Html.ValidationMessageFor(m => m.EnglishAsSecondLanguage)
             </div>
-        </div>
 
-    <div class="panel top-buffer-20">
-        @Html.LabelFor(m => m.EnglishAsSecondLanguage) *
-        <div class="custom-checkbox-holder top-buffer-10">
-            <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="EnglishAsSecondLanguage" name="EnglishAsSecondLanguage" value="True" checked>
-            Yes
-            <span class="col-md-1"></span>
-            <label class="custom-checkbox vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="EnglishAsSecondLanguage" name="EnglishAsSecondLanguage" value="False">
-            No
         </div>
     </div>
-   
-    <div class="panel top-buffer-20">
+
+    <div class="panel panel-default top-buffer-20">
         @s.FieldFor(m => m.FoodServicesEligibilityStatus)
     </div>
 
-        <div class="panel top-buffer-20">
+        <div class="panel panel-default top-buffer-20">
+            <div>
                 @Html.LabelFor(m => m.Gifted) *
-            <div class="custom-checkbox-holder top-buffer-10">
-                <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="Gifted" name="Gifted" value="True" checked>
-                Yes
-                <span class="col-md-1"></span>
-                <label class="custom-checkbox vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
-                <input type="radio" id="Gifted" name="Gifted" value="False">
-                No
+            </div>
+            <div class="form-group">
+
+                <div class="input-group inline-block">
+                    <div class="large-checkbox-left">
+                        <input type="radio" id="Gifted_1" name="Gifted" value="true">
+                        <label class="custom-large-checkbox" for="Gifted_1">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        Yes
+                    </div>
+
+                    <div class="large-checkbox-left">
+                        <input checked type="radio" id="Gifted_2" name="Gifted" value="false">
+                        <label class="custom-large-checkbox" for="Gifted_2">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        No
+                    </div>
+                </div>
+
+                <div>
+                    @Html.ValidationMessageFor(m => m.Gifted)
+                </div>
+
             </div>
         </div>
 
-    <div class="panel top-buffer-20">
-            @Html.LabelFor(m => m.SpecialEducation) *
-        <div class="custom-checkbox-holder top-buffer-10">
-            <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="SpecialEducation" name="SpecialEducation" value="True" checked>
-            Yes
-            <span class="col-md-1"></span>
-            <label class="custom-checkbox vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="SpecialEducation" name="SpecialEducation" value="False">
-            No
-        </div>
-            @s.FieldFor(m => m.SpecialEducationFile).Attrs(fileAttributes).Label("")
-    </div>
+        <div class="panel panel-default top-buffer-20">
+            <div>
+                @Html.LabelFor(m => m.SpecialEducation) *
+            </div>
+            <div class="form-group">
 
-    <div class="panel top-buffer-20">
-            @Html.LabelFor(m => m.TitleParticipation) *
-        <div class="custom-checkbox-holder top-buffer-10">
-            <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="TitleParticipation" name="TitleParticipation" value="True" checked>
-            Yes
-            <span class="col-md-1"></span>
-            <label class="custom-checkbox vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="TitleParticipation" name="TitleParticipation" value="False">
-            No
-        </div>
-            @s.FieldFor(m => m.TitleParticipationFile).Attrs(fileAttributes).Label("")
-    </div>
+                <div class="input-group inline-block">
+                    <div class="large-checkbox-left">
+                        <input type="radio" id="SpecialEducation_1" name="SpecialEducation" value="true">
+                        <label class="custom-large-checkbox" for="SpecialEducation_1">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
 
-    <div class="panel top-buffer-20">
-            @Html.LabelFor(m => m.McKinneyVento) *
-        <div class="custom-checkbox-holder top-buffer-10">
-            <label class="custom-checkbox vertical-align-middle checked true"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="McKinneyVento" name="McKinneyVento" value="True" checked>
-            Yes
-            <span class="col-md-1"></span>
-            <label class="custom-checkbox vertical-align-middle false"><span class="fa fa-check fa-2x"></span></label>
-            <input type="radio" id="McKinneyVento" name="McKinneyVento" value="False">
-            No
+                    <div class="large-label-right">
+                        Yes
+                    </div>
+
+                    <div class="large-checkbox-left">
+                        <input checked type="radio" id="SpecialEducation_2" name="SpecialEducation" value="false">
+                        <label class="custom-large-checkbox" for="SpecialEducation_2">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        No
+                    </div>
+                </div>
+
+                <div class="file-upload">
+                    @s.FieldFor(m => m.SpecialEducationFile).Attrs(fileAttributes).Label("")
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(m => m.SpecialEducation)
+                </div>
+            </div>
+
         </div>
-            @s.FieldFor(m => m.McKinneyVentoFile).Attrs(fileAttributes).Label("")
-    </div>
+    
+        <div class="panel panel-default top-buffer-20">
+            <div>
+                @Html.LabelFor(m => m.TitleParticipation) *
+            </div>
+            <div class="form-group">
+
+                <div class="input-group inline-block">
+                    <div class="large-checkbox-left">
+                        <input type="radio" id="TitleParticipation_1" name="TitleParticipation" value="true">
+                        <label class="custom-large-checkbox" for="TitleParticipation_1">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        Yes
+                    </div>
+
+                    <div class="large-checkbox-left">
+                        <input checked type="radio" id="TitleParticipation_2" name="TitleParticipation" value="false">
+                        <label class="custom-large-checkbox" for="TitleParticipation_2">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        No
+                    </div>
+                </div>
+
+                <div class="file-upload">
+                    @s.FieldFor(m => m.TitleParticipationFile).Attrs(fileAttributes).Label("")
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(m => m.TitleParticipation)
+                </div>
+            </div>
+
+        </div>
+    
+        <div class="panel panel-default top-buffer-20">
+            <div>
+                @Html.LabelFor(m => m.McKinneyVento) *
+            </div>
+            <div class="form-group">
+
+                <div class="input-group inline-block">
+                    <div class="large-checkbox-left">
+                        <input type="radio" id="McKinneyVento_1" name="McKinneyVento" value="true">
+                        <label class="custom-large-checkbox" for="McKinneyVento_1">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        Yes
+                    </div>
+
+                    <div class="large-checkbox-left">
+                        <input checked type="radio" id="McKinneyVento_2" name="McKinneyVento" value="false">
+                        <label class="custom-large-checkbox" for="McKinneyVento_2">
+                            <span class="fa fa-check fa-2x"></span>
+                        </label>
+                    </div>
+
+                    <div class="large-label-right">
+                        No
+                    </div>
+                </div>
+
+                <div class="file-upload">
+                    @s.FieldFor(m => m.McKinneyVentoFile).Attrs(fileAttributes).Label("")
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(m => m.McKinneyVento)
+                </div>
+            </div>
+        </div>
     }
         <input type="submit" class="btn btn-default btn-primary top-buffer-20" value="Submit" />
         }

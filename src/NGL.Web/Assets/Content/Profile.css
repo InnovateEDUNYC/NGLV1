@@ -47,9 +47,9 @@
 
 .file-upload {
     display: inline-block;
-    width: 210px;
+    max-width: 209px;
     margin-left: 15px;
-    vertical-align: middle;
+    max-height: 48px;
 }
 
 .input-group .form-control {
@@ -62,6 +62,10 @@
 
 .set-schedule-profile-container {
     padding-bottom: 60px;
+}
+
+.profile-edit > .form-group > .input-group.profile-checkbox {
+    vertical-align: top;
 }
 
 .profile-header {
