@@ -12,7 +12,7 @@ Ngl.shared.editProfile = (function () {
 
         $(pencil).on('click', function () {
 
-            if (!$(collapseDiv).is(':visible')) {
+            if ($(collapseDiv).length != 0 && !$(collapseDiv).is(':visible')) {
                 $(readonlyDiv).hide();
                 $(editableHeader).show();
                 $(editableDiv).slideDown({
