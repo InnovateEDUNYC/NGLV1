@@ -33,3 +33,7 @@
     width: 240px;
     margin-left: 10px;
 }
+
+.assessment-report-profile-panel {
+    min-height: 359px;
+}
