@@ -1952,6 +1952,7 @@
     <EmbeddedResource Include="Data\Scripts\004 - Create School Placeholder.sql" />
     <EmbeddedResource Include="Data\Scripts\003 - Core Types and Descriptors.sql" />
     <EmbeddedResource Include="Data\Scripts\001.1 - Schema - Adding Identity.sql" />
+    <Content Include="Assets\Content\CheckboxesAndRadioButtons.css" />
     <Content Include="Assets\Content\datepicker.css" />
     <Content Include="Assets\Content\Image.css" />
     <Content Include="Assets\Content\paddingAndMargins.css" />
