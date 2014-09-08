@@ -55,7 +55,8 @@
                                 @Html.TextBoxFor(tam => tam.StudentRows[i].StudentUsi)
                             </span>
                             <img class="profile-photo-thumbnail" src="@Model.StudentRows[i].ProfileThumbnailUrl" />
-                            <div class="student-name">@Html.DisplayTextFor(tam => tam.StudentRows[i].StudentName)</div>
+                            <div class="student-name">@Html.ActionLink(Model.StudentRows[i].StudentName, MVC.Student.Index(Model.StudentRows[i].StudentUsi))
+                            </div>
                         </td>
 
                         <td class="custom-checkbox-container">
