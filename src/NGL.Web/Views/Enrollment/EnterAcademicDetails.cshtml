@@ -1,6 +1,4 @@
-﻿@using System.Diagnostics.Eventing.Reader
-@using System.Net.Mime
-@model NGL.Web.Models.Enrollment.AcademicDetailModel
+﻿@model NGL.Web.Models.Enrollment.AcademicDetailModel
 
 @{
     ViewBag.Title = "Academic Details";
@@ -8,6 +6,32 @@
 
 <div class="panel panel-default form-header">
     <h2>Academic Details</h2>
+    
+    <div class="text-right enrollment-progress-container">
+        <ul class="enrollment-progress">
+            <li>
+                <div class="inline-block text-center width-80">
+                    <div class="progress-circle"></div>
+                    <figcaption class="break-word">Student Information</figcaption>
+                </div>
+            </li>
+            <li class="active">
+                <div class="inline-block text-center width-80">
+                    <div class="progress-circle"></div>
+                    <figcaption class="break-word">Academic Details</figcaption>
+                </div>
+
+            </li>
+            <li>
+                <div class="inline-block text-center width-80">
+                    <div class="progress-circle"></div>
+                    <figcaption class="break-word">Program Status</figcaption>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
 </div>
 
 <div class="panel">

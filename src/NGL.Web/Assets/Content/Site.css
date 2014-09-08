@@ -394,38 +394,6 @@ body h4.panel:first-child {
 .no-bold {
     font-weight: normal;
 }
-/*
-.merp {
-    color: #999;
-    background-color: #999;
-    width: 40px;
-    height: 2px;
-    margin: 0;
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 10px;
-}
-
-.flerp {
-    border: 1px solid #999;
-    border-radius: 25px;
-    width: 25px;
-    height: 25px;
-    vertical-align: text-bottom;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.derp {
-    background-color: #2DBCBB;
-    border-radius: 25px;
-    width: 25px;
-    height: 25px;
-    vertical-align: text-bottom;
-        margin-left: auto;
-    margin-right: auto;
-}
-    */
 
 .break-word {
     word-wrap: break-word;
@@ -435,6 +403,9 @@ body h4.panel:first-child {
     width: 80px;
 }
 
+.enrollment-progress-container {
+    margin-top: -32px;
+}
 
 .enrollment-progress {
     position: relative;
@@ -447,7 +418,7 @@ body h4.panel:first-child {
 }
 
 
-.enrollment-progress > li > div > div.herp {
+.enrollment-progress > li > div > div.progress-circle {
   width: 2em;
   height: 2em;
   text-align: center;
@@ -460,7 +431,7 @@ body h4.panel:first-child {
   position: relative;
 }
 
-.enrollment-progress > li > div > div.herp::before{
+.enrollment-progress > li > div > div.progress-circle::before{
   content: '';
   position: absolute;
   top: .9em;
@@ -471,20 +442,18 @@ body h4.panel:first-child {
   z-index: -1;
 }
 
-
-
-.enrollment-progress > li:first-child > div > div.herp::before {
+.enrollment-progress > li:first-child > div > div.progress-circle::before {
   display: none;
 }
 
-.active > div > div.herp {
+.active > div > div.progress-circle {
   background: #2DBCBB;
 }
 
-.active ~ li > div > div.herp {
+.active ~ li > div > div.progress-circle {
   background: #999;
 }
 
-.active ~ li > div > div.herp::before {
+.active ~ li > div > div.progress-circle::before {
   background: #999;
 }
