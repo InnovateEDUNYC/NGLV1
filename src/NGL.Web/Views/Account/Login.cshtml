@@ -28,22 +28,25 @@
                         @Html.ValidationMessageFor(m => m.Password)
                     </div>
                 </div>
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="form-group">
-                        <div class="checkbox-left">
-                            <input id="RememberMe" name="RememberMe" type="checkbox" value="true">
-                            <label class="custom-small-checkbox" for="RememberMe">
-                                <span></span>
-                            </label>
-                        </div>
+                if (false) //Remember Me button causes issues with the way cookies are implemented currently.  The cast to NglPrincipal fails after browser is restarted
+                 {
+                     <div class="col-md-offset-2 col-md-10">
+                         <div class="form-group">
+                             <div class="checkbox-left">
+                                 <input id="RememberMe" name="RememberMe" type="checkbox" value="true">
+                                 <label class="custom-small-checkbox" for="RememberMe">
+                                     <span></span>
+                                 </label>
+                             </div>
 
-                        <div class="label-right">
-                            @Html.DisplayNameFor(model => model.RememberMe)
-                        </div>
+                             <div class="label-right">
+                                 @Html.DisplayNameFor(model => model.RememberMe)
+                             </div>
 
-                    </div>
-                    @Html.ValidationMessageFor(m => m.RememberMe)
-                </div>
+                         </div>
+                         @Html.ValidationMessageFor(m => m.RememberMe)
+                     </div>
+                 }
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Log in" class="btn btn-default" />
