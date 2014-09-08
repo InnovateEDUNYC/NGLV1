@@ -38,6 +38,21 @@ namespace NGL.Tests.Course
 
             Assert.Equal(result.Model, new List<IndexModel>());
         }
+        private CourseController SetUpController()
+        {
+            _mockGenericRepository = new Mock<IGenericRepository>();
+            _mockCourseToIndexModelMapper = new Mock<IMapper<Web.Data.Entities.Course, IndexModel>>();
+            _mockCreateModelToCourseMapper = new Mock<IMapper<CreateModel, Web.Data.Entities.Course>>();
+            _mockParentCourseToParentCourseListItemModelMapper =
+                new Mock<IMapper<Web.Data.Entities.ParentCourse, ParentCourseListItemModel>>();
+            _mockCourseRepository = new Mock<ICourseRepository>();
+            var controller = new CourseController(_mockGenericRepository.Object,
+                _mockCourseToIndexModelMapper.Object,
+                _mockCreateModelToCourseMapper.Object,
+                _mockParentCourseToParentCourseListItemModelMapper.Object,
+                _mockCourseRepository.Object);
+            return controller;
+        }
 
         [Fact]
         public void IndexShouldReturnListModelsForEachCourse()
@@ -63,20 +78,20 @@ namespace NGL.Tests.Course
             return courses;
         }
 
-        private CourseController SetUpController()
+        [Fact]
+        public void CreateShouldReturnCreateModelWithParentCourses()
         {
-            _mockGenericRepository = new Mock<IGenericRepository>();
-            _mockCourseToIndexModelMapper = new Mock<IMapper<Web.Data.Entities.Course, IndexModel>>();
-            _mockCreateModelToCourseMapper = new Mock<IMapper<CreateModel, Web.Data.Entities.Course>>();
-            _mockParentCourseToParentCourseListItemModelMapper =
-                new Mock<IMapper<Web.Data.Entities.ParentCourse, ParentCourseListItemModel>>();
-            _mockCourseRepository = new Mock<ICourseRepository>();
-            var controller = new CourseController(_mockGenericRepository.Object,
-                _mockCourseToIndexModelMapper.Object,
-                _mockCreateModelToCourseMapper.Object,
-                _mockParentCourseToParentCourseListItemModelMapper.Object,
-                _mockCourseRepository.Object);
-            return controller;
+            //todo: refactoring GetParentCourseList into repo for easier testing
+            var controller = SetUpController();
+
+            var parentCourses = new List<Web.Data.Entities.ParentCourse>();
+            parentCourses.Add(new ParentCourseBuilder().Build());
+            parentCourses.Add(new ParentCourseBuilder().Build());
+            _mockGenericRepository.Setup(repo => repo.GetAll<Web.Data.Entities.ParentCourse>()).Returns(parentCourses);
+
+            var result = (CreateModel) ((ViewResult) controller.Create()).Model;
+            
+            Assert.Equal(2, result.ParentCourseList.Count);
         }
     }
 }
