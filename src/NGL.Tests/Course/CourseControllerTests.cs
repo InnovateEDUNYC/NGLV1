@@ -79,7 +79,7 @@ namespace NGL.Tests.Course
         }
 
         [Fact]
-        public void CreateShouldReturnCreateModelWithParentCourses()
+        public void GetCreateShouldReturnCreateModelWithParentCourses()
         {
             //todo: refactoring GetParentCourseList into repo for easier testing
             var controller = SetUpController();
@@ -92,6 +92,49 @@ namespace NGL.Tests.Course
             var result = (CreateModel) ((ViewResult) controller.Create()).Model;
             
             Assert.Equal(2, result.ParentCourseList.Count);
+        }
+
+        [Fact]
+        public void PostCreateShouldSaveCourse()
+        {
+            var controller = SetUpController();
+
+            var createModel = new CreateModel();
+            var courseToSave = new CourseBuilder().Build();
+            _mockCreateModelToCourseMapper.Setup(mapper => mapper.Build(createModel)).Returns(courseToSave);
+
+            controller.Create(createModel);
+
+            _mockGenericRepository.Verify(repo => repo.Add(courseToSave));
+            _mockGenericRepository.Verify(repo => repo.Save());
+        }
+
+        [Fact]
+        public void PostCreateShouldRedirectToCourseIndex()
+        {
+            var controller = SetUpController();
+
+            var createModel = new CreateModel();
+            var courseToSave = new CourseBuilder().Build();
+            _mockCreateModelToCourseMapper.Setup(mapper => mapper.Build(createModel)).Returns(courseToSave);
+
+            var result = (RedirectToRouteResult) controller.Create(createModel);
+
+            Assert.Equal("Course", result.RouteValues["Controller"]);
+            Assert.Equal("Index", result.RouteValues["Action"]);
+        }
+
+        [Fact]
+        public void PostCreateShouldReturnItselfWhenModelStateIsInvalid()
+        {
+            var controller = SetUpController();
+            var createModel = new CreateModel();
+            controller.ModelState.AddModelError("error", "some error in the model state");
+
+            var result = (ViewResult) controller.Create(createModel);
+
+            Assert.Equal(createModel, result.Model);
+            Assert.Equal("", result.ViewName);
         }
     }
 }
