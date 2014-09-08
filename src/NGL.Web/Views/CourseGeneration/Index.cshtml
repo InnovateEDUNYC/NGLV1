@@ -2,74 +2,78 @@
     ViewBag.Title = "Course Generation";
 }
 
-<h2>Course Generation</h2>
-<p>
-    Select one of the following actions to generate a course.
-</p>
-<ul class="media-list">
-    <li class="media panel">
+<div class="panel panel-default index-header-panel">
+    <div class="header-text">
+        <h2>Course Generation</h2>
+    </div>
+        <h4 class="no-bold">
+            Select one of the following actions to generate a course.
+        </h4>
+</div>
+<div class="course-generation-list-index">
+    <div class="panel panel-default">
         <div class="pull-left fa fa-calendar fa-3x panel">
         </div>
 
-        <div class="media-body">
+        <div class="">
             <h4 class="media-heading">@Html.ActionLink("Sessions", MVC.Session.Index())</h4>
             Prescribed spans of time when an education institution is open, instruction is provided and
             students are under the direction and guidance of teachers and/or education institution administration.
             A session may be interrupted by one or more vacations.
         </div>
-    </li>
+    </div>
     
-    <li class="media panel">
+    <div class="panel panel-default">
         <div class="pull-left fa fa-gear fa-3x panel">
         </div>
 
-        <div class="media-body">
+        <div>
             <h4 class="media-heading">@Html.ActionLink("Parent Courses", MVC.ParentCourse.Index())</h4>
             Used to link all the related sub-courses with different methods of instruction into one "umbrella" Parent course in order to report student grades to the state.
         </div>
-    </li>
+    </div>
 
-    <li class="media panel">
+    <div class="panel panel-default">
         <div class="pull-left fa fa-cube fa-3x panel">
         </div>
 
-        <div class="media-body">
+        <div >
             <h4 class="media-heading">@Html.ActionLink("Courses", MVC.Course.Index())</h4>
             The organization of subject matter and related learning experiences provided for the instruction of students.  Should include the method of instruction in course code.
         </div>
-    </li>
+    </div>
 
-    <li class="media panel">
+    <div class="panel panel-default">
         <div class="pull-left fa fa-bell-o fa-3x panel">
         </div>
 
-        <div class="media-body">
+        <div>
             <h4 class="media-heading">@Html.ActionLink("Periods", MVC.ClassPeriod.Index())</h4>
             The designation of a regularly scheduled series of class meetings.
         </div>
-    </li>
+    </div>
 
-    <li class="media panel">
+    <div class="panel panel-default">
         <div class="pull-left fa fa-comments-o fa-3x panel">
         </div>
 
-        <div class="media-body">
+        <div>
             <h4 class="media-heading">@Html.ActionLink("Classrooms", MVC.Location.Index())</h4>
             Physical spaces where students gather for a particular class/section. The classroom may be an indoor or outdoor
             area designated for meeting the educational needs of students.
         </div>
-    </li>
+    </div>
     
 
-    <li class="media panel">
+    <div class="panel panel-default">
         <div class="pull-left fa fa-cubes fa-3x panel">
         </div>
 
-        <div class="media-body">
+        <div>
             <h4 class="media-heading">@Html.ActionLink("Sections", MVC.Section.Index())</h4>
             A setting in which organized instruction of course content is provided to one or more students for a given period. 
             A course may be offered to more than one class/section. Instruction, provided by one or more teachers or other staff
             members, may be delivered in person or via a different medium.
         </div>
-    </li>
-</ul>
+    </div>
+</div>

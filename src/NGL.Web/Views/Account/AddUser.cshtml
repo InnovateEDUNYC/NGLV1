@@ -3,137 +3,177 @@
     ViewBag.Title = "Add User";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="panel panel-default form-header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
 @using (var f = Html.BeginNglForm("AddUser"))
 {
     @Html.AntiForgeryToken()
 
-    using (var s = f.BeginSection("Account Info"))
-    {
-        @s.FieldFor(m => m.Username)
-        @s.FieldFor(m => m.Password)
-        @s.FieldFor(m => m.ConfirmPassword)
-        @s.FieldFor(m => m.Role).HideEmptyItem()
-    }
-
-    using (var s = f.BeginSection("Staff Info"))
-    {
-        @s.FieldFor(m => m.StaffUSI)
-        @s.FieldFor(m => m.PersonalTitlePrefix)
-        @s.FieldFor(m => m.FirstName)
-        @s.FieldFor(m => m.LastName)
-    
-        <div class="form-group">
-            <div class="checkbox-left">
-                <input id="HispanicLatino" name="HispanicLatino" type="checkbox" value="true">
-                <label class="custom-small-checkbox" for="HispanicLatino">
-                    <span></span>
-                </label>
+    <div class="panel panel-default">
+        <div class="row margin-bottom-10">
+            <div class="enrollment-step">
+                Account Info
             </div>
+            <div class="col-sm-6">
+                @using (var s = f.BeginSection(""))
+                {
 
-            <div class="label-right">
-                @Html.DisplayNameFor(model => model.HispanicLatino)
-            </div>
+                    @s.FieldFor(m => m.Username)
+                    @s.FieldFor(m => m.Password)
+                    @s.FieldFor(m => m.ConfirmPassword)
+                    @s.FieldFor(m => m.Role).HideEmptyItem()
 
-        </div>
-    
-        @s.FieldFor(m => m.OldEthnicityType)
-        @s.FieldFor(m => m.GenerationCodeSuffix)
-        @s.FieldFor(m => m.MaidenName)
-        @s.FieldFor(m => m.Sex)
-        @s.FieldFor(m => m.BirthDate)
-        @s.FieldFor(m => m.PersonalEmail)
-        @s.FieldFor(m => m.HighestCompletedLevelOfEducation)
-        @s.FieldFor(m => m.YearsOfPriorProfessionalExperience)
-        @s.FieldFor(m => m.YearsOfPriorTeachingExperience)
-    
-        <div class="form-group">
-            <label class="control-label">@Html.DisplayNameFor(model => model.HighlyQualified)</label>
-            
-            <div class="input-group">
-                <div class="checkbox-left">
-                    <input id="HighlyQualified_1" name="HighlyQualified" type="radio" value="true">
-                    <label class="custom-small-checkbox" for="HighlyQualified_1">
-                        <span></span>
-                    </label>
-                </div>
-                
-                <div class="label-right">
-                    Neither
-                </div>
-
-                <div class="checkbox-left">
-                    <input id="HighlyQualified_2" name="HighlyQualified" type="radio" value="true">
-                    <label class="custom-small-checkbox" for="HighlyQualified_2">
-                        <span></span>
-                    </label>
-                </div>
-                
-                <div class="label-right">
-                    Yes
-                </div>
-
-                <div class="checkbox-left">
-                    <input id="HighlyQualified_3" name="HighlyQualified" type="radio" value="true">
-                    <label class="custom-small-checkbox" for="HighlyQualified_3">
-                        <span></span>
-                    </label>
-                </div>
-                
-                <div class="label-right">
-                    No
-                </div>
-            </div>
-
-        </div>
-        @Html.ValidationMessageFor(m => m.HighlyQualified)
-        @s.FieldFor(m => m.TeacherUSI)
-        @s.FieldFor(m => m.CitizenshipStatus)
-        @s.FieldFor(m => m.SSN)
-        @s.FieldFor(m => m.Certificate1)
-        @s.FieldFor(m => m.Certificate2)
-        @s.FieldFor(m => m.Certificate3)
-        @s.FieldFor(m => m.Certificate4)
-    }
-
-    using (var s = f.BeginSection("Clearance"))
-    {
-        <div class="form-group">
-            <div class="checkbox-left">
-                <input id="CriminalBackgroundCheck" name="CriminalBackgroundCheck" type="checkbox" value="true">
-                <label class="custom-small-checkbox" for="CriminalBackgroundCheck">
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="label-right">
-                @Html.DisplayNameFor(model => model.CriminalBackgroundCheck)
-            </div>
-
-        </div>
-            @Html.ValidationMessageFor(m => m.CriminalBackgroundCheck)
-        <div class="form-group">
-            <div class="checkbox-left">
-                <input id="Fingerprinted" name="Fingerprinted" type="checkbox" value="true">
-                <label class="custom-small-checkbox" for="Fingerprinted">
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="label-right">
-                @Html.DisplayNameFor(model => model.Fingerprinted)
+                }
             </div>
         </div>
-            @Html.ValidationMessageFor(m => m.Fingerprinted)
-    }
+    </div>
+    <div class="panel panel-default">
+        <div class="row margin-bottom-10">
+            <div class="enrollment-step">
+                Staff Info
+            </div>
+            @using (var s = f.BeginSection(""))
+            {
+                <div class="col-sm-6">
 
-    using (var a = f.BeginNavigation())
-    {
-        @a.Submit("Register").Id("registerButton").AddClass("btn btn-primary")
-    }
-}
+                    @s.FieldFor(m => m.StaffUSI)
+                    @s.FieldFor(m => m.PersonalTitlePrefix)
+                    @s.FieldFor(m => m.FirstName)
+                    @s.FieldFor(m => m.LastName)
+                    @s.FieldFor(m => m.Sex)
+                    @s.FieldFor(m => m.BirthDate)
+                    @s.FieldFor(m => m.OldEthnicityType)
+                    @s.FieldFor(m => m.GenerationCodeSuffix)
+                    @s.FieldFor(m => m.MaidenName)
+                    @s.FieldFor(m => m.PersonalEmail)
 
-@section Scripts {
-    Ngl.shared.checkboxesAndRadioButtons.init();
-}
+
+                    <div class="form-group">
+                        <div class="checkbox-left">
+                            <input id="HispanicLatino" name="HispanicLatino" type="checkbox" value="true">
+                            <label class="custom-small-checkbox" for="HispanicLatino">
+                                <span></span>
+                            </label>
+                        </div>
+
+                        <div class="label-right">
+                            @Html.DisplayNameFor(model => model.HispanicLatino)
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+
+
+                    @s.FieldFor(m => m.HighestCompletedLevelOfEducation)
+                    @s.FieldFor(m => m.YearsOfPriorProfessionalExperience)
+                    @s.FieldFor(m => m.YearsOfPriorTeachingExperience)
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @s.FieldFor(m => m.TeacherUSI)
+
+
+                        <label class="control-label">@Html.DisplayNameFor(model => model.HighlyQualified)</label>
+
+                        <div class="input-group">
+                            <div class="checkbox-left">
+                                <input id="HighlyQualified_1" name="HighlyQualified" type="radio" value="true">
+                                <label class="custom-small-checkbox" for="HighlyQualified_1">
+                                    <span></span>
+                                </label>
+                            </div>
+
+                            <div class="label-right">
+                                Neither
+                            </div>
+
+                            <div class="checkbox-left">
+                                <input id="HighlyQualified_2" name="HighlyQualified" type="radio" value="true">
+                                <label class="custom-small-checkbox" for="HighlyQualified_2">
+                                    <span></span>
+                                </label>
+                            </div>
+
+                            <div class="label-right">
+                                Yes
+                            </div>
+
+                            <div class="checkbox-left">
+                                <input id="HighlyQualified_3" name="HighlyQualified" type="radio" value="true">
+                                <label class="custom-small-checkbox" for="HighlyQualified_3">
+                                    <span></span>
+                                </label>
+                            </div>
+
+                            <div class="label-right">
+                                No
+                            </div>
+                        </div>
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.HighlyQualified)
+                    @s.FieldFor(m => m.CitizenshipStatus)
+                    @s.FieldFor(m => m.SSN)
+                    @s.FieldFor(m => m.Certificate1)
+                    @s.FieldFor(m => m.Certificate2)
+                    @s.FieldFor(m => m.Certificate3)
+                    @s.FieldFor(m => m.Certificate4)
+                </div>
+            }
+        </div>
+        </div>
+    <div class="panel panel-default">
+        <div class="row margin-bottom-10">
+            <div class="enrollment-step">
+                Clearance
+            </div>
+            <div class="col-sm-6">
+                @using (var s = f.BeginSection(""))
+                {
+                    <div class="form-group">
+                        <div class="checkbox-left">
+                            <input id="CriminalBackgroundCheck" name="CriminalBackgroundCheck" type="checkbox" value="true">
+                            <label class="custom-small-checkbox" for="CriminalBackgroundCheck">
+                                <span></span>
+                            </label>
+                        </div>
+
+                        <div class="label-right">
+                            @Html.DisplayNameFor(model => model.CriminalBackgroundCheck)
+                        </div>
+
+                    </div>
+                    @Html.ValidationMessageFor(m => m.CriminalBackgroundCheck)
+                    <div class="form-group">
+                        <div class="checkbox-left">
+                            <input id="Fingerprinted" name="Fingerprinted" type="checkbox" value="true">
+                            <label class="custom-small-checkbox" for="Fingerprinted">
+                                <span></span>
+                            </label>
+                        </div>
+
+                        <div class="label-right">
+                            @Html.DisplayNameFor(model => model.Fingerprinted)
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Fingerprinted)
+                }
+
+
+                @using (var a = f.BeginNavigation())
+                {
+                    @a.Submit("Register").Id("registerButton").AddClass("btn btn-primary top-buffer-10")
+                }
+            </div>
+        </div>
+        </div>
+
+
+            }
+
+            @section Scripts {
+                Ngl.shared.checkboxesAndRadioButtons.init();
+            }

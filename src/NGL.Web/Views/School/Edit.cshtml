@@ -4,18 +4,23 @@
     ViewBag.Title = "School Info";
 }
 
-<h2>School</h2>
+<div class="panel panel-default form-header">
+    <h2>School</h2>
+</div>
 
 @using (var f = Html.BeginNglForm())
 {
-    using (var s = f.BeginSection())
+    <div class="panel panel-default">
+    @using (var s = f.BeginSection())
     {
         @s.FieldFor(m => m.StateOrganizationId)
         @s.FieldFor(m => m.NameOfInstitution)
         @s.FieldFor(m => m.WebSite)
     }
-    using (var n = f.BeginNavigation())
+    @using (var n = f.BeginNavigation())
     {
         @n.Submit("Save").AddClass("btn btn-primary")
     }
+    </div>
+    
 }

@@ -5,18 +5,21 @@
     ViewBag.Title = @Model.Name;
 }
 
-<h2>@Model.Name</h2>
-<ul class="list-inline">
-    <li>
-        <h4>Sections Created</h4>
-    </li>
+
+
+
+<div class="panel panel-default index-header-panel margin-bottom-10">
+    <div class="header-text">
+        <h2 class="inline">Sections Created: @Model.Name</h2>
+    </div>
+
     @if ((User as NglPrincipal).HasAccessTo("courseGeneration", "create"))
     {
-        <li class="pull-right">
-            @Html.ActionLink("Create New", MVC.Section.Create(Model.Id), new {@class = "btn btn-primary"})
-        </li>
+        <div class="header-buttons">
+            @Html.ActionLink("Create New", MVC.Section.Create(Model.Id), new { @class = "btn btn-primary" })
+        </div>
     }
-</ul>
+</div>
 
 <div>
     @for (int courseIndex = 0; courseIndex < Model.CourseRows.Count; courseIndex++)

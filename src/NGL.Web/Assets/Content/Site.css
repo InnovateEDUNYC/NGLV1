@@ -385,3 +385,12 @@ body h4.panel:first-child {
     margin-bottom: 25px;    
 }
 
+.course-generation-list-index > div {
+    margin-top: 10px;
+    min-height: 104px;
+    padding-left: 15px;
+}
+
+.no-bold {
+    font-weight: normal;
+}
