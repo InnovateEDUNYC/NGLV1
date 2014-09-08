@@ -33,6 +33,7 @@ namespace NGL.Web
                       "~/Assets/Content/BootstrapOverrides.css",
                       "~/Assets/Content/image.css",
                       "~/Assets/Content/button.css",
+                      "~/Assets/Content/CheckboxesAndRadioButtons.css",
                       "~/Assets/Content/datepicker.css",
                       "~/Assets/Content/Attendance.css",
                       "~/Assets/Content/ViewAssessmentResults.css",

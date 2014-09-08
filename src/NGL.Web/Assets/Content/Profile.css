@@ -49,6 +49,7 @@
     display: inline-block;
     max-width: 209px;
     margin-left: 15px;
+    max-height: 48px;
 }
 
 .input-group .form-control {
