@@ -3,16 +3,19 @@ using System.Linq;
 using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Dates;
+using NGL.Web.Infrastructure.Azure;
 
 namespace NGL.Web.Models.Assessment
 {
     public class AssessmentToEnterResultsModelMapper : MapperBase<Data.Entities.Assessment, EnterResultsModel>
     {
         private readonly IMapper<StudentAssessment, EnterResultsStudentModel> _studentAssessmentToEnterResultsStudentModelMapper;
+        private readonly ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
-        public AssessmentToEnterResultsModelMapper(IMapper<StudentAssessment, EnterResultsStudentModel> studentAssessmentToEnterResultsStudentModelMapper)
+        public AssessmentToEnterResultsModelMapper(IMapper<StudentAssessment, EnterResultsStudentModel> studentAssessmentToEnterResultsStudentModelMapper, ProfilePhotoUrlFetcher profilePhotoUrlFetcher)
         {
             _studentAssessmentToEnterResultsStudentModelMapper = studentAssessmentToEnterResultsStudentModelMapper;
+            _profilePhotoUrlFetcher = profilePhotoUrlFetcher;
         }
 
         public override void Map(Data.Entities.Assessment source, EnterResultsModel target)
@@ -40,7 +43,8 @@ namespace NGL.Web.Models.Assessment
                 target.StudentResults = students.Select(s => new EnterResultsStudentModel
                 {
                     StudentUsi = s.StudentUSI,
-                    Name = s.FirstName + " " + s.LastSurname
+                    Name = s.FirstName + " " + s.LastSurname,
+                    ProfileThumbnailUrl = _profilePhotoUrlFetcher.GetProfilePhotoThumbnailUrlOrDefault(s.StudentUSI)
                 }).ToList();
             }
             else

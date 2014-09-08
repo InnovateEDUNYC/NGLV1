@@ -49,7 +49,10 @@
                             {
                                 <tr>
                                     <td class="vertical-align-middle">
-                                        <div class="student-name">@Html.DisplayTextFor(erm => erm.StudentResults[i].Name)</div>
+                                        <img class="profile-photo-thumbnail" src="@Model.StudentResults[i].ProfileThumbnailUrl" />
+                                        <div class="student-name">
+                                            @Html.ActionLink(Model.StudentResults[i].Name, MVC.Student.Index(Model.StudentResults[i].StudentUsi))
+                                        </div>
                                     </td>
                                     <td class="text-right ">
                                         @Html.TextBoxFor(s => Model.StudentResults[i].AssessmentResult, new { @id = "StudentResults_" + i + "__AssessmentResult", @class = "grade-textbox" })

@@ -6,5 +6,6 @@
         public int StudentUsi { get; set; }
         public decimal? AssessmentResult { get; set; }
         public int AssessmentIdentity { get; set; }
+        public string ProfileThumbnailUrl { get; set; }
     }
 }

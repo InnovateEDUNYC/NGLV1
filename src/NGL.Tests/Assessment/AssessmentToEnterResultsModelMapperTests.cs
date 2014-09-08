@@ -3,6 +3,7 @@ using System.Linq;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Dates;
+using NGL.Web.Infrastructure.Azure;
 using NGL.Web.Models;
 using NGL.Web.Models.Assessment;
 using NSubstitute;
@@ -17,6 +18,7 @@ namespace NGL.Tests.Assessment
         private Web.Data.Entities.Section _section;
         private Web.Data.Entities.Assessment _entity;
         private AssessmentToEnterResultsModelMapper _mapper;
+        private ProfilePhotoUrlFetcher _profilePhotoUrlFetcher;
 
         [Fact]
         public void ShouldMapAssessmentToEnterResultsModel()
@@ -79,7 +81,11 @@ namespace NGL.Tests.Assessment
             studentAssessmentToEnterResultsStudentModelMapper.Build(Arg.Any<StudentAssessment>())
                 .Returns(new EnterResultsStudentModel());
 
-            _mapper = new AssessmentToEnterResultsModelMapper(studentAssessmentToEnterResultsStudentModelMapper);
+            var downloader = Substitute.For<IFileDownloader>();
+            _profilePhotoUrlFetcher = Substitute.For<ProfilePhotoUrlFetcher>(downloader);
+            _mapper = new AssessmentToEnterResultsModelMapper(studentAssessmentToEnterResultsStudentModelMapper, _profilePhotoUrlFetcher);
+
+            _profilePhotoUrlFetcher.GetProfilePhotoThumbnailUrlOrDefault(Arg.Any<Int32>()).Returns("/Assets/Images/placeholder.png");
 
             _entity = new AssessmentBuilder()
                 .WithAssessmentLearningStandards()

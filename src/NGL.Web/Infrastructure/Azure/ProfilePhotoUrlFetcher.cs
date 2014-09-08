@@ -19,7 +19,7 @@ namespace NGL.Web.Infrastructure.Azure
             return profilePhotoUrl.IsNullOrEmpty() ? DefaultProfilePhotoUrl : profilePhotoUrl;
         }
 
-        public string GetProfilePhotoThumnailUrlOrDefault(int studentUsi)
+        public string GetProfilePhotoThumbnailUrlOrDefault(int studentUsi)
         {
             var profilePhotoUrl = _downloader.DownloadPath("student", studentUsi + "/profileThumbnail");
             return profilePhotoUrl.IsNullOrEmpty() ? DefaultProfilePhotoThumbailUrl : profilePhotoUrl;

@@ -34,7 +34,7 @@ namespace NGL.Web.Models.Attendance
                 {
                     StudentUsi = s.StudentUSI,
                     StudentName = s.FirstName + " " + s.LastSurname,
-                    ProfileThumbnailUrl = _profilePhotoUrlFetcher.GetProfilePhotoThumnailUrlOrDefault(s.StudentUSI),
+                    ProfileThumbnailUrl = _profilePhotoUrlFetcher.GetProfilePhotoThumbnailUrlOrDefault(s.StudentUSI),
                     AttendanceType = AttendanceEventCategoryDescriptorEnum.InAttendance
                 }).ToList();
 
