@@ -34,7 +34,8 @@
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        if ((User as NglPrincipal).HasAccessTo("enrollment", "create") || (User as NglPrincipal).HasAccessTo("courseGeneration", "view"))
+                        if ((User as NglPrincipal).HasAccessTo("enrollment", "create") ||
+                            (User as NglPrincipal).HasAccessTo("courseGeneration", "view"))
                         {
                             <li class="dropdown">
                                 <a class="text-center dropdown-toggle" href="#" data-toggle="dropdown">
