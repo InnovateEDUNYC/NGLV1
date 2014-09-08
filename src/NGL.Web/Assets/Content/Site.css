@@ -394,3 +394,97 @@ body h4.panel:first-child {
 .no-bold {
     font-weight: normal;
 }
+/*
+.merp {
+    color: #999;
+    background-color: #999;
+    width: 40px;
+    height: 2px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.flerp {
+    border: 1px solid #999;
+    border-radius: 25px;
+    width: 25px;
+    height: 25px;
+    vertical-align: text-bottom;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.derp {
+    background-color: #2DBCBB;
+    border-radius: 25px;
+    width: 25px;
+    height: 25px;
+    vertical-align: text-bottom;
+        margin-left: auto;
+    margin-right: auto;
+}
+    */
+
+.break-word {
+    word-wrap: break-word;
+}
+
+.width-80 {
+    width: 80px;
+}
+
+
+.enrollment-progress {
+    position: relative;
+    z-index: 1;
+}
+
+.enrollment-progress li {
+    list-style-type: none;
+    display: inline;
+}
+
+
+.enrollment-progress > li > div > div.herp {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  background: #2DBCBB;
+  margin: 0 1em;
+  display: inline-block;
+  color: white;
+  position: relative;
+}
+
+.enrollment-progress > li > div > div.herp::before{
+  content: '';
+  position: absolute;
+  top: .9em;
+  left: -4em;
+  width: 4em;
+  height: .2em;
+  background: #2DBCBB;
+  z-index: -1;
+}
+
+
+
+.enrollment-progress > li:first-child > div > div.herp::before {
+  display: none;
+}
+
+.active > div > div.herp {
+  background: #2DBCBB;
+}
+
+.active ~ li > div > div.herp {
+  background: #999;
+}
+
+.active ~ li > div > div.herp::before {
+  background: #999;
+}

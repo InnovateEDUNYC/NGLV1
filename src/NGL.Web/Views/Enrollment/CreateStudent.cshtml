@@ -3,9 +3,55 @@
     ViewBag.Title = "Enrollment";
 }
 
+
 <div class="panel panel-default form-header">
     <h2>Enrollment</h2>
+    
+    <div class="text-right">
+@*        <div class="inline-block text-center width-80">*@
+@*            <div class="derp"></div>*@
+@*            <figcaption class="break-word">Student Information</figcaption>*@
+@*        </div>*@
+@**@
+@*        <hr class="merp">*@
+@*        <div class="inline-block text-center width-80">*@
+@*            <div class="flerp"></div>*@
+@*            <figcaption class="break-word">Academic Details</figcaption>*@
+@*        </div>*@
+@*        <hr class="merp">*@
+@*        <div class="inline-block text-center width-80">*@
+@*            <div class="flerp"></div>*@
+@*            <figcaption class="break-word">Program Status</figcaption>*@
+@*        </div>*@
+        
+        
+
+        <ul class="enrollment-progress">
+            <li class="active">
+                <div class="inline-block text-center width-80">
+                    <div class="herp"></div>
+                    <figcaption class="break-word">Student Information</figcaption>
+                </div>
+            </li>
+            <li>
+                <div class="inline-block text-center width-80">
+                    <div class="herp"></div>
+                    <figcaption class="break-word">Academic Details</figcaption>
+                </div>
+
+            </li>
+            <li>
+                <div class="inline-block text-center width-80">
+                    <div class="herp"></div>
+                    <figcaption class="break-word">Program Status</figcaption>
+                </div>
+
+            </li>
+        </ul>  
+
+    </div>
 </div>
+
     @using (var f = Html.BeginNglForm())
     {
         using (var s = f.BeginSection(""))
