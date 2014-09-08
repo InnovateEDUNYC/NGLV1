@@ -394,3 +394,66 @@ body h4.panel:first-child {
 .no-bold {
     font-weight: normal;
 }
+
+.break-word {
+    word-wrap: break-word;
+}
+
+.width-80 {
+    width: 80px;
+}
+
+.enrollment-progress-container {
+    margin-top: -32px;
+}
+
+.enrollment-progress {
+    position: relative;
+    z-index: 1;
+}
+
+.enrollment-progress li {
+    list-style-type: none;
+    display: inline;
+}
+
+
+.enrollment-progress > li > div > div.progress-circle {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  background: #2DBCBB;
+  margin: 0 1em;
+  display: inline-block;
+  color: white;
+  position: relative;
+}
+
+.enrollment-progress > li > div > div.progress-circle::before{
+  content: '';
+  position: absolute;
+  top: .9em;
+  left: -4em;
+  width: 4em;
+  height: .2em;
+  background: #2DBCBB;
+  z-index: -1;
+}
+
+.enrollment-progress > li:first-child > div > div.progress-circle::before {
+  display: none;
+}
+
+.active > div > div.progress-circle {
+  background: #2DBCBB;
+}
+
+.active ~ li > div > div.progress-circle {
+  background: #999;
+}
+
+.active ~ li > div > div.progress-circle::before {
+  background: #999;
+}

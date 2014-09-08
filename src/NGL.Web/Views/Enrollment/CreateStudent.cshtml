@@ -3,9 +3,37 @@
     ViewBag.Title = "Enrollment";
 }
 
+
 <div class="panel panel-default form-header">
     <h2>Enrollment</h2>
+    
+    <div class="text-right enrollment-progress-container">
+        <ul class="enrollment-progress">
+            <li class="active">
+                <div class="inline-block text-center width-80">
+                    <div class="progress-circle"></div>
+                    <figcaption class="break-word">Student Information</figcaption>
+                </div>
+            </li>
+            <li>
+                <div class="inline-block text-center width-80">
+                    <div class="progress-circle"></div>
+                    <figcaption class="break-word">Academic Details</figcaption>
+                </div>
+
+            </li>
+            <li>
+                <div class="inline-block text-center width-80">
+                    <div class="progress-circle"></div>
+                    <figcaption class="break-word">Program Status</figcaption>
+                </div>
+
+            </li>
+        </ul>  
+    </div>
+
 </div>
+
     @using (var f = Html.BeginNglForm())
     {
         using (var s = f.BeginSection(""))
