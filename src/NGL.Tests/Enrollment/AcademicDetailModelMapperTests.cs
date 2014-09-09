@@ -23,9 +23,9 @@ namespace NGL.Tests.Enrollment
                 });
 
             academicDetailEntity.StudentUSI.ShouldBe(academicDetailModel.StudentUsi);
-            academicDetailEntity.ReadingScore.ShouldBe((decimal)academicDetailModel.Reading);
-            academicDetailEntity.WritingScore.ShouldBe((decimal)academicDetailModel.Writing);
-            academicDetailEntity.MathScore.ShouldBe((decimal)academicDetailModel.Math);
+            academicDetailEntity.ReadingScore.ShouldBe(academicDetailModel.Reading);
+            academicDetailEntity.WritingScore.ShouldBe(academicDetailModel.Writing);
+            academicDetailEntity.MathScore.ShouldBe(academicDetailModel.Math);
             academicDetailEntity.SchoolYear.ShouldBe((short)academicDetailModel.SchoolYear);
             academicDetailEntity.GradeLevelTypeId.ShouldBe((int)academicDetailModel.AnticipatedGrade);
             academicDetailEntity.PerfomanceHistory.ShouldBe(academicDetailModel.PerformanceHistory);

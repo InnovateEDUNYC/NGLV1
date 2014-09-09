@@ -1,6 +1,7 @@
 ﻿using System;
 using NGL.Web.Models.ParentCourse;
 using OpenQA.Selenium;
+using Shouldly;
 using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.ParentCourseGrade
@@ -26,7 +27,7 @@ namespace NGL.UiTests.ParentCourseGrade
 
         public void CheckGrades(string grade)
         {
-            Find.Element(By.ClassName("table")).Text.Contains(grade);
+            Find.Element(By.ClassName("table")).Text.Contains(grade).ShouldBe(true);
         }
     }
 }

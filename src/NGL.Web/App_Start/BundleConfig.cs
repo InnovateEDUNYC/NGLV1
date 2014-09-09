@@ -1,6 +1,4 @@
-﻿
-using System.Web.Optimization;
-using Links;
+﻿using System.Web.Optimization;
 
 namespace NGL.Web
 {
