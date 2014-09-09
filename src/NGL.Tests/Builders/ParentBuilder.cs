@@ -6,19 +6,19 @@ namespace NGL.Tests.Builders
 {
     public class ParentBuilder
     {
-        private string _firstName = "Leroy";
-        private string _lastSurname = "Jenkins";
-        private int? _sexTypeId = (int?) SexTypeEnum.Male;
-        private ICollection<ParentAddress> _parentAddresses = new List<ParentAddress>();
-        private ICollection<ParentTelephone> _phoneNumbers = new List<ParentTelephone>();
-        private ICollection<ParentElectronicMail> _emails = new List<ParentElectronicMail>();
+        private const string FirstName = "Leroy";
+        private const string LastSurname = "Jenkins";
+        private readonly int? _sexTypeId = (int?) SexTypeEnum.Male;
+        private readonly ICollection<ParentAddress> _parentAddresses = new List<ParentAddress>();
+        private readonly ICollection<ParentTelephone> _phoneNumbers = new List<ParentTelephone>();
+        private readonly ICollection<ParentElectronicMail> _emails = new List<ParentElectronicMail>();
 
         public Parent Build()
         {
             return new Parent
             {
-                FirstName = _firstName,
-                LastSurname = _lastSurname,
+                FirstName = FirstName,
+                LastSurname = LastSurname,
                 SexTypeId = _sexTypeId,
                 ParentAddresses = _parentAddresses,
                 ParentTelephones = _phoneNumbers,

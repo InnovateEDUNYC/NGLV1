@@ -6,10 +6,10 @@ namespace NGL.Tests.Builders
 {
     public class SetScheduleModelBuilder
     {
-        private DateTime _beginDate = new DateTime(2004, 2, 2);
+        private readonly DateTime _beginDate = new DateTime(2004, 2, 2);
         private readonly DateTime _endDate = new DateTime(2004, 8, 8);
         private string _studentName = "Jack Conway";
-        private const string _profilePhotoUrl = "example.com";
+        private const string ProfilePhotoUrl = "example.com";
         private int _studentUsi = 443;
         private int _sectionId = 11;
 
@@ -20,7 +20,7 @@ namespace NGL.Tests.Builders
              BeginDate = _beginDate,
              EndDate = _endDate,
              StudentName = _studentName,
-             ProfilePhotoUrl = _profilePhotoUrl,
+             ProfilePhotoUrl = ProfilePhotoUrl,
              StudentUsi = _studentUsi,
              SectionId = _sectionId
          };

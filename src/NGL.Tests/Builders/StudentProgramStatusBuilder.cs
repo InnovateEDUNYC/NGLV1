@@ -4,18 +4,18 @@ namespace NGL.Tests.Builders
 {
     public class StudentProgramStatusBuilder
     {
-        private bool TestingAccommodation = true;
-        private bool BilingualProgram = false;
-        private bool EnglishAsSecondLanguage = true;
-        private int SchoolFoodServicesEligibilityTypeId = (int) SchoolFoodServicesEligibilityTypeEnum.Reducedprice;
-        private bool Gifted = true;
-        private bool SpecialEducation = true;
-        private bool TitleParticipation = false;
-        private bool McKinneyVento = true;
-        private string TestingAccommodationFile = "TestingAccommodationFile";
-        private string SpecialEducationFile = "SpecialEducationFile";
-        private string TitleParticipationFile = null;
-        private string McKinneyVentoFile = null;
+        private const bool TestingAccommodation = true;
+        private const bool BilingualProgram = false;
+        private const bool EnglishAsSecondLanguage = true;
+        private int _schoolFoodServicesEligibilityTypeId = (int) SchoolFoodServicesEligibilityTypeEnum.Reducedprice;
+        private const bool Gifted = true;
+        private const bool SpecialEducation = true;
+        private const bool TitleParticipation = false;
+        private const bool McKinneyVento = true;
+        private const string TestingAccommodationFile = "TestingAccommodationFile";
+        private const string SpecialEducationFile = "SpecialEducationFile";
+        private readonly string _titleParticipationFile = null;
+        private readonly string _mcKinneyVentoFile = null;
 
         public StudentProgramStatus Build()
         {
@@ -24,22 +24,22 @@ namespace NGL.Tests.Builders
                 TestingAccommodation = TestingAccommodation,
                 BilingualProgram = BilingualProgram,
                 EnglishAsSecondLanguage = EnglishAsSecondLanguage,
-                SchoolFoodServicesEligibilityTypeId = SchoolFoodServicesEligibilityTypeId,
+                SchoolFoodServicesEligibilityTypeId = _schoolFoodServicesEligibilityTypeId,
                 Gifted = Gifted,
                 SpecialEducation = SpecialEducation,
                 TitleParticipation = TitleParticipation,
                 McKinneyVento = McKinneyVento,
                 TestingAccommodationFile = TestingAccommodationFile,
                 SpecialEducationFile = SpecialEducationFile,
-                TitleParticipationFile = TitleParticipationFile,
-                McKinneyVentoFile = McKinneyVentoFile
+                TitleParticipationFile = _titleParticipationFile,
+                McKinneyVentoFile = _mcKinneyVentoFile
             };
         }
 
         public StudentProgramStatusBuilder WithSchoolFoodServicesEligibility(
             SchoolFoodServicesEligibilityTypeEnum schoolFoodServicesEligibilityType)
         {
-            SchoolFoodServicesEligibilityTypeId = (int) schoolFoodServicesEligibilityType;
+            _schoolFoodServicesEligibilityTypeId = (int) schoolFoodServicesEligibilityType;
             return this;
         }
     }

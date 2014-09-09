@@ -7,12 +7,12 @@ namespace NGL.Tests.Builders
 {
     public class EditProfileParentModelBuilder
     {
-        private int _parentUsi = 123;
+        private const int ParentUsi = 123;
         private string _email = "maria@grandma.net";
         private string _firstName = "Maria";
         private string _lastName = "Gomez";
         private RelationTypeEnum _relationTypeEnum = RelationTypeEnum.Motherstep;
-        private SexTypeEnum _sexTypeEnum = SexTypeEnum.Female;
+        private const SexTypeEnum SexTypeEnum = Web.Data.Entities.SexTypeEnum.Female;
         private string _telephoneNumber = "555-999-9999";
         private readonly EditableParentAddressModel _parentAddressModel = new EditableParentAddressModelBuilder().Build();
         private bool _sameAddressAsStudent = false;
@@ -22,12 +22,12 @@ namespace NGL.Tests.Builders
             return new EditProfileParentModel
             {
                 EditableParentAddressModel = _parentAddressModel,
-                ParentUSI = _parentUsi,
+                ParentUSI = ParentUsi,
                 EmailAddress = _email,
                 FirstName = _firstName,
                 LastName = _lastName,
                 Relationship = _relationTypeEnum,
-                Sex = _sexTypeEnum,
+                Sex = SexTypeEnum,
                 TelephoneNumber = _telephoneNumber,
                 SameAddressAsStudent = _sameAddressAsStudent
             };

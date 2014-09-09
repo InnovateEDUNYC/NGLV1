@@ -4,11 +4,11 @@ namespace NGL.Tests.Builders
 {
     public class ParentCourseGradeBuilder
     {
-        private int _schoolId = 1;
-        private short _schoolYear = 2014;
-        private int _termTypeId = 2;
+        private const int SchoolId = 1;
+        private const short SchoolYear = 2014;
+        private const int TermTypeId = 2;
         private int _studentUsi = 123;
-        private string _gradeEarned = "A";
+        private const string GradeEarned = "A";
         private Web.Data.Entities.Student _student;
         private Web.Data.Entities.Session _session;
         private Web.Data.Entities.ParentCourse _parentCourse;
@@ -17,11 +17,11 @@ namespace NGL.Tests.Builders
         {
             return new ParentCourseGrade
             {
-                SchoolId = _schoolId,
-                SchoolYear = _schoolYear,
-                TermTypeId = _termTypeId,
+                SchoolId = SchoolId,
+                SchoolYear = SchoolYear,
+                TermTypeId = TermTypeId,
                 StudentUSI = _studentUsi,
-                GradeEarned = _gradeEarned,
+                GradeEarned = GradeEarned,
                 Student = _student,
                 Session = _session,
                 ParentCourse = _parentCourse

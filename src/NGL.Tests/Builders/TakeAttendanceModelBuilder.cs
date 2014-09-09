@@ -8,11 +8,11 @@ namespace NGL.Tests.Builders
     public class TakeAttendanceModelBuilder
     {
         private string _date = "09/09/2014";
-        private int? _sectionId = 7;
-        private int? _sessionId = 1;
-        private string _section = "Math 123";
-        private string _session = "Fall 2014";
-        private List<StudentAttendanceRowModel> _studentRows = new List<StudentAttendanceRowModel>();
+        private readonly int? _sectionId = 7;
+        private readonly int? _sessionId = 1;
+        private const string _section = "Math 123";
+        private const string _session = "Fall 2014";
+        private readonly List<StudentAttendanceRowModel> _studentRows = new List<StudentAttendanceRowModel>();
 
         public TakeAttendanceModel Build()
         {

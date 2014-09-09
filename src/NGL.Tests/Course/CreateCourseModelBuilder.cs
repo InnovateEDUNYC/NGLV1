@@ -15,7 +15,7 @@ namespace NGL.Tests.Course
         private const int NumberOfParts = 1;
         private const AcademicSubjectDescriptorEnum AcademicSubject = AcademicSubjectDescriptorEnum.Mathematics;
         private const string CourseDescription = "This is a math class";
-        private static DateTime DateCourseAdopted = new DateTime(2014, 07, 06);
+        private static readonly DateTime DateCourseAdopted = new DateTime(2014, 07, 06);
         private const bool HighSchoolCourseRequirement = false;
 
         private const CourseGPAApplicabilityTypeEnum CourseGpaApplicability =
