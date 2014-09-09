@@ -7,13 +7,13 @@ namespace NGL.Tests.Builders
 {
     public class AssessmentBuilder
     {
-        private const int _assessmentIdentity = 1;
-        private const string _assessmentTitle = "My Assessment";
-        private const int _academicSubjectDescriptorId = 1;
-        private const int _assessedGradeLevelDescriptorId = 1;
-        private const int _assessmentCategoryTypeId = (int) AssessmentCategoryTypeEnum.Classquiz;
-        private const int _version = 1;
-        private DateTime _administeredDate = new DateTime(2014, 6, 22);
+        private const int AssessmentIdentity = 1;
+        private const string AssessmentTitle = "My Assessment";
+        private const int AcademicSubjectDescriptorId = 1;
+        private const int AssessedGradeLevelDescriptorId = 1;
+        private const int AssessmentCategoryTypeId = (int) AssessmentCategoryTypeEnum.Classquiz;
+        private const int Version = 1;
+        private readonly DateTime _administeredDate = new DateTime(2014, 6, 22);
         private ICollection<AssessmentSection> _assessmentSections = new List<AssessmentSection>();
         private IList<AssessmentLearningStandard> _assessmentLearningStandards;
         private IList<AssessmentPerformanceLevel> _assessmentPerformanceLevels;
@@ -24,17 +24,17 @@ namespace NGL.Tests.Builders
             {
                 AssessmentLearningStandards = _assessmentLearningStandards,
                 AssessmentPerformanceLevels = _assessmentPerformanceLevels,
-                AssessmentIdentity = _assessmentIdentity,
-                AssessmentTitle = _assessmentTitle,
-                AcademicSubjectDescriptorId = _academicSubjectDescriptorId,
-                AssessedGradeLevelDescriptorId = _assessedGradeLevelDescriptorId,
-                Version = _version,
+                AssessmentIdentity = AssessmentIdentity,
+                AssessmentTitle = AssessmentTitle,
+                AcademicSubjectDescriptorId = AcademicSubjectDescriptorId,
+                AssessedGradeLevelDescriptorId = AssessedGradeLevelDescriptorId,
+                Version = Version,
                 AssessmentSections = _assessmentSections,
                 AdministeredDate = _administeredDate,
-                AssessmentCategoryTypeId = _assessmentCategoryTypeId,
+                AssessmentCategoryTypeId = AssessmentCategoryTypeId,
                 AssessmentCategoryType = new AssessmentCategoryType
                 {
-                    AssessmentCategoryTypeId = _assessmentCategoryTypeId,
+                    AssessmentCategoryTypeId = AssessmentCategoryTypeId,
                     ShortDescription = AssessmentCategoryTypeEnum.Classquiz.Humanize()
                 }
             };

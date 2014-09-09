@@ -18,7 +18,7 @@ namespace NGL.UiTests.Account
     {
         private HomePage _homePage;
         private UsersPage _usersPage;
-        private readonly AddUserModel _newUser = new AddUserModelBuilder().WithStaffUSI(1234).Build();
+        private readonly AddUserModel _newUser = new AddUserModelBuilder().WithStaffUsi(1234).Build();
 
         void GivenIHaveLoggedInAsAMasterAdmin()
         {
