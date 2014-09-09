@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Mail;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Enrollment;
 using NGL.Tests.Builders;

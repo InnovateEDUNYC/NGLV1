@@ -48,7 +48,7 @@ namespace NGL.Tests.Assessment
 
             _createAssessmentModel = new CreateAssessmentModelBuilder().Build();
 
-            _assessmentEntity = new Web.Data.Entities.Assessment()
+            _assessmentEntity = new Web.Data.Entities.Assessment
             {
                 AssessmentTitle = _createAssessmentModel.AssessmentTitle,
                 AcademicSubjectDescriptorId = (int)AcademicSubjectDescriptorEnum.SocialStudies,

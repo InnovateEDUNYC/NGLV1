@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
-using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models.Course;
 
 namespace NGL.Tests.Course

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using Humanizer;
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;

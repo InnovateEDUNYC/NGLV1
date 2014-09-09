@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using NGL.Web.Models.ParentCourse;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;

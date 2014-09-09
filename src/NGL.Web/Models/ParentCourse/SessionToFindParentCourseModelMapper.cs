@@ -1,6 +1,4 @@
-﻿using NGL.Web.Data.Entities;
-
-namespace NGL.Web.Models.ParentCourse
+﻿namespace NGL.Web.Models.ParentCourse
 {
     public class SessionToFindParentCourseModelMapper : MapperBase<Data.Entities.Session, FindParentCourseModel>
     {

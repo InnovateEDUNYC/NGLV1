@@ -1,5 +1,4 @@
 using FluentValidation;
-using NGL.Web.Models.Enrollment;
 
 namespace NGL.Web.Models.Student
 {

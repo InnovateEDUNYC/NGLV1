@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using Humanizer;
-using NGL.Tests.Builders;
+﻿using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
-using NGL.Web.Data.Entities;
 using NGL.Web.Models.Account;
 using Shouldly;
 using TestStack.BDDfy;

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
 using FluentValidation.TestHelper;
-using NGL.Web.Data.Infrastructure;
 using NGL.Web.Models;
 using NGL.Web.Models.Enrollment;
 using NSubstitute;
-using NSubstitute.Exceptions;
 using Xunit;
 
 namespace NGL.Tests.Enrollment

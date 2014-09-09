@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Staff

@@ -1,4 +1,3 @@
-using NGL.Tests.Assessment;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Tests.Builders

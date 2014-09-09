@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NGL.Tests.Builders;
-using NGL.Web.Data.Entities;
+﻿using NGL.Tests.Builders;
 using NGL.Web.Models.ParentCourse;
 using Shouldly;
 using Xunit;

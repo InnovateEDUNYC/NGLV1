@@ -1,6 +1,4 @@
-﻿using System;
-using NGL.Web.Data.Entities;
-using NGL.Web.Models.Account;
+﻿using NGL.Web.Models.Account;
 
 namespace NGL.UiTests
 {

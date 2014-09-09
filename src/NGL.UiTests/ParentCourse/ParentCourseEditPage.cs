@@ -1,5 +1,4 @@
-﻿using System.Web.UI;
-using NGL.Web.Models.ParentCourse;
+﻿using NGL.Web.Models.ParentCourse;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 

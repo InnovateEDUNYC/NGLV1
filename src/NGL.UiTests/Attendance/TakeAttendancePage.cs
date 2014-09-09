@@ -26,7 +26,6 @@ namespace NGL.UiTests.Attendance
 
         public TakeAttendancePage EnterAttendanceStatus(AttendanceEventCategoryDescriptorEnum attendanceEventCategoryDescriptorEnum)
         {
-            attendanceEventCategoryDescriptorEnum.ToString();
             var tardyCheckboxes = Find.Elements(By.CssSelector("label." + String.Join("", attendanceEventCategoryDescriptorEnum.ToString().Split(' '))));
             tardyCheckboxes.ForEach(tcb => tcb.Click());
 

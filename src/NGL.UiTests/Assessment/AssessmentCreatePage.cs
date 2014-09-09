@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI;
-using Humanizer;
-using NGL.Web.Data.Entities;
+﻿using Humanizer;
 using NGL.Web.Models.Assessment;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;

@@ -1,5 +1,4 @@
-﻿using System;
-using NGL.UiTests.Shared;
+﻿using NGL.UiTests.Shared;
 using TestStack.BDDfy;
 using Xunit;
 

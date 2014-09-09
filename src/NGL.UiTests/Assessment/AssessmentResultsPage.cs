@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Security;
-using System.Web.UI;
-using NGL.UiTests.Shared;
-using NGL.Web.Models.Assessment;
+﻿using NGL.Web.Models.Assessment;
 using OpenQA.Selenium;
 using TestStack.Seleno.PageObjects;
 

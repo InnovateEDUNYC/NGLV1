@@ -23,7 +23,7 @@ namespace NGL.Tests.Builders
 
         public Staff Build()
         {
-            var staff = new Staff()
+            var staff = new Staff
             {
                 FirstName = FirstName,
                 LastSurname = LastName,

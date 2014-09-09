@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using NGL.Web.Data.Entities;
-using NGL.Web.Models.ParentCourse;
 
 namespace NGL.Web.Models.Grade
 {

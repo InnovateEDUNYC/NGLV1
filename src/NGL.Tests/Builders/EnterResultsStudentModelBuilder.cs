@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Assessment;
 

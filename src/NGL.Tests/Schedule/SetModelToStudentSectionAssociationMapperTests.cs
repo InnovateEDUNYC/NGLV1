@@ -7,7 +7,6 @@ using NGL.Web.Data.Repositories;
 using NGL.Web.Models;
 using NGL.Web.Models.Schedule;
 using NSubstitute;
-using NSubstitute.Core.Arguments;
 using Shouldly;
 using Xunit;
 

@@ -7,7 +7,6 @@ using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Queries;
 using NGL.Web.Models.Section;
 using NSubstitute;
-using NSubstitute.Core.Arguments;
 using Xunit;
 
 namespace NGL.Tests.Section

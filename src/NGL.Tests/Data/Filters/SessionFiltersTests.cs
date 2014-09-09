@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using NGL.Web.Data.Filters;
 using NGL.Web.Data.Infrastructure;
@@ -13,7 +12,7 @@ namespace NGL.Tests.Data.Filters
     {
         private IGenericRepository _genericRepository;
         private SessionFilter _filter;
-        private NGL.Web.Data.Entities.Session _summer2010;
+        private Web.Data.Entities.Session _summer2010;
         private Web.Data.Entities.Session _fall2010;
         private Web.Data.Entities.Session _spring2010;
 

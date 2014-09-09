@@ -6,7 +6,6 @@ using NGL.Web.Extensions;
 using NGL.Web.Models.Enrollment;
 using NGL.Web.Models.Student;
 using OpenQA.Selenium;
-using TestStack.Seleno.Extensions;
 using TestStack.Seleno.PageObjects;
 
 namespace NGL.UiTests.Student

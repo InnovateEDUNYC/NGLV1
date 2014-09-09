@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace NGL.Web.Models.Student
+﻿namespace NGL.Web.Models.Student
 {
     public class StudentNameToStudentMapper : MapperBase<NameModel, Data.Entities.Student>
     {

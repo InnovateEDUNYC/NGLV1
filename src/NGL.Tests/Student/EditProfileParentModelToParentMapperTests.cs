@@ -2,7 +2,6 @@
 using NGL.Tests.Builders;
 using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
-using NSubstitute.Core;
 using Shouldly;
 using Xunit;
 

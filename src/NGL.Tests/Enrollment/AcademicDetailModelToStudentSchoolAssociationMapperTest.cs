@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
-using System.Web.Compilation;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
 using NGL.Web.Models.Enrollment;
 using NSubstitute;
-using NSubstitute.Core.Arguments;
 using Shouldly;
 using Xunit;
 
@@ -47,7 +45,7 @@ namespace NGL.Tests.Enrollment
         {
             _schoolRepository.GetSchool().Returns(new School {SchoolId = SchoolId});
 
-            _genericRepository.Get<GradeLevelDescriptor>(Arg.Any<Expression<Func<GradeLevelDescriptor, bool>>>())
+            _genericRepository.Get(Arg.Any<Expression<Func<GradeLevelDescriptor, bool>>>())
                 .Returns(new GradeLevelDescriptor {GradeLevelDescriptorId = GradeLevelDescriptorId});
         }
     }

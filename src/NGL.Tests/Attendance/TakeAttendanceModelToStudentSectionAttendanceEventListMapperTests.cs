@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NGL.Tests.Builders;
-using NGL.Web.Data.Entities;
 using NGL.Web.Models.Attendance;
 using Shouldly;
 using Xunit;

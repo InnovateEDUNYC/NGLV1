@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Student

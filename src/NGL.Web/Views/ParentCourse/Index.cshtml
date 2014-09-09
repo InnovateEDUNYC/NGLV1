@@ -56,7 +56,7 @@
                     </td>
                     <td class="text-right table-buttons">
                         @Html.ActionLink("Edit", MVC.ParentCourse.Edit(item.Id), new { @class = "btn btn-default inline-block" })
-                        @using (Html.BeginForm("Delete", "ParentCourse", new { Id = item.Id }, FormMethod.Post))
+                        @using (Html.BeginForm("Delete", "ParentCourse", new {item.Id }, FormMethod.Post))
                         {
                             <input class="btn btn-primary delete-row-btn inline-block" type="submit" value="Delete" />
                         }

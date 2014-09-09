@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using NGL.Tests.Student;
-using NGL.Web.Data.Entities;
+﻿using NGL.Web.Data.Entities;
 using NGL.Web.Models.Student;
 
 namespace NGL.Tests.Builders

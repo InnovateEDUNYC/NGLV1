@@ -1,8 +1,8 @@
 ﻿namespace NGL.Web.Models.ParentCourse
 {
-    public class ParentCourseToParentCourseJsonModelMapper : MapperBase<Web.Data.Entities.ParentCourse, ParentCourseJsonModel>
+    public class ParentCourseToParentCourseJsonModelMapper : MapperBase<Data.Entities.ParentCourse, ParentCourseJsonModel>
     {
-        public override void Map(Web.Data.Entities.ParentCourse source, ParentCourseJsonModel target)
+        public override void Map(Data.Entities.ParentCourse source, ParentCourseJsonModel target)
         {
             var compositeName = source.ParentCourseCode + " - " + source.ParentCourseTitle;
             target.LabelName = compositeName;

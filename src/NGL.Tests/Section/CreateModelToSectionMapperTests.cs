@@ -4,7 +4,6 @@ using NGL.Tests.Session;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
-using NGL.Web.Models;
 using NGL.Web.Models.Section;
 using NSubstitute;
 using Shouldly;
