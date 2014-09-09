@@ -33,6 +33,9 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
@@ -164,6 +167,7 @@
     <Compile Include="Course\ValidatorTests.cs" />
     <Compile Include="Course\MapperTests.cs" />
     <Compile Include="Data\Filters\SessionFiltersTests.cs" />
+    <Compile Include="Data\Repositories\ParentRepositoryTests.cs" />
     <Compile Include="Enrollment\AcademicDetailModelMapperTests.cs" />
     <Compile Include="Enrollment\AcademicDetailModelToStudentSchoolAssociationMapperTest.cs" />
     <Compile Include="Enrollment\AcademicDetailModelValidatorTests.cs" />

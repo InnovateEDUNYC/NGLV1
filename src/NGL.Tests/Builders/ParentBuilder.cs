@@ -12,6 +12,7 @@ namespace NGL.Tests.Builders
         private readonly ICollection<ParentAddress> _parentAddresses = new List<ParentAddress>();
         private readonly ICollection<ParentTelephone> _phoneNumbers = new List<ParentTelephone>();
         private readonly ICollection<ParentElectronicMail> _emails = new List<ParentElectronicMail>();
+        private int _parentUSI = 1;
 
         public Parent Build()
         {
@@ -23,6 +24,7 @@ namespace NGL.Tests.Builders
                 ParentAddresses = _parentAddresses,
                 ParentTelephones = _phoneNumbers,
                 ParentElectronicMails = _emails,
+                ParentUSI = _parentUSI
             };
         }
 
@@ -50,6 +52,12 @@ namespace NGL.Tests.Builders
                 ElectronicMailAddress = "Leroy@Jenkins.com",
                 ElectronicMailTypeId = (int) ElectronicMailTypeEnum.HomePersonal
             });
+            return this;
+        }
+
+        public ParentBuilder WithUSI(int usi)
+        {
+            _parentUSI = usi;
             return this;
         }
     }
