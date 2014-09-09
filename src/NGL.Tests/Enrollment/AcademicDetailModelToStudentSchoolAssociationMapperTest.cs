@@ -16,9 +16,9 @@ namespace NGL.Tests.Enrollment
     {
         private const int GradeLevelDescriptorId = 125;
         private const int SchoolId = 123;
-        private ISchoolRepository _schoolRepository;
-        private AcademicDetailModelToStudentSchoolAssociationMapper _mapper;
-        private IGenericRepository _genericRepository;
+        private readonly ISchoolRepository _schoolRepository;
+        private readonly AcademicDetailModelToStudentSchoolAssociationMapper _mapper;
+        private readonly IGenericRepository _genericRepository;
 
         public AcademicDetailModelToStudentSchoolAssociationMapperTest()
         {

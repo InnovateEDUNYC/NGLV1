@@ -21,20 +21,20 @@ namespace NGL.UiTests.ParentCourse
             private EditModel _editParentCourseModel;
             private int _parentCoursesOnIndexPage;
 
-            public void IHaveLoggedInAsAnAdmin()
+            public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void IAmOnTheCreateParentCoursePage()
+        public void GoToTheCreateParentCoursePage()
         {
             _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
             _parentCourseCreatePage = _courseGenerationPage.GoToParentCourseIndexPage().GoToCreatePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _createParentCourseModel = new CreateParentCourseModelBuilder().Build();
             _parentCourseIndexPage = _parentCourseCreatePage.CreateParentCourse(_createParentCourseModel);
@@ -46,7 +46,7 @@ namespace NGL.UiTests.ParentCourse
             parentCourseExists.ShouldBe(true);
         }
 
-        public void IEditTheParentCourse()
+        public void ParentCourseIsEdited()
         {
             _editParentCourseModel = new EditParentCourseModelBuilder().Build();
             var parentCourseEditPage = _parentCourseIndexPage.GoToEditPage();
@@ -60,7 +60,7 @@ namespace NGL.UiTests.ParentCourse
             parentCourseChanged.ShouldBe(true);
         }
 
-        public void IDeleteTheParentCourse()
+        public void ParentCourseIsDeleted()
         {
             _parentCoursesOnIndexPage = _parentCourseIndexPage.GetNumberOfParentCourses();
             _parentCourseIndexPage = _parentCourseIndexPage.GoDelete(_createParentCourseModel.ParentCourseCode);
@@ -74,13 +74,13 @@ namespace NGL.UiTests.ParentCourse
             [Fact]
         public void ShouldCreateCourse()
         {
-            this.Given(_ => IHaveLoggedInAsAnAdmin())
-               .And(_ => IAmOnTheCreateParentCoursePage())
-               .When(_ => IHaveEnteredValidInputForAllFields())
+            this.Given(_ => AdminHasLoggedIn())
+               .And(_ => GoToTheCreateParentCoursePage())
+               .When(_ => HaveEnteredValidInputForAllFields())
                .Then(_ => ANewParentCourseShouldBeDisplayedOnTheParentCourseIndexPage())
-               .When(_ => IEditTheParentCourse())
+               .When(_ => ParentCourseIsEdited())
                .Then(_ => TheParentCourseIsUpdatedOnTheParentCourseIndexPage())
-               .When(_ => IDeleteTheParentCourse())
+               .When(_ => ParentCourseIsDeleted())
                .Then(_ => TheParentCourseIsNotOnTheParentCourseIndexPage())
                .BDDfy();
         }

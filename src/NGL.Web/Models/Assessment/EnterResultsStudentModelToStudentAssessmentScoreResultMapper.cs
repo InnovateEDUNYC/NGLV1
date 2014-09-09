@@ -1,4 +1,5 @@
-﻿using NGL.Web.Data.Entities;
+﻿using System.Globalization;
+using NGL.Web.Data.Entities;
 
 namespace NGL.Web.Models.Assessment
 {
@@ -9,7 +10,7 @@ namespace NGL.Web.Models.Assessment
             return new StudentAssessmentScoreResult
             {
                 StudentUSI = source.StudentUsi,
-                Result = source.AssessmentResult.HasValue ? source.AssessmentResult.Value.ToString() : "",
+                Result = source.AssessmentResult.HasValue ? source.AssessmentResult.Value.ToString(CultureInfo.InvariantCulture) : "",
                 AssessmentReportingMethodTypeId = (int) AssessmentReportingMethodTypeEnum.Percentile,
                 ResultDatatypeTypeId = (int) ResultDatatypeTypeEnum.Percentile,
                 AssessmentTitle = assessment.AssessmentTitle,

@@ -6,7 +6,7 @@ namespace NGL.Tests.Builders
 {
     public class StudentAssessmentBuilder
     {
-        private const int StudentUSI = 123;
+        private const int StudentUsi = 123;
         private string _assessmentTitle = "English Reading";
         private int _academicSubjectDescriptorId = (int) AcademicSubjectDescriptorEnum.EnglishLanguageArts;
         private int _assessedGradeLevelDescriptorId = (int) GradeLevelDescriptorEnum._5thGrade;
@@ -20,7 +20,7 @@ namespace NGL.Tests.Builders
         {
             return new StudentAssessment
             {
-                StudentUSI = StudentUSI,
+                StudentUSI = StudentUsi,
                 AssessmentTitle = _assessmentTitle,
                 AcademicSubjectDescriptorId = _academicSubjectDescriptorId,
                 AssessedGradeLevelDescriptorId = _assessedGradeLevelDescriptorId,

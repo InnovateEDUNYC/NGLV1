@@ -1,4 +1,5 @@
-﻿using NGL.Tests.Builders;
+﻿using System.Globalization;
+using NGL.Tests.Builders;
 using NGL.UiTests.Shared;
 using NGL.Web.Models.Schedule;
 using Shouldly;
@@ -19,45 +20,45 @@ namespace NGL.UiTests.Schedule
         private Web.Data.Entities.Student _student;
         private SetModel _setModelToBeRemoved;
 
-        public void IHaveLoggedIn()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void IAmOnTheSchedulePage()
+        public void GoToTheSchedulePage()
         {
             _student = new StudentBuilder().Build();
             _schedulePage = _homePage.TopMenu.GoToStudentsPage().GoToProfilePage().GoToSchedulePage();
         }
 
-        public void IAssignMultipleSectionsToTheStudent()
+        public void MultipleSectionsAreAssignedToTheStudent()
         {
             _schedulePage.AddStudentToSection(new SetScheduleModelBuilder().WithStudent(_student).Build());
             _setModelToBeRemoved = new SetScheduleModelBuilder().WithStudent(_student).WithSectionId(10).Build();
             _schedulePage.AddStudentToSection(_setModelToBeRemoved);
         }
 
-        public void IRemoveOneSection()
+        public void SectionIsRemoved()
         {
             _schedulePage.RemoveSection(_setModelToBeRemoved.SectionId);
         }
 
-        public void IShouldNotSeeTheRemovedSectionInTheListOfSections()
+        public void RemovedSectionShouldNotBeInTheListOfSections()
         {
             var sections = _schedulePage.GetSections();
-            sections.Contains(_setModelToBeRemoved.SectionId.ToString()).ShouldBe(false);
+            sections.Contains(_setModelToBeRemoved.SectionId.ToString(CultureInfo.InvariantCulture)).ShouldBe(false);
         }
 
         [Fact]
         public void ShouldScheduleStudent()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheSchedulePage())
-                .And(_ => IAssignMultipleSectionsToTheStudent())
-                .When(_ => IRemoveOneSection())
-                .Then(_ => IShouldNotSeeTheRemovedSectionInTheListOfSections())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToTheSchedulePage())
+                .And(_ => MultipleSectionsAreAssignedToTheStudent())
+                .When(_ => SectionIsRemoved())
+                .Then(_ => RemovedSectionShouldNotBeInTheListOfSections())
                 .BDDfy();
         }
     }

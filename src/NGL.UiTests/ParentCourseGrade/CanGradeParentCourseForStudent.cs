@@ -14,7 +14,7 @@ namespace NGL.UiTests.ParentCourseGrade
         private HomePage _homePage;
         private ParentCourseGradesPage _gradesPage;
 
-        public void IHaveLoggedInAsAnAdmin()
+        public void MasterAdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
@@ -27,7 +27,7 @@ namespace NGL.UiTests.ParentCourseGrade
             _gradesPage = reportsPage.GoToGrades();
         }
 
-        public void IEnterValidGrades()
+        public void ValidGradesAreEntered()
         {
             _gradesPage.SelectAParentCourseAndSession("F43C1E50-1FEA-4D11-B98E-3DBA8AB22F18", 1);
             _gradesPage.EditGrades("100");
@@ -40,9 +40,9 @@ namespace NGL.UiTests.ParentCourseGrade
         [Fact]
         public void ShouldCreateCourseGrade()
         {
-            this.Given(_ => IHaveLoggedInAsAnAdmin())
+            this.Given(_ => MasterAdminHasLoggedIn())
                 .And(_ => GoToParentCourseGradesPage())
-                .When(_ => IEnterValidGrades())
+                .When(_ => ValidGradesAreEntered())
                 .Then(_ => TheGradesAreSaved())
                 .BDDfy();
         }

@@ -19,20 +19,20 @@ namespace NGL.UiTests.ClassPeriod
         private CreateModel _classPeriodCreateModel;
         private ClassPeriodIndexPage _classPeriodIndexPage;
 
-        public void IHaveLoggedIn()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                    .NavigateToInitialPage<HomePage>()
                    .Login(ObjectMother.UserJohnSmith.ViewModel);   
         }
 
-        public void IAmOnTheCreateClassPeriodPage()
+        public void GoToCreateClassPeriodPage()
         {
             _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
             _classPeriodCreatePage = _courseGenerationPage.GoToClassPeriodIndexPage().GoToCreatePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _classPeriodCreateModel = new CreateClassPeriodModelBuilder().WithName("Period X").Build();
             _classPeriodIndexPage = _classPeriodCreatePage.CreateClassPeriod(_classPeriodCreateModel);
@@ -43,7 +43,7 @@ namespace NGL.UiTests.ClassPeriod
             _classPeriodIndexPage.ClassPeriodExists(_classPeriodCreateModel).ShouldBe(true);
         }
 
-        public void IDeleteTheClassPeriod()
+        public void ClassPeriodIsDeleted()
         {
             _classPeriodIndexPage.DeletePeriod(_classPeriodCreateModel);
         }
@@ -56,11 +56,11 @@ namespace NGL.UiTests.ClassPeriod
         [Fact]
         public void ShouldCreateClassPeriod()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheCreateClassPeriodPage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToCreateClassPeriodPage())
+                .When(_ => HaveEnteredValidInputForAllFields())
                 .Then(_ => ANewClassPeriodShouldBeDisplayedOnTheClassPeriodIndexPage())
-                .When(_ => IDeleteTheClassPeriod())
+                .When(_ => ClassPeriodIsDeleted())
                 .Then(_ => ThePeriodShouldBeDeleted())
                 .BDDfy();
         }

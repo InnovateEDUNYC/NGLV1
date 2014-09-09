@@ -19,20 +19,20 @@ namespace NGL.UiTests.Section
         private SectionIndexPage _sectionIndexPage;
         private int _sectionsCount;
 
-        public void IHaveLoggedIn()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void IAmOnTheCreateSectionPage()
+        public void GoToTheCreateSectionPage()
         {
             var sectionIndexPage = _homePage.TopMenu.GoToCourseGenerationPage().GoToSectionIndexPage();
             _sectionCreatePage = sectionIndexPage.GoToCreatePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _createSectionModel = new CreateSectionModelBuilder().Build();
             _sectionIndexPage = _sectionCreatePage.CreateSection(_createSectionModel);
@@ -44,7 +44,7 @@ namespace NGL.UiTests.Section
             sectionExists.ShouldBe(true);
         }
 
-        private void IDeleteTheSection()
+        private void SectionIsDeleted()
         {
             _sectionsCount = _sectionIndexPage.GetNumberOfSections();
             _sectionIndexPage = _sectionIndexPage.GoDelete(_createSectionModel);
@@ -58,11 +58,11 @@ namespace NGL.UiTests.Section
         [Fact]
         public void ShouldCreateSection()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheCreateSectionPage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToTheCreateSectionPage())
+                .When(_ => HaveEnteredValidInputForAllFields())
                 .Then(_ => ANewSectionShouldBeDisplayedOnTheSectionIndexPage())
-                .When(_ => IDeleteTheSection())
+                .When(_ => SectionIsDeleted())
                 .Then(_ => TheSectionIsNotOnTheSectionIndexPage())
                 .BDDfy();
         }

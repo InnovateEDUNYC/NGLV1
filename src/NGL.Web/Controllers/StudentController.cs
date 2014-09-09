@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -214,18 +215,18 @@ namespace NGL.Web.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult EditAcademicDetails(int studentUSI, EditAcademicDetailModel academicDetail)
+        public virtual ActionResult EditAcademicDetails(int studentUsi, EditAcademicDetailModel academicDetail)
         {
             if (!ModelState.IsValid)
             {
                 TempData["ShowSuccess"] = false;
-                return RedirectToAction(MVC.Student.Index(studentUSI));
+                return RedirectToAction(MVC.Student.Index(studentUsi));
             }
 
-            var fileCategory = academicDetail.SchoolYear.ToString();
-            var performanceHistoryFileName = _fileUploader.Upload(academicDetail.PerformanceHistoryFileUrl, studentUSI, fileCategory, "performanceHistory");
+            var fileCategory = academicDetail.SchoolYear.ToString(CultureInfo.InvariantCulture);
+            var performanceHistoryFileName = _fileUploader.Upload(academicDetail.PerformanceHistoryFileUrl, studentUsi, fileCategory, "performanceHistory");
 
-            var student = _studentRepository.GetByUSI(studentUSI);
+            var student = _studentRepository.GetByUSI(studentUsi);
             var studentAcademicDetail = student.StudentAcademicDetails.First();
 
             _editAcademicDetailModelToStudentAcademicDetailMapper.Map(academicDetail, studentAcademicDetail, performanceHistoryFileName);
@@ -233,7 +234,7 @@ namespace NGL.Web.Controllers
             _repository.Save();
 
             TempData["ShowSuccess"] = true;
-            return RedirectToAction(MVC.Student.Index(studentUSI));
+            return RedirectToAction(MVC.Student.Index(studentUsi));
         }
 
         [HttpPost]

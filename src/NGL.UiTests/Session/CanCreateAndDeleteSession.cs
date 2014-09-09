@@ -19,20 +19,20 @@ namespace NGL.UiTests.Session
         private SessionIndexPage _sessionIndexPage;
         private SessionCreatePage _sessionCreatePage;
 
-        public void IHaveLoggedIn()
+        public void MasterAdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
 
-        public void IAmOnTheCreateSessionPage()
+        public void GoToTheCreateSessionPage()
         {
             _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
             _sessionCreatePage = _courseGenerationPage.GoToSessionIndexPage().GoToCreatePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _createSessionModel = new SessionModelBuilder().Build();
 
@@ -44,7 +44,7 @@ namespace NGL.UiTests.Session
             _sessionIndexPage.SessionExists(_createSessionModel).ShouldBe(true);
         }
 
-        public void IDeleteTheSession()
+        public void SessionIsDeleted()
         {
             _sessionIndexPage.DeleteSession(_createSessionModel);
         }
@@ -57,11 +57,11 @@ namespace NGL.UiTests.Session
         [Fact]
         public void ShouldCreateAndDeleteSession()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheCreateSessionPage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
+            this.Given(_ => MasterAdminHasLoggedIn())
+                .And(_ => GoToTheCreateSessionPage())
+                .When(_ => HaveEnteredValidInputForAllFields())
                 .Then(_ => ANewSessionShouldBeDisplayedOnTheSessionIndexPage())
-                .When(_ => IDeleteTheSession())
+                .When(_ => SessionIsDeleted())
                 .Then(_ => TheSessionShouldBeDeleted())
                 .BDDfy();
         }

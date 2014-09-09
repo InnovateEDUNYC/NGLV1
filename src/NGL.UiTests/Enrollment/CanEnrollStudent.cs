@@ -22,47 +22,47 @@ namespace NGL.UiTests.Enrollment
         private CreateStudentModel _createStudentModel;
         private AcademicDetailPage _academicDetailPage;
 
-        public void IHaveLoggedIn()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void IAmOnTheEnrollPage()
+        public void GoToTheEnrollPage()
         {
             _enrollmentPage = _homePage.TopMenu.GoToEnrollmentPage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _createStudentModel = CreateStudentModelFactory.CreateStudent();
             _academicDetailPage = _enrollmentPage.Enroll(_createStudentModel);
         }
 
-        private void IShouldArriveOnTheAcademicDetailPage()
+        private void ShouldArriveOnTheAcademicDetailPage()
         {
             _academicDetailPage.IsTitleCorrect().ShouldBe(true);
         }
 
-        private void IHaveInputAcademicDetails()
+        private void HaveInputAcademicDetails()
         {
             var academicDetailModel = CreateAcademicDetailModelFactory.CreateAcademicDetailModelWithPerformanceHistory();
             _programStatusPage = _academicDetailPage.InputDetails(academicDetailModel);
         }
 
-        private void IShouldArriveOnTheProgramStatusPage()
+        private void ShouldArriveOnTheProgramStatusPage()
         {
             _programStatusPage.IsTitleCorrect().ShouldBe(true);
         }
 
-        private void IHaveInputProgramStatus()
+        private void ProgramStatusInputted()
         {
             var programStatusModel = new EnterProgramStatusModelBuilder().Build();
             _profilePage = _programStatusPage.InputProgramStatus(programStatusModel);
         }
 
-        private void IShouldBeAbleToViewTheStudentInfo()
+        private void StudentInfoIsDisplayed()
         {
             var allFieldsExist = _profilePage.AllFieldsExist(_createStudentModel);
             allFieldsExist.ShouldBe(true);
@@ -71,14 +71,14 @@ namespace NGL.UiTests.Enrollment
         [Fact]
         public void ShouldEnrollStudent()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheEnrollPage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
-                .Then(_ => IShouldArriveOnTheAcademicDetailPage())
-                .When(_ => IHaveInputAcademicDetails())
-                .Then(_ => IShouldArriveOnTheProgramStatusPage())
-                .When(_ => IHaveInputProgramStatus())
-                .Then(_ => IShouldBeAbleToViewTheStudentInfo())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToTheEnrollPage())
+                .When(_ => HaveEnteredValidInputForAllFields())
+                .Then(_ => ShouldArriveOnTheAcademicDetailPage())
+                .When(_ => HaveInputAcademicDetails())
+                .Then(_ => ShouldArriveOnTheProgramStatusPage())
+                .When(_ => ProgramStatusInputted())
+                .Then(_ => StudentInfoIsDisplayed())
                 .BDDfy();
         }
     }

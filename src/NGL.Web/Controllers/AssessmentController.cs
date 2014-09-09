@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,7 +142,7 @@ namespace NGL.Web.Controllers
                 var newResultModel =
                     newResultModels.First(
                         studentScoreResult => studentScoreResult.StudentUsi == currentResultEntity.StudentUSI);
-                currentResultEntity.Result = newResultModel.AssessmentResult.HasValue ? newResultModel.AssessmentResult.Value.ToString() : "";
+                currentResultEntity.Result = newResultModel.AssessmentResult.HasValue ? newResultModel.AssessmentResult.Value.ToString(CultureInfo.InvariantCulture) : "";
             }
         }
 

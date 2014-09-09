@@ -20,20 +20,20 @@ namespace NGL.UiTests.Location
         private CreateModel _locationCreateModel;
         private LocationIndexPage _locationIndexPage;
 
-        public void IHaveLoggedIn()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
            .NavigateToInitialPage<HomePage>()
            .Login(ObjectMother.UserJohnSmith.ViewModel); 
         }
 
-        public void IAmOnTheCreateLocationPage()
+        public void GoToTheCreateLocationPage()
         {
             _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
             _locationCreatePage = _courseGenerationPage.GoToLocationIndexPage().GoToCreatePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _locationCreateModel = new CreateLocationModelBuilder().Build();
             _locationIndexPage = _locationCreatePage.CreateLocation(_locationCreateModel);
@@ -46,7 +46,7 @@ namespace NGL.UiTests.Location
         }
 
 
-        private void IDeleteALocation()
+        private void LocationIsDeleted()
         {
             _locationIndexPage.Delete(_locationCreateModel);
         }
@@ -59,11 +59,11 @@ namespace NGL.UiTests.Location
         [Fact]
         public void ShouldCreateAndDeleteLocation()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheCreateLocationPage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToTheCreateLocationPage())
+                .When(_ => HaveEnteredValidInputForAllFields())
                 .Then(_ => ANewLocationShouldBeDisplayedOnTheLocationIndexPage())
-                .When(_ => IDeleteALocation())
+                .When(_ => LocationIsDeleted())
                 .Then(_ => TheLocationShouldNotBeDisplayed())
                 .BDDfy();
         }

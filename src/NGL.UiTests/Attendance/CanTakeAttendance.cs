@@ -26,19 +26,19 @@ namespace NGL.UiTests.Attendance
             get { return _takeAttendancePage; }
         }
 
-        private void IHaveLoggedIn()
+        private void MasterAdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
 
-        private void IAmOnTheTakeAttendancePage()
+        private void AmOnTheTakeAttendancePage()
         {
             _takeAttendancePage = _homePage.TopMenu.GoToTakeAttendancePage();
         }
 
-        private void IEnterAValidSessionSectionAndDate()
+        private void EnterAValidSessionSectionAndDate()
         {
             var takeAttendanceModel = new TakeAttendanceModelBuilder().Build();
             _takeAttendancePage = _takeAttendancePage.SearchForStudents(takeAttendanceModel);
@@ -49,12 +49,12 @@ namespace NGL.UiTests.Attendance
             _takeAttendancePage.GetStudentAttendance().Count.ShouldBeGreaterThan(0);
         }
 
-        private void ISaveAfterMarkingAllTheStudentsTardy()
+        private void SaveAfterMarkingAllTheStudentsTardy()
         {
             _takeAttendancePage = _takeAttendancePage.EnterAttendanceStatus(AttendanceEventCategoryDescriptorEnum.Tardy);
         }
 
-        private void IMarkAStudentPresentForTwoOtherDays()
+        private void MarkAStudentPresentForTwoOtherDays()
         {
             _takeAttendancePage = _homePage.TopMenu.GoToTakeAttendancePage();
             _takeAttendancePage.MarkPresentForDate("09/10/2014");
@@ -71,7 +71,7 @@ namespace NGL.UiTests.Attendance
             _profilePage.AttendancePercentageIs("66%").ShouldBe(true);
         }
 
-        private void IClearAllFlagsForEveryone()
+        private void ClearAllFlagsForEveryone()
         {
             _studentIndex = _homePage.TopMenu.GoToStudentsPage();
             _studentIndex.ClearFlags();
@@ -82,7 +82,7 @@ namespace NGL.UiTests.Attendance
             _profilePage.FlagCountIs(flagCount).ShouldBe(true);
         }
 
-        private void IVisitThatStudentsProfilePage()
+        private void VisitThatStudentsProfilePage()
         {
             _studentIndex = _homePage.TopMenu.GoToStudentsPage();
             _profilePage = _studentIndex.GoToProfilePage();
@@ -91,19 +91,19 @@ namespace NGL.UiTests.Attendance
         [Fact]
         public void ShouldTakeAttendance()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheTakeAttendancePage())
-                .When(_ => IEnterAValidSessionSectionAndDate())
+            this.Given(_ => MasterAdminHasLoggedIn())
+                .And(_ => AmOnTheTakeAttendancePage())
+                .When(_ => EnterAValidSessionSectionAndDate())
                 .Then(_ => AListOfStudentsAttendingThatSectionShouldShow())
-                .When(_ => ISaveAfterMarkingAllTheStudentsTardy())
+                .When(_ => SaveAfterMarkingAllTheStudentsTardy())
                 .Then(_ => AllTheStudentsShouldBeMarkedTardy())
-                .When(_ => IVisitThatStudentsProfilePage())
+                .When(_ => VisitThatStudentsProfilePage())
                 .Then(_ => TheFlagCountShouldBe(1))
-                .When(_ => IMarkAStudentPresentForTwoOtherDays())
-                .And(_ => IVisitThatStudentsProfilePage())
+                .When(_ => MarkAStudentPresentForTwoOtherDays())
+                .And(_ => VisitThatStudentsProfilePage())
                 .Then(_ => TheStudentProfilePageShouldDisplayTheAttendancePercentage())
-                .When(_ => IClearAllFlagsForEveryone())
-                .And(_ => IVisitThatStudentsProfilePage())
+                .When(_ => ClearAllFlagsForEveryone())
+                .And(_ => VisitThatStudentsProfilePage())
                 .Then(_ => TheFlagCountShouldBe(0))
                 .BDDfy();
         }

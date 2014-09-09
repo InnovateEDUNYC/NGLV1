@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Globalization;
+using System.Web.Mvc;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Data.Repositories;
@@ -84,7 +85,7 @@ namespace NGL.Web.Controllers
             if (!ModelState.IsValid)
                 return View(academicDetailModel);
 
-            var fileCategory = ((int)academicDetailModel.SchoolYear).ToString();
+            var fileCategory = ((int)academicDetailModel.SchoolYear).ToString(CultureInfo.InvariantCulture);
             var performanceHistoryFileName = _fileUploader.Upload(academicDetailModel.PerformanceHistoryFile, id, fileCategory, "performanceHistory");
                     
             var studentAcademicDetail = _academicDetailMapper.Build(academicDetailModel,

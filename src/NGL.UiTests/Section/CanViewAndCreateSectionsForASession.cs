@@ -17,18 +17,18 @@ namespace NGL.UiTests.Section
         private SectionsForSessionPage _sectionsForSessionPage;
         private SectionCreatePage _sectionCreatePage;
 
-        public void IHaveLoggedIn()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
-        public void IAmOnTheSessionIndexPage()
+        public void GoToTheSessionIndexPage()
         {
             _sessionIndexPage = _homePage.TopMenu.GoToCourseGenerationPage().GoToSessionIndexPage();
         }
 
-        public void IChooseToViewSectionsForFallSemester()
+        public void GoToViewSectionsForFallSemester()
         {
             _sectionsForSessionPage = _sessionIndexPage.ViewSectionsFor("Fall Semester");
         }
@@ -42,12 +42,12 @@ namespace NGL.UiTests.Section
         {
             _sectionsForSessionPage.GetSectionCountForFirstCourse().ShouldBeGreaterThan(0);
         }
-        public void IChooseToCreateNewSection()
+        public void NewSectionIsCreated()
         {
             _sectionCreatePage = _sectionsForSessionPage.GoToCreateSectionPage();
         }
 
-        public void IShouldSeeFall2014SelectedByDefault()
+        public void Fall2014IsSelectedByDefault()
         {
             _sectionCreatePage.GetSession().ShouldBe("Fall 2014");
         }
@@ -55,13 +55,13 @@ namespace NGL.UiTests.Section
         [Fact]
         public void ShouldViewAndCreateSectionsForASession()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheSessionIndexPage())
-                .When(_ => IChooseToViewSectionsForFallSemester())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToTheSessionIndexPage())
+                .When(_ => GoToViewSectionsForFallSemester())
                 .Then(_ => FiveCoursesShouldBeDisplayedOnThePage())
                 .Then(_ => FirstCourseShouldHaveSections())
-                .When(_ => IChooseToCreateNewSection())
-                .Then(_ => IShouldSeeFall2014SelectedByDefault())
+                .When(_ => NewSectionIsCreated())
+                .Then(_ => Fall2014IsSelectedByDefault())
                 .BDDfy();
         }
     }

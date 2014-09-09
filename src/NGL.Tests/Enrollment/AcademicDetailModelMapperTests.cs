@@ -8,7 +8,7 @@ namespace NGL.Tests.Enrollment
 {
     public class AcademicDetailModelMapperTests
     {
-        private MapperBase<AcademicDetailModel, StudentAcademicDetail> _mapper = new AcademicDetailModelToAcademicDetailMapper();
+        private readonly MapperBase<AcademicDetailModel, StudentAcademicDetail> _mapper = new AcademicDetailModelToAcademicDetailMapper();
 
         [Fact]
         public void ShouldMapAcademicDetailModelToAcademicDetailEntity()

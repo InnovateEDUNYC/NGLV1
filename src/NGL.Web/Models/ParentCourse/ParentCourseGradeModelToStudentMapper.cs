@@ -37,7 +37,7 @@ namespace NGL.Web.Models.ParentCourse
             return parentCourseGrade;
         }
 
-        private string FindGradeOfStudentInParentGradesModelList(List<GradeModel> parentCourseGradesModelList, int studentUsi)
+        private string FindGradeOfStudentInParentGradesModelList(IEnumerable<GradeModel> parentCourseGradesModelList, int studentUsi)
         {
             var grade =
                 parentCourseGradesModelList.First(gradeModel => gradeModel.StudentUSI == studentUsi).Grade;

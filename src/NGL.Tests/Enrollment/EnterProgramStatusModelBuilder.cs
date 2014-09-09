@@ -6,12 +6,12 @@ namespace NGL.Tests.Enrollment
     public class EnterProgramStatusModelBuilder
     {
         private bool? _testingAccommodation = true;
-        private bool? SpecialEducation = true;
+        private readonly bool? _specialEducation = true;
         private bool? _mcKinneyVento = false;
-        private bool? TitleParticipation = true;
-        private bool? BilingualProgram = false;
-        private bool? EnglishAsSecondLanguage = true;
-        private bool? Gifted = true;
+        private readonly bool? _titleParticipation = true;
+        private readonly bool? _bilingualProgram = false;
+        private readonly bool? _englishAsSecondLanguage = true;
+        private readonly bool? _gifted = true;
         private const SchoolFoodServicesEligibilityTypeEnum FoodServiceEligibilityStatus = SchoolFoodServicesEligibilityTypeEnum.Fullprice;
 
         public EnterProgramStatusModel Build()
@@ -19,12 +19,12 @@ namespace NGL.Tests.Enrollment
             return new EnterProgramStatusModel
             {
                 TestingAccommodation = _testingAccommodation,
-                SpecialEducation = SpecialEducation,
+                SpecialEducation = _specialEducation,
                 McKinneyVento = _mcKinneyVento,
-                TitleParticipation = TitleParticipation,
-                BilingualProgram = BilingualProgram,
-                EnglishAsSecondLanguage = EnglishAsSecondLanguage,
-                Gifted = Gifted,
+                TitleParticipation = _titleParticipation,
+                BilingualProgram = _bilingualProgram,
+                EnglishAsSecondLanguage = _englishAsSecondLanguage,
+                Gifted = _gifted,
                 FoodServicesEligibilityStatus = FoodServiceEligibilityStatus,
             };
         }

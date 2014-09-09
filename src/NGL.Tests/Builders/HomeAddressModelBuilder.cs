@@ -9,7 +9,7 @@ namespace NGL.Tests.Builders
         private const string Address = "501 Belmont Ave";
         private const string Address2 = "Unit 3";
         private const string City = "Chicago";
-        private readonly StateAbbreviationTypeEnum? State = StateAbbreviationTypeEnum.IL;
+        private readonly StateAbbreviationTypeEnum? _state = StateAbbreviationTypeEnum.IL;
         private const string PostalCode = "60657";
 
         public HomeAddressModel Build()
@@ -20,7 +20,7 @@ namespace NGL.Tests.Builders
                 Address = Address,
                 Address2 = Address2,
                 City = City,
-                State = State,
+                State = _state,
                 PostalCode = PostalCode
             };
         }

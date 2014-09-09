@@ -10,8 +10,8 @@ namespace NGL.Tests.Builders
         private string _date = "09/09/2014";
         private readonly int? _sectionId = 7;
         private readonly int? _sessionId = 1;
-        private const string _section = "Math 123";
-        private const string _session = "Fall 2014";
+        private const string Section = "Math 123";
+        private const string Session = "Fall 2014";
         private readonly List<StudentAttendanceRowModel> _studentRows = new List<StudentAttendanceRowModel>();
 
         public TakeAttendanceModel Build()
@@ -20,9 +20,9 @@ namespace NGL.Tests.Builders
             {
                 Date = _date,
                 SectionId = _sectionId,
-                Section = _section,
+                Section = Section,
                 SessionId = _sessionId,
-                Session = _session,
+                Session = Session,
             };
 
             if (_studentRows.Any())

@@ -20,19 +20,19 @@ namespace NGL.UiTests.Assessment
         private AssessmentIndexPage _assessmentIndexPage;
         private AssessmentResultsPage _resultsPage;
 
-        public void IHaveLoggedIn()
+        public void HaveLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void IAmOnTheCreateAssessmentPage()
+        public void AmOnTheCreateAssessmentPage()
         {
             _assessmentCreatePage = _homePage.TopMenu.GoToAssessmentIndexPage().GoToCreatePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _createAssessmentModel = new CreateAssessmentModelBuilder().Build();
             _assessmentIndexPage = _assessmentCreatePage.CreateAssessment(_createAssessmentModel);
@@ -44,13 +44,13 @@ namespace NGL.UiTests.Assessment
             assessmentExists.ShouldBe(true);
         }
 
-        public void IGoToTheResultsPageAndFillInValidResults()
+        public void GoToTheResultsPageAndFillInValidResults()
         {
             _resultsPage = _assessmentIndexPage.GoToResultsPage();
             _assessmentIndexPage = _resultsPage.EnterResultsForFirstStudent("96");
         }
 
-        public void IGoBackToTheResultsPage()
+        public void GoBackToTheResultsPage()
         {
             _resultsPage = _assessmentIndexPage.GoToResultsPage();
         }
@@ -63,12 +63,12 @@ namespace NGL.UiTests.Assessment
         [Fact]
         public void ShouldCreateAssessment()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheCreateAssessmentPage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
+            this.Given(_ => HaveLoggedIn())
+                .And(_ => AmOnTheCreateAssessmentPage())
+                .When(_ => HaveEnteredValidInputForAllFields())
                 .Then(_ => ANewAssessmentShouldBeDisplayedOnTheAssessmentIndexPage())
-                .When(_ => IGoToTheResultsPageAndFillInValidResults())
-                .And(_ => IGoBackToTheResultsPage())
+                .When(_ => GoToTheResultsPageAndFillInValidResults())
+                .And(_ => GoBackToTheResultsPage())
                 .Then(_ => TheNewAssessmentResultsShouldBeSaved())
                 .BDDfy();
         }

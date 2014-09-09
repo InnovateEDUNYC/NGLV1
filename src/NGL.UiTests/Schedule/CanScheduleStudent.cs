@@ -19,25 +19,25 @@ namespace NGL.UiTests.Schedule
         private Web.Data.Entities.Student _student;
         private SetModel _setModel;
 
-        public void IHaveLoggedIn()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void IAmOnTheSchedulePage()
+        public void GoToTheSchedulePage()
         {
             _student = new StudentBuilder().Build();
             _schedulePage = _homePage.TopMenu.GoToStudentsPage().GoToProfilePage().GoToSchedulePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _setModel = new SetScheduleModelBuilder().WithStudent(_student).Build();
             _schedulePage.AddStudentToSection(_setModel);
         }
-        public void IShouldSeeTheSectionAddedToListOfSections()
+        public void ShouldSeeTheSectionAddedToListOfSections()
         {
             var sectionIsVisible = _schedulePage.SectionIsVisible();
 
@@ -47,10 +47,10 @@ namespace NGL.UiTests.Schedule
         [Fact]
         public void ShouldScheduleStudent()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .And(_ => IAmOnTheSchedulePage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
-                .Then(_ => IShouldSeeTheSectionAddedToListOfSections())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToTheSchedulePage())
+                .When(_ => HaveEnteredValidInputForAllFields())
+                .Then(_ => ShouldSeeTheSectionAddedToListOfSections())
                 .BDDfy();
         }
     }

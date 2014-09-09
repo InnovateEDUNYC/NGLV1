@@ -122,10 +122,10 @@ namespace NGL.Web.Controllers
             return Json(autoCompleteModels, JsonRequestBehavior.AllowGet);
         }
 
-        private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUSI)
+        private List<SectionListItemModel> GetCurrentlyEnrolledSectionsFor(int studentUsi)
         {
             var currentlyEnrolledStudentSectionAssociationEntities = _genericRepository.GetAll<StudentSectionAssociation>()
-                .Where(ssa => ssa.StudentUSI == studentUSI).ToList();
+                .Where(ssa => ssa.StudentUSI == studentUsi).ToList();
 
             return currentlyEnrolledStudentSectionAssociationEntities.Select(ssa => _studentSectionAssociationToSectionListItemModelMapper.Build(ssa)).ToList();
         }

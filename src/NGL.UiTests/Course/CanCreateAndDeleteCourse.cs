@@ -20,20 +20,20 @@ namespace NGL.UiTests.Course
         private CourseCreatePage _courseCreatePage;
         private int _coursesOnIndexPage;
 
-        public void IHaveLoggedInAsAnAdmin()
+        public void AdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserJohnSmith.ViewModel);
         }
 
-        public void IAmOnTheCreateCoursePage()
+        public void GoToTheCreateCoursePage()
         {
             _courseGenerationPage = _homePage.TopMenu.GoToCourseGenerationPage();
             _courseCreatePage = _courseGenerationPage.GoToCourseIndexPage().GoToCreatePage();
         }
 
-        public void IHaveEnteredValidInputForAllFields()
+        public void HaveEnteredValidInputForAllFields()
         {
             _createCourseModel = new CreateCourseModelBuilder().Build();
             _courseIndexPage = _courseCreatePage.CreateCourse(_createCourseModel);
@@ -45,7 +45,7 @@ namespace NGL.UiTests.Course
             courseExists.ShouldBe(true);
         }
 
-        private void IDeleteTheCourse()
+        private void CourseIsDeleted()
         {
             _coursesOnIndexPage = _courseIndexPage.GetNumberOfCourses();
             _courseIndexPage = _courseIndexPage.GoDelete(_createCourseModel.CourseCode);
@@ -59,11 +59,11 @@ namespace NGL.UiTests.Course
         [Fact]
         public void ShouldCreateCourse()
         {
-            this.Given(_ => IHaveLoggedInAsAnAdmin())
-                .And(_ => IAmOnTheCreateCoursePage())
-                .When(_ => IHaveEnteredValidInputForAllFields())
+            this.Given(_ => AdminHasLoggedIn())
+                .And(_ => GoToTheCreateCoursePage())
+                .When(_ => HaveEnteredValidInputForAllFields())
                 .Then(_ => ANewCourseShouldBeDisplayedOnTheCourseIndexPage())
-                .When(_ => IDeleteTheCourse())
+                .When(_ => CourseIsDeleted())
                 .Then(_ => TheCourseIsNotOnTheCourseIndexPage())
                 .BDDfy();
         }

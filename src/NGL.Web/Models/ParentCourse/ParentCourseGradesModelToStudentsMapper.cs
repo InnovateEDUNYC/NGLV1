@@ -7,7 +7,7 @@ namespace NGL.Web.Models.ParentCourse
 {
     public class ParentCourseGradesModelToStudentsMapper
     {
-        private ParentCourseGradeModelToParentCourseGradeMapper _parentCourseGradeModelToParentCourseGradeMapper;
+        private readonly ParentCourseGradeModelToParentCourseGradeMapper _parentCourseGradeModelToParentCourseGradeMapper;
 
         public ParentCourseGradesModelToStudentsMapper(ParentCourseGradeModelToParentCourseGradeMapper parentCourseGradeModelToParentCourseGradeMapper)
         {

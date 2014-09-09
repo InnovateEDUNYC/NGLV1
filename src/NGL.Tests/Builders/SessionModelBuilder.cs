@@ -8,19 +8,19 @@ namespace NGL.Tests.Builders
     {
         private readonly DateTime _beginDate = new DateTime(2038, 08, 30);
         private readonly DateTime _dateTime = new DateTime(2038, 12, 12);
-        private const int _totalInstructionalDays = 120;
-        private const TermTypeEnum _termTypeEnum = TermTypeEnum.SpringSemester;
-        private const SchoolYearTypeEnum _schoolYearTypeEnum = SchoolYearTypeEnum.Year2038;
+        private const int TotalInstructionalDays = 120;
+        private const TermTypeEnum TermTypeEnum = Web.Data.Entities.TermTypeEnum.SpringSemester;
+        private const SchoolYearTypeEnum SchoolYearTypeEnum = Web.Data.Entities.SchoolYearTypeEnum.Year2038;
 
         public CreateModel Build()
         {
             return new CreateModel
             {
-                Term = _termTypeEnum,
-                SchoolYear = _schoolYearTypeEnum,
+                Term = TermTypeEnum,
+                SchoolYear = SchoolYearTypeEnum,
                 BeginDate = _beginDate,
                 EndDate = _dateTime,
-                TotalInstructionalDays = _totalInstructionalDays
+                TotalInstructionalDays = TotalInstructionalDays
             };
         }
     }

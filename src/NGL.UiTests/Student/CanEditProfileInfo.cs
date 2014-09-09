@@ -24,24 +24,24 @@ namespace NGL.UiTests.Student
         private EditAcademicDetailModel _editAcademicDetailsModel;
         private EditProfileParentModel _parentModel;
 
-        private void IHaveLoggedIn()
+        private void MasterAdminHasLoggedIn()
         {
             _homePage = Host.Instance
                 .NavigateToInitialPage<HomePage>()
                 .Login(ObjectMother.UserMasterAdmin.ViewModel);
         }
-        private void IGoTTheStudentProfilePage()
+        private void GoToTheStudentProfilePage()
         {
             _profilePage = _homePage.TopMenu.GoToStudentsPage().GoToProfilePage();
 
         }
-        private void IEditAStudentsBiographicalInformation()
+        private void StudentsBiographicalInformationIsEdited()
         {
             _newBiographicalInformation = new StudentBiographicalInformationModelBuilder().Build();
             var profileModel = new ProfileModel {BiographicalInfo = _newBiographicalInformation};
             _profilePage.EditBiographicalInfo(profileModel);
         }
-        public void IEditTheStudentName()
+        public void StudentNameIsEdited()
         {
             _nameModel = new NameModel
             {
@@ -51,7 +51,7 @@ namespace NGL.UiTests.Student
             _profilePage.EditName(_nameModel);
         }
 
-        private void IEditTheAcademicDetails()
+        private void AcademicDetailsAreEdited()
         {
             var editAcademicDetailsPanel = _profilePage.EditAcademicDetails();
 
@@ -59,29 +59,23 @@ namespace NGL.UiTests.Student
             editAcademicDetailsPanel.Edit(_editAcademicDetailsModel);
         }
 
-        private void IShouldSeeUpdatedAcademicDetails()
+        private void UpdatedAcademicDetailsAreVisible()
         {
             _profilePage.IsAcademicDetailAccordingTo(_editAcademicDetailsModel);
         }
 
-        private void IShouldSeeUpdatedBiographicalInformation()
+        private void UpdatedBiographicalInformationIsVisible()
         {
             var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
             canSeeUpdatedInformation.ShouldBe(true);
         }
 
-        private void IShouldSeeUpdatedInformation()
-        {
-            var canSeeUpdatedInformation = _profilePage.EditedBiographicalInformationIsVisable(_newBiographicalInformation);
-            canSeeUpdatedInformation.ShouldBe(true);
-        }
-
-        private void IShouldSeeUpdatedName()
+        private void UpdatedNameIsVisible()
         {
             _profilePage.EditedNameIsVisible(_nameModel).ShouldBe(true);
         }
 
-        private void IEditTheProgramStatusInformation()
+        private void ProgramStatusInformationIsEdited()
         {
             var editProgramStatusPanel = _profilePage.EditProgramStatus();
 
@@ -89,13 +83,13 @@ namespace NGL.UiTests.Student
             _profilePage = editProgramStatusPanel.Edit(_enterProgramStatusModel);
         }
 
-        private void IShouldSeeUpdatedProgramStatusInformation()
+        private void UpdatedProgramStatusInformationIsVisible()
         {
             var canSeeUpdateProgramStatus = _profilePage.IsProgramStatusInfoSameAs(_enterProgramStatusModel);
             canSeeUpdateProgramStatus.ShouldBe(true);
         }
 
-        private void IEditTheHomeAddress()
+        private void HomeAddressIsEdited()
         {
             var editHomeAddressPanel = _profilePage.EditHomeAddress();
 
@@ -103,12 +97,12 @@ namespace NGL.UiTests.Student
             editHomeAddressPanel.Edit(_homeAddressModel);
         }
 
-        private void IShouldSeeUpdatedHomeAddress()
+        private void UpdatedHomeAddressIsVisible()
         {
             _profilePage.IsHomeAddressSameAs(_homeAddressModel).ShouldBe(true);
         }
 
-        private void IEditDetailsForParent(int parentNumber)
+        private void DetailsForParentAreEdited(int parentNumber)
         {
             var editParentPanel = _profilePage.EditParent(parentNumber);
             _parentModel = new EditProfileParentModelBuilder().Build();
@@ -119,7 +113,7 @@ namespace NGL.UiTests.Student
             editParentPanel.Edit(parentNumber, _parentModel);
         }
 
-        private void IShouldSeeUpdatedParentDetailsFor(int parentNumber)
+        private void UpdatedParentDetailsAreEdited(int parentNumber)
         {
             _profilePage.IsParentSameAs(parentNumber, _parentModel).ShouldBe(true);
         }
@@ -127,22 +121,22 @@ namespace NGL.UiTests.Student
         [Fact]
         public void ShouldEditProfileInfo()
         {
-            this.Given(_ => IHaveLoggedIn())
-                .When(_ => IGoTTheStudentProfilePage())
-                .And(_ => IEditAStudentsBiographicalInformation())
-                .Then(_ => IShouldSeeUpdatedBiographicalInformation())
-                .And(_ => IEditTheStudentName())
-                .Then(_ => IShouldSeeUpdatedName())
-                .When(_ => IEditTheAcademicDetails())
-                .Then(_ => IShouldSeeUpdatedAcademicDetails())
-                .When(_ => IEditTheProgramStatusInformation())
-                .Then(_ => IShouldSeeUpdatedProgramStatusInformation())
-                .When(_ => IEditTheHomeAddress())
-                .Then(_ => IShouldSeeUpdatedHomeAddress())
-                .When(_ => IEditDetailsForParent(1))
-                .Then(_ => IShouldSeeUpdatedParentDetailsFor(1))
-                .When(_ => IEditDetailsForParent(2))
-                .Then(_ => IShouldSeeUpdatedParentDetailsFor(2))
+            this.Given(_ => MasterAdminHasLoggedIn())
+                .When(_ => GoToTheStudentProfilePage())
+                .And(_ => StudentsBiographicalInformationIsEdited())
+                .Then(_ => UpdatedBiographicalInformationIsVisible())
+                .And(_ => StudentNameIsEdited())
+                .Then(_ => UpdatedNameIsVisible())
+                .When(_ => AcademicDetailsAreEdited())
+                .Then(_ => UpdatedAcademicDetailsAreVisible())
+                .When(_ => ProgramStatusInformationIsEdited())
+                .Then(_ => UpdatedProgramStatusInformationIsVisible())
+                .When(_ => HomeAddressIsEdited())
+                .Then(_ => UpdatedHomeAddressIsVisible())
+                .When(_ => DetailsForParentAreEdited(1))
+                .Then(_ => UpdatedParentDetailsAreEdited(1))
+                .When(_ => DetailsForParentAreEdited(2))
+                .Then(_ => UpdatedParentDetailsAreEdited(2))
 
                 .BDDfy();
         }
