@@ -2,6 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
+using Castle.Core.Internal;
 using NGL.Web.Data.Entities;
 using NGL.Web.Data.Infrastructure;
 using NGL.Web.Exceptions;
@@ -40,11 +41,26 @@ namespace NGL.Web.Data.Repositories
 
         public void Remove(int sectionIdentity)
         {
-            var existing = DbContext.Set<Section>().First(s => s.SectionIdentity == sectionIdentity);
+            var existing =
+                DbContext.Set<Section>()
+                    .Where(s => s.SectionIdentity == sectionIdentity)
+                    .Include(s => s.CourseOffering)
+                    .Include(s => s.CourseOffering.Sections)
+                    .FirstOrDefault();
+
+          
 
             try
             {
+                var courseOffering = existing.CourseOffering;
+                var courseOfferingDoesNotHaveAnyOtherSections = courseOffering.Sections.Any(s => s.SectionIdentity != existing.SectionIdentity) != true;
+
                 DbContext.Set<Section>().Remove(existing);
+                
+                if (courseOfferingDoesNotHaveAnyOtherSections)
+                {
+                    DbContext.Set<CourseOffering>().Remove(courseOffering);
+                }
                 Save();
             }
             catch (DbUpdateException e)
