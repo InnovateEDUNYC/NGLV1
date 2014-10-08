@@ -55,10 +55,10 @@ namespace NGL.Web.Data.Repositories
 
                 DbContext.Set<Section>().Remove(existing);
                 
-//                if (courseOfferingDoesNotHaveAnyOtherSections)
-//                {
-//                    DbContext.Set<CourseOffering>().Remove(courseOffering);
-//                }
+                if (courseOfferingDoesNotHaveAnyOtherSections)
+                {
+                    DbContext.Set<CourseOffering>().Remove(courseOffering);
+                }
                 Save();
             }
             catch (DbUpdateException e)
