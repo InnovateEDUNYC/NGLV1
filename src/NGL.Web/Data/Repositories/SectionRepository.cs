@@ -48,8 +48,6 @@ namespace NGL.Web.Data.Repositories
                     .Include(s => s.CourseOffering.Sections)
                     .FirstOrDefault();
 
-          
-
             try
             {
                 var courseOffering = existing.CourseOffering;
@@ -57,10 +55,10 @@ namespace NGL.Web.Data.Repositories
 
                 DbContext.Set<Section>().Remove(existing);
                 
-                if (courseOfferingDoesNotHaveAnyOtherSections)
-                {
-                    DbContext.Set<CourseOffering>().Remove(courseOffering);
-                }
+//                if (courseOfferingDoesNotHaveAnyOtherSections)
+//                {
+//                    DbContext.Set<CourseOffering>().Remove(courseOffering);
+//                }
                 Save();
             }
             catch (DbUpdateException e)
