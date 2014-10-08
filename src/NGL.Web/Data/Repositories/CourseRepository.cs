@@ -16,10 +16,18 @@ namespace NGL.Web.Data.Repositories
 
         public void Delete(int id)
         {
-            var courseToDelete = GetById(id);
-
+            var courseToDelete = DbContext.Set<Course>()
+                .Where(c => c.CourseIdentity == id)
+                .Include(c => c.CourseOfferings).FirstOrDefault();
             try
             {
+                var courseOfferingsCount = courseToDelete.CourseOfferings.Count;
+                for (var i = 0; i < courseOfferingsCount; i++)
+                {
+                    var child = courseToDelete.CourseOfferings.FirstOrDefault();
+                    DbContext.Set<CourseOffering>().Remove(child);
+                }
+
                 DbContext.Set<Course>().Remove(courseToDelete);
                 Save();
             }

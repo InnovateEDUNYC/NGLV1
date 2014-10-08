@@ -48,8 +48,6 @@ namespace NGL.Web.Data.Repositories
                     .Include(s => s.CourseOffering.Sections)
                     .FirstOrDefault();
 
-          
-
             try
             {
                 var courseOffering = existing.CourseOffering;
